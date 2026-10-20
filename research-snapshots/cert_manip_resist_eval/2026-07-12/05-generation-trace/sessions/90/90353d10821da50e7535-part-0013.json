@@ -1,0 +1,1754 @@
+{
+  "schema_version": "1.0",
+  "session_id": "90353d10821da50e7535",
+  "rounds": [
+    {
+      "number": 143,
+      "messages": [
+        {
+          "source_line": 2159,
+          "timestamp": "2026-05-21T05:05:49.712Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T05:05:49.712Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+                "content": "[系统通知 — worker_done:worker_paper_writing_method_20260521T050028]:\nWorker worker_paper_writing_method_20260521T050028 已完成（status=done），请审查 Agent 的处理结果。"
+              }
+            }
+          ],
+          "id": "event-002159"
+        },
+        {
+          "source_line": 2160,
+          "timestamp": "2026-05-21T05:05:49.712Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T05:05:49.712Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002160"
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "messages": [
+        {
+          "source_line": 2161,
+          "timestamp": "2026-05-21T05:05:49.698Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5cfc115-aac3-4d13-882f-d2d5672a692c",
+            "isSidechain": false,
+            "promptId": "463406e4-7cf3-44c6-849c-c4a16c000677",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "528f22c9-9154-4723-b67b-93d4d65742a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002161"
+        },
+        {
+          "source_line": 2162,
+          "timestamp": "2026-05-21T05:05:49.698Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "528f22c9-9154-4723-b67b-93d4d65742a8",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "afa3c28c-af34-4318-aa76-65d3d384f57f",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "id": "5562759a-d71b-485a-8586-6c540cb3d6eb",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-002162"
+        }
+      ]
+    },
+    {
+      "number": 145,
+      "messages": [
+        {
+          "source_line": 2163,
+          "timestamp": "2026-05-21T05:05:49.874Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_writing_method_20260521T050028]:\nWorker worker_paper_writing_method_20260521T050028 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afa3c28c-af34-4318-aa76-65d3d384f57f",
+            "isSidechain": false,
+            "promptId": "463406e4-7cf3-44c6-849c-c4a16c000677",
+            "type": "user",
+            "uuid": "c4db2292-cbb0-472e-95ed-30a083365b19",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002163"
+        },
+        {
+          "source_line": 2164,
+          "timestamp": "2026-05-21T05:05:53.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199wCY4iQbBJ2CoCNBwcXzG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_paper_writing_method_20260521T050028_result.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4db2292-cbb0-472e-95ed-30a083365b19",
+            "isSidechain": false,
+            "requestId": "req_011CbF8d1A3LEU7PiLkxgAaY",
+            "type": "assistant",
+            "uuid": "8086f2f8-6ccd-458f-93fe-971a19691cb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RiceuCirN6cX5j5xqAFBUf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 83,
+                "cache_read_input_tokens": 121995,
+                "output_tokens": 105,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 83,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 105,
+                    "cache_read_input_tokens": 121995,
+                    "cache_creation_input_tokens": 83,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 83
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002164"
+        },
+        {
+          "source_line": 2165,
+          "timestamp": "2026-05-21T05:05:53.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199wCY4iQbBJ2CoCNBwcXzG",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"raw\": \"All checks pass:\\n- **0 em-dashes**\\n- **No banned words** (leverage, utilize, delve, etc.)\\n- **No trailing -ing phrases** (the \\\"ing,\\\" hits are nouns like \\\"training\\\", \\\"encoding\\\", \\\"overfitting\\\")\\n- **~1141 words** (within the ~1200 target)\\n- All 6 subsections complete with required content\\n- Mean-shift rank-invariance proof with formal derivation and experimental confirmation\\n- CaCLR full implementation specs (kernel, optimizer, lr, init, parallel source, 1-D limitation, sweeps, early stopping)\\n- All symbols defined at first use\\n- Known bibtex keys used; unknown keys marked with `% [TO_ADD_BIB]` comments\\n\\nFile written to `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/docs/paper/method.tex`.\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8086f2f8-6ccd-458f-93fe-971a19691cb2",
+            "isSidechain": false,
+            "promptId": "463406e4-7cf3-44c6-849c-c4a16c000677",
+            "type": "user",
+            "uuid": "df31f953-4249-4f09-b99b-94951e4a169d",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_paper_writing_method_20260521T050028_result.json",
+                "content": "{\n  \"raw\": \"All checks pass:\\n- **0 em-dashes**\\n- **No banned words** (leverage, utilize, delve, etc.)\\n- **No trailing -ing phrases** (the \\\"ing,\\\" hits are nouns like \\\"training\\\", \\\"encoding\\\", \\\"overfitting\\\")\\n- **~1141 words** (within the ~1200 target)\\n- All 6 subsections complete with required content\\n- Mean-shift rank-invariance proof with formal derivation and experimental confirmation\\n- CaCLR full implementation specs (kernel, optimizer, lr, init, parallel source, 1-D limitation, sweeps, early stopping)\\n- All symbols defined at first use\\n- Known bibtex keys used; unknown keys marked with `% [TO_ADD_BIB]` comments\\n\\nFile written to `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/docs/paper/method.tex`.\"\n}",
+                "numLines": 3,
+                "startLine": 1,
+                "totalLines": 3
+              }
+            },
+            "sourceToolAssistantUUID": "8086f2f8-6ccd-458f-93fe-971a19691cb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002165"
+        },
+        {
+          "source_line": 2166,
+          "timestamp": "2026-05-21T05:06:10.698Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is a paper writing task (Method section). As a Reviewer, I need to check this under Audit Checklist §7 (论文写作审计) — but only if explicitly asked for chapter review (审查模式 B). \n\nLooking at the notification, this is a worker_done notification for a paper writing worker. The Director hasn't explicitly asked me to do a chapter review — this is just a worker completion notice. However, since the system says \"请审查 Agent 的处理结果\", I should at least check whether the writing follows the required process.\n\nPer my CLAUDE.md §2.1 (硬约束红线):\n\n\nWhen reviewing a chapter, I need to verify through the chat transcript or registry logs that the Main Agent reviewed the required red-section skills before writing — especially the ones marked as always:true, since skipping those would be a violation that would show up in the transcript.\n\nBut this is a paper writing worker, not a formal chapter review request. The notification just says \"请审查 Agent 的处理结果\" — standard worker completion notice. Let me read the method.tex to do a quick assessment. For paper writing, I should check content accuracy against experimental evidence and overall writing quality.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df31f953-4249-4f09-b99b-94951e4a169d",
+            "isSidechain": false,
+            "requestId": "req_011CbF8dJ7kmKMaxHMVYgvhd",
+            "type": "assistant",
+            "uuid": "cd58ec47-a125-460c-82f1-b37ac65d9e25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeUGEtc5Y9bdv8b5gh4ZtC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 363,
+                "cache_read_input_tokens": 122078,
+                "output_tokens": 485,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 363,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 485,
+                    "cache_read_input_tokens": 122078,
+                    "cache_creation_input_tokens": 363,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 363
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002166"
+        },
+        {
+          "source_line": 2167,
+          "timestamp": "2026-05-21T05:06:10.856Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YDLZdUEvh2pz9Ha339DHKt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd58ec47-a125-460c-82f1-b37ac65d9e25",
+            "isSidechain": false,
+            "requestId": "req_011CbF8dJ7kmKMaxHMVYgvhd",
+            "type": "assistant",
+            "uuid": "ac666df2-8873-4f62-8c65-be2f660e3811",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KeUGEtc5Y9bdv8b5gh4ZtC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 363,
+                "cache_read_input_tokens": 122078,
+                "output_tokens": 485,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 363,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 485,
+                    "cache_read_input_tokens": 122078,
+                    "cache_creation_input_tokens": 363,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 363
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002167"
+        },
+        {
+          "source_line": 2168,
+          "timestamp": "2026-05-21T05:06:10.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YDLZdUEvh2pz9Ha339DHKt",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Formulation}\n5\t\\label{sec:problem}\n6\t\n7\tGiven a multilingual large language model (LLM) and a multiple-choice question-answering (MCQA) instance, we extract the post-layer-norm residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at layer $l$. A \\emph{correctness probe} is a linear classifier\n8\t\\begin{equation}\n9\t  f_l(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)\n10\t  \\label{eq:probe}\n11\t\\end{equation}\n12\ttrained to predict $p(\\text{correct} \\mid \\mathbf{h}_l)$, the probability that the model's selected answer is correct. This target is output-dependent: it reflects the model's actual accuracy on each instance, not an intrinsic property of the input.\n13\t\n14\tWe distinguish correctness probing from two related tasks. \\emph{Knowledge boundary probing} \\citep{xiao2025knowledge} classifies whether a question is answerable, an input-level property independent of model output. \\emph{Difficulty probing} \\citep{civelli2026shared} predicts item difficulty as a language-agnostic question property via Item Response Theory (IRT). Our central question is whether an English-trained probe $f_l$ can transfer zero-shot to a target language $t$ without any target-language correctness labels (zero-correctness-label transfer), and which alignment strategies improve this transfer.\n15\t\n16\t\\subsection{Experimental Framework}\n17\t\\label{sec:framework}\n18\t\n19\t\\paragraph{Models.} We evaluate Qwen3-8B and Llama4-Scout as primary architectures (P0), with Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct for validation (MVP).\n20\t\n21\t\\paragraph{Languages.} We test 20 languages spanning three resource tiers based on GlobalMMLU availability: \\textsc{high} (zh, de, fr, es, ja), \\textsc{med} (ar, ko, vi, th, tr), and \\textsc{low} (hi, sw, bn, te, my, am, zu, yo, si, km).\n22\t\n23\t\\paragraph{Data.} We use the GlobalMMLU test split, partitioned 70/30 via stratified sampling into \\texttt{probe\\_train} and \\texttt{eval} portions. English binary correctness labels come from \\texttt{probe\\_train} only; all reported results use \\texttt{eval} exclusively.\n24\t\n25\t\\paragraph{Activation extraction.} We register forward hooks on post-layer-norm residual stream outputs. Layers are sampled at regular intervals (every 4th layer for 28-layer models, every 8th for 96-layer models). We use INT8 quantization for large models and include a FP16 validation ablation at representative layers to control for quantization artifacts.\n26\t\n27\t\\paragraph{Metrics.} We report Area Under the ROC Curve (AUROC) for correctness discrimination, Expected Calibration Error (ECE, 15-bin) for calibration quality, Brier score, and selectivity \\citep{hewitt2019control}. % [TO_ADD_BIB]\n28\t\n29\t\\subsection{Transfer Methods}\n30\t\\label{sec:transfer}\n31\t\n32\tWe compare five methods ordered by complexity.\n33\t\n34\t\\paragraph{(a) Zero-shot transfer.} The English-trained probe $f_l$ is applied directly to target language representations without adaptation. This serves as the baseline for all comparisons.\n35\t\n36\t\\paragraph{(b) Mean-shift alignment.} We subtract the cross-lingual mean difference $\\boldsymbol{\\delta} = \\boldsymbol{\\mu}_{\\text{en}} - \\boldsymbol{\\mu}_t$ from target activations before applying the English probe.\n37\t\n38\t\\textbf{Rank-invariance proof.} Under the StandardScaler fitted on English training data, each dimension is normalized as $z_i = (h_i - \\mu_{\\text{en},i}) / \\sigma_{\\text{en},i}$. After mean-shift, the target representation becomes $h_i + \\delta_i$, and the scaled value is\n39\t\\begin{equation}\n40\t  z'_i = \\frac{h_i + \\delta_i - \\mu_{\\text{en},i}}{\\sigma_{\\text{en},i}} = z_i + c_i\n41\t  \\label{eq:meanshift}\n42\t\\end{equation}\n43\twhere $c_i = \\delta_i / \\sigma_{\\text{en},i}$ is a constant independent of the input sample. The probe logit then shifts by $\\mathbf{w}^\\top \\mathbf{c}$, a scalar applied identically to every sample. Because AUROC depends only on the ranking of predictions, this uniform offset leaves the ranking unchanged: $\\Delta\\text{AUROC} \\equiv 0$. Our MVP experiments confirm this prediction exactly ($\\Delta\\text{AUROC} = 0.000000$ across 5 languages $\\times$ all layers). ECE can change because binned probability values shift after the sigmoid transformation, but these changes are inconsistent across configurations and do not constitute reliable calibration improvement.\n44\t\n45\t\\paragraph{(c) Procrustes alignment.} We learn an orthogonal mapping from a small set of parallel sentence pairs by solving\n46\t\\begin{equation}\n47\t  \\mathbf{R}^* = \\arg\\min_{\\mathbf{R}^\\top\\mathbf{R}=\\mathbf{I}} \\|\\mathbf{X}_{\\text{en}}\\mathbf{R} - \\mathbf{X}_t\\|_F\n48\t  \\label{eq:procrustes}\n49\t\\end{equation}\n50\tfollowing cross-lingual word embedding alignment methods such as MUSE \\citep{conneau2018muse} and VecMap \\citep{artetxe2018vecmap}. % [TO_ADD_BIB]\n51\tApproximately 50 parallel pairs achieve 98\\% of 200-pair performance. Resource tier matters: \\textsc{high} languages saturate at ${\\sim}$22 pairs and \\textsc{low} languages at ${\\sim}$48. An effect reversal occurs at moderate transfer quality: Procrustes alignment helps when zero-shot AUROC $< 0.50$ but degrades performance when zero-shot AUROC $> 0.60$, which implies that alignment strategy must be conditioned on baseline transfer quality.\n52\t\n53\t\\paragraph{(d) Few-shot probe training.} We retrain the probe from scratch on 25, 50, or 100 target-language labeled examples. This requires target-language correctness labels and serves as an upper-bound reference.\n54\t\n55\t\\paragraph{(e) CaCLR (Calibration-aware Cross-Lingual Regularization).} CaCLR tests whether joint calibration and distributional matching can improve zero-correctness-label transfer. The objective combines three terms:\n56\t\\begin{equation}\n57\t  \\mathcal{L} = \\mathcal{L}_{\\text{BCE}} + \\alpha \\cdot \\mathcal{L}_{\\text{SB-ECE}} + \\beta \\cdot \\mathcal{L}_{\\text{consistency}}\n58\t  \\label{eq:caclr}\n59\t\\end{equation}\n60\t$\\mathcal{L}_{\\text{BCE}}$ is standard binary cross-entropy on English \\texttt{probe\\_train} labels. $\\mathcal{L}_{\\text{SB-ECE}}$ is the differentiable Soft-Binned ECE (SB-ECE) of \\citet{karandikar2021sbece}, which replaces hard histogram bins with soft assignments to enable gradient-based calibration optimization. $\\mathcal{L}_{\\text{consistency}}$ is Maximum Mean Discrepancy (MMD) computed on \\emph{probe logits} from parallel English and target-language inputs. Operating on probe outputs (rather than raw activations) ensures gradient flow to probe parameters. For linear probes, the logit $\\mathbf{w}^\\top \\mathbf{h} + b$ is one-dimensional, so MMD operates in 1-D space; we discuss this design limitation in \\S\\ref{sec:discussion}. We use a Gaussian RBF kernel with bandwidth selected by the median heuristic. Parallel activations come from the GlobalMMLU \\texttt{probe\\_train} portion (70\\% of test split); no target-language correctness labels are required. The probe is initialized from the standard logistic regression solution (warm start) and optimized with Adam (learning rate $10^{-3}$). We apply early stopping based on English validation ECE. Both $\\alpha$ and $\\beta$ are swept across three orders of magnitude; batch size and epoch count are reported in the Appendix.\n61\t\n62\t\\subsection{Difficulty-Capability Decomposition}\n63\t\\label{sec:decomposition}\n64\t\n65\tWe train IRT-based difficulty probes that predict question difficulty, a language-agnostic property independent of model capability. To isolate the capability-specific component, we project out the difficulty direction from each representation:\n66\t\\begin{equation}\n67\t  \\mathbf{h}_l^{\\text{res}} = \\mathbf{h}_l - (\\mathbf{h}_l \\cdot \\hat{\\mathbf{w}}_{\\text{diff}})\\hat{\\mathbf{w}}_{\\text{diff}}\n68\t  \\label{eq:residual}\n69\t\\end{equation}\n70\twhere $\\hat{\\mathbf{w}}_{\\text{diff}}$ is the unit-norm difficulty direction. We retrain correctness probes on the residual $\\mathbf{h}_l^{\\text{res}}$ and compare cross-lingual transfer. This decomposition yields a prescriptive signal: when the difficulty component dominates a language-layer combination, transfer should succeed because the underlying structure is shared across languages. When the capability component dominates, transfer should degrade because the encoding is language-specific.\n71\t\n72\t\\subsection{Geometric Analysis}\n73\t\\label{sec:geometric}\n74\t\n75\tWe quantify cross-lingual representational similarity with Centered Kernel Alignment (CKA) \\citep{kornblith2019cka}. % [TO_ADD_BIB]\n76\tThe central analysis applies partial correlation to control for layer depth, which reveals a Simpson's Paradox in the CKA-transfer relationship. The raw correlation between CKA and transfer AUROC across all language-layer pairs is negative, because both quantities covary with depth (deeper layers have lower CKA and, in some architectures, lower transfer AUROC). After controlling for depth, the partial correlation reverses sign: within each layer, higher cross-lingual CKA predicts better probe transfer (Llama pilot: $\\rho = +0.41$, $p = 0.006$; 14 of 17 layer-level correlations positive). We report bootstrap confidence intervals (1000 resamples) for all partial correlations. We supplement CKA with subspace angle analysis that measures the cross-lingual angular distance between correctness directions $\\mathbf{w}_l$ at each layer. These results are framed as geometric and correlational analysis, not mechanistic explanation.\n77\t\n78\t\\subsection{Probing Controls}\n79\t\\label{sec:controls}\n80\t\n81\tWe validate probe quality with the control task framework of \\citet{hewitt2019control}. % [TO_ADD_BIB]\n82\tSelectivity is the gap between AUROC on true correctness labels and AUROC on randomly shuffled labels; higher selectivity indicates that the probe captures genuine task-relevant structure rather than exploiting representational capacity. We reduce activations to 100 dimensions via PCA before probe training to guard against high-dimensional overfitting, and report 5-fold cross-validated estimates. Pilot results on Qwen2.5-7B show selectivity concentrated in layers 20 through 27 (0.244 to 0.262), with shallow layers below 0.05. Across the full language-layer grid, approximately 28\\% of low-resource combinations fall below a meaningful selectivity threshold, which indicates that a substantial fraction of reported probing results in these settings reflect capacity artifacts rather than genuine correctness encoding.\n83\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac666df2-8873-4f62-8c65-be2f660e3811",
+            "isSidechain": false,
+            "promptId": "463406e4-7cf3-44c6-849c-c4a16c000677",
+            "type": "user",
+            "uuid": "deca01ad-fe70-4bec-bfe1-d470890b419d",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/docs/paper/method.tex",
+                "content": "\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Formulation}\n\\label{sec:problem}\n\nGiven a multilingual large language model (LLM) and a multiple-choice question-answering (MCQA) instance, we extract the post-layer-norm residual stream representation $\\mathbf{h}_l \\in \\mathbb{R}^d$ at layer $l$. A \\emph{correctness probe} is a linear classifier\n\\begin{equation}\n  f_l(\\mathbf{h}_l) = \\sigma(\\mathbf{w}_l^\\top \\mathbf{h}_l + b_l)\n  \\label{eq:probe}\n\\end{equation}\ntrained to predict $p(\\text{correct} \\mid \\mathbf{h}_l)$, the probability that the model's selected answer is correct. This target is output-dependent: it reflects the model's actual accuracy on each instance, not an intrinsic property of the input.\n\nWe distinguish correctness probing from two related tasks. \\emph{Knowledge boundary probing} \\citep{xiao2025knowledge} classifies whether a question is answerable, an input-level property independent of model output. \\emph{Difficulty probing} \\citep{civelli2026shared} predicts item difficulty as a language-agnostic question property via Item Response Theory (IRT). Our central question is whether an English-trained probe $f_l$ can transfer zero-shot to a target language $t$ without any target-language correctness labels (zero-correctness-label transfer), and which alignment strategies improve this transfer.\n\n\\subsection{Experimental Framework}\n\\label{sec:framework}\n\n\\paragraph{Models.} We evaluate Qwen3-8B and Llama4-Scout as primary architectures (P0), with Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct for validation (MVP).\n\n\\paragraph{Languages.} We test 20 languages spanning three resource tiers based on GlobalMMLU availability: \\textsc{high} (zh, de, fr, es, ja), \\textsc{med} (ar, ko, vi, th, tr), and \\textsc{low} (hi, sw, bn, te, my, am, zu, yo, si, km).\n\n\\paragraph{Data.} We use the GlobalMMLU test split, partitioned 70/30 via stratified sampling into \\texttt{probe\\_train} and \\texttt{eval} portions. English binary correctness labels come from \\texttt{probe\\_train} only; all reported results use \\texttt{eval} exclusively.\n\n\\paragraph{Activation extraction.} We register forward hooks on post-layer-norm residual stream outputs. Layers are sampled at regular intervals (every 4th layer for 28-layer models, every 8th for 96-layer models). We use INT8 quantization for large models and include a FP16 validation ablation at representative layers to control for quantization artifacts.\n\n\\paragraph{Metrics.} We report Area Under the ROC Curve (AUROC) for correctness discrimination, Expected Calibration Error (ECE, 15-bin) for calibration quality, Brier score, and selectivity \\citep{hewitt2019control}. % [TO_ADD_BIB]\n\n\\subsection{Transfer Methods}\n\\label{sec:transfer}\n\nWe compare five methods ordered by complexity.\n\n\\paragraph{(a) Zero-shot transfer.} The English-trained probe $f_l$ is applied directly to target language representations without adaptation. This serves as the baseline for all comparisons.\n\n\\paragraph{(b) Mean-shift alignment.} We subtract the cross-lingual mean difference $\\boldsymbol{\\delta} = \\boldsymbol{\\mu}_{\\text{en}} - \\boldsymbol{\\mu}_t$ from target activations before applying the English probe.\n\n\\textbf{Rank-invariance proof.} Under the StandardScaler fitted on English training data, each dimension is normalized as $z_i = (h_i - \\mu_{\\text{en},i}) / \\sigma_{\\text{en},i}$. After mean-shift, the target representation becomes $h_i + \\delta_i$, and the scaled value is\n\\begin{equation}\n  z'_i = \\frac{h_i + \\delta_i - \\mu_{\\text{en},i}}{\\sigma_{\\text{en},i}} = z_i + c_i\n  \\label{eq:meanshift}\n\\end{equation}\nwhere $c_i = \\delta_i / \\sigma_{\\text{en},i}$ is a constant independent of the input sample. The probe logit then shifts by $\\mathbf{w}^\\top \\mathbf{c}$, a scalar applied identically to every sample. Because AUROC depends only on the ranking of predictions, this uniform offset leaves the ranking unchanged: $\\Delta\\text{AUROC} \\equiv 0$. Our MVP experiments confirm this prediction exactly ($\\Delta\\text{AUROC} = 0.000000$ across 5 languages $\\times$ all layers). ECE can change because binned probability values shift after the sigmoid transformation, but these changes are inconsistent across configurations and do not constitute reliable calibration improvement.\n\n\\paragraph{(c) Procrustes alignment.} We learn an orthogonal mapping from a small set of parallel sentence pairs by solving\n\\begin{equation}\n  \\mathbf{R}^* = \\arg\\min_{\\mathbf{R}^\\top\\mathbf{R}=\\mathbf{I}} \\|\\mathbf{X}_{\\text{en}}\\mathbf{R} - \\mathbf{X}_t\\|_F\n  \\label{eq:procrustes}\n\\end{equation}\nfollowing cross-lingual word embedding alignment methods such as MUSE \\citep{conneau2018muse} and VecMap \\citep{artetxe2018vecmap}. % [TO_ADD_BIB]\nApproximately 50 parallel pairs achieve 98\\% of 200-pair performance. Resource tier matters: \\textsc{high} languages saturate at ${\\sim}$22 pairs and \\textsc{low} languages at ${\\sim}$48. An effect reversal occurs at moderate transfer quality: Procrustes alignment helps when zero-shot AUROC $< 0.50$ but degrades performance when zero-shot AUROC $> 0.60$, which implies that alignment strategy must be conditioned on baseline transfer quality.\n\n\\paragraph{(d) Few-shot probe training.} We retrain the probe from scratch on 25, 50, or 100 target-language labeled examples. This requires target-language correctness labels and serves as an upper-bound reference.\n\n\\paragraph{(e) CaCLR (Calibration-aware Cross-Lingual Regularization).} CaCLR tests whether joint calibration and distributional matching can improve zero-correctness-label transfer. The objective combines three terms:\n\\begin{equation}\n  \\mathcal{L} = \\mathcal{L}_{\\text{BCE}} + \\alpha \\cdot \\mathcal{L}_{\\text{SB-ECE}} + \\beta \\cdot \\mathcal{L}_{\\text{consistency}}\n  \\label{eq:caclr}\n\\end{equation}\n$\\mathcal{L}_{\\text{BCE}}$ is standard binary cross-entropy on English \\texttt{probe\\_train} labels. $\\mathcal{L}_{\\text{SB-ECE}}$ is the differentiable Soft-Binned ECE (SB-ECE) of \\citet{karandikar2021sbece}, which replaces hard histogram bins with soft assignments to enable gradient-based calibration optimization. $\\mathcal{L}_{\\text{consistency}}$ is Maximum Mean Discrepancy (MMD) computed on \\emph{probe logits} from parallel English and target-language inputs. Operating on probe outputs (rather than raw activations) ensures gradient flow to probe parameters. For linear probes, the logit $\\mathbf{w}^\\top \\mathbf{h} + b$ is one-dimensional, so MMD operates in 1-D space; we discuss this design limitation in \\S\\ref{sec:discussion}. We use a Gaussian RBF kernel with bandwidth selected by the median heuristic. Parallel activations come from the GlobalMMLU \\texttt{probe\\_train} portion (70\\% of test split); no target-language correctness labels are required. The probe is initialized from the standard logistic regression solution (warm start) and optimized with Adam (learning rate $10^{-3}$). We apply early stopping based on English validation ECE. Both $\\alpha$ and $\\beta$ are swept across three orders of magnitude; batch size and epoch count are reported in the Appendix.\n\n\\subsection{Difficulty-Capability Decomposition}\n\\label{sec:decomposition}\n\nWe train IRT-based difficulty probes that predict question difficulty, a language-agnostic property independent of model capability. To isolate the capability-specific component, we project out the difficulty direction from each representation:\n\\begin{equation}\n  \\mathbf{h}_l^{\\text{res}} = \\mathbf{h}_l - (\\mathbf{h}_l \\cdot \\hat{\\mathbf{w}}_{\\text{diff}})\\hat{\\mathbf{w}}_{\\text{diff}}\n  \\label{eq:residual}\n\\end{equation}\nwhere $\\hat{\\mathbf{w}}_{\\text{diff}}$ is the unit-norm difficulty direction. We retrain correctness probes on the residual $\\mathbf{h}_l^{\\text{res}}$ and compare cross-lingual transfer. This decomposition yields a prescriptive signal: when the difficulty component dominates a language-layer combination, transfer should succeed because the underlying structure is shared across languages. When the capability component dominates, transfer should degrade because the encoding is language-specific.\n\n\\subsection{Geometric Analysis}\n\\label{sec:geometric}\n\nWe quantify cross-lingual representational similarity with Centered Kernel Alignment (CKA) \\citep{kornblith2019cka}. % [TO_ADD_BIB]\nThe central analysis applies partial correlation to control for layer depth, which reveals a Simpson's Paradox in the CKA-transfer relationship. The raw correlation between CKA and transfer AUROC across all language-layer pairs is negative, because both quantities covary with depth (deeper layers have lower CKA and, in some architectures, lower transfer AUROC). After controlling for depth, the partial correlation reverses sign: within each layer, higher cross-lingual CKA predicts better probe transfer (Llama pilot: $\\rho = +0.41$, $p = 0.006$; 14 of 17 layer-level correlations positive). We report bootstrap confidence intervals (1000 resamples) for all partial correlations. We supplement CKA with subspace angle analysis that measures the cross-lingual angular distance between correctness directions $\\mathbf{w}_l$ at each layer. These results are framed as geometric and correlational analysis, not mechanistic explanation.\n\n\\subsection{Probing Controls}\n\\label{sec:controls}\n\nWe validate probe quality with the control task framework of \\citet{hewitt2019control}. % [TO_ADD_BIB]\nSelectivity is the gap between AUROC on true correctness labels and AUROC on randomly shuffled labels; higher selectivity indicates that the probe captures genuine task-relevant structure rather than exploiting representational capacity. We reduce activations to 100 dimensions via PCA before probe training to guard against high-dimensional overfitting, and report 5-fold cross-validated estimates. Pilot results on Qwen2.5-7B show selectivity concentrated in layers 20 through 27 (0.244 to 0.262), with shallow layers below 0.05. Across the full language-layer grid, approximately 28\\% of low-resource combinations fall below a meaningful selectivity threshold, which indicates that a substantial fraction of reported probing results in these settings reflect capacity artifacts rather than genuine correctness encoding.\n",
+                "numLines": 83,
+                "startLine": 1,
+                "totalLines": 83
+              }
+            },
+            "sourceToolAssistantUUID": "ac666df2-8873-4f62-8c65-be2f660e3811",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002168"
+        },
+        {
+          "source_line": 2169,
+          "timestamp": "2026-05-21T05:06:10.883Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "deca01ad-fe70-4bec-bfe1-d470890b419d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "39416978-23d2-412d-a0f6-746da44b40b8",
+                "timestamp": "2026-05-21T05:06:10.883Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "refactored-sauteeing-chipmunk"
+              }
+            }
+          ],
+          "id": "event-002169"
+        },
+        {
+          "source_line": 2170,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_paper_writing_method_20260521T050028]: Worker worker_paper_writing_method_20260521T050028 已完成（status=done），请审查 Agent 的处理结果。",
+                "leafUuid": "39416978-23d2-412d-a0f6-746da44b40b8",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002170"
+        },
+        {
+          "source_line": 2171,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap xling_calib_direction MVP validation",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002171"
+        },
+        {
+          "source_line": 2172,
+          "timestamp": "2026-05-21T05:07:06.189Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me do a thorough review of the Method section. This is a paper writing worker completion, and while not a formal 审查模式 B request, I should check the key aspects:\n\n1. **Claim-evidence alignment**: Do the claims match experimental data?\n2. **Writing quality**: AI-style markers\n3. **Technical accuracy**\n4. **Missing elements**\n\nLet me go through systematically:\n\n**§3.1 Problem Formulation**\n- Correctly distinguishes correctness probing from knowledge boundary (Xiao) and difficulty (Civelli) ✓\n\n\n- \"zero-correctness-label transfer\" — good terminology ✓\n- Equation 1 correctly defines the linear probe ✓\n\n**§3.2 Experimental Framework**\n- **Models**: There's a discrepancy between what the paper claims and what was actually used. The paper mentions \"Qwen3-8B and Llama4-Scout\" but the actual models downloaded are Qwen3-235B-A22B-GPTQ-Int4 and Llama-4-Scout-17B-16E. The paper's model names are either oversimplified or incorrect, and I need to verify what was actually planned versus what's written. There's definitely a discrepancy here — the paper mentions \"Qwen3-8B\" but the actual project uses Qwen3-235B based on the ROADMAP and download artifacts, so that's a clear error that needs to be caught. On the language side, I'm noticing that Thai is listed as a medium-resource language, but GlobalMMLU doesn't actually include Thai, which is another inconsistency to flag. Looking at the actual defaults in extract_activations_large.py, I see they include pl, nl, and uk instead of the low-resource languages the paper mentions. The paper claims to use my, am, zu, yo, si, km but those aren't in the implementation and probably aren't in GlobalMMLU either — this is a major gap between what's described and what's actually being tested.\n\nThere are also several other mismatches I'm noticing: the paper specifies 15-bin ECE but the code implements 10-bin, and while the paper claims INT8 quantization, the actual plans use GPTQ-Int4 and W4A16 instead. These discrepancies suggest the paper may be describing an idealized scope that doesn't match the real experimental setup.\n\nFor the transfer methods, the zero-shot baseline checks out, and the mean-shift approach has solid math with the rank-invariance proof confirmed empirically. The Procrustes formulation has a notational inconsistency though — the standard form maps target to English space, but the equation appears reversed, though the actual implementation seems to handle the alignment correctly. R such that $\\mathbf{X}_{tgt}\\mathbf{R} \\approx \\mathbf{X}_{en}$. So the equation is inconsistent with the implementation.\n\nActually, `scipy.linalg.orthogonal_procrustes(A, B)` finds R such that $\\|AR - B\\|$ is minimized. So `orthogonal_procrustes(X_tgt_c, X_en_c)` → R minimizes $\\|X_{tgt}R - X_{en}\\|$. The paper's equation says $\\min \\|X_{en}R - X_t\\|$ which would find R mapping English to target. This IS a notational inconsistency.\n\nThe \"50 parallel pairs achieve 98% of 200-pair performance\" claim needs verification against the actual sensitivity data, and the resource tier saturation points of 22 and 48 pairs seem suspiciously precise given the discrete N values tested across languages. For the few-shot setup, the paper should be clearer that it combines English samples with N target samples rather than using only N target samples. CaCLR appears to have comprehensive specification.\n\nThe GlobalMMLU parallel activations now correctly reference the test split rather than a non-existent train split translation. The decomposition methodology with IRT difficulty probes and residual projection is sound, and the geometric analysis accurately captures the pilot results showing Simpson's Paradox effects, though the Llama correlation coefficient still needs to be verified. p = 0.006\" ✓ matches data\n- \"14 of 17 layer-level correlations positive\" ✓\n- \"bootstrap confidence intervals (1000 resamples)\" — good, addresses my earlier concern about missing CIs. But this hasn't been computed yet — it's a commitment in the paper for future analysis.\n- \"subspace angle analysis\" mentioned but no details — this is planned but not yet executed\n- \"not mechanistic explanation\" caveat ✓\n\n**§3.6 Probing Controls**\n- Hewitt & Liang framework ✓\n- PCA to 100 dims ✓\n- \"5-fold cross-validated estimates\" ✓\n- Pilot results \"selectivity 0.244 to 0.262 in layers 20-27\" ✓ matches data\n- \"28% of low-resource combinations fall below meaningful threshold\" — I need to verify where this number comes from, especially the per-language breakdown.\n\n**Overall writing quality**:\n- No em-dashes ✓\n- No obvious AI-style markers ✓\n- Dense and technical — appropriate for Method section ✓\n- Reasonable length (~1141 words) ✓\n\n**Critical issues to flag**:\n1. \"Qwen3-8B\" — wrong model name (should be Qwen3-235B)\n2. Language list includes th (Thai, unavailable) and my/am/zu/yo/si/km (likely not in GlobalMMLU)\n3. \"15-bin\" ECE vs code uses 10-bin\n4. \"INT8 quantization\" vs actual INT4 (GPTQ-Int4, W4A16)\n5. Procrustes equation direction inconsistent with implementation\n6. Few-shot doesn't mention\n\nI'm also noticing some over-precise claims that lack clear sourcing — the \"50 pairs at 98%\" and \"22/48 pair saturation\" figures feel too specific without documentation, and that 28% low-resource artifact rate needs verification before I finalize this section.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39416978-23d2-412d-a0f6-746da44b40b8",
+            "isSidechain": false,
+            "requestId": "req_011CbF8eYfdyu4gWkNFzKUL6",
+            "type": "assistant",
+            "uuid": "476dba46-464f-480d-898c-200db311b703",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E76DPfi2P9Z8Kthjn1jwYq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3678,
+                "cache_read_input_tokens": 122441,
+                "output_tokens": 3781,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3678,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3781,
+                    "cache_read_input_tokens": 122441,
+                    "cache_creation_input_tokens": 3678,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3678
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002172"
+        },
+        {
+          "source_line": 2173,
+          "timestamp": "2026-05-21T05:07:26.597Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BEwW6HvE32418NU29zaMRy",
+              "name": "mcp__agent-ml-research__reviewer_post_to_director",
+              "input": {
+                "text": "## 审查报告 — Method Section (method.tex)\n\n**结论**: WARNING — 多处数据/实现不一致需修正\n\n### 发现\n\n- [severity: critical] **模型名错误**。§3.2 写 \"Qwen3-8B\"，实际项目使用 Qwen3-235B-A22B-GPTQ-Int4（plan_001）。ROADMAP、下载任务、run_plan_001.sh 均指向 235B 版本。论文中没有 \"Qwen3-8B\" 这个模型。\n\n- [severity: critical] **语言列表与实现不符**。§3.2 列出的 20 语言包含：\n  - **th (Thai)**：GlobalMMLU 不可用（之前数据检查确认 19/20，Thai 缺失）\n  - **my, am, zu, yo, si, km**：这些语言不在 `extract_activations_large.py` 的默认 20 语言列表中（实际为 en/zh/ar/hi/sw/ko/es/fr/de/ru/tr/bn/ja/pt/vi/te/id/pl/nl/uk），且可能不在 GlobalMMLU 中\n  - 论文描述的语言集与代码实现的语言集完全不同\n\n- [severity: warning] **ECE bin 数不一致**。§3.2 写 \"15-bin\"，代码 `compute_ece` 使用 `n_bins=10`。\n\n- [severity: warning] **量化方式不一致**。§3.2 写 \"INT8 quantization for large models\"，实际 plan_001 用 GPTQ-Int4，plan_002 用 W4A16。都是 4-bit，不是 INT8。\n\n- [severity: warning] **Procrustes 方程方向反**。Eq. 3 写 $\\min \\|\\mathbf{X}_{en}\\mathbf{R} - \\mathbf{X}_t\\|$（EN→target），但代码 `orthogonal_procrustes(X_tgt_c, X_en_c)` 求解的是 $\\min \\|\\mathbf{X}_t\\mathbf{R} - \\mathbf{X}_{en}\\|$（target→EN）。方程需与实现一致。\n\n- [severity: warning] **Few-shot 描述不完整**。§3.3(d) 写 \"retrain the probe from scratch on 25, 50, or 100 target-language labeled examples\"，但实际实现是 English 全量 + N target samples 合并训练。这是重要的实验细节差异。\n\n- [severity: warning] **数值 claim 缺来源**。\"50 parallel pairs achieve 98% of 200-pair performance\" 和 \"HIGH saturate at ~22 pairs, LOW at ~48\" — Procrustes sensitivity 实验使用离散 N 值（10,20,50,100,200,500,1000）× 5 语言，如何得出 \"22\" 和 \"48\" 这样精确的饱和点？需标注来源或调整精度。\n\n- [severity: info] **\"28% low-resource\" capacity artifacts** — 这个具体百分比的来源需要明确（是 pilot 数据的哪个子集、什么 threshold）。当前 pilot 只有 Qwen2.5-7B × 8 层 × 5 语言，28% 的计算基础是什么？\n\n### 写作质量\n- 无 em-dash、无 AI 风格词汇 ✓\n- Mean-shift rank-invariance proof 推导清晰，是论文亮点 ✓\n- CaCLR 实现规格完整（kernel/optimizer/lr/init/parallel source/1-D limitation）✓\n- Simpson's Paradox 叙事准确反映 pilot 数据 ✓\n- ~1141 词，密度适当 ✓\n\n### 建议\n\nCritical 项必须在下一版修正：模型名、语言列表需与实际实验配置完全对齐。Warning 项建议在实验数据就绪后统一修正（ECE bins、量化方式等可能还会随实验调整）。",
+                "project": "xling_calib_direction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "476dba46-464f-480d-898c-200db311b703",
+            "isSidechain": false,
+            "requestId": "req_011CbF8eYfdyu4gWkNFzKUL6",
+            "type": "assistant",
+            "uuid": "857eb86a-602e-4604-89ab-1c89ba25ac05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E76DPfi2P9Z8Kthjn1jwYq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3678,
+                "cache_read_input_tokens": 122441,
+                "output_tokens": 3781,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3678,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3781,
+                    "cache_read_input_tokens": 122441,
+                    "cache_creation_input_tokens": 3678,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3678
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002173"
+        },
+        {
+          "source_line": 2174,
+          "timestamp": "2026-05-21T05:07:30.823Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BEwW6HvE32418NU29zaMRy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "857eb86a-602e-4604-89ab-1c89ba25ac05",
+            "isSidechain": false,
+            "promptId": "463406e4-7cf3-44c6-849c-c4a16c000677",
+            "type": "user",
+            "uuid": "eab82c4f-c468-44ea-ab2c-ef28e55ec8db",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "857eb86a-602e-4604-89ab-1c89ba25ac05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002174"
+        },
+        {
+          "source_line": 2175,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap xling_calib_direction MVP validation",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002175"
+        },
+        {
+          "source_line": 2176,
+          "timestamp": "2026-05-21T05:15:49.736Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T05:15:49.736Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+                "content": "[系统通知 — worker_done:worker_paper_research_lit_foundations_20260521T051208]:\nWorker worker_paper_research_lit_foundations_20260521T051208 已完成（status=done），请审查 Agent 的处理结果。"
+              }
+            }
+          ],
+          "id": "event-002176"
+        },
+        {
+          "source_line": 2177,
+          "timestamp": "2026-05-21T05:15:49.737Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T05:15:49.737Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002177"
+        }
+      ]
+    },
+    {
+      "number": 146,
+      "messages": [
+        {
+          "source_line": 2178,
+          "timestamp": "2026-05-21T05:15:49.724Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eab82c4f-c468-44ea-ab2c-ef28e55ec8db",
+            "isSidechain": false,
+            "promptId": "ec835b2f-65c1-4e34-8fb2-6c85cc44b231",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "ca36ddef-45a7-4e20-9d43-e4107e34fab0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002178"
+        },
+        {
+          "source_line": 2179,
+          "timestamp": "2026-05-21T05:15:49.724Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca36ddef-45a7-4e20-9d43-e4107e34fab0",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "50bbe50f-3627-4f4d-9f1d-2ab13bdfe3e1",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "id": "e3be20e9-19c7-4348-a72a-c1bc5617fdc8",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-002179"
+        }
+      ]
+    },
+    {
+      "number": 147,
+      "messages": [
+        {
+          "source_line": 2180,
+          "timestamp": "2026-05-21T05:15:49.897Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_research_lit_foundations_20260521T051208]:\nWorker worker_paper_research_lit_foundations_20260521T051208 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50bbe50f-3627-4f4d-9f1d-2ab13bdfe3e1",
+            "isSidechain": false,
+            "promptId": "ec835b2f-65c1-4e34-8fb2-6c85cc44b231",
+            "type": "user",
+            "uuid": "eba5eec4-67f2-4f20-ad5f-ead6469e28f1",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002180"
+        },
+        {
+          "source_line": 2181,
+          "timestamp": "2026-05-21T05:15:57.269Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XMXd3FbnkJ2T9PaZc689Fv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_paper_research_lit_foundations_20260521T051208_result.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eba5eec4-67f2-4f20-ad5f-ead6469e28f1",
+            "isSidechain": false,
+            "requestId": "req_011CbF9PEM1nV6HEqNm2ExBe",
+            "type": "assistant",
+            "uuid": "a9b8c52b-b401-4820-ac9b-18fe875c6515",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jj7jULNUZgXVmJACT9MH8w",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 129969,
+                "output_tokens": 107,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 87,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 107,
+                    "cache_read_input_tokens": 129969,
+                    "cache_creation_input_tokens": 87,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 87
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002181"
+        },
+        {
+          "source_line": 2182,
+          "timestamp": "2026-05-21T05:15:57.281Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XMXd3FbnkJ2T9PaZc689Fv",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"raw\": \"文件完整，YAML 格式正确。完成情况：\\n\\n| Cluster | Target | Added | Verified | Failed |\\n|---------|--------|-------|----------|--------|\\n| **domain_adaptation_theory** | 3 | 3 (bendavid2010theory, zhao2019invariant, zhang2019bridging) | 3 | 0 |\\n| **probing_methodology** | 3 | 3 (hewitt2019control, voita2020mdl, belinkov2022probing) | 3 | 0 |\\n| **representation_similarity** | 2 | 2 (kornblith2019cka, wu2020similarity) | 2 | 0 |\\n| **calibration_foundations** | 3 | 2 new (guo2017calibration, angelopoulos2023conformal) + 1 updated (karandikar2021sbece) | 3 | 0 |\\n\\n**总计**：新增 10 篇，更新 1 篇（karandikar — 补全 7 位作者全名、URL、verified: true）。所有 11 条目均通过 WebSearch 验证，verified: true。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9b8c52b-b401-4820-ac9b-18fe875c6515",
+            "isSidechain": false,
+            "promptId": "ec835b2f-65c1-4e34-8fb2-6c85cc44b231",
+            "type": "user",
+            "uuid": "e19b8b16-b024-4110-9c90-92415ad4e6d2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_paper_research_lit_foundations_20260521T051208_result.json",
+                "content": "{\n  \"raw\": \"文件完整，YAML 格式正确。完成情况：\\n\\n| Cluster | Target | Added | Verified | Failed |\\n|---------|--------|-------|----------|--------|\\n| **domain_adaptation_theory** | 3 | 3 (bendavid2010theory, zhao2019invariant, zhang2019bridging) | 3 | 0 |\\n| **probing_methodology** | 3 | 3 (hewitt2019control, voita2020mdl, belinkov2022probing) | 3 | 0 |\\n| **representation_similarity** | 2 | 2 (kornblith2019cka, wu2020similarity) | 2 | 0 |\\n| **calibration_foundations** | 3 | 2 new (guo2017calibration, angelopoulos2023conformal) + 1 updated (karandikar2021sbece) | 3 | 0 |\\n\\n**总计**：新增 10 篇，更新 1 篇（karandikar — 补全 7 位作者全名、URL、verified: true）。所有 11 条目均通过 WebSearch 验证，verified: true。\"\n}",
+                "numLines": 3,
+                "startLine": 1,
+                "totalLines": 3
+              }
+            },
+            "sourceToolAssistantUUID": "a9b8c52b-b401-4820-ac9b-18fe875c6515",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002182"
+        },
+        {
+          "source_line": 2183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap xling_calib_direction MVP validation",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002183"
+        },
+        {
+          "source_line": 2184,
+          "timestamp": "2026-05-21T05:55:50.064Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T05:55:50.064Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+                "content": "[系统通知 — worker_done:worker_paper_writing_related_work_20260521T055252]:\nWorker worker_paper_writing_related_work_20260521T055252 已完成（status=done），请审查 Agent 的处理结果。"
+              }
+            }
+          ],
+          "id": "event-002184"
+        },
+        {
+          "source_line": 2185,
+          "timestamp": "2026-05-21T05:55:50.064Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T05:55:50.064Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002185"
+        }
+      ]
+    },
+    {
+      "number": 148,
+      "messages": [
+        {
+          "source_line": 2186,
+          "timestamp": "2026-05-21T05:55:50.054Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e19b8b16-b024-4110-9c90-92415ad4e6d2",
+            "isSidechain": false,
+            "promptId": "561986e1-9d41-44bc-b017-99f071ba65bf",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "025a1fac-ce8c-4a2b-818f-1ad50dfbc73e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002186"
+        },
+        {
+          "source_line": 2187,
+          "timestamp": "2026-05-21T05:55:50.055Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "025a1fac-ce8c-4a2b-818f-1ad50dfbc73e",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "9b8169bc-5d24-4235-8797-03dbff3f13ab",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "id": "7e6d3251-c713-414c-b1a0-e5bc07ea3c91",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-002187"
+        }
+      ]
+    },
+    {
+      "number": 149,
+      "messages": [
+        {
+          "source_line": 2188,
+          "timestamp": "2026-05-21T05:55:50.162Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_writing_related_work_20260521T055252]:\nWorker worker_paper_writing_related_work_20260521T055252 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b8169bc-5d24-4235-8797-03dbff3f13ab",
+            "isSidechain": false,
+            "promptId": "561986e1-9d41-44bc-b017-99f071ba65bf",
+            "type": "user",
+            "uuid": "1ffc5b07-5bb5-4680-94fb-e2f83682d7a9",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002188"
+        },
+        {
+          "source_line": 2189,
+          "timestamp": "2026-05-21T05:55:53.317Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SCxqe6PB1oYqeyeTk7xVfU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_paper_writing_related_work_20260521T055252_result.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ffc5b07-5bb5-4680-94fb-e2f83682d7a9",
+            "isSidechain": false,
+            "requestId": "req_011CbFCSAR4ZRivhRtcfj8C2",
+            "type": "assistant",
+            "uuid": "8cb70603-9ab4-494a-a3a2-2e714524147c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G1Gv5uMhEzN5hTummZyfDL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 87,
+                "cache_read_input_tokens": 130502,
+                "output_tokens": 107,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 87,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 107,
+                    "cache_read_input_tokens": 130502,
+                    "cache_creation_input_tokens": 87,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 87
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002189"
+        },
+        {
+          "source_line": 2190,
+          "timestamp": "2026-05-21T05:55:53.337Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SCxqe6PB1oYqeyeTk7xVfU",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"raw\": \"Verification summary:\\n\\n| Check | Result |\\n|-------|--------|\\n| Em-dash (`—`) | 0 occurrences |\\n| Paper stacking (`proposed`/`introduced`) | 0 occurrences |\\n| Each subsection has differentiation sentence | 5/5 |\\n| Table uses booktabs | Yes |\\n| Word count | ~1145 (including LaTeX markup; ~1000 prose words) |\\n| Unique citations | 23 distinct papers |\\n| `[TO_ADD_BIB]` entries added to `custom.bib` | 4 (kadavath2022, niculescu2005, conneau2018, artetxe2018) |\\n\\nWritten to `docs/paper/related_work.tex`. The 4 verified bib entries were appended to `docs/paper/custom.bib`.\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cb70603-9ab4-494a-a3a2-2e714524147c",
+            "isSidechain": false,
+            "promptId": "561986e1-9d41-44bc-b017-99f071ba65bf",
+            "type": "user",
+            "uuid": "9b29459b-01b0-4b31-90b9-343b296f3601",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/logs/workers/worker_paper_writing_related_work_20260521T055252_result.json",
+                "content": "{\n  \"raw\": \"Verification summary:\\n\\n| Check | Result |\\n|-------|--------|\\n| Em-dash (`—`) | 0 occurrences |\\n| Paper stacking (`proposed`/`introduced`) | 0 occurrences |\\n| Each subsection has differentiation sentence | 5/5 |\\n| Table uses booktabs | Yes |\\n| Word count | ~1145 (including LaTeX markup; ~1000 prose words) |\\n| Unique citations | 23 distinct papers |\\n| `[TO_ADD_BIB]` entries added to `custom.bib` | 4 (kadavath2022, niculescu2005, conneau2018, artetxe2018) |\\n\\nWritten to `docs/paper/related_work.tex`. The 4 verified bib entries were appended to `docs/paper/custom.bib`.\"\n}",
+                "numLines": 3,
+                "startLine": 1,
+                "totalLines": 3
+              }
+            },
+            "sourceToolAssistantUUID": "8cb70603-9ab4-494a-a3a2-2e714524147c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002190"
+        },
+        {
+          "source_line": 2191,
+          "timestamp": "2026-05-21T05:55:56.526Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AnJpnZUfC6EXoMrKLYA816",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b29459b-01b0-4b31-90b9-343b296f3601",
+            "isSidechain": false,
+            "requestId": "req_011CbFCSPvAhF4NKVJH6ixku",
+            "type": "assistant",
+            "uuid": "6e066471-2cd1-475f-92b8-6ab83a59ac98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015rq2UoWtNQWSRaeovveV6z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 350,
+                "cache_read_input_tokens": 130589,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 350,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 130589,
+                    "cache_creation_input_tokens": 350,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 350
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002191"
+        },
+        {
+          "source_line": 2192,
+          "timestamp": "2026-05-21T05:55:56.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AnJpnZUfC6EXoMrKLYA816",
+              "type": "tool_result",
+              "content": "1\t% Requires: \\usepackage{pifont} \\newcommand{\\cmark}{\\ding{51}} \\newcommand{\\xmark}{\\ding{55}}\n2\t% Requires: \\usepackage{booktabs}\n3\t\n4\t\\section{Related Work}\n5\t\n6\t\\subsection{LLM Calibration and Internal Representations}\n7\t\n8\tPost-hoc calibration methods such as temperature scaling \\cite{guo2017calibration} and Platt scaling \\cite{niculescu2005predicting} treat model confidence as a scalar output to be recalibrated after training. These approaches assume access to a held-out validation set from the target distribution and operate entirely on output logits without inspecting internal representations.\n9\tA complementary line of work examines whether models can self-assess correctness through verbalized confidence. \\citet{kadavath2022language} demonstrate that larger language models produce well-calibrated probability estimates when asked to evaluate their own answers, establishing that calibration information exists within the model prior to output generation.\n10\t\n11\tRecent studies shift attention from output-level calibration to representation-level probing. \\citet{miao2026closing} identify that correctness and verbalized confidence occupy nearly orthogonal subspaces in hidden states (cosine similarity below 0.04), suggesting that standard confidence elicitation fails to capture the full calibration signal. Building on this observation, CORAL \\cite{miao2026coral} trains correctness probes that transfer across tasks within English, achieving approximately 50\\% ECE improvement over verbalized confidence baselines. CCPS \\cite{khanmohammadi2025ccps} takes a complementary approach by measuring representation stability under input perturbations as a proxy for correctness. The Confidence Manifold framework \\cite{confidence_manifold2026} reveals that calibration-relevant information concentrates in a low-dimensional subspace (3 to 8 dimensions), with as few as 25 labeled examples sufficient for 89\\% probing accuracy. \\citet{ji2025calibrating} further demonstrate that verbal uncertainty in LLMs corresponds to a linear direction in representation space, while \\citet{joshi2025calibration} analyze how calibration signals evolve across layers, finding non-monotonic patterns that motivate layer selection.\n12\t\n13\tAll of these studies operate exclusively in English and on a single model architecture. Our work extends correctness probing to 20 languages across 4 architectures, revealing that the geometric properties identified in English (orthogonality, low-dimensional manifold) do not transfer uniformly across languages.\n14\t\n15\t\\subsection{Cross-Lingual Probing and Transfer}\n16\t\n17\tCross-lingual probing investigates whether linguistic or behavioral properties encoded in one language's representations generalize to others. \\citet{xiao2025knowledge} probe knowledge boundaries across 8 languages and find partial cross-lingual transfer, but their target signal is answerability (an input-level property) rather than correctness (which depends on the model's actual output). \\citet{civelli2026shared} probe item difficulty using IRT-derived labels and report shared geometric structure across 7 languages; however, difficulty is a property of the question itself, independent of any particular model's response. DALI \\cite{ravisankar2026dali} provides causal evidence through activation patching that English middle-layer representations can repair errors in 24 non-English languages, confirming that transferable correctness information exists but not quantifying when and why transfer fails.\n18\t\n19\tThe technical foundations for cross-lingual alignment predate LLM-era probing. MUSE \\cite{conneau2018muse} established adversarial training for unsupervised bilingual word embedding alignment, while VecMap \\cite{artetxe2018vecmap} demonstrated that self-learning with structural similarity initialization achieves robust cross-lingual mappings without parallel data. \\citet{liu2025middle} show that middle layers of fine-tuned LLMs exhibit stronger cross-lingual alignment than early or late layers, consistent with the depth patterns we observe for correctness probes.\n20\t\n21\tOur work differs in three respects: we probe correctness (an output-dependent signal that requires generating and evaluating answers), we provide systematic depth analysis with Pareto frontier characterization across architectures, and we evaluate 5 transfer methods (including linear projection inspired by MUSE/VecMap) across 20 languages.\n22\t\n23\t\\subsection{Multilingual Calibration}\n24\t\n25\tCalibration quality varies dramatically across languages. \\citet{zhou2025lace} document a 5$\\times$ ECE gap between English and low-resource languages across 100+ languages and propose LACE, an adaptive layer ensemble that selects different layer combinations per language. While effective, LACE requires per-language validation data with correctness labels, limiting applicability to languages where such annotations exist.\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\small\n30\t\\caption{Comparison with closely related work on calibration probing and cross-lingual transfer. Target signals: KB = knowledge boundary, Corr.\\ = correctness, Diff.\\ = difficulty. Zero-CL = zero target-language correctness labels required.}\n31\t\\label{tab:related_work}\n32\t\\begin{tabular}{lcccccc}\n33\t\\toprule\n34\t& \\textbf{Target} & \\textbf{\\# Langs} & \\textbf{Calib.} & \\textbf{Zero-CL} & \\textbf{Depth} & \\textbf{Transfer} \\\\\n35\t& \\textbf{Signal} & & \\textbf{Metrics} & \\textbf{Labels} & \\textbf{Analysis} & \\textbf{Methods} \\\\\n36\t\\midrule\n37\tXiao et al. & KB & 8 & \\xmark & \\cmark & \\xmark & 1 \\\\\n38\tLACE & -- & 100+ & \\cmark & \\xmark & partial & -- \\\\\n39\tCORAL & Corr. & 1 & \\cmark & -- & \\cmark & 1 \\\\\n40\tMiao \\& Ungar & Corr. & 1 & \\xmark & -- & \\xmark & -- \\\\\n41\tCivelli et al. & Diff. & 7 & \\xmark & \\cmark & \\cmark & 1 \\\\\n42\t\\midrule\n43\t\\textbf{Ours} & \\textbf{Corr.} & \\textbf{20} & \\cmark & \\cmark & \\cmark & \\textbf{5} \\\\\n44\t\\bottomrule\n45\t\\end{tabular}\n46\t\\end{table}\n47\t\n48\tThe fundamental challenge that LACE addresses (per-language calibration heterogeneity) motivates our investigation, but our approach differs in both goal and mechanism. We analyze \\emph{why} cross-lingual transfer of correctness probes fails (architecture-dependent depth-transferability tradeoffs, geometric divergence measured by CKA) rather than engineering a per-language compensation. Our method requires zero target-language correctness labels, transferring probes trained on English data alone.\n49\t\n50\t\\subsection{Domain Adaptation Theory}\n51\t\n52\tThe theoretical framework of \\citet{bendavid2010theory} bounds target-domain error by source error plus a divergence term ($\\mathcal{H}$-divergence) between source and target distributions, plus a joint ideal error. Applied to cross-lingual probe transfer, this predicts degradation proportional to the representational distance between languages. \\citet{zhao2019invariant} prove a stronger negative result: when conditional distributions $P(Y|X)$ differ between domains, matching marginal distributions of representations can \\emph{increase} target error rather than reduce it.\n53\t\n54\tThis theoretical insight directly explains our empirical finding on CaCLR (Cross-lingual Calibration via Conditional Label-aware Representation matching). CaCLR applies MMD-based distributional matching to align probe activations across languages, but consistently underperforms simple linear projection. The explanation follows from \\citet{zhao2019invariant}: because conditional accuracy distributions $P(\\text{correct}|\\mathbf{h})$ differ between languages (due to varying model competence), marginal alignment destroys the conditional structure that probes rely on. Our CKA partial correlation analysis further reveals a Simpson's Paradox where aggregate cross-lingual similarity masks within-layer divergence, a phenomenon not predicted by existing domain adaptation theory.\n55\t\n56\t\\subsection{Probing Methodology and Evaluation}\n57\t\n58\tThe methodological foundations of representation probing inform our experimental design. \\citet{hewitt2019control} introduce control tasks that establish selectivity baselines, guarding against probes that succeed merely due to high capacity rather than genuine information in representations. \\citet{voita2020mdl} propose minimum description length probes as an information-theoretic alternative, measuring the amount of effort required to extract a property. \\citet{belinkov2022probing} surveys the broader landscape of probing classifiers, identifying best practices and common pitfalls including the capacity-informativeness tradeoff.\n59\t\n60\tWe apply the control task framework of \\citet{hewitt2019control} to cross-lingual correctness probing and find that approximately 28\\% of positive transfer results in low-resource languages are capacity artifacts (probes achieve similar accuracy on shuffled labels). This finding underscores the importance of probing controls in multilingual settings where target-language data scarcity can inflate apparent transfer success. For measuring representational similarity across languages and layers, we employ CKA \\cite{kornblith2019cka} with partial correlation analysis, revealing geometric structure invisible to standard pairwise comparisons. Conformal prediction \\cite{angelopoulos2023conformal} offers distribution-free coverage guarantees complementary to our probing approach but requires per-language calibration data, which our zero-correctness-label setting explicitly avoids.\n61\t\n62\tOur work contributes the first systematic application of probing controls to cross-lingual transfer evaluation and introduces CKA partial correlation as a diagnostic tool for understanding transfer failure modes.\n63\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e066471-2cd1-475f-92b8-6ab83a59ac98",
+            "isSidechain": false,
+            "promptId": "561986e1-9d41-44bc-b017-99f071ba65bf",
+            "type": "user",
+            "uuid": "beb1d01b-0cee-4038-9b81-16caa47d9cc2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/docs/paper/related_work.tex",
+                "content": "% Requires: \\usepackage{pifont} \\newcommand{\\cmark}{\\ding{51}} \\newcommand{\\xmark}{\\ding{55}}\n% Requires: \\usepackage{booktabs}\n\n\\section{Related Work}\n\n\\subsection{LLM Calibration and Internal Representations}\n\nPost-hoc calibration methods such as temperature scaling \\cite{guo2017calibration} and Platt scaling \\cite{niculescu2005predicting} treat model confidence as a scalar output to be recalibrated after training. These approaches assume access to a held-out validation set from the target distribution and operate entirely on output logits without inspecting internal representations.\nA complementary line of work examines whether models can self-assess correctness through verbalized confidence. \\citet{kadavath2022language} demonstrate that larger language models produce well-calibrated probability estimates when asked to evaluate their own answers, establishing that calibration information exists within the model prior to output generation.\n\nRecent studies shift attention from output-level calibration to representation-level probing. \\citet{miao2026closing} identify that correctness and verbalized confidence occupy nearly orthogonal subspaces in hidden states (cosine similarity below 0.04), suggesting that standard confidence elicitation fails to capture the full calibration signal. Building on this observation, CORAL \\cite{miao2026coral} trains correctness probes that transfer across tasks within English, achieving approximately 50\\% ECE improvement over verbalized confidence baselines. CCPS \\cite{khanmohammadi2025ccps} takes a complementary approach by measuring representation stability under input perturbations as a proxy for correctness. The Confidence Manifold framework \\cite{confidence_manifold2026} reveals that calibration-relevant information concentrates in a low-dimensional subspace (3 to 8 dimensions), with as few as 25 labeled examples sufficient for 89\\% probing accuracy. \\citet{ji2025calibrating} further demonstrate that verbal uncertainty in LLMs corresponds to a linear direction in representation space, while \\citet{joshi2025calibration} analyze how calibration signals evolve across layers, finding non-monotonic patterns that motivate layer selection.\n\nAll of these studies operate exclusively in English and on a single model architecture. Our work extends correctness probing to 20 languages across 4 architectures, revealing that the geometric properties identified in English (orthogonality, low-dimensional manifold) do not transfer uniformly across languages.\n\n\\subsection{Cross-Lingual Probing and Transfer}\n\nCross-lingual probing investigates whether linguistic or behavioral properties encoded in one language's representations generalize to others. \\citet{xiao2025knowledge} probe knowledge boundaries across 8 languages and find partial cross-lingual transfer, but their target signal is answerability (an input-level property) rather than correctness (which depends on the model's actual output). \\citet{civelli2026shared} probe item difficulty using IRT-derived labels and report shared geometric structure across 7 languages; however, difficulty is a property of the question itself, independent of any particular model's response. DALI \\cite{ravisankar2026dali} provides causal evidence through activation patching that English middle-layer representations can repair errors in 24 non-English languages, confirming that transferable correctness information exists but not quantifying when and why transfer fails.\n\nThe technical foundations for cross-lingual alignment predate LLM-era probing. MUSE \\cite{conneau2018muse} established adversarial training for unsupervised bilingual word embedding alignment, while VecMap \\cite{artetxe2018vecmap} demonstrated that self-learning with structural similarity initialization achieves robust cross-lingual mappings without parallel data. \\citet{liu2025middle} show that middle layers of fine-tuned LLMs exhibit stronger cross-lingual alignment than early or late layers, consistent with the depth patterns we observe for correctness probes.\n\nOur work differs in three respects: we probe correctness (an output-dependent signal that requires generating and evaluating answers), we provide systematic depth analysis with Pareto frontier characterization across architectures, and we evaluate 5 transfer methods (including linear projection inspired by MUSE/VecMap) across 20 languages.\n\n\\subsection{Multilingual Calibration}\n\nCalibration quality varies dramatically across languages. \\citet{zhou2025lace} document a 5$\\times$ ECE gap between English and low-resource languages across 100+ languages and propose LACE, an adaptive layer ensemble that selects different layer combinations per language. While effective, LACE requires per-language validation data with correctness labels, limiting applicability to languages where such annotations exist.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Comparison with closely related work on calibration probing and cross-lingual transfer. Target signals: KB = knowledge boundary, Corr.\\ = correctness, Diff.\\ = difficulty. Zero-CL = zero target-language correctness labels required.}\n\\label{tab:related_work}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\textbf{Target} & \\textbf{\\# Langs} & \\textbf{Calib.} & \\textbf{Zero-CL} & \\textbf{Depth} & \\textbf{Transfer} \\\\\n& \\textbf{Signal} & & \\textbf{Metrics} & \\textbf{Labels} & \\textbf{Analysis} & \\textbf{Methods} \\\\\n\\midrule\nXiao et al. & KB & 8 & \\xmark & \\cmark & \\xmark & 1 \\\\\nLACE & -- & 100+ & \\cmark & \\xmark & partial & -- \\\\\nCORAL & Corr. & 1 & \\cmark & -- & \\cmark & 1 \\\\\nMiao \\& Ungar & Corr. & 1 & \\xmark & -- & \\xmark & -- \\\\\nCivelli et al. & Diff. & 7 & \\xmark & \\cmark & \\cmark & 1 \\\\\n\\midrule\n\\textbf{Ours} & \\textbf{Corr.} & \\textbf{20} & \\cmark & \\cmark & \\cmark & \\textbf{5} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe fundamental challenge that LACE addresses (per-language calibration heterogeneity) motivates our investigation, but our approach differs in both goal and mechanism. We analyze \\emph{why} cross-lingual transfer of correctness probes fails (architecture-dependent depth-transferability tradeoffs, geometric divergence measured by CKA) rather than engineering a per-language compensation. Our method requires zero target-language correctness labels, transferring probes trained on English data alone.\n\n\\subsection{Domain Adaptation Theory}\n\nThe theoretical framework of \\citet{bendavid2010theory} bounds target-domain error by source error plus a divergence term ($\\mathcal{H}$-divergence) between source and target distributions, plus a joint ideal error. Applied to cross-lingual probe transfer, this predicts degradation proportional to the representational distance between languages. \\citet{zhao2019invariant} prove a stronger negative result: when conditional distributions $P(Y|X)$ differ between domains, matching marginal distributions of representations can \\emph{increase} target error rather than reduce it.\n\nThis theoretical insight directly explains our empirical finding on CaCLR (Cross-lingual Calibration via Conditional Label-aware Representation matching). CaCLR applies MMD-based distributional matching to align probe activations across languages, but consistently underperforms simple linear projection. The explanation follows from \\citet{zhao2019invariant}: because conditional accuracy distributions $P(\\text{correct}|\\mathbf{h})$ differ between languages (due to varying model competence), marginal alignment destroys the conditional structure that probes rely on. Our CKA partial correlation analysis further reveals a Simpson's Paradox where aggregate cross-lingual similarity masks within-layer divergence, a phenomenon not predicted by existing domain adaptation theory.\n\n\\subsection{Probing Methodology and Evaluation}\n\nThe methodological foundations of representation probing inform our experimental design. \\citet{hewitt2019control} introduce control tasks that establish selectivity baselines, guarding against probes that succeed merely due to high capacity rather than genuine information in representations. \\citet{voita2020mdl} propose minimum description length probes as an information-theoretic alternative, measuring the amount of effort required to extract a property. \\citet{belinkov2022probing} surveys the broader landscape of probing classifiers, identifying best practices and common pitfalls including the capacity-informativeness tradeoff.\n\nWe apply the control task framework of \\citet{hewitt2019control} to cross-lingual correctness probing and find that approximately 28\\% of positive transfer results in low-resource languages are capacity artifacts (probes achieve similar accuracy on shuffled labels). This finding underscores the importance of probing controls in multilingual settings where target-language data scarcity can inflate apparent transfer success. For measuring representational similarity across languages and layers, we employ CKA \\cite{kornblith2019cka} with partial correlation analysis, revealing geometric structure invisible to standard pairwise comparisons. Conformal prediction \\cite{angelopoulos2023conformal} offers distribution-free coverage guarantees complementary to our probing approach but requires per-language calibration data, which our zero-correctness-label setting explicitly avoids.\n\nOur work contributes the first systematic application of probing controls to cross-lingual transfer evaluation and introduces CKA partial correlation as a diagnostic tool for understanding transfer failure modes.\n",
+                "numLines": 63,
+                "startLine": 1,
+                "totalLines": 63
+              }
+            },
+            "sourceToolAssistantUUID": "6e066471-2cd1-475f-92b8-6ab83a59ac98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002192"
+        },
+        {
+          "source_line": 2193,
+          "timestamp": "2026-05-21T05:56:26.803Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me evaluate the Related Work section:\n\n**Structure**: 5 subsections:\n1. LLM Calibration and Internal Representations\n2. Cross-Lingual Probing and Transfer\n3. Multilingual Calibration\n4. Domain Adaptation Theory\n5. Probing Methodology and Evaluation\n\nPlus a comparison table.\n\n**Quality assessment:**\n\n**Strengths:**\n1. Clear differentiation from each cited work — each subsection ends with explicit positioning ✓\n2. Comparison table is excellent — concise, informative ✓\n3. Domain adaptation theory integration is strong — Zhao et al. 2019 directly motivates CaCLR negative result ✓\n\n\n4. No paper stacking — each work gets meaningful commentary ✓\n5. No em-dashes, no AI-style words ✓\n6. Dense but readable ✓\n\n**Issues:**\n\n1. **\"approximately 28% of positive transfer results in low-resource languages are capacity artifacts\"** — this claim appears in both method.tex and related_work.tex with the exact same \"28%\" figure, but it lacks source verification. In Related Work it's presented as a finding when it's actually from pilot data on Qwen2.5-7B across 8 layers and 5 languages. The scope claim about \"low-resource languages\" is much broader than what the data actually supports.\n\n2. **\"CaCLR... consistently underperforms simple linear projection\"** — CaCLR hasn't been executed yet (plan_003 is still pending), yet this is written as a factual result. If CaCLR performs well, the entire §3.4 paragraph needs rewriting. I recognize this is a draft written alongside experiments where we're assuming expected outcomes, which is standard practice, but the Related Work section is presenting unexecuted experiments as established findings.\n\n3. **\"Our CKA partial correlation analysis further reveals a Simpson's Paradox where aggregate cross-lingual similarity masks within-layer divergence, a phenomenon not predicted by existing domain adaptation theory\"** — the claim that existing domain adaptation theory doesn't predict this is a strong assertion that needs careful support.\n\n4. **Table comparison**: Checking the numbers — LACE has 100+ languages, CORAL is English-only, our approach covers 20 languages with 5 transfer methods. The Zero-CL Labels column shows LACE requires per-language labels while Xiao doesn't, which all checks out.\n\n5. **\"Our work contributes the first systematic application of probing controls to cross-lingual transfer evaluation\"** — this is a novelty claim I need to verify is actually supported.\n\n6. **\"introduces CKA partial correlation as a diagnostic tool\"** — this language oversells the contribution. CKA and partial correlation are both existing methods, so combining them isn't really an \"introduction.\" The actual novelty is the Simpson's Paradox finding, not the methodological combination.\n\n7. **Citation of \"confidence_manifold2026\"** — this appears to be a placeholder, not a real reference that needs verification.\n\n8. **Missing citations** — Pires et al. (2019) and Wu & Dredze (2019) should be included from the paper framing document.\n\nNow checking against the D009 action items, which explicitly required those citations. I can see Zhao and DALI are there, but Pires and Wu & Dredze are nowhere in the Related Work section despite being mandatory additions.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "beb1d01b-0cee-4038-9b81-16caa47d9cc2",
+            "isSidechain": false,
+            "requestId": "req_011CbFCSdmMdXZcgiCaKj7KC",
+            "type": "assistant",
+            "uuid": "1989b1c6-f4e7-4ce5-ab36-2605e05cd132",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S5FxR9C7ebNCAEvj1FKVcQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2531,
+                "cache_read_input_tokens": 130939,
+                "output_tokens": 1992,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2531,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1992,
+                    "cache_read_input_tokens": 130939,
+                    "cache_creation_input_tokens": 2531,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2531
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002193"
+        },
+        {
+          "source_line": 2194,
+          "timestamp": "2026-05-21T05:56:42.590Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019P2rEjssjHCpgWPLVQT2RJ",
+              "name": "mcp__agent-ml-research__reviewer_post_to_director",
+              "input": {
+                "text": "## 审查报告 — Related Work (related_work.tex)\n\n**结论**: WARNING — 整体质量好，但有未执行实验的结论性表述和遗漏引用\n\n### 发现\n\n- [severity: warning] **CaCLR 结果被作为既定事实写入 §3.4**。\"CaCLR... consistently underperforms simple linear projection\" — plan_003 尚未执行，这是预期结果而非实验结论。如果 CaCLR 表现正面，整段 Domain Adaptation Theory 的叙事需要重写。建议改为条件式表述或标注 placeholder。\n\n- [severity: warning] **D009 要求的引用缺失**。D009 明确要求补充 Pires et al. (2019) 和 Wu & Dredze (2019) 作为 cross-lingual transfer learning 的基础引用，两者均未出现在 Related Work 中。Zhao et al. 2019 ✓、DALI ✓ 已引用。\n\n- [severity: warning] **Simpson's Paradox 叙事过度拔高**。§3.4 写 \"a phenomenon not predicted by existing domain adaptation theory\"——Simpson's Paradox 是统计混淆效应，不是 domain adaptation theory 应该预测的实质性现象。建议改为 \"a confounding pattern that naive cross-layer pooling obscures\" 或类似更准确的表述。\n\n- [severity: warning] **\"introduces CKA partial correlation as a diagnostic tool\"（§3.5 末句）** 过度宣称。CKA 和 partial correlation 都是既有方法，组合是直接的。建议改为 \"applies CKA with partial correlation control as a diagnostic\" 或 \"demonstrates that...\"。\n\n- [severity: info] **28% capacity artifacts** 再次出现（同 method.tex），仍缺具体来源说明。两处重复使用同一未充分验证的数字会放大 reviewer 质疑风险。\n\n- [severity: info] **comparison table 清晰有效**，准确区分了 target signal、label requirement、depth analysis 等维度。是论文亮点。\n\n### 写作质量\n- 0 em-dash、0 paper stacking ✓\n- 5 个小节均有明确 differentiation sentence ✓\n- 23 篇引用覆盖面合理 ✓\n- ~1000 prose words，密度适当 ✓\n\n### 建议\n1. 补 Pires et al. (2019) + Wu & Dredze (2019) 到 §3.2\n2. CaCLR 相关段落标注为 conditional/expected，待 plan_003 结果确认后定稿\n3. 降低 Simpson's Paradox 和 CKA partial correlation 的宣称强度",
+                "project": "xling_calib_direction"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1989b1c6-f4e7-4ce5-ab36-2605e05cd132",
+            "isSidechain": false,
+            "requestId": "req_011CbFCSdmMdXZcgiCaKj7KC",
+            "type": "assistant",
+            "uuid": "431986ce-6adc-41a2-ba53-5b144335325d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S5FxR9C7ebNCAEvj1FKVcQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2531,
+                "cache_read_input_tokens": 130939,
+                "output_tokens": 1992,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2531,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1992,
+                    "cache_read_input_tokens": 130939,
+                    "cache_creation_input_tokens": 2531,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2531
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-002194"
+        },
+        {
+          "source_line": 2195,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统通知 — worker_done:worker_paper_writing_related_work_20260521T055252]: Worker worker_paper_writing_related_work_20260521T055252 已完成（status=done），请审查 Agent 的处理结果。",
+                "leafUuid": "431986ce-6adc-41a2-ba53-5b144335325d",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002195"
+        },
+        {
+          "source_line": 2196,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap xling_calib_direction MVP validation",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002196"
+        },
+        {
+          "source_line": 2197,
+          "timestamp": "2026-05-21T05:56:46.561Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019P2rEjssjHCpgWPLVQT2RJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "431986ce-6adc-41a2-ba53-5b144335325d",
+            "isSidechain": false,
+            "promptId": "561986e1-9d41-44bc-b017-99f071ba65bf",
+            "type": "user",
+            "uuid": "edfdf65b-9071-44e3-a46e-65a0a534a7a9",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_74ae31a7dc5ae9d419ba9a89bccc89c0:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "431986ce-6adc-41a2-ba53-5b144335325d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002197"
+        },
+        {
+          "source_line": 2198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap xling_calib_direction MVP validation",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002198"
+        },
+        {
+          "source_line": 2199,
+          "timestamp": "2026-05-21T05:57:44.332Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T05:57:44.332Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+                "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+              }
+            }
+          ],
+          "id": "event-002199"
+        },
+        {
+          "source_line": 2200,
+          "timestamp": "2026-05-21T05:57:44.333Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T05:57:44.333Z",
+                "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3"
+              }
+            }
+          ],
+          "id": "event-002200"
+        }
+      ]
+    },
+    {
+      "number": 150,
+      "messages": [
+        {
+          "source_line": 2201,
+          "timestamp": "2026-05-21T05:57:44.316Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edfdf65b-9071-44e3-a46e-65a0a534a7a9",
+            "isSidechain": false,
+            "promptId": "fa7b753c-9c99-4d62-b349-ed8da95a6369",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "55d880cb-f2d1-4f12-ae60-aa6ca6a9351c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002201"
+        },
+        {
+          "source_line": 2202,
+          "timestamp": "2026-05-21T05:57:44.317Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55d880cb-f2d1-4f12-ae60-aa6ca6a9351c",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "90bb468a-b945-4132-973e-94b6ec622067",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk",
+            "message": {
+              "id": "55b0ef72-fbf6-4353-831e-fb2ba34bd63c",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-002202"
+        }
+      ]
+    },
+    {
+      "number": 151,
+      "messages": [
+        {
+          "source_line": 2203,
+          "timestamp": "2026-05-21T05:57:44.647Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90bb468a-b945-4132-973e-94b6ec622067",
+            "isSidechain": false,
+            "promptId": "fa7b753c-9c99-4d62-b349-ed8da95a6369",
+            "type": "user",
+            "uuid": "47a3d71a-c629-4c84-8efe-632446f02e85",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/reviewer_b0408cba",
+            "sessionId": "591fea7f-c033-40b6-9c6d-20fd33e3b0a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "refactored-sauteeing-chipmunk"
+          },
+          "id": "event-002203"
+        }
+      ]
+    }
+  ]
+}

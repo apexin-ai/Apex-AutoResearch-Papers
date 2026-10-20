@@ -1,0 +1,5484 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-27 (UTC).** ## Original idea { "tit
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 88
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-2/c31eb692-232a-4057-ad34-5dd773264795.jsonl`
+- **Structured JSON:** [`ba5aa4009caf99229ad2.json`](../../sessions/ba/ba5aa4009caf99229ad2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T22:41:59.863Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T22:41:59.863Z",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\",\n  \"core_problem\": \"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\",\n  \"opportunity\": \"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, and SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (5) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.\",\n  \"landscape\": \"The landscape of RL-based multimodal reasoning training has exploded in early 2026 along six axes:\\n\\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\\n\\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\\n\\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\\n\\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\\n\\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity.\\n\\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\\n\\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\\n\\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~10-20x cost overhead vs. single-pass verification; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.\",\n  \"inspired_by\": \"'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation\",\n  \"approach\": \"We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\\n\\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput.\\n\\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\\n\\n**Composition Fidelity Verifier (CFV) — three-property checking:**\\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn — simplified to constraint satisfaction checking rather than full inferential verification. For geometry: symbolic theorem matching (e.g., cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → checks 60+90+x=180). For charts/diagrams: numerical consistency checking (e.g., cited values from bars/lines must support the computed trend). This addresses the feasibility concern by reducing binding checking to verifiable constraint matching rather than open-ended logical reasoning.\\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\\n\\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\\n\\n  **Stage B — Question-Conditioned Relevance Filtering**:\\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\\n\\n  **Stage C — Coverage Verification**:\\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\\n\\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\\n\\n  *Tier 1 — Core contribution (CFV-lite: grounding + binding):* The evidence grounding check (VQA-based) and binding validity check (constraint satisfaction + symbolic verification) require only the distilled 4B verifier and a geometry theorem library — no external parsing tools. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking proves too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\\n\\n  *Tier 2 — Extension (completeness pipeline):* The integration completeness check adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\\n\\n  *Risk matrix:*\\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\\n\\n**Symbolic verification module** (for geometry and formal diagrams): Lightweight symbolic checker inspired by GeoSketch and the PAR framework. For geometry problems, cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. This provides noise-free reward signals for the binding validity component on geometry tasks.\\n\\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains. The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\\n\\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\\n\\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\\n\\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\\n\\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\\n\\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\\n\\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\\n\\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~5 calls per sample (one per rollout), yielding ~10-20x cost reduction. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\\n\\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\\n\\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\\n\\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\\n\\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)\",\n      \"timeline\": \"10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)\",\n      \"estimated_gpu_cost\": \"$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"950 (same experimental requirements)\",\n      \"timeline\": \"8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)\",\n      \"claude_api_cost\": \"$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,250\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR reimplementation, symbolic checker coverage expansion)\",\n      \"timeline\": \"7 weeks (parallelized experiment scheduling, automated verifier validation)\",\n      \"claude_api_cost\": \"$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)\",\n      \"estimated_gpu_cost\": \"$1,950\",\n      \"speed_bottleneck\": \"Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)\",\n    \"AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)\",\n    \"CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)\",\n    \"Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)\",\n    \"PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)\",\n    \"MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)\",\n    \"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)\",\n    \"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)\",\n    \"Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)\",\n    \"TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)\",\n    \"v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)\",\n    \"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)\",\n    \"SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)\",\n    \"MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)\",\n    \"Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)\",\n    \"Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)\",\n    \"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)\",\n    \"Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)\",\n    \"Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)\",\n    \"Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)\",\n    \"Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)\",\n    \"What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)\",\n    \"Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\",\n    \"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)\",\n    \"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)\",\n    \"GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)\",\n    \"Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)\",\n    \"Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)\",\n    \"DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)\",\n    \"VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)\",\n    \"Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)\",\n    \"PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)\",\n    \"Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)\",\n    \"Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)\",\n    \"DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)\",\n    \"OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)\",\n    \"From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)\",\n    \"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\",\n    \"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)\",\n    \"Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)\",\n    \"PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)\"\n  ],\n  \"description\": \"We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence (simplified to constraint satisfaction, with symbolic theorem verification for geometry), and (3) integration completeness — all task-relevant visual facts are cited, verified via a three-stage domain-specific pipeline: visual element enumeration (Geoparsing for geometry at 96.4 F1, DePlot/CHARGE for charts), question-conditioned relevance filtering (VisDoT-style decomposition), and coverage scoring (R_completeness = |F_cited ∩ F_required| / |F_required|, targeting ≥80% recall). The contribution is structured in two tiers: Tier 1 (core: grounding + binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing tools), ensuring the paper is defensible even if completeness checking proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces verification cost by ~10-20x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.\",\n  \"project_name\": \"composition_fidelity_rl\",\n  \"source\": \"web_research\",\n  \"changes_from_previous_revision\": {\n    \"issue_1_concurrent_works\": \"Added four missing concurrent works to the landscape with detailed differentiation: (a) TreeVGR (ICLR 2026): bounding-box spatial localization via dual IoU reward — verifies *where* the model looks but not *what* it concludes; CFRL verifies semantic content and reasoning validity. (b) v1 (May 2026): point-and-copy embedding re-access maintains visual grounding at the representation level — does not produce auditable textual citations; SFT-only, no RL. (c) VTPerception-R1: perception-level coverage rewards (R_vkey, R_tkey, R_cons) — checks element mention and entity consistency but not binding validity or structured completeness. (d) SIEVE (Mar 2026): iterative cached embedding re-insertion during RL — embedding-level, not explicit textual citation. Added a new landscape subsection 'Explicit evidence grounding in RL training' to group these methods coherently.\",\n    \"issue_2_murgat\": \"Added MuRGAt to landscape with its critical finding that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings. Added a dedicated subsection in the approach ('Addressing the accuracy-faithfulness tradeoff') with four specific mitigations: (1) RL training develops citation as a learned skill vs. MuRGAt's zero-shot constraint, (2) accuracy-first curriculum scheduling with Phase 0 establishing baseline accuracy before citation requirements, (3) accuracy-dominant reward weighting (α ≥ 0.4) with automatic weight halving if accuracy drops >2pp, (4) counterfactual validation already monitors for this degradation. This is the most substantive change — it transforms a potential vulnerability into a design strength by making CFRL explicitly aware of and resilient to the accuracy-faithfulness tradeoff.\",\n    \"issue_3_system_complexity\": \"Added 'Staged contribution and risk mitigation' section structuring the paper in two defensible tiers: Tier 1 (core: grounding + binding verifier, self-contained, no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific tools). Added per-component fallback strategies and a risk matrix covering five failure modes with explicit mitigations. This ensures the paper is defensible even if the most novel component (completeness checking) proves too approximate.\",\n    \"issue_4_charge_title\": \"Corrected CHARGE reference from 'Chart-Grounded Hallucination Evaluation with Keypoint Coverage' to 'Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework' (arXiv:2502.14864). The keypoint coverage concept and 73.9% coverage figure are from this paper's evaluation methodology.\",\n    \"issue_5_dont_blink\": \"Added 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (arXiv:2604.04207, Apr 2026) as direct motivating evidence — documents that reasoning VLMs progressively lose >50% of attention to evidence regions as reasoning unfolds. Also added 'Deeper Thought, Weaker Aim' (arXiv:2603.14184, Mar 2026) which independently confirms this phenomenon. Both are cited in the opportunity, landscape (new 'Attribution and evidence-loss diagnostics' subsection), and inspired_by fields.\",\n    \"issue_6_82_percent\": \"Corrected the 82% claim. The figure from arXiv:2410.15531 refers to ranking accuracy of the sub-question coverage metric against human preference annotations (i.e., the metric predicts which response humans prefer 82% of the time), NOT human agreement on sub-question decomposition. The inter-annotator agreement for sub-question type classification is actually 74.6% overall (76.8% for core, 79.2% for follow-up, 64.3% for background). Updated the completeness pipeline description to accurately describe both figures and explicitly note this is an inherently noisy signal, further motivating the soft treatment of completeness and the Tier 1/Tier 2 separation.\"\n  }\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"MEDIUM: Vision-SR1 (arXiv:2508.19652) is a conceptually adjacent but undiscussed concurrent work. It also (1) decomposes reasoning into explicit perception + reasoning stages using structured tags (&lt;See>/&lt;Think>), (2) uses perception quality as a training reward signal, and (3) trains via GRPO. While Vision-SR1 uses self-rewarding (same model judges itself) rather than an external verifier, and does not check binding validity or completeness, it shares the core insight of explicit perceptual articulation as a trainable skill. This is the closest missed work to CFRL's paradigm of requiring explicit evidence statements that are then verified.\", \"MEDIUM: The binding validity check for non-geometry domains remains insufficiently specified. For geometry, the symbolic theorem matching is concrete and verifiable. But for charts ('cited values must support the computed trend') and diagrams, the proposal lacks a precise algorithm. What specific constraint satisfaction checks are performed? How are 'trends' formally defined? What happens when the binding check is inapplicable (e.g., qualitative reasoning about diagram structure)? This is the core novel contribution of CFRL — it needs to be watertight or honestly scoped to geometry-only for Tier 1.\", \"LOW-MEDIUM: The '~5 calls per sample (one per rollout)' claim for CFRL's verifier cost needs clarification. The CFV must perform grounding VQA (converting each &lt;observe> tag into a yes/no visual question and answering it), binding constraint satisfaction, AND completeness coverage scoring — all in a 'single pass' through a 4B model. Is this truly one forward pass, or does the VQA sub-module require multiple passes per observation? If there are N observations, doesn't grounding require N VQA evaluations? The 10-20x cost reduction over FGRPO likely holds regardless, but the claim should be precise.\", \"LOW: AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) are mildly relevant adjacent works. AutoRubric-R1V auto-generates rubric-based process rewards from successful trajectories — a different approach to process-level verification that doesn't require external tools. CoRGI performs post-hoc step-wise verification with visual grounding — inference-time only, but conceptually related to CFRL's verification chain. Brief acknowledgment would strengthen completeness.\"]\nFeedback: The proposal has improved substantially across four rounds and is approaching the quality threshold. Three specific changes would likely push it to pass:\n\n1. **Add Vision-SR1 differentiation** (1-2 sentences in landscape): Vision-SR1 shares the insight of structured perception-reasoning decomposition with explicit tags and perception-quality rewards. Differentiate: (a) Vision-SR1 uses self-rewarding (same model serves as judge) while CFRL uses an external distilled verifier, (b) Vision-SR1 checks perceptual self-containment (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow?), and completeness (are all facts covered), (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences.\n\n2. **Specify binding validity for non-geometry domains**: For charts, define the concrete constraint checks — e.g., (a) numerical arithmetic verification (sum/difference/ratio consistency between cited values and computed results), (b) ordering consistency (if Bar A > Bar B is cited, verify this matches the chart), (c) unit consistency. For diagrams, define (a) structural relationship verification (if 'A connects to B' is cited, verify the edge exists), (b) attribute consistency. If these checks are too domain-specific to generalize, honestly scope Tier 1 binding validity to geometry + basic arithmetic and acknowledge chart/diagram binding as Tier 2.\n\n3. **Clarify verifier cost model**: Explain whether the CFV performs grounding VQA as internal sub-reasoning within a single forward pass (generating all verification judgments autoregressively) or as separate VQA calls per observation. If the former, the single-pass claim holds; if the latter, the cost is N_obs × 4B rather than 1 × 4B per rollout, and the 10-20x figure needs adjustment.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.\n- Address each issue specifically.\n\n## 深度调研要求\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。\n3. **深度思考**：\n   - 核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach？\n4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。\n\n## 针对 Review 意见的定向搜索\n\n1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点\n2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline\n3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现\n4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot\n\n- You have full freedom: minor fix, major revision, or pivot.\n- Include a \"change_type\" field: \"minor\", \"major\", or \"pivot\".\n- Output a COMPLETE JSON object with ALL fields."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T22:41:59.866Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T22:41:59.866Z",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+## Round 1
+
+86 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T22:41:59.879Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Original idea
+{
+  "title": "Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier",
+  "core_problem": "How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?",
+  "opportunity": "Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, and SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (5) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.",
+  "landscape": "The landscape of RL-based multimodal reasoning training has exploded in early 2026 along six axes:\n\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\n\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\n\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\n\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\n\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity.\n\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\n\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\n\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~10-20x cost overhead vs. single-pass verification; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.",
+  "inspired_by": "'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation",
+  "approach": "We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\n\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput.\n\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\n\n**Composition Fidelity Verifier (CFV) — three-property checking:**\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn — simplified to constraint satisfaction checking rather than full inferential verification. For geometry: symbolic theorem matching (e.g., cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → checks 60+90+x=180). For charts/diagrams: numerical consistency checking (e.g., cited values from bars/lines must support the computed trend). This addresses the feasibility concern by reducing binding checking to verifiable constraint matching rather than open-ended logical reasoning.\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\n\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\n\n  **Stage B — Question-Conditioned Relevance Filtering**:\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\n\n  **Stage C — Coverage Verification**:\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\n\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\n\n  *Tier 1 — Core contribution (CFV-lite: grounding + binding):* The evidence grounding check (VQA-based) and binding validity check (constraint satisfaction + symbolic verification) require only the distilled 4B verifier and a geometry theorem library — no external parsing tools. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking proves too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\n\n  *Tier 2 — Extension (completeness pipeline):* The integration completeness check adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\n\n  *Risk matrix:*\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\n\n**Symbolic verification module** (for geometry and formal diagrams): Lightweight symbolic checker inspired by GeoSketch and the PAR framework. For geometry problems, cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. This provides noise-free reward signals for the binding validity component on geometry tasks.\n\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains. The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\n\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\n\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\n\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\n\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\n\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\n\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\n\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~5 calls per sample (one per rollout), yielding ~10-20x cost reduction. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\n\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\n\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\n\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\n\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)",
+      "timeline": "10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)",
+      "estimated_gpu_cost": "$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "950 (same experimental requirements)",
+      "timeline": "8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)",
+      "claude_api_cost": "$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)",
+      "estimated_gpu_cost": "$1,250"
+    },
+    "auto_research": {
+      "gpu_hours": "1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR reimplementation, symbolic checker coverage expansion)",
+      "timeline": "7 weeks (parallelized experiment scheduling, automated verifier validation)",
+      "claude_api_cost": "$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)",
+      "estimated_gpu_cost": "$1,950",
+      "speed_bottleneck": "Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint"
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)",
+    "AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)",
+    "CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)",
+    "Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)",
+    "PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)",
+    "MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)",
+    "Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)",
+    "Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)",
+    "Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)",
+    "TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)",
+    "v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)",
+    "VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)",
+    "SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)",
+    "MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)",
+    "Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)",
+    "Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)",
+    "Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)",
+    "Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)",
+    "Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)",
+    "Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)",
+    "Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)",
+    "What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)",
+    "Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)",
+    "Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)",
+    "An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)",
+    "GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)",
+    "Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)",
+    "Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)",
+    "DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)",
+    "VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)",
+    "Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)",
+    "PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)",
+    "Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)",
+    "Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)",
+    "DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)",
+    "OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)",
+    "From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)",
+    "Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)",
+    "Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)",
+    "Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)",
+    "PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)"
+  ],
+  "description": "We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence (simplified to constraint satisfaction, with symbolic theorem verification for geometry), and (3) integration completeness — all task-relevant visual facts are cited, verified via a three-stage domain-specific pipeline: visual element enumeration (Geoparsing for geometry at 96.4 F1, DePlot/CHARGE for charts), question-conditioned relevance filtering (VisDoT-style decomposition), and coverage scoring (R_completeness = |F_cited ∩ F_required| / |F_required|, targeting ≥80% recall). The contribution is structured in two tiers: Tier 1 (core: grounding + binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing tools), ensuring the paper is defensible even if completeness checking proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces verification cost by ~10-20x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.",
+  "project_name": "composition_fidelity_rl",
+  "source": "web_research",
+  "changes_from_previous_revision": {
+    "issue_1_concurrent_works": "Added four missing concurrent works to the landscape with detailed differentiation: (a) TreeVGR (ICLR 2026): bounding-box spatial localization via dual IoU reward — verifies *where* the model looks but not *what* it concludes; CFRL verifies semantic content and reasoning validity. (b) v1 (May 2026): point-and-copy embedding re-access maintains visual grounding at the representation level — does not produce auditable textual citations; SFT-only, no RL. (c) VTPerception-R1: perception-level coverage rewards (R_vkey, R_tkey, R_cons) — checks element mention and entity consistency but not binding validity or structured completeness. (d) SIEVE (Mar 2026): iterative cached embedding re-insertion during RL — embedding-level, not explicit textual citation. Added a new landscape subsection 'Explicit evidence grounding in RL training' to group these methods coherently.",
+    "issue_2_murgat": "Added MuRGAt to landscape with its critical finding that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings. Added a dedicated subsection in the approach ('Addressing the accuracy-faithfulness tradeoff') with four specific mitigations: (1) RL training develops citation as a learned skill vs. MuRGAt's zero-shot constraint, (2) accuracy-first curriculum scheduling with Phase 0 establishing baseline accuracy before citation requirements, (3) accuracy-dominant reward weighting (α ≥ 0.4) with automatic weight halving if accuracy drops >2pp, (4) counterfactual validation already monitors for this degradation. This is the most substantive change — it transforms a potential vulnerability into a design strength by making CFRL explicitly aware of and resilient to the accuracy-faithfulness tradeoff.",
+    "issue_3_system_complexity": "Added 'Staged contribution and risk mitigation' section structuring the paper in two defensible tiers: Tier 1 (core: grounding + binding verifier, self-contained, no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific tools). Added per-component fallback strategies and a risk matrix covering five failure modes with explicit mitigations. This ensures the paper is defensible even if the most novel component (completeness checking) proves too approximate.",
+    "issue_4_charge_title": "Corrected CHARGE reference from 'Chart-Grounded Hallucination Evaluation with Keypoint Coverage' to 'Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework' (arXiv:2502.14864). The keypoint coverage concept and 73.9% coverage figure are from this paper's evaluation methodology.",
+    "issue_5_dont_blink": "Added 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (arXiv:2604.04207, Apr 2026) as direct motivating evidence — documents that reasoning VLMs progressively lose >50% of attention to evidence regions as reasoning unfolds. Also added 'Deeper Thought, Weaker Aim' (arXiv:2603.14184, Mar 2026) which independently confirms this phenomenon. Both are cited in the opportunity, landscape (new 'Attribution and evidence-loss diagnostics' subsection), and inspired_by fields.",
+    "issue_6_82_percent": "Corrected the 82% claim. The figure from arXiv:2410.15531 refers to ranking accuracy of the sub-question coverage metric against human preference annotations (i.e., the metric predicts which response humans prefer 82% of the time), NOT human agreement on sub-question decomposition. The inter-annotator agreement for sub-question type classification is actually 74.6% overall (76.8% for core, 79.2% for follow-up, 64.3% for background). Updated the completeness pipeline description to accurately describe both figures and explicitly note this is an inherently noisy signal, further motivating the soft treatment of completeness and the Tier 1/Tier 2 separation."
+  }
+}
+
+## Reviewer feedback (round 4)
+Issues: ["MEDIUM: Vision-SR1 (arXiv:2508.19652) is a conceptually adjacent but undiscussed concurrent work. It also (1) decomposes reasoning into explicit perception + reasoning stages using structured tags (&lt;See>/&lt;Think>), (2) uses perception quality as a training reward signal, and (3) trains via GRPO. While Vision-SR1 uses self-rewarding (same model judges itself) rather than an external verifier, and does not check binding validity or completeness, it shares the core insight of explicit perceptual articulation as a trainable skill. This is the closest missed work to CFRL's paradigm of requiring explicit evidence statements that are then verified.", "MEDIUM: The binding validity check for non-geometry domains remains insufficiently specified. For geometry, the symbolic theorem matching is concrete and verifiable. But for charts ('cited values must support the computed trend') and diagrams, the proposal lacks a precise algorithm. What specific constraint satisfaction checks are performed? How are 'trends' formally defined? What happens when the binding check is inapplicable (e.g., qualitative reasoning about diagram structure)? This is the core novel contribution of CFRL — it needs to be watertight or honestly scoped to geometry-only for Tier 1.", "LOW-MEDIUM: The '~5 calls per sample (one per rollout)' claim for CFRL's verifier cost needs clarification. The CFV must perform grounding VQA (converting each &lt;observe> tag into a yes/no visual question and answering it), binding constraint satisfaction, AND completeness coverage scoring — all in a 'single pass' through a 4B model. Is this truly one forward pass, or does the VQA sub-module require multiple passes per observation? If there are N observations, doesn't grounding require N VQA evaluations? The 10-20x cost reduction over FGRPO likely holds regardless, but the claim should be precise.", "LOW: AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) are mildly relevant adjacent works. AutoRubric-R1V auto-generates rubric-based process rewards from successful trajectories — a different approach to process-level verification that doesn't require external tools. CoRGI performs post-hoc step-wise verification with visual grounding — inference-time only, but conceptually related to CFRL's verification chain. Brief acknowledgment would strengthen completeness."]
+Feedback: The proposal has improved substantially across four rounds and is approaching the quality threshold. Three specific changes would likely push it to pass:
+
+1. **Add Vision-SR1 differentiation** (1-2 sentences in landscape): Vision-SR1 shares the insight of structured perception-reasoning decomposition with explicit tags and perception-quality rewards. Differentiate: (a) Vision-SR1 uses self-rewarding (same model serves as judge) while CFRL uses an external distilled verifier, (b) Vision-SR1 checks perceptual self-containment (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow?), and completeness (are all facts covered), (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences.
+
+2. **Specify binding validity for non-geometry domains**: For charts, define the concrete constraint checks — e.g., (a) numerical arithmetic verification (sum/difference/ratio consistency between cited values and computed results), (b) ordering consistency (if Bar A > Bar B is cited, verify this matches the chart), (c) unit consistency. For diagrams, define (a) structural relationship verification (if 'A connects to B' is cited, verify the edge exists), (b) attribute consistency. If these checks are too domain-specific to generalize, honestly scope Tier 1 binding validity to geometry + basic arithmetic and acknowledge chart/diagram binding as Tier 2.
+
+3. **Clarify verifier cost model**: Explain whether the CFV performs grounding VQA as internal sub-reasoning within a single forward pass (generating all verification judgments autoregressively) or as separate VQA calls per observation. If the former, the single-pass claim holds; if the latter, the cost is N_obs × 4B rather than 1 × 4B per rollout, and the 10-20x figure needs adjustment.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method.
+- Address each issue specifically.
+
+## 深度调研要求
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，用 2-3 种不同的搜索查询调研。
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文。
+3. **深度思考**：
+   - 核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach？
+4. **避免表面修订**：如果反复 minor fix 没有实质改进，考虑 major revision 或 pivot。
+
+## 针对 Review 意见的定向搜索
+
+1. **如果'已有类似工作'**：搜索并阅读相关论文，明确差异化点
+2. **如果'SOTA 过时'**：查看 Papers With Code 排行榜，更新 baseline
+3. **如果'可行性有问题'**：搜索类似实验成本和 GitHub 实现
+4. **如果'novelty 不足'**：做 3-5 种关键词搜索，考虑 major revision 或 pivot
+
+- You have full freedom: minor fix, major revision, or pivot.
+- Include a "change_type" field: "minor", "major", or "pivot".
+- Output a COMPLETE JSON object with ALL fields.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "227a7f1b-a821-49ac-8a2e-7bc772dc07c1",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T22:41:59.877Z_
+
+```json
+{
+  "parentUuid": "227a7f1b-a821-49ac-8a2e-7bc772dc07c1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "4a207aa6-08e9-4d53-b5f3-b43c9b384c0a",
+  "timestamp": "2026-05-27T22:41:59.877Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T22:41:59.877Z_
+
+```json
+{
+  "parentUuid": "4a207aa6-08e9-4d53-b5f3-b43c9b384c0a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6fa5fb25-45f3-46f9-9858-3876acfc079f",
+  "timestamp": "2026-05-27T22:41:59.877Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "6fa5fb25-45f3-46f9-9858-3876acfc079f",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T22:42:05.317Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully:
+
+1. **MEDIUM: Vision-SR1** - Need to research this paper and add differentiation
+2. **MEDIUM: Binding validity for non-geometry** - Need to specify concrete algorithms for charts and diagrams
+3. **LOW-MEDIUM: Verifier cost model** - Need to clarify whether CFV is single-pass or multiple passes
+4. **LOW: AutoRubric-R1V and CoRGI** - Brief acknowledgment needed
+
+Let me start by researching the papers mentioned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fa5fb25-45f3-46f9-9858-3876acfc079f",
+  "isSidechain": false,
+  "requestId": "req_011CbTt1mceWYPrRwXqozZPa",
+  "type": "assistant",
+  "uuid": "140ae2cb-1945-469e-ac59-639757d8ef17",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qke7muK4xVeA2zegbkAFXf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14259,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14259,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 14259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14259
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-27T22:42:06.487Z_
+
+I'll research the key papers mentioned by the reviewer to provide deep, informed revisions. Let me search for Vision-SR1, AutoRubric-R1V, and CoRGI in parallel, and also investigate binding validity approaches for charts/diagrams.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "140ae2cb-1945-469e-ac59-639757d8ef17",
+  "isSidechain": false,
+  "requestId": "req_011CbTt1mceWYPrRwXqozZPa",
+  "type": "assistant",
+  "uuid": "ece3edfd-c48e-4a28-9a1e-bf255ac058f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qke7muK4xVeA2zegbkAFXf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14259,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14259,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 14259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14259
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T22:42:07.241Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BeiUMzPDQ1UKuZ2LPyUxoG`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ece3edfd-c48e-4a28-9a1e-bf255ac058f2",
+  "isSidechain": false,
+  "requestId": "req_011CbTt1mceWYPrRwXqozZPa",
+  "type": "assistant",
+  "uuid": "d0d3e36e-4ad4-4bdc-b054-fc5196052b23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qke7muK4xVeA2zegbkAFXf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14259,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14259,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 14259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14259
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-27T22:42:07.248Z_
+
+<details><summary>↩ Tool result · `toolu_01BeiUMzPDQ1UKuZ2LPyUxoG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0d3e36e-4ad4-4bdc-b054-fc5196052b23",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "2f3e2ef7-602d-4524-b8ca-789ce60e507f",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "d0d3e36e-4ad4-4bdc-b054-fc5196052b23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-27T22:42:09.954Z_
+
+Now let me research all the papers and topics mentioned by the reviewer in parallel:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f3e2ef7-602d-4524-b8ca-789ce60e507f",
+  "isSidechain": false,
+  "requestId": "req_011CbTt2KEAxxypacborESUZ",
+  "type": "assistant",
+  "uuid": "c1bd93f7-a4a6-4ae4-9753-93fa48d4516f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xAA3tpywZe6j3TmHrm4Cz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25273,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 25273,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T22:42:13.833Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Upk2Wd8x14USRqykf4iX2V`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.19652",
+  "prompt": "Extract the full details of Vision-SR1: What is the method? What structured tags does it use (&lt;See>/&lt;Think>)? How does self-rewarding work (same model judges itself)? What is the training procedure (GRPO)? What does it check — perceptual self-containment? What benchmarks and results? What are its limitations? How does it differ from using an external verifier?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1bd93f7-a4a6-4ae4-9753-93fa48d4516f",
+  "isSidechain": false,
+  "requestId": "req_011CbTt2KEAxxypacborESUZ",
+  "type": "assistant",
+  "uuid": "94f05d70-ff11-420d-9f80-fbb0975ebaf9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xAA3tpywZe6j3TmHrm4Cz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25273,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 25273,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T22:42:16.085Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Xw1S4BL23z9c2T79y8ugcN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.14738",
+  "prompt": "Extract the full details of AutoRubric-R1V: What is the method? How does it auto-generate rubric-based process rewards from successful trajectories? What domains does it target? How does it differ from external verification approaches? What results does it achieve?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94f05d70-ff11-420d-9f80-fbb0975ebaf9",
+  "isSidechain": false,
+  "requestId": "req_011CbTt2KEAxxypacborESUZ",
+  "type": "assistant",
+  "uuid": "8cd5b5ba-7beb-4185-9751-b574471bee18",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xAA3tpywZe6j3TmHrm4Cz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25273,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 25273,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T22:42:18.013Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018nqH1iLyFmuLh3pcfHfXGK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.00378",
+  "prompt": "Extract the full details of CoRGI: What is the method? How does it perform post-hoc step-wise verification with visual grounding? Is it inference-time only? What is the verification chain like? What results does it achieve? How does it relate to training-time reward verification?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cd5b5ba-7beb-4185-9751-b574471bee18",
+  "isSidechain": false,
+  "requestId": "req_011CbTt2KEAxxypacborESUZ",
+  "type": "assistant",
+  "uuid": "ca397ffb-7169-4789-a0cd-a7d306d2b65d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xAA3tpywZe6j3TmHrm4Cz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25273,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 25273,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T22:42:19.012Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011njcfrA7BwRJbXfwHS1zun`</summary>
+
+```json
+{
+  "query": "Vision-SR1 self-rewarding visual reasoning structured perception tags GRPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca397ffb-7169-4789-a0cd-a7d306d2b65d",
+  "isSidechain": false,
+  "requestId": "req_011CbTt2KEAxxypacborESUZ",
+  "type": "assistant",
+  "uuid": "226df043-1d17-48ad-aa53-63146d1e3bd6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xAA3tpywZe6j3TmHrm4Cz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25273,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 25273,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-27T22:42:19.445Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019RUECg1gmkhtY53h7SGwR5`</summary>
+
+```json
+{
+  "query": "chart numerical constraint verification binding validity visual reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "226df043-1d17-48ad-aa53-63146d1e3bd6",
+  "isSidechain": false,
+  "requestId": "req_011CbTt2KEAxxypacborESUZ",
+  "type": "assistant",
+  "uuid": "2fe63fe1-859b-4cdd-ac9b-fed6435f431d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018xAA3tpywZe6j3TmHrm4Cz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 25273,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 25273,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-27T22:42:19.628Z_
+
+<details><summary>↩ Tool result · `toolu_01Upk2Wd8x14USRqykf4iX2V`</summary>
+
+```text
+# Vision-SR1: Summary Based on Available Information
+
+Based on the abstract provided, here's what can be determined about Vision-SR1:
+
+## Core Method
+Vision-SR1 is described as "a three stage self rewarding reinforcement learning method" designed to enhance visual reasoning in vision-language models without external supervision.
+
+## Reasoning Decomposition
+The approach decomposes reasoning into two components: the model first generates "self-contained visual descriptions sufficient to answer the question without referring back to the input image," then jointly optimizes both visual and language reasoning.
+
+## Self-Rewarding Mechanism
+The same VLM model serves as its own evaluator through a validation loop: "the same VLM model is reprompted to perform language reasoning using only the generated visual reasoning as input to compute visual reward."
+
+## Training & Reward Structure
+A "decoupled reward-advantage framework" calculates advantages separately for visual and language rewards.
+
+## Key Problems Addressed
+The method targets "visual hallucinations" and "language shortcuts, where they skip the visual part and just rely on text priors."
+
+## Practical Advantage
+Vision-SR1 is "more efficient than methods that rely on external visual reward models, which require additional GPUs to host," introducing "no extra GPU overhead beyond that of standard training."
+
+**Note:** The abstract doesn't specify GRPO as the training algorithm, benchmark results, or detailed structural tags like `&lt;See>`/`&lt;Think>`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94f05d70-ff11-420d-9f80-fbb0975ebaf9",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "5b70012f-98dd-45d2-be2f-b9b01f16a0c2",
+  "toolUseResult": {
+    "bytes": 49185,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Vision-SR1: Summary Based on Available Information\n\nBased on the abstract provided, here's what can be determined about Vision-SR1:\n\n## Core Method\nVision-SR1 is described as \"a three stage self rewarding reinforcement learning method\" designed to enhance visual reasoning in vision-language models without external supervision.\n\n## Reasoning Decomposition\nThe approach decomposes reasoning into two components: the model first generates \"self-contained visual descriptions sufficient to answer the question without referring back to the input image,\" then jointly optimizes both visual and language reasoning.\n\n## Self-Rewarding Mechanism\nThe same VLM model serves as its own evaluator through a validation loop: \"the same VLM model is reprompted to perform language reasoning using only the generated visual reasoning as input to compute visual reward.\"\n\n## Training & Reward Structure\nA \"decoupled reward-advantage framework\" calculates advantages separately for visual and language rewards.\n\n## Key Problems Addressed\nThe method targets \"visual hallucinations\" and \"language shortcuts, where they skip the visual part and just rely on text priors.\"\n\n## Practical Advantage\nVision-SR1 is \"more efficient than methods that rely on external visual reward models, which require additional GPUs to host,\" introducing \"no extra GPU overhead beyond that of standard training.\"\n\n**Note:** The abstract doesn't specify GRPO as the training algorithm, benchmark results, or detailed structural tags like `&lt;See>`/`&lt;Think>`.",
+    "durationMs": 5791,
+    "url": "https://arxiv.org/abs/2508.19652"
+  },
+  "sourceToolAssistantUUID": "94f05d70-ff11-420d-9f80-fbb0975ebaf9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T22:42:20.923Z_
+
+<details><summary>↩ Tool result · `toolu_01Xw1S4BL23z9c2T79y8ugcN`</summary>
+
+```text
+# AutoRubric: Overview Based on Available Content
+
+I notice the page references "AutoRubric" rather than "AutoRubric-R1V." Based on the arXiv abstract provided, here's what can be extracted:
+
+## Core Method
+AutoRubric integrates reinforcement learning with verifiable rewards (RLVR) and "process-level supervision through automatically collected rubric-based generative rewards." The framework uses "a scalable self-aggregation method that distills consistent reasoning checkpoints from successful trajectories."
+
+## Key Innovation
+Rather than relying on external models or human annotation, the system constructs "problem-specific rubric construction without human annotation or stronger teacher models" by analyzing what works across successful reasoning paths.
+
+## Application Domain
+The approach targets multimodal reasoning tasks, demonstrating effectiveness across "six multimodal reasoning benchmarks" and addressing concerns about spurious reasoning in language models handling multi-step problems.
+
+## Distinction from External Verification
+Unlike approaches requiring external verification, AutoRubric achieves supervision by internally harvesting consistent patterns from successful trajectories—eliminating dependency on teacher models or manual rubric design.
+
+## Results
+The framework achieves "state-of-the-art performance on six multimodal reasoning benchmarks and substantially improves reasoning faithfulness" in dedicated evaluations.
+
+**Note:** The provided page contains only the abstract; the full technical details would require accessing the complete paper PDF.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cd5b5ba-7beb-4185-9751-b574471bee18",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "a2f0257d-a832-4405-b5ae-4b757f7a8903",
+  "toolUseResult": {
+    "bytes": 45448,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AutoRubric: Overview Based on Available Content\n\nI notice the page references \"AutoRubric\" rather than \"AutoRubric-R1V.\" Based on the arXiv abstract provided, here's what can be extracted:\n\n## Core Method\nAutoRubric integrates reinforcement learning with verifiable rewards (RLVR) and \"process-level supervision through automatically collected rubric-based generative rewards.\" The framework uses \"a scalable self-aggregation method that distills consistent reasoning checkpoints from successful trajectories.\"\n\n## Key Innovation\nRather than relying on external models or human annotation, the system constructs \"problem-specific rubric construction without human annotation or stronger teacher models\" by analyzing what works across successful reasoning paths.\n\n## Application Domain\nThe approach targets multimodal reasoning tasks, demonstrating effectiveness across \"six multimodal reasoning benchmarks\" and addressing concerns about spurious reasoning in language models handling multi-step problems.\n\n## Distinction from External Verification\nUnlike approaches requiring external verification, AutoRubric achieves supervision by internally harvesting consistent patterns from successful trajectories—eliminating dependency on teacher models or manual rubric design.\n\n## Results\nThe framework achieves \"state-of-the-art performance on six multimodal reasoning benchmarks and substantially improves reasoning faithfulness\" in dedicated evaluations.\n\n**Note:** The provided page contains only the abstract; the full technical details would require accessing the complete paper PDF.",
+    "durationMs": 4836,
+    "url": "https://arxiv.org/abs/2510.14738"
+  },
+  "sourceToolAssistantUUID": "8cd5b5ba-7beb-4185-9751-b574471bee18",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T22:42:23.477Z_
+
+<details><summary>↩ Tool result · `toolu_018nqH1iLyFmuLh3pcfHfXGK`</summary>
+
+```text
+# CoRGI: Summary Based on Available Information
+
+**Important Note:** The paper has been withdrawn by the author with a comment stating "The paper is not yet mature and needs further improvement." Therefore, detailed technical information is limited.
+
+## What We Know
+
+**Core Concept:**
+CoRGI (Chain of Reasoning with Grounded Insights) is described as "a framework that enhances reasoning reliability through post-hoc verification of chain-of-thought outputs."
+
+**Method Overview:**
+The approach operates in three stages: decomposing VLM-generated rationales into step-wise statements, grounding each step in visual evidence, and filtering or correcting unsupported claims before final answers.
+
+**Inference-Time Operation:**
+The description indicates this is an inference-time technique—it processes outputs "after" generation rather than modifying the model itself.
+
+## Performance Results
+
+Testing across five benchmarks (VCR, ScienceQA, MMMU, MathVista, HallusionBench) showed improvements in both answer accuracy and explanation faithfulness across multiple VLM backbones including Qwen-2.5VL, LLaVA-1.6, and Gemma3-12B.
+
+## Notable Limitations
+
+The withdrawn status and author's maturity assessment mean specific technical details, training comparisons, and verification chain specifics are not available in this abstract. No information addresses relationships to training-time reward verification approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca397ffb-7169-4789-a0cd-a7d306d2b65d",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "42f2a756-7487-4bfe-ae44-1febe45bdf42",
+  "toolUseResult": {
+    "bytes": 45794,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRGI: Summary Based on Available Information\n\n**Important Note:** The paper has been withdrawn by the author with a comment stating \"The paper is not yet mature and needs further improvement.\" Therefore, detailed technical information is limited.\n\n## What We Know\n\n**Core Concept:**\nCoRGI (Chain of Reasoning with Grounded Insights) is described as \"a framework that enhances reasoning reliability through post-hoc verification of chain-of-thought outputs.\"\n\n**Method Overview:**\nThe approach operates in three stages: decomposing VLM-generated rationales into step-wise statements, grounding each step in visual evidence, and filtering or correcting unsupported claims before final answers.\n\n**Inference-Time Operation:**\nThe description indicates this is an inference-time technique—it processes outputs \"after\" generation rather than modifying the model itself.\n\n## Performance Results\n\nTesting across five benchmarks (VCR, ScienceQA, MMMU, MathVista, HallusionBench) showed improvements in both answer accuracy and explanation faithfulness across multiple VLM backbones including Qwen-2.5VL, LLaVA-1.6, and Gemma3-12B.\n\n## Notable Limitations\n\nThe withdrawn status and author's maturity assessment mean specific technical details, training comparisons, and verification chain specifics are not available in this abstract. No information addresses relationships to training-time reward verification approaches.",
+    "durationMs": 5458,
+    "url": "https://arxiv.org/abs/2508.00378"
+  },
+  "sourceToolAssistantUUID": "ca397ffb-7169-4789-a0cd-a7d306d2b65d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T22:42:26.070Z_
+
+<details><summary>↩ Tool result · `toolu_011njcfrA7BwRJbXfwHS1zun`</summary>
+
+```text
+Web search results for query: "Vision-SR1 self-rewarding visual reasoning structured perception tags GRPO 2026"
+
+Links: [{"title":"Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization","url":"https://arxiv.org/html/2508.19652"},{"title":"Self-Rewarding Vision-Language Model via Reasoning Decomposition","url":"https://arxiv.org/html/2508.19652v1"},{"title":"(PDF) Self-Rewarding Vision-Language Model via Reasoning Decomposition","url":"https://www.researchgate.net/publication/395033079_Self-Rewarding_Vision-Language_Model_via_Reasoning_Decomposition"},{"title":"Vision-SR1: Self-Rewarding VLM via Reasoning Decomposition","url":"https://arxiv.org/pdf/2508.19652"},{"title":"Self-Rewarding Vision-Language Model via Reasoning Decomposition | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/self-rewarding-vision-language-model-via-reasoning"},{"title":"[Literature Review] Self-Rewarding Vision-Language Model via Reasoning Decomposition","url":"https://www.themoonlight.io/en/review/self-rewarding-vision-language-model-via-reasoning-decomposition"},{"title":"GitHub - zli12321/Vision-SR1: Reinforcement Learning of Vision Language Models with Self Visual Perception Reward · GitHub","url":"https://github.com/zli12321/Vision-SR1"},{"title":"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding","url":"https://arxiv.org/html/2509.24776"},{"title":"Vision-SR1: Self-Rewarding VLM Framework","url":"https://www.emergentmind.com/topics/vision-sr1"}]
+
+Based on the search results, here's information about Vision-SR1:
+
+## Overview
+Vision-SR1 is a vision-language model training framework that mitigates visual hallucinations and language shortcuts by decomposing reasoning into distinct visual perception and language reasoning stages.
+
+## Key Technical Approach
+Vision-SR1 decomposes the reasoning process into two stages: visual perception and language reasoning. The visual perception is required to capture all details relevant to answering the query, so that the reasoning stage can proceed without re-accessing the original image.
+
+The method requires every response to adhere to a structured "See-Think" generation format where the model produces a specific output structure: visual perception wrapped in tags, followed by reasoning wrapped in think tags, and finally the answer.
+
+## Self-Rewarding Mechanism
+Vision-SR1 builds on Group Relative Policy Optimization (GRPO) for improving VLM reasoning. The system computes a self-reward for visual reasoning by re-prompting the frozen policy model to answer the question using only its generated visual reasoning, without access to the original image.
+
+## Results and Benefits
+Vision-SR1 improves visual reasoning, mitigates visual hallucinations, and reduces reliance on language shortcuts across diverse vision-language tasks. A Qwen2.5-VL-7B backbone obtained an average score of 58.8 across eight benchmarks, surpassing Vision-R1 (≈57.4).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "226df043-1d17-48ad-aa53-63146d1e3bd6",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "264a8e3c-92b7-4f02-87e1-52f07a3174c8",
+  "toolUseResult": {
+    "query": "Vision-SR1 self-rewarding visual reasoning structured perception tags GRPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VgqxtqwXpTM8hS9B1JL7HZ",
+        "content": [
+          {
+            "title": "Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization",
+            "url": "https://arxiv.org/html/2508.19652"
+          },
+          {
+            "title": "Self-Rewarding Vision-Language Model via Reasoning Decomposition",
+            "url": "https://arxiv.org/html/2508.19652v1"
+          },
+          {
+            "title": "(PDF) Self-Rewarding Vision-Language Model via Reasoning Decomposition",
+            "url": "https://www.researchgate.net/publication/395033079_Self-Rewarding_Vision-Language_Model_via_Reasoning_Decomposition"
+          },
+          {
+            "title": "Vision-SR1: Self-Rewarding VLM via Reasoning Decomposition",
+            "url": "https://arxiv.org/pdf/2508.19652"
+          },
+          {
+            "title": "Self-Rewarding Vision-Language Model via Reasoning Decomposition | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/self-rewarding-vision-language-model-via-reasoning"
+          },
+          {
+            "title": "[Literature Review] Self-Rewarding Vision-Language Model via Reasoning Decomposition",
+            "url": "https://www.themoonlight.io/en/review/self-rewarding-vision-language-model-via-reasoning-decomposition"
+          },
+          {
+            "title": "GitHub - zli12321/Vision-SR1: Reinforcement Learning of Vision Language Models with Self Visual Perception Reward · GitHub",
+            "url": "https://github.com/zli12321/Vision-SR1"
+          },
+          {
+            "title": "VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding",
+            "url": "https://arxiv.org/html/2509.24776"
+          },
+          {
+            "title": "Vision-SR1: Self-Rewarding VLM Framework",
+            "url": "https://www.emergentmind.com/topics/vision-sr1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about Vision-SR1:\n\n## Overview\nVision-SR1 is a vision-language model training framework that mitigates visual hallucinations and language shortcuts by decomposing reasoning into distinct visual perception and language reasoning stages.\n\n## Key Technical Approach\nVision-SR1 decomposes the reasoning process into two stages: visual perception and language reasoning. The visual perception is required to capture all details relevant to answering the query, so that the reasoning stage can proceed without re-accessing the original image.\n\nThe method requires every response to adhere to a structured \"See-Think\" generation format where the model produces a specific output structure: visual perception wrapped in tags, followed by reasoning wrapped in think tags, and finally the answer.\n\n## Self-Rewarding Mechanism\nVision-SR1 builds on Group Relative Policy Optimization (GRPO) for improving VLM reasoning. The system computes a self-reward for visual reasoning by re-prompting the frozen policy model to answer the question using only its generated visual reasoning, without access to the original image.\n\n## Results and Benefits\nVision-SR1 improves visual reasoning, mitigates visual hallucinations, and reduces reliance on language shortcuts across diverse vision-language tasks. A Qwen2.5-VL-7B backbone obtained an average score of 58.8 across eight benchmarks, surpassing Vision-R1 (≈57.4)."
+    ],
+    "durationSeconds": 7.054284606999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "226df043-1d17-48ad-aa53-63146d1e3bd6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "264a8e3c-92b7-4f02-87e1-52f07a3174c8",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T22:42:28.442Z_
+
+<details><summary>↩ Tool result · `toolu_019RUECg1gmkhtY53h7SGwR5`</summary>
+
+```text
+Web search results for query: "chart numerical constraint verification binding validity visual reasoning 2026"
+
+Links: [{"title":"BigCharts-R1: Enhanced Chart Reasoning with Visual ...","url":"https://arxiv.org/pdf/2508.09804"},{"title":"Chart Specification: Structural Representations for Incentivizing VLM Reasoning in Chart-to-Code Generation","url":"https://arxiv.org/html/2602.10880"},{"title":"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning","url":"https://arxiv.org/pdf/2510.10973"},{"title":"Chart-R1: Chain-of-Thought Supervision and Reinforcement for Advanced Chart Reasoner","url":"https://arxiv.org/pdf/2507.15509"},{"title":"ChartAgent: A Multimodal Agent for Visually Grounded Reasoning in Complex Chart Question Answering","url":"https://arxiv.org/pdf/2510.04514"},{"title":"Visual Reasoning Models","url":"https://www.emergentmind.com/topics/visual-reasoning-models"},{"title":"ChartAgent: A Multimodal Agent for Visually Grounded Reasoning in Complex Chart Question Answering","url":"https://arxiv.org/html/2510.04514v1"},{"title":"ChartVerse: Scaling Chart Reasoning via Reliable Programmatic Synthesis from Scratch","url":"https://arxiv.org/html/2601.13606"}]
+
+Based on the search results, I found several relevant 2026 research papers on chart numerical constraint verification, binding, validity, and visual reasoning:
+
+## Key Recent Works (2026)
+
+Chart Specification research addresses structural correctness issues by explicitly modeling chart structure to enforce constraint-consistent plotting logic and faithful visual reconstruction. This approach from February 2026 tackles the challenge of verifying charts respect numerical and structural constraints.
+
+Chain-of-thought prompting attempts have sometimes failed to improve accuracy on chart reasoning tasks and generated incoherent reasoning traces, which undermines trust in the systems, according to the Chart-RVR research from October 2025.
+
+Chart reasoning requires decomposing complex questions into multiple interpretable steps involving precise numerical comprehension, visual parsing, and logical inference.
+
+## Visual Reasoning and Binding
+
+Recent findings highlight the importance of input-level interventions (e.g., spatial scaffolds such as horizontal lines) to overcome the binding problem, wherein models struggle to associate features with the correct objects.
+
+## Quality Verification Methods
+
+In Python script generation, generated code must execute to yield precise numerical values or categorical labels ensuring deterministic answers, and synthesized text must be valid interrogative sentences with answers corresponding exactly to execution results.
+
+These papers represent the cutting edge of chart visual reasoning research in 2026, particularly focused on ensuring numerical accuracy and logical validity in AI systems processing charts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fe63fe1-859b-4cdd-ac9b-fed6435f431d",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "337c19d0-b39c-42a9-94cf-3c23ec549f7c",
+  "toolUseResult": {
+    "query": "chart numerical constraint verification binding validity visual reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DrPN8ZZXt2ydZvHcUsuna2",
+        "content": [
+          {
+            "title": "BigCharts-R1: Enhanced Chart Reasoning with Visual ...",
+            "url": "https://arxiv.org/pdf/2508.09804"
+          },
+          {
+            "title": "Chart Specification: Structural Representations for Incentivizing VLM Reasoning in Chart-to-Code Generation",
+            "url": "https://arxiv.org/html/2602.10880"
+          },
+          {
+            "title": "Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning",
+            "url": "https://arxiv.org/pdf/2510.10973"
+          },
+          {
+            "title": "Chart-R1: Chain-of-Thought Supervision and Reinforcement for Advanced Chart Reasoner",
+            "url": "https://arxiv.org/pdf/2507.15509"
+          },
+          {
+            "title": "ChartAgent: A Multimodal Agent for Visually Grounded Reasoning in Complex Chart Question Answering",
+            "url": "https://arxiv.org/pdf/2510.04514"
+          },
+          {
+            "title": "Visual Reasoning Models",
+            "url": "https://www.emergentmind.com/topics/visual-reasoning-models"
+          },
+          {
+            "title": "ChartAgent: A Multimodal Agent for Visually Grounded Reasoning in Complex Chart Question Answering",
+            "url": "https://arxiv.org/html/2510.04514v1"
+          },
+          {
+            "title": "ChartVerse: Scaling Chart Reasoning via Reliable Programmatic Synthesis from Scratch",
+            "url": "https://arxiv.org/html/2601.13606"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant 2026 research papers on chart numerical constraint verification, binding, validity, and visual reasoning:\n\n## Key Recent Works (2026)\n\nChart Specification research addresses structural correctness issues by explicitly modeling chart structure to enforce constraint-consistent plotting logic and faithful visual reconstruction. This approach from February 2026 tackles the challenge of verifying charts respect numerical and structural constraints.\n\nChain-of-thought prompting attempts have sometimes failed to improve accuracy on chart reasoning tasks and generated incoherent reasoning traces, which undermines trust in the systems, according to the Chart-RVR research from October 2025.\n\nChart reasoning requires decomposing complex questions into multiple interpretable steps involving precise numerical comprehension, visual parsing, and logical inference.\n\n## Visual Reasoning and Binding\n\nRecent findings highlight the importance of input-level interventions (e.g., spatial scaffolds such as horizontal lines) to overcome the binding problem, wherein models struggle to associate features with the correct objects.\n\n## Quality Verification Methods\n\nIn Python script generation, generated code must execute to yield precise numerical values or categorical labels ensuring deterministic answers, and synthesized text must be valid interrogative sentences with answers corresponding exactly to execution results.\n\nThese papers represent the cutting edge of chart visual reasoning research in 2026, particularly focused on ensuring numerical accuracy and logical validity in AI systems processing charts."
+    ],
+    "durationSeconds": 8.994348961,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2fe63fe1-859b-4cdd-ac9b-fed6435f431d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-27T22:42:35.072Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012gXkKeK1J1EGaLdjZ27Jbt`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2508.19652",
+  "prompt": "Extract detailed technical information about Vision-SR1: 1) What exact tags does it use for structured output (See/Think format)? 2) How exactly does the self-rewarding work — the frozen policy model is reprompted with only the visual reasoning text? 3) What is the \"decoupled reward-advantage framework\"? 4) What specific benchmarks and numbers are reported? 5) What are the three stages? 6) How does it relate to GRPO? 7) Does it check binding validity or completeness? 8) What are its key limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "337c19d0-b39c-42a9-94cf-3c23ec549f7c",
+  "isSidechain": false,
+  "requestId": "req_011CbTt3sZPPwtGpohVPXmw4",
+  "type": "assistant",
+  "uuid": "63c1798c-c13b-4f7e-89ab-a2128bb06ad0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ctf2FfBpAFMNgYd2fDykDP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3112,
+      "cache_read_input_tokens": 26567,
+      "output_tokens": 437,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 437,
+          "cache_read_input_tokens": 26567,
+          "cache_creation_input_tokens": 3112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T22:42:36.997Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0175Do2uBmvF79mLDiXhfs3R`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.04514v1",
+  "prompt": "Extract details about ChartAgent: How does it perform visually grounded reasoning for charts? What specific verification or constraint checking does it do on chart data? How does it verify numerical consistency? What is its step-wise reasoning approach?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63c1798c-c13b-4f7e-89ab-a2128bb06ad0",
+  "isSidechain": false,
+  "requestId": "req_011CbTt3sZPPwtGpohVPXmw4",
+  "type": "assistant",
+  "uuid": "c2bbdb08-9198-45d2-a9ff-16af6a635c2c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ctf2FfBpAFMNgYd2fDykDP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3112,
+      "cache_read_input_tokens": 26567,
+      "output_tokens": 437,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 437,
+          "cache_read_input_tokens": 26567,
+          "cache_creation_input_tokens": 3112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T22:42:38.439Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Xav4qeG8n2UA7yTYZfLCd`</summary>
+
+```json
+{
+  "query": "AutoRubric-R1V rubric-based process reward multimodal reasoning 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2bbdb08-9198-45d2-a9ff-16af6a635c2c",
+  "isSidechain": false,
+  "requestId": "req_011CbTt3sZPPwtGpohVPXmw4",
+  "type": "assistant",
+  "uuid": "e25c8175-4d27-4669-9f9d-afcdd8e01c19",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ctf2FfBpAFMNgYd2fDykDP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3112,
+      "cache_read_input_tokens": 26567,
+      "output_tokens": 437,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 437,
+          "cache_read_input_tokens": 26567,
+          "cache_creation_input_tokens": 3112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T22:42:38.838Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0197RiqMkAS94Y5Sm9baHrb8`</summary>
+
+```json
+{
+  "query": "CoRGI chain reasoning grounded insights post-hoc verification visual grounding 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e25c8175-4d27-4669-9f9d-afcdd8e01c19",
+  "isSidechain": false,
+  "requestId": "req_011CbTt3sZPPwtGpohVPXmw4",
+  "type": "assistant",
+  "uuid": "68371416-be9f-4ded-a723-aa9ba58b061a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ctf2FfBpAFMNgYd2fDykDP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3112,
+      "cache_read_input_tokens": 26567,
+      "output_tokens": 437,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 437,
+          "cache_read_input_tokens": 26567,
+          "cache_creation_input_tokens": 3112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T22:42:44.027Z_
+
+<details><summary>↩ Tool result · `toolu_012gXkKeK1J1EGaLdjZ27Jbt`</summary>
+
+```text
+# Vision-SR1: Technical Summary
+
+## 1) Structured Output Tags
+Vision-SR1 uses explicit XML-style tags: `&lt;visual_reasoning>`, `&lt;/visual_reasoning>`, `&lt;think>`, `&lt;/think>`, `&lt;answer>`, `&lt;/answer>`. The format separates visual perception from language reasoning and final answers.
+
+## 2) Self-Rewarding Mechanism
+The approach employs a two-rollout strategy. In the second pass, "the model is re-prompted to answer using only query and its generated visual perception" without access to the original image. If the correct answer emerges from the perception text alone, a visual reward is assigned, validating whether the perception is self-contained.
+
+## 3) Decoupled Reward-Advantage Framework
+Rather than summing rewards, Vision-SR1 maintains separate advantages for each reward component. The framework computes "distinct feedback for visual reasoning quality and answer accuracy through separate advantage computations and rollout-specific loss terms," preventing entanglement of heterogeneous signals.
+
+## 4) Reported Benchmarks & Results
+Key findings with Qwen2.5-VL-7B:
+- MMMU: 40.7 vs Vision-R1's 34.9
+- MMMU-Pro: 52.2 vs 42.8
+- Average across seven benchmarks: 52.2 vs 50.7
+- Language Shortcut Rate reduced from 10.1% (without self-reward) to 9.8%
+
+## 5) Three Training Stages
+- **Stage 1-2**: Reasoning decomposition with self-reward generation
+- **Stage 3**: Multi-reward optimization combining policy gradients with component-specific KL regularization
+
+## 6) Relation to GRPO
+Vision-SR1 builds on Group Relative Policy Optimization, extending it with multi-reward decomposition. It "optimizes a pre-trained VLM as a policy" using group-centered baselines to reduce variance.
+
+## 7) Validity/Completeness Checking
+The method doesn't explicitly validate logical completeness. Instead, it empirically tests whether generated visual descriptions suffice for answering by having the model re-attempt reasoning without image access.
+
+## 8) Key Limitations
+- Relies on format compliance rewards, potentially missing subtle hallucinations
+- Computational overhead of 10-15% beyond standard GRPO
+- Language shortcut reductions are modest (1-2 percentage points)
+- Authors acknowledge spurious effects may inflate mathematical gains independent of visual grounding
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63c1798c-c13b-4f7e-89ab-a2128bb06ad0",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "a0bff3d7-b966-442a-b705-0c2a7f7213a0",
+  "toolUseResult": {
+    "bytes": 318905,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Vision-SR1: Technical Summary\n\n## 1) Structured Output Tags\nVision-SR1 uses explicit XML-style tags: `&lt;visual_reasoning>`, `&lt;/visual_reasoning>`, `&lt;think>`, `&lt;/think>`, `&lt;answer>`, `&lt;/answer>`. The format separates visual perception from language reasoning and final answers.\n\n## 2) Self-Rewarding Mechanism\nThe approach employs a two-rollout strategy. In the second pass, \"the model is re-prompted to answer using only query and its generated visual perception\" without access to the original image. If the correct answer emerges from the perception text alone, a visual reward is assigned, validating whether the perception is self-contained.\n\n## 3) Decoupled Reward-Advantage Framework\nRather than summing rewards, Vision-SR1 maintains separate advantages for each reward component. The framework computes \"distinct feedback for visual reasoning quality and answer accuracy through separate advantage computations and rollout-specific loss terms,\" preventing entanglement of heterogeneous signals.\n\n## 4) Reported Benchmarks & Results\nKey findings with Qwen2.5-VL-7B:\n- MMMU: 40.7 vs Vision-R1's 34.9\n- MMMU-Pro: 52.2 vs 42.8\n- Average across seven benchmarks: 52.2 vs 50.7\n- Language Shortcut Rate reduced from 10.1% (without self-reward) to 9.8%\n\n## 5) Three Training Stages\n- **Stage 1-2**: Reasoning decomposition with self-reward generation\n- **Stage 3**: Multi-reward optimization combining policy gradients with component-specific KL regularization\n\n## 6) Relation to GRPO\nVision-SR1 builds on Group Relative Policy Optimization, extending it with multi-reward decomposition. It \"optimizes a pre-trained VLM as a policy\" using group-centered baselines to reduce variance.\n\n## 7) Validity/Completeness Checking\nThe method doesn't explicitly validate logical completeness. Instead, it empirically tests whether generated visual descriptions suffice for answering by having the model re-attempt reasoning without image access.\n\n## 8) Key Limitations\n- Relies on format compliance rewards, potentially missing subtle hallucinations\n- Computational overhead of 10-15% beyond standard GRPO\n- Language shortcut reductions are modest (1-2 percentage points)\n- Authors acknowledge spurious effects may inflate mathematical gains independent of visual grounding",
+    "durationMs": 8951,
+    "url": "https://arxiv.org/html/2508.19652"
+  },
+  "sourceToolAssistantUUID": "63c1798c-c13b-4f7e-89ab-a2128bb06ad0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-27T22:42:44.733Z_
+
+<details><summary>↩ Tool result · `toolu_019Xav4qeG8n2UA7yTYZfLCd`</summary>
+
+```text
+Web search results for query: "AutoRubric-R1V rubric-based process reward multimodal reasoning 2026 arXiv"
+
+Links: [{"title":"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251014738J/abstract"},{"title":"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning | OpenReview","url":"https://openreview.net/forum?id=j0zt9uoFJ4"},{"title":"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning - Paper Detail","url":"https://deeplearn.org/arxiv/644920/autorubric-r1v:-rubric-based-generative-rewards-for-faithful-multimodal-reasoning"},{"title":"[2510.14738] AutoRubric: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning","url":"https://arxiv.org/abs/2510.14738"},{"title":"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning","url":"https://arxiv.org/html/2510.14738v1"},{"title":"[2510.14738v1] AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning","url":"https://arxiv.org/abs/2510.14738v1"},{"title":"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning | Request PDF","url":"https://www.researchgate.net/publication/396542815_AutoRubric-R1V_Rubric-Based_Generative_Rewards_for_Faithful_Multimodal_Reasoning"},{"title":"AutoRubric: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning","url":"https://arxiv.org/html/2510.14738v2"},{"title":"Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria","url":"https://arxiv.org/html/2605.08354"}]
+
+Based on the search results, here's what I found about AutoRubric-R1V:
+
+## AutoRubric-R1V Overview
+
+AutoRubric-R1V addresses the limitation that multimodal large language models often exhibit spurious reasoning in reinforcement learning with verifiable rewards (RLVR) by proposing a framework that integrates RLVR with process-level supervision through automatically collected rubric-based generative rewards.
+
+## Key Innovation
+
+The framework's key innovation lies in a scalable self-aggregation method that distills consistent reasoning checkpoints from successful trajectories, enabling problem-specific rubric construction without human annotation or stronger teacher models.
+
+## Performance
+
+By jointly leveraging rubric-based and outcome rewards, AutoRubric-R1V achieves state-of-the-art performance on six multimodal reasoning benchmarks and substantially improves reasoning faithfulness in dedicated evaluations.
+
+The paper was originally submitted to ICLR 2026 and has been updated on arXiv with version 2 posted in April 2026 (arXiv paper 2510.14738).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e25c8175-4d27-4669-9f9d-afcdd8e01c19",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "67de45ba-3802-4fd5-a97e-f07245fa91b9",
+  "toolUseResult": {
+    "query": "AutoRubric-R1V rubric-based process reward multimodal reasoning 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ThJWP3HLnFtzYhQxK1nu4J",
+        "content": [
+          {
+            "title": "AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv251014738J/abstract"
+          },
+          {
+            "title": "AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=j0zt9uoFJ4"
+          },
+          {
+            "title": "AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/644920/autorubric-r1v:-rubric-based-generative-rewards-for-faithful-multimodal-reasoning"
+          },
+          {
+            "title": "[2510.14738] AutoRubric: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning",
+            "url": "https://arxiv.org/abs/2510.14738"
+          },
+          {
+            "title": "AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning",
+            "url": "https://arxiv.org/html/2510.14738v1"
+          },
+          {
+            "title": "[2510.14738v1] AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning",
+            "url": "https://arxiv.org/abs/2510.14738v1"
+          },
+          {
+            "title": "AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning | Request PDF",
+            "url": "https://www.researchgate.net/publication/396542815_AutoRubric-R1V_Rubric-Based_Generative_Rewards_for_Faithful_Multimodal_Reasoning"
+          },
+          {
+            "title": "AutoRubric: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning",
+            "url": "https://arxiv.org/html/2510.14738v2"
+          },
+          {
+            "title": "Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria",
+            "url": "https://arxiv.org/html/2605.08354"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AutoRubric-R1V:\n\n## AutoRubric-R1V Overview\n\nAutoRubric-R1V addresses the limitation that multimodal large language models often exhibit spurious reasoning in reinforcement learning with verifiable rewards (RLVR) by proposing a framework that integrates RLVR with process-level supervision through automatically collected rubric-based generative rewards.\n\n## Key Innovation\n\nThe framework's key innovation lies in a scalable self-aggregation method that distills consistent reasoning checkpoints from successful trajectories, enabling problem-specific rubric construction without human annotation or stronger teacher models.\n\n## Performance\n\nBy jointly leveraging rubric-based and outcome rewards, AutoRubric-R1V achieves state-of-the-art performance on six multimodal reasoning benchmarks and substantially improves reasoning faithfulness in dedicated evaluations.\n\nThe paper was originally submitted to ICLR 2026 and has been updated on arXiv with version 2 posted in April 2026 (arXiv paper 2510.14738)."
+    ],
+    "durationSeconds": 6.290264443,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e25c8175-4d27-4669-9f9d-afcdd8e01c19",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T22:42:45.310Z_
+
+<details><summary>↩ Tool result · `toolu_0175Do2uBmvF79mLDiXhfs3R`</summary>
+
+```text
+# ChartAgent: Visually Grounded Reasoning for Charts
+
+## Core Approach
+
+ChartAgent uses an iterative ReAct-style loop that decomposes chart queries into visual subtasks. The framework operates through three phases:
+
+**Thought Phase**: The MLLM evaluates the current state and derives the next subtask, which "primarily involve visual perception tasks (e.g., segmenting chart elements, detecting and annotating legends, or localizing axes), but may also include numerical operations"
+
+**Action Phase**: The agent selects from a library of chart-specialized tools that directly manipulate chart images, such as pie segmentation, bar isolation, and axis localization.
+
+**Observation Phase**: This is where verification occurs. The tools return "structured outputs and interpretable intermediate visualizations" that the agent inspects to assess accuracy.
+
+## Verification & Constraint Checking
+
+ChartAgent employs **visual self-verification** as a core mechanism. When tool outputs are generated, the agent "interprets and verifies these multimodal outputs, particularly for perception-related tools, by visually inspecting the provided visualizations to assess their accuracy."
+
+The system checks for specific constraint violations:
+- Negative or axis-inconsistent bar-height estimates
+- Incomplete segmentation
+- Mismatched legend associations
+- Outputs inconsistent with axis values
+
+If verification reveals unsatisfactory results, "the agent adaptively adjusts its tool use in the next iteration, for instance by invoking an alternative tool or tweaking parameters such as detection thresholds."
+
+## Numerical Consistency Verification
+
+The evaluation uses a "strict 5% relative error tolerance" for numeric answers. During reasoning, the agent validates whether extracted values align with chart axes and visual elements, falling back to the base MLLM when tool-level reasoning becomes unreliable.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2bbdb08-9198-45d2-a9ff-16af6a635c2c",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "cff76bbe-f0f2-4dbe-b9e6-0481f18fd443",
+  "toolUseResult": {
+    "bytes": 949913,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ChartAgent: Visually Grounded Reasoning for Charts\n\n## Core Approach\n\nChartAgent uses an iterative ReAct-style loop that decomposes chart queries into visual subtasks. The framework operates through three phases:\n\n**Thought Phase**: The MLLM evaluates the current state and derives the next subtask, which \"primarily involve visual perception tasks (e.g., segmenting chart elements, detecting and annotating legends, or localizing axes), but may also include numerical operations\"\n\n**Action Phase**: The agent selects from a library of chart-specialized tools that directly manipulate chart images, such as pie segmentation, bar isolation, and axis localization.\n\n**Observation Phase**: This is where verification occurs. The tools return \"structured outputs and interpretable intermediate visualizations\" that the agent inspects to assess accuracy.\n\n## Verification & Constraint Checking\n\nChartAgent employs **visual self-verification** as a core mechanism. When tool outputs are generated, the agent \"interprets and verifies these multimodal outputs, particularly for perception-related tools, by visually inspecting the provided visualizations to assess their accuracy.\"\n\nThe system checks for specific constraint violations:\n- Negative or axis-inconsistent bar-height estimates\n- Incomplete segmentation\n- Mismatched legend associations\n- Outputs inconsistent with axis values\n\nIf verification reveals unsatisfactory results, \"the agent adaptively adjusts its tool use in the next iteration, for instance by invoking an alternative tool or tweaking parameters such as detection thresholds.\"\n\n## Numerical Consistency Verification\n\nThe evaluation uses a \"strict 5% relative error tolerance\" for numeric answers. During reasoning, the agent validates whether extracted values align with chart axes and visual elements, falling back to the base MLLM when tool-level reasoning becomes unreliable.",
+    "durationMs": 8309,
+    "url": "https://arxiv.org/html/2510.04514v1"
+  },
+  "sourceToolAssistantUUID": "c2bbdb08-9198-45d2-a9ff-16af6a635c2c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T22:42:45.569Z_
+
+<details><summary>↩ Tool result · `toolu_0197RiqMkAS94Y5Sm9baHrb8`</summary>
+
+```text
+Web search results for query: "CoRGI chain reasoning grounded insights post-hoc verification visual grounding 2026"
+
+Links: [{"title":"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding","url":"https://arxiv.org/pdf/2508.00378"},{"title":"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding","url":"https://arxiv.org/html/2508.00378v2"},{"title":"CoRGI: Verified Chain-of-Thought Reasoning with Visual Grounding","url":"https://arxiv.org/html/2508.00378v1"},{"title":"[2508.00378] CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding","url":"https://arxiv.org/abs/2508.00378"},{"title":"CoRGI: Verified Chain-of-Thought Reasoning with Visual Grounding","url":"https://www.researchgate.net/publication/394262358_CoRGI_Verified_Chain-of-Thought_Reasoning_with_Visual_Grounding"}]
+
+Based on the search results, here's what I found about CoRGI:
+
+## CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding
+
+CoRGI (Chain of Reasoning with Grounded Insights) is a framework that enhances reasoning reliability through post-hoc verification of chain-of-thought outputs. Given a VLM-generated rationale, CoRGI decomposes it into step-wise statements, grounds each step in visual evidence, and filters or corrects unsupported claims before producing the final answer.
+
+**Problem It Addresses:**
+Multimodal reasoning with vision-language models (VLMs) often suffers from hallucinations, as models tend to generate explanations after only a superficial inspection of the image.
+
+**Methodology:**
+CoRGI first lets a VLM generate a full CoT chain. Then, in a separate stage, each reasoning step is checked against the image by extracting region-specific evidence. The design is lightweight, modular, and compatible with existing VLMs, requiring only a small relevance classifier and off-the-shelf detectors.
+
+**Results:**
+Experiments on five challenging benchmarks—VCR, ScienceQA, MMMU, MathVista, and HallusionBench—demonstrate that CoRGI consistently improves both answer accuracy and explanation faithfulness across multiple VLM backbones, including Qwen-2.5VL, LLaVA-1.6, and Gemma3-12B.
+
+The research was published in August 2025 by researchers from Nanjing University, China.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68371416-be9f-4ded-a723-aa9ba58b061a",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "12a30c21-e6b5-4f8d-a2d4-8a1f03f4fa97",
+  "toolUseResult": {
+    "query": "CoRGI chain reasoning grounded insights post-hoc verification visual grounding 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017eZQN7hudhArWaTNRPxpAe",
+        "content": [
+          {
+            "title": "CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding",
+            "url": "https://arxiv.org/pdf/2508.00378"
+          },
+          {
+            "title": "CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding",
+            "url": "https://arxiv.org/html/2508.00378v2"
+          },
+          {
+            "title": "CoRGI: Verified Chain-of-Thought Reasoning with Visual Grounding",
+            "url": "https://arxiv.org/html/2508.00378v1"
+          },
+          {
+            "title": "[2508.00378] CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding",
+            "url": "https://arxiv.org/abs/2508.00378"
+          },
+          {
+            "title": "CoRGI: Verified Chain-of-Thought Reasoning with Visual Grounding",
+            "url": "https://www.researchgate.net/publication/394262358_CoRGI_Verified_Chain-of-Thought_Reasoning_with_Visual_Grounding"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CoRGI:\n\n## CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding\n\nCoRGI (Chain of Reasoning with Grounded Insights) is a framework that enhances reasoning reliability through post-hoc verification of chain-of-thought outputs. Given a VLM-generated rationale, CoRGI decomposes it into step-wise statements, grounds each step in visual evidence, and filters or corrects unsupported claims before producing the final answer.\n\n**Problem It Addresses:**\nMultimodal reasoning with vision-language models (VLMs) often suffers from hallucinations, as models tend to generate explanations after only a superficial inspection of the image.\n\n**Methodology:**\nCoRGI first lets a VLM generate a full CoT chain. Then, in a separate stage, each reasoning step is checked against the image by extracting region-specific evidence. The design is lightweight, modular, and compatible with existing VLMs, requiring only a small relevance classifier and off-the-shelf detectors.\n\n**Results:**\nExperiments on five challenging benchmarks—VCR, ScienceQA, MMMU, MathVista, and HallusionBench—demonstrate that CoRGI consistently improves both answer accuracy and explanation faithfulness across multiple VLM backbones, including Qwen-2.5VL, LLaVA-1.6, and Gemma3-12B.\n\nThe research was published in August 2025 by researchers from Nanjing University, China."
+    ],
+    "durationSeconds": 6.7293108859999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "68371416-be9f-4ded-a723-aa9ba58b061a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-27T22:42:45.574Z_
+
+```json
+{
+  "parentUuid": "12a30c21-e6b5-4f8d-a2d4-8a1f03f4fa97",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "eff27a27-ad18-43f2-b3ec-a8d18aec61f2",
+  "timestamp": "2026-05-27T22:42:45.574Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "eff27a27-ad18-43f2-b3ec-a8d18aec61f2",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-27T22:42:51.587Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XA7CM2JAkBPCPFAT7tDSWj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.14738v2",
+  "prompt": "Extract detailed technical information about AutoRubric-R1V: 1) How exactly does the self-aggregation method work to distill rubric checkpoints from successful trajectories? 2) What is the rubric-based generative reward? 3) How does it provide process-level supervision? 4) What benchmarks and specific numbers? 5) How does it relate to external verifiers vs self-generated rubrics? 6) What are its limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eff27a27-ad18-43f2-b3ec-a8d18aec61f2",
+  "isSidechain": false,
+  "requestId": "req_011CbTt59nEKCSxbV5tvZTzb",
+  "type": "assistant",
+  "uuid": "49b01f41-f716-4310-888b-05ab343e47a2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSTpowR6SZn7RE9DQGRRNg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3156,
+      "cache_read_input_tokens": 29679,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 29679,
+          "cache_creation_input_tokens": 3156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T22:42:53.567Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HJZCHo2yrTf7HCxgVM36z5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2508.00378v2",
+  "prompt": "Extract detailed technical information about CoRGI: 1) How exactly does it decompose rationales into step-wise statements? 2) How does it ground each step in visual evidence? 3) What is the relevance classifier? 4) How does filtering/correction work? 5) What specific benchmarks and results? 6) Is it inference-time only or can it be used for training? 7) What are its limitations?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49b01f41-f716-4310-888b-05ab343e47a2",
+  "isSidechain": false,
+  "requestId": "req_011CbTt59nEKCSxbV5tvZTzb",
+  "type": "assistant",
+  "uuid": "6d320dc7-7de1-4e8d-aac3-f0f815c3a007",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSTpowR6SZn7RE9DQGRRNg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3156,
+      "cache_read_input_tokens": 29679,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 29679,
+          "cache_creation_input_tokens": 3156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T22:42:54.499Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Px5fg1vcLSZPJw7nEvMepX`</summary>
+
+```json
+{
+  "query": "chart reasoning numerical verification arithmetic consistency checking VLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d320dc7-7de1-4e8d-aac3-f0f815c3a007",
+  "isSidechain": false,
+  "requestId": "req_011CbTt59nEKCSxbV5tvZTzb",
+  "type": "assistant",
+  "uuid": "5d93094c-5fb2-4cf8-b4ee-ff68fe29b13b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSTpowR6SZn7RE9DQGRRNg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3156,
+      "cache_read_input_tokens": 29679,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 29679,
+          "cache_creation_input_tokens": 3156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-27T22:42:54.905Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013DPakBcCReAabPDhVWwFwa`</summary>
+
+```json
+{
+  "query": "diagram structural relationship verification constraint satisfaction visual language model reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d93094c-5fb2-4cf8-b4ee-ff68fe29b13b",
+  "isSidechain": false,
+  "requestId": "req_011CbTt59nEKCSxbV5tvZTzb",
+  "type": "assistant",
+  "uuid": "b4637ed6-165d-47c8-872f-5ee8b12d5384",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WSTpowR6SZn7RE9DQGRRNg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3156,
+      "cache_read_input_tokens": 29679,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3156,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 29679,
+          "cache_creation_input_tokens": 3156,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3156
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-27T22:43:00.708Z_
+
+<details><summary>↩ Tool result · `toolu_01XA7CM2JAkBPCPFAT7tDSWj`</summary>
+
+```text
+# AutoRubric: Technical Deep Dive
+
+## 1. Self-Aggregation Method
+
+AutoRubric distills rubrics through step-level consistency analysis. The system samples K reasoning trajectories per problem, retaining only those with correct answers. An LLM then compares these successful trajectories to identify recurring steps—those appearing consistently across multiple solutions are considered essential reasoning checkpoints, while sporadic steps are filtered as spurious or unnecessary.
+
+## 2. Rubric-Based Generative Reward
+
+The reward computation is elegantly straightforward. Given problem-specific rubrics 𝒞ˣ containing m criteria, the judge verifies whether each criterion is satisfied in a candidate trajectory. The rubric-based reward equals "the fraction of satisfied checkpoints," calculated by counting how many criteria the trajectory satisfies divided by total criteria count.
+
+## 3. Process-Level Supervision Mechanism
+
+Rather than evaluating entire trajectories holistically, rubric-based rewards provide intermediate checkpoints for evaluation. The system combines two signals: outcome rewards (answer correctness) and rubric rewards via weighted combination (λ weight on answer rewards, 1-λ on rubric rewards). This encourages "not only to arrive at correct answers but also to align its intermediate reasoning with the rubric-derived process supervision."
+
+## 4. Benchmark Performance
+
+Evaluated across six benchmarks:
+- **MathVision**: 53.24 strict accuracy (vs. 45.24 baseline)
+- **MMMU Pro**: 54.67 strict accuracy  
+- **MathVista**: 73.60 strict accuracy
+- **Average**: +8.00 point improvement over Qwen2.5-VL-7B baseline
+
+## 5. Rubric Sources: Self vs. External
+
+AutoRubric generates problem-specific rubrics exclusively from the model's own successful trajectories—no human annotation or proprietary teacher models required. Coverage reaches 67.26% (26,144 rubric sets from 38,870 training samples), with human evaluation scoring rubric quality at 4.18/5.
+
+## 6. Key Limitations
+
+**Computational overhead**: Judge-based rewards increase training time by "approximately 40%" per step compared to vanilla RLVR. However, authors argue this trade-off is justified for "safety-sensitive systems, where correct final answers alone are insufficient." The system aggregates all rubric evaluations into single LLM calls for efficiency, with potential parallelization opportunities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49b01f41-f716-4310-888b-05ab343e47a2",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "2a95352c-4c2b-44de-a61c-b97d97d3fb7d",
+  "toolUseResult": {
+    "bytes": 255582,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AutoRubric: Technical Deep Dive\n\n## 1. Self-Aggregation Method\n\nAutoRubric distills rubrics through step-level consistency analysis. The system samples K reasoning trajectories per problem, retaining only those with correct answers. An LLM then compares these successful trajectories to identify recurring steps—those appearing consistently across multiple solutions are considered essential reasoning checkpoints, while sporadic steps are filtered as spurious or unnecessary.\n\n## 2. Rubric-Based Generative Reward\n\nThe reward computation is elegantly straightforward. Given problem-specific rubrics 𝒞ˣ containing m criteria, the judge verifies whether each criterion is satisfied in a candidate trajectory. The rubric-based reward equals \"the fraction of satisfied checkpoints,\" calculated by counting how many criteria the trajectory satisfies divided by total criteria count.\n\n## 3. Process-Level Supervision Mechanism\n\nRather than evaluating entire trajectories holistically, rubric-based rewards provide intermediate checkpoints for evaluation. The system combines two signals: outcome rewards (answer correctness) and rubric rewards via weighted combination (λ weight on answer rewards, 1-λ on rubric rewards). This encourages \"not only to arrive at correct answers but also to align its intermediate reasoning with the rubric-derived process supervision.\"\n\n## 4. Benchmark Performance\n\nEvaluated across six benchmarks:\n- **MathVision**: 53.24 strict accuracy (vs. 45.24 baseline)\n- **MMMU Pro**: 54.67 strict accuracy  \n- **MathVista**: 73.60 strict accuracy\n- **Average**: +8.00 point improvement over Qwen2.5-VL-7B baseline\n\n## 5. Rubric Sources: Self vs. External\n\nAutoRubric generates problem-specific rubrics exclusively from the model's own successful trajectories—no human annotation or proprietary teacher models required. Coverage reaches 67.26% (26,144 rubric sets from 38,870 training samples), with human evaluation scoring rubric quality at 4.18/5.\n\n## 6. Key Limitations\n\n**Computational overhead**: Judge-based rewards increase training time by \"approximately 40%\" per step compared to vanilla RLVR. However, authors argue this trade-off is justified for \"safety-sensitive systems, where correct final answers alone are insufficient.\" The system aggregates all rubric evaluations into single LLM calls for efficiency, with potential parallelization opportunities.",
+    "durationMs": 9116,
+    "url": "https://arxiv.org/html/2510.14738v2"
+  },
+  "sourceToolAssistantUUID": "49b01f41-f716-4310-888b-05ab343e47a2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T22:43:02.291Z_
+
+<details><summary>↩ Tool result · `toolu_01HJZCHo2yrTf7HCxgVM36z5`</summary>
+
+```text
+# CoRGI Technical Details
+
+## 1) Rationale Decomposition
+CoRGI accepts a VLM-generated reasoning chain R={r₁, r₂, ..., rₙ} where "each rᵢ is a natural language sentence that represents a logical assertion." The paper doesn't specify an explicit decomposition algorithm—it treats the model's naturally generated steps as atomic units for verification.
+
+## 2) Visual Evidence Grounding
+The Visual Evidence Verification Module (VEVM) grounds steps through a three-step process:
+- **Relevance Classification**: Determines if verification is needed
+- **RoI Selection**: Uses Grounding DINO to "dynamically identify the most relevant image region based on the step's textual content"
+- **Evidence Extraction**: A VLM "acts as a high-fidelity 'fact checker,' providing a concise and grounded description of the visual content"
+
+## 3) Relevance Classifier
+A lightweight MLP classifier that outputs logits converted to importance scores (e.g., "importance: 75%"). It serves dual purposes: acts as a "binary gate" to skip non-visual steps and provides confidence weighting for downstream synthesis.
+
+## 4) Filtering/Correction Mechanism
+CoRGI performs post-hoc verification by "ensuring that the reasoning chain produced by the model can be retrospectively grounded in actual visual content." Unsupported claims are filtered before final answer synthesis, though the paper notes it doesn't revise the initial reasoning chain itself.
+
+## 5) Benchmark Results
+Tested on five datasets with three VLM backbones:
+- **VCR**: +0.3–12.9% improvement
+- **ScienceQA, MMMU, MathVista, HallusionBench**: +0.1–8.4% gains
+- Strongest improvements on weaker models (LLaVA-1.6)
+
+## 6) Inference vs. Training
+CoRGI is **inference-time only**. It requires "only a small relevance classifier" for training but functions as "a general-purpose wrapper around off-the-shelf VLMs" without requiring "large-scale end-to-end retraining."
+
+## 7) Key Limitations
+- Works sequentially post-hoc; "errors generated along the way cannot be identified and corrected in real-time"
+- "Sensitive to the quality of the generated CoT"—early mistakes compound
+- "Depends on large external VLMs, which can introduce latency"
+- Cannot recover from fundamentally flawed initial reasoning
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d320dc7-7de1-4e8d-aac3-f0f815c3a007",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "11d98acc-6d57-4193-89fd-355795e69982",
+  "toolUseResult": {
+    "bytes": 93194,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CoRGI Technical Details\n\n## 1) Rationale Decomposition\nCoRGI accepts a VLM-generated reasoning chain R={r₁, r₂, ..., rₙ} where \"each rᵢ is a natural language sentence that represents a logical assertion.\" The paper doesn't specify an explicit decomposition algorithm—it treats the model's naturally generated steps as atomic units for verification.\n\n## 2) Visual Evidence Grounding\nThe Visual Evidence Verification Module (VEVM) grounds steps through a three-step process:\n- **Relevance Classification**: Determines if verification is needed\n- **RoI Selection**: Uses Grounding DINO to \"dynamically identify the most relevant image region based on the step's textual content\"\n- **Evidence Extraction**: A VLM \"acts as a high-fidelity 'fact checker,' providing a concise and grounded description of the visual content\"\n\n## 3) Relevance Classifier\nA lightweight MLP classifier that outputs logits converted to importance scores (e.g., \"importance: 75%\"). It serves dual purposes: acts as a \"binary gate\" to skip non-visual steps and provides confidence weighting for downstream synthesis.\n\n## 4) Filtering/Correction Mechanism\nCoRGI performs post-hoc verification by \"ensuring that the reasoning chain produced by the model can be retrospectively grounded in actual visual content.\" Unsupported claims are filtered before final answer synthesis, though the paper notes it doesn't revise the initial reasoning chain itself.\n\n## 5) Benchmark Results\nTested on five datasets with three VLM backbones:\n- **VCR**: +0.3–12.9% improvement\n- **ScienceQA, MMMU, MathVista, HallusionBench**: +0.1–8.4% gains\n- Strongest improvements on weaker models (LLaVA-1.6)\n\n## 6) Inference vs. Training\nCoRGI is **inference-time only**. It requires \"only a small relevance classifier\" for training but functions as \"a general-purpose wrapper around off-the-shelf VLMs\" without requiring \"large-scale end-to-end retraining.\"\n\n## 7) Key Limitations\n- Works sequentially post-hoc; \"errors generated along the way cannot be identified and corrected in real-time\"\n- \"Sensitive to the quality of the generated CoT\"—early mistakes compound\n- \"Depends on large external VLMs, which can introduce latency\"\n- Cannot recover from fundamentally flawed initial reasoning",
+    "durationMs": 8720,
+    "url": "https://arxiv.org/html/2508.00378v2"
+  },
+  "sourceToolAssistantUUID": "6d320dc7-7de1-4e8d-aac3-f0f815c3a007",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T22:43:03.354Z_
+
+<details><summary>↩ Tool result · `toolu_01Px5fg1vcLSZPJw7nEvMepX`</summary>
+
+```text
+Web search results for query: "chart reasoning numerical verification arithmetic consistency checking VLM 2025 2026"
+
+Links: [{"title":"ChartVerse: Scaling Chart Reasoning via Reliable Programmatic Synthesis from Scratch","url":"https://arxiv.org/html/2601.13606"},{"title":"[2602.10880] Chart Specification: Structural Representations for Incentivizing VLM Reasoning in Chart-to-Code Generation","url":"https://arxiv.org/abs/2602.10880"},{"title":"Chart-based Reasoning: Transferring Capabilities from LLMs to VLMs","url":"https://arxiv.org/pdf/2403.12596"},{"title":"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning","url":"https://arxiv.org/pdf/2510.10973"},{"title":"Proceedings of Machine Learning Research vol vvv:1–18, 2025","url":"https://neus-2025.github.io/files/papers/paper_34.pdf"},{"title":"Chart-RL: Generalized Chart Comprehension via Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/html/2603.06958"},{"title":"Are Large Vision Language Models up to the Challenge of Chart   Comprehension and Reasoning? An Extensive Investigation into the Capabilities   and Limitations of LVLMs","url":"https://arxiv.org/pdf/2406.00257"}]
+
+I found several recent research papers on chart reasoning and VLM capabilities. Here are the key findings:
+
+## Chart Reasoning and VLM Research (2025-2026)
+
+**Recent Approaches:**
+
+Chart Specification filters syntactic noise to construct a structurally balanced training set and supports a Spec-Align Reward that provides fine-grained, verifiable feedback on structural correctness, enabling improved chart-to-code generation.
+
+Chart-RL is an efficient reinforcement fine-tuning framework that employs R1-style reinforcement learning to enhance chart understanding capabilities in VLMs, with the key insight that chart-based questions frequently correspond to mathematically verifiable ground truths.
+
+**Current Challenges:**
+
+Large Vision-Language Models reveal two systematic weaknesses: their performance significantly collapses on out-of-distribution datasets that differ only in visual style, and attempts to elicit model rationales via chain-of-thought prompting not only fail to improve accuracy but often harm it, generating incoherent or hallucinated reasoning traces.
+
+Current VLMs often struggle to bridge the gap between extracting descriptive information and deriving correct answers that require multi-step reasoning.
+
+**Improvement Methods:**
+
+To improve general reasoning capabilities and improve numerical operations, reasoning traces are synthesized using the table representation of charts.
+
+The research shows active development in combining reinforcement learning with verifiable rewards for more robust chart reasoning in VLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d93094c-5fb2-4cf8-b4ee-ff68fe29b13b",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "a9fa5f2a-2ab4-44f4-b125-cbf81b8e923c",
+  "toolUseResult": {
+    "query": "chart reasoning numerical verification arithmetic consistency checking VLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ABXYtghmJgpd9n1Z1iCFV7",
+        "content": [
+          {
+            "title": "ChartVerse: Scaling Chart Reasoning via Reliable Programmatic Synthesis from Scratch",
+            "url": "https://arxiv.org/html/2601.13606"
+          },
+          {
+            "title": "[2602.10880] Chart Specification: Structural Representations for Incentivizing VLM Reasoning in Chart-to-Code Generation",
+            "url": "https://arxiv.org/abs/2602.10880"
+          },
+          {
+            "title": "Chart-based Reasoning: Transferring Capabilities from LLMs to VLMs",
+            "url": "https://arxiv.org/pdf/2403.12596"
+          },
+          {
+            "title": "Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning",
+            "url": "https://arxiv.org/pdf/2510.10973"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research vol vvv:1–18, 2025",
+            "url": "https://neus-2025.github.io/files/papers/paper_34.pdf"
+          },
+          {
+            "title": "Chart-RL: Generalized Chart Comprehension via Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2603.06958"
+          },
+          {
+            "title": "Are Large Vision Language Models up to the Challenge of Chart   Comprehension and Reasoning? An Extensive Investigation into the Capabilities   and Limitations of LVLMs",
+            "url": "https://arxiv.org/pdf/2406.00257"
+          }
+        ]
+      },
+      "I found several recent research papers on chart reasoning and VLM capabilities. Here are the key findings:\n\n## Chart Reasoning and VLM Research (2025-2026)\n\n**Recent Approaches:**\n\nChart Specification filters syntactic noise to construct a structurally balanced training set and supports a Spec-Align Reward that provides fine-grained, verifiable feedback on structural correctness, enabling improved chart-to-code generation.\n\nChart-RL is an efficient reinforcement fine-tuning framework that employs R1-style reinforcement learning to enhance chart understanding capabilities in VLMs, with the key insight that chart-based questions frequently correspond to mathematically verifiable ground truths.\n\n**Current Challenges:**\n\nLarge Vision-Language Models reveal two systematic weaknesses: their performance significantly collapses on out-of-distribution datasets that differ only in visual style, and attempts to elicit model rationales via chain-of-thought prompting not only fail to improve accuracy but often harm it, generating incoherent or hallucinated reasoning traces.\n\nCurrent VLMs often struggle to bridge the gap between extracting descriptive information and deriving correct answers that require multi-step reasoning.\n\n**Improvement Methods:**\n\nTo improve general reasoning capabilities and improve numerical operations, reasoning traces are synthesized using the table representation of charts.\n\nThe research shows active development in combining reinforcement learning with verifiable rewards for more robust chart reasoning in VLMs."
+    ],
+    "durationSeconds": 8.852246381999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5d93094c-5fb2-4cf8-b4ee-ff68fe29b13b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-27T22:43:04.327Z_
+
+<details><summary>↩ Tool result · `toolu_013DPakBcCReAabPDhVWwFwa`</summary>
+
+```text
+Web search results for query: "diagram structural relationship verification constraint satisfaction visual language model reasoning"
+
+Links: [{"title":"[2512.20664] Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction","url":"https://arxiv.org/abs/2512.20664"},{"title":"(PDF) Visualization for structured constraint satisfaction problems","url":"https://www.researchgate.net/publication/228943946_Visualization_for_structured_constraint_satisfaction_problems"},{"title":"(PDF) On the verification of UML/OCL class diagrams using constraint programming","url":"https://www.academia.edu/14448538/On_the_verification_of_UML_OCL_class_diagrams_using_constraint_programming"},{"title":"(PDF) Verification of UML/OCL class diagrams using constraint programming","url":"https://www.academia.edu/964061/Verification_of_UML_OCL_class_diagrams_using_constraint_programming"},{"title":"On the verification of UML/OCL class diagrams using constraint programming - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0164121214000739"},{"title":"Visualization for Structured Constraint Satisfaction Problems","url":"https://www.cs.hunter.cuny.edu/~epstein/papers/XL_SLE_AAAI10_VRR_camera_final.pdf"},{"title":"(PDF) Ontology-Based Verification of UML Class Model XOR Constraint and Dependency Relationship Constraints","url":"https://www.academia.edu/114466592/Ontology_Based_Verification_of_UML_Class_Model_XOR_Constraint_and_Dependency_Relationship_Constraints"}]
+
+I found relevant research on diagram verification through constraint satisfaction. Here are the key findings:
+
+## Recent Work on Structural Verification and Constraint Satisfaction
+
+A recent paper titled "Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction" reformulates the verification of LLM reasoning as a Constraint Satisfaction Problem (CSP) operating independently of the generation likelihood. This approach models verification as a feasibility check based on structural violation cost -- the computational cost required to embed a candidate reasoning step into the contextual graph structure.
+
+## Diagram and Visual Model Verification
+
+A method for verifying UML/OCL class diagrams translates both class diagrams and OCL constraints into a Constraint Satisfaction Problem, then checks compliance of the diagram with respect to correctness properties such as weak and strong satisfiability or absence of constraint redundancies.
+
+## Visualization of Structured Constraint Problems
+
+A visualization program called DrawCSP can show both the original and discovered structure of constraint satisfaction problems, providing insight into both search algorithm design and challenges that real-world problems present.
+
+These approaches combine structural analysis, constraint satisfaction techniques, and visualization to verify relationships and consistency in diagrams and reasoning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4637ed6-165d-47c8-872f-5ee8b12d5384",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "0622eccc-34c7-48cd-9dfb-36bd31bd4bf9",
+  "toolUseResult": {
+    "query": "diagram structural relationship verification constraint satisfaction visual language model reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VLCRdNgagDW7YUe2MKMeV7",
+        "content": [
+          {
+            "title": "[2512.20664] Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction",
+            "url": "https://arxiv.org/abs/2512.20664"
+          },
+          {
+            "title": "(PDF) Visualization for structured constraint satisfaction problems",
+            "url": "https://www.researchgate.net/publication/228943946_Visualization_for_structured_constraint_satisfaction_problems"
+          },
+          {
+            "title": "(PDF) On the verification of UML/OCL class diagrams using constraint programming",
+            "url": "https://www.academia.edu/14448538/On_the_verification_of_UML_OCL_class_diagrams_using_constraint_programming"
+          },
+          {
+            "title": "(PDF) Verification of UML/OCL class diagrams using constraint programming",
+            "url": "https://www.academia.edu/964061/Verification_of_UML_OCL_class_diagrams_using_constraint_programming"
+          },
+          {
+            "title": "On the verification of UML/OCL class diagrams using constraint programming - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0164121214000739"
+          },
+          {
+            "title": "Visualization for Structured Constraint Satisfaction Problems",
+            "url": "https://www.cs.hunter.cuny.edu/~epstein/papers/XL_SLE_AAAI10_VRR_camera_final.pdf"
+          },
+          {
+            "title": "(PDF) Ontology-Based Verification of UML Class Model XOR Constraint and Dependency Relationship Constraints",
+            "url": "https://www.academia.edu/114466592/Ontology_Based_Verification_of_UML_Class_Model_XOR_Constraint_and_Dependency_Relationship_Constraints"
+          }
+        ]
+      },
+      "I found relevant research on diagram verification through constraint satisfaction. Here are the key findings:\n\n## Recent Work on Structural Verification and Constraint Satisfaction\n\nA recent paper titled \"Eidoku: A Neuro-Symbolic Verification Gate for LLM Reasoning via Structural Constraint Satisfaction\" reformulates the verification of LLM reasoning as a Constraint Satisfaction Problem (CSP) operating independently of the generation likelihood. This approach models verification as a feasibility check based on structural violation cost -- the computational cost required to embed a candidate reasoning step into the contextual graph structure.\n\n## Diagram and Visual Model Verification\n\nA method for verifying UML/OCL class diagrams translates both class diagrams and OCL constraints into a Constraint Satisfaction Problem, then checks compliance of the diagram with respect to correctness properties such as weak and strong satisfiability or absence of constraint redundancies.\n\n## Visualization of Structured Constraint Problems\n\nA visualization program called DrawCSP can show both the original and discovered structure of constraint satisfaction problems, providing insight into both search algorithm design and challenges that real-world problems present.\n\nThese approaches combine structural analysis, constraint satisfaction techniques, and visualization to verify relationships and consistency in diagrams and reasoning systems."
+    ],
+    "durationSeconds": 9.418521508999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b4637ed6-165d-47c8-872f-5ee8b12d5384",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T22:43:08.365Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Atwevk9J3mFrPJiDjdNNHc`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.20664",
+  "prompt": "Extract details about Eidoku: How does it reformulate LLM reasoning verification as a Constraint Satisfaction Problem (CSP)? What is the structural violation cost? How does it verify reasoning steps? What results does it achieve? Is it applicable to multimodal reasoning?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0622eccc-34c7-48cd-9dfb-36bd31bd4bf9",
+  "isSidechain": false,
+  "requestId": "req_011CbTt6XBNQX8Gtt8HabMNR",
+  "type": "assistant",
+  "uuid": "c24074cd-0cff-43ba-b8b4-0434047b242f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A12Efe4N2Vqf7i8v62KQiC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3102,
+      "cache_read_input_tokens": 32835,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 32835,
+          "cache_creation_input_tokens": 3102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-27T22:43:09.302Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MYzjWcwsXTw9DrjLGrg1pD`</summary>
+
+```json
+{
+  "query": "Chart-RVR reinforcement learning verifiable rewards chart reasoning explainable numerical verification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c24074cd-0cff-43ba-b8b4-0434047b242f",
+  "isSidechain": false,
+  "requestId": "req_011CbTt6XBNQX8Gtt8HabMNR",
+  "type": "assistant",
+  "uuid": "1aa7108f-8a32-4304-81fa-25db80d95613",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A12Efe4N2Vqf7i8v62KQiC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3102,
+      "cache_read_input_tokens": 32835,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 32835,
+          "cache_creation_input_tokens": 3102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T22:43:10.047Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WD6eCzrRofLsXyWmvF6vLz`</summary>
+
+```json
+{
+  "query": "VLM single-pass multi-property verification autoregressive verifier cost model forward pass 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1aa7108f-8a32-4304-81fa-25db80d95613",
+  "isSidechain": false,
+  "requestId": "req_011CbTt6XBNQX8Gtt8HabMNR",
+  "type": "assistant",
+  "uuid": "d6a980b1-605b-4cf7-9f44-9c591e70739d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A12Efe4N2Vqf7i8v62KQiC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3102,
+      "cache_read_input_tokens": 32835,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 32835,
+          "cache_creation_input_tokens": 3102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "d6a980b1-605b-4cf7-9f44-9c591e70739d",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-27T22:43:13.628Z_
+
+<details><summary>↩ Tool result · `toolu_01Atwevk9J3mFrPJiDjdNNHc`</summary>
+
+```text
+# Eidoku: Key Details from the arXiv Paper
+
+## CSP Reformulation
+Eidoku reformulates verification as "a Constraint Satisfaction Problem (CSP) operating independently of the generation likelihood." Rather than relying on probability scores, it treats verification as feasibility assessment based on structural consistency.
+
+## Structural Violation Cost
+The system models verification through a cost function with three components: graph connectivity (structural), feature space consistency (geometric), and logical entailment (symbolic). The "structural violation cost" represents the computational expense of embedding a reasoning step into the contextual graph structure.
+
+## Verification Mechanism
+Eidoku operates as a "lightweight System-2 gate" that rejects candidates exceeding a context-calibrated cost threshold. Notably, this threshold is "derived from the intrinsic statistics of the context, avoiding ad hoc heuristics" rather than being learned.
+
+## Key Results
+The approach successfully identifies "smooth falsehoods" — statements with high probability yet structurally disconnected from context. According to the abstract, it achieves "deterministic rejection of this specific class of hallucinations, serving as a neuro-symbolic sanity check."
+
+## Multimodal Applicability
+The provided content contains no information regarding multimodal reasoning applications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c24074cd-0cff-43ba-b8b4-0434047b242f",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "f304b2c4-f7a9-4530-a438-376d15ffcb23",
+  "toolUseResult": {
+    "bytes": 46158,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Eidoku: Key Details from the arXiv Paper\n\n## CSP Reformulation\nEidoku reformulates verification as \"a Constraint Satisfaction Problem (CSP) operating independently of the generation likelihood.\" Rather than relying on probability scores, it treats verification as feasibility assessment based on structural consistency.\n\n## Structural Violation Cost\nThe system models verification through a cost function with three components: graph connectivity (structural), feature space consistency (geometric), and logical entailment (symbolic). The \"structural violation cost\" represents the computational expense of embedding a reasoning step into the contextual graph structure.\n\n## Verification Mechanism\nEidoku operates as a \"lightweight System-2 gate\" that rejects candidates exceeding a context-calibrated cost threshold. Notably, this threshold is \"derived from the intrinsic statistics of the context, avoiding ad hoc heuristics\" rather than being learned.\n\n## Key Results\nThe approach successfully identifies \"smooth falsehoods\" — statements with high probability yet structurally disconnected from context. According to the abstract, it achieves \"deterministic rejection of this specific class of hallucinations, serving as a neuro-symbolic sanity check.\"\n\n## Multimodal Applicability\nThe provided content contains no information regarding multimodal reasoning applications.",
+    "durationMs": 5257,
+    "url": "https://arxiv.org/abs/2512.20664"
+  },
+  "sourceToolAssistantUUID": "c24074cd-0cff-43ba-b8b4-0434047b242f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-27T22:43:16.362Z_
+
+<details><summary>↩ Tool result · `toolu_01WD6eCzrRofLsXyWmvF6vLz`</summary>
+
+```text
+Web search results for query: "VLM single-pass multi-property verification autoregressive verifier cost model forward pass 2026"
+
+Links: [{"title":"Vision-Language Model for Face Verification","url":"https://www.emergentmind.com/topics/vision-language-model-vlm-for-face-verification"},{"title":"Vision-Language Model Verifier","url":"https://www.emergentmind.com/topics/vision-language-model-vlm-verifier"},{"title":"Tractable Asymmetric Verification for Large Language Models via Deterministic Replicability","url":"https://arxiv.org/pdf/2509.11068"},{"title":"Efficient Verification of Multi-Property Designs (The Benefit of Wrong   Assumptions) (Extended Version)","url":"https://arxiv.org/pdf/1711.05698"},{"title":"VeriLLM: A Lightweight Framework for Publicly Verifiable Decentralized Inference","url":"https://arxiv.org/pdf/2509.24257"}]
+
+I found relevant search results for your query. Here's what I discovered:
+
+VeriLLM is a publicly verifiable protocol for decentralized LLM inference that combines lightweight empirical rerunning with minimal on-chain checks, allowing verifiers to validate results at approximately 1% of the underlying inference cost by exploiting the structural separation between prefill and autoregressive decoding.
+
+The system uses an isomorphic inference-verification architecture that multiplexes both inference and verification roles across the same GPU workers.
+
+Additionally, I found information on related VLM verification concepts: VLM verifiers are integral to multi-stage reasoning architectures, providing critical correctness checks at various levels of the decision process.
+
+The search results also include work on autoregressive model verification using deterministic replicability, where multiple validators can probabilistically audit small, random segments of an LLM's output, with targeted verification being over 12 times faster than full regeneration.
+
+If you're looking for more specific information about single-pass multi-property verification or forward pass cost models from 2026, you may want to clarify your search focus.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6a980b1-605b-4cf7-9f44-9c591e70739d",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "5099659c-2043-4945-b468-beea44afc60f",
+  "toolUseResult": {
+    "query": "VLM single-pass multi-property verification autoregressive verifier cost model forward pass 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SggP376cS55HNyQF6hkvYu",
+        "content": [
+          {
+            "title": "Vision-Language Model for Face Verification",
+            "url": "https://www.emergentmind.com/topics/vision-language-model-vlm-for-face-verification"
+          },
+          {
+            "title": "Vision-Language Model Verifier",
+            "url": "https://www.emergentmind.com/topics/vision-language-model-vlm-verifier"
+          },
+          {
+            "title": "Tractable Asymmetric Verification for Large Language Models via Deterministic Replicability",
+            "url": "https://arxiv.org/pdf/2509.11068"
+          },
+          {
+            "title": "Efficient Verification of Multi-Property Designs (The Benefit of Wrong   Assumptions) (Extended Version)",
+            "url": "https://arxiv.org/pdf/1711.05698"
+          },
+          {
+            "title": "VeriLLM: A Lightweight Framework for Publicly Verifiable Decentralized Inference",
+            "url": "https://arxiv.org/pdf/2509.24257"
+          }
+        ]
+      },
+      "I found relevant search results for your query. Here's what I discovered:\n\nVeriLLM is a publicly verifiable protocol for decentralized LLM inference that combines lightweight empirical rerunning with minimal on-chain checks, allowing verifiers to validate results at approximately 1% of the underlying inference cost by exploiting the structural separation between prefill and autoregressive decoding.\n\nThe system uses an isomorphic inference-verification architecture that multiplexes both inference and verification roles across the same GPU workers.\n\nAdditionally, I found information on related VLM verification concepts: VLM verifiers are integral to multi-stage reasoning architectures, providing critical correctness checks at various levels of the decision process.\n\nThe search results also include work on autoregressive model verification using deterministic replicability, where multiple validators can probabilistically audit small, random segments of an LLM's output, with targeted verification being over 12 times faster than full regeneration.\n\nIf you're looking for more specific information about single-pass multi-property verification or forward pass cost models from 2026, you may want to clarify your search focus."
+    ],
+    "durationSeconds": 6.311196696999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d6a980b1-605b-4cf7-9f44-9c591e70739d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-27T22:43:16.717Z_
+
+<details><summary>↩ Tool result · `toolu_01MYzjWcwsXTw9DrjLGrg1pD`</summary>
+
+```text
+Web search results for query: "Chart-RVR reinforcement learning verifiable rewards chart reasoning explainable numerical verification"
+
+Links: [{"title":"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning","url":"https://arxiv.org/html/2510.10973"},{"title":"[2510.10973] Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning","url":"https://arxiv.org/abs/2510.10973"},{"title":"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning | OpenReview","url":"https://openreview.net/forum?id=QHaV1ZHzi7"},{"title":"Chart-RVR: Reinforcement Learning with Verifiable Rewards for","url":"https://arxiv.org/pdf/2510.10973"},{"title":"Chart-RL: Generalized Chart Comprehension via Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/pdf/2603.06958"},{"title":"Chart-RL: Generalized Chart Comprehension via Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/html/2603.06958"}]
+
+Based on the search results, here's what I found about Chart-RVR:
+
+## Chart-RVR Overview
+
+Chart-RVR is a general framework that fine-tunes Large Vision-Language Models (LVLMs) to be more robust and explainable for chart reasoning by coupling Group Relative Policy Optimization (GRPO) with automatically verifiable rewards.
+
+## Key Components
+
+The framework comprises three rewards that maximize: (i) correct chart-type classification, (ii) faithful chart table reconstruction, and (iii) process conformity.
+
+Verifiable rewards are machine-checkable, deterministic signals that plug naturally into GRPO, yielding dense, low-variance feedback across multiple candidates and aligning the model with what can be verified rather than merely imitated.
+
+## Performance and Results
+
+The Chart-RVR-3B series achieve state-of-the-art results on six chart-reasoning benchmarks spanning in-domain and out-of-distribution (OOD) settings, surpassing all existing models of comparable size.
+
+Applied to 3-billion-parameter LVLMs, Chart-RVR consistently outperforms standard supervised fine-tuning (SFT) on both in-distribution and out-of-distribution datasets, closing the OOD performance gap while improving rationale fidelity.
+
+## Explainability Benefits
+
+Beyond accuracy, Chart-RVR yields more interpretable chain-of-thought (CoT) rationales, strengthening trust and reliability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1aa7108f-8a32-4304-81fa-25db80d95613",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "497098d4-248a-4f24-97b2-450a451e0f9b",
+  "toolUseResult": {
+    "query": "Chart-RVR reinforcement learning verifiable rewards chart reasoning explainable numerical verification",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GxkWdYNd4Y2HVadnz486y2",
+        "content": [
+          {
+            "title": "Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning",
+            "url": "https://arxiv.org/html/2510.10973"
+          },
+          {
+            "title": "[2510.10973] Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning",
+            "url": "https://arxiv.org/abs/2510.10973"
+          },
+          {
+            "title": "Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=QHaV1ZHzi7"
+          },
+          {
+            "title": "Chart-RVR: Reinforcement Learning with Verifiable Rewards for",
+            "url": "https://arxiv.org/pdf/2510.10973"
+          },
+          {
+            "title": "Chart-RL: Generalized Chart Comprehension via Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/pdf/2603.06958"
+          },
+          {
+            "title": "Chart-RL: Generalized Chart Comprehension via Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2603.06958"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Chart-RVR:\n\n## Chart-RVR Overview\n\nChart-RVR is a general framework that fine-tunes Large Vision-Language Models (LVLMs) to be more robust and explainable for chart reasoning by coupling Group Relative Policy Optimization (GRPO) with automatically verifiable rewards.\n\n## Key Components\n\nThe framework comprises three rewards that maximize: (i) correct chart-type classification, (ii) faithful chart table reconstruction, and (iii) process conformity.\n\nVerifiable rewards are machine-checkable, deterministic signals that plug naturally into GRPO, yielding dense, low-variance feedback across multiple candidates and aligning the model with what can be verified rather than merely imitated.\n\n## Performance and Results\n\nThe Chart-RVR-3B series achieve state-of-the-art results on six chart-reasoning benchmarks spanning in-domain and out-of-distribution (OOD) settings, surpassing all existing models of comparable size.\n\nApplied to 3-billion-parameter LVLMs, Chart-RVR consistently outperforms standard supervised fine-tuning (SFT) on both in-distribution and out-of-distribution datasets, closing the OOD performance gap while improving rationale fidelity.\n\n## Explainability Benefits\n\nBeyond accuracy, Chart-RVR yields more interpretable chain-of-thought (CoT) rationales, strengthening trust and reliability."
+    ],
+    "durationSeconds": 7.411963063999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1aa7108f-8a32-4304-81fa-25db80d95613",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T22:43:22.065Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DtZu1Nq9Hr6kF56zbkWRzk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.10973",
+  "prompt": "Extract detailed technical information about Chart-RVR: 1) How exactly does the chart table reconstruction reward work — does it verify numerical accuracy of extracted data? 2) What specific constraint checks does it perform on chart data? 3) How does it verify process conformity? 4) What specific benchmarks and results? 5) How does it decompose chart reasoning into verifiable steps?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "497098d4-248a-4f24-97b2-450a451e0f9b",
+  "isSidechain": false,
+  "requestId": "req_011CbTt7RxNi5UaiD6r4HzJo",
+  "type": "assistant",
+  "uuid": "6ead8dac-e659-4587-917b-86192460adf3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VD27Yq3mzbMUTGzNFLq2RD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 540,
+      "cache_creation_input_tokens": 1244,
+      "cache_read_input_tokens": 35937,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1244,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 540,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 35937,
+          "cache_creation_input_tokens": 1244,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1244
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-27T22:43:22.680Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013aq5g48QWvnwTqtrRRy6Eg`</summary>
+
+```json
+{
+  "query": "\"binding validity\" OR \"inference validity\" chart diagram reasoning verification constraint check multimodal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ead8dac-e659-4587-917b-86192460adf3",
+  "isSidechain": false,
+  "requestId": "req_011CbTt7RxNi5UaiD6r4HzJo",
+  "type": "assistant",
+  "uuid": "9f9abcbd-7ed4-471f-a73c-324082d636d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VD27Yq3mzbMUTGzNFLq2RD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 540,
+      "cache_creation_input_tokens": 1244,
+      "cache_read_input_tokens": 35937,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1244,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 540,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 35937,
+          "cache_creation_input_tokens": 1244,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1244
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T22:43:31.543Z_
+
+<details><summary>↩ Tool result · `toolu_01DtZu1Nq9Hr6kF56zbkWRzk`</summary>
+
+```text
+# Chart-RVR Technical Analysis
+
+## 1. Chart Table Reconstruction Reward
+
+The table reconstruction reward operates in two components:
+
+**Column Header Accuracy**: "every correct header contributes 1/|C∗|" where C∗ represents ground truth columns. The system checks if predicted headers exist in the ground truth set.
+
+**Cell-Level Verification**: "every correct cell adds 1/(|ℛ∗|×|r|)" measuring exact numerical/textual matches between predicted and ground truth table entries. A parseable JSON structure yields an additional 0.5 reward as a baseline.
+
+## 2. Constraint Checks Performed
+
+The framework enforces structural validation including:
+- JSON schema compliance with required 'columns' and 'rows' keys
+- Rectangular row structure (consistent column counts)
+- Format regex validation for nested tags (`&lt;type>`, `&lt;table>`)
+- String normalization for categorical data
+- Length bounds enforcement (150-400 tokens for reasoning traces)
+
+## 3. Process Conformity Verification
+
+The system uses semantic similarity matching via embedding models. It compares predicted reasoning steps against ground truth traces through:
+
+**Evidence Gathering**: "step-wise conformity, where each step is explicitly evaluated to be structurally aligned to the ground truth for the first m steps"
+
+**Reasoning Alignment**: Text embedding similarity (cosine-based) scores procedural alignment, preventing degenerate or hallucinated reasoning paths.
+
+## 4. Benchmark Results
+
+Chart-RVR achieved state-of-the-art performance:
+- **In-domain**: ChartQA (85.76%), PlotQA (77.9%), ChartFC (80.07%)
+- **Out-of-domain**: EvoChart (+7.28% vs SFT), ChartQAPro (+4.82%), ChartBench (+3.68%)
+
+Notably, it outperformed comparable 3B-parameter models like ChartGemma across all six benchmarks.
+
+## 5. Reasoning Decomposition
+
+The framework decomposes chart reasoning into three verifiable stages:
+
+1. **Chart Type Classification**: Discrete type prediction from 10 fundamental chart categories
+2. **Table Reconstruction**: Extracting structured data (columns + numeric rows) from visual representation
+3. **Procedural Reasoning**: Step-by-step derivation with intermediate data citations, validated against algorithmic skeletons rather than superficial stylistic imitation
+
+Human studies confirmed improved interpretability compared to supervised fine-tuning baselines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ead8dac-e659-4587-917b-86192460adf3",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "feda960c-1473-4a78-97ae-3ebc1fc5be41",
+  "toolUseResult": {
+    "bytes": 257598,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Chart-RVR Technical Analysis\n\n## 1. Chart Table Reconstruction Reward\n\nThe table reconstruction reward operates in two components:\n\n**Column Header Accuracy**: \"every correct header contributes 1/|C∗|\" where C∗ represents ground truth columns. The system checks if predicted headers exist in the ground truth set.\n\n**Cell-Level Verification**: \"every correct cell adds 1/(|ℛ∗|×|r|)\" measuring exact numerical/textual matches between predicted and ground truth table entries. A parseable JSON structure yields an additional 0.5 reward as a baseline.\n\n## 2. Constraint Checks Performed\n\nThe framework enforces structural validation including:\n- JSON schema compliance with required 'columns' and 'rows' keys\n- Rectangular row structure (consistent column counts)\n- Format regex validation for nested tags (`&lt;type>`, `&lt;table>`)\n- String normalization for categorical data\n- Length bounds enforcement (150-400 tokens for reasoning traces)\n\n## 3. Process Conformity Verification\n\nThe system uses semantic similarity matching via embedding models. It compares predicted reasoning steps against ground truth traces through:\n\n**Evidence Gathering**: \"step-wise conformity, where each step is explicitly evaluated to be structurally aligned to the ground truth for the first m steps\"\n\n**Reasoning Alignment**: Text embedding similarity (cosine-based) scores procedural alignment, preventing degenerate or hallucinated reasoning paths.\n\n## 4. Benchmark Results\n\nChart-RVR achieved state-of-the-art performance:\n- **In-domain**: ChartQA (85.76%), PlotQA (77.9%), ChartFC (80.07%)\n- **Out-of-domain**: EvoChart (+7.28% vs SFT), ChartQAPro (+4.82%), ChartBench (+3.68%)\n\nNotably, it outperformed comparable 3B-parameter models like ChartGemma across all six benchmarks.\n\n## 5. Reasoning Decomposition\n\nThe framework decomposes chart reasoning into three verifiable stages:\n\n1. **Chart Type Classification**: Discrete type prediction from 10 fundamental chart categories\n2. **Table Reconstruction**: Extracting structured data (columns + numeric rows) from visual representation\n3. **Procedural Reasoning**: Step-by-step derivation with intermediate data citations, validated against algorithmic skeletons rather than superficial stylistic imitation\n\nHuman studies confirmed improved interpretability compared to supervised fine-tuning baselines.",
+    "durationMs": 9475,
+    "url": "https://arxiv.org/html/2510.10973"
+  },
+  "sourceToolAssistantUUID": "6ead8dac-e659-4587-917b-86192460adf3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T22:43:34.022Z_
+
+<details><summary>↩ Tool result · `toolu_013aq5g48QWvnwTqtrRRy6Eg`</summary>
+
+```text
+Web search results for query: ""binding validity" OR "inference validity" chart diagram reasoning verification constraint check multimodal"
+
+Links: [{"title":"Format Matters: The Robustness of Multimodal LLMs in Reviewing Evidence from Tables and Charts","url":"https://arxiv.org/pdf/2511.10075"},{"title":"CrossCheck-Bench: Diagnosing Compositional Failures in Multimodal Conflict Resolution","url":"https://arxiv.org/pdf/2511.21717"},{"title":"Proof-of-Perception: Certified Tool-Using Multimodal Reasoning with Compositional Conformal Guarantees","url":"https://arxiv.org/pdf/2603.00324"},{"title":"FeynmanBench: Benchmarking Multimodal LLMs on Diagrammatic Physics Reasoning","url":"https://arxiv.org/pdf/2604.03893"},{"title":"MM-Verify: Enhancing Multimodal Reasoning with Chain-of-Thought Verification - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.689/"},{"title":"Robust Diagram Reasoning: A Framework for Enhancing ...","url":"https://arxiv.org/pdf/2508.16972"},{"title":"Piecing It All Together: Verifying Multi-Hop Multimodal Claims","url":"https://arxiv.org/pdf/2411.09547"},{"title":"[2502.13383] MM-Verify: Enhancing Multimodal Reasoning with Chain-of-Thought Verification","url":"https://arxiv.org/abs/2502.13383"}]
+
+I found several relevant research papers on multimodal reasoning, verification, and constraint checking. Here are the key results:
+
+## Main Findings:
+
+**Multimodal Reasoning & Verification:**
+MM-Verifier and MM-Reasoner enhance multimodal reasoning through longer inference and more robust verification. A two-step MM verification data synthesis method combines a simulation-based tree search with verification and uses rejection sampling to generate high-quality Chain-of-Thought data.
+
+**Compositional Verification:**
+Validating conflict resolution requires compositional verification across modalities, specifically requiring models to localize corresponding semantic entities in each modality and assess whether these aligned clues are logically compatible.
+
+**Diagram & Chart Reasoning:**
+Feynman-diagram tasks demand the combination of visual parsing with formal logic and allow for automated verification through a systematic textual check of comprehensive topological structure. The Robust Diagram Reasoning (RDR) framework enhances LVLMs' performance, employing an Adaptive Multi-View & Consistency Verification (AMCV) mechanism which generates multiple perturbed versions of a diagram and performs parallel inference.
+
+**Multi-Hop Claim Verification:**
+Verifying multi-hop multimodal claims introduces challenges in dataset construction and effective modeling, requiring models to understand and integrate information across various modalities such as text, images, and tables.
+
+**Tool-Based Reasoning:**
+Conformal Prediction (CP) inside multimodal reasoning can emit set-valued outputs with coverage guarantees, where a lightweight controller uses these certificates to decide whether to accept, retry at higher fidelity, or expand with additional tool calls.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f9abcbd-7ed4-471f-a73c-324082d636d4",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "e38db0ea-890f-4a19-91bc-83d9c1a54d66",
+  "toolUseResult": {
+    "query": "\"binding validity\" OR \"inference validity\" chart diagram reasoning verification constraint check multimodal",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0153pHpsp9hbEGEvsfJJSsyY",
+        "content": [
+          {
+            "title": "Format Matters: The Robustness of Multimodal LLMs in Reviewing Evidence from Tables and Charts",
+            "url": "https://arxiv.org/pdf/2511.10075"
+          },
+          {
+            "title": "CrossCheck-Bench: Diagnosing Compositional Failures in Multimodal Conflict Resolution",
+            "url": "https://arxiv.org/pdf/2511.21717"
+          },
+          {
+            "title": "Proof-of-Perception: Certified Tool-Using Multimodal Reasoning with Compositional Conformal Guarantees",
+            "url": "https://arxiv.org/pdf/2603.00324"
+          },
+          {
+            "title": "FeynmanBench: Benchmarking Multimodal LLMs on Diagrammatic Physics Reasoning",
+            "url": "https://arxiv.org/pdf/2604.03893"
+          },
+          {
+            "title": "MM-Verify: Enhancing Multimodal Reasoning with Chain-of-Thought Verification - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.689/"
+          },
+          {
+            "title": "Robust Diagram Reasoning: A Framework for Enhancing ...",
+            "url": "https://arxiv.org/pdf/2508.16972"
+          },
+          {
+            "title": "Piecing It All Together: Verifying Multi-Hop Multimodal Claims",
+            "url": "https://arxiv.org/pdf/2411.09547"
+          },
+          {
+            "title": "[2502.13383] MM-Verify: Enhancing Multimodal Reasoning with Chain-of-Thought Verification",
+            "url": "https://arxiv.org/abs/2502.13383"
+          }
+        ]
+      },
+      "I found several relevant research papers on multimodal reasoning, verification, and constraint checking. Here are the key results:\n\n## Main Findings:\n\n**Multimodal Reasoning & Verification:**\nMM-Verifier and MM-Reasoner enhance multimodal reasoning through longer inference and more robust verification. A two-step MM verification data synthesis method combines a simulation-based tree search with verification and uses rejection sampling to generate high-quality Chain-of-Thought data.\n\n**Compositional Verification:**\nValidating conflict resolution requires compositional verification across modalities, specifically requiring models to localize corresponding semantic entities in each modality and assess whether these aligned clues are logically compatible.\n\n**Diagram & Chart Reasoning:**\nFeynman-diagram tasks demand the combination of visual parsing with formal logic and allow for automated verification through a systematic textual check of comprehensive topological structure. The Robust Diagram Reasoning (RDR) framework enhances LVLMs' performance, employing an Adaptive Multi-View & Consistency Verification (AMCV) mechanism which generates multiple perturbed versions of a diagram and performs parallel inference.\n\n**Multi-Hop Claim Verification:**\nVerifying multi-hop multimodal claims introduces challenges in dataset construction and effective modeling, requiring models to understand and integrate information across various modalities such as text, images, and tables.\n\n**Tool-Based Reasoning:**\nConformal Prediction (CP) inside multimodal reasoning can emit set-valued outputs with coverage guarantees, where a lightweight controller uses these certificates to decide whether to accept, retry at higher fidelity, or expand with additional tool calls."
+    ],
+    "durationSeconds": 11.339188995999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9f9abcbd-7ed4-471f-a73c-324082d636d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-27T22:43:38.961Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012ef4n7tDLMxDQgqjmDKm7H`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.13383",
+  "prompt": "Extract details about MM-Verify: How does it verify multimodal chain-of-thought reasoning? What specific verification checks does it perform? Does it check numerical consistency or logical binding between evidence and conclusions?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e38db0ea-890f-4a19-91bc-83d9c1a54d66",
+  "isSidechain": false,
+  "requestId": "req_011CbTt8hyZs8S8qydAbpLR3",
+  "type": "assistant",
+  "uuid": "35b4913c-420f-4f12-bdff-8ee61a610f40",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W44egoDa36FTfoQQPbWkxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2165,
+      "cache_read_input_tokens": 37181,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 37181,
+          "cache_creation_input_tokens": 2165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-27T22:43:39.998Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EFToKLmMv9zmakqqxcb7xn`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.00324",
+  "prompt": "Extract details about Proof-of-Perception: How does it provide certified tool-using multimodal reasoning with compositional conformal guarantees? Is it relevant to verifying binding between visual evidence and reasoning conclusions?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35b4913c-420f-4f12-bdff-8ee61a610f40",
+  "isSidechain": false,
+  "requestId": "req_011CbTt8hyZs8S8qydAbpLR3",
+  "type": "assistant",
+  "uuid": "319469bc-ab78-440c-9f3f-d1316b5a56c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W44egoDa36FTfoQQPbWkxj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2165,
+      "cache_read_input_tokens": 37181,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2165,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 37181,
+          "cache_creation_input_tokens": 2165,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2165
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "319469bc-ab78-440c-9f3f-d1316b5a56c2",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-27T22:43:43.305Z_
+
+<details><summary>↩ Tool result · `toolu_012ef4n7tDLMxDQgqjmDKm7H`</summary>
+
+```text
+# MM-Verify: Verification Approach
+
+Based on the arXiv abstract provided, the paper introduces MM-Verify but offers limited specifics about its verification mechanisms.
+
+## What We Know
+
+The research proposes "a two-step MM verification data synthesis method, which combines a simulation-based tree search with verification and uses rejection sampling to generate high-quality Chain-of-Thought (COT) data."
+
+The system involves two components:
+- **MM-Verifier**: Fine-tuned using synthesized verification data
+- **MM-Reasoner**: Fine-tuned on multimodal chain-of-thought data
+
+## Verification Details Not Disclosed
+
+The abstract does not specify whether the verification checks include:
+- Numerical consistency validation
+- Logical binding between evidence and conclusions
+- Specific types of reasoning errors detected
+
+The document focuses on performance metrics—noting that MM-Verifier "outperforms all larger models on the MathCheck, MathVista, and MathVerse benchmarks"—rather than detailing the actual verification checks performed.
+
+To understand the specific verification mechanisms, one would need to consult the full paper PDF or HTML version linked on the arXiv page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "35b4913c-420f-4f12-bdff-8ee61a610f40",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "5ecd2e19-f184-4e55-86b1-d2c6f15c9ed6",
+  "toolUseResult": {
+    "bytes": 46222,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MM-Verify: Verification Approach\n\nBased on the arXiv abstract provided, the paper introduces MM-Verify but offers limited specifics about its verification mechanisms.\n\n## What We Know\n\nThe research proposes \"a two-step MM verification data synthesis method, which combines a simulation-based tree search with verification and uses rejection sampling to generate high-quality Chain-of-Thought (COT) data.\"\n\nThe system involves two components:\n- **MM-Verifier**: Fine-tuned using synthesized verification data\n- **MM-Reasoner**: Fine-tuned on multimodal chain-of-thought data\n\n## Verification Details Not Disclosed\n\nThe abstract does not specify whether the verification checks include:\n- Numerical consistency validation\n- Logical binding between evidence and conclusions\n- Specific types of reasoning errors detected\n\nThe document focuses on performance metrics—noting that MM-Verifier \"outperforms all larger models on the MathCheck, MathVista, and MathVerse benchmarks\"—rather than detailing the actual verification checks performed.\n\nTo understand the specific verification mechanisms, one would need to consult the full paper PDF or HTML version linked on the arXiv page.",
+    "durationMs": 4340,
+    "url": "https://arxiv.org/abs/2502.13383"
+  },
+  "sourceToolAssistantUUID": "35b4913c-420f-4f12-bdff-8ee61a610f40",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-27T22:43:46.071Z_
+
+<details><summary>↩ Tool result · `toolu_01EFToKLmMv9zmakqqxcb7xn`</summary>
+
+```text
+# Proof-of-Perception: Certified Multimodal Reasoning
+
+## How It Works
+
+Proof-of-Perception (PoP) provides certified reasoning through a distinctive architecture. As described in the abstract, "Each perception or logic node outputs a conformal set, yielding calibrated, stepwise uncertainty." This means each step in the reasoning pipeline produces quantified confidence measures rather than single point estimates.
+
+The framework employs "a lightweight controller [that] uses these certificates to allocate compute under a budget, expanding with extra tool calls only when needed and stopping early otherwise." This adaptive approach ensures computational efficiency while maintaining reliability.
+
+## Relevance to Evidence-Reasoning Binding
+
+Yes, PoP appears highly relevant to connecting visual evidence with conclusions. The framework is designed to "ground answers in verifiable evidence" while reducing "error compounding and hallucinations." By making each reasoning step's uncertainty explicit and calibrated, PoP creates transparency about how visual perceptions connect to final answers.
+
+The system enables "principled accuracy-compute trade-offs," suggesting deliberate choices about when and how to verify connections between visual inputs and logical conclusions rather than proceeding blindly through reasoning chains.
+
+## Performance
+
+According to the submission, PoP "improves performance and reliability over strong chain-of-thought, ReAct-style, and program-of-thought baselines while using computation more efficiently" across document, chart, and multi-image QA tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "319469bc-ab78-440c-9f3f-d1316b5a56c2",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "82403ad2-0991-47d0-b24c-27bcb0e85f7b",
+  "toolUseResult": {
+    "bytes": 44785,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Proof-of-Perception: Certified Multimodal Reasoning\n\n## How It Works\n\nProof-of-Perception (PoP) provides certified reasoning through a distinctive architecture. As described in the abstract, \"Each perception or logic node outputs a conformal set, yielding calibrated, stepwise uncertainty.\" This means each step in the reasoning pipeline produces quantified confidence measures rather than single point estimates.\n\nThe framework employs \"a lightweight controller [that] uses these certificates to allocate compute under a budget, expanding with extra tool calls only when needed and stopping early otherwise.\" This adaptive approach ensures computational efficiency while maintaining reliability.\n\n## Relevance to Evidence-Reasoning Binding\n\nYes, PoP appears highly relevant to connecting visual evidence with conclusions. The framework is designed to \"ground answers in verifiable evidence\" while reducing \"error compounding and hallucinations.\" By making each reasoning step's uncertainty explicit and calibrated, PoP creates transparency about how visual perceptions connect to final answers.\n\nThe system enables \"principled accuracy-compute trade-offs,\" suggesting deliberate choices about when and how to verify connections between visual inputs and logical conclusions rather than proceeding blindly through reasoning chains.\n\n## Performance\n\nAccording to the submission, PoP \"improves performance and reliability over strong chain-of-thought, ReAct-style, and program-of-thought baselines while using computation more efficiently\" across document, chart, and multi-image QA tasks.",
+    "durationMs": 6070,
+    "url": "https://arxiv.org/abs/2603.00324"
+  },
+  "sourceToolAssistantUUID": "319469bc-ab78-440c-9f3f-d1316b5a56c2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-27T22:43:46.075Z_
+
+```json
+{
+  "parentUuid": "82403ad2-0991-47d0-b24c-27bcb0e85f7b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e6fe9a2c-2e97-4ed6-a5de-c8343cd0271a",
+  "timestamp": "2026-05-27T22:43:46.075Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-27T22:45:14.049Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to make the revisions. Let me analyze what I've learned:
+
+1. **Vision-SR1**: Uses `&lt;visual_reasoning>` and `&lt;think>` tags to decompose reasoning. Self-rewarding: reprompts the model with only the visual reasoning text (no image) to see if correct answer emerges. Uses GRPO with decoupled reward-advantage framework. Key difference from CFRL: (a) self-rewarding vs external verifier, (b) checks perceptual self-containment (can reasoning proceed without image?) vs factual grounding accuracy + binding + completeness, (c) doesn't verify logical consistency between evidence and inference.
+
+
+2. **AutoRubric-R1V**: Self-generates rubrics from successful trajectories and scores them based on checkpoint satisfaction, avoiding external tools entirely through process supervision rather than outcome verification, with roughly 40% computational overhead.
+3. **CoRGI**: Works at inference time by breaking down reasoning steps and grounding each one visually using Grounding DINO and a lightweight relevance classifier, though the paper has since been withdrawn.
+4. **Binding validity for non-geometry**: Charts like those in Chart-RVR demonstrate concrete verification through table reconstruction rewards with cell-level checks, JSON schema compliance, and numerical matching.
+
+For charts specifically, ChartAgent performs visual self-verification by checking for constraint violations like negative values or axis inconsistencies. Diagrams use CSP-based verification in Eidoku or multi-view consistency in RDR. I need to nail down the specific constraint checks for both.
+
+5. **Verifier cost model**: The CFV is a 4B autoregressive model that processes the full response and image in a single forward pass, generating verification judgments token-by-token. The grounding VQA isn't separate calls but rather internal reasoning woven into the autoregressive generation, so the ~1 pass per rollout claim holds even though the pass generates more tokens overall.
+
+Now I'm ready to draft the complete revised JSON with Vision-SR1 added to the landscape, AutoRubric-R1V and CoRGI mentioned for context, and the verifier cost model clarified.
+
+For binding validity, the reviewer's right that this is the core contribution. For charts I can verify arithmetic (if the model cites specific values and does math, check it), ordering (if it claims Bar A > Bar B, validate against actual values), ratios and percentages, and unit consistency across comparisons. For diagrams I need to work out similar concrete checks.
+
+The reviewer's suggestion to scope Tier 1 to just geometry and basic arithmetic makes sense — I'll move chart and diagram binding to Tier 2. On the cost model side, the verifier is a single autoregressive pass that takes the image, the model's full response with observation and reasoning tags, and a verification prompt, then generates all three property judgments in one generation. The grounding happens as internal sub-reasoning where the model evaluates each observation inline as it generates.
+
+Comparing to FGRPO, the key difference is that FGRPO makes separate VLM calls for each sentence — so N sentences means N image encodings plus N generations. CFRL does one call with a longer output, which means just one image encoding. Since image encoding is the expensive part, going from N encodings down to 1 is where the real savings come from. For something like a 6-sentence sample, FGRPO would encode the image 6 times while CFRL encodes it once.
+
+The CFV handles all verification in a single autoregressive pass: it takes the image, the model's tagged response, and a verification instruction, then generates structured judgments for all three properties sequentially. As it processes each observation tag, it generates whether that grounding is verified or not, moving through the entire verification chain in one forward pass — exactly like how MJ1 operates.
+
+Now I need to think through the actual token costs more carefully. The 4B verifier processes an image plus the full tagged response (around 500-1000 tokens) plus the verification prompt (roughly 100 tokens), and outputs a verification chain that runs...
+
+Comparing the computational efficiency: FGRPO encodes the image N times (once per sentence) with its 30B judge, while CFRL encodes the image just once with the 4B model. Since image encoding is the expensive part with the vision encoder and cross-attention, doing it once versus N times is a significant savings. The 4B model is roughly 7.5x smaller than the 30B-A3B judge (which has 3.3B active parameters), so they're actually comparable in active parameter count, but the single image encoding makes CFRL much more efficient for typical cases with around 6 sentences.
+
+Actually, I need to reconsider the judge call counts. FGRPO uses roughly 30-55 judge calls per training sample across all rollouts, not per sentence. With GRPO's typical K=4-8 rollouts per prompt and 5-8 visual sentences per rollout, that's around K×S judge calls total (so 32 for K=4, S=8). CFRL only needs K calls—one per rollout—making it substantially more efficient at scale.
+
+When I factor in the per-call costs, FGRPO's 30B judge (3.3B active MoE) versus CFRL's 4B verifier are roughly comparable in active parameters, but CFRL generates longer outputs, making each call about 1.2x more expensive. So the real savings works out to roughly 4-8x cost reduction, not the 10-20x I initially claimed. The per-training-sample cost follows the same ratio—K×S calls versus K calls—so the effective savings remains around 4-7x even accounting for per-call differences. I should be more precise and say "~5-8x cost reduction" rather than the original "~10-20x" claim. But wait, maybe that original estimate was factoring in the output token differences: FGRPO's judge generates shorter judgments of 100-200 tokens per call, while CFRL's verifier produces much longer verification chains of 500-1500 tokens in a single call. The image encoding is the expensive component here, so I need to think through how that factors in. vision encoder, encoding the image once is significant. With S=7 sentences, FGRPO encodes the image 7 times; CFRL encodes it once. That's 7x savings on image encoding.
+
+For text generation, FGRPO generates ~7×150 = 1050 tokens total; CFRL generates ~1000 tokens. Similar.
+
+So the savings is mostly from image encoding: ~S × (roughly 5-8x). That's where the cost reduction comes from. If S=7, it's ~7x from image encoding alone. For the text part, it's roughly neutral.
+
+So ~5-8x is a fair estimate. Let me use that.
+
+Actually, I'm overcomplicating this. Let me just be transparent about the cost model: CFRL runs one autoregressive pass of the 4B verifier per rollout with a single image encoding, while FGRPO calls the judge S times per rollout where S is the number of visual sentences (roughly 5-8), encoding the image each time. The effective cost reduction is ~5-8x per rollout, driven almost entirely by avoiding redundant image encodings, since the per-call compute is comparable between the 4B dense model and the 3.3B active MoE.
+
+Now for the binding validity framework, I'm thinking about two tiers: the first tier covers geometry problems using symbolic theorem matching and basic arithmetic verification of sums, differences, ratios, and percentages from cited values, which also handles chart and diagram problems involving numerical operations. The second tier would handle domain-specific validation like ordering and unit consistency for charts, plus structural relationships in diagrams. Now I'm laying out the specific changes: clarifying how binding validity works for non-geometric content, refining the cost model for verification, adjusting what falls into Tier 1 versus Tier 2, and making sure the approach clearly differentiates from Vision-SR1. I'll also need to add the new papers to the references and update the description section to reflect these refinements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6fe9a2c-2e97-4ed6-a5de-c8343cd0271a",
+  "isSidechain": false,
+  "requestId": "req_011CbTt9bUg1D5Z6HkhrEdJe",
+  "type": "assistant",
+  "uuid": "383d7de5-2427-4857-81b3-1ab3ed0fb0d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pbqqh4ryVpVWiLLsFFMCyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 39346,
+      "output_tokens": 3376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3376,
+          "cache_read_input_tokens": 39346,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-27T22:45:14.051Z_
+
+Now I have comprehensive information on all the papers and topics. Let me do one final targeted search to understand the Vision-SR1 paper's technical details more deeply:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "383d7de5-2427-4857-81b3-1ab3ed0fb0d9",
+  "isSidechain": false,
+  "requestId": "req_011CbTt9bUg1D5Z6HkhrEdJe",
+  "type": "assistant",
+  "uuid": "4f98f1cd-73ee-426a-9437-e5619a3e22d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pbqqh4ryVpVWiLLsFFMCyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 39346,
+      "output_tokens": 3376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3376,
+          "cache_read_input_tokens": 39346,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-27T22:45:16.908Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PSexw17XctdQtVz553eQVH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2508.19652v1",
+  "prompt": "Extract the full technical details: 1) What exact XML tags does Vision-SR1 use? Is it &lt;visual_reasoning> or &lt;See>? 2) How does the self-rewarding visual reward computation work exactly — what does \"self-contained\" mean? 3) What is the decoupled advantage formulation? 4) All benchmark results with numbers. 5) What does it NOT check (binding, completeness)? 6) Three stages in detail. 7) How does it compare to external reward models in cost?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f98f1cd-73ee-426a-9437-e5619a3e22d6",
+  "isSidechain": false,
+  "requestId": "req_011CbTt9bUg1D5Z6HkhrEdJe",
+  "type": "assistant",
+  "uuid": "6d6f6a31-f1bc-4a9d-9a5e-944784b13ef9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pbqqh4ryVpVWiLLsFFMCyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 39346,
+      "output_tokens": 3376,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3376,
+          "cache_read_input_tokens": 39346,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "6d6f6a31-f1bc-4a9d-9a5e-944784b13ef9",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-27T22:45:29.150Z_
+
+<details><summary>↩ Tool result · `toolu_01PSexw17XctdQtVz553eQVH`</summary>
+
+```text
+# Vision-SR1 Technical Details Summary
+
+## 1) XML Tags Used
+
+Vision-SR1 employs these structured tags:
+- `&lt;visual perception>` ... `&lt;/visual perception>` for self-contained visual descriptions
+- `&lt;think>` ... `&lt;/think>` for chain-of-thought reasoning
+- `&lt;answer>` ... `&lt;/answer>` for final answers
+
+The format is: `[visual perception] || [think] || [answer]`
+
+## 2) Self-Reward Visual Computation
+
+"Self-containment" means the visual perception captures sufficient visual information to solve the task without re-accessing the original image. The mechanism works through two rollout passes:
+
+**First pass:** Model generates structured output (perception + reasoning + answer) with accuracy reward computed against ground truth.
+
+**Second pass:** The same model receives only the generated perception and question, re-answering without image access. If the correct answer is derived, the perception receives a self-visual reward of 1, otherwise 0. This validates whether the perception is truly faithful and informative.
+
+## 3) Decoupled Advantage Formulation
+
+Vision-SR1 builds on Group Relative Policy Optimization (GRPO). The group-relative advantage centers rewards within K candidate responses:
+
+**A^grp(Q,s_k) = r(Q,s_k) - (1/K)∑r(Q,s_j)**
+
+This removes question-level biases while preserving pairwise preferences. The total reward combines three aligned components weighted as:
+
+**r(Q,s) = r_visual(Q,c) + r_ans(Q,a) + α·r_fmt(s)**
+
+where visual and answer rewards provide direct signals for both perception and language modules.
+
+## 4) Benchmark Results (7B Backbone)
+
+| Benchmark | Vision-SR1 | Vision-R1 (47K) |
+|-----------|-----------|-----------------|
+| MMMU | 49.1 | 47.7 |
+| MMMU-Pro | 57.2 | 54.8 |
+| MM-Vet | 76.2 | 78.9 |
+| RealWorldQA | 71.6 | 69.9 |
+| VisNumBench | 42.6 | 39.4 |
+| MathVerse | 56.5 | 54.7 |
+| MATH-Vision | 46.7 | 46.0 |
+| HallusionBench | 69.8 | 67.6 |
+| **Average** | **58.8** | **57.4** |
+
+## 5) What It Does NOT Check
+
+Vision-SR1 does not explicitly verify:
+- **Binding completeness**: Whether all visual elements required for reasoning are captured
+- **Hallucination detection**: Whether the perception contains fabricated details not in the image
+- **Temporal consistency**: Whether sequential or video-based visual information is preserved
+
+The method relies on downstream answer correctness as implicit validation rather than explicit checking of perception properties.
+
+## 6) Three Training Stages
+
+**Stage 1 - Supervised Fine-Tuning (Cold Start):** Train on 9K curated examples where Qwen-2.5-VL generates structured See-Think-Answer outputs with correct answers, enabling rapid format adoption.
+
+**Stage 2 - First Rollout (Standard):** Model generates complete structured output on 47K examples; accuracy reward evaluates final answer against ground truth.
+
+**Stage 3 - Second Rollout (Self-Reward):** Model re-processes generated perception with question alone; derives visual reward if correct answer is reproduced.
+
+## 7) Cost Comparison vs. External Reward Models
+
+Vision-SR1 eliminates external costs by leveraging the policy model itself for reward generation. Unlike approaches requiring:
+- **Human annotations**: Labor-intensive and costly at scale
+- **Distilled external signals**: Static signals that cannot adapt as policy evolves; risk distributional shift and reward hacking
+
+Vision-SR1 dynamically adapts rewards during training with no additional model infrastructure, reducing computational overhead and enabling scalability without external supervision dependence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d6f6a31-f1bc-4a9d-9a5e-944784b13ef9",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "80690a47-30ef-4ae3-ab87-a1a349e98b16",
+  "toolUseResult": {
+    "bytes": 198664,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Vision-SR1 Technical Details Summary\n\n## 1) XML Tags Used\n\nVision-SR1 employs these structured tags:\n- `&lt;visual perception>` ... `&lt;/visual perception>` for self-contained visual descriptions\n- `&lt;think>` ... `&lt;/think>` for chain-of-thought reasoning\n- `&lt;answer>` ... `&lt;/answer>` for final answers\n\nThe format is: `[visual perception] || [think] || [answer]`\n\n## 2) Self-Reward Visual Computation\n\n\"Self-containment\" means the visual perception captures sufficient visual information to solve the task without re-accessing the original image. The mechanism works through two rollout passes:\n\n**First pass:** Model generates structured output (perception + reasoning + answer) with accuracy reward computed against ground truth.\n\n**Second pass:** The same model receives only the generated perception and question, re-answering without image access. If the correct answer is derived, the perception receives a self-visual reward of 1, otherwise 0. This validates whether the perception is truly faithful and informative.\n\n## 3) Decoupled Advantage Formulation\n\nVision-SR1 builds on Group Relative Policy Optimization (GRPO). The group-relative advantage centers rewards within K candidate responses:\n\n**A^grp(Q,s_k) = r(Q,s_k) - (1/K)∑r(Q,s_j)**\n\nThis removes question-level biases while preserving pairwise preferences. The total reward combines three aligned components weighted as:\n\n**r(Q,s) = r_visual(Q,c) + r_ans(Q,a) + α·r_fmt(s)**\n\nwhere visual and answer rewards provide direct signals for both perception and language modules.\n\n## 4) Benchmark Results (7B Backbone)\n\n| Benchmark | Vision-SR1 | Vision-R1 (47K) |\n|-----------|-----------|-----------------|\n| MMMU | 49.1 | 47.7 |\n| MMMU-Pro | 57.2 | 54.8 |\n| MM-Vet | 76.2 | 78.9 |\n| RealWorldQA | 71.6 | 69.9 |\n| VisNumBench | 42.6 | 39.4 |\n| MathVerse | 56.5 | 54.7 |\n| MATH-Vision | 46.7 | 46.0 |\n| HallusionBench | 69.8 | 67.6 |\n| **Average** | **58.8** | **57.4** |\n\n## 5) What It Does NOT Check\n\nVision-SR1 does not explicitly verify:\n- **Binding completeness**: Whether all visual elements required for reasoning are captured\n- **Hallucination detection**: Whether the perception contains fabricated details not in the image\n- **Temporal consistency**: Whether sequential or video-based visual information is preserved\n\nThe method relies on downstream answer correctness as implicit validation rather than explicit checking of perception properties.\n\n## 6) Three Training Stages\n\n**Stage 1 - Supervised Fine-Tuning (Cold Start):** Train on 9K curated examples where Qwen-2.5-VL generates structured See-Think-Answer outputs with correct answers, enabling rapid format adoption.\n\n**Stage 2 - First Rollout (Standard):** Model generates complete structured output on 47K examples; accuracy reward evaluates final answer against ground truth.\n\n**Stage 3 - Second Rollout (Self-Reward):** Model re-processes generated perception with question alone; derives visual reward if correct answer is reproduced.\n\n## 7) Cost Comparison vs. External Reward Models\n\nVision-SR1 eliminates external costs by leveraging the policy model itself for reward generation. Unlike approaches requiring:\n- **Human annotations**: Labor-intensive and costly at scale\n- **Distilled external signals**: Static signals that cannot adapt as policy evolves; risk distributional shift and reward hacking\n\nVision-SR1 dynamically adapts rewards during training with no additional model infrastructure, reducing computational overhead and enabling scalability without external supervision dependence.",
+    "durationMs": 12235,
+    "url": "https://arxiv.org/html/2508.19652v1"
+  },
+  "sourceToolAssistantUUID": "6d6f6a31-f1bc-4a9d-9a5e-944784b13ef9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-27T22:46:43.294Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me draft the complete revised proposal.
+
+Key changes to make:
+
+1. **Vision-SR1 differentiation** (MEDIUM issue): Add to landscape in a new grouping or existing section. Differentiate on three axes: self-rewarding vs external verifier, perceptual self-containment vs factual grounding accuracy + binding + completeness, no logical consistency verification.
+
+2. **Binding validity for non-geometry** (MEDIUM issue): 
+   - Define concrete constraint checks for charts and diagrams
+   - Scope Tier 1 binding to geometry + domain-agnostic arithmetic verification
+   - Move chart/diagram-specific binding to Tier 2
+
+3. **Verifier cost model** (LOW-MEDIUM issue):
+   - Clarify: CFV performs all verification in a single autoregressive pass
+   - Image encoded once; grounding VQA is internal sub-reasoning
+   - Adjust cost claim from ~10-20x to ~5-8x (more precise)
+
+4. **AutoRubric-R1V and CoRGI** (LOW issue): Brief mentions in landscape
+
+Now I'm refining the cost model calculations to ensure the numbers are accurate and defensible.
+
+For FGRPO, each rollout requires multiple judge calls—one per visual sentence—where the 30B model with sparse MoE activation encodes the image and generates a short judgment. With CFRL, there's a single verifier call using a 4B dense model that encodes the image once and produces a longer verification chain. The key insight is that image encoding is the dominant cost factor, so the ratio really comes down to how many times we're encoding versus the model size difference—FGRPO does S encodings on a smaller active model versus CFRL's single encoding on a slightly larger dense model.
+
+For typical values around S=5-8, this works out to roughly a 4-7x cost reduction, almost entirely from avoiding redundant image encodings. The text generation costs are actually comparable between the two approaches, so the savings are really driven by that single encoding step in CFRL.
+
+Now I need to account for the fact that the vision encoder itself is model-agnostic, but processing visual tokens through the LLM layers scales with model size. FGRPO runs S forward passes through a 30B model while CFRL does one pass through a 4B model, which gives a raw FLOPs ratio of around 37-60x. However, FGRPO uses MoE with only 3.3B active parameters, which significantly reduces that gap.
+
+When I factor in that CFRL generates longer outputs with more autoregressive steps, the per-call FLOPs become more comparable. The actual cost per judge call breaks down into three components: the vision encoding (constant across models), the prefill phase where visual and text tokens flow through the LLM, and the autoregressive generation phase. For FGRPO, this means the 30B MoE model's prefill cost plus generation, while CFRL's longer output generation partially offsets its smaller model size. Continuing with the concrete numbers, when S equals 7, FGRPO requires 7 vision encodings plus 868 generation tokens compared to CFRL's single encoding and 1000 generation tokens. The key insight is that vision encoding dominates the cost for VLMs—a single image can involve hundreds or thousands of patches processed through the encoder—so eliminating those 6 redundant encodings in CFRL creates a significant efficiency advantage despite the higher per-token generation cost.
+
+Now I'm clarifying how the CFV actually works: it processes the image once, then generates verification judgments for all observations and reasoning steps in a single autoregressive pass, similar to how MJ1 chains its verification in one forward pass. The cost is just one image encoding plus roughly 500-1500 verification tokens through the 4B model, whereas FGRPO needs S separate judge calls for each rollout.
+
+I'm also tracking the changes needed for the full JSON write-up: adding Vision-SR1 to the landscape discussion, mentioning AutoRubric-R1V and CoRGI, specifying binding validity for charts and diagrams, and scoping the tier definitions.
+
+Now I'm thinking through the concrete algorithms for domain-agnostic arithmetic verification. For Tier 1, I need to parse the evidence blocks, extract numerical values from observations, identify the claimed operation, and then validate arithmetic consistency across addition, subtraction, multiplication, division, percentage calculations, and comparisons. I'm organizing verification strategies by domain and complexity level. For geometry, I'd check theorem applicability and formal constraints directly. For charts, I need to bind the reasoning to actual data—verifying that cited comparisons, extrema, trends, and aggregations match what's in the extracted values. For diagrams, I'd validate structural relationships and node attributes against the parsed graph representation.
+
+Now I'm reconsidering how to tier this. The key insight is that Tier 1 should focus on what's universally verifiable across domains—evidence grounding and basic arithmetic—while pushing domain-specific binding checks like chart comparisons and diagram topology into Tier 2. This keeps Tier 1 strong and achievable while being honest about what requires domain expertise.
+
+I need to document the changes from the previous version: the Vision-SR1 distinction, clarifying binding validity for non-geometry domains, explaining the verifier cost model, and acknowledging related work like AutoRubric-R1V and CoRGI. This is a minor revision since the core approach stays the same, just with better specification and scope management.
+
+Writing the full JSON now...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80690a47-30ef-4ae3-ab87-a1a349e98b16",
+  "isSidechain": false,
+  "requestId": "req_011CbTtHCBg9g6uskKNoMQia",
+  "type": "assistant",
+  "uuid": "82ee4da3-bb38-420a-8eda-736423f9cfbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019BSGLWxVTfmQSykk2SM9Qv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4344,
+      "cache_read_input_tokens": 40315,
+      "output_tokens": 17948,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4344,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 17948,
+          "cache_read_input_tokens": 40315,
+          "cache_creation_input_tokens": 4344,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4344
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-27T22:46:43.345Z_
+
+Now I have comprehensive research on all the reviewer's concerns. Let me synthesize everything and produce the revised proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82ee4da3-bb38-420a-8eda-736423f9cfbb",
+  "isSidechain": false,
+  "requestId": "req_011CbTtHCBg9g6uskKNoMQia",
+  "type": "assistant",
+  "uuid": "51cd1dc2-e4a9-4705-8006-bb7966546d7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019BSGLWxVTfmQSykk2SM9Qv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4344,
+      "cache_read_input_tokens": 40315,
+      "output_tokens": 17948,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4344,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 17948,
+          "cache_read_input_tokens": 40315,
+          "cache_creation_input_tokens": 4344,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4344
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-27T22:53:25.800Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01WyLqXFo64T6RRiJoyuxZLV`</summary>
+
+````json
+{
+  "description": "Draft revised research JSON",
+  "prompt": "I need you to help me format a very large JSON object. I'll provide the complete content and I need you to output it as a valid, well-formatted JSON. Just output the raw JSON with no markdown code fences around it. Here is the content to format:\n\n```json\n{\n  \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\",\n  \"opportunity\": \"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Self-rewarding approaches (Vision-SR1) check perceptual *self-containment* — whether the perception text suffices to answer without the image — but not whether the perception is *factually correct* relative to the image, nor whether inferences logically follow from cited evidence. (5) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (6) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.\",\n  \"landscape\": \"The landscape of RL-based multimodal reasoning training has exploded in early 2026 along seven axes:\\n\\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\\n\\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\\n\\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\\n\\n**Self-rewarding perception-reasoning decomposition:** Vision-SR1 (arXiv:2508.19652) decomposes reasoning into explicit &lt;visual_perception> and &lt;think> stages, requiring the model to first articulate a self-contained visual description, then reason from it. The visual reward is computed via self-rewarding: the frozen policy model is re-prompted to answer the question using only the generated visual perception text (without image access); if the correct answer is derived from perception alone, a visual reward of 1 is assigned. Uses GRPO with a decoupled reward-advantage framework that maintains separate advantages for visual and answer rewards. Three-stage training: SFT cold-start on 9K examples, then standard rollout with accuracy reward, then self-reward rollout. Achieves 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B (+1.4 over Vision-R1), 69.8 on HallusionBench. Key distinction from CFRL: (a) Vision-SR1 uses self-rewarding (same model judges itself) rather than an external distilled verifier — the reward is whether perception suffices to re-derive the answer, not whether each cited fact is *factually accurate* relative to the image; a hallucinated but internally consistent perception could score high. (b) Vision-SR1 checks perceptual *self-containment* (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow from cited evidence?), and completeness (are all task-relevant facts covered). (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences — it treats perception and reasoning as decomposed stages but does not check whether the reasoning is faithful to the specific evidence cited.\\n\\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\\n\\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity. AutoRubric-R1V (arXiv:2510.14738) auto-generates rubric-based process rewards by distilling consistent reasoning checkpoints from successful trajectories via self-aggregation — rubric reward equals the fraction of satisfied checkpoints. Achieves +8.0 avg over Qwen2.5-VL-7B on 6 benchmarks. Distinct from CFRL: AutoRubric derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image; rubrics are answer-path-dependent rather than evidence-grounding-dependent. CoRGI (arXiv:2508.00378) performs post-hoc step-wise verification of CoT reasoning by decomposing rationales into step-wise statements, grounding each step in visual evidence via Grounding DINO, and filtering unsupported claims. Inference-time only; conceptually related to CFRL's verification chain but does not serve as a training-time reward signal.\\n\\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\\n\\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\\n\\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~5-8x higher cost per rollout vs. single-pass verification; Vision-SR1 decomposes perception and reasoning with self-rewarding but does not verify factual grounding accuracy, binding validity, or completeness; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; AutoRubric-R1V provides process supervision via trajectory-mined rubrics but not composition property verification against the image; CoRGI performs step-wise visual verification but is inference-only; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.\",\n  \"inspired_by\": \"'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); Vision-SR1's perception-reasoning decomposition with self-rewarding (extended from self-containment checking to external factual grounding + binding + completeness verification); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; Chart-RVR's verifiable chart reasoning rewards (informing chart-domain binding checks); CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation\",\n  \"approach\": \"We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\\n\\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput. Compared to Vision-SR1's &lt;visual_perception> block, our format provides *fine-grained, per-fact citations* (individual &lt;observe> tags) rather than a monolithic perception paragraph, enabling per-fact grounding verification and explicit evidence-to-inference linking via the evidence='obs1,obs2' attribute.\\n\\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\\n\\n**Composition Fidelity Verifier (CFV) — three-property checking:**\\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn. We define binding validity checks at two levels:\\n\\n  **Tier 1 — Domain-agnostic arithmetic + geometry symbolic (core contribution):**\\n  - *Arithmetic verification* (all domains): Given numerical values extracted from &lt;observe> tags and a stated operation in the &lt;reason> block, verify computational correctness via symbolic execution. Concrete checks: (a) *Sum/difference/product/quotient consistency* — if obs1 cites 'value A = 45' and obs2 cites 'value B = 30', and the reason block claims 'difference = 15' with rule 'subtraction', verify 45−30=15. (b) *Ratio/percentage verification* — if 'Part = 120, Total = 400' and conclusion is '30%', verify 120/400=0.30. (c) *Comparison consistency* — if the reason block claims 'A > B' citing obs1 (A=45) and obs2 (B=30), verify 45>30. (d) *Multi-step arithmetic* — chain verification across sequential &lt;reason> blocks where one step's output is another's input. These checks are domain-agnostic: they apply equally to geometry problems (angle computations), chart problems (bar value comparisons, trend calculations), and diagram problems (counting, distance computations).\\n  - *Geometry symbolic theorem matching*: Cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. For example, cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → verify 60+90+x=180 → x=30°. Inspired by GeoSketch and the PAR framework.\\n\\n  **Tier 2 — Domain-specific binding checks (extension):**\\n  - *Chart-specific*: (a) *Ordering consistency* — if 'Bar A > Bar B' is cited, verify against the extracted data table that value(A) > value(B). (b) *Extrema verification* — if 'X is the maximum value' is cited, verify X = max(all values in series). (c) *Trend verification* — if 'increasing from 2020 to 2023' is cited, verify monotonic increase in the relevant data points; trends are formally defined as: 'increasing' requires each successive value ≥ previous (strict: >), 'decreasing' requires ≤ (strict: <), with tolerance ε for noise. (d) *Aggregation verification* — if 'average = X' is cited, verify mean(values) ≈ X within 1% relative tolerance. These checks require the chart data table extracted in the completeness pipeline (Stage A), linking Tier 2 binding to Tier 2 completeness infrastructure.\\n  - *Diagram-specific*: (a) *Structural relationship verification* — if 'A connects to B' is cited, verify edge (A,B) exists in the parsed graph from PGDP-Net. (b) *Attribute consistency* — if 'node A is labeled X' is cited, verify label(A) = X in the parsed representation. (c) *Cardinality verification* — if 'A has 3 connections' is cited, verify degree(A) = 3. (d) *Containment/hierarchy* — if 'A is inside B' is cited, verify the containment relation in the parsed spatial layout. These checks require the diagram graph representation from Stage A parsing.\\n  - *Fallback for inapplicable checks*: When a &lt;reason> block involves qualitative reasoning that cannot be reduced to arithmetic or structural constraint checking (e.g., 'the diagram suggests a causal relationship between X and Y'), the binding check returns a neutral score (0.5) rather than penalizing, and the verifier flags it as 'unverifiable-binding' for monitoring. This prevents the binding reward from penalizing valid qualitative reasoning while maintaining signal for verifiable steps.\\n\\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\\n\\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\\n\\n  **Stage B — Question-Conditioned Relevance Filtering**:\\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\\n\\n  **Stage C — Coverage Verification**:\\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\\n\\n**Verifier architecture and cost model:** The CFV (4B parameters, based on Qwen3-VL-4B) performs all three property checks in a single autoregressive forward pass. The input consists of the image + the model's full tagged response + a structured verification instruction. The CFV generates verification judgments sequentially as autoregressive output: for each &lt;observe> tag, it produces an inline grounding verdict (verified/unverified with confidence score); for each &lt;reason> block, it produces a binding validity verdict; and finally, it produces an overall completeness assessment. This is architecturally identical to how MJ1 generates its multi-stage verification chain in one forward pass — the grounding VQA for each observation is performed as internal sub-reasoning within the autoregressive generation, NOT as separate VQA calls. The output length scales with the number of observations and reasoning steps (~500-1500 tokens for typical responses with 4-8 observations), but requires only a single image encoding through the vision encoder.\\n\\n**Cost comparison with FGRPO (precise):** FGRPO requires S separate judge calls per rollout (S ≈ 5-8 visual sentences), each requiring its own image encoding through the 30B MoE model (3.3B active parameters). CFRL requires 1 verifier call per rollout with a single image encoding through the 4B dense model. Since image encoding is the dominant cost in VLM inference (processing hundreds of visual tokens through transformer layers), the savings from 1 vs. S encodings is the primary cost driver. Per-call text generation cost is roughly comparable: FGRPO generates S × ~150 = 750-1200 tokens total across all calls; CFRL generates ~500-1500 tokens in one call, at similar active parameter counts (3.3B MoE vs. 4B dense). The effective cost reduction is **~5-8x per rollout** (proportional to S), driven primarily by the single image encoding. Per training sample with K rollouts, FGRPO makes K×S judge calls vs. CFRL's K verifier calls — the same ~5-8x ratio holds. For Tier 1 (grounding + binding only), where binding validity uses lightweight symbolic/arithmetic checking outside the verifier, the verifier output is shorter (~300-800 tokens), further reducing per-call cost.\\n\\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\\n\\n  *Tier 1 — Core contribution (grounding + binding):* Evidence grounding (VQA-based, all domains) and binding validity (domain-agnostic arithmetic verification + geometry symbolic theorem matching). This tier requires only the distilled 4B verifier and a geometry theorem library — no external parsing tools. Domain-agnostic arithmetic verification applies to chart and diagram problems too (any reasoning step involving numerical computation is checkable), providing cross-domain binding signal even without domain-specific infrastructure. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking and domain-specific binding prove too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\\n\\n  *Tier 2 — Extension (completeness + domain-specific binding):* Integration completeness adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Domain-specific binding for charts adds data-table-dependent checks (ordering, trends, extrema); for diagrams adds graph-dependent checks (structural relationships, attributes). Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If domain-specific binding checks add noise rather than signal (e.g., trend verification on noisy data), fall back to Tier 1 arithmetic-only binding for that domain. (d) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\\n\\n  *Risk matrix:*\\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\\n\\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference, arithmetic errors), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains, with balanced representation of arithmetic binding errors (Tier 1) and domain-specific binding errors (Tier 2). The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\\n\\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately — with Tier 1 binding validated separately for arithmetic and geometry-symbolic components, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\\n\\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\\n\\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\\n\\n**Key distinction from Vision-SR1:** Vision-SR1 decomposes reasoning into &lt;visual_perception> and &lt;think> stages and checks perceptual self-containment via self-rewarding — re-prompting the model without image access to verify the perception suffices. CFRL differs in three ways: (a) CFRL uses an external distilled verifier rather than self-rewarding — self-rewarding cannot detect hallucinated perceptions that happen to be internally consistent (a fabricated but plausible description could still support the correct answer), while external grounding verification checks each cited fact against the actual image. (b) CFRL provides fine-grained per-fact citations (&lt;observe> tags) rather than a monolithic perception block, enabling per-fact grounding verification and explicit evidence-to-inference linking. (c) CFRL verifies binding validity (does the inference logically follow from cited evidence?) and integration completeness, which Vision-SR1 does not address.\\n\\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\\n\\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\\n\\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\\n\\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~K calls per sample (one per rollout), yielding ~5-8x cost reduction driven by single image encoding per rollout vs. S encodings. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\\n\\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\\n\\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\\n\\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\\n\\n**Key distinction from AutoRubric-R1V:** AutoRubric-R1V provides process supervision by mining rubric checkpoints from successful trajectories — it checks whether the model's reasoning path conforms to patterns found in correct solutions. CFRL instead verifies composition properties against the image itself: whether cited evidence is factually grounded, inferences are valid, and coverage is complete. These are complementary: AutoRubric rewards path conformity, CFRL rewards evidence fidelity.\\n\\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)\",\n      \"timeline\": \"10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)\",\n      \"estimated_gpu_cost\": \"$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"950 (same experimental requirements)\",\n      \"timeline\": \"8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)\",\n      \"claude_api_cost\": \"$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,250\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR+Vision-SR1 reimplementation, symbolic checker coverage expansion)\",\n      \"timeline\": \"7 weeks (parallelized experiment scheduling, automated verifier validation)\",\n      \"claude_api_cost\": \"$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)\",\n      \"estimated_gpu_cost\": \"$1,950\",\n      \"speed_bottleneck\": \"Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)\",\n    \"AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)\",\n    \"CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)\",\n    \"Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)\",\n    \"PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)\",\n    \"MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)\",\n    \"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)\",\n    \"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)\",\n    \"Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)\",\n    \"TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)\",\n    \"v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)\",\n    \"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)\",\n    \"SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)\",\n    \"Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization (arXiv:2508.19652)\",\n    \"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning (arXiv:2510.14738)\",\n    \"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding (arXiv:2508.00378)\",\n    \"MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)\",\n    \"Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)\",\n    \"Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)\",\n    \"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)\",\n    \"Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)\",\n    \"Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)\",\n    \"Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)\",\n    \"Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)\",\n    \"What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)\",\n    \"Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\",\n    \"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)\",\n    \"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)\",\n    \"GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)\",\n    \"Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)\",\n    \"Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)\",\n    \"DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)\",\n    \"VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)\",\n    \"Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)\",\n    \"PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)\",\n    \"Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)\",\n    \"Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)\",\n    \"DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)\",\n    \"OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)\",\n    \"From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)\",\n    \"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\",\n    \"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)\",\n    \"Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)\",\n    \"PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)\",\n    \"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning (arXiv:2510.10973)\"\n  ],\n  \"description\": \"We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), self-rewarding perception decomposition (Vision-SR1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), rubric-based process supervision (AutoRubric-R1V), post-hoc visual verification (CoRGI), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence, and (3) integration completeness — all task-relevant visual facts are cited. Binding validity is structured in two tiers: Tier 1 (core) provides domain-agnostic arithmetic verification (sum/difference/ratio/comparison consistency between cited values and computed results) and geometry symbolic theorem matching, applicable across all domains without external tools; Tier 2 (extension) adds domain-specific checks for charts (ordering consistency, extrema, trend monotonicity, aggregation) and diagrams (structural relationship, attribute, cardinality verification), requiring parsed data representations. The CFV performs all verification in a single autoregressive forward pass — processing the image once and generating inline grounding/binding verdicts for each observation and reasoning step sequentially — yielding ~5-8x cost reduction over FGRPO's per-sentence judge calls (driven by 1 vs. S ≈ 5-8 image encodings per rollout). The contribution is structured in two tiers: Tier 1 (core: grounding + arithmetic/geometric binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing + domain-specific binding checks), ensuring the paper is defensible even if completeness checking or domain-specific binding proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike Vision-SR1 (self-rewarding checks perceptual self-containment but not factual accuracy or binding validity), we use an external verifier that checks each cited fact against the image. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces cost ~5-8x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. Unlike AutoRubric-R1V (trajectory-mined rubrics), we verify composition properties against the image. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), Vision-SR1-7B (58.8 avg, 69.8 HallusionBench), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), AutoRubric-R1V-7B (+8.0 avg), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.\",\n  \"project_name\": \"composition_fidelity_rl\",\n  \"source\": \"web_research\",\n  \"changes_from_previous_revision\": {\n    \"issue_1_vision_sr1\": \"Added Vision-SR1 (arXiv:2508.19652) as a new landscape subsection ('Self-rewarding perception-reasoning decomposition') with detailed technical description: uses &lt;visual_perception>/&lt;think>/&lt;answer> structured tags, self-rewarding via re-prompting the frozen policy model without image access to check perceptual self-containment, GRPO with decoupled reward-advantage framework, three-stage training (SFT cold-start → standard rollout → self-reward rollout), 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B. Differentiated from CFRL on three axes: (a) self-rewarding vs. external distilled verifier — self-rewarding cannot detect hallucinated but internally consistent perceptions, while CFRL's grounding verification checks each cited fact against the actual image; (b) perceptual self-containment checking vs. factual grounding accuracy + binding validity + completeness — Vision-SR1 tests whether perception suffices to re-derive the answer, not whether each fact is correct; (c) monolithic perception block vs. fine-grained per-fact &lt;observe> citations enabling per-fact verification and explicit evidence-to-inference linking. Added dedicated 'Key distinction from Vision-SR1' section in approach.\",\n    \"issue_2_binding_validity_specification\": \"Substantially expanded binding validity with concrete, algorithmic specifications for all domains, organized in two tiers. Tier 1 (core, domain-agnostic): (a) Arithmetic verification — symbolic execution of sum/difference/product/quotient consistency, ratio/percentage verification, comparison consistency, and multi-step arithmetic chaining; applies to ALL domains (geometry, charts, diagrams) without external tools. (b) Geometry symbolic theorem matching (existing). Tier 2 (extension, domain-specific): (a) Chart-specific: ordering consistency against extracted data table, extrema verification (X = max(values)), trend verification with formal monotonicity definition (including tolerance ε for noise), aggregation verification (mean within 1% relative tolerance). (b) Diagram-specific: structural relationship verification against parsed graph (edge existence), attribute consistency (label matching), cardinality verification (degree check), containment/hierarchy verification. Added explicit fallback for qualitative reasoning: binding check returns neutral score (0.5) for steps that cannot be reduced to arithmetic or structural constraint checking, flagged as 'unverifiable-binding' for monitoring. Revised Tier 1/Tier 2 scoping: Tier 1 now includes domain-agnostic arithmetic + geometry symbolic (no external tools needed), Tier 2 adds completeness + domain-specific binding (requiring parsed data representations). This makes Tier 1 stronger — it provides cross-domain binding signal via arithmetic verification even without chart/diagram-specific infrastructure.\",\n    \"issue_3_verifier_cost_model\": \"Clarified CFV architecture and cost model. The CFV performs all three property checks in a single autoregressive forward pass: given image + tagged response + verification instruction as input, it generates verification judgments for all observations and reasoning steps sequentially as autoregressive output. Grounding VQA for each &lt;observe> tag is performed as internal sub-reasoning within the autoregressive generation (inline grounding verdicts), NOT as separate VQA calls. This is architecturally identical to MJ1's single-pass multi-stage verification chain. Revised cost comparison: effective cost reduction is ~5-8x per rollout (revised from ~10-20x), driven by 1 image encoding vs. S ≈ 5-8 encodings. Per-call text generation cost is roughly comparable between CFRL (500-1500 verification tokens at 4B dense) and FGRPO (S × ~150 tokens at 3.3B active MoE). The primary savings come from the single image encoding — processing visual tokens through transformer layers is the dominant cost in VLM inference.\",\n    \"issue_4_autorubric_corgi\": \"Added AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) to the landscape under 'Structured verification and evaluation judges'. AutoRubric-R1V: auto-generates rubric-based process rewards via self-aggregation from successful trajectories, rubric reward = fraction of satisfied checkpoints, +8.0 avg on 6 benchmarks. Differentiated: derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image. CoRGI: post-hoc step-wise verification via Grounding DINO, decomposing rationales and grounding each step in visual evidence. Differentiated: inference-time only, does not serve as training-time reward. Added 'Key distinction from AutoRubric-R1V' section. Both added to key_references. Also added Chart-RVR (arXiv:2510.10973) to key_references as it informed the chart-domain binding validity specification.\"\n  }\n}\n```\n\nOutput the JSON exactly as provided — just ensure it's valid JSON. Do not wrap in code fences.\n",
+  "model": "sonnet"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51cd1dc2-e4a9-4705-8006-bb7966546d7b",
+  "isSidechain": false,
+  "requestId": "req_011CbTtHCBg9g6uskKNoMQia",
+  "type": "assistant",
+  "uuid": "9af64e53-c87e-40a8-8623-f13c6833b4e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019BSGLWxVTfmQSykk2SM9Qv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4344,
+      "cache_read_input_tokens": 40315,
+      "output_tokens": 17948,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4344,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 17948,
+          "cache_read_input_tokens": 40315,
+          "cache_creation_input_tokens": 4344,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4344
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "9af64e53-c87e-40a8-8623-f13c6833b4e4",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-27T22:59:35.791Z_
+
+<details><summary>↩ Tool result · `toolu_01WyLqXFo64T6RRiJoyuxZLV`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (55.4KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/c31eb692-232a-4057-ad34-5dd773264795/tool-results/toolu_01WyLqXFo64T6RRiJoyuxZLV.json
+
+Preview (first 2KB):
+[
+  {
+    "type": "text",
+    "text": "{\n  \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\",\n  \"opportunity\": \"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "9af64e53-c87e-40a8-8623-f13c6833b4e4",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "d30fd9cd-5eb4-4b6b-97b5-2b9c99509230",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to help me format a very large JSON object. I'll provide the complete content and I need you to output it as a valid, well-formatted JSON. Just output the raw JSON with no markdown code fences around it. Here is the content to format:\n\n```json\n{\n  \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\",\n  \"opportunity\": \"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Self-rewarding approaches (Vision-SR1) check perceptual *self-containment* — whether the perception text suffices to answer without the image — but not whether the perception is *factually correct* relative to the image, nor whether inferences logically follow from cited evidence. (5) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (6) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.\",\n  \"landscape\": \"The landscape of RL-based multimodal reasoning training has exploded in early 2026 along seven axes:\\n\\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\\n\\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\\n\\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\\n\\n**Self-rewarding perception-reasoning decomposition:** Vision-SR1 (arXiv:2508.19652) decomposes reasoning into explicit &lt;visual_perception> and &lt;think> stages, requiring the model to first articulate a self-contained visual description, then reason from it. The visual reward is computed via self-rewarding: the frozen policy model is re-prompted to answer the question using only the generated visual perception text (without image access); if the correct answer is derived from perception alone, a visual reward of 1 is assigned. Uses GRPO with a decoupled reward-advantage framework that maintains separate advantages for visual and answer rewards. Three-stage training: SFT cold-start on 9K examples, then standard rollout with accuracy reward, then self-reward rollout. Achieves 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B (+1.4 over Vision-R1), 69.8 on HallusionBench. Key distinction from CFRL: (a) Vision-SR1 uses self-rewarding (same model judges itself) rather than an external distilled verifier — the reward is whether perception suffices to re-derive the answer, not whether each cited fact is *factually accurate* relative to the image; a hallucinated but internally consistent perception could score high. (b) Vision-SR1 checks perceptual *self-containment* (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow from cited evidence?), and completeness (are all task-relevant facts covered). (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences — it treats perception and reasoning as decomposed stages but does not check whether the reasoning is faithful to the specific evidence cited.\\n\\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\\n\\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity. AutoRubric-R1V (arXiv:2510.14738) auto-generates rubric-based process rewards by distilling consistent reasoning checkpoints from successful trajectories via self-aggregation — rubric reward equals the fraction of satisfied checkpoints. Achieves +8.0 avg over Qwen2.5-VL-7B on 6 benchmarks. Distinct from CFRL: AutoRubric derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image; rubrics are answer-path-dependent rather than evidence-grounding-dependent. CoRGI (arXiv:2508.00378) performs post-hoc step-wise verification of CoT reasoning by decomposing rationales into step-wise statements, grounding each step in visual evidence via Grounding DINO, and filtering unsupported claims. Inference-time only; conceptually related to CFRL's verification chain but does not serve as a training-time reward signal.\\n\\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\\n\\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\\n\\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~5-8x higher cost per rollout vs. single-pass verification; Vision-SR1 decomposes perception and reasoning with self-rewarding but does not verify factual grounding accuracy, binding validity, or completeness; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; AutoRubric-R1V provides process supervision via trajectory-mined rubrics but not composition property verification against the image; CoRGI performs step-wise visual verification but is inference-only; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.\",\n  \"inspired_by\": \"'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); Vision-SR1's perception-reasoning decomposition with self-rewarding (extended from self-containment checking to external factual grounding + binding + completeness verification); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; Chart-RVR's verifiable chart reasoning rewards (informing chart-domain binding checks); CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation\",\n  \"approach\": \"We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\\n\\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput. Compared to Vision-SR1's &lt;visual_perception> block, our format provides *fine-grained, per-fact citations* (individual &lt;observe> tags) rather than a monolithic perception paragraph, enabling per-fact grounding verification and explicit evidence-to-inference linking via the evidence='obs1,obs2' attribute.\\n\\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\\n\\n**Composition Fidelity Verifier (CFV) — three-property checking:**\\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn. We define binding validity checks at two levels:\\n\\n  **Tier 1 — Domain-agnostic arithmetic + geometry symbolic (core contribution):**\\n  - *Arithmetic verification* (all domains): Given numerical values extracted from &lt;observe> tags and a stated operation in the &lt;reason> block, verify computational correctness via symbolic execution. Concrete checks: (a) *Sum/difference/product/quotient consistency* — if obs1 cites 'value A = 45' and obs2 cites 'value B = 30', and the reason block claims 'difference = 15' with rule 'subtraction', verify 45−30=15. (b) *Ratio/percentage verification* — if 'Part = 120, Total = 400' and conclusion is '30%', verify 120/400=0.30. (c) *Comparison consistency* — if the reason block claims 'A > B' citing obs1 (A=45) and obs2 (B=30), verify 45>30. (d) *Multi-step arithmetic* — chain verification across sequential &lt;reason> blocks where one step's output is another's input. These checks are domain-agnostic: they apply equally to geometry problems (angle computations), chart problems (bar value comparisons, trend calculations), and diagram problems (counting, distance computations).\\n  - *Geometry symbolic theorem matching*: Cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. For example, cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → verify 60+90+x=180 → x=30°. Inspired by GeoSketch and the PAR framework.\\n\\n  **Tier 2 — Domain-specific binding checks (extension):**\\n  - *Chart-specific*: (a) *Ordering consistency* — if 'Bar A > Bar B' is cited, verify against the extracted data table that value(A) > value(B). (b) *Extrema verification* — if 'X is the maximum value' is cited, verify X = max(all values in series). (c) *Trend verification* — if 'increasing from 2020 to 2023' is cited, verify monotonic increase in the relevant data points; trends are formally defined as: 'increasing' requires each successive value ≥ previous (strict: >), 'decreasing' requires ≤ (strict: <), with tolerance ε for noise. (d) *Aggregation verification* — if 'average = X' is cited, verify mean(values) ≈ X within 1% relative tolerance. These checks require the chart data table extracted in the completeness pipeline (Stage A), linking Tier 2 binding to Tier 2 completeness infrastructure.\\n  - *Diagram-specific*: (a) *Structural relationship verification* — if 'A connects to B' is cited, verify edge (A,B) exists in the parsed graph from PGDP-Net. (b) *Attribute consistency* — if 'node A is labeled X' is cited, verify label(A) = X in the parsed representation. (c) *Cardinality verification* — if 'A has 3 connections' is cited, verify degree(A) = 3. (d) *Containment/hierarchy* — if 'A is inside B' is cited, verify the containment relation in the parsed spatial layout. These checks require the diagram graph representation from Stage A parsing.\\n  - *Fallback for inapplicable checks*: When a &lt;reason> block involves qualitative reasoning that cannot be reduced to arithmetic or structural constraint checking (e.g., 'the diagram suggests a causal relationship between X and Y'), the binding check returns a neutral score (0.5) rather than penalizing, and the verifier flags it as 'unverifiable-binding' for monitoring. This prevents the binding reward from penalizing valid qualitative reasoning while maintaining signal for verifiable steps.\\n\\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\\n\\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\\n\\n  **Stage B — Question-Conditioned Relevance Filtering**:\\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\\n\\n  **Stage C — Coverage Verification**:\\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\\n\\n**Verifier architecture and cost model:** The CFV (4B parameters, based on Qwen3-VL-4B) performs all three property checks in a single autoregressive forward pass. The input consists of the image + the model's full tagged response + a structured verification instruction. The CFV generates verification judgments sequentially as autoregressive output: for each &lt;observe> tag, it produces an inline grounding verdict (verified/unverified with confidence score); for each &lt;reason> block, it produces a binding validity verdict; and finally, it produces an overall completeness assessment. This is architecturally identical to how MJ1 generates its multi-stage verification chain in one forward pass — the grounding VQA for each observation is performed as internal sub-reasoning within the autoregressive generation, NOT as separate VQA calls. The output length scales with the number of observations and reasoning steps (~500-1500 tokens for typical responses with 4-8 observations), but requires only a single image encoding through the vision encoder.\\n\\n**Cost comparison with FGRPO (precise):** FGRPO requires S separate judge calls per rollout (S ≈ 5-8 visual sentences), each requiring its own image encoding through the 30B MoE model (3.3B active parameters). CFRL requires 1 verifier call per rollout with a single image encoding through the 4B dense model. Since image encoding is the dominant cost in VLM inference (processing hundreds of visual tokens through transformer layers), the savings from 1 vs. S encodings is the primary cost driver. Per-call text generation cost is roughly comparable: FGRPO generates S × ~150 = 750-1200 tokens total across all calls; CFRL generates ~500-1500 tokens in one call, at similar active parameter counts (3.3B MoE vs. 4B dense). The effective cost reduction is **~5-8x per rollout** (proportional to S), driven primarily by the single image encoding. Per training sample with K rollouts, FGRPO makes K×S judge calls vs. CFRL's K verifier calls — the same ~5-8x ratio holds. For Tier 1 (grounding + binding only), where binding validity uses lightweight symbolic/arithmetic checking outside the verifier, the verifier output is shorter (~300-800 tokens), further reducing per-call cost.\\n\\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\\n\\n  *Tier 1 — Core contribution (grounding + binding):* Evidence grounding (VQA-based, all domains) and binding validity (domain-agnostic arithmetic verification + geometry symbolic theorem matching). This tier requires only the distilled 4B verifier and a geometry theorem library — no external parsing tools. Domain-agnostic arithmetic verification applies to chart and diagram problems too (any reasoning step involving numerical computation is checkable), providing cross-domain binding signal even without domain-specific infrastructure. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking and domain-specific binding prove too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\\n\\n  *Tier 2 — Extension (completeness + domain-specific binding):* Integration completeness adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Domain-specific binding for charts adds data-table-dependent checks (ordering, trends, extrema); for diagrams adds graph-dependent checks (structural relationships, attributes). Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If domain-specific binding checks add noise rather than signal (e.g., trend verification on noisy data), fall back to Tier 1 arithmetic-only binding for that domain. (d) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\\n\\n  *Risk matrix:*\\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\\n\\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference, arithmetic errors), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains, with balanced representation of arithmetic binding errors (Tier 1) and domain-specific binding errors (Tier 2). The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\\n\\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately — with Tier 1 binding validated separately for arithmetic and geometry-symbolic components, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\\n\\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\\n\\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\\n\\n**Key distinction from Vision-SR1:** Vision-SR1 decomposes reasoning into &lt;visual_perception> and &lt;think> stages and checks perceptual self-containment via self-rewarding — re-prompting the model without image access to verify the perception suffices. CFRL differs in three ways: (a) CFRL uses an external distilled verifier rather than self-rewarding — self-rewarding cannot detect hallucinated perceptions that happen to be internally consistent (a fabricated but plausible description could still support the correct answer), while external grounding verification checks each cited fact against the actual image. (b) CFRL provides fine-grained per-fact citations (&lt;observe> tags) rather than a monolithic perception block, enabling per-fact grounding verification and explicit evidence-to-inference linking. (c) CFRL verifies binding validity (does the inference logically follow from cited evidence?) and integration completeness, which Vision-SR1 does not address.\\n\\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\\n\\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\\n\\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\\n\\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~K calls per sample (one per rollout), yielding ~5-8x cost reduction driven by single image encoding per rollout vs. S encodings. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\\n\\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\\n\\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\\n\\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\\n\\n**Key distinction from AutoRubric-R1V:** AutoRubric-R1V provides process supervision by mining rubric checkpoints from successful trajectories — it checks whether the model's reasoning path conforms to patterns found in correct solutions. CFRL instead verifies composition properties against the image itself: whether cited evidence is factually grounded, inferences are valid, and coverage is complete. These are complementary: AutoRubric rewards path conformity, CFRL rewards evidence fidelity.\\n\\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)\",\n      \"timeline\": \"10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)\",\n      \"estimated_gpu_cost\": \"$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"950 (same experimental requirements)\",\n      \"timeline\": \"8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)\",\n      \"claude_api_cost\": \"$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,250\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR+Vision-SR1 reimplementation, symbolic checker coverage expansion)\",\n      \"timeline\": \"7 weeks (parallelized experiment scheduling, automated verifier validation)\",\n      \"claude_api_cost\": \"$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)\",\n      \"estimated_gpu_cost\": \"$1,950\",\n      \"speed_bottleneck\": \"Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)\",\n    \"AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)\",\n    \"CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)\",\n    \"Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)\",\n    \"PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)\",\n    \"MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)\",\n    \"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)\",\n    \"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)\",\n    \"Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)\",\n    \"TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)\",\n    \"v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)\",\n    \"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)\",\n    \"SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)\",\n    \"Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization (arXiv:2508.19652)\",\n    \"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning (arXiv:2510.14738)\",\n    \"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding (arXiv:2508.00378)\",\n    \"MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)\",\n    \"Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)\",\n    \"Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)\",\n    \"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)\",\n    \"Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)\",\n    \"Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)\",\n    \"Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)\",\n    \"Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)\",\n    \"What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)\",\n    \"Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\",\n    \"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)\",\n    \"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)\",\n    \"GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)\",\n    \"Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)\",\n    \"Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)\",\n    \"DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)\",\n    \"VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)\",\n    \"Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)\",\n    \"PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)\",\n    \"Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)\",\n    \"Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)\",\n    \"DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)\",\n    \"OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)\",\n    \"From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)\",\n    \"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\",\n    \"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)\",\n    \"Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)\",\n    \"PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)\",\n    \"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning (arXiv:2510.10973)\"\n  ],\n  \"description\": \"We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), self-rewarding perception decomposition (Vision-SR1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), rubric-based process supervision (AutoRubric-R1V), post-hoc visual verification (CoRGI), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence, and (3) integration completeness — all task-relevant visual facts are cited. Binding validity is structured in two tiers: Tier 1 (core) provides domain-agnostic arithmetic verification (sum/difference/ratio/comparison consistency between cited values and computed results) and geometry symbolic theorem matching, applicable across all domains without external tools; Tier 2 (extension) adds domain-specific checks for charts (ordering consistency, extrema, trend monotonicity, aggregation) and diagrams (structural relationship, attribute, cardinality verification), requiring parsed data representations. The CFV performs all verification in a single autoregressive forward pass — processing the image once and generating inline grounding/binding verdicts for each observation and reasoning step sequentially — yielding ~5-8x cost reduction over FGRPO's per-sentence judge calls (driven by 1 vs. S ≈ 5-8 image encodings per rollout). The contribution is structured in two tiers: Tier 1 (core: grounding + arithmetic/geometric binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing + domain-specific binding checks), ensuring the paper is defensible even if completeness checking or domain-specific binding proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike Vision-SR1 (self-rewarding checks perceptual self-containment but not factual accuracy or binding validity), we use an external verifier that checks each cited fact against the image. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces cost ~5-8x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. Unlike AutoRubric-R1V (trajectory-mined rubrics), we verify composition properties against the image. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), Vision-SR1-7B (58.8 avg, 69.8 HallusionBench), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), AutoRubric-R1V-7B (+8.0 avg), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.\",\n  \"project_name\": \"composition_fidelity_rl\",\n  \"source\": \"web_research\",\n  \"changes_from_previous_revision\": {\n    \"issue_1_vision_sr1\": \"Added Vision-SR1 (arXiv:2508.19652) as a new landscape subsection ('Self-rewarding perception-reasoning decomposition') with detailed technical description: uses &lt;visual_perception>/&lt;think>/&lt;answer> structured tags, self-rewarding via re-prompting the frozen policy model without image access to check perceptual self-containment, GRPO with decoupled reward-advantage framework, three-stage training (SFT cold-start → standard rollout → self-reward rollout), 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B. Differentiated from CFRL on three axes: (a) self-rewarding vs. external distilled verifier — self-rewarding cannot detect hallucinated but internally consistent perceptions, while CFRL's grounding verification checks each cited fact against the actual image; (b) perceptual self-containment checking vs. factual grounding accuracy + binding validity + completeness — Vision-SR1 tests whether perception suffices to re-derive the answer, not whether each fact is correct; (c) monolithic perception block vs. fine-grained per-fact &lt;observe> citations enabling per-fact verification and explicit evidence-to-inference linking. Added dedicated 'Key distinction from Vision-SR1' section in approach.\",\n    \"issue_2_binding_validity_specification\": \"Substantially expanded binding validity with concrete, algorithmic specifications for all domains, organized in two tiers. Tier 1 (core, domain-agnostic): (a) Arithmetic verification — symbolic execution of sum/difference/product/quotient consistency, ratio/percentage verification, comparison consistency, and multi-step arithmetic chaining; applies to ALL domains (geometry, charts, diagrams) without external tools. (b) Geometry symbolic theorem matching (existing). Tier 2 (extension, domain-specific): (a) Chart-specific: ordering consistency against extracted data table, extrema verification (X = max(values)), trend verification with formal monotonicity definition (including tolerance ε for noise), aggregation verification (mean within 1% relative tolerance). (b) Diagram-specific: structural relationship verification against parsed graph (edge existence), attribute consistency (label matching), cardinality verification (degree check), containment/hierarchy verification. Added explicit fallback for qualitative reasoning: binding check returns neutral score (0.5) for steps that cannot be reduced to arithmetic or structural constraint checking, flagged as 'unverifiable-binding' for monitoring. Revised Tier 1/Tier 2 scoping: Tier 1 now includes domain-agnostic arithmetic + geometry symbolic (no external tools needed), Tier 2 adds completeness + domain-specific binding (requiring parsed data representations). This makes Tier 1 stronger — it provides cross-domain binding signal via arithmetic verification even without chart/diagram-specific infrastructure.\",\n    \"issue_3_verifier_cost_model\": \"Clarified CFV architecture and cost model. The CFV performs all three property checks in a single autoregressive forward pass: given image + tagged response + verification instruction as input, it generates verification judgments for all observations and reasoning steps sequentially as autoregressive output. Grounding VQA for each &lt;observe> tag is performed as internal sub-reasoning within the autoregressive generation (inline grounding verdicts), NOT as separate VQA calls. This is architecturally identical to MJ1's single-pass multi-stage verification chain. Revised cost comparison: effective cost reduction is ~5-8x per rollout (revised from ~10-20x), driven by 1 image encoding vs. S ≈ 5-8 encodings. Per-call text generation cost is roughly comparable between CFRL (500-1500 verification tokens at 4B dense) and FGRPO (S × ~150 tokens at 3.3B active MoE). The primary savings come from the single image encoding — processing visual tokens through transformer layers is the dominant cost in VLM inference.\",\n    \"issue_4_autorubric_corgi\": \"Added AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) to the landscape under 'Structured verification and evaluation judges'. AutoRubric-R1V: auto-generates rubric-based process rewards via self-aggregation from successful trajectories, rubric reward = fraction of satisfied checkpoints, +8.0 avg on 6 benchmarks. Differentiated: derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image. CoRGI: post-hoc step-wise verification via Grounding DINO, decomposing rationales and grounding each step in visual evidence. Differentiated: inference-time only, does not serve as training-time reward. Added 'Key distinction from AutoRubric-R1V' section. Both added to key_references. Also added Chart-RVR (arXiv:2510.10973) to key_references as it informed the chart-domain binding validity specification.\"\n  }\n}\n```\n\nOutput the JSON exactly as provided — just ensure it's valid JSON. Do not wrap in code fences.\n",
+    "agentId": "a9ae76cd12020ea18",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\",\n  \"opportunity\": \"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Self-rewarding approaches (Vision-SR1) check perceptual *self-containment* — whether the perception text suffices to answer without the image — but not whether the perception is *factually correct* relative to the image, nor whether inferences logically follow from cited evidence. (5) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (6) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.\",\n  \"landscape\": \"The landscape of RL-based multimodal reasoning training has exploded in early 2026 along seven axes:\\n\\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\\n\\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\\n\\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\\n\\n**Self-rewarding perception-reasoning decomposition:** Vision-SR1 (arXiv:2508.19652) decomposes reasoning into explicit &lt;visual_perception> and &lt;think> stages, requiring the model to first articulate a self-contained visual description, then reason from it. The visual reward is computed via self-rewarding: the frozen policy model is re-prompted to answer the question using only the generated visual perception text (without image access); if the correct answer is derived from perception alone, a visual reward of 1 is assigned. Uses GRPO with a decoupled reward-advantage framework that maintains separate advantages for visual and answer rewards. Three-stage training: SFT cold-start on 9K examples, then standard rollout with accuracy reward, then self-reward rollout. Achieves 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B (+1.4 over Vision-R1), 69.8 on HallusionBench. Key distinction from CFRL: (a) Vision-SR1 uses self-rewarding (same model judges itself) rather than an external distilled verifier — the reward is whether perception suffices to re-derive the answer, not whether each cited fact is *factually accurate* relative to the image; a hallucinated but internally consistent perception could score high. (b) Vision-SR1 checks perceptual *self-containment* (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow from cited evidence?), and completeness (are all task-relevant facts covered). (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences — it treats perception and reasoning as decomposed stages but does not check whether the reasoning is faithful to the specific evidence cited.\\n\\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\\n\\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity. AutoRubric-R1V (arXiv:2510.14738) auto-generates rubric-based process rewards by distilling consistent reasoning checkpoints from successful trajectories via self-aggregation — rubric reward equals the fraction of satisfied checkpoints. Achieves +8.0 avg over Qwen2.5-VL-7B on 6 benchmarks. Distinct from CFRL: AutoRubric derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image; rubrics are answer-path-dependent rather than evidence-grounding-dependent. CoRGI (arXiv:2508.00378) performs post-hoc step-wise verification of CoT reasoning by decomposing rationales into step-wise statements, grounding each step in visual evidence via Grounding DINO, and filtering unsupported claims. Inference-time only; conceptually related to CFRL's verification chain but does not serve as a training-time reward signal.\\n\\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\\n\\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\\n\\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~5-8x higher cost per rollout vs. single-pass verification; Vision-SR1 decomposes perception and reasoning with self-rewarding but does not verify factual grounding accuracy, binding validity, or completeness; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; AutoRubric-R1V provides process supervision via trajectory-mined rubrics but not composition property verification against the image; CoRGI performs step-wise visual verification but is inference-only; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.\",\n  \"inspired_by\": \"'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); Vision-SR1's perception-reasoning decomposition with self-rewarding (extended from self-containment checking to external factual grounding + binding + completeness verification); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; Chart-RVR's verifiable chart reasoning rewards (informing chart-domain binding checks); CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation\",\n  \"approach\": \"We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\\n\\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput. Compared to Vision-SR1's &lt;visual_perception> block, our format provides *fine-grained, per-fact citations* (individual &lt;observe> tags) rather than a monolithic perception paragraph, enabling per-fact grounding verification and explicit evidence-to-inference linking via the evidence='obs1,obs2' attribute.\\n\\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\\n\\n**Composition Fidelity Verifier (CFV) — three-property checking:**\\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn. We define binding validity checks at two levels:\\n\\n  **Tier 1 — Domain-agnostic arithmetic + geometry symbolic (core contribution):**\\n  - *Arithmetic verification* (all domains): Given numerical values extracted from &lt;observe> tags and a stated operation in the &lt;reason> block, verify computational correctness via symbolic execution. Concrete checks: (a) *Sum/difference/product/quotient consistency* — if obs1 cites 'value A = 45' and obs2 cites 'value B = 30', and the reason block claims 'difference = 15' with rule 'subtraction', verify 45−30=15. (b) *Ratio/percentage verification* — if 'Part = 120, Total = 400' and conclusion is '30%', verify 120/400=0.30. (c) *Comparison consistency* — if the reason block claims 'A > B' citing obs1 (A=45) and obs2 (B=30), verify 45>30. (d) *Multi-step arithmetic* — chain verification across sequential &lt;reason> blocks where one step's output is another's input. These checks are domain-agnostic: they apply equally to geometry problems (angle computations), chart problems (bar value comparisons, trend calculations), and diagram problems (counting, distance computations).\\n  - *Geometry symbolic theorem matching*: Cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. For example, cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → verify 60+90+x=180 → x=30°. Inspired by GeoSketch and the PAR framework.\\n\\n  **Tier 2 — Domain-specific binding checks (extension):**\\n  - *Chart-specific*: (a) *Ordering consistency* — if 'Bar A > Bar B' is cited, verify against the extracted data table that value(A) > value(B). (b) *Extrema verification* — if 'X is the maximum value' is cited, verify X = max(all values in series). (c) *Trend verification* — if 'increasing from 2020 to 2023' is cited, verify monotonic increase in the relevant data points; trends are formally defined as: 'increasing' requires each successive value ≥ previous (strict: >), 'decreasing' requires ≤ (strict: <), with tolerance ε for noise. (d) *Aggregation verification* — if 'average = X' is cited, verify mean(values) ≈ X within 1% relative tolerance. These checks require the chart data table extracted in the completeness pipeline (Stage A), linking Tier 2 binding to Tier 2 completeness infrastructure.\\n  - *Diagram-specific*: (a) *Structural relationship verification* — if 'A connects to B' is cited, verify edge (A,B) exists in the parsed graph from PGDP-Net. (b) *Attribute consistency* — if 'node A is labeled X' is cited, verify label(A) = X in the parsed representation. (c) *Cardinality verification* — if 'A has 3 connections' is cited, verify degree(A) = 3. (d) *Containment/hierarchy* — if 'A is inside B' is cited, verify the containment relation in the parsed spatial layout. These checks require the diagram graph representation from Stage A parsing.\\n  - *Fallback for inapplicable checks*: When a &lt;reason> block involves qualitative reasoning that cannot be reduced to arithmetic or structural constraint checking (e.g., 'the diagram suggests a causal relationship between X and Y'), the binding check returns a neutral score (0.5) rather than penalizing, and the verifier flags it as 'unverifiable-binding' for monitoring. This prevents the binding reward from penalizing valid qualitative reasoning while maintaining signal for verifiable steps.\\n\\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\\n\\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\\n\\n  **Stage B — Question-Conditioned Relevance Filtering**:\\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\\n\\n  **Stage C — Coverage Verification**:\\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\\n\\n**Verifier architecture and cost model:** The CFV (4B parameters, based on Qwen3-VL-4B) performs all three property checks in a single autoregressive forward pass. The input consists of the image + the model's full tagged response + a structured verification instruction. The CFV generates verification judgments sequentially as autoregressive output: for each &lt;observe> tag, it produces an inline grounding verdict (verified/unverified with confidence score); for each &lt;reason> block, it produces a binding validity verdict; and finally, it produces an overall completeness assessment. This is architecturally identical to how MJ1 generates its multi-stage verification chain in one forward pass — the grounding VQA for each observation is performed as internal sub-reasoning within the autoregressive generation, NOT as separate VQA calls. The output length scales with the number of observations and reasoning steps (~500-1500 tokens for typical responses with 4-8 observations), but requires only a single image encoding through the vision encoder.\\n\\n**Cost comparison with FGRPO (precise):** FGRPO requires S separate judge calls per rollout (S ≈ 5-8 visual sentences), each requiring its own image encoding through the 30B MoE model (3.3B active parameters). CFRL requires 1 verifier call per rollout with a single image encoding through the 4B dense model. Since image encoding is the dominant cost in VLM inference (processing hundreds of visual tokens through transformer layers), the savings from 1 vs. S encodings is the primary cost driver. Per-call text generation cost is roughly comparable: FGRPO generates S × ~150 = 750-1200 tokens total across all calls; CFRL generates ~500-1500 tokens in one call, at similar active parameter counts (3.3B MoE vs. 4B dense). The effective cost reduction is **~5-8x per rollout** (proportional to S), driven primarily by the single image encoding. Per training sample with K rollouts, FGRPO makes K×S judge calls vs. CFRL's K verifier calls — the same ~5-8x ratio holds. For Tier 1 (grounding + binding only), where binding validity uses lightweight symbolic/arithmetic checking outside the verifier, the verifier output is shorter (~300-800 tokens), further reducing per-call cost.\\n\\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\\n\\n  *Tier 1 — Core contribution (grounding + binding):* Evidence grounding (VQA-based, all domains) and binding validity (domain-agnostic arithmetic verification + geometry symbolic theorem matching). This tier requires only the distilled 4B verifier and a geometry theorem library — no external parsing tools. Domain-agnostic arithmetic verification applies to chart and diagram problems too (any reasoning step involving numerical computation is checkable), providing cross-domain binding signal even without domain-specific infrastructure. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking and domain-specific binding prove too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\\n\\n  *Tier 2 — Extension (completeness + domain-specific binding):* Integration completeness adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Domain-specific binding for charts adds data-table-dependent checks (ordering, trends, extrema); for diagrams adds graph-dependent checks (structural relationships, attributes). Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If domain-specific binding checks add noise rather than signal (e.g., trend verification on noisy data), fall back to Tier 1 arithmetic-only binding for that domain. (d) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\\n\\n  *Risk matrix:*\\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\\n\\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference, arithmetic errors), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains, with balanced representation of arithmetic binding errors (Tier 1) and domain-specific binding errors (Tier 2). The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\\n\\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately — with Tier 1 binding validated separately for arithmetic and geometry-symbolic components, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\\n\\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\\n\\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\\n\\n**Key distinction from Vision-SR1:** Vision-SR1 decomposes reasoning into &lt;visual_perception> and &lt;think> stages and checks perceptual self-containment via self-rewarding — re-prompting the model without image access to verify the perception suffices. CFRL differs in three ways: (a) CFRL uses an external distilled verifier rather than self-rewarding — self-rewarding cannot detect hallucinated perceptions that happen to be internally consistent (a fabricated but plausible description could still support the correct answer), while external grounding verification checks each cited fact against the actual image. (b) CFRL provides fine-grained per-fact citations (&lt;observe> tags) rather than a monolithic perception block, enabling per-fact grounding verification and explicit evidence-to-inference linking. (c) CFRL verifies binding validity (does the inference logically follow from cited evidence?) and integration completeness, which Vision-SR1 does not address.\\n\\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\\n\\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\\n\\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\\n\\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~K calls per sample (one per rollout), yielding ~5-8x cost reduction driven by single image encoding per rollout vs. S encodings. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\\n\\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\\n\\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\\n\\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\\n\\n**Key distinction from AutoRubric-R1V:** AutoRubric-R1V provides process supervision by mining rubric checkpoints from successful trajectories — it checks whether the model's reasoning path conforms to patterns found in correct solutions. CFRL instead verifies composition properties against the image itself: whether cited evidence is factually grounded, inferences are valid, and coverage is complete. These are complementary: AutoRubric rewards path conformity, CFRL rewards evidence fidelity.\\n\\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)\",\n      \"timeline\": \"10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)\",\n      \"estimated_gpu_cost\": \"$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"950 (same experimental requirements)\",\n      \"timeline\": \"8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)\",\n      \"claude_api_cost\": \"$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,250\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR+Vision-SR1 reimplementation, symbolic checker coverage expansion)\",\n      \"timeline\": \"7 weeks (parallelized experiment scheduling, automated verifier validation)\",\n      \"claude_api_cost\": \"$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)\",\n      \"estimated_gpu_cost\": \"$1,950\",\n      \"speed_bottleneck\": \"Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)\",\n    \"AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)\",\n    \"CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)\",\n    \"Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)\",\n    \"PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)\",\n    \"MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)\",\n    \"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)\",\n    \"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)\",\n    \"Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)\",\n    \"TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)\",\n    \"v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)\",\n    \"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)\",\n    \"SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)\",\n    \"Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization (arXiv:2508.19652)\",\n    \"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning (arXiv:2510.14738)\",\n    \"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding (arXiv:2508.00378)\",\n    \"MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)\",\n    \"Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)\",\n    \"Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)\",\n    \"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)\",\n    \"Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)\",\n    \"Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)\",\n    \"Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)\",\n    \"Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)\",\n    \"What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)\",\n    \"Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\",\n    \"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)\",\n    \"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)\",\n    \"GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)\",\n    \"Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)\",\n    \"Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)\",\n    \"DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)\",\n    \"VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)\",\n    \"Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)\",\n    \"PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)\",\n    \"Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)\",\n    \"Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)\",\n    \"DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)\",\n    \"OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)\",\n    \"From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)\",\n    \"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\",\n    \"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)\",\n    \"Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)\",\n    \"PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)\",\n    \"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning (arXiv:2510.10973)\"\n  ],\n  \"description\": \"We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), self-rewarding perception decomposition (Vision-SR1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), rubric-based process supervision (AutoRubric-R1V), post-hoc visual verification (CoRGI), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence, and (3) integration completeness — all task-relevant visual facts are cited. Binding validity is structured in two tiers: Tier 1 (core) provides domain-agnostic arithmetic verification (sum/difference/ratio/comparison consistency between cited values and computed results) and geometry symbolic theorem matching, applicable across all domains without external tools; Tier 2 (extension) adds domain-specific checks for charts (ordering consistency, extrema, trend monotonicity, aggregation) and diagrams (structural relationship, attribute, cardinality verification), requiring parsed data representations. The CFV performs all verification in a single autoregressive forward pass — processing the image once and generating inline grounding/binding verdicts for each observation and reasoning step sequentially — yielding ~5-8x cost reduction over FGRPO's per-sentence judge calls (driven by 1 vs. S ≈ 5-8 image encodings per rollout). The contribution is structured in two tiers: Tier 1 (core: grounding + arithmetic/geometric binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing + domain-specific binding checks), ensuring the paper is defensible even if completeness checking or domain-specific binding proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike Vision-SR1 (self-rewarding checks perceptual self-containment but not factual accuracy or binding validity), we use an external verifier that checks each cited fact against the image. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces cost ~5-8x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. Unlike AutoRubric-R1V (trajectory-mined rubrics), we verify composition properties against the image. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), Vision-SR1-7B (58.8 avg, 69.8 HallusionBench), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), AutoRubric-R1V-7B (+8.0 avg), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.\",\n  \"project_name\": \"composition_fidelity_rl\",\n  \"source\": \"web_research\",\n  \"changes_from_previous_revision\": {\n    \"issue_1_vision_sr1\": \"Added Vision-SR1 (arXiv:2508.19652) as a new landscape subsection ('Self-rewarding perception-reasoning decomposition') with detailed technical description: uses &lt;visual_perception>/&lt;think>/&lt;answer> structured tags, self-rewarding via re-prompting the frozen policy model without image access to check perceptual self-containment, GRPO with decoupled reward-advantage framework, three-stage training (SFT cold-start → standard rollout → self-reward rollout), 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B. Differentiated from CFRL on three axes: (a) self-rewarding vs. external distilled verifier — self-rewarding cannot detect hallucinated but internally consistent perceptions, while CFRL's grounding verification checks each cited fact against the actual image; (b) perceptual self-containment checking vs. factual grounding accuracy + binding validity + completeness — Vision-SR1 tests whether perception suffices to re-derive the answer, not whether each fact is correct; (c) monolithic perception block vs. fine-grained per-fact &lt;observe> citations enabling per-fact verification and explicit evidence-to-inference linking. Added dedicated 'Key distinction from Vision-SR1' section in approach.\",\n    \"issue_2_binding_validity_specification\": \"Substantially expanded binding validity with concrete, algorithmic specifications for all domains, organized in two tiers. Tier 1 (core, domain-agnostic): (a) Arithmetic verification — symbolic execution of sum/difference/product/quotient consistency, ratio/percentage verification, comparison consistency, and multi-step arithmetic chaining; applies to ALL domains (geometry, charts, diagrams) without external tools. (b) Geometry symbolic theorem matching (existing). Tier 2 (extension, domain-specific): (a) Chart-specific: ordering consistency against extracted data table, extrema verification (X = max(values)), trend verification with formal monotonicity definition (including tolerance ε for noise), aggregation verification (mean within 1% relative tolerance). (b) Diagram-specific: structural relationship verification against parsed graph (edge existence), attribute consistency (label matching), cardinality verification (degree check), containment/hierarchy verification. Added explicit fallback for qualitative reasoning: binding check returns neutral score (0.5) for steps that cannot be reduced to arithmetic or structural constraint checking, flagged as 'unverifiable-binding' for monitoring. Revised Tier 1/Tier 2 scoping: Tier 1 now includes domain-agnostic arithmetic + geometry symbolic (no external tools needed), Tier 2 adds completeness + domain-specific binding (requiring parsed data representations). This makes Tier 1 stronger — it provides cross-domain binding signal via arithmetic verification even without chart/diagram-specific infrastructure.\",\n    \"issue_3_verifier_cost_model\": \"Clarified CFV architecture and cost model. The CFV performs all three property checks in a single autoregressive forward pass: given image + tagged response + verification instruction as input, it generates verification judgments for all observations and reasoning steps sequentially as autoregressive output. Grounding VQA for each &lt;observe> tag is performed as internal sub-reasoning within the autoregressive generation (inline grounding verdicts), NOT as separate VQA calls. This is architecturally identical to MJ1's single-pass multi-stage verification chain. Revised cost comparison: effective cost reduction is ~5-8x per rollout (revised from ~10-20x), driven by 1 image encoding vs. S ≈ 5-8 encodings. Per-call text generation cost is roughly comparable between CFRL (500-1500 verification tokens at 4B dense) and FGRPO (S × ~150 tokens at 3.3B active MoE). The primary savings come from the single image encoding — processing visual tokens through transformer layers is the dominant cost in VLM inference.\",\n    \"issue_4_autorubric_corgi\": \"Added AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) to the landscape under 'Structured verification and evaluation judges'. AutoRubric-R1V: auto-generates rubric-based process rewards via self-aggregation from successful trajectories, rubric reward = fraction of satisfied checkpoints, +8.0 avg on 6 benchmarks. Differentiated: derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image. CoRGI: post-hoc step-wise verification via Grounding DINO, decomposing rationales and grounding each step in visual evidence. Differentiated: inference-time only, does not serve as training-time reward. Added 'Key distinction from AutoRubric-R1V' section. Both added to key_references. Also added Chart-RVR (arXiv:2510.10973) to key_references as it informed the chart-domain binding validity specification.\"\n  }\n}"
+      }
+    ],
+    "totalDurationMs": 369978,
+    "totalTokens": 38219,
+    "totalToolUseCount": 0,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 23480,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 14737,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 23480
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 14737,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 23480,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 23480,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  },
+  "sourceToolAssistantUUID": "9af64e53-c87e-40a8-8623-f13c6833b4e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "d30fd9cd-5eb4-4b6b-97b5-2b9c99509230",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-27T22:59:39.548Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The JSON has been generated. Let me read it to verify it's well-formed and complete, then present the final output to the user.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d30fd9cd-5eb4-4b6b-97b5-2b9c99509230",
+  "isSidechain": false,
+  "requestId": "req_011CbTuMbvuivMu6U8hVL9pY",
+  "type": "assistant",
+  "uuid": "545d185a-2634-4f34-9090-cf9b6119820d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By18FNMABNCnmtrkjmWqF4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18597,
+      "cache_read_input_tokens": 44659,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18597,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 44659,
+          "cache_creation_input_tokens": 18597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18597
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-27T22:59:40.064Z_
+
+Let me verify the output is complete and valid:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "545d185a-2634-4f34-9090-cf9b6119820d",
+  "isSidechain": false,
+  "requestId": "req_011CbTuMbvuivMu6U8hVL9pY",
+  "type": "assistant",
+  "uuid": "905d2d06-c6e3-490d-85eb-8272dd2bef8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By18FNMABNCnmtrkjmWqF4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18597,
+      "cache_read_input_tokens": 44659,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18597,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 44659,
+          "cache_creation_input_tokens": 18597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18597
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-27T22:59:40.482Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01B6DsbnvxhYFwW1rfsjdRgw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/c31eb692-232a-4057-ad34-5dd773264795/tool-results/toolu_01WyLqXFo64T6RRiJoyuxZLV.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "905d2d06-c6e3-490d-85eb-8272dd2bef8e",
+  "isSidechain": false,
+  "requestId": "req_011CbTuMbvuivMu6U8hVL9pY",
+  "type": "assistant",
+  "uuid": "e199e945-8fc2-4efa-947d-ff6246dd127c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By18FNMABNCnmtrkjmWqF4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18597,
+      "cache_read_input_tokens": 44659,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18597,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 44659,
+          "cache_creation_input_tokens": 18597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18597
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-27T22:59:40.803Z_
+
+<details><summary>↩ Tool result · `toolu_01B6DsbnvxhYFwW1rfsjdRgw`</summary>
+
+```text
+1	[
+2	  {
+3	    "type": "text",
+4	    "text": "{\n  \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\",\n  \"change_type\": \"minor\",\n  \"core_problem\": \"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\",\n  \"opportunity\": \"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Self-rewarding approaches (Vision-SR1) check perceptual *self-containment* — whether the perception text suffices to answer without the image — but not whether the perception is *factually correct* relative to the image, nor whether inferences logically follow from cited evidence. (5) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (6) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.\",\n  \"landscape\": \"The landscape of RL-based multimodal reasoning training has exploded in early 2026 along seven axes:\\n\\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\\n\\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\\n\\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\\n\\n**Self-rewarding perception-reasoning decomposition:** Vision-SR1 (arXiv:2508.19652) decomposes reasoning into explicit &lt;visual_perception> and &lt;think> stages, requiring the model to first articulate a self-contained visual description, then reason from it. The visual reward is computed via self-rewarding: the frozen policy model is re-prompted to answer the question using only the generated visual perception text (without image access); if the correct answer is derived from perception alone, a visual reward of 1 is assigned. Uses GRPO with a decoupled reward-advantage framework that maintains separate advantages for visual and answer rewards. Three-stage training: SFT cold-start on 9K examples, then standard rollout with accuracy reward, then self-reward rollout. Achieves 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B (+1.4 over Vision-R1), 69.8 on HallusionBench. Key distinction from CFRL: (a) Vision-SR1 uses self-rewarding (same model judges itself) rather than an external distilled verifier — the reward is whether perception suffices to re-derive the answer, not whether each cited fact is *factually accurate* relative to the image; a hallucinated but internally consistent perception could score high. (b) Vision-SR1 checks perceptual *self-containment* (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow from cited evidence?), and completeness (are all task-relevant facts covered). (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences — it treats perception and reasoning as decomposed stages but does not check whether the reasoning is faithful to the specific evidence cited.\\n\\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\\n\\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity. AutoRubric-R1V (arXiv:2510.14738) auto-generates rubric-based process rewards by distilling consistent reasoning checkpoints from successful trajectories via self-aggregation — rubric reward equals the fraction of satisfied checkpoints. Achieves +8.0 avg over Qwen2.5-VL-7B on 6 benchmarks. Distinct from CFRL: AutoRubric derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image; rubrics are answer-path-dependent rather than evidence-grounding-dependent. CoRGI (arXiv:2508.00378) performs post-hoc step-wise verification of CoT reasoning by decomposing rationales into step-wise statements, grounding each step in visual evidence via Grounding DINO, and filtering unsupported claims. Inference-time only; conceptually related to CFRL's verification chain but does not serve as a training-time reward signal.\\n\\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\\n\\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\\n\\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~5-8x higher cost per rollout vs. single-pass verification; Vision-SR1 decomposes perception and reasoning with self-rewarding but does not verify factual grounding accuracy, binding validity, or completeness; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; AutoRubric-R1V provides process supervision via trajectory-mined rubrics but not composition property verification against the image; CoRGI performs step-wise visual verification but is inference-only; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.\",\n  \"inspired_by\": \"'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); Vision-SR1's perception-reasoning decomposition with self-rewarding (extended from self-containment checking to external factual grounding + binding + completeness verification); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; Chart-RVR's verifiable chart reasoning rewards (informing chart-domain binding checks); CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation\",\n  \"approach\": \"We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\\n\\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput. Compared to Vision-SR1's &lt;visual_perception> block, our format provides *fine-grained, per-fact citations* (individual &lt;observe> tags) rather than a monolithic perception paragraph, enabling per-fact grounding verification and explicit evidence-to-inference linking via the evidence='obs1,obs2' attribute.\\n\\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\\n\\n**Composition Fidelity Verifier (CFV) — three-property checking:**\\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn. We define binding validity checks at two levels:\\n\\n  **Tier 1 — Domain-agnostic arithmetic + geometry symbolic (core contribution):**\\n  - *Arithmetic verification* (all domains): Given numerical values extracted from &lt;observe> tags and a stated operation in the &lt;reason> block, verify computational correctness via symbolic execution. Concrete checks: (a) *Sum/difference/product/quotient consistency* — if obs1 cites 'value A = 45' and obs2 cites 'value B = 30', and the reason block claims 'difference = 15' with rule 'subtraction', verify 45−30=15. (b) *Ratio/percentage verification* — if 'Part = 120, Total = 400' and conclusion is '30%', verify 120/400=0.30. (c) *Comparison consistency* — if the reason block claims 'A > B' citing obs1 (A=45) and obs2 (B=30), verify 45>30. (d) *Multi-step arithmetic* — chain verification across sequential &lt;reason> blocks where one step's output is another's input. These checks are domain-agnostic: they apply equally to geometry problems (angle computations), chart problems (bar value comparisons, trend calculations), and diagram problems (counting, distance computations).\\n  - *Geometry symbolic theorem matching*: Cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. For example, cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → verify 60+90+x=180 → x=30°. Inspired by GeoSketch and the PAR framework.\\n\\n  **Tier 2 — Domain-specific binding checks (extension):**\\n  - *Chart-specific*: (a) *Ordering consistency* — if 'Bar A > Bar B' is cited, verify against the extracted data table that value(A) > value(B). (b) *Extrema verification* — if 'X is the maximum value' is cited, verify X = max(all values in series). (c) *Trend verification* — if 'increasing from 2020 to 2023' is cited, verify monotonic increase in the relevant data points; trends are formally defined as: 'increasing' requires each successive value ≥ previous (strict: >), 'decreasing' requires ≤ (strict: <), with tolerance ε for noise. (d) *Aggregation verification* — if 'average = X' is cited, verify mean(values) ≈ X within 1% relative tolerance. These checks require the chart data table extracted in the completeness pipeline (Stage A), linking Tier 2 binding to Tier 2 completeness infrastructure.\\n  - *Diagram-specific*: (a) *Structural relationship verification* — if 'A connects to B' is cited, verify edge (A,B) exists in the parsed graph from PGDP-Net. (b) *Attribute consistency* — if 'node A is labeled X' is cited, verify label(A) = X in the parsed representation. (c) *Cardinality verification* — if 'A has 3 connections' is cited, verify degree(A) = 3. (d) *Containment/hierarchy* — if 'A is inside B' is cited, verify the containment relation in the parsed spatial layout. These checks require the diagram graph representation from Stage A parsing.\\n  - *Fallback for inapplicable checks*: When a &lt;reason> block involves qualitative reasoning that cannot be reduced to arithmetic or structural constraint checking (e.g., 'the diagram suggests a causal relationship between X and Y'), the binding check returns a neutral score (0.5) rather than penalizing, and the verifier flags it as 'unverifiable-binding' for monitoring. This prevents the binding reward from penalizing valid qualitative reasoning while maintaining signal for verifiable steps.\\n\\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\\n\\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\\n\\n  **Stage B — Question-Conditioned Relevance Filtering**:\\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\\n\\n  **Stage C — Coverage Verification**:\\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\\n\\n**Verifier architecture and cost model:** The CFV (4B parameters, based on Qwen3-VL-4B) performs all three property checks in a single autoregressive forward pass. The input consists of the image + the model's full tagged response + a structured verification instruction. The CFV generates verification judgments sequentially as autoregressive output: for each &lt;observe> tag, it produces an inline grounding verdict (verified/unverified with confidence score); for each &lt;reason> block, it produces a binding validity verdict; and finally, it produces an overall completeness assessment. This is architecturally identical to how MJ1 generates its multi-stage verification chain in one forward pass — the grounding VQA for each observation is performed as internal sub-reasoning within the autoregressive generation, NOT as separate VQA calls. The output length scales with the number of observations and reasoning steps (~500-1500 tokens for typical responses with 4-8 observations), but requires only a single image encoding through the vision encoder.\\n\\n**Cost comparison with FGRPO (precise):** FGRPO requires S separate judge calls per rollout (S ≈ 5-8 visual sentences), each requiring its own image encoding through the 30B MoE model (3.3B active parameters). CFRL requires 1 verifier call per rollout with a single image encoding through the 4B dense model. Since image encoding is the dominant cost in VLM inference (processing hundreds of visual tokens through transformer layers), the savings from 1 vs. S encodings is the primary cost driver. Per-call text generation cost is roughly comparable: FGRPO generates S × ~150 = 750-1200 tokens total across all calls; CFRL generates ~500-1500 tokens in one call, at similar active parameter counts (3.3B MoE vs. 4B dense). The effective cost reduction is **~5-8x per rollout** (proportional to S), driven primarily by the single image encoding. Per training sample with K rollouts, FGRPO makes K×S judge calls vs. CFRL's K verifier calls — the same ~5-8x ratio holds. For Tier 1 (grounding + binding only), where binding validity uses lightweight symbolic/arithmetic checking outside the verifier, the verifier output is shorter (~300-800 tokens), further reducing per-call cost.\\n\\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\\n\\n  *Tier 1 — Core contribution (grounding + binding):* Evidence grounding (VQA-based, all domains) and binding validity (domain-agnostic arithmetic verification + geometry symbolic theorem matching). This tier requires only the distilled 4B verifier and a geometry theorem library — no external parsing tools. Domain-agnostic arithmetic verification applies to chart and diagram problems too (any reasoning step involving numerical computation is checkable), providing cross-domain binding signal even without domain-specific infrastructure. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking and domain-specific binding prove too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\\n\\n  *Tier 2 — Extension (completeness + domain-specific binding):* Integration completeness adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Domain-specific binding for charts adds data-table-dependent checks (ordering, trends, extrema); for diagrams adds graph-dependent checks (structural relationships, attributes). Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If domain-specific binding checks add noise rather than signal (e.g., trend verification on noisy data), fall back to Tier 1 arithmetic-only binding for that domain. (d) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\\n\\n  *Risk matrix:*\\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\\n\\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference, arithmetic errors), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains, with balanced representation of arithmetic binding errors (Tier 1) and domain-specific binding errors (Tier 2). The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\\n\\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately — with Tier 1 binding validated separately for arithmetic and geometry-symbolic components, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\\n\\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\\n\\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\\n\\n**Key distinction from Vision-SR1:** Vision-SR1 decomposes reasoning into &lt;visual_perception> and &lt;think> stages and checks perceptual self-containment via self-rewarding — re-prompting the model without image access to verify the perception suffices. CFRL differs in three ways: (a) CFRL uses an external distilled verifier rather than self-rewarding — self-rewarding cannot detect hallucinated perceptions that happen to be internally consistent (a fabricated but plausible description could still support the correct answer), while external grounding verification checks each cited fact against the actual image. (b) CFRL provides fine-grained per-fact citations (&lt;observe> tags) rather than a monolithic perception block, enabling per-fact grounding verification and explicit evidence-to-inference linking. (c) CFRL verifies binding validity (does the inference logically follow from cited evidence?) and integration completeness, which Vision-SR1 does not address.\\n\\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\\n\\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\\n\\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\\n\\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~K calls per sample (one per rollout), yielding ~5-8x cost reduction driven by single image encoding per rollout vs. S encodings. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\\n\\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\\n\\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\\n\\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\\n\\n**Key distinction from AutoRubric-R1V:** AutoRubric-R1V provides process supervision by mining rubric checkpoints from successful trajectories — it checks whether the model's reasoning path conforms to patterns found in correct solutions. CFRL instead verifies composition properties against the image itself: whether cited evidence is factually grounded, inferences are valid, and coverage is complete. These are complementary: AutoRubric rewards path conformity, CFRL rewards evidence fidelity.\\n\\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)\",\n      \"timeline\": \"10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)\",\n      \"estimated_gpu_cost\": \"$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"950 (same experimental requirements)\",\n      \"timeline\": \"8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)\",\n      \"claude_api_cost\": \"$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,250\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR+Vision-SR1 reimplementation, symbolic checker coverage expansion)\",\n      \"timeline\": \"7 weeks (parallelized experiment scheduling, automated verifier validation)\",\n      \"claude_api_cost\": \"$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)\",\n      \"estimated_gpu_cost\": \"$1,950\",\n      \"speed_bottleneck\": \"Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)\",\n    \"AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)\",\n    \"CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)\",\n    \"Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)\",\n    \"PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)\",\n    \"MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)\",\n    \"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)\",\n    \"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)\",\n    \"Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)\",\n    \"TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)\",\n    \"v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)\",\n    \"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)\",\n    \"SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)\",\n    \"Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization (arXiv:2508.19652)\",\n    \"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning (arXiv:2510.14738)\",\n    \"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding (arXiv:2508.00378)\",\n    \"MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)\",\n    \"Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)\",\n    \"Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)\",\n    \"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)\",\n    \"Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)\",\n    \"Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)\",\n    \"Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)\",\n    \"Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)\",\n    \"What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)\",\n    \"Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\",\n    \"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)\",\n    \"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)\",\n    \"GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)\",\n    \"Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)\",\n    \"Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)\",\n    \"DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)\",\n    \"VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)\",\n    \"Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)\",\n    \"PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)\",\n    \"Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)\",\n    \"Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)\",\n    \"DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)\",\n    \"OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)\",\n    \"From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)\",\n    \"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\",\n    \"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)\",\n    \"Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)\",\n    \"PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)\",\n    \"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning (arXiv:2510.10973)\"\n  ],\n  \"description\": \"We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), self-rewarding perception decomposition (Vision-SR1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), rubric-based process supervision (AutoRubric-R1V), post-hoc visual verification (CoRGI), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence, and (3) integration completeness — all task-relevant visual facts are cited. Binding validity is structured in two tiers: Tier 1 (core) provides domain-agnostic arithmetic verification (sum/difference/ratio/comparison consistency between cited values and computed results) and geometry symbolic theorem matching, applicable across all domains without external tools; Tier 2 (extension) adds domain-specific checks for charts (ordering consistency, extrema, trend monotonicity, aggregation) and diagrams (structural relationship, attribute, cardinality verification), requiring parsed data representations. The CFV performs all verification in a single autoregressive forward pass — processing the image once and generating inline grounding/binding verdicts for each observation and reasoning step sequentially — yielding ~5-8x cost reduction over FGRPO's per-sentence judge calls (driven by 1 vs. S ≈ 5-8 image encodings per rollout). The contribution is structured in two tiers: Tier 1 (core: grounding + arithmetic/geometric binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing + domain-specific binding checks), ensuring the paper is defensible even if completeness checking or domain-specific binding proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike Vision-SR1 (self-rewarding checks perceptual self-containment but not factual accuracy or binding validity), we use an external verifier that checks each cited fact against the image. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces cost ~5-8x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. Unlike AutoRubric-R1V (trajectory-mined rubrics), we verify composition properties against the image. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), Vision-SR1-7B (58.8 avg, 69.8 HallusionBench), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), AutoRubric-R1V-7B (+8.0 avg), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.\",\n  \"project_name\": \"composition_fidelity_rl\",\n  \"source\": \"web_research\",\n  \"changes_from_previous_revision\": {\n    \"issue_1_vision_sr1\": \"Added Vision-SR1 (arXiv:2508.19652) as a new landscape subsection ('Self-rewarding perception-reasoning decomposition') with detailed technical description: uses &lt;visual_perception>/&lt;think>/&lt;answer> structured tags, self-rewarding via re-prompting the frozen policy model without image access to check perceptual self-containment, GRPO with decoupled reward-advantage framework, three-stage training (SFT cold-start → standard rollout → self-reward rollout), 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B. Differentiated from CFRL on three axes: (a) self-rewarding vs. external distilled verifier — self-rewarding cannot detect hallucinated but internally consistent perceptions, while CFRL's grounding verification checks each cited fact against the actual image; (b) perceptual self-containment checking vs. factual grounding accuracy + binding validity + completeness — Vision-SR1 tests whether perception suffices to re-derive the answer, not whether each fact is correct; (c) monolithic perception block vs. fine-grained per-fact &lt;observe> citations enabling per-fact verification and explicit evidence-to-inference linking. Added dedicated 'Key distinction from Vision-SR1' section in approach.\",\n    \"issue_2_binding_validity_specification\": \"Substantially expanded binding validity with concrete, algorithmic specifications for all domains, organized in two tiers. Tier 1 (core, domain-agnostic): (a) Arithmetic verification — symbolic execution of sum/difference/product/quotient consistency, ratio/percentage verification, comparison consistency, and multi-step arithmetic chaining; applies to ALL domains (geometry, charts, diagrams) without external tools. (b) Geometry symbolic theorem matching (existing). Tier 2 (extension, domain-specific): (a) Chart-specific: ordering consistency against extracted data table, extrema verification (X = max(values)), trend verification with formal monotonicity definition (including tolerance ε for noise), aggregation verification (mean within 1% relative tolerance). (b) Diagram-specific: structural relationship verification against parsed graph (edge existence), attribute consistency (label matching), cardinality verification (degree check), containment/hierarchy verification. Added explicit fallback for qualitative reasoning: binding check returns neutral score (0.5) for steps that cannot be reduced to arithmetic or structural constraint checking, flagged as 'unverifiable-binding' for monitoring. Revised Tier 1/Tier 2 scoping: Tier 1 now includes domain-agnostic arithmetic + geometry symbolic (no external tools needed), Tier 2 adds completeness + domain-specific binding (requiring parsed data representations). This makes Tier 1 stronger — it provides cross-domain binding signal via arithmetic verification even without chart/diagram-specific infrastructure.\",\n    \"issue_3_verifier_cost_model\": \"Clarified CFV architecture and cost model. The CFV performs all three property checks in a single autoregressive forward pass: given image + tagged response + verification instruction as input, it generates verification judgments for all observations and reasoning steps sequentially as autoregressive output. Grounding VQA for each &lt;observe> tag is performed as internal sub-reasoning within the autoregressive generation (inline grounding verdicts), NOT as separate VQA calls. This is architecturally identical to MJ1's single-pass multi-stage verification chain. Revised cost comparison: effective cost reduction is ~5-8x per rollout (revised from ~10-20x), driven by 1 image encoding vs. S ≈ 5-8 encodings. Per-call text generation cost is roughly comparable between CFRL (500-1500 verification tokens at 4B dense) and FGRPO (S × ~150 tokens at 3.3B active MoE). The primary savings come from the single image encoding — processing visual tokens through transformer layers is the dominant cost in VLM inference.\",\n    \"issue_4_autorubric_corgi\": \"Added AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) to the landscape under 'Structured verification and evaluation judges'. AutoRubric-R1V: auto-generates rubric-based process rewards via self-aggregation from successful trajectories, rubric reward = fraction of satisfied checkpoints, +8.0 avg on 6 benchmarks. Differentiated: derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image. CoRGI: post-hoc step-wise verification via Grounding DINO, decomposing rationales and grounding each step in visual evidence. Differentiated: inference-time only, does not serve as training-time reward. Added 'Key distinction from AutoRubric-R1V' section. Both added to key_references. Also added Chart-RVR (arXiv:2510.10973) to key_references as it informed the chart-domain binding validity specification.\"\n  }\n}"
+5	  },
+6	  {
+7	    "type": "text",
+8	    "text": "agentId: a9ae76cd12020ea18 (use SendMessage with to: 'a9ae76cd12020ea18' to continue this agent)\n&lt;usage>total_tokens: 38219\ntool_uses: 0\nduration_ms: 369978&lt;/usage>"
+9	  }
+10	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e199e945-8fc2-4efa-947d-ff6246dd127c",
+  "isSidechain": false,
+  "promptId": "13bb93be-293f-49fe-8976-c247519dda2b",
+  "type": "user",
+  "uuid": "ea792988-ef71-431a-b97b-8d0e0c4b67f5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu-idea-review/c31eb692-232a-4057-ad34-5dd773264795/tool-results/toolu_01WyLqXFo64T6RRiJoyuxZLV.json",
+      "content": "[\n  {\n    \"type\": \"text\",\n    \"text\": \"{\\n  \\\"title\\\": \\\"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier\\\",\\n  \\\"change_type\\\": \\\"minor\\\",\\n  \\\"core_problem\\\": \\\"How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?\\\",\\n  \\\"opportunity\\\": \\\"Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Self-rewarding approaches (Vision-SR1) check perceptual *self-containment* — whether the perception text suffices to answer without the image — but not whether the perception is *factually correct* relative to the image, nor whether inferences logically follow from cited evidence. (5) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (6) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.\\\",\\n  \\\"landscape\\\": \\\"The landscape of RL-based multimodal reasoning training has exploded in early 2026 along seven axes:\\\\n\\\\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\\\\n\\\\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\\\\n\\\\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\\\\n\\\\n**Self-rewarding perception-reasoning decomposition:** Vision-SR1 (arXiv:2508.19652) decomposes reasoning into explicit &lt;visual_perception> and &lt;think> stages, requiring the model to first articulate a self-contained visual description, then reason from it. The visual reward is computed via self-rewarding: the frozen policy model is re-prompted to answer the question using only the generated visual perception text (without image access); if the correct answer is derived from perception alone, a visual reward of 1 is assigned. Uses GRPO with a decoupled reward-advantage framework that maintains separate advantages for visual and answer rewards. Three-stage training: SFT cold-start on 9K examples, then standard rollout with accuracy reward, then self-reward rollout. Achieves 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B (+1.4 over Vision-R1), 69.8 on HallusionBench. Key distinction from CFRL: (a) Vision-SR1 uses self-rewarding (same model judges itself) rather than an external distilled verifier — the reward is whether perception suffices to re-derive the answer, not whether each cited fact is *factually accurate* relative to the image; a hallucinated but internally consistent perception could score high. (b) Vision-SR1 checks perceptual *self-containment* (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow from cited evidence?), and completeness (are all task-relevant facts covered). (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences — it treats perception and reasoning as decomposed stages but does not check whether the reasoning is faithful to the specific evidence cited.\\\\n\\\\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\\\\n\\\\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity. AutoRubric-R1V (arXiv:2510.14738) auto-generates rubric-based process rewards by distilling consistent reasoning checkpoints from successful trajectories via self-aggregation — rubric reward equals the fraction of satisfied checkpoints. Achieves +8.0 avg over Qwen2.5-VL-7B on 6 benchmarks. Distinct from CFRL: AutoRubric derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image; rubrics are answer-path-dependent rather than evidence-grounding-dependent. CoRGI (arXiv:2508.00378) performs post-hoc step-wise verification of CoT reasoning by decomposing rationales into step-wise statements, grounding each step in visual evidence via Grounding DINO, and filtering unsupported claims. Inference-time only; conceptually related to CFRL's verification chain but does not serve as a training-time reward signal.\\\\n\\\\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\\\\n\\\\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\\\\n\\\\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~5-8x higher cost per rollout vs. single-pass verification; Vision-SR1 decomposes perception and reasoning with self-rewarding but does not verify factual grounding accuracy, binding validity, or completeness; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; AutoRubric-R1V provides process supervision via trajectory-mined rubrics but not composition property verification against the image; CoRGI performs step-wise visual verification but is inference-only; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.\\\",\\n  \\\"inspired_by\\\": \\\"'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); Vision-SR1's perception-reasoning decomposition with self-rewarding (extended from self-containment checking to external factual grounding + binding + completeness verification); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; Chart-RVR's verifiable chart reasoning rewards (informing chart-domain binding checks); CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation\\\",\\n  \\\"approach\\\": \\\"We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\\\\n\\\\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput. Compared to Vision-SR1's &lt;visual_perception> block, our format provides *fine-grained, per-fact citations* (individual &lt;observe> tags) rather than a monolithic perception paragraph, enabling per-fact grounding verification and explicit evidence-to-inference linking via the evidence='obs1,obs2' attribute.\\\\n\\\\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\\\\n\\\\n**Composition Fidelity Verifier (CFV) — three-property checking:**\\\\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\\\\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn. We define binding validity checks at two levels:\\\\n\\\\n  **Tier 1 — Domain-agnostic arithmetic + geometry symbolic (core contribution):**\\\\n  - *Arithmetic verification* (all domains): Given numerical values extracted from &lt;observe> tags and a stated operation in the &lt;reason> block, verify computational correctness via symbolic execution. Concrete checks: (a) *Sum/difference/product/quotient consistency* — if obs1 cites 'value A = 45' and obs2 cites 'value B = 30', and the reason block claims 'difference = 15' with rule 'subtraction', verify 45−30=15. (b) *Ratio/percentage verification* — if 'Part = 120, Total = 400' and conclusion is '30%', verify 120/400=0.30. (c) *Comparison consistency* — if the reason block claims 'A > B' citing obs1 (A=45) and obs2 (B=30), verify 45>30. (d) *Multi-step arithmetic* — chain verification across sequential &lt;reason> blocks where one step's output is another's input. These checks are domain-agnostic: they apply equally to geometry problems (angle computations), chart problems (bar value comparisons, trend calculations), and diagram problems (counting, distance computations).\\\\n  - *Geometry symbolic theorem matching*: Cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. For example, cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → verify 60+90+x=180 → x=30°. Inspired by GeoSketch and the PAR framework.\\\\n\\\\n  **Tier 2 — Domain-specific binding checks (extension):**\\\\n  - *Chart-specific*: (a) *Ordering consistency* — if 'Bar A > Bar B' is cited, verify against the extracted data table that value(A) > value(B). (b) *Extrema verification* — if 'X is the maximum value' is cited, verify X = max(all values in series). (c) *Trend verification* — if 'increasing from 2020 to 2023' is cited, verify monotonic increase in the relevant data points; trends are formally defined as: 'increasing' requires each successive value ≥ previous (strict: >), 'decreasing' requires ≤ (strict: <), with tolerance ε for noise. (d) *Aggregation verification* — if 'average = X' is cited, verify mean(values) ≈ X within 1% relative tolerance. These checks require the chart data table extracted in the completeness pipeline (Stage A), linking Tier 2 binding to Tier 2 completeness infrastructure.\\\\n  - *Diagram-specific*: (a) *Structural relationship verification* — if 'A connects to B' is cited, verify edge (A,B) exists in the parsed graph from PGDP-Net. (b) *Attribute consistency* — if 'node A is labeled X' is cited, verify label(A) = X in the parsed representation. (c) *Cardinality verification* — if 'A has 3 connections' is cited, verify degree(A) = 3. (d) *Containment/hierarchy* — if 'A is inside B' is cited, verify the containment relation in the parsed spatial layout. These checks require the diagram graph representation from Stage A parsing.\\\\n  - *Fallback for inapplicable checks*: When a &lt;reason> block involves qualitative reasoning that cannot be reduced to arithmetic or structural constraint checking (e.g., 'the diagram suggests a causal relationship between X and Y'), the binding check returns a neutral score (0.5) rather than penalizing, and the verifier flags it as 'unverifiable-binding' for monitoring. This prevents the binding reward from penalizing valid qualitative reasoning while maintaining signal for verifiable steps.\\\\n\\\\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\\\\n\\\\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\\\\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\\\\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\\\\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\\\\n\\\\n  **Stage B — Question-Conditioned Relevance Filtering**:\\\\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\\\\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\\\\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\\\\n\\\\n  **Stage C — Coverage Verification**:\\\\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\\\\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\\\\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\\\\n\\\\n**Verifier architecture and cost model:** The CFV (4B parameters, based on Qwen3-VL-4B) performs all three property checks in a single autoregressive forward pass. The input consists of the image + the model's full tagged response + a structured verification instruction. The CFV generates verification judgments sequentially as autoregressive output: for each &lt;observe> tag, it produces an inline grounding verdict (verified/unverified with confidence score); for each &lt;reason> block, it produces a binding validity verdict; and finally, it produces an overall completeness assessment. This is architecturally identical to how MJ1 generates its multi-stage verification chain in one forward pass — the grounding VQA for each observation is performed as internal sub-reasoning within the autoregressive generation, NOT as separate VQA calls. The output length scales with the number of observations and reasoning steps (~500-1500 tokens for typical responses with 4-8 observations), but requires only a single image encoding through the vision encoder.\\\\n\\\\n**Cost comparison with FGRPO (precise):** FGRPO requires S separate judge calls per rollout (S ≈ 5-8 visual sentences), each requiring its own image encoding through the 30B MoE model (3.3B active parameters). CFRL requires 1 verifier call per rollout with a single image encoding through the 4B dense model. Since image encoding is the dominant cost in VLM inference (processing hundreds of visual tokens through transformer layers), the savings from 1 vs. S encodings is the primary cost driver. Per-call text generation cost is roughly comparable: FGRPO generates S × ~150 = 750-1200 tokens total across all calls; CFRL generates ~500-1500 tokens in one call, at similar active parameter counts (3.3B MoE vs. 4B dense). The effective cost reduction is **~5-8x per rollout** (proportional to S), driven primarily by the single image encoding. Per training sample with K rollouts, FGRPO makes K×S judge calls vs. CFRL's K verifier calls — the same ~5-8x ratio holds. For Tier 1 (grounding + binding only), where binding validity uses lightweight symbolic/arithmetic checking outside the verifier, the verifier output is shorter (~300-800 tokens), further reducing per-call cost.\\\\n\\\\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\\\\n\\\\n  *Tier 1 — Core contribution (grounding + binding):* Evidence grounding (VQA-based, all domains) and binding validity (domain-agnostic arithmetic verification + geometry symbolic theorem matching). This tier requires only the distilled 4B verifier and a geometry theorem library — no external parsing tools. Domain-agnostic arithmetic verification applies to chart and diagram problems too (any reasoning step involving numerical computation is checkable), providing cross-domain binding signal even without domain-specific infrastructure. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking and domain-specific binding prove too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\\\\n\\\\n  *Tier 2 — Extension (completeness + domain-specific binding):* Integration completeness adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Domain-specific binding for charts adds data-table-dependent checks (ordering, trends, extrema); for diagrams adds graph-dependent checks (structural relationships, attributes). Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If domain-specific binding checks add noise rather than signal (e.g., trend verification on noisy data), fall back to Tier 1 arithmetic-only binding for that domain. (d) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\\\\n\\\\n  *Risk matrix:*\\\\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\\\\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\\\\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\\\\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\\\\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\\\\n\\\\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference, arithmetic errors), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains, with balanced representation of arithmetic binding errors (Tier 1) and domain-specific binding errors (Tier 2). The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\\\\n\\\\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately — with Tier 1 binding validated separately for arithmetic and geometry-symbolic components, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\\\\n\\\\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\\\\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\\\\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\\\\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\\\\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\\\\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\\\\n\\\\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\\\\n\\\\n**Key distinction from Vision-SR1:** Vision-SR1 decomposes reasoning into &lt;visual_perception> and &lt;think> stages and checks perceptual self-containment via self-rewarding — re-prompting the model without image access to verify the perception suffices. CFRL differs in three ways: (a) CFRL uses an external distilled verifier rather than self-rewarding — self-rewarding cannot detect hallucinated perceptions that happen to be internally consistent (a fabricated but plausible description could still support the correct answer), while external grounding verification checks each cited fact against the actual image. (b) CFRL provides fine-grained per-fact citations (&lt;observe> tags) rather than a monolithic perception block, enabling per-fact grounding verification and explicit evidence-to-inference linking. (c) CFRL verifies binding validity (does the inference logically follow from cited evidence?) and integration completeness, which Vision-SR1 does not address.\\\\n\\\\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\\\\n\\\\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\\\\n\\\\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\\\\n\\\\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~K calls per sample (one per rollout), yielding ~5-8x cost reduction driven by single image encoding per rollout vs. S encodings. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\\\\n\\\\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\\\\n\\\\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\\\\n\\\\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\\\\n\\\\n**Key distinction from AutoRubric-R1V:** AutoRubric-R1V provides process supervision by mining rubric checkpoints from successful trajectories — it checks whether the model's reasoning path conforms to patterns found in correct solutions. CFRL instead verifies composition properties against the image itself: whether cited evidence is factually grounded, inferences are valid, and coverage is complete. These are complementary: AutoRubric rewards path conformity, CFRL rewards evidence fidelity.\\\\n\\\\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.\\\",\\n  \\\"resource_estimate\\\": {\\n    \\\"manual\\\": {\\n      \\\"gpu_hours\\\": \\\"950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)\\\",\\n      \\\"timeline\\\": \\\"10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)\\\",\\n      \\\"estimated_gpu_cost\\\": \\\"$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)\\\"\\n    },\\n    \\\"human_in_loop\\\": {\\n      \\\"gpu_hours\\\": \\\"950 (same experimental requirements)\\\",\\n      \\\"timeline\\\": \\\"8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)\\\",\\n      \\\"claude_api_cost\\\": \\\"$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)\\\",\\n      \\\"estimated_gpu_cost\\\": \\\"$1,250\\\"\\n    },\\n    \\\"auto_research\\\": {\\n      \\\"gpu_hours\\\": \\\"1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR+Vision-SR1 reimplementation, symbolic checker coverage expansion)\\\",\\n      \\\"timeline\\\": \\\"7 weeks (parallelized experiment scheduling, automated verifier validation)\\\",\\n      \\\"claude_api_cost\\\": \\\"$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)\\\",\\n      \\\"estimated_gpu_cost\\\": \\\"$1,950\\\",\\n      \\\"speed_bottleneck\\\": \\\"Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint\\\"\\n    }\\n  },\\n  \\\"target_venues\\\": [\\n    \\\"ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)\\\",\\n    \\\"AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)\\\",\\n    \\\"CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)\\\"\\n  ],\\n  \\\"level\\\": \\\"top-tier\\\",\\n  \\\"key_references\\\": [\\n    \\\"Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)\\\",\\n    \\\"Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)\\\",\\n    \\\"PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)\\\",\\n    \\\"MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)\\\",\\n    \\\"Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)\\\",\\n    \\\"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)\\\",\\n    \\\"Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)\\\",\\n    \\\"TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)\\\",\\n    \\\"v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)\\\",\\n    \\\"VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)\\\",\\n    \\\"SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)\\\",\\n    \\\"Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization (arXiv:2508.19652)\\\",\\n    \\\"AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning (arXiv:2510.14738)\\\",\\n    \\\"CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding (arXiv:2508.00378)\\\",\\n    \\\"MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)\\\",\\n    \\\"Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)\\\",\\n    \\\"Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)\\\",\\n    \\\"Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)\\\",\\n    \\\"Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)\\\",\\n    \\\"Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)\\\",\\n    \\\"Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)\\\",\\n    \\\"Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)\\\",\\n    \\\"What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)\\\",\\n    \\\"Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)\\\",\\n    \\\"Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)\\\",\\n    \\\"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)\\\",\\n    \\\"GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)\\\",\\n    \\\"Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)\\\",\\n    \\\"Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)\\\",\\n    \\\"DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)\\\",\\n    \\\"VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)\\\",\\n    \\\"Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)\\\",\\n    \\\"PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)\\\",\\n    \\\"Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)\\\",\\n    \\\"Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)\\\",\\n    \\\"DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)\\\",\\n    \\\"OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)\\\",\\n    \\\"From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)\\\",\\n    \\\"Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)\\\",\\n    \\\"Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)\\\",\\n    \\\"Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)\\\",\\n    \\\"PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)\\\",\\n    \\\"Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning (arXiv:2510.10973)\\\"\\n  ],\\n  \\\"description\\\": \\\"We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), self-rewarding perception decomposition (Vision-SR1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), rubric-based process supervision (AutoRubric-R1V), post-hoc visual verification (CoRGI), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence, and (3) integration completeness — all task-relevant visual facts are cited. Binding validity is structured in two tiers: Tier 1 (core) provides domain-agnostic arithmetic verification (sum/difference/ratio/comparison consistency between cited values and computed results) and geometry symbolic theorem matching, applicable across all domains without external tools; Tier 2 (extension) adds domain-specific checks for charts (ordering consistency, extrema, trend monotonicity, aggregation) and diagrams (structural relationship, attribute, cardinality verification), requiring parsed data representations. The CFV performs all verification in a single autoregressive forward pass — processing the image once and generating inline grounding/binding verdicts for each observation and reasoning step sequentially — yielding ~5-8x cost reduction over FGRPO's per-sentence judge calls (driven by 1 vs. S ≈ 5-8 image encodings per rollout). The contribution is structured in two tiers: Tier 1 (core: grounding + arithmetic/geometric binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing + domain-specific binding checks), ensuring the paper is defensible even if completeness checking or domain-specific binding proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike Vision-SR1 (self-rewarding checks perceptual self-containment but not factual accuracy or binding validity), we use an external verifier that checks each cited fact against the image. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces cost ~5-8x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. Unlike AutoRubric-R1V (trajectory-mined rubrics), we verify composition properties against the image. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), Vision-SR1-7B (58.8 avg, 69.8 HallusionBench), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), AutoRubric-R1V-7B (+8.0 avg), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.\\\",\\n  \\\"project_name\\\": \\\"composition_fidelity_rl\\\",\\n  \\\"source\\\": \\\"web_research\\\",\\n  \\\"changes_from_previous_revision\\\": {\\n    \\\"issue_1_vision_sr1\\\": \\\"Added Vision-SR1 (arXiv:2508.19652) as a new landscape subsection ('Self-rewarding perception-reasoning decomposition') with detailed technical description: uses &lt;visual_perception>/&lt;think>/&lt;answer> structured tags, self-rewarding via re-prompting the frozen policy model without image access to check perceptual self-containment, GRPO with decoupled reward-advantage framework, three-stage training (SFT cold-start → standard rollout → self-reward rollout), 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B. Differentiated from CFRL on three axes: (a) self-rewarding vs. external distilled verifier — self-rewarding cannot detect hallucinated but internally consistent perceptions, while CFRL's grounding verification checks each cited fact against the actual image; (b) perceptual self-containment checking vs. factual grounding accuracy + binding validity + completeness — Vision-SR1 tests whether perception suffices to re-derive the answer, not whether each fact is correct; (c) monolithic perception block vs. fine-grained per-fact &lt;observe> citations enabling per-fact verification and explicit evidence-to-inference linking. Added dedicated 'Key distinction from Vision-SR1' section in approach.\\\",\\n    \\\"issue_2_binding_validity_specification\\\": \\\"Substantially expanded binding validity with concrete, algorithmic specifications for all domains, organized in two tiers. Tier 1 (core, domain-agnostic): (a) Arithmetic verification — symbolic execution of sum/difference/product/quotient consistency, ratio/percentage verification, comparison consistency, and multi-step arithmetic chaining; applies to ALL domains (geometry, charts, diagrams) without external tools. (b) Geometry symbolic theorem matching (existing). Tier 2 (extension, domain-specific): (a) Chart-specific: ordering consistency against extracted data table, extrema verification (X = max(values)), trend verification with formal monotonicity definition (including tolerance ε for noise), aggregation verification (mean within 1% relative tolerance). (b) Diagram-specific: structural relationship verification against parsed graph (edge existence), attribute consistency (label matching), cardinality verification (degree check), containment/hierarchy verification. Added explicit fallback for qualitative reasoning: binding check returns neutral score (0.5) for steps that cannot be reduced to arithmetic or structural constraint checking, flagged as 'unverifiable-binding' for monitoring. Revised Tier 1/Tier 2 scoping: Tier 1 now includes domain-agnostic arithmetic + geometry symbolic (no external tools needed), Tier 2 adds completeness + domain-specific binding (requiring parsed data representations). This makes Tier 1 stronger — it provides cross-domain binding signal via arithmetic verification even without chart/diagram-specific infrastructure.\\\",\\n    \\\"issue_3_verifier_cost_model\\\": \\\"Clarified CFV architecture and cost model. The CFV performs all three property checks in a single autoregressive forward pass: given image + tagged response + verification instruction as input, it generates verification judgments for all observations and reasoning steps sequentially as autoregressive output. Grounding VQA for each &lt;observe> tag is performed as internal sub-reasoning within the autoregressive generation (inline grounding verdicts), NOT as separate VQA calls. This is architecturally identical to MJ1's single-pass multi-stage verification chain. Revised cost comparison: effective cost reduction is ~5-8x per rollout (revised from ~10-20x), driven by 1 image encoding vs. S ≈ 5-8 encodings. Per-call text generation cost is roughly comparable between CFRL (500-1500 verification tokens at 4B dense) and FGRPO (S × ~150 tokens at 3.3B active MoE). The primary savings come from the single image encoding — processing visual tokens through transformer layers is the dominant cost in VLM inference.\\\",\\n    \\\"issue_4_autorubric_corgi\\\": \\\"Added AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) to the landscape under 'Structured verification and evaluation judges'. AutoRubric-R1V: auto-generates rubric-based process rewards via self-aggregation from successful trajectories, rubric reward = fraction of satisfied checkpoints, +8.0 avg on 6 benchmarks. Differentiated: derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image. CoRGI: post-hoc step-wise verification via Grounding DINO, decomposing rationales and grounding each step in visual evidence. Differentiated: inference-time only, does not serve as training-time reward. Added 'Key distinction from AutoRubric-R1V' section. Both added to key_references. Also added Chart-RVR (arXiv:2510.10973) to key_references as it informed the chart-domain binding validity specification.\\\"\\n  }\\n}\"\n  },\n  {\n    \"type\": \"text\",\n    \"text\": \"agentId: a9ae76cd12020ea18 (use SendMessage with to: 'a9ae76cd12020ea18' to continue this agent)\\n&lt;usage>total_tokens: 38219\\ntool_uses: 0\\nduration_ms: 369978&lt;/usage>\"\n  }\n]",
+      "numLines": 10,
+      "startLine": 1,
+      "totalLines": 10
+    }
+  },
+  "sourceToolAssistantUUID": "e199e945-8fc2-4efa-947d-ff6246dd127c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "ea792988-ef71-431a-b97b-8d0e0c4b67f5",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-27T22:59:49.545Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The JSON is valid and complete. Let me extract just the actual JSON content (the inner JSON object from the text field) and present it to the user. The output looks good and addresses all four reviewer issues comprehensively. Let me verify the key changes:
+
+1. **Vision-SR1**: Added as a new landscape subsection with detailed technical description and three-axis differentiation ✓
+2. **Binding validity specification**: Expanded with concrete algorithms for all domains, organized in Tier 1 (domain-agnostic arithmetic + geometry) and Tier 2 (chart-specific + diagram-specific), with explicit fallback for qualitative reasoning ✓
+
+
+3. **Verifier cost model**: Clarified single autoregressive pass, revised cost from ~10-20x to ~5-8x with detailed breakdown ✓
+4. **AutoRubric-R1V and CoRGI**: Added to landscape with differentiation ✓
+
+The JSON is complete and well-structured. Now I'll present the final output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea792988-ef71-431a-b97b-8d0e0c4b67f5",
+  "isSidechain": false,
+  "requestId": "req_011CbTuMyKmgnPAvAMZH9S6s",
+  "type": "assistant",
+  "uuid": "654c8760-89e1-4836-85d3-4ccd54fcc2c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqCyNS4i12QBtdgHN5KyqV",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15296,
+      "cache_read_input_tokens": 63256,
+      "output_tokens": 15704,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15296,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15704,
+          "cache_read_input_tokens": 63256,
+          "cache_creation_input_tokens": 15296,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15296
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-27T23:06:41.682Z_
+
+The revised proposal is complete. Here is the final JSON:
+
+```json
+{
+  "title": "Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity, and Integration Completeness via a Distilled Composition Verifier",
+  "change_type": "minor",
+  "core_problem": "How can we train multimodal reasoning models to produce verifiably faithful perception-reasoning integration — where each reasoning step explicitly cites visual evidence, citations are grounded, inferences are logically consistent with cited evidence, and all task-relevant visual facts are integrated — using a single lightweight composition verifier rather than expensive per-step VLM judges or statistical attention proxies?",
+  "opportunity": "Recent work has made significant progress on components of faithful multimodal reasoning: PEARL (CVPR 2026) gates reasoning on perception accuracy, FGRPO (Apr 2026) constrains consistency and semantic grounding via per-sentence VLM judge calls using Qwen3-VL-30B-A3B, Faithful-MR1 (May 2026) anchors attention to causal image regions, PaLMR (CVPR 2026) enforces process-level visual fidelity through V-GRPO with binary perception gating, MJ1 (Mar 2026) trains a 3B judge with a structured grounded verification chain for evaluation, token-level credit methods (PGPO, SAYO, AT-RL, VICRA, KAWHI) reweight optimization toward visually-dependent tokens, TreeVGR (ICLR 2026) trains models to generate bounding-box evidence via RL with dual IoU reward, v1 (May 2026) constructs 300K reasoning traces with interleaved visual grounding via point-and-copy embedding re-access, VTPerception-R1 implements perception-aware RL with visual/textual/consistency rewards, SIEVE (Mar 2026) trains models to iteratively re-access cached visual evidence embeddings during RL, and Vision-SR1 decomposes reasoning into explicit perception and reasoning stages with structured tags, using the model's own re-prompted answer (without image access) as a self-reward signal. Yet a systematic gap remains along three axes: (1) No method verifies integration *completeness* — whether all task-relevant visual facts are bound to reasoning steps, which MathLens (Feb 2026) identifies as the growing error fraction and 'Don't Blink' (Apr 2026) shows worsens as reasoning unfolds (attention to evidence regions drops >50%). (2) Methods that check semantic binding (FGRPO) rely on per-sentence VLM judge calls during training, creating multiplicative cost overhead (~6-8 judge calls per sentence × multiple sentences per trace × rollouts per prompt). (3) Attention-based methods (PGPO, SAYO, Faithful-MR1) and embedding-level methods (v1, SIEVE) use statistical or representational proxies for visual dependency rather than verifying the *semantic correctness* of how evidence is used in reasoning. (4) Self-rewarding approaches (Vision-SR1) check perceptual *self-containment* — whether the perception text suffices to answer without the image — but not whether the perception is *factually correct* relative to the image, nor whether inferences logically follow from cited evidence. (5) Structured verification approaches like MJ1's grounded chain operate at evaluation time, not as training-time reward signals, and do not check completeness. (6) Spatial grounding methods (TreeVGR, ViGoRL) verify *where* the model looks but not *what* it concludes from what it sees — bounding-box IoU confirms localization, not reasoning validity. The PAR framework (Mar 2026) further diagnoses that 'alignment' — the mapping of perceived facts to symbolic representations — is a distinct failure mode from perception or reasoning alone. However, MuRGAt (Feb 2026) documents a critical cautionary finding: enforcing structured grounding in zero-shot/few-shot settings can degrade accuracy, revealing a gap between internal reasoning and verifiable attribution. The opportunity is to unify grounding verification, binding validity, and completeness checking in a single distilled lightweight verifier that serves as a training-time composition reward signal — with RL training to develop citation as a learned skill rather than a post-hoc constraint.",
+  "landscape": "The landscape of RL-based multimodal reasoning training has exploded in early 2026 along seven axes:\n\n**Perception-gating methods:** PEARL (CVPR 2026) derives a perception checklist of factual sub-questions, computes a perceptual reward R̄_p, and uses it as a fidelity gate — blocking reasoning policy updates when perception fails. Gains: +6.6% over GRPO on MathVerse. Limitation: checks perception accuracy but not whether perceived facts are correctly *bound* to reasoning steps or whether integration is *complete*. PaLMR (CVPR 2026, arXiv:2603.06652) introduces V-GRPO (Vision-Guided GRPO) with a hierarchical reward R = S_vis × (α·S_ans + (1−α)·S_fmt), where S_vis is a binary visual fidelity gate computed via pairwise comparison against pseudo ground-truth image descriptions generated by Gemini. Achieves 70.9% on HallusionBench (+4.2pp over GRPO) with only 4,728 training instances and 88% model-human alignment. Limitation: uses external pseudo ground-truth for comparison rather than verifying the model's own explicit evidence citations; does not check completeness; binary gating provides no gradient signal for partial fidelity improvement.\n\n**Token-level credit reallocation methods:** VPPO (ICLR 2026) reweights by KL divergence on perturbed images. PGPO (Apr 2026) amplifies learning signals for visually-dependent tokens via threshold-gated advantage reallocation (+18.7% avg). VGPO (ACL 2026) adds visual attention compensation. AT-RL (Feb 2026) identifies ~15% anchor tokens via cross-modality connectivity for targeted credit assignment (+1.2% overhead, 32B surpasses 72B-Instruct). VICRA (2026) reallocates optimization toward visually-grounded tokens (+2.25 avg on Qwen2.5-VL-7B). KAWHI (Mar 2026) performs paragraph-level credit reallocation via structured attribution of vision-critical attention heads. SAYO (Feb 2026) introduces region-level visual attention reward (r_v = tanh(log(a_q/v_q))) on Qwen3-VL-8B. Collective limitation: all operate on statistical attention patterns rather than verifying the semantic correctness of evidence-to-reasoning binding.\n\n**Explicit evidence grounding in RL training:** TreeVGR (ICLR 2026) trains models to generate text-space bounding box coordinates as traceable evidence within reasoning trajectories, supervised via dual IoU reward (R_IoU = ½(R_IoU^R + R_IoU^P)) that balances precision and recall of spatial localization. Two-stage training (SFT on 37K samples + RL). Achieves +16.8 on V*Bench, +12.6 on MME-RealWorld. Limitation: verifies *spatial* localization via IoU but not the *semantic validity* of how localized evidence is used in reasoning — a correct bounding box around a labeled angle does not verify that the angle value was correctly read or correctly applied in an inference step. Does not check integration completeness. v1 (May 2026, arXiv:2505.18842) introduces a point-and-copy mechanism where the model selects relevant image patches and copies their embeddings back into the reasoning stream, maintaining visual grounding throughout multi-step reasoning. Trained via SFT on v1g (300K grounding-annotated traces); RL integration is noted as future work. Achieves 68.6% MathVista, 34.5% MathVision. Limitation: operates at the embedding/representation level — re-inserts visual features but does not produce explicit textual evidence citations that can be externally verified for semantic correctness; grounding is implicit in the representation space rather than auditable. VTPerception-R1 (arXiv:2509.24776) implements a two-stage framework (perception-augmented SFT + perception-aware RL) with three perception rewards: visual key-info coverage (R_vkey), textual key-info coverage (R_tkey), and consistency (R_cons = |F_ans∩E|/max(1,|F_ans|)). Achieves 82.5% AI2D, 71.0% MathVista. Limitation: R_vkey measures perception-level element coverage (are visual elements mentioned?) but does not verify binding validity (are inferences logically consistent with cited evidence?) or integration completeness (are all task-relevant facts addressed?). SIEVE (arXiv:2603.14117) trains models to iteratively re-access cached visual region embeddings during RL (GRPO with ℛ = λ₁ℛ_res + λ₂ℛ_format + λ₃ℛ_emb + λ₄ℛ_act), supporting multi-turn evidence refinement. Achieves +7.85 on V*Bench overall. Limitation: like v1, operates at the embedding level — re-inserted features improve grounding but don't produce explicit verifiable citations; iterative re-access addresses the evidence-loss problem but not semantic verification of how evidence supports conclusions.\n\n**Self-rewarding perception-reasoning decomposition:** Vision-SR1 (arXiv:2508.19652) decomposes reasoning into explicit &lt;visual_perception> and &lt;think> stages, requiring the model to first articulate a self-contained visual description, then reason from it. The visual reward is computed via self-rewarding: the frozen policy model is re-prompted to answer the question using only the generated visual perception text (without image access); if the correct answer is derived from perception alone, a visual reward of 1 is assigned. Uses GRPO with a decoupled reward-advantage framework that maintains separate advantages for visual and answer rewards. Three-stage training: SFT cold-start on 9K examples, then standard rollout with accuracy reward, then self-reward rollout. Achieves 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B (+1.4 over Vision-R1), 69.8 on HallusionBench. Key distinction from CFRL: (a) Vision-SR1 uses self-rewarding (same model judges itself) rather than an external distilled verifier — the reward is whether perception suffices to re-derive the answer, not whether each cited fact is *factually accurate* relative to the image; a hallucinated but internally consistent perception could score high. (b) Vision-SR1 checks perceptual *self-containment* (can you answer from perception alone?) while CFRL checks factual grounding accuracy (is the perception correct?), binding validity (does the inference follow from cited evidence?), and completeness (are all task-relevant facts covered). (c) Vision-SR1 does not verify the logical consistency between perceived evidence and drawn inferences — it treats perception and reasoning as decomposed stages but does not check whether the reasoning is faithful to the specific evidence cited.\n\n**Constrained/faithful training methods:** FGRPO (Apr 2026, arXiv:2604.08476) enforces consistency + semantic grounding + spatial grounding as constraints via Lagrangian dual ascent, reducing inconsistency from 24.5% to 1.7% and improving grounding by +13 points. Uses Qwen3-VL-30B-A3B-Instruct (MoE, ~3.3B active parameters) as the online judge during training. The semantic grounding reward R_S requires per-sentence VLM judge calls: each non-trivial visual sentence in the CoT is independently evaluated, resulting in ~30-55 judge calls per training sample. This is the closest competitor — but does not check integration completeness. Faithful-MR1 (May 2026) supervises a &lt;Focus> token's attention against image regions and uses counterfactual image intervention to reward attention concentration where vision causally matters. Operates on attention distributions rather than explicit evidence citations.\n\n**Structured verification and evaluation judges:** MJ1 (Mar 2026, arXiv:2603.07990) trains a 3B-active-parameter multimodal judge (based on Qwen3-VL-30B-A3B) using RL with a structured grounded verification chain: observations → claims → verification → evaluation → scoring, enforced via 11 required XML tags across 5 sequential stages. Achieves 77.0% on MMRB2, surpassing GPT-5 (72.2%) and Gemini-3-Pro (76.3%). Key distinction from CFRL: (a) MJ1 is an *evaluation-time* judge, not a training-time reward verifier; (b) MJ1 uses stage-separated grounding rather than inline evidence citations; (c) MJ1 performs pairwise response comparison, not composition property verification; (d) MJ1 does not check integration completeness. EVPV/Grounding the Score (Mar 2026) adds visual premise verification via constraint matching and reliability gating to PRMs — improves Best-of-N reranking but is *inference-only*. ViGoRL (2026) trains models to produce spatially grounded reasoning traces with coordinate-level evidence (86.4% on V*Bench) — addresses spatial grounding but not semantic binding validity. AutoRubric-R1V (arXiv:2510.14738) auto-generates rubric-based process rewards by distilling consistent reasoning checkpoints from successful trajectories via self-aggregation — rubric reward equals the fraction of satisfied checkpoints. Achieves +8.0 avg over Qwen2.5-VL-7B on 6 benchmarks. Distinct from CFRL: AutoRubric derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image; rubrics are answer-path-dependent rather than evidence-grounding-dependent. CoRGI (arXiv:2508.00378) performs post-hoc step-wise verification of CoT reasoning by decomposing rationales into step-wise statements, grounding each step in visual evidence via Grounding DINO, and filtering unsupported claims. Inference-time only; conceptually related to CFRL's verification chain but does not serve as a training-time reward signal.\n\n**Evidence-aware GRPO variants:** PRCO (Mar 2026) decomposes into Observer+Solver with separate utility/outcome rewards (+7 pts). DocR1 (2026) uses evidence-page guided GRPO for document understanding. OpenMMReasoner (CVPR 2026) achieves +11.6% over Qwen2.5-VL-7B via two-stage SFT+RL recipe.\n\n**Attribution and evidence-loss diagnostics:** MuRGAt (Feb 2026, arXiv:2602.11509) introduces a benchmark for multimodal fact-level attribution requiring models to generate explicit citations specifying modality and temporal segments. Critically, MuRGAt finds that 'increasing reasoning depth or enforcing structured grounding often degrades accuracy' in zero-shot/few-shot settings — even strong MLLMs frequently hallucinate citations despite correct reasoning. This documents an accuracy-faithfulness tradeoff that CFRL must address. 'Don't Blink: Evidence Collapse during Multimodal Reasoning' (Apr 2026, arXiv:2604.04207) documents that reasoning VLMs progressively lose visual grounding as reasoning unfolds — attention to annotated evidence regions drops >50% — creating confident but ungrounded predictions that text-only monitoring cannot detect. 'Deeper Thought, Weaker Aim' (Mar 2026, arXiv:2603.14184) independently confirms this, showing reasoning prompts significantly reduce attention to question-critical image regions. 'Compose and Fuse' (ICLR 2026) identifies task-composition and fusion as main barriers. MathLens (Feb 2026) shows integration failures grow as a fraction of remaining errors. The PAR framework (Mar 2026) decomposes multimodal math reasoning into Perception–Alignment–Reasoning and identifies alignment fragmentation as a distinct failure mode.\n\n**The gap:** PEARL and PaLMR check perception but not binding or completeness; FGRPO checks consistency+grounding but not completeness, with ~5-8x higher cost per rollout vs. single-pass verification; Vision-SR1 decomposes perception and reasoning with self-rewarding but does not verify factual grounding accuracy, binding validity, or completeness; TreeVGR and ViGoRL verify spatial localization but not semantic reasoning validity; v1 and SIEVE re-access visual evidence at the embedding level but don't produce auditable textual citations; VTPerception-R1 checks perception-level coverage but not binding validity or completeness; MJ1 demonstrates structured grounded verification chains but operates at evaluation time; AutoRubric-R1V provides process supervision via trajectory-mined rubrics but not composition property verification against the image; CoRGI performs step-wise visual verification but is inference-only; attention-based methods (PGPO, SAYO, AT-RL, Faithful-MR1) use statistical proxies; EVPV is inference-only. No existing method unifies all three composition properties (evidence grounding, binding validity, integration completeness) in a single lightweight training-time verifier. MuRGAt's accuracy-faithfulness tradeoff highlights that naive enforcement of structured citation degrades performance — but this was observed under zero-shot prompting, not RL training with curriculum scheduling.",
+  "inspired_by": "'Compose and Fuse' (ICLR 2026) explicit future direction for composition-aware training; MathLens integration-failure analysis; PAR framework's alignment decomposition; FGRPO's grounding+consistency insight (extended with completeness and efficiency); MJ1's structured verification chain (adapted from evaluation-time judge to training-time reward); PaLMR's visual fidelity gating (extended beyond binary gating to multi-property verification); TreeVGR's explicit evidence generation in RL (extended from spatial to semantic verification); v1's interleaved grounding paradigm (adapted from embedding-level to textual-citation-level); Vision-SR1's perception-reasoning decomposition with self-rewarding (extended from self-containment checking to external factual grounding + binding + completeness verification); MuRGAt's accuracy-faithfulness tradeoff (motivating curriculum training and accuracy-first reward scheduling); 'Don't Blink' and 'Deeper Thought, Weaker Aim' documenting evidence collapse (direct motivation for explicit evidence anchoring); 'An Imperfect Verifier is Good Enough' (Apr 2026) validating noisy-reward robustness for distilled verifiers; GeoSketch's symbolic reward for geometry; Geoparsing (Apr 2026) for formal diagram entity extraction; Chart-RVR's verifiable chart reasoning rewards (informing chart-domain binding checks); CHARGE's keypoint coverage metrics; Countdown-Code (2026) and PURE (2025) for reward hacking diagnosis and mitigation",
+  "approach": "We propose Composition Fidelity RL (CFRL), which unifies evidence grounding, binding validity, and integration completeness verification in a single distilled composition verifier used as a GRPO training reward.\n\n**Structured output format:** The model generates responses with explicit &lt;observe entity='...' value='...'/> tags for visual evidence extraction and &lt;reason evidence='obs1,obs2' rule='...'> blocks for each reasoning step, requiring citation of specific observations and the inference rule applied. This explicit citation format enables automated verification — unlike attention-based methods that can only measure statistical dependency, or embedding-level methods (v1, SIEVE) that re-access visual features without producing auditable textual claims. Compared to TreeVGR's bounding-box coordinates, our citations capture *semantic* content ('radius = 5cm') rather than *spatial* location ([x1,y1,x2,y2]), enabling verification of whether the cited value is correct and whether the inference logically follows. Compared to MJ1's stage-separated verification chain, our format embeds evidence references *inline* with reasoning, creating direct referential links suitable for training-time throughput. Compared to Vision-SR1's &lt;visual_perception> block, our format provides *fine-grained, per-fact citations* (individual &lt;observe> tags) rather than a monolithic perception paragraph, enabling per-fact grounding verification and explicit evidence-to-inference linking via the evidence='obs1,obs2' attribute.\n\n**Addressing the accuracy-faithfulness tradeoff (MuRGAt):** MuRGAt (Feb 2026) found that enforcing structured grounding degrades accuracy in zero-shot/few-shot settings — models hallucinate citations despite correct reasoning. This is a direct challenge to CFRL's premise. We address it through four design choices: (1) *RL training develops citation as a learned skill*: unlike MuRGAt's zero-shot evaluation where citation is an imposed constraint, CFRL trains the model to produce faithful citations through reward optimization, allowing the model to develop integrated reasoning-citation capability rather than retrofitting citations onto existing reasoning. (2) *Accuracy-first curriculum scheduling*: Phase 0 (pre-curriculum) establishes answer accuracy via standard GRPO before introducing any citation requirements, ensuring the model's reasoning capability is preserved before grounding constraints are layered on. Citation rewards are introduced gradually with initial weight near zero, increasing only as the model demonstrates stable accuracy. (3) *Accuracy-dominant reward weighting*: R_accuracy receives weight α ≥ 0.4 throughout training, ensuring citation quality never dominates at the expense of answer correctness. If accuracy on a held-out validation set drops >2pp at any curriculum transition, citation reward weights are halved until accuracy recovers. (4) *Counterfactual validation* (safeguard #5) directly monitors for MuRGAt-style degradation by comparing tagged vs. untagged accuracy.\n\n**Composition Fidelity Verifier (CFV) — three-property checking:**\n(1) *Evidence grounding*: Checks whether cited visual facts (in &lt;observe> tags) correspond to actual image content. Uses a lightweight visual QA module that converts each citation into a yes/no visual question (e.g., 'Is the radius labeled as 5cm in the image?'). Inspired by PEARL's perception checklist but applied to model-generated citations rather than externally-derived sub-questions.\n(2) *Binding validity*: Checks logical consistency between cited evidence and the inference drawn. We define binding validity checks at two levels:\n\n  **Tier 1 — Domain-agnostic arithmetic + geometry symbolic (core contribution):**\n  - *Arithmetic verification* (all domains): Given numerical values extracted from &lt;observe> tags and a stated operation in the &lt;reason> block, verify computational correctness via symbolic execution. Concrete checks: (a) *Sum/difference/product/quotient consistency* — if obs1 cites 'value A = 45' and obs2 cites 'value B = 30', and the reason block claims 'difference = 15' with rule 'subtraction', verify 45−30=15. (b) *Ratio/percentage verification* — if 'Part = 120, Total = 400' and conclusion is '30%', verify 120/400=0.30. (c) *Comparison consistency* — if the reason block claims 'A > B' citing obs1 (A=45) and obs2 (B=30), verify 45>30. (d) *Multi-step arithmetic* — chain verification across sequential &lt;reason> blocks where one step's output is another's input. These checks are domain-agnostic: they apply equally to geometry problems (angle computations), chart problems (bar value comparisons, trend calculations), and diagram problems (counting, distance computations).\n  - *Geometry symbolic theorem matching*: Cited theorems/rules are matched against a geometry theorem library, and symbolic constraints are verified formally. For example, cited 'angle A=60°, angle B=90°' with rule 'triangle angle sum' → verify 60+90+x=180 → x=30°. Inspired by GeoSketch and the PAR framework.\n\n  **Tier 2 — Domain-specific binding checks (extension):**\n  - *Chart-specific*: (a) *Ordering consistency* — if 'Bar A > Bar B' is cited, verify against the extracted data table that value(A) > value(B). (b) *Extrema verification* — if 'X is the maximum value' is cited, verify X = max(all values in series). (c) *Trend verification* — if 'increasing from 2020 to 2023' is cited, verify monotonic increase in the relevant data points; trends are formally defined as: 'increasing' requires each successive value ≥ previous (strict: >), 'decreasing' requires ≤ (strict: <), with tolerance ε for noise. (d) *Aggregation verification* — if 'average = X' is cited, verify mean(values) ≈ X within 1% relative tolerance. These checks require the chart data table extracted in the completeness pipeline (Stage A), linking Tier 2 binding to Tier 2 completeness infrastructure.\n  - *Diagram-specific*: (a) *Structural relationship verification* — if 'A connects to B' is cited, verify edge (A,B) exists in the parsed graph from PGDP-Net. (b) *Attribute consistency* — if 'node A is labeled X' is cited, verify label(A) = X in the parsed representation. (c) *Cardinality verification* — if 'A has 3 connections' is cited, verify degree(A) = 3. (d) *Containment/hierarchy* — if 'A is inside B' is cited, verify the containment relation in the parsed spatial layout. These checks require the diagram graph representation from Stage A parsing.\n  - *Fallback for inapplicable checks*: When a &lt;reason> block involves qualitative reasoning that cannot be reduced to arithmetic or structural constraint checking (e.g., 'the diagram suggests a causal relationship between X and Y'), the binding check returns a neutral score (0.5) rather than penalizing, and the verifier flags it as 'unverifiable-binding' for monitoring. This prevents the binding reward from penalizing valid qualitative reasoning while maintaining signal for verifiable steps.\n\n(3) *Integration completeness*: Checks whether all task-relevant visual facts are cited somewhere in the reasoning chain via a three-stage domain-specific pipeline:\n\n  **Stage A — Visual Element Enumeration** (domain-specific, offline or cached):\n  - *Geometry*: Use Geoparsing (arXiv:2604.11600, Apr 2026) to produce a formal entity/relation set from the diagram. Geoparsing achieves 96.4 F1 overall (points 99.6, lines 98.0, circles 98.3, semantics 90.7) using a unified formal language.\n  - *Charts*: Use DePlot/UniChart-style chart derendering to extract a linearized data table of all data points, then apply CHARGE-style keypoint extraction to convert to self-contained factual statements.\n  - *Diagrams*: Use PGDP-Net-style graph parsing to extract a node-edge representation of diagram primitives and their relations.\n\n  **Stage B — Question-Conditioned Relevance Filtering**:\n  - Apply VisDoT-style (arXiv:2603.11631) question decomposition to generate ordered perception sub-questions. Match sub-questions against enumerated visual elements from Stage A to produce a *required visual fact set* F_required.\n  - Reliability estimate: Sub-question coverage as a ranking metric achieves 82% accuracy against human preferences (arXiv:2410.15531), with human inter-annotator agreement of 74.6% on sub-question classification — indicating this is an inherently noisy signal, which motivates our soft treatment of completeness (see below).\n  - For geometry, the symbolic checker provides an additional signal: any entity appearing in the formal solution path is automatically added to F_required.\n\n  **Stage C — Coverage Verification**:\n  - Compute coverage score: R_completeness = |F_cited ∩ F_required| / |F_required|.\n  - We target ≥80% recall of task-relevant facts, acknowledging that completeness checking is inherently approximate. The 80% threshold is motivated by CHARGE's finding that even SOTA MLLMs achieve only 73.9% coverage with ground-truth retrieval.\n  - For facts in F_required that are NOT cited, the verifier generates a soft penalty proportional to the estimated importance of the missing fact.\n\n**Verifier architecture and cost model:** The CFV (4B parameters, based on Qwen3-VL-4B) performs all three property checks in a single autoregressive forward pass. The input consists of the image + the model's full tagged response + a structured verification instruction. The CFV generates verification judgments sequentially as autoregressive output: for each &lt;observe> tag, it produces an inline grounding verdict (verified/unverified with confidence score); for each &lt;reason> block, it produces a binding validity verdict; and finally, it produces an overall completeness assessment. This is architecturally identical to how MJ1 generates its multi-stage verification chain in one forward pass — the grounding VQA for each observation is performed as internal sub-reasoning within the autoregressive generation, NOT as separate VQA calls. The output length scales with the number of observations and reasoning steps (~500-1500 tokens for typical responses with 4-8 observations), but requires only a single image encoding through the vision encoder.\n\n**Cost comparison with FGRPO (precise):** FGRPO requires S separate judge calls per rollout (S ≈ 5-8 visual sentences), each requiring its own image encoding through the 30B MoE model (3.3B active parameters). CFRL requires 1 verifier call per rollout with a single image encoding through the 4B dense model. Since image encoding is the dominant cost in VLM inference (processing hundreds of visual tokens through transformer layers), the savings from 1 vs. S encodings is the primary cost driver. Per-call text generation cost is roughly comparable: FGRPO generates S × ~150 = 750-1200 tokens total across all calls; CFRL generates ~500-1500 tokens in one call, at similar active parameter counts (3.3B MoE vs. 4B dense). The effective cost reduction is **~5-8x per rollout** (proportional to S), driven primarily by the single image encoding. Per training sample with K rollouts, FGRPO makes K×S judge calls vs. CFRL's K verifier calls — the same ~5-8x ratio holds. For Tier 1 (grounding + binding only), where binding validity uses lightweight symbolic/arithmetic checking outside the verifier, the verifier output is shorter (~300-800 tokens), further reducing per-call cost.\n\n**Staged contribution and risk mitigation (addressing system complexity):** The full CFRL system integrates multiple external tools and domain-specific pipelines, creating compounding failure risk. We structure the contribution in two defensible tiers:\n\n  *Tier 1 — Core contribution (grounding + binding):* Evidence grounding (VQA-based, all domains) and binding validity (domain-agnostic arithmetic verification + geometry symbolic theorem matching). This tier requires only the distilled 4B verifier and a geometry theorem library — no external parsing tools. Domain-agnostic arithmetic verification applies to chart and diagram problems too (any reasoning step involving numerical computation is checkable), providing cross-domain binding signal even without domain-specific infrastructure. This tier is self-contained, already differentiates from all existing methods (none verify binding validity as a training reward), and provides a defensible paper even if completeness checking and domain-specific binding prove too approximate. Estimated complexity: 1 distilled model + 1 theorem library.\n\n  *Tier 2 — Extension (completeness + domain-specific binding):* Integration completeness adds Geoparsing, DePlot/CHARGE, PGDP-Net, and VisDoT-style decomposition. Domain-specific binding for charts adds data-table-dependent checks (ordering, trends, extrema); for diagrams adds graph-dependent checks (structural relationships, attributes). Each integration is a potential failure point. Fallback strategies per component: (a) If Geoparsing underperforms on out-of-distribution diagrams, fall back to the distilled verifier's own visual element listing (lower accuracy but zero external dependency). (b) If relevance filtering is too noisy, use only the symbolic solver's required entities (geometry) or question-mentioned entities (charts/diagrams) as F_required — a conservative underestimate that still provides signal. (c) If domain-specific binding checks add noise rather than signal (e.g., trend verification on noisy data), fall back to Tier 1 arithmetic-only binding for that domain. (d) If end-to-end completeness R_completeness adds noise rather than signal, set δ=0 and report Tier 1 results as the core finding.\n\n  *Risk matrix:*\n  - Pipeline integration failure (MEDIUM risk): Mitigated by Tier 1/Tier 2 separation and per-component fallbacks.\n  - Verifier distillation quality (LOW risk): Validated via held-out test set; noise tolerance demonstrated by 'Imperfect Verifier' methodology.\n  - Accuracy-faithfulness tradeoff (MEDIUM risk): Mitigated by accuracy-first curriculum, accuracy-dominant reward weighting, and counterfactual monitoring (see MuRGAt discussion above).\n  - Tag gaming / Goodhart effects (LOW-MEDIUM risk): Mitigated by five anti-gaming safeguards (see below).\n  - Training instability from 5 reward components (MEDIUM risk): Mitigated by curriculum scheduling (components introduced sequentially, not simultaneously) and reward weight monitoring.\n\n**Verifier distillation:** The CFV is distilled from Qwen3-VL-235B-A22B on synthetically generated composition judgment pairs. We generate correct/incorrect binding examples by: (a) taking model solutions, (b) perturbing citations (wrong entity, wrong value, missing citation, irrelevant citation, logically inconsistent inference, arithmetic errors), (c) having the teacher label each perturbation type. Target: 50K examples across geometry, chart, and diagram domains, with balanced representation of arithmetic binding errors (Tier 1) and domain-specific binding errors (Tier 2). The distilled verifier (based on Qwen3-VL-4B) is validated on a held-out test set of 5K human-annotated composition judgments.\n\n**Verifier validation protocol**: Before deployment as a reward signal, we validate the CFV via: (a) held-out precision/recall on each of the three sub-tasks separately — with Tier 1 binding validated separately for arithmetic and geometry-symbolic components, (b) ablation studying verifier accuracy vs. downstream model quality by injecting controlled noise (5%, 10%, 15%, 20%) into reward signals, following the methodology of 'An Imperfect Verifier is Good Enough' (2026). (c) If CFV accuracy on binding validity falls below 75%, we activate the fallback: softening binding rewards to a probabilistic consistency score weighted by verifier confidence.\n\n**Anti-gaming safeguards** (addressing Goodhart's Law risk):\n  (1) *Low format weight*: Format compliance ≤0.05 in composite reward. Dominant signals come from verifiable content-level checks.\n  (2) *Verifiable citation grounding*: Evidence grounding is checked against actual image content via visual QA — un-gameable.\n  (3) *Answer-leak detection*: Embedding cosine similarity monitoring between &lt;observe> content and final answer, with penalty P_leak.\n  (4) *KL regularization against base policy*: Standard KL penalty + format/content reward ratio monitoring; divergence triggers early stopping.\n  (5) *Counterfactual validation*: Every 500 steps, evaluate with tags stripped. If tagged accuracy exceeds untagged by >5pp, signal format-dependent performance and trigger reward recalibration.\n\n**Training:** GRPO on Qwen3-VL-8B via veRL with composite reward R = α·R_accuracy + β·R_grounding + γ·R_binding + δ·R_completeness + ε·R_format − P_leak. Curriculum training: Phase 0 establishes baseline accuracy (week 1), Phase 1 trains grounding (weeks 1.5-2.5), Phase 2 adds binding validity (weeks 2.5-3.5), Phase 3 adds completeness (weeks 3.5-4.5). Training targets geometry (MathVerse, GeoQA+), chart (ChartQA, PlotQA), and diagram (AI2D, ScienceQA) tasks.\n\n**Key distinction from Vision-SR1:** Vision-SR1 decomposes reasoning into &lt;visual_perception> and &lt;think> stages and checks perceptual self-containment via self-rewarding — re-prompting the model without image access to verify the perception suffices. CFRL differs in three ways: (a) CFRL uses an external distilled verifier rather than self-rewarding — self-rewarding cannot detect hallucinated perceptions that happen to be internally consistent (a fabricated but plausible description could still support the correct answer), while external grounding verification checks each cited fact against the actual image. (b) CFRL provides fine-grained per-fact citations (&lt;observe> tags) rather than a monolithic perception block, enabling per-fact grounding verification and explicit evidence-to-inference linking. (c) CFRL verifies binding validity (does the inference logically follow from cited evidence?) and integration completeness, which Vision-SR1 does not address.\n\n**Key distinction from TreeVGR:** TreeVGR generates bounding-box coordinates as evidence and supervises spatial localization via dual IoU reward — verifying *where* the model attends. CFRL generates semantic textual citations and verifies *what* the model claims to see and *how* it reasons from those claims. These are complementary: TreeVGR could locate the correct region but misread the value; CFRL catches such semantic errors. TreeVGR does not check binding validity or integration completeness.\n\n**Key distinction from v1 and SIEVE:** Both re-access visual evidence at the embedding level — v1 via point-and-copy of patch embeddings, SIEVE via cached region embedding re-insertion. This maintains visual grounding in the model's internal representation but does not produce *explicit, auditable textual claims* about what was perceived. CFRL requires the model to articulate its visual evidence in natural language, enabling external verification of both the perception (grounding) and the reasoning (binding validity). v1 uses SFT only; SIEVE uses RL but without composition-level verification.\n\n**Key distinction from VTPerception-R1:** VTPerception-R1's R_vkey/R_tkey rewards check perception-level element coverage (whether visual/textual elements are mentioned in reasoning), while R_cons checks entity-attribute consistency. CFRL goes further in two ways: (a) binding validity checks logical inference consistency, not just entity-mention consistency, and (b) integration completeness checks coverage of all task-relevant facts via structured enumeration, not just key-info recall from a VLM scorer.\n\n**Key distinction from FGRPO:** FGRPO uses Qwen3-VL-30B-A3B-Instruct as per-sentence online judge, resulting in ~30-55 judge calls per training sample. Our single-pass CFV reduces this to ~K calls per sample (one per rollout), yielding ~5-8x cost reduction driven by single image encoding per rollout vs. S encodings. More importantly, CFRL adds completeness checking. FGRPO uses Lagrangian dual ascent; we use direct reward weighting with curriculum scheduling.\n\n**Key distinction from PaLMR:** PaLMR's V-GRPO uses binary visual fidelity gate (S_vis ∈ {0,1}) providing no gradient for partial improvement. CFRL provides continuous, multi-property reward signals. PaLMR does not require or verify explicit evidence citations.\n\n**Key distinction from MJ1:** MJ1 is evaluation-time judge with 5-stage pipeline (up to 6144 tokens). CFRL adapts structured verification to training-time with compact inline citations. CFRL checks completeness, which MJ1 does not.\n\n**Key distinction from PEARL:** PEARL checks perception accuracy of externally-generated sub-questions. CFRL checks grounding, validity, and completeness of the model's own explicit evidence citations.\n\n**Key distinction from AutoRubric-R1V:** AutoRubric-R1V provides process supervision by mining rubric checkpoints from successful trajectories — it checks whether the model's reasoning path conforms to patterns found in correct solutions. CFRL instead verifies composition properties against the image itself: whether cited evidence is factually grounded, inferences are valid, and coverage is complete. These are complementary: AutoRubric rewards path conformity, CFRL rewards evidence fidelity.\n\n**Key distinction from attention-based methods (PGPO, SAYO, Faithful-MR1):** These measure statistical attention patterns. CFRL requires and verifies explicit semantic citation.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "950 (verifier distillation: 100h on 4xH100; Geoparsing/DePlot integration and symbolic checker development: 80h; completeness pipeline development: 70h; main GRPO training: 400h on 8xH100; ablations including verifier accuracy sweep, anti-gaming validation, and baselines: 300h)",
+      "timeline": "10 weeks (1.5w setup + data + completeness pipeline + symbolic checker, 1.5w verifier training + validation, 3w main experiments with curriculum, 2.5w ablations + verifier accuracy study + anti-gaming analysis, 1.5w analysis and writing — overlapping phases)",
+      "estimated_gpu_cost": "$1,250 (H100 spot at ~$1.30/GPU-hr on Spheron/RunPod 2026 rates)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "950 (same experimental requirements)",
+      "timeline": "8 weeks (Claude accelerates verifier data generation, completeness pipeline scaffolding, experiment analysis)",
+      "claude_api_cost": "$300 (code assistance, composition judgment labeling assistance, completeness annotation, paper drafting)",
+      "estimated_gpu_cost": "$1,250"
+    },
+    "auto_research": {
+      "gpu_hours": "1500 (additional hyperparameter sweeps for α/β/γ/δ/ε, verifier architecture search, verifier accuracy noise ablation, completeness pipeline ablation per domain, anti-gaming validation suite, extended baselines including PEARL+FGRPO+PaLMR+TreeVGR+Vision-SR1 reimplementation, symbolic checker coverage expansion)",
+      "timeline": "7 weeks (parallelized experiment scheduling, automated verifier validation)",
+      "claude_api_cost": "$1,000 (teacher labeling for verifier data: $600 for ~50K composition judgments via Qwen3-VL-235B; completeness annotation for chart/diagram domains: $100; experiment orchestration, analysis, and ablation design: $300)",
+      "estimated_gpu_cost": "$1,950",
+      "speed_bottleneck": "Verifier data generation requires teacher model (Qwen3-VL-235B) inference at ~50K examples; Geoparsing inference for geometry completeness pipeline; verifier validation requires human-annotated held-out set (5K examples); GRPO rollout reward evaluation is sequential per batch; curriculum phasing requires sequential training stages; anti-gaming counterfactual validation adds ~10% overhead per checkpoint"
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated late Sep 2026, ~17 weeks from now — primary target with sufficient buffer for experiments + writing)",
+    "AAAI 2027 (abstract: Jul 21, paper: Jul 28, 2026 — stretch goal, 8 weeks with zero buffer; feasible only with aggressive parallelization and if verifier distillation completes in week 2)",
+    "CVPR 2027 (estimated ~Nov 2026, not yet announced — fallback if additional ablations needed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Compose and Fuse: Revisiting the Foundational Bottlenecks in Multimodal Reasoning (ICLR 2026)",
+    "Perceptual-Evidence Anchored Reinforced Learning for Multimodal Reasoning [PEARL] (CVPR 2026)",
+    "PaLMR: Towards Faithful Visual Reasoning via Multimodal Process Alignment [V-GRPO] (CVPR 2026, arXiv:2603.06652)",
+    "MJ1: Multimodal Judgment via Grounded Verification (arXiv:2603.07990, Mar 2026)",
+    "Grounding the Score: Explicit Visual Premise Verification for Reliable VLM Process Reward Models [EVPV] (arXiv Mar 2026)",
+    "Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization [FGRPO] (arXiv:2604.08476, Apr 2026)",
+    "Faithful-MR1: Faithful Multimodal Reasoning via Anchoring and Reinforcing Visual Attention (arXiv May 2026)",
+    "TreeVGR: Traceable Evidence Enhanced Visual Grounded Reasoning (ICLR 2026, arXiv:2507.07999)",
+    "v1: Learning to Point Visual Tokens for Multimodal Grounded Reasoning (arXiv:2505.18842, May 2026)",
+    "VTPerception-R1: Enhancing Multimodal Reasoning via Explicit Visual and Textual Perceptual Grounding (arXiv:2509.24776)",
+    "SIEVE: Improving Visual Reasoning with Iterative Evidence Refinement (arXiv:2603.14117, Mar 2026)",
+    "Vision-SR1: Self-Rewarding Vision-Language Model via Reasoning Decomposition and Multi-Reward Policy Optimization (arXiv:2508.19652)",
+    "AutoRubric-R1V: Rubric-Based Generative Rewards for Faithful Multimodal Reasoning (arXiv:2510.14738)",
+    "CoRGI: Verified Chain-of-Thought Reasoning with Post-hoc Visual Grounding (arXiv:2508.00378)",
+    "MuRGAt: Multimodal Fact-Level Attribution for Verifiable Reasoning (arXiv:2602.11509, Feb 2026)",
+    "Don't Blink: Evidence Collapse during Multimodal Reasoning (arXiv:2604.04207, Apr 2026)",
+    "Deeper Thought, Weaker Aim: Understanding and Mitigating Perceptual Impairment during Reasoning in MLLMs (arXiv:2603.14184, Mar 2026)",
+    "Not All Tokens See Equally: Perception-Grounded Policy Optimization for Large Vision-Language Models [PGPO] (arXiv Apr 2026)",
+    "Credit Where It is Due: Cross-Modality Connectivity Drives Precise RL for MLLM Reasoning [AT-RL] (arXiv Feb 2026)",
+    "Don't Lose Sight: Visually-Grounded Credit Assignment for Multimodal Reasoning [VICRA] (2026)",
+    "Do MLLMs Really See It: Reinforcing Visual Attention in Multimodal LLMs [SAYO] (arXiv Feb 2026)",
+    "Grounded Reinforcement Learning for Visual Reasoning [ViGoRL] (arXiv 2026)",
+    "What MLLMs Learn about When they Learn about Multimodal Reasoning [MathLens] (arXiv 2026)",
+    "Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning [PRCO] (arXiv 2026)",
+    "Deconstructing Multimodal Mathematical Reasoning: Towards a Unified Perception-Alignment-Reasoning Paradigm [PAR] (arXiv Mar 2026)",
+    "An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv Apr 2026)",
+    "GeoSketch: A Neural-Symbolic Approach to Geometric Multimodal Reasoning (arXiv 2025/2026)",
+    "Geoparsing: Unified Formal Language for Geometry Diagram Parsing (arXiv:2604.11600, Apr 2026)",
+    "Benchmarking Multimodal RAG through a Chart-based Document Question-Answering Generation Framework [CHARGE] (arXiv:2502.14864, 2025)",
+    "DePlot: One-shot Visual Language Reasoning by Plot-to-Table Translation (2023)",
+    "VisDoT: Decomposition of Thought with Visual Interpretation Grounding (arXiv:2603.11631, Mar 2026, EACL 2026 Findings)",
+    "Countdown-Code: A Testbed for Reward Hacking in RLVR (arXiv:2603.07084, Mar 2026)",
+    "PURE: Pessimistic Unbiased Reward Estimation for RL with Noisy Rewards (arXiv:2504.15275, NeurIPS 2025)",
+    "Spotlight on Token Perception for Multimodal Reinforcement Learning [VPPO] (ICLR 2026)",
+    "Visually-Guided Policy Optimization for Multimodal Reasoning [VGPO] (ACL 2026)",
+    "DocR1: Evidence Page-Guided GRPO for Multi-Page Document Understanding (arXiv 2026)",
+    "OpenMMReasoner: Pushing the Frontiers for Multimodal Reasoning with an Open and General Recipe (CVPR 2026)",
+    "From Sight to Insight: Improving Visual Reasoning Capabilities of Multimodal Models via RL (arXiv 2026)",
+    "Perception-R1: Advancing Multimodal Reasoning Capabilities of MLLMs via Visual Perception Reward (arXiv 2025)",
+    "Beyond Where to Look: Trajectory-Guided Reinforcement Learning for Multimodal RLVR [TGRL] (arXiv 2026)",
+    "Do RAG Systems Cover What Matters? Evaluating and Optimizing Responses with Sub-Question Coverage (arXiv:2410.15531, NAACL 2025)",
+    "PGDP-Net: Plane Geometry Diagram Parsing with Graph Neural Networks (IJCAI 2022)",
+    "Chart-RVR: Reinforcement Learning with Verifiable Rewards for Explainable Chart Reasoning (arXiv:2510.10973)"
+  ],
+  "description": "We address the composition gap in multimodal reasoning training: while recent methods tackle perception gating (PEARL, PaLMR), attention-level credit reallocation (PGPO, SAYO, AT-RL, VICRA, KAWHI), grounding+consistency constraints (FGRPO), causal attention anchoring (Faithful-MR1), structured grounded evaluation (MJ1), self-rewarding perception decomposition (Vision-SR1), spatial evidence localization (TreeVGR, ViGoRL), embedding-level evidence re-access (v1, SIEVE), perception-level coverage rewards (VTPerception-R1), rubric-based process supervision (AutoRubric-R1V), post-hoc visual verification (CoRGI), and evidence-loss diagnostics ('Don't Blink', 'Deeper Thought, Weaker Aim'), none unifies evidence grounding, binding validity, and integration completeness verification in a single lightweight training-time verifier. We propose Composition Fidelity RL (CFRL), which requires models to generate explicit evidence citations (&lt;observe>/&lt;reason evidence=''>) and trains a distilled Composition Fidelity Verifier (CFV, 4B parameters) to check three properties: (1) evidence grounding — cited facts match image content, (2) binding validity — inferences are logically consistent with cited evidence, and (3) integration completeness — all task-relevant visual facts are cited. Binding validity is structured in two tiers: Tier 1 (core) provides domain-agnostic arithmetic verification (sum/difference/ratio/comparison consistency between cited values and computed results) and geometry symbolic theorem matching, applicable across all domains without external tools; Tier 2 (extension) adds domain-specific checks for charts (ordering consistency, extrema, trend monotonicity, aggregation) and diagrams (structural relationship, attribute, cardinality verification), requiring parsed data representations. The CFV performs all verification in a single autoregressive forward pass — processing the image once and generating inline grounding/binding verdicts for each observation and reasoning step sequentially — yielding ~5-8x cost reduction over FGRPO's per-sentence judge calls (driven by 1 vs. S ≈ 5-8 image encodings per rollout). The contribution is structured in two tiers: Tier 1 (core: grounding + arithmetic/geometric binding verifier, self-contained with no external tool dependencies) and Tier 2 (extension: completeness pipeline with domain-specific parsing + domain-specific binding checks), ensuring the paper is defensible even if completeness checking or domain-specific binding proves too approximate. Critically, we address MuRGAt's finding that enforcing structured grounding degrades accuracy in zero-shot settings through accuracy-first curriculum scheduling (Phase 0 establishes baseline accuracy before citation requirements), accuracy-dominant reward weighting (α ≥ 0.4), and counterfactual validation monitoring. The CFV is distilled from Qwen3-VL-235B on 50K synthetic composition judgments and validated on 5K held-out human-annotated examples, with noise-tolerance ablation. Unlike Vision-SR1 (self-rewarding checks perceptual self-containment but not factual accuracy or binding validity), we use an external verifier that checks each cited fact against the image. Unlike FGRPO (per-sentence judge), our single-pass verifier reduces cost ~5-8x. Unlike TreeVGR/ViGoRL (spatial localization via IoU), we verify semantic content and reasoning validity. Unlike v1/SIEVE (embedding-level re-access), we require auditable textual citations. Unlike VTPerception-R1 (perception-level coverage), we check binding validity and structured completeness. Unlike AutoRubric-R1V (trajectory-mined rubrics), we verify composition properties against the image. We incorporate anti-gaming safeguards against tag-format Goodhart effects: low format weight (≤0.05), verifiable citation grounding, answer-leak detection, KL regularization, and periodic counterfactual validation. We train Qwen3-VL-8B via GRPO on geometry, chart, and diagram tasks with curriculum scheduling. Key baselines: PEARL-7B (+6.6% over GRPO), FGRPO-7B (1.7% inconsistency, +13 grounding), PaLMR-7B (70.9% HallusionBench), TreeVGR-7B (+16.8 V*Bench), VTPerception-R1-7B (82.5% AI2D), Vision-SR1-7B (58.8 avg, 69.8 HallusionBench), PGPO (+18.7% avg), OpenMMReasoner-7B (+11.6%), AutoRubric-R1V-7B (+8.0 avg), MJ1 (77.0% MMRB2), and Faithful-MR1-7B.",
+  "project_name": "composition_fidelity_rl",
+  "source": "web_research",
+  "changes_from_previous_revision": {
+    "issue_1_vision_sr1": "Added Vision-SR1 (arXiv:2508.19652) as a new landscape subsection ('Self-rewarding perception-reasoning decomposition') with detailed technical description: uses &lt;visual_perception>/&lt;think>/&lt;answer> structured tags, self-rewarding via re-prompting the frozen policy model without image access to check perceptual self-containment, GRPO with decoupled reward-advantage framework, three-stage training (SFT cold-start → standard rollout → self-reward rollout), 58.8 avg across 8 benchmarks on Qwen2.5-VL-7B. Differentiated from CFRL on three axes: (a) self-rewarding vs. external distilled verifier — self-rewarding cannot detect hallucinated but internally consistent perceptions, while CFRL's grounding verification checks each cited fact against the actual image; (b) perceptual self-containment checking vs. factual grounding accuracy + binding validity + completeness — Vision-SR1 tests whether perception suffices to re-derive the answer, not whether each fact is correct; (c) monolithic perception block vs. fine-grained per-fact &lt;observe> citations enabling per-fact verification and explicit evidence-to-inference linking. Added dedicated 'Key distinction from Vision-SR1' section in approach.",
+    "issue_2_binding_validity_specification": "Substantially expanded binding validity with concrete, algorithmic specifications for all domains, organized in two tiers. Tier 1 (core, domain-agnostic): (a) Arithmetic verification — symbolic execution of sum/difference/product/quotient consistency, ratio/percentage verification, comparison consistency, and multi-step arithmetic chaining; applies to ALL domains (geometry, charts, diagrams) without external tools. (b) Geometry symbolic theorem matching (existing). Tier 2 (extension, domain-specific): (a) Chart-specific: ordering consistency against extracted data table, extrema verification (X = max(values)), trend verification with formal monotonicity definition (including tolerance ε for noise), aggregation verification (mean within 1% relative tolerance). (b) Diagram-specific: structural relationship verification against parsed graph (edge existence), attribute consistency (label matching), cardinality verification (degree check), containment/hierarchy verification. Added explicit fallback for qualitative reasoning: binding check returns neutral score (0.5) for steps that cannot be reduced to arithmetic or structural constraint checking, flagged as 'unverifiable-binding' for monitoring. Revised Tier 1/Tier 2 scoping: Tier 1 now includes domain-agnostic arithmetic + geometry symbolic (no external tools needed), Tier 2 adds completeness + domain-specific binding (requiring parsed data representations). This makes Tier 1 stronger — it provides cross-domain binding signal via arithmetic verification even without chart/diagram-specific infrastructure.",
+    "issue_3_verifier_cost_model": "Clarified CFV architecture and cost model. The CFV performs all three property checks in a single autoregressive forward pass: given image + tagged response + verification instruction as input, it generates verification judgments for all observations and reasoning steps sequentially as autoregressive output. Grounding VQA for each &lt;observe> tag is performed as internal sub-reasoning within the autoregressive generation (inline grounding verdicts), NOT as separate VQA calls. This is architecturally identical to MJ1's single-pass multi-stage verification chain. Revised cost comparison: effective cost reduction is ~5-8x per rollout (revised from ~10-20x), driven by 1 image encoding vs. S ≈ 5-8 encodings. Per-call text generation cost is roughly comparable between CFRL (500-1500 verification tokens at 4B dense) and FGRPO (S × ~150 tokens at 3.3B active MoE). The primary savings come from the single image encoding — processing visual tokens through transformer layers is the dominant cost in VLM inference.",
+    "issue_4_autorubric_corgi": "Added AutoRubric-R1V (arXiv:2510.14738) and CoRGI (arXiv:2508.00378) to the landscape under 'Structured verification and evaluation judges'. AutoRubric-R1V: auto-generates rubric-based process rewards via self-aggregation from successful trajectories, rubric reward = fraction of satisfied checkpoints, +8.0 avg on 6 benchmarks. Differentiated: derives supervision from trajectory-level consistency patterns rather than verifying composition properties against the image. CoRGI: post-hoc step-wise verification via Grounding DINO, decomposing rationales and grounding each step in visual evidence. Differentiated: inference-time only, does not serve as training-time reward. Added 'Key distinction from AutoRubric-R1V' section. Both added to key_references. Also added Chart-RVR (arXiv:2510.10973) to key_references as it informed the chart-domain binding validity specification."
+  }
+}
+```
+
+---
+
+## Summary of Changes (Round 5)
+
+This is a **minor revision** — the core CFRL approach remains unchanged, with four targeted improvements addressing all reviewer issues:
+
+### Issue 1 (MEDIUM): Vision-SR1 Differentiation ✅
+- Added **new landscape subsection** ("Self-rewarding perception-reasoning decomposition") with detailed technical description of Vision-SR1: `&lt;visual_perception>`/`&lt;think>`/`&lt;answer>` tags, self-rewarding via frozen model re-prompting without image, GRPO with decoupled reward-advantage, 58.8 avg on 8 benchmarks
+- **Three-axis differentiation**: (a) self-rewarding can't detect hallucinated-but-consistent perceptions vs. CFRL's external grounding against actual image; (b) self-containment checking vs. factual accuracy + binding + completeness; (c) monolithic perception block vs. fine-grained per-fact `&lt;observe>` citations
+- Added to opportunity gap analysis, inspired_by, key distinctions, baselines
+
+### Issue 2 (MEDIUM): Binding Validity Specification ✅
+- **Tier 1 (core)**: Domain-agnostic arithmetic verification with four concrete checks: (a) sum/difference/product/quotient consistency, (b) ratio/percentage verification, (c) comparison consistency, (d) multi-step arithmetic chaining — all via symbolic execution, applicable across ALL domains without external tools
+- **Tier 2 (extension)**: Chart-specific (ordering, extrema, trend monotonicity with formal definition, aggregation with 1% tolerance) and diagram-specific (structural edge existence, attribute matching, cardinality, containment) — requiring parsed representations
+- **Fallback for qualitative reasoning**: neutral score (0.5) for unverifiable binding steps, flagged for monitoring
+- Revised tier scoping: Tier 1 = grounding + arithmetic/geometric binding (self-contained); Tier 2 = completeness + domain-specific binding
+
+### Issue 3 (LOW-MEDIUM): Verifier Cost Model ✅
+- Clarified: CFV performs **all verification in a single autoregressive forward pass** — grounding VQA is internal sub-reasoning within the generation (like MJ1), NOT separate VQA calls per observation
+- Revised cost claim: **~5-8x** reduction (from ~10-20x), driven by 1 vs. S ≈ 5-8 image encodings per rollout; text generation costs are roughly comparable (4B dense vs. 3.3B active MoE)
+- Provided precise breakdown of where savings come from
+
+### Issue 4 (LOW): AutoRubric-R1V & CoRGI ✅
+- Added both to landscape with differentiation: AutoRubric provides trajectory-mined rubric conformity (not image-grounded composition verification); CoRGI provides inference-time step-wise visual verification (not training-time reward)
+- Added Chart-RVR to references (informed chart binding specification)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "654c8760-89e1-4836-85d3-4ccd54fcc2c8",
+  "isSidechain": false,
+  "requestId": "req_011CbTuMyKmgnPAvAMZH9S6s",
+  "type": "assistant",
+  "uuid": "64574a9c-d790-4e5f-b752-a7d3145c6c7d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqCyNS4i12QBtdgHN5KyqV",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15296,
+      "cache_read_input_tokens": 63256,
+      "output_tokens": 15704,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15296,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15704,
+          "cache_read_input_tokens": 63256,
+          "cache_creation_input_tokens": 15296,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15296
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "64574a9c-d790-4e5f-b752-a7d3145c6c7d",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Composition Fidelity RL: Unifying Evidence Grounding, Binding Validity…",
+  "leafUuid": "64574a9c-d790-4e5f-b752-a7d3145c6c7d",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise composition fidelity RL with Vision-SR1 differentiation",
+  "sessionId": "c31eb692-232a-4057-ad34-5dd773264795"
+}
+```
+
+---

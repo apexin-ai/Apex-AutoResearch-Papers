@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "7c35b24db8a44f742fd8",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-27 (UTC).** ## Original idea { \"tit",
+  "task_key": "42ff2112-11f3-4996-aa4d-589afb7af293",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/42ff2112-11f3-4996-aa4d-589afb7af293.jsonl",
+    "occurrence": 1,
+    "bytes": 638013,
+    "sha256": "25038315449906d810600c74d5f81048817d7ae0d645f90626b17050a1a9a391"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "record": 39,
+      "user": 1,
+      "assistant": 14,
+      "tool_call": 40,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7c35b24db8a44f742fd8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "7c35b24db8a44f742fd8-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "7c35b24db8a44f742fd8-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-revising-a-research-idea-based-on-reviewer-feedback-today-s-date-2026-copy-11.md"
+}

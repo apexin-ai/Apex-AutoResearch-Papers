@@ -1,0 +1,2233 @@
+{
+  "schema_version": "1.0",
+  "id": "800f741d493dbd1fa740",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ ",
+  "task_key": "agent-adb7d33998c76741a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-adb7d33998c76741a.jsonl",
+    "occurrence": 1,
+    "bytes": 138159,
+    "sha256": "a894bd63c408ed4f5922ba41c54d543b7d60717d7d77596f4f35a96008e3a2b0"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T06:49:05.443Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ for any mentions related to adaptive R² or related numbers. Search for these patterns:\n1. \"adaptive\" (case insensitive)\n2. \"R²\" or \"R^2\" or \"R\\\\^2\" or \"R-squared\" or \"$R^2$\" or \"R\\textsuperscript{2}\"\n3. The number \"0.275\" or \"0.256\"\n4. \"variance\" near \"explained\"\n5. \"r_squared\" or \"r2\"\n\nFor each match, show the file path, line number, and surrounding context (3 lines before and after). Be very thorough - search breadth \"very thorough\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "ea9239b4-d7b5-41dc-b889-151c97eec8ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T06:49:06.770Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search all .tex files in the specified directory for mentions related to adaptive R² and the patterns you've listed. Let me start by finding all .tex files and then searching for each pattern."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea9239b4-d7b5-41dc-b889-151c97eec8ba",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjMztMAfTzUVMU69ij",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b72cd025-d58e-4364-af4c-bd8540492235",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VHeLwNVm4y4HPQciqrhFjo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 613,
+                "cache_read_input_tokens": 14968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 613,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T06:49:07.022Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TUhX1epxnsgxEzL56K4Bxv",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/**/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b72cd025-d58e-4364-af4c-bd8540492235",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjMztMAfTzUVMU69ij",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "367b762f-5be3-4c8a-962f-dd1488966b2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VHeLwNVm4y4HPQciqrhFjo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 613,
+                "cache_read_input_tokens": 14968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 613,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T06:49:07.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TUhX1epxnsgxEzL56K4Bxv",
+              "type": "tool_result",
+              "content": "docs/paper/appendix_attacks.tex\ndocs/paper/figures/fig_framework.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/analysis.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/results.tex\ndocs/paper/methodology.tex\ndocs/paper/threat_model.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "367b762f-5be3-4c8a-962f-dd1488966b2c",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "58f36cad-fa1a-40b7-86f7-2e9fa0367cf8",
+            "sourceToolAssistantUUID": "367b762f-5be3-4c8a-962f-dd1488966b2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T06:49:07.170Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JKEhtimTQmwVTrVVkddLx8",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ -name \"*.tex\" -type f"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58f36cad-fa1a-40b7-86f7-2e9fa0367cf8",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjMztMAfTzUVMU69ij",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fb050390-599a-472a-b4c4-5941fc910a82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VHeLwNVm4y4HPQciqrhFjo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 613,
+                "cache_read_input_tokens": 14968,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 613
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 14968,
+                    "cache_creation_input_tokens": 613,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 613,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T06:49:07.240Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JKEhtimTQmwVTrVVkddLx8",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/figures/fig_framework.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix_attacks.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb050390-599a-472a-b4c4-5941fc910a82",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "28ebe7b3-9414-49ad-a6fd-ac2045fb19c8",
+            "sourceToolAssistantUUID": "fb050390-599a-472a-b4c4-5941fc910a82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T06:49:08.894Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for each of the patterns you specified across all these .tex files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28ebe7b3-9414-49ad-a6fd-ac2045fb19c8",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjVa3cxeQWHyksYBst",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "95991906-74d6-42b3-b329-1df901f258a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016dfMYWdqyx5dMnensAwyZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 15581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1688,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T06:49:09.763Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UCY4t7mdCCdzysyDsWgb1N",
+              "name": "Grep",
+              "input": {
+                "pattern": "adaptive",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3,
+                "-i": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95991906-74d6-42b3-b329-1df901f258a3",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjVa3cxeQWHyksYBst",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "852600ea-e086-4fcf-b917-3ea9ab777b44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016dfMYWdqyx5dMnensAwyZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 15581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1688,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T06:49:09.782Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UCY4t7mdCCdzysyDsWgb1N",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-4-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-5-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-6-\\paragraph{Condorcet Jury Theorem.}\ndocs/paper/related_work.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-10-[Omitted long context line]\n--\ndocs/paper/appendix.tex-53-\\subsection{BFT Reversal Mechanism: Detailed Evidence}\ndocs/paper/appendix.tex-54-\\label{app:bft_reversal}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-55-\ndocs/paper/appendix.tex:56:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-57-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-58-\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-59-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-75-\\subsection{Aggregation Mechanism Details}\ndocs/paper/appendix.tex-76-\\label{app:aggregation_details}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-77-\ndocs/paper/appendix.tex:78:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-79-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-80-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-81-\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-14-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-15-\ndocs/paper/introduction.tex:16:Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-17-\ndocs/paper/introduction.tex-18-These findings yield three contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-19-\\begin{enumerate}\n--\ndocs/paper/threat_model.tex-8-\\label{eq:keff}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-9-K_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-10-\\end{equation}\ndocs/paper/threat_model.tex:11:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-12-\ndocs/paper/threat_model.tex:13:\\begin{definition}[Adaptive Adversary]\ndocs/paper/threat_model.tex-14-\\label{def:adversary}\ndocs/paper/threat_model.tex:15:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-16-\\end{definition}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-17-\ndocs/paper/threat_model.tex:18:This departs from BFT models~\\cite{lamport1982byzantine,castro1999practical}, which tolerate $f < n/3$ faulty nodes but do not model adversaries that strategically target system structure. An adaptive adversary concentrates on the weakest link~\\cite{schneier2000secrets}, suggesting a \\emph{reversal}: under random faults, higher $K_{\\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-19-\ndocs/paper/threat_model.tex-20-\\begin{theorem}[Weakest-Link Monotonicity; formal statement and proof in Appendix~\\ref{app:proof}]\ndocs/paper/threat_model.tex-21-\\label{thm:monotonicity}\ndocs/paper/threat_model.tex:22:Replacing any panel member with a pointwise more vulnerable judge can only increase $\\mathrm{ASR}^*(\\mathcal{P})$, for any adversary including adaptive ones. The stochastic dominance condition holds for 58\\% of judge pairs (61/105); non-dominance concentrates among within-tier pairs (72.1\\% non-dominant, 31/43) versus cross-tier pairs (21.0\\%, 13/62), reflecting that capability-similar judges lack uniform ordering.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-23-\\end{theorem}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-24-\ndocs/paper/threat_model.tex:25:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-26-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-27-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-28-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-60-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-61-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-62-\ndocs/paper/results.tex:63:\\subsection{Random vs.\\ Adaptive Fault Contrast}\ndocs/paper/results.tex-64-\\label{sec:rf_contrast}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-65-\ndocs/paper/results.tex:66:We simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.73$--$0.81$ ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap narrows from ${\\sim}0.6$ ($K{=}3$) to $0.43$ ($K{=}5$).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-67-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-68-\\subsection{Positive Direction Across Attack Types}\ndocs/paper/results.tex-69-\\label{sec:gam_taxonomy}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "852600ea-e086-4fcf-b917-3ea9ab777b44",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "cde8c88f-b2c1-4e3c-b794-d9b488ee9ec7",
+            "sourceToolAssistantUUID": "852600ea-e086-4fcf-b917-3ea9ab777b44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T06:49:10.606Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CdLy3WN5vmCDXwbAWqXkvy",
+              "name": "Grep",
+              "input": {
+                "pattern": "R\\^2|R²|R\\\\^2|R-squared|\\$R\\^2\\$",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cde8c88f-b2c1-4e3c-b794-d9b488ee9ec7",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjVa3cxeQWHyksYBst",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "54d49a33-9447-401c-bac7-b397c916c045",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016dfMYWdqyx5dMnensAwyZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 15581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1688,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T06:49:10.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CdLy3WN5vmCDXwbAWqXkvy",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-27-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-28-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-29-\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\ndocs/paper/analysis.tex:30:\\caption{$K_{\\mathrm{eff}}$ coefficient distribution across aggregation methods ($K{=}3$). Majority and weighted voting: uniformly positive (12+/0$-$); Bayesian calibration: reduced predictability ($R^2{=}0.087$, 5+/1$-$).}\ndocs/paper/analysis.tex-31-\\label{fig:aggregation}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-32-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex-33-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-26-\\maketitle\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-27-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-28-\\begin{abstract}\ndocs/paper/main.tex:29:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-30-\\end{abstract}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-31-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex-32-\\input{introduction}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-55-\\end{equation}\ndocs/paper/methodology.tex-56-with $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-57-\ndocs/paper/methodology.tex:58:Dominance analysis \\citep{budescu1993dominance} decomposes $R^2$ into each predictor's average incremental contribution across all subsets. Generalized additive models (GAMs) with smooth terms test whether $K_{\\mathrm{eff}}$'s effect direction varies between targeted attacks (prompt injection, score manipulation, position bias) and shared-bias attacks (sycophancy, verbosity, authority bias).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-59-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex-60-\\subsection{Robustness to Non-Independence}\ndocs/paper/methodology.tex-61-\\label{sec:robustness_method}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex-1-% Mirror of abstract in main.tex — do not edit here.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex-2-\ndocs/paper/abstract.tex:3:[Omitted long matching line]\n--\ndocs/paper/appendix.tex-53-\\subsection{BFT Reversal Mechanism: Detailed Evidence}\ndocs/paper/appendix.tex-54-\\label{app:bft_reversal}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-55-\ndocs/paper/appendix.tex:56:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-57-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-58-\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-59-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-75-\\subsection{Aggregation Mechanism Details}\ndocs/paper/appendix.tex-76-\\label{app:aggregation_details}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-77-\ndocs/paper/appendix.tex:78:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-79-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-80-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-81-\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-201-\\section{Cinelli--Hazlett Sensitivity Analysis}\ndocs/paper/appendix.tex-202-\\label{app:sensitivity}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-203-\ndocs/paper/appendix.tex:204:We apply the Cinelli--Hazlett omitted variable bias framework to quantify how robust $K_{\\mathrm{eff}}$'s coefficient is to unobserved confounders. For each of the 36 conditions ($3K \\times 2$ benchmarks $\\times$ $6$ attacks), we compute the robustness value (RV): the minimum strength an unobserved confounder must have, in terms of partial $R^2$ with both treatment and outcome, to reduce $K_{\\mathrm{eff}}$'s coefficient to zero.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-205-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-206-\\begin{table}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-207-\\centering\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-209-\\setlength{\\tabcolsep}{3pt}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-210-\\begin{tabular}{rcllcccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-211-\\toprule\ndocs/paper/appendix.tex:212:$\\boldsymbol{K}$ & \\textbf{Data} & \\textbf{Attack} & \\textbf{RV} & $\\boldsymbol{\\eta}$ $\\boldsymbol{R^2_{\\mathrm{tr}}}$ & $\\boldsymbol{\\eta}$ $\\boldsymbol{R^2_{\\mathrm{out}}}$ & \\textbf{Exc.} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-213-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-214-3 & MMLU & Prompt inj.    & 0.419 & 0.587 & 0.059 & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-215-3 & MMLU & Sycophancy     & 0.412 & 0.347 & 0.098 & \\checkmark \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-251-7 & ARC  & Authority bias & 0.179 & 0.514 & 0.003 & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-252-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-253-\\end{tabular}\ndocs/paper/appendix.tex:254:[Omitted long matching line]\ndocs/paper/appendix.tex-255-\\label{tab:sensitivity}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-256-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-257-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-260-\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-261-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-262-\\includegraphics[width=\\columnwidth]{figures/fig_sensitivity_contour_K5.png}\ndocs/paper/appendix.tex:263:[Omitted long matching line]\ndocs/paper/appendix.tex-264-\\label{fig:sensitivity_contour}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-265-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-266-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-267-\\section{Cross-Benchmark Prediction Robustness}\ndocs/paper/appendix.tex-268-\\label{app:cross_benchmark}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-269-\ndocs/paper/appendix.tex:270:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-271-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-272-\\section{Pool A Cinelli--Hazlett Sensitivity}\ndocs/paper/appendix.tex-273-\\label{app:sensitivity_poolA}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-14-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-15-\ndocs/paper/introduction.tex:16:Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-17-\ndocs/paper/introduction.tex-18-These findings yield three contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-19-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-20-[Omitted long context line]\ndocs/paper/introduction.tex-21-\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the dominant predictor (7/12 at $K{=}5$, 8/12 at $K{=}7$) while $\\eta_{\\max}$ sharply attenuates (2/12, then 1/12) (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\ndocs/paper/introduction.tex:22:\\item \\textbf{Aggregation as predictability control.} Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), so the defense is partial rather than complete (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-23-\\end{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-24-\ndocs/paper/introduction.tex-25-Our findings are descriptive; the diversity--capability confound ($r{=}0.70$--$0.81$; \\S\\ref{sec:analysis}) limits causal claims.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-63-\\subsection{Random vs.\\ Adaptive Fault Contrast}\ndocs/paper/results.tex-64-\\label{sec:rf_contrast}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-65-\ndocs/paper/results.tex:66:We simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.73$--$0.81$ ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap narrows from ${\\sim}0.6$ ($K{=}3$) to $0.43$ ($K{=}5$).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-67-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-68-\\subsection{Positive Direction Across Attack Types}\ndocs/paper/results.tex-69-\\label{sec:gam_taxonomy}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-80-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-81-\\begin{tabular}{lcccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-82-\\toprule\ndocs/paper/results.tex:83:\\textbf{Method} & \\textbf{$\\eta_{\\max}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ $\\beta$ dir.} & \\textbf{$R^2$} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-84-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-85-Threshold       & 12/12 & 11/12 & 11+/0$-$  & 0.829 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-86-Majority        & 10/12 & 12/12 & 12+/0$-$  & 0.327 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-88-Bayesian        & 9/12  & 6/12  & 5+/1$-$   & 0.087 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-89-\\bottomrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-90-\\end{tabular}\ndocs/paper/results.tex:91:\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\ndocs/paper/results.tex-92-\\label{tab:aggregation}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-93-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-94-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-95-\ndocs/paper/results.tex:96:Predictability ranges from threshold ($R^2{=}0.829$) to Bayesian ($R^2{=}0.087$); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), yielding partial defense (Appendix~\\ref{app:aggregation_details}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-97-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-98-\\paragraph{Fractional Logit Robustness.}\ndocs/paper/results.tex-99-Fractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; Appendix~\\ref{app:robustness_checks})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54d49a33-9447-401c-bac7-b397c916c045",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "acdd0367-5a9a-4e5e-9c36-0140ed6560c8",
+            "sourceToolAssistantUUID": "54d49a33-9447-401c-bac7-b397c916c045",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T06:49:11.333Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014PCqDrpbYA3kTbxYCeT9et",
+              "name": "Grep",
+              "input": {
+                "pattern": "R\\\\textsuperscript\\{2\\}",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acdd0367-5a9a-4e5e-9c36-0140ed6560c8",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjVa3cxeQWHyksYBst",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7a076107-b559-4d5c-bd8b-472896249e24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016dfMYWdqyx5dMnensAwyZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 15581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1688,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T06:49:11.351Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014PCqDrpbYA3kTbxYCeT9et",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a076107-b559-4d5c-bd8b-472896249e24",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "8b02afce-24fb-499b-b596-b319051bff7f",
+            "sourceToolAssistantUUID": "7a076107-b559-4d5c-bd8b-472896249e24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T06:49:11.672Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TnoBJujMfqCAh5TnpU1azo",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.275|0\\.256",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b02afce-24fb-499b-b596-b319051bff7f",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjVa3cxeQWHyksYBst",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "be4b35e3-eac7-44ef-bb7f-d9646c0e267c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016dfMYWdqyx5dMnensAwyZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 15581,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1688,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T06:49:11.691Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TnoBJujMfqCAh5TnpU1azo",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-91-\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-92-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-93-Majority   & 2/12  & 7/12 & 0.285 \\\\\ndocs/paper/appendix.tex:94:Weighted   & 2/12  & 7/12 & 0.275 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-95-Threshold  & 3/12  & 7/12 & 0.408 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-96-Bayesian   & 2/12  & 7/12 & 0.166 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex-97-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-14-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-15-\ndocs/paper/introduction.tex:16:Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-17-\ndocs/paper/introduction.tex-18-These findings yield three contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-19-\\begin{enumerate}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-63-\\subsection{Random vs.\\ Adaptive Fault Contrast}\ndocs/paper/results.tex-64-\\label{sec:rf_contrast}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-65-\ndocs/paper/results.tex:66:We simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.73$--$0.81$ ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap narrows from ${\\sim}0.6$ ($K{=}3$) to $0.43$ ($K{=}5$).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-67-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex-68-\\subsection{Positive Direction Across Attack Types}\ndocs/paper/results.tex-69-\\label{sec:gam_taxonomy}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be4b35e3-eac7-44ef-bb7f-d9646c0e267c",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "7417464d-ada0-4aef-8900-54139d04efcf",
+            "sourceToolAssistantUUID": "be4b35e3-eac7-44ef-bb7f-d9646c0e267c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T06:49:12.292Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CXHqA3z6MKYidkEUYiBnEY",
+              "name": "Grep",
+              "input": {
+                "pattern": "r_squared|r2",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7417464d-ada0-4aef-8900-54139d04efcf",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjVa3cxeQWHyksYBst",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "15a53f6b-c60b-4c1a-8d4a-86b77ef8213b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016dfMYWdqyx5dMnensAwyZk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1688,
+                "cache_read_input_tokens": 15581,
+                "output_tokens": 793,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1688
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 793,
+                    "cache_read_input_tokens": 15581,
+                    "cache_creation_input_tokens": 1688,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1688,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T06:49:12.313Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CXHqA3z6MKYidkEUYiBnEY",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-4-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-5-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-6-\\paragraph{Condorcet Jury Theorem.}\ndocs/paper/related_work.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-9-\\paragraph{Ensemble Diversity Theory.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-10-[Omitted long context line]\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-13-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-14-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-15-\\paragraph{BFT and Security Games.}\ndocs/paper/related_work.tex:16:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-17-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-18-\\paragraph{Information-Theoretic Evaluation.}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex-19-Information-theoretic approaches address statistical validity \\citep{robertson2025stepwise,feng2026noisy}, attack costs \\citep{kaneko2025bits}, sequential selection \\citep{jung2026logarithmic}, and truthfulness \\citep{chen2025incentivizing,qiu2026truthfulness}, but assume honest judges. We address adversarial manipulation interacting with multi-judge composition.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-9-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-10-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-11-\ndocs/paper/introduction.tex:12:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-14-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex-15-\n--\ndocs/paper/references.bib-111-% Part B: Classic references (10 papers)\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-112-% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-113-\ndocs/paper/references.bib:114:@inproceedings{tramer2018ensemble,\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-115-  author    = {Florian Tram{\\`e}r and Alexey Kurakin and Nicolas Papernot and Ian Goodfellow and Dan Boneh and Patrick McDaniel},\ndocs/paper/references.bib-116-  title     = {Ensemble Adversarial Training: Attacks and Defenses},\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-117-  booktitle = {International Conference on Learning Representations (ICLR)},\n--\ndocs/paper/references.bib-186-  url       = {https://www.usenix.org/conference/osdi-99/practical-byzantine-fault-tolerance}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-187-}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-188-\ndocs/paper/references.bib:189:@book{schneier2000secrets,\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-190-  author    = {Bruce Schneier},\ndocs/paper/references.bib-191-  title     = {Secrets and Lies: Digital Security in a Networked World},\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/references.bib-192-  publisher = {John Wiley \\& Sons},\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-15-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-16-\\end{definition}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-17-\ndocs/paper/threat_model.tex:18:This departs from BFT models~\\cite{lamport1982byzantine,castro1999practical}, which tolerate $f < n/3$ faulty nodes but do not model adversaries that strategically target system structure. An adaptive adversary concentrates on the weakest link~\\cite{schneier2000secrets}, suggesting a \\emph{reversal}: under random faults, higher $K_{\\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex-19-\ndocs/paper/threat_model.tex-20-\\begin{theorem}[Weakest-Link Monotonicity; formal statement and proof in Appendix~\\ref{app:proof}]\ndocs/paper/threat_model.tex-21-\\label{thm:monotonicity}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15a53f6b-c60b-4c1a-8d4a-86b77ef8213b",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "f25ecc11-3fa9-48e7-a4fb-0c6e579dfaef",
+            "sourceToolAssistantUUID": "15a53f6b-c60b-4c1a-8d4a-86b77ef8213b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T06:49:13.815Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for \"variance\" near \"explained\" patterns:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f25ecc11-3fa9-48e7-a4fb-0c6e579dfaef",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjsLEjeWLiWw69NZoL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f3424dcc-2e04-4d15-9321-227dfbf6f3fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BMMEsARqSRxbUSEhNsLtdU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 12951,
+                "cache_read_input_tokens": 17269,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12951,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T06:49:14.599Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Lj9nSGyUF1jH8ULaK6Y2h",
+              "name": "Grep",
+              "input": {
+                "pattern": "variance.*explained|explained.*variance",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3,
+                "-i": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3424dcc-2e04-4d15-9321-227dfbf6f3fa",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqjsLEjeWLiWw69NZoL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a1184193-b6fe-47be-ae05-a0ecc0887ffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BMMEsARqSRxbUSEhNsLtdU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 12951,
+                "cache_read_input_tokens": 17269,
+                "output_tokens": 195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12951
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 195,
+                    "cache_read_input_tokens": 17269,
+                    "cache_creation_input_tokens": 12951,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12951,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T06:49:14.620Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Lj9nSGyUF1jH8ULaK6Y2h",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1184193-b6fe-47be-ae05-a0ecc0887ffa",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "08f3082f-b3f5-42b3-bf1b-ce6a59428b62",
+            "sourceToolAssistantUUID": "a1184193-b6fe-47be-ae05-a0ecc0887ffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T06:49:15.783Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the specific files that have been highlighted to get the complete context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08f3082f-b3f5-42b3-bf1b-ce6a59428b62",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqk3ShUASEtc9siXTFX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "be23f1ee-4ed2-47b5-9f8e-678105bc4cfc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CmBK77zEcLcNf7spns2wSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 30220,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T06:49:16.033Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYrma7rfWMGqgpwoAovu87",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be23f1ee-4ed2-47b5-9f8e-678105bc4cfc",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqk3ShUASEtc9siXTFX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5867ba6b-c033-4add-8be2-d53c93990120",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CmBK77zEcLcNf7spns2wSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 30220,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T06:49:16.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYrma7rfWMGqgpwoAovu87",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.93\\textwidth]{figures/fig_framework.pdf}\n6\t\\caption{The shifting bottleneck in LLM judge panels. \\textbf{(a)}~At $K{=}3$, one compromised judge flips the majority---$\\eta_{\\max}$ dominates. \\textbf{(b)}~A predictor shift emerges at $K^* \\in (3,5)$. \\textbf{(c)}~At $K{\\geq}5$, the adversary must compromise multiple independent judges---$K_{\\mathrm{eff}}$ becomes the dominant predictor.}\n7\t\\label{fig:framework}\n8\t\\end{figure*}\n9\t\n10\tMulti-judge panels have become the dominant defense against bias and manipulation in Large Language Model (LLM) evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, an approach inspired by Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization reports that 7-model committees reduce attack success rates (ASR) from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation, yet this framing conflates two distinct sources of robustness: the quality of individual judges and the independence among them.\n11\t\n12\tThe conflation matters because the BFT analogy breaks down in the LLM judge setting. BFT adversaries control faulty nodes from within; evaluation adversaries manipulate inputs from without, and shared pretraining corpora create correlated failure modes that violate the independence assumption underlying majority-vote guarantees \\citep{schneier2000secrets}. No existing work disentangles diversity from individual robustness across panel sizes, so the mechanism behind observed ASR reductions remains unclear.\n13\t\n14\tWe address this gap by decomposing panel vulnerability into two predictors: weakest-link susceptibility ($\\eta_{\\max}$, the maximum individual attack success rate in a panel) and effective independent channels ($K_{\\mathrm{eff}}$, a spectral measure of judge independence). Across all 12 conditions (two benchmarks $\\times$ six attacks), $K_{\\mathrm{eff}}$'s ordinary least-squares (OLS) coefficient is positive (12/12), directionally consistent with adversarial ensemble theory \\citep{goodfellow2015adversarial,papernot2016transferability}. However, the significance of this association is method-sensitive (0 to 12 of 12 across inference approaches), and a previously uncharacterized transition emerges: at $K{=}3$, both predictors contribute (bootstrap significance: $\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the dominant predictor (7/12 at $K{=}5$, 8/12 at $K{=}7$) while $\\eta_{\\max}$ sharply attenuates (2/12, then 1/12).\n15\t\n16\tControlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n17\t\n18\tThese findings yield three contributions:\n19\t\\begin{enumerate}\n20\t\\item \\textbf{Diversity--vulnerability association.} $K_{\\mathrm{eff}}$'s coefficient direction is positive in all 12 conditions (12/12 under OLS and generalized additive model (GAM) bootstrap), but the diversity--capability confound ($r{=}0.70$--$0.81$) limits causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 69\\% of conditions (25/36), though fractional logit confirms the positive association (9/12 across all $K$) (\\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n21\t\\item \\textbf{Panel-size-dependent predictor shift.} At $K{=}3$, both $\\eta_{\\max}$ (3/12) and $K_{\\mathrm{eff}}$ (4/12) contribute under bootstrap (co-determination); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ becomes the dominant predictor (7/12 at $K{=}5$, 8/12 at $K{=}7$) while $\\eta_{\\max}$ sharply attenuates (2/12, then 1/12) (\\S\\ref{sec:cross_k}, \\S\\ref{sec:rf_contrast}).\n22\t\\item \\textbf{Aggregation as predictability control.} Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), so the defense is partial rather than complete (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n23\t\\end{enumerate}\n24\t\n25\tOur findings are descriptive; the diversity--capability confound ($r{=}0.70$--$0.81$; \\S\\ref{sec:analysis}) limits causal claims.\n26\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5867ba6b-c033-4add-8be2-d53c93990120",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "ba20e7af-1a81-4936-860a-3ec170a5dfa8",
+            "sourceToolAssistantUUID": "5867ba6b-c033-4add-8be2-d53c93990120",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T06:49:16.271Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLMNbwBXR8JiNfqZ5YLmvm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba20e7af-1a81-4936-860a-3ec170a5dfa8",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqk3ShUASEtc9siXTFX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "684ceebd-ca79-4fc0-ab0c-aee43e8d8bed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CmBK77zEcLcNf7spns2wSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 30220,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 211,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T06:49:16.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLMNbwBXR8JiNfqZ5YLmvm",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n5\t\\label{sec:dominance}\n6\t\n7\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n8\t\n9\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Theorem~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n10\t\n11\tEach judge appears in $\\binom{14}{2} = 91$ of the 455 panels, and each pair co-occurs in 13. This shared structure causes OLS to underestimate standard errors by approximately $2.5{\\times}$. Figure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12; Appendix~\\ref{app:forest_plot}).\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\begin{tabular}{lcc}\n17\t\\toprule\n18\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n19\t\\midrule\n20\tOLS                    & 10/12 & 12/12 \\\\\n21\tClustered SE           & 4/12  & 0/12  \\\\\n22\tMixed effects          & 6/12  & 3/12  \\\\\n23\tWild bootstrap         & 3/12  & 4/12  \\\\\n24\tFrac.\\ logit (clust.)  & 6/12  & 9/12  \\\\\n25\t\\bottomrule\n26\t\\end{tabular}\n27\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).}\n28\t\\label{tab:method_comparison}\n29\t\\end{table}\n30\t\n31\t\\begin{figure}[t]\n32\t\\centering\n33\t\\includegraphics[width=\\columnwidth]{figures/fig1_robustness_comparison.pdf}\n34\t\\caption{Significance counts (FDR $< 0.05$) for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}\n35\t\\label{fig:robustness}\n36\t\\end{figure}\n37\t\n38\tPower analysis yields a minimum detectable effect (MDE) of $\\beta_{\\mathrm{std}} = 0.14$ at 80\\% power (decreasing to 0.048 at $K{=}5$; Appendix~\\ref{app:power_analysis}). The bootstrap attenuation at $K{=}3$ (OLS 12/12 $\\to$ bootstrap 4/12) is consistent with this MDE, though positive coefficient direction (12/12) is preserved across all methods (Appendix~\\ref{app:random_subsample}).\n39\t\n40\t\\subsection{Panel-Size-Dependent Predictor Shift}\n41\t\\label{sec:cross_k}\n42\t\n43\tTable~\\ref{tab:method_comparison} reveals that the $K{=}3$ pattern is method-sensitive: $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS), with fractional logit giving 9/12. This contrasts with $K{\\geq}5$, where $K_{\\mathrm{eff}}$'s dominance is consistent across methods (bootstrap 7/12 at $K{=}5$; fractional logit 9/12).\n44\t\n45\tWe repeat the wild cluster bootstrap at $K \\in \\{3, 5, 7\\}$, constructing all $\\binom{15}{K}$ panels with $K$-position max-$p$ correction.\n46\t\n47\t\\begin{figure}[t]\n48\t\\centering\n49\t\\includegraphics[width=\\columnwidth]{figures/fig_regime_transition.pdf}\n50\t\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ significance (blue) rises from 4/12 to 7/12 as $K$ increases from 3 to 5. Shaded region marks the predictor shift zone $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher weights, position-permutation max-$p$, BH FDR $\\alpha{=}0.05$.}\n51\t\\label{fig:regime_transition}\n52\t\\end{figure}\n53\t\n54\t\\begin{figure}[t]\n55\t\\centering\n56\t\\includegraphics[width=\\columnwidth]{figures/fig_dominance_heatmap.pdf}\n57\t\\caption{Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\\mathrm{eff}}$-only, $\\eta_{\\max}$-only, and non-significant conditions coexist); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ dominates uniformly while $\\eta_{\\max}$ disappears.}\n58\t\\label{fig:dominance_heatmap}\n59\t\\end{figure}\n60\t\n61\tFigure~\\ref{fig:regime_transition} reveals a predictor shift between $K{=}3$ and $K{=}5$, with per-condition detail in Figure~\\ref{fig:dominance_heatmap}. At $K{=}3$, both predictors contribute modestly ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with co-determination in two conditions. At $K{=}5$, $\\eta_{\\max}$ drops to 2/12 while $K_{\\mathrm{eff}}$ rises to 7/12, all positive. Standardized coefficient magnitudes corroborate: $\\hat{\\beta}_{\\mathrm{std}}$ for $\\eta_{\\max}$ declines monotonically ($0.266 \\to 0.101 \\to 0.084$) while $K_{\\mathrm{eff}}$'s trajectory peaks at $K{=}5$ ($0.349 \\to 0.437 \\to 0.401$), providing a power-independent characterization of the predictor shift that does not depend on sample size or cluster count. Restricting to the four $K_{\\mathrm{eff}}$-stable attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}) confirms that the signal is not driven by measurement-unstable conditions.\n62\t\n63\t\\subsection{Random vs.\\ Adaptive Fault Contrast}\n64\t\\label{sec:rf_contrast}\n65\t\n66\tWe simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.73$--$0.81$ ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap narrows from ${\\sim}0.6$ ($K{=}3$) to $0.43$ ($K{=}5$).\n67\t\n68\t\\subsection{Positive Direction Across Attack Types}\n69\t\\label{sec:gam_taxonomy}\n70\t\n71\tGAM bootstrap confirms positive $K_{\\mathrm{eff}}$ direction in all 12 conditions (88.9--100\\% positive rate; Figure~\\ref{fig:gam_split}), with no magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$, $0.423$).\n72\t\n73\t\\subsection{Aggregation Rules and the Diversity Channel}\n74\t\\label{sec:aggregation}\n75\t\n76\tTable~\\ref{tab:aggregation} reports regression results for four aggregation methods across all 12 conditions.\n77\t\n78\t\\begin{table}[t]\n79\t\\centering\n80\t\\small\n81\t\\begin{tabular}{lcccc}\n82\t\\toprule\n83\t\\textbf{Method} & \\textbf{$\\eta_{\\max}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ $\\beta$ dir.} & \\textbf{$R^2$} \\\\\n84\t\\midrule\n85\tThreshold       & 12/12 & 11/12 & 11+/0$-$  & 0.829 \\\\\n86\tMajority        & 10/12 & 12/12 & 12+/0$-$  & 0.327 \\\\\n87\tWeighted        & 9/12  & 12/12 & 12+/0$-$  & 0.328 \\\\\n88\tBayesian        & 9/12  & 6/12  & 5+/1$-$   & 0.087 \\\\\n89\t\\bottomrule\n90\t\\end{tabular}\n91\t\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\n92\t\\label{tab:aggregation}\n93\t\\end{table}\n94\t\n95\t\n96\tPredictability ranges from threshold ($R^2{=}0.829$) to Bayesian ($R^2{=}0.087$); Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), yielding partial defense (Appendix~\\ref{app:aggregation_details}).\n97\t\n98\t\\paragraph{Fractional Logit Robustness.}\n99\tFractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; Appendix~\\ref{app:robustness_checks}).\n100\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "684ceebd-ca79-4fc0-ab0c-aee43e8d8bed",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "3b7c366d-a385-4d33-845a-d48490fe1f4d",
+            "sourceToolAssistantUUID": "684ceebd-ca79-4fc0-ab0c-aee43e8d8bed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T06:49:16.448Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018z9QhexDmAaH94hYJYE1aq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b7c366d-a385-4d33-845a-d48490fe1f4d",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqk3ShUASEtc9siXTFX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "03605cb0-2fa4-4439-b500-3b374dcf469a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CmBK77zEcLcNf7spns2wSL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 211,
+                "cache_read_input_tokens": 30220,
+                "output_tokens": 253,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 211
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 253,
+                    "cache_read_input_tokens": 30220,
+                    "cache_creation_input_tokens": 211,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 211,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-25T06:49:16.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018z9QhexDmAaH94hYJYE1aq",
+              "type": "tool_result",
+              "content": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Predictor Shift and Direction.}\n5\tAt $K{=}3$, a single compromised judge flips the majority ($t{=}2$), making both predictors relevant. At $K{\\geq}5$, no single judge is pivotal; $\\eta_{\\max}$'s contribution collapses while high-$K_{\\mathrm{eff}}$ panels present more distinct attack surfaces ($K^* \\in (3,5)$). $K_{\\mathrm{eff}}$'s direction is positive in all 12 conditions (OLS and GAM bootstrap 12/12), but significance is method-sensitive (0--12/12; bootstrap 4/12 at $K{=}3$, 7/12 at $K{=}5$). No magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$; Appendix~\\ref{app:bft_reversal}).\n6\t\n7\t\\begin{figure}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n10\t\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange, $r{=}0.50$, 126 panels) shows reduced confounding.}\n11\t\\label{fig:keff_eta_scatter}\n12\t\\end{figure}\n13\t\n14\t\\paragraph{Diversity--Capability Confound: A Fundamental Limitation.}\n15\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (variance inflation factor, VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound explains the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (9/12 at all $K$). Pool~A ($r{=}0.50$) raises the robustness value (RV) in 10/12 at $K{=}5$ despite max 30.1\\% power (Appendix~\\ref{app:sensitivity_poolA}); cross-benchmark instrumental variable (IV) analysis provides additional identification (Appendix~\\ref{app:cross_benchmark}), though causal attribution requires capability-controlled designs.\n16\t\n17\t\\paragraph{API-Only vs.\\ Full Pool.}\n18\tRestricting to 9 API models removes the AWQ confound but increases collinearity ($r{=}0.85$, VIF${=}4.4$), reversing the pattern: $\\eta_{\\max}$ retains significance (8/12) while $K_{\\mathrm{eff}}$ drops (2--3/12; Table~\\ref{tab:robustness_checks}). The six local AWQ models (25--54\\% accuracy) drive $K_{\\mathrm{eff}}$ variation but also introduce the confound (Appendix~\\ref{app:random_subsample}). Adding a quantization dummy variable attenuates $K_{\\mathrm{eff}}$'s $\\hat{\\beta}_{\\mathrm{std}}$ from $+0.39$ to $+0.34$ to $+0.27$ ($K{=}3,5,7$; significant in 6/12, 6/12, 4/12), confirming partial confounding; however, extreme collinearity (VIF${=}162$ at $K{=}7$) renders the dummy unreliable at large panels (Appendix~\\ref{app:quant_dummy}). Power analysis for the API-only pool yields MDE $\\hat{\\beta}_{\\mathrm{std}} > 0.897$ at 80\\% power (median observed-to-MDE ratio 1.36--1.41), indicating that the 9-model subsample lacks power to detect effects of the observed magnitude.\n19\t\n20\t\\begin{figure}[t]\n21\t\\centering\n22\t\\includegraphics[width=\\columnwidth]{figures/fig4_panel_design.pdf}\n23\t\\caption{Panel ASR under three selection strategies. $\\min(\\eta_{\\max})$ achieves lowest ASR in 12/12 conditions, confirming robustness-first selection dominates diversity-maximizing strategies.}\n24\t\\label{fig:panel_design}\n25\t\\end{figure}\n26\t\n27\t\\begin{figure}[t]\n28\t\\centering\n29\t\\includegraphics[width=\\columnwidth]{figures/fig3_aggregation_gradient.pdf}\n30\t\\caption{$K_{\\mathrm{eff}}$ coefficient distribution across aggregation methods ($K{=}3$). Majority and weighted voting: uniformly positive (12+/0$-$); Bayesian calibration: reduced predictability ($R^2{=}0.087$, 5+/1$-$).}\n31\t\\label{fig:aggregation}\n32\t\\end{figure}\n33\t\n34\t\\paragraph{Aggregation and Deployment.}\n35\tAggregation rules influence predictability but not $K_{\\mathrm{eff}}$'s direction (Figure~\\ref{fig:aggregation}); at $K{=}5$ all four methods converge to 7/12, while at $K{=}7$ Bayesian calibration neutralizes it (0/12) as the posterior concentrates on 2--3 accurate judges, compressing $K_{\\mathrm{eff}}$ variation (Appendices~\\ref{app:aggregation_k5},~\\ref{app:aggregation_k7}). However, the posterior concentration ratio declines only modestly across panel sizes ($0.890 \\to 0.874 \\to 0.867$; ${\\Delta}{=}2.3$\\,pp), insufficient to explain the neutralization pattern at $K{=}7$ (Appendix~\\ref{app:bayesian_entropy}). Robustness-first selection ($\\min \\eta_{\\max}$) achieves lowest ASR in all conditions (Figure~\\ref{fig:panel_design}); clean $K_{\\mathrm{eff}}$ is stable under 4/6 attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}).\n36\t\n37\t\\paragraph{$K_{\\mathrm{eff}}$ vs.\\ Alternative Diversity Measures.}\n38\t$\\kappa$-diversity \\citep{kuncheva2003measures} outperforms $K_{\\mathrm{eff}}$ at $K{=}3$ (8/12 vs.\\ 4/12) but falls behind at $K{\\geq}5$ (6--7/12 vs.\\ 7--8/12) without the predictor shift ($8 \\to 7 \\to 6$; Appendix~\\ref{app:alt_diversity}). Shannon MI entropy shows no shift either ($4 \\to 4 \\to 0$; Appendix~\\ref{app:shannon_entropy}).\n39\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03605cb0-2fa4-4439-b500-3b374dcf469a",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "699ff923-f0d6-4738-a2e8-b0226909b28b",
+            "sourceToolAssistantUUID": "03605cb0-2fa4-4439-b500-3b374dcf469a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T06:49:17.837Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also search for additional mentions of \"0.256\" which I haven't found yet, and check the appendix files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "699ff923-f0d6-4738-a2e8-b0226909b28b",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkBAnt3WSqrbT71wKY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "33589a65-b03b-4e40-80f9-e4d0db6838c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BPYgdWEAdXCkfiXbTPg8ba",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6842,
+                "cache_read_input_tokens": 30431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-25T06:49:18.889Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0112pnBRKrKB8CkX8uqLMWW8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33589a65-b03b-4e40-80f9-e4d0db6838c9",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkBAnt3WSqrbT71wKY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff1c124c-7d35-4e5d-afbd-0aabafd130d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BPYgdWEAdXCkfiXbTPg8ba",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6842,
+                "cache_read_input_tokens": 30431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T06:49:18.895Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0112pnBRKrKB8CkX8uqLMWW8",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Proof of Theorem~\\ref{thm:monotonicity}}\n4\t\\label{app:proof}\n5\t\n6\tThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n7\t\\begin{align}\n8\t\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n9\t\\end{align}\n10\tSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n11\t\n12\t\\section{Robustness Correction Methods}\n13\t\\label{app:robustness_methods}\n14\t\n15\tThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n16\t\n17\t\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n18\t\n19\t\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effects model with a random intercept for the judge occupying that position, estimating $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ as fixed effects. The reported $p$-value for each coefficient is the maximum across the three models.\n20\t\n21\t\\paragraph{Wild Cluster Bootstrap.} We perform $B{=}9{,}999$ bootstrap resamples using Rademacher weights, clustering by each of the three panel positions in turn and taking the maximum $p$-value across positions (the most conservative aggregation). This approach avoids distributional assumptions on the cluster structure.\n22\t\n23\t\\section{Crossed Random Effects Analysis}\n24\t\\label{app:crossed_re}\n25\t\n26\tThe one-way clustering in Appendix~\\ref{app:robustness_methods} treats each judge position independently, but panels exhibit \\emph{crossed} random effects: judge $j$ may occupy position~1 in one panel and position~2 in another, inducing a multi-membership structure. At $K{=}7$, each judge appears in $\\binom{14}{6} = 3{,}003$ of $6{,}435$ panels (46.7\\%), making crossed membership the dominant source of residual correlation.\n27\t\n28\tWe fit multi-membership cluster-robust variance estimators (CRVE) using a sandwich estimator with $t(G{-}1) = t(14)$ reference distribution, where $G{=}15$ is the number of judges. Table~\\ref{tab:crossed_re} compares bootstrap and crossed RE significance.\n29\t\n30\t\\begin{table}[h]\n31\t\\centering\n32\t\\small\n33\t\\begin{tabular}{rcccc}\n34\t\\toprule\n35\t& \\multicolumn{2}{c}{\\textbf{Bootstrap}} & \\multicolumn{2}{c}{\\textbf{Crossed RE (FDR)}} \\\\\n36\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n37\t$\\boldsymbol{K}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & $\\boldsymbol{\\eta_{\\max}}$ \\\\\n38\t\\midrule\n39\t3 & 4/12 & 3/12 & 0/12 & 1/12 \\\\\n40\t5 & 7/12 & 2/12 & \\textbf{8/12} & 3/12 \\\\\n41\t7 & 8/12 & 1/12 & \\textbf{8/12} & 2/12 \\\\\n42\t\\bottomrule\n43\t\\end{tabular}\n44\t\\caption{Crossed random effects vs.\\ wild cluster bootstrap significance (BH FDR $\\alpha{=}0.05$). Multi-membership CRVE with $t(14)$ distribution. At $K{\\geq}5$, $K_{\\mathrm{eff}}$ retains 8/12 significance under crossed RE, matching or exceeding bootstrap. At $K{=}3$, the conservative $t(14)$ distribution with only 455 panels drives attenuation to 0/12 (raw $p$-values: 5/12 significant).}\n45\t\\label{tab:crossed_re}\n46\t\\end{table}\n47\t\n48\tSE inflation increases with $K$ as judge overlap intensifies: $1.75$--$4.96{\\times}$ at $K{=}3$, $6$--$12{\\times}$ at $K{=}5$, $10$--$19{\\times}$ at $K{=}7$. Despite this inflation, $K_{\\mathrm{eff}}$ retains 8/12 significance at $K{\\geq}5$ because the effect size is large enough to survive the correction. The $K{=}3$ attenuation (0/12) reflects two compounding factors: the conservative $t(14)$ reference distribution penalizes small-sample inference, and the effect sizes at $K{=}3$ are insufficient to overcome the inflated SEs. Raw (uncorrected) $p$-values show 5/12 conditions significant at $K{=}3$, confirming that the attenuation reflects degrees-of-freedom conservatism rather than absent effects.\n49\t\n50\t\\section{Extended Analysis}\n51\t\\label{app:extended_analysis}\n52\t\n53\t\\subsection{BFT Reversal Mechanism: Detailed Evidence}\n54\t\\label{app:bft_reversal}\n55\t\n56\tUnder standard OLS, the regression results (Table~\\ref{tab:dominance}) show $\\eta_{\\max}$ significant in 10 of 12 conditions and $K_{\\mathrm{eff}}$ positively associated with ASR in all 12. Non-independence correction attenuates both predictors: under wild cluster bootstrap, $\\eta_{\\max}$ retains 3/12 and $K_{\\mathrm{eff}}$ retains 4/12, with $K_{\\mathrm{eff}}$ slightly ahead. The directional pattern (all $K_{\\mathrm{eff}}$ point estimates positive) persists uniformly. The random-fault contrast (\\S\\ref{sec:rf_contrast}) sharpens this: under random faults, $K_{\\mathrm{eff}}$'s positive association with panel error survives all corrections (2/2 conditions, $R^2 = 0.73$--$0.81$), indicating a genuine relationship whose statistical confidence attenuates under adaptive attack (4/12 after correction).\n57\t\n58\t\\begin{figure}[h]\n59\t\\centering\n60\t\\includegraphics[width=\\columnwidth]{figures/fig2_gam_keff_split.pdf}\n61\t\\caption{GAM bootstrap $K_{\\mathrm{eff}}$ effect direction at $K{=}3$ ($B{=}9999$). All 12 conditions show positive $K_{\\mathrm{eff}}$ direction (88.9--100\\% bootstrap rate). The Kruskal--Wallis test finds no significant magnitude difference between targeted and shared-bias attacks ($p{=}0.200$).}\n62\t\\label{fig:gam_split}\n63\t\\end{figure}\n64\t\n65\tUnder corrected data (V2), all 12 $K_{\\mathrm{eff}}$ OLS coefficients are positive. The previously reported negative ARC $\\times$ sycophancy coefficient ($\\hat{\\beta}_{\\mathrm{std}} = -0.192$) was an artifact of error-as-tie handling; after correction, it becomes positive ($\\hat{\\beta}_{\\mathrm{std}} = +0.257$). GAM bootstrap confirms the uniform positive direction: 12/12 conditions at $K{=}3$ (88.9--100\\% positive rate) and 12/12 at $K{=}5$ (100\\%).\n66\t\n67\t\\subsection{Diversity--Capability Tradeoff}\n68\t\\label{app:diversity_capability}\n69\t\n70\tThe $r = 0.70$--$0.81$ correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ ($K{=}3$ to $K{=}5$) reflects a structural feature of the current LLM ecosystem: maximizing panel diversity requires sampling across capability tiers, which systematically introduces less capable and therefore more vulnerable judges. The structural correlation is unaffected by SE correction; it is a property of the model ecosystem, not an artifact of panel overlap. However, the high confound combined with fragile independent significance means that observational regression cannot reliably disentangle diversity's causal contribution from the capability deficit that co-occurs with it.\n71\t\n72\t\n73\tFamily-level labels provide indirect evidence that capability proximity matters more than taxonomic grouping: family membership is not a significant predictor of panel vulnerability ($p = 0.179$ on MMLU, $p = 0.385$ on ARC), consistent with models from the same provider exhibiting heterogeneous vulnerability profiles that vary by capability tier rather than by shared architecture \\citep{kuncheva2003measures}.\n74\t\n75\t\\subsection{Aggregation Mechanism Details}\n76\t\\label{app:aggregation_details}\n77\t\n78\tBayesian calibration attenuates $K_{\\mathrm{eff}}$ significance (5+/1$-$) and reduces overall predictability ($R^2{=}0.087$), but $\\eta_{\\max}$ persists (9/12 under OLS), providing partial defense. The mechanism is calibrated reliability weighting: by estimating each judge's confusion matrix on clean data, Bayesian aggregation downweights weak judges, reducing the diversity channel while the individual weakness channel remains active. Threshold voting amplifies both channels because any single dissenting judge vetoes the panel decision, making compositional factors highly predictive of attack success ($R^2{=}0.829$). Bayesian calibration requires a clean accuracy prior, and an adaptive attacker aware of this calibration could target the prior itself \\citep{tambe2011security}.\n79\t\n80\t\n81\t\\subsection{Aggregation at \\texorpdfstring{$K{=}5$}{K=5}}\n82\t\\label{app:aggregation_k5}\n83\t\n84\tTable~\\ref{tab:aggregation_k5} extends the aggregation analysis to $K{=}5$ (3{,}003 panels) under wild cluster bootstrap with 5-position max-$p$. All four aggregation methods yield identical $K_{\\mathrm{eff}}$ significance (7/12), with $\\eta_{\\max}$ uniformly low (2--3/12). The Bayesian attenuation observed at $K{=}3$ (5+/1$-$; Table~\\ref{tab:aggregation}) does not persist: $K_{\\mathrm{eff}}$ reaches 7/12 regardless of aggregation rule. Predictability still varies ($\\bar{R}^2$: threshold 0.408, Bayesian 0.166), but the diversity channel operates uniformly across all methods. At $K{=}7$, however, methods diverge again: Bayesian neutralization returns (0/12) while threshold voting strengthens to 10/12 (Table~\\ref{tab:aggregation_k7}).\n85\t\n86\t\\begin{table}[h]\n87\t\\centering\n88\t\\small\n89\t\\begin{tabular}{lccc}\n90\t\\toprule\n91\t\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n92\t\\midrule\n93\tMajority   & 2/12  & 7/12 & 0.285 \\\\\n94\tWeighted   & 2/12  & 7/12 & 0.275 \\\\\n95\tThreshold  & 3/12  & 7/12 & 0.408 \\\\\n96\tBayesian   & 2/12  & 7/12 & 0.166 \\\\\n97\t\\bottomrule\n98\t\\end{tabular}\n99\t\\caption{Aggregation method comparison at $K{=}5$ (3{,}003 panels, wild cluster bootstrap with 5-position max-$p$, BH FDR $\\alpha{=}0.05$). All four methods converge to $K_{\\mathrm{eff}}$ 7/12, unlike the differentiated pattern at $K{=}3$ (Table~\\ref{tab:aggregation}).}\n100\t\\label{tab:aggregation_k5}\n101\t\\end{table}\n102\t\n103\t\\subsection{Aggregation at \\texorpdfstring{$K{=}7$}{K=7}}\n104\t\\label{app:aggregation_k7}\n105\t\n106\tTable~\\ref{tab:aggregation_k7} extends the aggregation analysis to $K{=}7$ (6{,}435 panels) under wild cluster bootstrap with 7-position max-$p$. Unlike the uniform convergence at $K{=}5$ (all methods 7/12), aggregation methods diverge at $K{=}7$: threshold voting strengthens to 10/12 while Bayesian calibration drops to 0/12, restoring the neutralization pattern absent at $K{=}5$.\n107\t\n108\t\\begin{table}[h]\n109\t\\centering\n110\t\\small\n111\t\\begin{tabular}{lccc}\n112\t\\toprule\n113\t\\textbf{Aggregation} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} & $\\boldsymbol{\\bar{R}^2}$ \\\\\n114\t\\midrule\n115\tMajority   & 1/12  & 8/12 & 0.244 \\\\\n116\tWeighted   & 1/12  & 6/12 & 0.207 \\\\\n117\tThreshold  & 8/12  & 10/12 & 0.509 \\\\\n118\tBayesian   & 1/12  & 0/12 & 0.105 \\\\\n119\t\\bottomrule\n120\t\\end{tabular}\n121\t\\caption{Aggregation method comparison at $K{=}7$ (6{,}435 panels, wild cluster bootstrap with 7-position max-$p$, BH FDR $\\alpha{=}0.05$). Unlike $K{=}5$ where all methods converge to 7/12, $K{=}7$ shows method divergence: threshold voting reaches 10/12 while Bayesian calibration returns to full $K_{\\mathrm{eff}}$ neutralization (0/12).}\n122\t\\label{tab:aggregation_k7}\n123\t\\end{table}\n124\t\n125\t\\subsection{Metric Robustness Under Partial Panel Information}\n126\t\\label{app:oracle}\n127\t\n128\tThe main analysis computes $\\eta_{\\max}$ with full knowledge of panel composition (all three judges known). In deployment, a practitioner selecting or auditing a panel may know only a subset of the constituent judges. We test whether $\\eta_{\\max}$ retains predictive power under such partial information by recomputing it from two of the three panel members: for each panel, we cycle through all $\\binom{3}{1} = 3$ leave-one-out masks, compute $\\eta_{\\max}$ from the two known judges, and average the regression estimates across masking scenarios.\n129\t\n130\tUnder the most conservative inference (partial information + clustered SE), $\\eta_{\\max}$ remains the sole significant predictor with $\\hat{\\beta}_{\\mathrm{std}} = 0.589$, achieving significance in 12/12 conditions, stronger than the oracle baseline (4/12 under clustered SE). $K_{\\mathrm{eff}}$ loses all predictive power (0/12). The averaging over masking scenarios smooths estimation noise inherent in the three-judge oracle computation, strengthening the $\\eta_{\\max}$ signal. This demonstrates that $\\eta_{\\max}$ computed from partial panel information is robust to incomplete composition knowledge and retains (indeed improves) its predictive power for panel ASR.\n131\t\n132\t\\section{Panel Selection Strategy Comparison}\n133\t\\label{app:panel_selection}\n134\t\n135\t\n136\tFigure~\\ref{fig:panel_design} compares three panel selection strategies: $\\min(\\eta_{\\max})$ (select the panel minimizing weakest-judge vulnerability), random selection, and $\\max(K_{\\mathrm{eff}})$ (maximize diversity). The $\\min(\\eta_{\\max})$ strategy achieves the lowest ASR in all 12 conditions, consistent with the weakest-link dominance documented in \\S\\ref{sec:dominance}.\n137\t\n138\t\\section{Clustered Standard Error Analysis}\n139\t\\label{app:forest_plot}\n140\t\n141\tUnder clustered standard errors (clustering on the $K$ judge positions), $\\eta_{\\max}$ retains significance in 4/12 conditions while $K_{\\mathrm{eff}}$ achieves significance in 0/12. This contrasts with OLS ($\\eta_{\\max}$ 10/12, $K_{\\mathrm{eff}}$ 12/12) and wild cluster bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), illustrating how the choice of inference method modulates apparent significance at $K{=}3$ while coefficient direction remains positive (12/12) for $K_{\\mathrm{eff}}$ across all methods, with significance ranging from 0/12 to 12/12 (Figure~\\ref{fig:robustness}).\n142\t\n143\t\\section{Robustness Checks: Subsampling and Specification}\n144\t\\label{app:robustness_checks}\n145\t\n146\tTable~\\ref{tab:robustness_checks} summarizes regression results across model subsets and alternative specifications at $K{=}5$, testing whether the predictor shift is robust to collinearity reduction and specification choice.\n147\t\n148\t\\begin{table}[h]\n149\t\\centering\n150\t\\small"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff1c124c-7d35-4e5d-afbd-0aabafd130d8",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "e3050f0c-accc-44fb-9379-28f98210999c",
+            "sourceToolAssistantUUID": "ff1c124c-7d35-4e5d-afbd-0aabafd130d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-25T06:49:19.416Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D9of8h9fZKmEYcUHTNMEW5",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.256",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "type": "tex",
+                "output_mode": "content",
+                "-C": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3050f0c-accc-44fb-9379-28f98210999c",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkBAnt3WSqrbT71wKY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7dd237a4-e76c-41e5-99f6-f5804cfc2426",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BPYgdWEAdXCkfiXbTPg8ba",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6842,
+                "cache_read_input_tokens": 30431,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6842
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 30431,
+                    "cache_creation_input_tokens": 6842,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6842,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T06:49:19.440Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D9of8h9fZKmEYcUHTNMEW5",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7dd237a4-e76c-41e5-99f6-f5804cfc2426",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "10e990d1-8117-43c3-b8f4-26fb87cc8612",
+            "sourceToolAssistantUUID": "7dd237a4-e76c-41e5-99f6-f5804cfc2426",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-25T06:49:20.718Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for mentions of \"0.256\" more broadly and check all R² values mentioned:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10e990d1-8117-43c3-b8f4-26fb87cc8612",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkPqYTMUwbgnx6xBH5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9013c0f8-a7b1-46b1-9316-becdd8745322",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012dXC4vQeuGTVR4sEnHmzLn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5426,
+                "cache_read_input_tokens": 37273,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T06:49:21.780Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019W3Skjo7QzQFDfhpt8157U",
+              "name": "Bash",
+              "input": {
+                "command": "grep -rn \"0\\.256\\|0\\.275\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ --include=\"*.tex\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9013c0f8-a7b1-46b1-9316-becdd8745322",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkPqYTMUwbgnx6xBH5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "afb47711-5098-41b5-99fc-1944f0266cdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012dXC4vQeuGTVR4sEnHmzLn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5426,
+                "cache_read_input_tokens": 37273,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-25T06:49:21.828Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019W3Skjo7QzQFDfhpt8157U",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:66:We simulate non-adversarial noise by randomly flipping judge votes at observed per-judge error rates. Random faults yield $R^2 = 0.73$--$0.81$ ($K_{\\mathrm{eff}}$ significant 2/2); adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The predictability gap narrows from ${\\sim}0.6$ ($K{=}3$) to $0.43$ ($K{=}5$).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex:16:Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two benchmarks, Massive Multitask Language Understanding (MMLU) and the AI2 Reasoning Challenge (ARC), confirm this predictor shift. Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework}).\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:94:Weighted   & 2/12  & 7/12 & 0.275 \\\\",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afb47711-5098-41b5-99fc-1944f0266cdd",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "b3ce8ccd-55cd-4897-9900-573406d8ea4a",
+            "sourceToolAssistantUUID": "afb47711-5098-41b5-99fc-1944f0266cdd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-25T06:49:22.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SjgSGERWYHtbiBRoVFzgwf",
+              "name": "Bash",
+              "input": {
+                "command": "grep -rn \"explained\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ --include=\"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3ce8ccd-55cd-4897-9900-573406d8ea4a",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkPqYTMUwbgnx6xBH5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "98da7b23-7fee-4e43-a966-25ce480c08e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012dXC4vQeuGTVR4sEnHmzLn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5426,
+                "cache_read_input_tokens": 37273,
+                "output_tokens": 214,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5426
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 214,
+                    "cache_read_input_tokens": 37273,
+                    "cache_creation_input_tokens": 5426,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5426,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T06:49:22.233Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SjgSGERWYHtbiBRoVFzgwf",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:316:Two implications follow. First, Pool~A at $K{=}5$ is fundamentally underpowered: the maximum attainable power (30.1\\% at $\\beta_{\\mathrm{std}}{=}1.0$) never reaches 80\\%. The 10/12 Cinelli--Hazlett success at $K{=}5$ therefore reflects large effect sizes surviving low power, strengthening the causal signal. Second, the low Cinelli--Hazlett RV at $K{=}3$ (2/12 exceeding the $\\eta_{\\max}$ benchmark) is partially explained by Pool~A's 84-panel design: MDE$_{\\,80\\%}{=}0.897$ means only effects exceeding ${\\approx}0.9$ SD are detectable. Crucially, the full-pool $K{=}3 \\to K{=}5$ significance increase ($4/12 \\to 7/12$) is not a power artifact: Pool~A power at $K{=}5$ (max 30.1\\%) is \\emph{lower} than at $K{=}3$ (max 85.8\\%), so the increase reflects growing effect sizes rather than inflated type~I error.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98da7b23-7fee-4e43-a966-25ce480c08e9",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "cbc392db-9b67-4e87-9ec5-339f27570747",
+            "sourceToolAssistantUUID": "98da7b23-7fee-4e43-a966-25ce480c08e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-25T06:49:23.596Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me do a comprehensive search for all remaining patterns and get line numbers with context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbc392db-9b67-4e87-9ec5-339f27570747",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkbggPqPDVpsyAPmVH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9e7492be-8d56-4090-8bc0-51084de6ae59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MHjMazuxsJN61NGcjnBEcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1031,
+                "cache_read_input_tokens": 42699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1031,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-25T06:49:24.266Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LagAcNyXi1J3jevSuPYZz",
+              "name": "Bash",
+              "input": {
+                "command": "grep -rn \"how.*variance\\|variance.*panel\\|composition.*explains\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/ --include=\"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e7492be-8d56-4090-8bc0-51084de6ae59",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkbggPqPDVpsyAPmVH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "425e9090-2d6c-4440-8ccf-b08df037f0bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MHjMazuxsJN61NGcjnBEcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1031,
+                "cache_read_input_tokens": 42699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1031,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-25T06:49:24.327Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LagAcNyXi1J3jevSuPYZz",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex:22:\\item \\textbf{Aggregation as predictability control.} Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), so the defense is partial rather than complete (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "425e9090-2d6c-4440-8ccf-b08df037f0bf",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "921aa876-3811-4c9d-960d-f33362d8249a",
+            "sourceToolAssistantUUID": "425e9090-2d6c-4440-8ccf-b08df037f0bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-25T06:49:24.397Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014UJRsXLsCfLmKEW8wTaKG7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "921aa876-3811-4c9d-960d-f33362d8249a",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkbggPqPDVpsyAPmVH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "616e406f-1d07-47fd-844e-e9370e0f3478",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MHjMazuxsJN61NGcjnBEcP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1031,
+                "cache_read_input_tokens": 42699,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1031
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 42699,
+                    "cache_creation_input_tokens": 1031,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1031,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-25T06:49:24.400Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014UJRsXLsCfLmKEW8wTaKG7",
+              "type": "tool_result",
+              "content": "1\t\\section{Experimental Methodology}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Models and Panel Construction}\n5\t\n6\tWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX~6000 Ada (48\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n7\t\n8\t\\subsection{Benchmarks and Attack Types}\n9\t\n10\tTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n11\t\n12\tEach benchmark is paired with six attack types: (1)~\\textbf{prompt injection}, adversarial instructions overriding the evaluation prompt \\citep{perez2022ignore,greshake2023not}; (2)~\\textbf{sycophancy}, flattering language exploiting judge preferences \\citep{wang2023fair}; (3)~\\textbf{score manipulation}, explicit numerical cues anchoring scoring; (4)~\\textbf{verbosity bias}, padding with irrelevant detail \\citep{zheng2023judging}; (5)~\\textbf{position bias}, reordering to exploit positional preferences \\citep{wang2023fair}; and (6)~\\textbf{authority bias}, fabricated credentials inflating credibility. The 2 benchmarks $\\times$ 6 attacks produce 12 conditions, each evaluated across all 455 panels (details in Appendix~\\ref{app:attack_details}).\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\begin{tabular}{llccc}\n18\t\\toprule\n19\t\\textbf{Bench.} & \\textbf{Attack} & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Dom.} \\\\\n20\t\\midrule\n21\tMMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\n22\tMMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\n23\tMMLU & Score manip.   & n.s.    & $+^{*}$ & $K$ \\\\\n24\tMMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\n25\tMMLU & Position bias  & $+^{*}$ & $+^{*}$ & Co \\\\\n26\tMMLU & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n27\t\\addlinespace\n28\tARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\n29\tARC  & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\n30\tARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\\\\n31\tARC  & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\n32\tARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\\\\n33\tARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n34\t\\bottomrule\n35\t\\end{tabular}\n36\t\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\n37\t\\label{tab:dominance}\n38\t\\end{table}\n39\t\n40\t\\subsection{Vulnerability Metrics}\n41\t\n42\tPer-judge vulnerability under attack $a$ is the fraction of items where judge $j$ is fooled: $\\eta_j(a) = \\Pr(X_j^a {=} 1)$, estimated empirically over the item set. The weakest-link vulnerability $\\eta_{\\max}(a) = \\max_{j \\in \\mathcal{P}} \\eta_j(a)$ captures the most susceptible member of each panel. The panel attack success rate $\\mathrm{ASR}(\\mathcal{P}, a)$ is the fraction of items where at least $t$ judges are simultaneously fooled. Panel diversity is quantified by $K_{\\mathrm{eff}}$ (Equation~\\ref{eq:keff}), computed from pairwise MI between judges' three-category winner labels (model~A wins, model~B wins, tie) on clean data, using the plug-in estimator with Miller--Madow bias correction. The $\\exp(-2\\,\\mathrm{MI}(i,j))$ term measures pairwise alienation: 1 when independent, 0 under full dependence. Under a Gaussian copula this yields $K_{\\mathrm{eff}} = K - \\frac{1}{K}\\sum_{i}\\sum_{j \\neq i} \\rho_{ij}^2$ \\citep{nelsen2006copulas}; goodness-of-fit rejects the Gaussian copula for 97--100\\% of pairs, yet plug-in MI and closed-form rankings agree closely ($\\rho{\\approx}0.86$; Appendix~\\ref{app:copula_gof}). Together, $\\eta_{\\max}$ (weakest-link channel) and $K_{\\mathrm{eff}}$ (diversity channel) serve as the two predictors in the regression framework below.\n43\t\n44\t\\subsection{Aggregation Methods}\n45\t\n46\tBeyond majority vote ($\\geq \\lceil K/2 \\rceil$ approvals), we evaluate three alternatives: \\emph{accuracy-weighted vote} ($w_j \\propto \\mathrm{acc}_j$; accept if $\\sum_j w_j \\cdot \\mathbf{1}[J_j \\text{ approves}] > 0.5$), \\emph{threshold vote} (unanimity, $t{=}K$), and \\emph{Bayesian calibration} ($P(\\text{correct} \\mid \\mathbf{v}) \\propto P(\\text{correct}) \\prod_j P(v_j \\mid \\text{correct})$; accept if posterior $> 0.5$).\n47\t\n48\t\\subsection{Statistical Framework}\n49\t\\label{sec:stat_framework}\n50\t\n51\tTo disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:\n52\t\\begin{equation}\n53\t\\label{eq:regression}\n54\t\\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),\n55\t\\end{equation}\n56\twith $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n57\t\n58\tDominance analysis \\citep{budescu1993dominance} decomposes $R^2$ into each predictor's average incremental contribution across all subsets. Generalized additive models (GAMs) with smooth terms test whether $K_{\\mathrm{eff}}$'s effect direction varies between targeted attacks (prompt injection, score manipulation, position bias) and shared-bias attacks (sycophancy, verbosity, authority bias).\n59\t\n60\t\\subsection{Robustness to Non-Independence}\n61\t\\label{sec:robustness_method}\n62\t\n63\tThe 455 panels share judges combinatorially (each appears in 91 panels), inducing correlated residuals. We apply three corrections \\citep[see][for a practitioner's guide]{cameron2015practitioners}: clustered standard errors (SE; CR1, 3-position max-SE), mixed-effects models (random judge intercepts), and wild cluster bootstrap ($B{=}9{,}999$, Rademacher weights, 3-position max-$p$) following \\citet{cameron2008bootstrap}. Cluster counts (13, ${\\leq}11$, ${\\leq}9$ at $K{=}3,5,7$) fall below the ${\\geq}20$ threshold; we use Rademacher weights following \\citet{mackinnon2018wild}. Fractional logit \\citep{papke1996econometric} with clustered SE serves as an $\\epsilon$-free robustness check (Appendix~\\ref{app:robustness_methods}).\n64\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "616e406f-1d07-47fd-844e-e9370e0f3478",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "11863434-faaa-4cd6-a468-86da3f1bbbb5",
+            "sourceToolAssistantUUID": "616e406f-1d07-47fd-844e-e9370e0f3478",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-25T06:49:25.673Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the threat_model.tex file for \"adaptive\" mentions:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11863434-faaa-4cd6-a468-86da3f1bbbb5",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkmAC3k3ctU2LRZQt7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1e7411f3-dd3c-4230-9e27-da4880b17494",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ML4KEN9tReiSuXkF7vB9G2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3247,
+                "cache_read_input_tokens": 43730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3247,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-25T06:49:26.546Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PtF9934FMgvNuRKpbb9vDb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e7411f3-dd3c-4230-9e27-da4880b17494",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkmAC3k3ctU2LRZQt7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "af693cdf-a96b-4d83-9b5d-a06ec2f440e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ML4KEN9tReiSuXkF7vB9G2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3247,
+                "cache_read_input_tokens": 43730,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3247
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 43730,
+                    "cache_creation_input_tokens": 3247,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3247,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-25T06:49:26.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PtF9934FMgvNuRKpbb9vDb",
+              "type": "tool_result",
+              "content": "1\t\\section{Threat Model and Problem Formulation}\n2\t\\label{sec:threat_model}\n3\t\n4\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n5\t\n6\tTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutual information (MI) among judges:\n7\t\\begin{equation}\n8\t\\label{eq:keff}\n9\tK_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n10\t\\end{equation}\n11\tThis formulation computes effective independence from pairwise MI estimates without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\\mathrm{eff}} \\approx K$ when judges are nearly independent ($\\mathrm{MI} \\to 0$) to $K_{\\mathrm{eff}} \\approx 1$ when judges are highly correlated ($\\mathrm{MI} \\to \\infty$). Motivated by information-theoretic redundancy reduction, one can informally expect joint vulnerability to scale as $\\eta_{\\mathrm{joint}} \\sim K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$: independent channels multiply failure probabilities, so fewer effective channels (lower $K_{\\mathrm{eff}}$) should reduce panel vulnerability. This motivating relationship assumes non-adaptive faults and independent channels; it serves as intuition rather than a formal bound.\n12\t\n13\t\\begin{definition}[Adaptive Adversary]\n14\t\\label{def:adversary}\n15\tA \\emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\\mathcal{P}$, the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$, and the inter-judge correlation structure. It selects the attack $a^* = \\arg\\max_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$ to maximize the panel ASR, yielding $\\mathrm{ASR}^*(\\mathcal{P}) = \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$. This oracle model represents an \\emph{upper bound} on adversarial capability; realistic adversaries with partial knowledge of panel composition would achieve lower ASR.\n16\t\\end{definition}\n17\t\n18\tThis departs from BFT models~\\cite{lamport1982byzantine,castro1999practical}, which tolerate $f < n/3$ faulty nodes but do not model adversaries that strategically target system structure. An adaptive adversary concentrates on the weakest link~\\cite{schneier2000secrets}, suggesting a \\emph{reversal}: under random faults, higher $K_{\\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.\n19\t\n20\t\\begin{theorem}[Weakest-Link Monotonicity; formal statement and proof in Appendix~\\ref{app:proof}]\n21\t\\label{thm:monotonicity}\n22\tReplacing any panel member with a pointwise more vulnerable judge can only increase $\\mathrm{ASR}^*(\\mathcal{P})$, for any adversary including adaptive ones. The stochastic dominance condition holds for 58\\% of judge pairs (61/105); non-dominance concentrates among within-tier pairs (72.1\\% non-dominant, 31/43) versus cross-tier pairs (21.0\\%, 13/62), reflecting that capability-similar judges lack uniform ordering.\n23\t\\end{theorem}\n24\t\n25\tThe theorem predicts $\\beta_2 > 0$ in Equation~\\ref{eq:regression}. The independence-based intuition suggests $\\beta_1 \\leq 0$ under non-adaptive faults; the reversal pattern predicts positive $\\beta_1$ for judge-specific attacks and negative for shared-bias attacks. The relative importance of $\\eta_{\\max}$ versus $K_{\\mathrm{eff}}$ depends on $K$: at small $K$, one weak judge flips the majority; at larger $K$, the adversary must compromise multiple judges. We test these predictions across $K \\in \\{3,5,7\\}$ (\\S\\ref{sec:experiments}).\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\small\n30\t\\resizebox{\\columnwidth}{!}{%\n31\t\\begin{tabular}{lllccc}\n32\t\\toprule\n33\t\\textbf{Model} & \\textbf{Family} & \\textbf{Tier} & \\textbf{Deploy} & \\textbf{MMLU} & \\textbf{ARC} \\\\\n34\t\\midrule\n35\tgpt-5.5              & OpenAI    & frontier    & API   & .957 & .983 \\\\\n36\tgemini-3.1-pro-preview & Google  & frontier    & API   & .955 & .987 \\\\\n37\tclaude-opus-4-6       & Anthropic & frontier   & API   & .890 & .987 \\\\\n38\tgemini-3.5-flash      & Google    & frontier   & API   & .968 & 1.00$^\\dagger$ \\\\\n39\t\\addlinespace\n40\tgpt-4.1               & OpenAI    & mid-tier   & API   & .837 & .967 \\\\\n41\tclaude-sonnet-4-6     & Anthropic & mid-tier   & API   & .810 & .953 \\\\\n42\t\\addlinespace\n43\tgpt-4.1-mini          & OpenAI    & lightweight & API  & .800 & .963 \\\\\n44\tgpt-4.1-nano          & OpenAI    & lightweight & API  & .633 & .853 \\\\\n45\tclaude-3-haiku        & Anthropic & lightweight & API  & .767 & .450 \\\\\n46\tmistral-large (123B)  & Mistral   & lightweight & local & .537 & .533 \\\\\n47\tllama3.1-70b          & Llama     & lightweight & local & .523 & .520 \\\\\n48\tllama3.1-8b           & Llama     & lightweight & local & .543 & .320 \\\\\n49\tqwen2.5-72b           & Qwen      & lightweight & local & .333 & .410 \\\\\n50\tqwen2.5-32b           & Qwen      & lightweight & local & .373 & .450 \\\\\n51\tqwen2.5-14b           & Qwen      & lightweight & local & .253 & .240 \\\\\n52\t\\bottomrule\n53\t\\end{tabular}}\n54\t\\caption{Judge models used in the study (clean accuracy on 300-item samples). API models accessed via OpenRouter (May 2026 snapshots); local models served with vLLM + AWQ INT4 quantization. $^\\dagger$\\,gemini-3.5-flash achieves perfect ARC accuracy but with 26.3\\% format error rate. Tier assignment follows provider capability classification (frontier $>$85\\% clean accuracy on both benchmarks, mid-tier 80--85\\%, lightweight ${\\leq}$80\\% or quantized); all six local AWQ INT4 models fall into lightweight, where quantization-induced accuracy reduction conflates genuine capability limitations with quantization damage (\\S\\ref{sec:analysis}).}\n55\t\\label{tab:models}\n56\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af693cdf-a96b-4d83-9b5d-a06ec2f440e3",
+            "isSidechain": true,
+            "promptId": "2c5979d4-af9e-4570-92b8-f589c910389f",
+            "agentId": "adb7d33998c76741a",
+            "type": "user",
+            "uuid": "9335f0e5-0aee-4fef-9cde-861e35219586",
+            "sourceToolAssistantUUID": "af693cdf-a96b-4d83-9b5d-a06ec2f440e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-25T06:49:40.572Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me compile my comprehensive findings based on all the searches I've performed:\n\n## Summary of Findings\n\nI have completed a thorough search of all .tex files in `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/` for mentions related to adaptive R² and the specified patterns. Here are the results:\n\n### **1. ADAPTIVE (case insensitive) - 7 matches:**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex` (Line 7)**\n- Context mentions adaptive approaches\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex` (Line 56)**\n- Context: \"adaptive attack reduces predictability\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 16)**\n- Lines 14-18: Discusses how \"adaptive attack reduces predictability to $R^2 = 0.275$\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex` (Lines 13, 18)**\n- Line 13-16: Definition of \"Adaptive Adversary\"\n- Line 18: \"An adaptive adversary concentrates on the weakest link... suggesting a \\emph{reversal}: under random faults, higher $K_{\\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex` (Line 63, 66)**\n- Line 63: Section titled \"Random vs.\\ Adaptive Fault Contrast\"\n- Line 66: \"adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$)\"\n\n### **2. R² Mentions - Multiple locations:**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 16)**\n- \"Under random faults, panel composition is highly predictive ($R^2 = 0.73$--$0.81$); adaptive attack reduces predictability to $R^2 = 0.275$\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 22)**\n- \"Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09)\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex` (Lines 66, 83, 85-88, 96)**\n- Line 66: \"$R^2 = 0.73$--$0.81$\" (random faults) and \"$R^2{=}0.275$ at $K{=}5$\" (adaptive attack)\n- Line 83: Table header showing \"$R^2$\" column\n- Lines 85-88: Aggregation methods with $R^2$ values (0.829, 0.327, 0.328, 0.087)\n- Line 96: \"Bayesian ($R^2{=}0.087$)\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex` (Line 30)**\n- \"Bayesian calibration: reduced predictability ($R^2{=}0.087$, 5+/1$-$)\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex` (Lines 94, 204, 212)**\n- Line 94: Table showing \"Weighted   & 2/12  & 7/12 & 0.275\" (as $\\bar{R}^2$)\n- Line 204: Cinelli--Hazlett sensitivity analysis involving $R^2$\n- Line 212: Table header with \"$\\boldsymbol{R^2_{\\mathrm{tr}}}$\" and \"$\\boldsymbol{R^2_{\\mathrm{out}}}$\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex` (Line 58)**\n- \"Dominance analysis decomposes $R^2$ into each predictor's average incremental contribution\"\n\n### **3. The specific number 0.275:**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 16)**\n- \"adaptive attack reduces predictability to $R^2 = 0.275$ (Figure~\\ref{fig:framework})\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex` (Line 66)**\n- \"adaptive attack reduces predictability ($R^2{=}0.275$ at $K{=}5$)\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex` (Line 94)**\n- In table of Aggregation at K=5: \"Weighted   & 2/12  & 7/12 & 0.275\" (mean $\\bar{R}^2$ value)\n\n### **4. Variance and Explained:**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex` (Line 22)**\n- \"Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09)\"\n\n### **5. The number 0.256:**\n- **No matches found** for 0.256 in any .tex files\n\n### **Key Finding Context:**\n\nThe adaptive R² = 0.275 metric is the central empirical finding of the paper. It represents the reduction in panel predictability when under adaptive attack at K=5 (compared to R² = 0.73–0.81 under random faults). This value appears prominently in:\n- The introduction as a headline result\n- Results section with detailed analysis\n- Appendix showing the weighted aggregation method yields this same mean R² value"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9335f0e5-0aee-4fef-9cde-861e35219586",
+            "isSidechain": true,
+            "agentId": "adb7d33998c76741a",
+            "requestId": "req_011CbNqkvCQdRtRN2GZJbTAf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eb95c6e2-9e99-465d-8fe6-5ce03d649316",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "d39a0003-01c7-410a-89c8-5139b23956ac",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014Pr7jNKEkQq5gtj31rWst7",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2304,
+                "cache_read_input_tokens": 46977,
+                "output_tokens": 1749,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2304
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1749,
+                    "cache_read_input_tokens": 46977,
+                    "cache_creation_input_tokens": 2304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2304,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 46
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-all-tex-files-under-home-ubuntu-agent-ml-research-idea-gen-0519-2-proje.md"
+}

@@ -1,0 +1,3695 @@
+# Research conversation: You are a senior ML researcher performing a deep analysis of a published paper. **Today's date: 2026-05-28 (UTC).** ## Y
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-1/a1178e57-27c4-4511-ac6b-d4947c3813ac.jsonl`
+- **Structured JSON:** [`701b04465eb06f1c53fe.json`](../../sessions/70/701b04465eb06f1c53fe.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T10:38:44.606Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T10:38:44.606Z",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "content": "You are a senior ML researcher performing a deep analysis of a published paper.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Your goal\n\nAnalyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?\n\n## Research context\n\nWe are generating ideas in the area of: **Target: AAAI 2026\nTrack: Machine Learning (ML) — Efficient Inference and Reasoning\n\nDirection: Per-instance adaptive co-optimization of generation and verification compute, where both the number of generated solutions (K) and the verification depth (none/ORM/PRM/GenRM) are jointly selected based on online difficulty estimation from early reasoning tokens. Extends static aggregate scaling laws (Singhi et al.) to instance-adaptive, multi-depth allocation with a practical online algorithm.\n\nSeed Papers:\n- Singhi et al., \"When To Solve, When To Verify\" (arXiv 2025) — establishes aggregate scaling laws for generation-verification tradeoff; our work must explicitly extend this to per-instance, multi-depth allocation\n- Setlur et al., \"Scaling TTC Without Verification is Suboptimal\" (arXiv Feb 2025) — proves verification is essential and the gap grows with compute; motivates why verification budget allocation matters\n- Chen et al., \"VG-Search: Rethinking Optimal Verification Granularity\" (arXiv May 2025) — shows verification granularity matters for efficiency; we extend from granularity to depth and per-instance adaptation\n- Wang et al., \"ST-BoN\" (NeurIPS 2025 Spotlight) — early pruning via sampling consistency; a strong baseline for lightweight verification allocation\n\nKnown Gaps:\n- No method selects verification depth (none/ORM/PRM/GenRM) per-instance based on estimated difficulty; all existing work uses a fixed verification strategy across problems\n- Singhi et al.'s scaling laws are static and aggregate (one ratio for all problems); no online algorithm adapts the generation-verification split per-instance during inference\n- No framework jointly optimizes K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget\n\nTheoretical Anchor: The bilinear structure of the joint optimization — P(correct) depends on coverage (increasing in K) and selection precision (increasing in d), while cost is c_g*K + c_v(d)*K = K*(c_g + c_v(d)) — admits a clean decomposition: for fixed d, optimal K = B/(c_g + c_v(d)), reducing the problem to selecting d* that maximizes selection precision per unit verification cost. This decomposition enables tractable optimization with provable approximation guarantees under mild assumptions on verifier accuracy monotonicity.\n\nConstraints:\n- Compute: ≤200 H100-hours\n- Must evaluate on ≥4 benchmarks across ≥2 domains (math, code, science)\n- Must compare against Singhi et al.'s aggregate-optimal baseline and fixed-depth baselines\n\nQuality Self-Checks:\n- [x] Core insight: The optimal verification depth varies dramatically per problem — easy problems need no verification while hard problems benefit from expensive generative verification — and this variance is predictable from early tokens.\n- [x] Why not obvious: Singhi et al. showed the aggregate optimal ratio, but the per-instance variance and multi-depth selection weren't explored because their framework only compared two verification strategies (GenRM vs SC), not a continuum of depths.\n- [ ] Baseline fear test: A simple heuristic (e.g., always use PRM for problems longer than X tokens) could capture much of the benefit — must demonstrate learned allocation significantly outperforms simple rules. This is a REAL RISK.\n- [x] Information exploited: Early-token difficulty signals (entropy trajectory, hesitation markers from Zhou et al.) that are available before verification decisions must be made.\n\nAvoid:\n- Framing as 'first to study generation-verification tradeoff' — Singhi et al. already did this; frame as extending to per-instance multi-depth allocation\n- Math-only evaluation — must include code and science benchmarks\n- Pure scaling law contribution — must provide a practical online algorithm, not just power-law fits\n- Ignoring the baseline fear: if a simple threshold on problem length achieves 80% of the adaptive allocation's gain, the paper is dead**\n\n## Paper to analyze\n\n{\n  \"title\": \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\",\n  \"authors\": \"Setlur et al.\",\n  \"venue\": \"ICML 2025\",\n  \"url\": \"https://arxiv.org/abs/2502.12118\",\n  \"why_important\": \"ICML 2025; formally proves verifier-based methods are fundamentally superior to verifier-free approaches with the gap growing as compute scales — directly motivates why verification budget allocation matters\",\n  \"one_line_summary\": \"Proves that finetuning LLMs with verifier-based RL/search is provably superior to verifier-free distillation, with the suboptimality gap growing with test-time compute scale.\"\n}\n\n## Instructions\n\n1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.\n\n2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:\n   - What gap did they identify and HOW did they find it?\n   - What was the key insight that others missed?\n   - How did they formulate the problem differently from prior work?\n   - What existing technique did they adapt/combine/simplify?\n\n3. **Learn from reviewers**: If you can find reviewer comments, extract:\n   - What did reviewers praise most?\n   - What concerns were raised and how were they addressed?\n   - What would have made this paper even stronger?\n\n## Output format\n\nOutput a single JSON object:\n{\n  \"title\": \"Paper title\",\n  \"venue\": \"Where published\",\n  \"problem_identification\": \"What gap/problem did they identify? How did they find it? (2-3 sentences)\",\n  \"key_insight\": \"The core intellectual contribution — the aha moment (1-2 sentences)\",\n  \"innovation_type\": \"new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis\",\n  \"method_summary\": \"Technical approach in 3-5 sentences — enough to understand the machinery\",\n  \"what_makes_it_good\": \"Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)\",\n  \"limitations_acknowledged\": \"What gaps did the authors themselves identify? (1-2 sentences)\",\n  \"open_questions\": \"What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)\",\n  \"building_blocks\": [\"List of methods/tools/datasets used that could be reused\"],\n  \"reviewer_feedback_summary\": \"If found on OpenReview: key praise and concerns. Otherwise: null\",\n  \"relevance_to_seed\": \"How does this paper relate to our research area? What can we learn from it? (1-2 sentences)\"\n}\n\nBe analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T10:38:44.610Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T10:38:44.610Z",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+## Round 1
+
+57 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T10:38:44.622Z_
+
+You are a senior ML researcher performing a deep analysis of a published paper.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Your goal
+
+Analyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?
+
+## Research context
+
+We are generating ideas in the area of: **Target: AAAI 2026
+Track: Machine Learning (ML) — Efficient Inference and Reasoning
+
+Direction: Per-instance adaptive co-optimization of generation and verification compute, where both the number of generated solutions (K) and the verification depth (none/ORM/PRM/GenRM) are jointly selected based on online difficulty estimation from early reasoning tokens. Extends static aggregate scaling laws (Singhi et al.) to instance-adaptive, multi-depth allocation with a practical online algorithm.
+
+Seed Papers:
+- Singhi et al., "When To Solve, When To Verify" (arXiv 2025) — establishes aggregate scaling laws for generation-verification tradeoff; our work must explicitly extend this to per-instance, multi-depth allocation
+- Setlur et al., "Scaling TTC Without Verification is Suboptimal" (arXiv Feb 2025) — proves verification is essential and the gap grows with compute; motivates why verification budget allocation matters
+- Chen et al., "VG-Search: Rethinking Optimal Verification Granularity" (arXiv May 2025) — shows verification granularity matters for efficiency; we extend from granularity to depth and per-instance adaptation
+- Wang et al., "ST-BoN" (NeurIPS 2025 Spotlight) — early pruning via sampling consistency; a strong baseline for lightweight verification allocation
+
+Known Gaps:
+- No method selects verification depth (none/ORM/PRM/GenRM) per-instance based on estimated difficulty; all existing work uses a fixed verification strategy across problems
+- Singhi et al.'s scaling laws are static and aggregate (one ratio for all problems); no online algorithm adapts the generation-verification split per-instance during inference
+- No framework jointly optimizes K (number of solutions) and d (verification depth) as coupled decision variables under a shared compute budget
+
+Theoretical Anchor: The bilinear structure of the joint optimization — P(correct) depends on coverage (increasing in K) and selection precision (increasing in d), while cost is c_g*K + c_v(d)*K = K*(c_g + c_v(d)) — admits a clean decomposition: for fixed d, optimal K = B/(c_g + c_v(d)), reducing the problem to selecting d* that maximizes selection precision per unit verification cost. This decomposition enables tractable optimization with provable approximation guarantees under mild assumptions on verifier accuracy monotonicity.
+
+Constraints:
+- Compute: ≤200 H100-hours
+- Must evaluate on ≥4 benchmarks across ≥2 domains (math, code, science)
+- Must compare against Singhi et al.'s aggregate-optimal baseline and fixed-depth baselines
+
+Quality Self-Checks:
+- [x] Core insight: The optimal verification depth varies dramatically per problem — easy problems need no verification while hard problems benefit from expensive generative verification — and this variance is predictable from early tokens.
+- [x] Why not obvious: Singhi et al. showed the aggregate optimal ratio, but the per-instance variance and multi-depth selection weren't explored because their framework only compared two verification strategies (GenRM vs SC), not a continuum of depths.
+- [ ] Baseline fear test: A simple heuristic (e.g., always use PRM for problems longer than X tokens) could capture much of the benefit — must demonstrate learned allocation significantly outperforms simple rules. This is a REAL RISK.
+- [x] Information exploited: Early-token difficulty signals (entropy trajectory, hesitation markers from Zhou et al.) that are available before verification decisions must be made.
+
+Avoid:
+- Framing as 'first to study generation-verification tradeoff' — Singhi et al. already did this; frame as extending to per-instance multi-depth allocation
+- Math-only evaluation — must include code and science benchmarks
+- Pure scaling law contribution — must provide a practical online algorithm, not just power-law fits
+- Ignoring the baseline fear: if a simple threshold on problem length achieves 80% of the adaptive allocation's gain, the paper is dead**
+
+## Paper to analyze
+
+{
+  "title": "Scaling Test-Time Compute Without Verification or RL is Suboptimal",
+  "authors": "Setlur et al.",
+  "venue": "ICML 2025",
+  "url": "https://arxiv.org/abs/2502.12118",
+  "why_important": "ICML 2025; formally proves verifier-based methods are fundamentally superior to verifier-free approaches with the gap growing as compute scales — directly motivates why verification budget allocation matters",
+  "one_line_summary": "Proves that finetuning LLMs with verifier-based RL/search is provably superior to verifier-free distillation, with the suboptimality gap growing with test-time compute scale."
+}
+
+## Instructions
+
+1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.
+
+2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:
+   - What gap did they identify and HOW did they find it?
+   - What was the key insight that others missed?
+   - How did they formulate the problem differently from prior work?
+   - What existing technique did they adapt/combine/simplify?
+
+3. **Learn from reviewers**: If you can find reviewer comments, extract:
+   - What did reviewers praise most?
+   - What concerns were raised and how were they addressed?
+   - What would have made this paper even stronger?
+
+## Output format
+
+Output a single JSON object:
+{
+  "title": "Paper title",
+  "venue": "Where published",
+  "problem_identification": "What gap/problem did they identify? How did they find it? (2-3 sentences)",
+  "key_insight": "The core intellectual contribution — the aha moment (1-2 sentences)",
+  "innovation_type": "new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis",
+  "method_summary": "Technical approach in 3-5 sentences — enough to understand the machinery",
+  "what_makes_it_good": "Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)",
+  "limitations_acknowledged": "What gaps did the authors themselves identify? (1-2 sentences)",
+  "open_questions": "What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)",
+  "building_blocks": ["List of methods/tools/datasets used that could be reused"],
+  "reviewer_feedback_summary": "If found on OpenReview: key praise and concerns. Otherwise: null",
+  "relevance_to_seed": "How does this paper relate to our research area? What can we learn from it? (1-2 sentences)"
+}
+
+Be analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "10e5614d-2223-4497-a4a6-cc8aee776a4d",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T10:38:44.621Z_
+
+```json
+{
+  "parentUuid": "10e5614d-2223-4497-a4a6-cc8aee776a4d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "0d8e4316-bb4b-4f4b-911a-38caf769b953",
+  "timestamp": "2026-05-28T10:38:44.621Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T10:38:44.622Z_
+
+```json
+{
+  "parentUuid": "0d8e4316-bb4b-4f4b-911a-38caf769b953",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "8d2bf5c4-51fe-4556-b1f4-bd2da1aac118",
+  "timestamp": "2026-05-28T10:38:44.622Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-28T10:38:44.622Z_
+
+```json
+{
+  "parentUuid": "8d2bf5c4-51fe-4556-b1f4-bd2da1aac118",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "88680fa3-f5f2-453b-b529-62e8e9d0cf24",
+  "timestamp": "2026-05-28T10:38:44.622Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze Setlur et al. verification necessity paper",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T10:38:47.138Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to deeply analyze the paper "Scaling Test-Time Compute Without Verification or RL is Suboptimal" by Setlur et al. I need to fetch the paper from arXiv, read it carefully, and then provide a structured analysis.
+
+Let me start by fetching the paper from arXiv.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88680fa3-f5f2-453b-b529-62e8e9d0cf24",
+  "isSidechain": false,
+  "requestId": "req_011CbUpfqJVfX2rKu4Z17vkg",
+  "type": "assistant",
+  "uuid": "23eb26f7-d622-4910-a963-c89b06f456ef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017myDnevPHB33VzpfLee6wJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T10:38:47.734Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QeaDbZJ4ASMPW5dmgMzzi9`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23eb26f7-d622-4910-a963-c89b06f456ef",
+  "isSidechain": false,
+  "requestId": "req_011CbUpfqJVfX2rKu4Z17vkg",
+  "type": "assistant",
+  "uuid": "34cb136b-cbde-4d87-bc18-cc0cef773037",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017myDnevPHB33VzpfLee6wJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3515,
+      "cache_read_input_tokens": 10620,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3515,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 10620,
+          "cache_creation_input_tokens": 3515,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3515
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-28T10:38:47.742Z_
+
+<details><summary>↩ Tool result · `toolu_01QeaDbZJ4ASMPW5dmgMzzi9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34cb136b-cbde-4d87-bc18-cc0cef773037",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "d89914cd-2a65-4e8c-9a05-912d259f674e",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "34cb136b-cbde-4d87-bc18-cc0cef773037",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-28T10:38:50.114Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the paper from arXiv. I'll make multiple requests to get different parts of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d89914cd-2a65-4e8c-9a05-912d259f674e",
+  "isSidechain": false,
+  "requestId": "req_011CbUpg4kd2QYX5F5JVcBW2",
+  "type": "assistant",
+  "uuid": "e6796a05-f308-4dbe-a972-a427077bc5e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KBDNfWDEocmeqPjUWQf9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 14135,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 14135,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T10:38:50.595Z_
+
+Now let me fetch the paper from multiple sources to get a comprehensive view.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6796a05-f308-4dbe-a972-a427077bc5e8",
+  "isSidechain": false,
+  "requestId": "req_011CbUpg4kd2QYX5F5JVcBW2",
+  "type": "assistant",
+  "uuid": "1809bfe9-bc62-424b-8ef7-7a824ae4cafd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KBDNfWDEocmeqPjUWQf9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 14135,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 14135,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T10:38:51.981Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Q63P2GrQd2tcGYhwNHFNUF`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.12118",
+  "prompt": "Extract the full abstract, author list, and any other metadata available on this page. Return everything verbatim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1809bfe9-bc62-424b-8ef7-7a824ae4cafd",
+  "isSidechain": false,
+  "requestId": "req_011CbUpg4kd2QYX5F5JVcBW2",
+  "type": "assistant",
+  "uuid": "2a1efa7b-7b7f-4cc2-bad1-ffbdd31997d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KBDNfWDEocmeqPjUWQf9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 14135,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 14135,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T10:38:55.404Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01R7N4Ez6Wjn66xhZKKkgQQL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.12118",
+  "prompt": "Extract the FULL text of the following sections verbatim, with all details, equations, theorems, and definitions preserved:\n1. Introduction (complete)\n2. Related Work (complete)\n3. Problem Setup / Preliminaries (complete)\n4. Main theoretical results / Method section (complete) - include all theorems, propositions, lemmas, and their proof sketches\n5. Conclusion\n\nBe as comprehensive as possible. Do NOT summarize — extract the actual text."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a1efa7b-7b7f-4cc2-bad1-ffbdd31997d5",
+  "isSidechain": false,
+  "requestId": "req_011CbUpg4kd2QYX5F5JVcBW2",
+  "type": "assistant",
+  "uuid": "07b8b4e9-c70b-45b1-9985-42cdab7fb9ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018KBDNfWDEocmeqPjUWQf9z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 14135,
+      "output_tokens": 329,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 329,
+          "cache_read_input_tokens": 14135,
+          "cache_creation_input_tokens": 685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T10:38:56.541Z_
+
+<details><summary>↩ Tool result · `toolu_01Q63P2GrQd2tcGYhwNHFNUF`</summary>
+
+```text
+# Paper Metadata Extraction
+
+**Title:** Scaling Test-Time Compute Without Verification or RL is Suboptimal
+
+**ArXiv ID:** 2502.12118
+
+**Authors:**
+- Amrith Setlur
+- Nived Rajaraman
+- Sergey Levine
+- Aviral Kumar
+
+**Submission Information:**
+- Original submission: February 17, 2025
+- Last revision: February 18, 2025 (v2)
+- Classification: Computer Science > Machine Learning (cs.LG, cs.CL)
+
+**Abstract:**
+
+The paper examines how to efficiently scale test-time computational resources. It proves that "finetuning LLMs with verifier-based methods based on RL or search is far superior to verifier-free approaches" when given comparable budgets. The authors demonstrate theoretically and empirically that verifier-based approaches outperform trace-distillation methods, particularly as test-time compute increases. They use anti-concentration theory to formalize conditions under which verification becomes crucial, testing their findings on reasoning tasks using models of 3B, 8B, and 32B parameters.
+
+**License:** Creative Commons Attribution 4.0 (CC BY 4.0)
+
+**DOI:** https://doi.org/10.48550/arXiv.2502.12118
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a1efa7b-7b7f-4cc2-bad1-ffbdd31997d5",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "8b30e3bf-bf1d-45d8-b058-ef38d71dec1c",
+  "toolUseResult": {
+    "bytes": 47815,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Metadata Extraction\n\n**Title:** Scaling Test-Time Compute Without Verification or RL is Suboptimal\n\n**ArXiv ID:** 2502.12118\n\n**Authors:**\n- Amrith Setlur\n- Nived Rajaraman\n- Sergey Levine\n- Aviral Kumar\n\n**Submission Information:**\n- Original submission: February 17, 2025\n- Last revision: February 18, 2025 (v2)\n- Classification: Computer Science > Machine Learning (cs.LG, cs.CL)\n\n**Abstract:**\n\nThe paper examines how to efficiently scale test-time computational resources. It proves that \"finetuning LLMs with verifier-based methods based on RL or search is far superior to verifier-free approaches\" when given comparable budgets. The authors demonstrate theoretically and empirically that verifier-based approaches outperform trace-distillation methods, particularly as test-time compute increases. They use anti-concentration theory to formalize conditions under which verification becomes crucial, testing their findings on reasoning tasks using models of 3B, 8B, and 32B parameters.\n\n**License:** Creative Commons Attribution 4.0 (CC BY 4.0)\n\n**DOI:** https://doi.org/10.48550/arXiv.2502.12118",
+    "durationMs": 4555,
+    "url": "https://arxiv.org/abs/2502.12118"
+  },
+  "sourceToolAssistantUUID": "2a1efa7b-7b7f-4cc2-bad1-ffbdd31997d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "8b30e3bf-bf1d-45d8-b058-ef38d71dec1c",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze Setlur et al. verification necessity paper",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T10:40:56.623Z_
+
+<details><summary>↩ Tool result · `toolu_01R7N4Ez6Wjn66xhZKKkgQQL`</summary>
+
+```text
+# Comprehensive Text Extraction: "Scaling Test-Time Compute Without Verification or RL is Suboptimal"
+
+## 1. Introduction (Complete)
+
+Pre-training and post-training of large language models (LLMs) rely heavily on access to high-quality "expert" data, but it is projected that by 2028, the availability of such data on the Internet will diminish, and improving model performance on several domains (e.g., reasoning, safety, etc.) often requires more data. As a result, scaling test-time compute is emerging as an alternate paradigm for improving reasoning performance, where an LLM is made capable of executing search or refinement procedures, either implicitly by training for it, or by explicitly executing the search on top of the LLM outputs. The goal here is to try and find the best response for a test query, which naturally leads to responses that are often longer than a direct answer by spending more compute. Broadly, we can classify the set of prevalant approaches for scaling test compute into two categories (see Figure 1).
+
+The first class of approaches uses some form of *verification*, e.g., a 0/1 outcome reward or a verifier, either for test-time search or as rewards in reinforcement learning (RL), e.g., Deepseek R1, DeepScaleR, and Kimi K1.5 that use the outcome reward. The second class of approaches circumvents verification altogether and runs supervised fine-tuning on "expert" traces, obtained either by piecing together tree search, or by querying bigger models trained to generate longer traces, i.e., distillation approaches (e.g., S1, OpenThinker, etc.). We refer to these as *"verifier-free"*, as these methods do not query any verification signal for guiding learning. Despite the prevalence of both classes of methods, i.e., verifier-based (VB) and verifier-free (VF), it is not clear which class results in better use of test-time compute, nor which type of method will come out ahead as the amount of available test-time compute increases. In this paper, we theoretically and empirically show that when fine-tuning a pre-trained LLM, VB methods are expected to perform better on both of these fronts under realistic conditions on the properties of the pre-trained LLM.
+
+*Theoretically, we show in this paper that VB methods outperform VF methods as we scale data and compute.* To do so, we operate in a setting where we are given a base LLM πb and a dataset of problems. We represent the total available test-time compute in terms of the total number of tokens H that can be used to produce a solution. Our goal is to finetune πb to make efficient use of test-time compute, i.e., attain best performance within a given compute budget. For learning, VF methods are allowed to obtain at most n correct solution traces for these problems by querying an expert (e.g., humans, linearized search, etc.). On the other hand, VB methods are allowed to query a reward annotator that measures correctness of a given response on n samples generated from πb but never observes expert traces. When operating in this setup (which reflects practical scenarios), we prove that as we scale training data n and test-time compute budget H, the separation between a simple verifier-based approach based on RL, and *any* verifier-free method grows (see Figure 1). Since both class of approaches involve finetuning πb, the properties of the pre-trained πb plays a key role in our separation result, which we discuss next.
+
+*What properties of the pre-trained LLM enable VB methods to scale better than VF methods?* To evaluate the performance of different approaches across varying test-time compute budgets, we define rewards that are high when the LLM arrives at the correct solution, and does so without completely exhausting the provided token budget. We show that when the base LLM admits a sufficiently *heterogeneous* distribution over rewards (i.e., it admits coverage over multiple correct sequences of varying lengths for a given problem), then scaling test-time compute by running *any* VF approach is suboptimal. In contrast, under a specific form of heterogeneity (which is also generally satisfied in practice), the performance of the policy obtained by running RL with verifiers (either implicit 0/1 "regex" matching rewards or explicitly trained numerical, generative verifiers) is better at any given test-time compute budget, and, moreover, also scales better as we further increase test-time compute. We term this specific form of heterogeneity as *anti-concentration*: for a given problem, a base LLM is said to be anti-concentrated if it admits non-trivial probability mass over solution traces that achieve rewards slightly better than the mean reward for that problem under the base policy. In Figure 2 we illustrate these two properties: heterogeneity and anti-concentration. Given a problem, if the base LLM samples correct responses of varying response length (heterogeneity), but also samples solution traces that are rewarded higher than the mean reward on that problem (anti-concentration); we derive the following result on the performance of VB and VF methods as we scale training data n and test-time compute H.
+
+**Main theoretical result** When the induced distribution of rewards under the pre-trained πb is anti-concentrated, and πb is heterogeneous: (i) for a fixed test-time compute budget H, verifier-based RL and search algorithms outperform *any* verifier-free algorithm; (ii) the gap between the two grows as √H as we scale both data n=Ω(H), and test compute H.
+
+*Overview of how we show the separation between VB and VF.* To arrive at our main result, we first prove an information-theoretic lower bound showing that the suboptimality of *any* VF algorithm scales as the heterogeneity or diversity of the base policy being finetuned, which implies a suboptimality gap of Ω(H/√n) in the worst case. For this we build on second-order suboptimality bounds for supervised finetuning in Foster et al. That said, we then show that the suboptimality for a simple VB method that runs RL with a trained verifier or actual 0/1 outcome rewards scales as 𝒪(H/n). In fact, we show that the heterogeneity of the base policy is often helpful for VB approaches, as long as the heterogeneity also implies anti-concentration, i.e., there is a reasonable chance to sample traces with rewards slightly better than the mean reward attained under the base policy. Consequently, the performance difference between VB and VF methods scales with the horizon or test compute H. This implies the need for training verifiers, running RL, or at the very least, using rewards when finetuning LLMs for test-time scaling.
+
+*Empirical results corroborating theory.* We corroborate our theoretical results on math reasoning with 3B/8B Llama models, and the S1 model. For the S1 model that is trained in a verifier-free manner, we show that a simple verifier-based approach performs better than S1 across a set of test-time compute budgets (Figure 1). For the LLama models, we explicitly control the heterogeneity of the base LLM and show that VF methods perform poorly with more heterogeneous base LLMs, and that the gap between VB and VF performance scales with more test-time compute (Figure 7 in Section 7). Our investigation also reveals that common pre-trained LLMs are indeed heterogeneous and satisfy anti-concentration, which are abstractions we introduce to prove our theoretical results (Figure 9, 10). To the best our knowledge, this is the first theoretical result and systematic study showing a separation between VF and VB methods, under realistic assumptions on the base model.
+
+*Implications and takeaways.* To summarize, this paper presents several implications for practitioners. As long as the pre-trained LLM is sufficiently hetergeneous and anti-concentrated, which we verify are both satsified in practice for models we evaluate, our analysis implies:
+
+1. While recent results imply that both verifier-free and verifier-based methods can work well at a large compute budget, we show that VB methods scale better as the test-time budget increases.
+
+2. This gap can be amplified further when the number of prompts for VB finetuning also scales linearly with the allowed test-time token budget.
+
+Another implication of our results is that since VF methods work well when heterogeneity is small, this means that in order for them to scale well, pre-trained LLMs must also exhibit low heterogeneity, but we believe that this is rarely the case with modern LLMs in practice.
+
+---
+
+## 2. Related Work (Complete)
+
+Recent works show that scaling test-time compute can improve performance at rates faster than scaling data or model size, either by (i) training an LLM to implement a search or refinement procedure in its long chain-of-thought; or (ii) wrapping LLMs with search procedures that use trained verifiers as cost functions for search. We do not study this distinction in this paper, but rather focus on an orthogonal axis that can be used to separate test-time methods: whether or not there is access to a reward signal during training and/or inference.
+
+Several works use 0/1 "outcome" reward annotations for training LLM reasoners. Some also use trained verifiers or run search test-time search. More recently, using 0/1 verification signals for RL has shown impressive results. Other algorithms use verification by converting 0/1 rewards into a value function. Verification can be done generatively and implicitly, all within one single LLM alternating between generation and verification. We bucket all of them as VB methods and show that querying verifiers or rewards is critical for test-time scaling.
+
+With the goal of distilling search procedures or long chain-of-thought reasoning procedures, some work also runs SFT on top of search traces or reasoning traces obtained from RL-trained models, that all succeed eventually. This is done so that the LLM learns to search for solutions on test problems. These methods are reward-free and are thus forced to mimic heterogeneous search traces with varying token counts, despite the fact that several of the most recent results employ excessive data subsampling. This implies that generalization is likely difficult for *any* SFT method, especially when the test-time budget is scaled. This general limitation of SFT-based methods aligns with prior findings and the more recent systematic studies.
+
+Some recent works also analyze self-improvement in LLMs under the assumption of a verification-generation gap, or frame sharpening model confidence as a form of self-improvement, where the most likely solution is assumed to be correct. In contrast, we do not assume that learning to verify is easier than learning to generate the correct trace, but instead show much weaker yet realistic conditions on the pre-trained LLM, where such a gap exists.
+
+---
+
+## 3. Notation and Preliminaries (Complete)
+
+**Notation.** We use the usual "big-oh" notation, i.e., 𝒪/Ω, where a=𝒪̃(b) when a=𝒪(b·max(1,polylog(b))), and a <∼ b when a=𝒪(b). The set of integers {1,…,n} is denoted as [n]. For a set 𝒮, the set of all measures over 𝒮 is given by Δ(𝒮). Next, we introduce some of the RL specific preliminaries we use.
+
+**Preliminaries.** Following prior work we model language generation as a token-level Markov decision process (MDP): ℳ(𝒮,𝒜,r,H), with state space 𝒮, token space 𝒜, binary reward r:𝒮×𝒜↦{0,1} in class ℛ, and horizon (token budget) H. Let 𝒮h denote the set of states at time h (so, 𝒮=:∪h=1^H 𝒮h). The set of initial states 𝒮1 is the set of input problems 𝐱∈𝒳, sampled from a distribution ρ. At time h, state 𝐬h is given exactly by the concatenation of the problem 𝐱 and the sequence of tokens sampled till step h−1, i.e., 𝐬h=(𝐱,a1,…,ah−1). Upon producing token ah, the environment deterministically transitions to state 𝐬h+1=(𝐬h,ah) obtained by concatenation and collects reward rh=:r(𝐬h,ah). A policy π∈Π is a function πh:𝒮↦Δ(𝒜) which produces a distribution over tokens at each state. We use d^π_h to denote the distribution over 𝒮h induced by π. A *solution trace* is a rollout τ=(𝐱,a1,…aH) in the MDP, and r(τ)=∑h r(𝐬h,ah). We let the notation 𝔼ρ,π[·] denote the expectation 𝔼_{𝐱∼ρ}[𝔼_{τ∼π(·|𝐱)}[·]].
+
+---
+
+## 4. What Does it Mean to Effectively Scale Test-Time Compute? (Complete)
+
+Our goal is to compare methods that finetune LLMs to most efficiently scale test-time compute. We say that an algorithm is effective at making *consistent use* of test compute if it attains the best performance possible within a fixed compute budget. In practice, this means that an approach must strike a balance between directly "guessing" an answer, which uses the least number of tokens but is unlikely to succeed, and re-attempting sequentially (e.g., running linearized search or generative verification), which is less token efficient and wastes compute, but is more likely to succeed at least once. This entails a procedure where models are deployed with an ever-growing upper bound on test-time token budgets in hopes to find more successes for a given prompt, or in other words, answer more questions within a given large test-time budget, underscoring the necessity of efficient asymptotic scaling as we formalize in this section.
+
+Denoting a base LLM as an autoregressive policy πb(a|𝐬) and a given budget on test-time compute represented in terms of a maximum H output token length, we evaluate a finetuning algorithm by measuring the performance of the policy produced by finetuning πb under a specific reward function r(𝐬,a). This reward function should capture both the accuracy and the how quickly (in terms of the number of tokens), the LLM can find a solution. One such family of reward functions is a *bi-level reward*.
+
+**Property 4.1 (Bi-level rewards).** For any trajectory τ, rewards are binary and non-decreasing, i.e. ∀h∈[H], rh+1(𝐬h+1,ah+1)≥rh(𝐬h,ah), (example in Figure 3).
+
+While practical approaches do not necessarily maximize bi-level reward directly, many of them utilize some form of length penalty or a curriculum, to implicitly or explicitly force models to find solutions in the smallest number of tokens possible. Our notion of bi-level reward models this formally.
+
+**Asymptotic test-time compute scaling.** Having defined how we can measure the efficacy of test-time scaling enabled by a finetuning algorithm, within a budget of H tokens, we now turn to providing a formal definition that allows us to compare different algorithms. Concretely, Definition 4.2 defines what it means for an algorithm 𝒜1 to *"asymptotically"* scale test-time compute by H^α, compared to another algorithm 𝒜2. Under our bi-level reward formulation, a higher value of α implies that 𝒜1 is able to succeed by spending ≈H^α less compute on average compared to 𝒜2, as we scale H. Next, we show that verifier-based algorithms scales test compute by Ω̃(H^α) compared to veriifer-free algorithms.
+
+**Definition 4.2 (Scaling test-time compute by H^α).** Fix any bi-level reward r, base policy πb, horizon H and data budget n=Ω(H), we say that algorithm 𝒜1 producing policy 𝒜1(H), *asymptotically* scales test-time compute by H^α compared to 𝒜2 producing 𝒜2(H) if: 
+
+Jr(𝒜1(H))−Jr(𝒜2(H))=Ω̃(H^α).
+
+We also present the formal performance objective:
+
+max_π Jr(π):=𝔼_{ρ,π}[∑_{t=0}^H r(𝐬_t,a_t)], Q_π(𝐬_h,a_h)=:𝔼_{ρ,π}[∑_{t=h}^H r(𝐬_t,a_t)|𝐬_h,a_h].
+
+---
+
+## 5. Theory: When Does Verification Enable Asymptotic Scaling of Test Compute?
+
+In this section, we theoretically compare *verifier-free* and *verifier-based* algorithms when scaling test-time compute. We show that for any bi-level reward, there are base policies (pre-trained LLMs) that enable verification based algorithms to asymptotically scale test-time compute H, by a factor of Ω(√H) relative to *any* verifier-free approach, and quantify these properties of the pre-trained base LLM.
+
+A *verifier-free (VF) algorithm* finetunes the base LLM πb to mimic data from an expert policy πe without using any rewards or verification. The expert πe can produce a solution trace that directly results in the final correct answer or perform a number of search and/or backtracking operations to eventually end in the final correct answer. The expert policy samples correct traces τ, i.e. r(τ)>0, however these traces are not guaranteed to be the most compute-efficient (i.e., r(τ)≠H) as each one may get to the answer spending varying number of tokens for search, backtracking, and CoT.
+
+The performance of any verifier-free algorithm is dependent on the *choice of the expert*. So, how do we choose "good" experts for learning? Such experts must satisfy two conditions: (a) they should attain high rewards (end in a correct final answer), and (b) the expert's distribution should be at least somewhat "close" to the base policy πb to prevent issues such as memorization and optimization pathologies from finetuning. For e.g., one predominant way of constructing expert data is to first sample multiple traces from πb and then retain all correct traces. While existing theoretical abstractions do not prescribe an ideal condition to quantify (b), we formalize this practical constraint by constraining the expert to be the highest reward policy in Πκ: the set of all policies with χ² divergence ≤κ≤κ w.r.t. the base πb. We choose χ² over other f-divergences like KL for simplicity.
+
+D_{χ²}(π_e∥π_b)=:𝔼_{ρ,π_b}[(π_e(τ|𝐱)/π_b(τ|𝐱)−1)²]≤κ.
+
+We refer to the κ-χ² ball of expert policies as Πκ, and the optimal expert, i.e., arg max_{π∈Πκ} J_r(π), as π̄_κ.
+
+A *verifier-based (VB) algorithm* is one that finetunes the base policy without accessing an expert policy, but instead queries an annotator to provide reward labels to solution traces sampled from the base policy πb. For e.g., RL with outcome rewards or using generative verifiers count as verifier-based methods. Note that this definition does *not* necessarily require a learned verifier. In all, these classes of methods *differ in the learning signal being accessed*: access to an expert policy vs. access to a reward annotator that provides bi-level reward.
+
+We compare VF and VB methods, given access to sampling n rollouts from expert policy for VF methods and n base policy rollouts with reward annotations for VB. We are interested in evaluting whether VB methods scale test-time compute better than VF as per Definition 4.2. Our main theoretical result, Theorem 5.1, states that for *any* bi-level reward function, there exist base policies πb, representative of practical pre-trained LLMs, where a simple VB method scales test-time compute better than *all* VF methods by at least Ω(√H). Next, we formalize the class of base policies that induce this separation.
+
+**Theorem 5.1 (Main result; informal).** For any bi-level reward r and sufficiently large data budget n, there exists a base policy πb, verifier-based algorithm 𝒜, such that finetuning πb with 𝒜 scales test-time compute (Definition 4.2) by Ω̃(√H) relative to any verifier-free algorithm.
+
+**Key insight.** To prove the result above, we establish an instance-dependent information-theoretic lower bound on the suboptimality gap of *any* VF method, which is H/√n when πb is sufficiently *heterogeneous*, i.e., solution traces for a given prompt vary a lot in token efficiency. Then, we show that a simple verifier-based method attains a suboptimality gap upper bound of only H/n, even when πb is heterogeneous. For this, πb need only cover some high-reward traces with a sufficient (constant) probability. Put formally, when the distribution over rewards attained by traces sampled from πb is heterogeneous and not too "sharply" concentrated around its mean and n=Ω(H) (typically the case for best performance), VB methods scale test-time efficiency by √H over VF methods. A pictorial illustration of these conditions is shown in Figure 2, which we also show holds empirically (Section 7). Then, we use techniques from second-order adaptive bounds to develop a novel analysis for proving the separation result.
+
+### 5.1 Lower Bounds for Verifier-Free Expert Cloning
+
+We first derive an information-theoretic lower bound for VF methods comparing them to the expert policy πe. To understand the implications of our theoretical result, we state our lower bound using a notion of "*base policy heterogeneity*", which measures the variability in the token sequences that all attain the same final answer under πb. We define this notion of policy heterogeneity as follows:
+
+**Property 5.2 (Policy heterogeneity).** Given problem 𝐱, the heterogeneity of π ∈ Π at 𝐱 is given by:
+
+σ²_{π,𝐱}=:∑_{h=1}^H 𝔼_{𝐬_h∼d^π_h}[Var_{a∼π(·|𝐬_h)}[Q^{π_e}(𝐬_h,a_h)]|𝐱].
+
+The total heterogeneity across problems is σ²_π=:𝔼_{𝐱∼ρ}[σ²_{π,𝐱}], the median across problems is σ̃_π:=Median({σ_{π,𝐱}:𝐱∈𝒳}), and finally the mean heterogeneity across problems is σ̄_π=𝔼_{𝐱∼ρ}[σ_{π,𝐱}].
+
+For the expert policy, heterogeneity is non-zero when different solution traces spend different tokens and token budgets to attain the final answer from *any* state-action tuple attained in a trajectory. We expect most practical LLM finetuning datasets obtained by rejection sampling, concatenating search traces, collecting human thinking trace data, or distilling from larger models to induce quite a heterogeneous expert, since a high diversity of solution traces is often a desideratum employed by practitioners when generating training data in supervised finetuning. In order to obtain heterogeneous expert traces, we would also need the base policy πb to be heterogeneous. In fact, we show a useful intermediate result below relating heterogeneity of πe to that of πb, which allows us to present our lower bound directly in terms of σb of the base policy (instead of σe).
+
+**Lemma 5.3 (Lower bound on expert heterogeneity).** Let the heterogeneity of base policy πb be σ²_b. For any expert π_e∈Πκ, its heterogeneity σ²_e satisfies |σ²_e−σ²_b|≤Hσ_b√(κ/2).
+
+**Theorem 5.4 (Information-theoretic lower bound on verifier-free algorithms).** Given any ρ,r,πb, expert policy π_e and k≤|𝒳|/4 (𝒳 = space pf prompts), there exists a family of alternate expert policies Π′ of size 2^k and reward class ℛ′⊆ℛ, s.t., for any π̂^vf_n returned by any verifier-free algorithm:
+
+max_{π′∈Π′} max_{r′∈ℛ′} J_r(π′)−J_{r′}(π̂^vf_n)=Ω(σ̃_e √(log|Π′|/n)).
+
+In addition, ∀π′∈Π′, σ²_{π′}=O(σ²_e) under any alternate reward function r′∈ℛ′, and Π′⊆Π_{Θ(κ)}. Finally, when the total hetetogeneity σ²_e≤(6/5)σ̄²_e (the mean heterogeneity), then the median heterogeneity across problems σ̃_e scales as Ω(σ_e), i.e., we can replace σ̃_e in the bound above with σ_e.
+
+**Reading this statement.** This bound means that a dataset of n datapoints from a fixed expert πe is fundamentally insufficient to resolve uncertainty as to which of the experts ∈Π′ could have been the correct expert generating the data. Using a verifier-free algorithm here incurs a suboptimality that depends on σ̃_e/√n for the worst choice of this expert in Π′, meaning that for any given reward function, base policy and expert, there is a problem instance Π′ and an alternate reward r′ where this guarantee is tight. Further, when the total heterogeneity σ²_e≈σ̄²_e, then we can replace the median with the expert's heterogeneity σ_e, which is in turn close to the base LLM's heterogeneity σ_b, as stated by our Lemma 5.3.
+
+To prove this result, we extend the lower bound result from Foster et al., which applies to only one prompt, to an instance-dependent lower bound that applies to a setting with more than one prompt and bi-level rewards.
+
+### 5.2 A Simple Verifier-Based Algorithm
+
+So far, we saw that heterogeneity can hurt the performance of any VF algorithm that uses expert data without reward annotations. Next, we show that this limitation does not exist for VB methods, by constructing a simple algorithm that trains a verifier using n reward annotations on data sampled from the base policy πb (which need not be an expert). Concretely, our algorithm first trains a verifier to predict sparse 0/1 correctness of a given solution trace using the provided data, to the best possible accuracy. Then, it finetunes the LLM to maximize the verifier scores on the distribution of problems ρ. Note, that at test-time we sample problems i.i.d. from ρ. Crucially, the algorithm does not assume access to ground-truth rewards over the entire distribution ρ, but only a small training dataset 𝒟tr. We present this approach formally in Algorithm 1. In particular, Step 2 produces a class of verifiers ℛ̂_γ that are γ-optimal as measured by squared loss. Step 3 produces a policy that performs optimally on the worst reward in ℛ̂_γ. This technique of optimizing a pessimistic reward is common in both theory and practice of offline RL, and has also been useful for preventing reward overoptimization.
+
+**Algorithm 1: Simple Verifier-Based Algorithm**
+
+**Input:** Base policy πb, dataset 𝒟tr=:{(𝐱_i,τ_i)}^n_{i=1} of problems 𝐱_i∼ρ and traces τ_i∼πb(·|𝐱).
+
+**Step 1:** For every τ_i annotate (𝐱_i,τ_i) with bi-level reward y_i.
+
+**Step 2:** Learn set of classifiers R̂_γ⊂ℛ that are γ-optimal, i.e.,
+R̂_γ:={r′∈ℛ | (1/n)∑^n_{i=1}(r′(τ_i)−r(τ_i))²≤γ}
+
+**Step 3:** Return any optimal pessimistic verifier-based policy,
+π̂^vb_n ∈ arg max_{π∈Π} min_{r∈R̂_γ} J_r(π̂).
+
+**Connecting Algorithm 1 to popular verification-based methods in practice.** In practice, post-training algorithms that use some sort of verification, either train a policy on ground-truth 0/1 rewards that are known on a fixed set of training problems, e.g., in R1, DeepScaleR; or train outcome/process verifiers to predict ground-truth rewards on the same training problems, and use the verifiers at test time to run search over responses sampled from the base policy given test problems, e.g., best-of-N, beam search. The former trains a policy that generalizes onto test problems, and the latter trains a verifier with the expectation that the verifier's predictions are accurate on the test problems. Algorithm 1 that we describe falls in the latter category of verification-based approaches.
+
+Next, we show that this VB algorithm attains a lower suboptimality gap than the lower bound for VF. To do so, we first prove an intermediate Lemma 5.5, which upper bounds the accuracy of the verifier trained on 𝒟tr in Algorithm 1.
+
+**Proposition 5.5 (Verifier accuracy).** For any bi-level reward r, base policy πb, and learned reward function r̂∈R̂_γ from Algorithm 1, with probability 1−δ, the following error bound is true:
+
+𝔼_{ρ,πb}[|r(τ)−r̂(τ)|]≤Õ_H(H·log(|ℛ|/δ)/n).
+
+Equipped with this result, we can now bound the suboptimality of the learned policy π̂^vb_n in Algorithm 1. We show that when used with a specific subset of heterogeneous πb–which are empirically show are representative of real pre-trained LLMs–this VB algorithm attains a stronger suboptimality guarantee of H/n, when compared to the best policy π̄_κ belonging to the χ²-ball, Πκ, around the base policy. Intuitively, this subset of heterogeneous policies are characterized by a condition pertaining to how concentrated or "sharp" is the distribution of rewards induced by sampling traces from πb on a given prompt. We call this the anti-concentation condition. As long as the reward distribution puts a constant probability mass on reward values that are ≈σ_{𝐱}√κ higher than the mean reward πb gets on prompt 𝐱, we say that the policy is *anti-concentrated* (Property 5.6; an illustration of this condition is shown in Figure 2).
+
+**Property 5.6 (Anti-concentrated π_b).** For problem 𝐱, horizon H, and base policy πb, let c_𝐱(ε) be the probability mass that reward r(τ) is larger than the mean E_{τ∼π_b(·|𝐱)}[r(τ)] by a margin of σ_{b,𝐱}√ε. 
+
+c_𝐱(ε)=:Pr_{τ∼π_b(·|𝐱)}[r(τ)≥𝔼_{τ∼π_b(·|𝐱)}[r(τ)]+σ_{b,𝐱}√ε],
+
+Then base LLM πb is said to be c-anticoncentrated if min_𝐱 c_𝐱(κ_𝐱)≥c, where κ_𝐱=:D_{χ²}(π̄_κ(·|𝐱)∥π_b(·|𝐱)) and π̄_κ denotes the best policy in Πκ, i.e., the one with the highest performance J_r(·). The value of κ_𝐱 depends on how much an expert is allowed to deviate from the base policy πb on problem 𝐱.
+
+Even under high heterogeneity (Property 5.2), an anti-concentrated πb covers–with a constant mass–a policy that improves over its own mean. This means that an algorithm using the reward signal to fine-tune πb should be able to discover this "better" policy. VF algorithms that do not utilize to the reward signal fail at finding this high-rewarding policy. While a non-heterogeneous base policy (for e.g., one that always samples a single trace for a given 𝐱) will not satisfy Property 5.6, hetergeneous distributions can easily be anti-concentrated since heterogeneity is a property of a moment (i.e., variance) of the reward distribution whereas Property 5.6 fundamentally relates to the shape or the CDF of the reward distribution. We demonstrate in our experiments that pre-trained LLMs often satisfy this property.
+
+**How can VB algorithms benefit from anti-concentration of π_b?** As discussed above, Property 5.6 ensures the existence of a good policy that is covered by the base policy, with high probability. Intuitively, running RL should be able to then sample traces that attain high rewards and learn to pick up on this reward with more training. From a theoretical perspective, note that the suboptimality gap of any VB method depends on the distribution shift between the data-generating policy (πb in our case) and the comparator policy that we wish to provide the guarantee against (π̄_κ), since this shift dictates how generalization error during training gets amplified when the model is deployed. This notion of distribution shift is typically formalized as a bounded *coverage coefficient* of an unknown comparator policy, which is restrictive. We strengthen the notion of this coverage coefficient in our analysis by leveraging anti-concentration, which allows us to optimally construct a high-reward comparator policy that is covered by the base policy (illustrated in Figure 4). Formally, this results in Theorem 5.7 (full proof is provided in Appendix A.4).
+
+**Theorem 5.7 (Suboptimality upper bound for VB against any expert).** Consider a bi-level reward r, base policy πb that is c₀-anticoncentrated at some horizon h₀≤H. Then, w.p. 1−δ, for the policy π̂^vb_n returned by Algorithm 1, the suboptimality gap w.r.t. the best expert: π̄_κ:
+
+J_r(π̄_κ)−J_r(π̂^vb_n) <∼ (1/c₀)·(H·log(|ℛ|/δ)/n).
+
+Note that our simple VB method admits no direct dependency in σ_b (base policy's heterogeneity), which scales as Ω(H) in the worst case. This implies that as long as πb satisfies Property 5.6 for some h₀≪H, VB methods only incur suboptimality that scales as O(1) when n=Ω(H) whereas for any VF method this is Ω(√H). Mathematically, this is because once Property 5.6 is satisfied for some c₀ at a given horizon h₀, then it continues to hold for c₀ and ∀H>h₀. This is a consequence of the structure of the bi-level reward as we show in Lemma A.22 in Appendix A.4.
+
+Overall, intuitively Theorem 5.7 implies that if πb covers some correct solution traces for a given prompt, then VB methods can find these traces and minimize suboptimality, whereas VF methods may not be able to discover them and will spend unnecessary compute in trying to mimic multiple traces, which also naturally increases the chances of failing at the problem. Combining the upper and lower bounds (Theorem 5.7 and 5.4) allows us to bound the efficacy of test-time scaling with VB and VF methods.
+
+**Theorem 5.8 (Separation between test-time scaling of VB and VF methods).** For any heterogeneous πb with σ̃_b=Ω(H), and is c₀-anticoncentrated for horizon h₀≪H, the policy π̂^vb_n returned by the simple verifier-based Algorithm 1 and π̂^vf_n returned by any verifier-free method satisfy:
+
+J_r(π̂^vb_n)−J_r(π̂^vf_n)=Ω̃(H/√n),
+
+which implies our test-time scaling result in Theorem 5.1.
+
+---
+
+## Conclusion
+
+The document contains no separate "Conclusion" section. The paper concludes with discussion of implications in the Introduction and broader implications in Section 8, which is not fully provided in the source material.
+
+---
+
+## Summary
+
+This paper establishes that **verifier-based methods significantly outperform verifier-free approaches** for scaling test-time compute in LLMs. The key theoretical contributions are:
+
+1. **Lower bound (Theorem 5.4)**: Any VF method incurs Ω(σ̃_e√(log|Π′|/n)) suboptimality
+2. **Upper bound (Theorem 5.7)**: A simple VB algorithm achieves only O(H·log(|ℛ|/δ)/n) suboptimality
+3. **Separation (Theorem 5.8)**: When the base LLM is heterogeneous and anti-concentrated, VB methods scale test-time compute by **Ω̃(H/√n)** advantage over VF
+
+The critical properties enabling this separation are: *heterogeneity* (variance in solution trace lengths) and *anti-concentration* (constant probability mass on above-mean rewards). Empirical validation on math reasoning confirms these theoretical predictions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07b8b4e9-c70b-45b1-9985-42cdab7fb9ca",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "fad8d6c0-43be-4ddb-8585-7ee12871af2c",
+  "toolUseResult": {
+    "bytes": 4266853,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Comprehensive Text Extraction: \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\"\n\n## 1. Introduction (Complete)\n\nPre-training and post-training of large language models (LLMs) rely heavily on access to high-quality \"expert\" data, but it is projected that by 2028, the availability of such data on the Internet will diminish, and improving model performance on several domains (e.g., reasoning, safety, etc.) often requires more data. As a result, scaling test-time compute is emerging as an alternate paradigm for improving reasoning performance, where an LLM is made capable of executing search or refinement procedures, either implicitly by training for it, or by explicitly executing the search on top of the LLM outputs. The goal here is to try and find the best response for a test query, which naturally leads to responses that are often longer than a direct answer by spending more compute. Broadly, we can classify the set of prevalant approaches for scaling test compute into two categories (see Figure 1).\n\nThe first class of approaches uses some form of *verification*, e.g., a 0/1 outcome reward or a verifier, either for test-time search or as rewards in reinforcement learning (RL), e.g., Deepseek R1, DeepScaleR, and Kimi K1.5 that use the outcome reward. The second class of approaches circumvents verification altogether and runs supervised fine-tuning on \"expert\" traces, obtained either by piecing together tree search, or by querying bigger models trained to generate longer traces, i.e., distillation approaches (e.g., S1, OpenThinker, etc.). We refer to these as *\"verifier-free\"*, as these methods do not query any verification signal for guiding learning. Despite the prevalence of both classes of methods, i.e., verifier-based (VB) and verifier-free (VF), it is not clear which class results in better use of test-time compute, nor which type of method will come out ahead as the amount of available test-time compute increases. In this paper, we theoretically and empirically show that when fine-tuning a pre-trained LLM, VB methods are expected to perform better on both of these fronts under realistic conditions on the properties of the pre-trained LLM.\n\n*Theoretically, we show in this paper that VB methods outperform VF methods as we scale data and compute.* To do so, we operate in a setting where we are given a base LLM πb and a dataset of problems. We represent the total available test-time compute in terms of the total number of tokens H that can be used to produce a solution. Our goal is to finetune πb to make efficient use of test-time compute, i.e., attain best performance within a given compute budget. For learning, VF methods are allowed to obtain at most n correct solution traces for these problems by querying an expert (e.g., humans, linearized search, etc.). On the other hand, VB methods are allowed to query a reward annotator that measures correctness of a given response on n samples generated from πb but never observes expert traces. When operating in this setup (which reflects practical scenarios), we prove that as we scale training data n and test-time compute budget H, the separation between a simple verifier-based approach based on RL, and *any* verifier-free method grows (see Figure 1). Since both class of approaches involve finetuning πb, the properties of the pre-trained πb plays a key role in our separation result, which we discuss next.\n\n*What properties of the pre-trained LLM enable VB methods to scale better than VF methods?* To evaluate the performance of different approaches across varying test-time compute budgets, we define rewards that are high when the LLM arrives at the correct solution, and does so without completely exhausting the provided token budget. We show that when the base LLM admits a sufficiently *heterogeneous* distribution over rewards (i.e., it admits coverage over multiple correct sequences of varying lengths for a given problem), then scaling test-time compute by running *any* VF approach is suboptimal. In contrast, under a specific form of heterogeneity (which is also generally satisfied in practice), the performance of the policy obtained by running RL with verifiers (either implicit 0/1 \"regex\" matching rewards or explicitly trained numerical, generative verifiers) is better at any given test-time compute budget, and, moreover, also scales better as we further increase test-time compute. We term this specific form of heterogeneity as *anti-concentration*: for a given problem, a base LLM is said to be anti-concentrated if it admits non-trivial probability mass over solution traces that achieve rewards slightly better than the mean reward for that problem under the base policy. In Figure 2 we illustrate these two properties: heterogeneity and anti-concentration. Given a problem, if the base LLM samples correct responses of varying response length (heterogeneity), but also samples solution traces that are rewarded higher than the mean reward on that problem (anti-concentration); we derive the following result on the performance of VB and VF methods as we scale training data n and test-time compute H.\n\n**Main theoretical result** When the induced distribution of rewards under the pre-trained πb is anti-concentrated, and πb is heterogeneous: (i) for a fixed test-time compute budget H, verifier-based RL and search algorithms outperform *any* verifier-free algorithm; (ii) the gap between the two grows as √H as we scale both data n=Ω(H), and test compute H.\n\n*Overview of how we show the separation between VB and VF.* To arrive at our main result, we first prove an information-theoretic lower bound showing that the suboptimality of *any* VF algorithm scales as the heterogeneity or diversity of the base policy being finetuned, which implies a suboptimality gap of Ω(H/√n) in the worst case. For this we build on second-order suboptimality bounds for supervised finetuning in Foster et al. That said, we then show that the suboptimality for a simple VB method that runs RL with a trained verifier or actual 0/1 outcome rewards scales as 𝒪(H/n). In fact, we show that the heterogeneity of the base policy is often helpful for VB approaches, as long as the heterogeneity also implies anti-concentration, i.e., there is a reasonable chance to sample traces with rewards slightly better than the mean reward attained under the base policy. Consequently, the performance difference between VB and VF methods scales with the horizon or test compute H. This implies the need for training verifiers, running RL, or at the very least, using rewards when finetuning LLMs for test-time scaling.\n\n*Empirical results corroborating theory.* We corroborate our theoretical results on math reasoning with 3B/8B Llama models, and the S1 model. For the S1 model that is trained in a verifier-free manner, we show that a simple verifier-based approach performs better than S1 across a set of test-time compute budgets (Figure 1). For the LLama models, we explicitly control the heterogeneity of the base LLM and show that VF methods perform poorly with more heterogeneous base LLMs, and that the gap between VB and VF performance scales with more test-time compute (Figure 7 in Section 7). Our investigation also reveals that common pre-trained LLMs are indeed heterogeneous and satisfy anti-concentration, which are abstractions we introduce to prove our theoretical results (Figure 9, 10). To the best our knowledge, this is the first theoretical result and systematic study showing a separation between VF and VB methods, under realistic assumptions on the base model.\n\n*Implications and takeaways.* To summarize, this paper presents several implications for practitioners. As long as the pre-trained LLM is sufficiently hetergeneous and anti-concentrated, which we verify are both satsified in practice for models we evaluate, our analysis implies:\n\n1. While recent results imply that both verifier-free and verifier-based methods can work well at a large compute budget, we show that VB methods scale better as the test-time budget increases.\n\n2. This gap can be amplified further when the number of prompts for VB finetuning also scales linearly with the allowed test-time token budget.\n\nAnother implication of our results is that since VF methods work well when heterogeneity is small, this means that in order for them to scale well, pre-trained LLMs must also exhibit low heterogeneity, but we believe that this is rarely the case with modern LLMs in practice.\n\n---\n\n## 2. Related Work (Complete)\n\nRecent works show that scaling test-time compute can improve performance at rates faster than scaling data or model size, either by (i) training an LLM to implement a search or refinement procedure in its long chain-of-thought; or (ii) wrapping LLMs with search procedures that use trained verifiers as cost functions for search. We do not study this distinction in this paper, but rather focus on an orthogonal axis that can be used to separate test-time methods: whether or not there is access to a reward signal during training and/or inference.\n\nSeveral works use 0/1 \"outcome\" reward annotations for training LLM reasoners. Some also use trained verifiers or run search test-time search. More recently, using 0/1 verification signals for RL has shown impressive results. Other algorithms use verification by converting 0/1 rewards into a value function. Verification can be done generatively and implicitly, all within one single LLM alternating between generation and verification. We bucket all of them as VB methods and show that querying verifiers or rewards is critical for test-time scaling.\n\nWith the goal of distilling search procedures or long chain-of-thought reasoning procedures, some work also runs SFT on top of search traces or reasoning traces obtained from RL-trained models, that all succeed eventually. This is done so that the LLM learns to search for solutions on test problems. These methods are reward-free and are thus forced to mimic heterogeneous search traces with varying token counts, despite the fact that several of the most recent results employ excessive data subsampling. This implies that generalization is likely difficult for *any* SFT method, especially when the test-time budget is scaled. This general limitation of SFT-based methods aligns with prior findings and the more recent systematic studies.\n\nSome recent works also analyze self-improvement in LLMs under the assumption of a verification-generation gap, or frame sharpening model confidence as a form of self-improvement, where the most likely solution is assumed to be correct. In contrast, we do not assume that learning to verify is easier than learning to generate the correct trace, but instead show much weaker yet realistic conditions on the pre-trained LLM, where such a gap exists.\n\n---\n\n## 3. Notation and Preliminaries (Complete)\n\n**Notation.** We use the usual \"big-oh\" notation, i.e., 𝒪/Ω, where a=𝒪̃(b) when a=𝒪(b·max(1,polylog(b))), and a <∼ b when a=𝒪(b). The set of integers {1,…,n} is denoted as [n]. For a set 𝒮, the set of all measures over 𝒮 is given by Δ(𝒮). Next, we introduce some of the RL specific preliminaries we use.\n\n**Preliminaries.** Following prior work we model language generation as a token-level Markov decision process (MDP): ℳ(𝒮,𝒜,r,H), with state space 𝒮, token space 𝒜, binary reward r:𝒮×𝒜↦{0,1} in class ℛ, and horizon (token budget) H. Let 𝒮h denote the set of states at time h (so, 𝒮=:∪h=1^H 𝒮h). The set of initial states 𝒮1 is the set of input problems 𝐱∈𝒳, sampled from a distribution ρ. At time h, state 𝐬h is given exactly by the concatenation of the problem 𝐱 and the sequence of tokens sampled till step h−1, i.e., 𝐬h=(𝐱,a1,…,ah−1). Upon producing token ah, the environment deterministically transitions to state 𝐬h+1=(𝐬h,ah) obtained by concatenation and collects reward rh=:r(𝐬h,ah). A policy π∈Π is a function πh:𝒮↦Δ(𝒜) which produces a distribution over tokens at each state. We use d^π_h to denote the distribution over 𝒮h induced by π. A *solution trace* is a rollout τ=(𝐱,a1,…aH) in the MDP, and r(τ)=∑h r(𝐬h,ah). We let the notation 𝔼ρ,π[·] denote the expectation 𝔼_{𝐱∼ρ}[𝔼_{τ∼π(·|𝐱)}[·]].\n\n---\n\n## 4. What Does it Mean to Effectively Scale Test-Time Compute? (Complete)\n\nOur goal is to compare methods that finetune LLMs to most efficiently scale test-time compute. We say that an algorithm is effective at making *consistent use* of test compute if it attains the best performance possible within a fixed compute budget. In practice, this means that an approach must strike a balance between directly \"guessing\" an answer, which uses the least number of tokens but is unlikely to succeed, and re-attempting sequentially (e.g., running linearized search or generative verification), which is less token efficient and wastes compute, but is more likely to succeed at least once. This entails a procedure where models are deployed with an ever-growing upper bound on test-time token budgets in hopes to find more successes for a given prompt, or in other words, answer more questions within a given large test-time budget, underscoring the necessity of efficient asymptotic scaling as we formalize in this section.\n\nDenoting a base LLM as an autoregressive policy πb(a|𝐬) and a given budget on test-time compute represented in terms of a maximum H output token length, we evaluate a finetuning algorithm by measuring the performance of the policy produced by finetuning πb under a specific reward function r(𝐬,a). This reward function should capture both the accuracy and the how quickly (in terms of the number of tokens), the LLM can find a solution. One such family of reward functions is a *bi-level reward*.\n\n**Property 4.1 (Bi-level rewards).** For any trajectory τ, rewards are binary and non-decreasing, i.e. ∀h∈[H], rh+1(𝐬h+1,ah+1)≥rh(𝐬h,ah), (example in Figure 3).\n\nWhile practical approaches do not necessarily maximize bi-level reward directly, many of them utilize some form of length penalty or a curriculum, to implicitly or explicitly force models to find solutions in the smallest number of tokens possible. Our notion of bi-level reward models this formally.\n\n**Asymptotic test-time compute scaling.** Having defined how we can measure the efficacy of test-time scaling enabled by a finetuning algorithm, within a budget of H tokens, we now turn to providing a formal definition that allows us to compare different algorithms. Concretely, Definition 4.2 defines what it means for an algorithm 𝒜1 to *\"asymptotically\"* scale test-time compute by H^α, compared to another algorithm 𝒜2. Under our bi-level reward formulation, a higher value of α implies that 𝒜1 is able to succeed by spending ≈H^α less compute on average compared to 𝒜2, as we scale H. Next, we show that verifier-based algorithms scales test compute by Ω̃(H^α) compared to veriifer-free algorithms.\n\n**Definition 4.2 (Scaling test-time compute by H^α).** Fix any bi-level reward r, base policy πb, horizon H and data budget n=Ω(H), we say that algorithm 𝒜1 producing policy 𝒜1(H), *asymptotically* scales test-time compute by H^α compared to 𝒜2 producing 𝒜2(H) if: \n\nJr(𝒜1(H))−Jr(𝒜2(H))=Ω̃(H^α).\n\nWe also present the formal performance objective:\n\nmax_π Jr(π):=𝔼_{ρ,π}[∑_{t=0}^H r(𝐬_t,a_t)], Q_π(𝐬_h,a_h)=:𝔼_{ρ,π}[∑_{t=h}^H r(𝐬_t,a_t)|𝐬_h,a_h].\n\n---\n\n## 5. Theory: When Does Verification Enable Asymptotic Scaling of Test Compute?\n\nIn this section, we theoretically compare *verifier-free* and *verifier-based* algorithms when scaling test-time compute. We show that for any bi-level reward, there are base policies (pre-trained LLMs) that enable verification based algorithms to asymptotically scale test-time compute H, by a factor of Ω(√H) relative to *any* verifier-free approach, and quantify these properties of the pre-trained base LLM.\n\nA *verifier-free (VF) algorithm* finetunes the base LLM πb to mimic data from an expert policy πe without using any rewards or verification. The expert πe can produce a solution trace that directly results in the final correct answer or perform a number of search and/or backtracking operations to eventually end in the final correct answer. The expert policy samples correct traces τ, i.e. r(τ)>0, however these traces are not guaranteed to be the most compute-efficient (i.e., r(τ)≠H) as each one may get to the answer spending varying number of tokens for search, backtracking, and CoT.\n\nThe performance of any verifier-free algorithm is dependent on the *choice of the expert*. So, how do we choose \"good\" experts for learning? Such experts must satisfy two conditions: (a) they should attain high rewards (end in a correct final answer), and (b) the expert's distribution should be at least somewhat \"close\" to the base policy πb to prevent issues such as memorization and optimization pathologies from finetuning. For e.g., one predominant way of constructing expert data is to first sample multiple traces from πb and then retain all correct traces. While existing theoretical abstractions do not prescribe an ideal condition to quantify (b), we formalize this practical constraint by constraining the expert to be the highest reward policy in Πκ: the set of all policies with χ² divergence ≤κ≤κ w.r.t. the base πb. We choose χ² over other f-divergences like KL for simplicity.\n\nD_{χ²}(π_e∥π_b)=:𝔼_{ρ,π_b}[(π_e(τ|𝐱)/π_b(τ|𝐱)−1)²]≤κ.\n\nWe refer to the κ-χ² ball of expert policies as Πκ, and the optimal expert, i.e., arg max_{π∈Πκ} J_r(π), as π̄_κ.\n\nA *verifier-based (VB) algorithm* is one that finetunes the base policy without accessing an expert policy, but instead queries an annotator to provide reward labels to solution traces sampled from the base policy πb. For e.g., RL with outcome rewards or using generative verifiers count as verifier-based methods. Note that this definition does *not* necessarily require a learned verifier. In all, these classes of methods *differ in the learning signal being accessed*: access to an expert policy vs. access to a reward annotator that provides bi-level reward.\n\nWe compare VF and VB methods, given access to sampling n rollouts from expert policy for VF methods and n base policy rollouts with reward annotations for VB. We are interested in evaluting whether VB methods scale test-time compute better than VF as per Definition 4.2. Our main theoretical result, Theorem 5.1, states that for *any* bi-level reward function, there exist base policies πb, representative of practical pre-trained LLMs, where a simple VB method scales test-time compute better than *all* VF methods by at least Ω(√H). Next, we formalize the class of base policies that induce this separation.\n\n**Theorem 5.1 (Main result; informal).** For any bi-level reward r and sufficiently large data budget n, there exists a base policy πb, verifier-based algorithm 𝒜, such that finetuning πb with 𝒜 scales test-time compute (Definition 4.2) by Ω̃(√H) relative to any verifier-free algorithm.\n\n**Key insight.** To prove the result above, we establish an instance-dependent information-theoretic lower bound on the suboptimality gap of *any* VF method, which is H/√n when πb is sufficiently *heterogeneous*, i.e., solution traces for a given prompt vary a lot in token efficiency. Then, we show that a simple verifier-based method attains a suboptimality gap upper bound of only H/n, even when πb is heterogeneous. For this, πb need only cover some high-reward traces with a sufficient (constant) probability. Put formally, when the distribution over rewards attained by traces sampled from πb is heterogeneous and not too \"sharply\" concentrated around its mean and n=Ω(H) (typically the case for best performance), VB methods scale test-time efficiency by √H over VF methods. A pictorial illustration of these conditions is shown in Figure 2, which we also show holds empirically (Section 7). Then, we use techniques from second-order adaptive bounds to develop a novel analysis for proving the separation result.\n\n### 5.1 Lower Bounds for Verifier-Free Expert Cloning\n\nWe first derive an information-theoretic lower bound for VF methods comparing them to the expert policy πe. To understand the implications of our theoretical result, we state our lower bound using a notion of \"*base policy heterogeneity*\", which measures the variability in the token sequences that all attain the same final answer under πb. We define this notion of policy heterogeneity as follows:\n\n**Property 5.2 (Policy heterogeneity).** Given problem 𝐱, the heterogeneity of π ∈ Π at 𝐱 is given by:\n\nσ²_{π,𝐱}=:∑_{h=1}^H 𝔼_{𝐬_h∼d^π_h}[Var_{a∼π(·|𝐬_h)}[Q^{π_e}(𝐬_h,a_h)]|𝐱].\n\nThe total heterogeneity across problems is σ²_π=:𝔼_{𝐱∼ρ}[σ²_{π,𝐱}], the median across problems is σ̃_π:=Median({σ_{π,𝐱}:𝐱∈𝒳}), and finally the mean heterogeneity across problems is σ̄_π=𝔼_{𝐱∼ρ}[σ_{π,𝐱}].\n\nFor the expert policy, heterogeneity is non-zero when different solution traces spend different tokens and token budgets to attain the final answer from *any* state-action tuple attained in a trajectory. We expect most practical LLM finetuning datasets obtained by rejection sampling, concatenating search traces, collecting human thinking trace data, or distilling from larger models to induce quite a heterogeneous expert, since a high diversity of solution traces is often a desideratum employed by practitioners when generating training data in supervised finetuning. In order to obtain heterogeneous expert traces, we would also need the base policy πb to be heterogeneous. In fact, we show a useful intermediate result below relating heterogeneity of πe to that of πb, which allows us to present our lower bound directly in terms of σb of the base policy (instead of σe).\n\n**Lemma 5.3 (Lower bound on expert heterogeneity).** Let the heterogeneity of base policy πb be σ²_b. For any expert π_e∈Πκ, its heterogeneity σ²_e satisfies |σ²_e−σ²_b|≤Hσ_b√(κ/2).\n\n**Theorem 5.4 (Information-theoretic lower bound on verifier-free algorithms).** Given any ρ,r,πb, expert policy π_e and k≤|𝒳|/4 (𝒳 = space pf prompts), there exists a family of alternate expert policies Π′ of size 2^k and reward class ℛ′⊆ℛ, s.t., for any π̂^vf_n returned by any verifier-free algorithm:\n\nmax_{π′∈Π′} max_{r′∈ℛ′} J_r(π′)−J_{r′}(π̂^vf_n)=Ω(σ̃_e √(log|Π′|/n)).\n\nIn addition, ∀π′∈Π′, σ²_{π′}=O(σ²_e) under any alternate reward function r′∈ℛ′, and Π′⊆Π_{Θ(κ)}. Finally, when the total hetetogeneity σ²_e≤(6/5)σ̄²_e (the mean heterogeneity), then the median heterogeneity across problems σ̃_e scales as Ω(σ_e), i.e., we can replace σ̃_e in the bound above with σ_e.\n\n**Reading this statement.** This bound means that a dataset of n datapoints from a fixed expert πe is fundamentally insufficient to resolve uncertainty as to which of the experts ∈Π′ could have been the correct expert generating the data. Using a verifier-free algorithm here incurs a suboptimality that depends on σ̃_e/√n for the worst choice of this expert in Π′, meaning that for any given reward function, base policy and expert, there is a problem instance Π′ and an alternate reward r′ where this guarantee is tight. Further, when the total heterogeneity σ²_e≈σ̄²_e, then we can replace the median with the expert's heterogeneity σ_e, which is in turn close to the base LLM's heterogeneity σ_b, as stated by our Lemma 5.3.\n\nTo prove this result, we extend the lower bound result from Foster et al., which applies to only one prompt, to an instance-dependent lower bound that applies to a setting with more than one prompt and bi-level rewards.\n\n### 5.2 A Simple Verifier-Based Algorithm\n\nSo far, we saw that heterogeneity can hurt the performance of any VF algorithm that uses expert data without reward annotations. Next, we show that this limitation does not exist for VB methods, by constructing a simple algorithm that trains a verifier using n reward annotations on data sampled from the base policy πb (which need not be an expert). Concretely, our algorithm first trains a verifier to predict sparse 0/1 correctness of a given solution trace using the provided data, to the best possible accuracy. Then, it finetunes the LLM to maximize the verifier scores on the distribution of problems ρ. Note, that at test-time we sample problems i.i.d. from ρ. Crucially, the algorithm does not assume access to ground-truth rewards over the entire distribution ρ, but only a small training dataset 𝒟tr. We present this approach formally in Algorithm 1. In particular, Step 2 produces a class of verifiers ℛ̂_γ that are γ-optimal as measured by squared loss. Step 3 produces a policy that performs optimally on the worst reward in ℛ̂_γ. This technique of optimizing a pessimistic reward is common in both theory and practice of offline RL, and has also been useful for preventing reward overoptimization.\n\n**Algorithm 1: Simple Verifier-Based Algorithm**\n\n**Input:** Base policy πb, dataset 𝒟tr=:{(𝐱_i,τ_i)}^n_{i=1} of problems 𝐱_i∼ρ and traces τ_i∼πb(·|𝐱).\n\n**Step 1:** For every τ_i annotate (𝐱_i,τ_i) with bi-level reward y_i.\n\n**Step 2:** Learn set of classifiers R̂_γ⊂ℛ that are γ-optimal, i.e.,\nR̂_γ:={r′∈ℛ | (1/n)∑^n_{i=1}(r′(τ_i)−r(τ_i))²≤γ}\n\n**Step 3:** Return any optimal pessimistic verifier-based policy,\nπ̂^vb_n ∈ arg max_{π∈Π} min_{r∈R̂_γ} J_r(π̂).\n\n**Connecting Algorithm 1 to popular verification-based methods in practice.** In practice, post-training algorithms that use some sort of verification, either train a policy on ground-truth 0/1 rewards that are known on a fixed set of training problems, e.g., in R1, DeepScaleR; or train outcome/process verifiers to predict ground-truth rewards on the same training problems, and use the verifiers at test time to run search over responses sampled from the base policy given test problems, e.g., best-of-N, beam search. The former trains a policy that generalizes onto test problems, and the latter trains a verifier with the expectation that the verifier's predictions are accurate on the test problems. Algorithm 1 that we describe falls in the latter category of verification-based approaches.\n\nNext, we show that this VB algorithm attains a lower suboptimality gap than the lower bound for VF. To do so, we first prove an intermediate Lemma 5.5, which upper bounds the accuracy of the verifier trained on 𝒟tr in Algorithm 1.\n\n**Proposition 5.5 (Verifier accuracy).** For any bi-level reward r, base policy πb, and learned reward function r̂∈R̂_γ from Algorithm 1, with probability 1−δ, the following error bound is true:\n\n𝔼_{ρ,πb}[|r(τ)−r̂(τ)|]≤Õ_H(H·log(|ℛ|/δ)/n).\n\nEquipped with this result, we can now bound the suboptimality of the learned policy π̂^vb_n in Algorithm 1. We show that when used with a specific subset of heterogeneous πb–which are empirically show are representative of real pre-trained LLMs–this VB algorithm attains a stronger suboptimality guarantee of H/n, when compared to the best policy π̄_κ belonging to the χ²-ball, Πκ, around the base policy. Intuitively, this subset of heterogeneous policies are characterized by a condition pertaining to how concentrated or \"sharp\" is the distribution of rewards induced by sampling traces from πb on a given prompt. We call this the anti-concentation condition. As long as the reward distribution puts a constant probability mass on reward values that are ≈σ_{𝐱}√κ higher than the mean reward πb gets on prompt 𝐱, we say that the policy is *anti-concentrated* (Property 5.6; an illustration of this condition is shown in Figure 2).\n\n**Property 5.6 (Anti-concentrated π_b).** For problem 𝐱, horizon H, and base policy πb, let c_𝐱(ε) be the probability mass that reward r(τ) is larger than the mean E_{τ∼π_b(·|𝐱)}[r(τ)] by a margin of σ_{b,𝐱}√ε. \n\nc_𝐱(ε)=:Pr_{τ∼π_b(·|𝐱)}[r(τ)≥𝔼_{τ∼π_b(·|𝐱)}[r(τ)]+σ_{b,𝐱}√ε],\n\nThen base LLM πb is said to be c-anticoncentrated if min_𝐱 c_𝐱(κ_𝐱)≥c, where κ_𝐱=:D_{χ²}(π̄_κ(·|𝐱)∥π_b(·|𝐱)) and π̄_κ denotes the best policy in Πκ, i.e., the one with the highest performance J_r(·). The value of κ_𝐱 depends on how much an expert is allowed to deviate from the base policy πb on problem 𝐱.\n\nEven under high heterogeneity (Property 5.2), an anti-concentrated πb covers–with a constant mass–a policy that improves over its own mean. This means that an algorithm using the reward signal to fine-tune πb should be able to discover this \"better\" policy. VF algorithms that do not utilize to the reward signal fail at finding this high-rewarding policy. While a non-heterogeneous base policy (for e.g., one that always samples a single trace for a given 𝐱) will not satisfy Property 5.6, hetergeneous distributions can easily be anti-concentrated since heterogeneity is a property of a moment (i.e., variance) of the reward distribution whereas Property 5.6 fundamentally relates to the shape or the CDF of the reward distribution. We demonstrate in our experiments that pre-trained LLMs often satisfy this property.\n\n**How can VB algorithms benefit from anti-concentration of π_b?** As discussed above, Property 5.6 ensures the existence of a good policy that is covered by the base policy, with high probability. Intuitively, running RL should be able to then sample traces that attain high rewards and learn to pick up on this reward with more training. From a theoretical perspective, note that the suboptimality gap of any VB method depends on the distribution shift between the data-generating policy (πb in our case) and the comparator policy that we wish to provide the guarantee against (π̄_κ), since this shift dictates how generalization error during training gets amplified when the model is deployed. This notion of distribution shift is typically formalized as a bounded *coverage coefficient* of an unknown comparator policy, which is restrictive. We strengthen the notion of this coverage coefficient in our analysis by leveraging anti-concentration, which allows us to optimally construct a high-reward comparator policy that is covered by the base policy (illustrated in Figure 4). Formally, this results in Theorem 5.7 (full proof is provided in Appendix A.4).\n\n**Theorem 5.7 (Suboptimality upper bound for VB against any expert).** Consider a bi-level reward r, base policy πb that is c₀-anticoncentrated at some horizon h₀≤H. Then, w.p. 1−δ, for the policy π̂^vb_n returned by Algorithm 1, the suboptimality gap w.r.t. the best expert: π̄_κ:\n\nJ_r(π̄_κ)−J_r(π̂^vb_n) <∼ (1/c₀)·(H·log(|ℛ|/δ)/n).\n\nNote that our simple VB method admits no direct dependency in σ_b (base policy's heterogeneity), which scales as Ω(H) in the worst case. This implies that as long as πb satisfies Property 5.6 for some h₀≪H, VB methods only incur suboptimality that scales as O(1) when n=Ω(H) whereas for any VF method this is Ω(√H). Mathematically, this is because once Property 5.6 is satisfied for some c₀ at a given horizon h₀, then it continues to hold for c₀ and ∀H>h₀. This is a consequence of the structure of the bi-level reward as we show in Lemma A.22 in Appendix A.4.\n\nOverall, intuitively Theorem 5.7 implies that if πb covers some correct solution traces for a given prompt, then VB methods can find these traces and minimize suboptimality, whereas VF methods may not be able to discover them and will spend unnecessary compute in trying to mimic multiple traces, which also naturally increases the chances of failing at the problem. Combining the upper and lower bounds (Theorem 5.7 and 5.4) allows us to bound the efficacy of test-time scaling with VB and VF methods.\n\n**Theorem 5.8 (Separation between test-time scaling of VB and VF methods).** For any heterogeneous πb with σ̃_b=Ω(H), and is c₀-anticoncentrated for horizon h₀≪H, the policy π̂^vb_n returned by the simple verifier-based Algorithm 1 and π̂^vf_n returned by any verifier-free method satisfy:\n\nJ_r(π̂^vb_n)−J_r(π̂^vf_n)=Ω̃(H/√n),\n\nwhich implies our test-time scaling result in Theorem 5.1.\n\n---\n\n## Conclusion\n\nThe document contains no separate \"Conclusion\" section. The paper concludes with discussion of implications in the Introduction and broader implications in Section 8, which is not fully provided in the source material.\n\n---\n\n## Summary\n\nThis paper establishes that **verifier-based methods significantly outperform verifier-free approaches** for scaling test-time compute in LLMs. The key theoretical contributions are:\n\n1. **Lower bound (Theorem 5.4)**: Any VF method incurs Ω(σ̃_e√(log|Π′|/n)) suboptimality\n2. **Upper bound (Theorem 5.7)**: A simple VB algorithm achieves only O(H·log(|ℛ|/δ)/n) suboptimality\n3. **Separation (Theorem 5.8)**: When the base LLM is heterogeneous and anti-concentrated, VB methods scale test-time compute by **Ω̃(H/√n)** advantage over VF\n\nThe critical properties enabling this separation are: *heterogeneity* (variance in solution trace lengths) and *anti-concentration* (constant probability mass on above-mean rewards). Empirical validation on math reasoning confirms these theoretical predictions.",
+    "durationMs": 121215,
+    "url": "https://arxiv.org/html/2502.12118"
+  },
+  "sourceToolAssistantUUID": "07b8b4e9-c70b-45b1-9985-42cdab7fb9ca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "fad8d6c0-43be-4ddb-8585-7ee12871af2c",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze Setlur et al. verification necessity paper",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-28T10:40:59.416Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent, I got comprehensive details about the paper. Now let me also try to fetch the experimental section and check if there are OpenReview reviews available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fad8d6c0-43be-4ddb-8585-7ee12871af2c",
+  "isSidechain": false,
+  "requestId": "req_011CbUpqZcTXiWhk8yv9pUtj",
+  "type": "assistant",
+  "uuid": "11c5ad75-f812-47d5-a1dd-ed1803b85635",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDkZkGv62MDek6YJzzChaz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10158,
+      "cache_read_input_tokens": 14820,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10158,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 14820,
+          "cache_creation_input_tokens": 10158,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10158
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-28T10:40:59.896Z_
+
+Now let me fetch the experimental results and check for reviewer comments on OpenReview.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11c5ad75-f812-47d5-a1dd-ed1803b85635",
+  "isSidechain": false,
+  "requestId": "req_011CbUpqZcTXiWhk8yv9pUtj",
+  "type": "assistant",
+  "uuid": "f946b2a0-aaa3-4532-b27e-545eb5c3354d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDkZkGv62MDek6YJzzChaz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10158,
+      "cache_read_input_tokens": 14820,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10158,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 14820,
+          "cache_creation_input_tokens": 10158,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10158
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T10:41:03.690Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KGk7UvKCKGae5yE2J3kZ4U`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.12118",
+  "prompt": "Extract the FULL text of:\n1. The experimental setup section (Section 6 or 7) - include all details about datasets, models, baselines, and experimental configuration\n2. The results section - include all findings, numbers, and figures referenced\n3. The discussion/limitations section\n4. Any appendix content about practical implications or algorithm details\n\nBe comprehensive. Include specific numbers, percentages, and benchmark results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f946b2a0-aaa3-4532-b27e-545eb5c3354d",
+  "isSidechain": false,
+  "requestId": "req_011CbUpqZcTXiWhk8yv9pUtj",
+  "type": "assistant",
+  "uuid": "1cbb604a-22c5-452b-9bf0-e6f9257b8943",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDkZkGv62MDek6YJzzChaz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10158,
+      "cache_read_input_tokens": 14820,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10158,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 14820,
+          "cache_creation_input_tokens": 10158,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10158
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-28T10:41:05.714Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YS9xjWiP1Q8fYYK74KHKxP`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=Scaling+Test-Time+Compute+Without+Verification+or+RL+is+Suboptimal",
+  "prompt": "Find the OpenReview page for the paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" by Setlur et al. Extract the URL of the paper's OpenReview page, all reviewer scores, and any reviewer comments visible on this search results page."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cbb604a-22c5-452b-9bf0-e6f9257b8943",
+  "isSidechain": false,
+  "requestId": "req_011CbUpqZcTXiWhk8yv9pUtj",
+  "type": "assistant",
+  "uuid": "abacaedc-86ae-4725-b4a6-afc087a41a8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XDkZkGv62MDek6YJzzChaz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10158,
+      "cache_read_input_tokens": 14820,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10158,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 14820,
+          "cache_creation_input_tokens": 10158,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10158
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T10:41:08.432Z_
+
+<details><summary>↩ Tool result · `toolu_01YS9xjWiP1Q8fYYK74KHKxP`</summary>
+
+```text
+Based on the web page content provided, I cannot locate the paper "Scaling Test-Time Compute Without Verification or RL is Suboptimal" by Setlur et al.
+
+The content shown is only the OpenReview.net homepage with navigation menus, footer information, and general site descriptions. It does not contain:
+- A URL for the specific paper
+- Any reviewer scores
+- Any reviewer comments
+
+To find this paper, you would need to:
+1. Use the search functionality on OpenReview.net
+2. Navigate to the "All Venues" section to browse conference submissions
+3. Search directly for the paper title or authors
+
+I can only report information actually present in the provided content, and this paper's details are not included in the homepage excerpt you've shared.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abacaedc-86ae-4725-b4a6-afc087a41a8e",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "ce95a850-52d5-4ad3-9196-9f68dd6711ec",
+  "toolUseResult": {
+    "bytes": 62401,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the web page content provided, I cannot locate the paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" by Setlur et al.\n\nThe content shown is only the OpenReview.net homepage with navigation menus, footer information, and general site descriptions. It does not contain:\n- A URL for the specific paper\n- Any reviewer scores\n- Any reviewer comments\n\nTo find this paper, you would need to:\n1. Use the search functionality on OpenReview.net\n2. Navigate to the \"All Venues\" section to browse conference submissions\n3. Search directly for the paper title or authors\n\nI can only report information actually present in the provided content, and this paper's details are not included in the homepage excerpt you've shared.",
+    "durationMs": 2716,
+    "url": "https://openreview.net/search?term=Scaling+Test-Time+Compute+Without+Verification+or+RL+is+Suboptimal"
+  },
+  "sourceToolAssistantUUID": "abacaedc-86ae-4725-b4a6-afc087a41a8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T10:41:15.278Z_
+
+<details><summary>↩ Tool result · `toolu_01KGk7UvKCKGae5yE2J3kZ4U`</summary>
+
+```text
+# Experimental Setup and Results Summary
+
+## Section 6: Illustrating Theory in Practice
+
+The paper includes a didactic setup to validate theoretical predictions before testing on real problems. In this controlled experiment, researchers created synthetic scenarios where they could directly measure heterogeneity and anti-concentration properties.
+
+**Didactic Setup Details:**
+The authors constructed tasks where "the base policy samples solution traces with varying token efficiency" to create measurable heterogeneity. They compared verifier-free approaches (supervised fine-tuning on expert traces) against verifier-based methods (training with reward signals) across increasing horizon lengths.
+
+## Section 7: Large-Scale Math Reasoning Results
+
+**Models and Datasets:**
+Testing employed three pre-trained language models: "3B and 8B Llama models, and the S1 model" released by another research group. Evaluation focused on mathematical reasoning tasks, specifically the MATH benchmark containing competition-level problems.
+
+**Key Experimental Findings:**
+
+The comparison between verifier-based and verifier-free approaches revealed significant performance gaps:
+
+1. **S1 Model Comparison:** When comparing the S1 model (trained using distillation/verifier-free methods) against a simple verifier-based approach using best-of-N search with reward annotations, "the gap between VF and VB performance grows" as test-time compute increases.
+
+2. **Heterogeneity Effects:** The research "explicitly controlled the heterogeneity of the base LLM" for Llama models. Results confirmed that "VF methods perform poorly with more heterogeneous base LLMs, and the gap between VB and VF performance scales with more test-time compute."
+
+3. **Property Validation:** Empirical analysis verified that "common pre-trained LLMs are indeed heterogeneous and satisfy anti-concentration." Figures showed reward distributions across model outputs, demonstrating how real models exhibit the theoretical properties underlying the separation result.
+
+**Quantitative Results:**
+When scaling both test compute and training data together, "the gap between VF and VB grows, matching theoretical predictions." The experiments demonstrated that heterogeneity (measured by variance in solution trace lengths) scales approximately as Ω(H), where H represents the token budget.
+
+## Section 8: Discussion, Limitations, and Future Work
+
+**Key Takeaways for Practitioners:**
+
+The authors identify three practical implications:
+
+1. "While recent results imply that both verifier-free and verifier-based methods can work well at large compute budgets, VB methods scale better as test-time budget increases."
+
+2. The performance advantage "can be amplified further when the number of prompts for VB fine-tuning also scales linearly with the allowed test-time token budget."
+
+3. For verifier-free methods to scale effectively, "pre-trained LLMs must exhibit low heterogeneity, but we believe this is rarely the case with modern LLMs in practice."
+
+**Limitations Acknowledged:**
+The theoretical results assume bi-level reward structures and specific divergence constraints. The analysis relies on the anti-concentration property, which while empirically validated, represents a particular distributional assumption about base models.
+
+**Broader Impact:**
+The work suggests that future scaling of language model reasoning capabilities should prioritize verification mechanisms rather than pure supervised fine-tuning on expert demonstrations, particularly as test-time compute budgets expand.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1cbb604a-22c5-452b-9bf0-e6f9257b8943",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "c79026c6-ab2b-431d-9b1c-498cf4dedcf6",
+  "toolUseResult": {
+    "bytes": 4266853,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Experimental Setup and Results Summary\n\n## Section 6: Illustrating Theory in Practice\n\nThe paper includes a didactic setup to validate theoretical predictions before testing on real problems. In this controlled experiment, researchers created synthetic scenarios where they could directly measure heterogeneity and anti-concentration properties.\n\n**Didactic Setup Details:**\nThe authors constructed tasks where \"the base policy samples solution traces with varying token efficiency\" to create measurable heterogeneity. They compared verifier-free approaches (supervised fine-tuning on expert traces) against verifier-based methods (training with reward signals) across increasing horizon lengths.\n\n## Section 7: Large-Scale Math Reasoning Results\n\n**Models and Datasets:**\nTesting employed three pre-trained language models: \"3B and 8B Llama models, and the S1 model\" released by another research group. Evaluation focused on mathematical reasoning tasks, specifically the MATH benchmark containing competition-level problems.\n\n**Key Experimental Findings:**\n\nThe comparison between verifier-based and verifier-free approaches revealed significant performance gaps:\n\n1. **S1 Model Comparison:** When comparing the S1 model (trained using distillation/verifier-free methods) against a simple verifier-based approach using best-of-N search with reward annotations, \"the gap between VF and VB performance grows\" as test-time compute increases.\n\n2. **Heterogeneity Effects:** The research \"explicitly controlled the heterogeneity of the base LLM\" for Llama models. Results confirmed that \"VF methods perform poorly with more heterogeneous base LLMs, and the gap between VB and VF performance scales with more test-time compute.\"\n\n3. **Property Validation:** Empirical analysis verified that \"common pre-trained LLMs are indeed heterogeneous and satisfy anti-concentration.\" Figures showed reward distributions across model outputs, demonstrating how real models exhibit the theoretical properties underlying the separation result.\n\n**Quantitative Results:**\nWhen scaling both test compute and training data together, \"the gap between VF and VB grows, matching theoretical predictions.\" The experiments demonstrated that heterogeneity (measured by variance in solution trace lengths) scales approximately as Ω(H), where H represents the token budget.\n\n## Section 8: Discussion, Limitations, and Future Work\n\n**Key Takeaways for Practitioners:**\n\nThe authors identify three practical implications:\n\n1. \"While recent results imply that both verifier-free and verifier-based methods can work well at large compute budgets, VB methods scale better as test-time budget increases.\"\n\n2. The performance advantage \"can be amplified further when the number of prompts for VB fine-tuning also scales linearly with the allowed test-time token budget.\"\n\n3. For verifier-free methods to scale effectively, \"pre-trained LLMs must exhibit low heterogeneity, but we believe this is rarely the case with modern LLMs in practice.\"\n\n**Limitations Acknowledged:**\nThe theoretical results assume bi-level reward structures and specific divergence constraints. The analysis relies on the anti-concentration property, which while empirically validated, represents a particular distributional assumption about base models.\n\n**Broader Impact:**\nThe work suggests that future scaling of language model reasoning capabilities should prioritize verification mechanisms rather than pure supervised fine-tuning on expert demonstrations, particularly as test-time compute budgets expand.",
+    "durationMs": 11584,
+    "url": "https://arxiv.org/html/2502.12118"
+  },
+  "sourceToolAssistantUUID": "1cbb604a-22c5-452b-9bf0-e6f9257b8943",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-28T10:41:18.453Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try to find the paper on OpenReview directly for ICML 2025.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c79026c6-ab2b-431d-9b1c-498cf4dedcf6",
+  "isSidechain": false,
+  "requestId": "req_011CbUprwMSDBL6BKeHiMdMf",
+  "type": "assistant",
+  "uuid": "10c47b95-2089-4731-8a50-8bddf4c37b3a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171uyRk9rcTLmSpU6TMK34Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 201,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 24978,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 201,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 24978,
+          "cache_creation_input_tokens": 1162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-28T10:41:18.940Z_
+
+Let me try to find the paper directly on OpenReview for ICML 2025.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10c47b95-2089-4731-8a50-8bddf4c37b3a",
+  "isSidechain": false,
+  "requestId": "req_011CbUprwMSDBL6BKeHiMdMf",
+  "type": "assistant",
+  "uuid": "f654c944-a62e-4ac6-abfc-2cd61100fb8d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171uyRk9rcTLmSpU6TMK34Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 201,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 24978,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 201,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 24978,
+          "cache_creation_input_tokens": 1162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-28T10:41:23.136Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015o84uBbBRJzK9nNt13nvmr`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=%22Scaling+Test-Time+Compute+Without+Verification%22&venue=ICML",
+  "prompt": "Find the paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" and extract its OpenReview URL, any reviewer scores, and reviewer comments."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f654c944-a62e-4ac6-abfc-2cd61100fb8d",
+  "isSidechain": false,
+  "requestId": "req_011CbUprwMSDBL6BKeHiMdMf",
+  "type": "assistant",
+  "uuid": "9b014c98-a64b-4ea0-9a8f-95d6d7413f38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171uyRk9rcTLmSpU6TMK34Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 201,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 24978,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 201,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 24978,
+          "cache_creation_input_tokens": 1162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T10:41:23.719Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TRSV6DSUKUWRoPcFvgqJCZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2502.12118",
+  "prompt": "Focus on extracting the content from the EXPERIMENTAL sections (Section 6 and 7). I need:\n1. What specific benchmarks/datasets were used?\n2. What specific numerical results were obtained (accuracy numbers, percentages)?\n3. What are the figures showing? Describe Figure 1, Figure 7, Figure 9, Figure 10 in detail.\n4. What baselines were compared?\n5. Any ablation studies?\n6. The discussion section (Section 8) and limitations.\n\nBe as specific as possible with numbers and quantitative results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b014c98-a64b-4ea0-9a8f-95d6d7413f38",
+  "isSidechain": false,
+  "requestId": "req_011CbUprwMSDBL6BKeHiMdMf",
+  "type": "assistant",
+  "uuid": "783f287e-67c6-4a29-9c24-23bdb381bcfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0171uyRk9rcTLmSpU6TMK34Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 201,
+      "cache_creation_input_tokens": 1162,
+      "cache_read_input_tokens": 24978,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 201,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 24978,
+          "cache_creation_input_tokens": 1162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T10:41:29.337Z_
+
+<details><summary>↩ Tool result · `toolu_015o84uBbBRJzK9nNt13nvmr`</summary>
+
+```text
+I cannot find the paper "Scaling Test-Time Compute Without Verification or RL is Suboptimal" in the provided web page content.
+
+The content shown is only the OpenReview.net homepage with navigation menus, footer links, and general information about the platform. It does not contain any paper listings, search results, reviewer scores, or detailed paper information.
+
+To locate this paper and extract the requested information (OpenReview URL, reviewer scores, and comments), you would need to:
+
+1. Use the search function on OpenReview.net
+2. Navigate to the specific paper's page
+3. Review the posted reviewer comments and scores on that page
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b014c98-a64b-4ea0-9a8f-95d6d7413f38",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "2e7b3ecd-98c7-4771-ba8f-6a72f5b2b80f",
+  "toolUseResult": {
+    "bytes": 62433,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot find the paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" in the provided web page content.\n\nThe content shown is only the OpenReview.net homepage with navigation menus, footer links, and general information about the platform. It does not contain any paper listings, search results, reviewer scores, or detailed paper information.\n\nTo locate this paper and extract the requested information (OpenReview URL, reviewer scores, and comments), you would need to:\n\n1. Use the search function on OpenReview.net\n2. Navigate to the specific paper's page\n3. Review the posted reviewer comments and scores on that page",
+    "durationMs": 6198,
+    "url": "https://openreview.net/search?term=%22Scaling+Test-Time+Compute+Without+Verification%22&venue=ICML"
+  },
+  "sourceToolAssistantUUID": "9b014c98-a64b-4ea0-9a8f-95d6d7413f38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-28T10:41:30.713Z_
+
+<details><summary>↩ Tool result · `toolu_01TRSV6DSUKUWRoPcFvgqJCZ`</summary>
+
+```text
+# Experimental Results Summary
+
+## Datasets and Benchmarks
+
+The paper evaluates methods on **math reasoning problems**, specifically using the **MATH dataset**. They test with **Llama models (3B/8B)** and the **S1 model**.
+
+## Key Numerical Results
+
+### Comparison with S1 Model
+Figure 1 (bottom-left) shows that a simple verifier-based approach (best-of-N search) **outperforms the S1 model** trained via verifier-free distillation across multiple test-time compute budgets.
+
+Figure 1 (bottom-right) demonstrates that when scaling both test compute and verifier training data, **the performance gap between VB and VF methods grows**, aligning with theoretical predictions of Ω(√H) separation.
+
+## Figure Descriptions
+
+**Figure 1**: Contrasts VF methods (querying expert traces) versus VB methods (collecting reward annotations). Shows empirical validation that VB approaches outperform S1's supervised distillation approach.
+
+**Figure 7**: Demonstrates that with more heterogeneous base LLMs, VF methods perform poorly, and the gap scales with increasing test-time compute.
+
+**Figure 9 & 10**: Provide empirical evidence that common pre-trained LLMs satisfy the theoretical properties (heterogeneity and anti-concentration) assumed in the analysis.
+
+## Baselines and Ablations
+
+The paper compares:
+- **Verifier-free methods**: Supervised distillation (S1 model)
+- **Verifier-based methods**: Best-of-N search with trained verifiers
+
+The authors "explicitly control the heterogeneity of the base LLM" in experiments to test predictions about when VB methods outperform VF.
+
+## Section 8: Discussion and Limitations
+
+The authors acknowledge limitations including assumptions about the problem structure and reward definitions, but note their results apply broadly to "realistic scenarios" in LLM post-training. Key takeaway: VB methods scale better asymptotically when base LLMs exhibit sufficient heterogeneity and anti-concentration properties.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "783f287e-67c6-4a29-9c24-23bdb381bcfe",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "d037eff1-6924-4f34-96be-fb0fa7514f1e",
+  "toolUseResult": {
+    "bytes": 4266853,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Experimental Results Summary\n\n## Datasets and Benchmarks\n\nThe paper evaluates methods on **math reasoning problems**, specifically using the **MATH dataset**. They test with **Llama models (3B/8B)** and the **S1 model**.\n\n## Key Numerical Results\n\n### Comparison with S1 Model\nFigure 1 (bottom-left) shows that a simple verifier-based approach (best-of-N search) **outperforms the S1 model** trained via verifier-free distillation across multiple test-time compute budgets.\n\nFigure 1 (bottom-right) demonstrates that when scaling both test compute and verifier training data, **the performance gap between VB and VF methods grows**, aligning with theoretical predictions of Ω(√H) separation.\n\n## Figure Descriptions\n\n**Figure 1**: Contrasts VF methods (querying expert traces) versus VB methods (collecting reward annotations). Shows empirical validation that VB approaches outperform S1's supervised distillation approach.\n\n**Figure 7**: Demonstrates that with more heterogeneous base LLMs, VF methods perform poorly, and the gap scales with increasing test-time compute.\n\n**Figure 9 & 10**: Provide empirical evidence that common pre-trained LLMs satisfy the theoretical properties (heterogeneity and anti-concentration) assumed in the analysis.\n\n## Baselines and Ablations\n\nThe paper compares:\n- **Verifier-free methods**: Supervised distillation (S1 model)\n- **Verifier-based methods**: Best-of-N search with trained verifiers\n\nThe authors \"explicitly control the heterogeneity of the base LLM\" in experiments to test predictions about when VB methods outperform VF.\n\n## Section 8: Discussion and Limitations\n\nThe authors acknowledge limitations including assumptions about the problem structure and reward definitions, but note their results apply broadly to \"realistic scenarios\" in LLM post-training. Key takeaway: VB methods scale better asymptotically when base LLMs exhibit sufficient heterogeneity and anti-concentration properties.",
+    "durationMs": 6989,
+    "url": "https://arxiv.org/html/2502.12118"
+  },
+  "sourceToolAssistantUUID": "783f287e-67c6-4a29-9c24-23bdb381bcfe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-28T10:41:30.718Z_
+
+```json
+{
+  "parentUuid": "d037eff1-6924-4f34-96be-fb0fa7514f1e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1306f117-a369-4ff7-92b1-71b6268b274c",
+  "timestamp": "2026-05-28T10:41:30.718Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-28T10:41:33.028Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try a different URL format for OpenReview to find this ICML 2025 paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1306f117-a369-4ff7-92b1-71b6268b274c",
+  "isSidechain": false,
+  "requestId": "req_011CbUpt5GxqFiHEdRrmBgA2",
+  "type": "assistant",
+  "uuid": "e60ad6bc-a8f2-47e2-81df-fb65ac7c9e4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qCshMq7ELxeLAoFtSB651",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 26140,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 26140,
+          "cache_creation_input_tokens": 1361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-28T10:41:33.549Z_
+
+Let me try to find the ICML 2025 OpenReview page directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e60ad6bc-a8f2-47e2-81df-fb65ac7c9e4c",
+  "isSidechain": false,
+  "requestId": "req_011CbUpt5GxqFiHEdRrmBgA2",
+  "type": "assistant",
+  "uuid": "52a03611-36ea-4b68-8e43-5abea5966e4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qCshMq7ELxeLAoFtSB651",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 26140,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 26140,
+          "cache_creation_input_tokens": 1361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T10:41:34.543Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JTKJ8XXs1Hhh2KirsSSHy8`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=Scaling_Test_Time_Compute",
+  "prompt": "Find the paper page and extract reviewer comments."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52a03611-36ea-4b68-8e43-5abea5966e4c",
+  "isSidechain": false,
+  "requestId": "req_011CbUpt5GxqFiHEdRrmBgA2",
+  "type": "assistant",
+  "uuid": "bb68337f-04cc-46d2-aff5-a30f68fc6295",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qCshMq7ELxeLAoFtSB651",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 26140,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 26140,
+          "cache_creation_input_tokens": 1361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-28T10:41:36.147Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FrDyUMaHYqrtoFKqu38z65`</summary>
+
+```json
+{
+  "url": "https://www.google.com/search?q=site:openreview.net+%22Scaling+Test-Time+Compute+Without+Verification+or+RL+is+Suboptimal%22+ICML+2025",
+  "prompt": "Find the OpenReview URL for the paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" at ICML 2025. Extract the URL and any available information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb68337f-04cc-46d2-aff5-a30f68fc6295",
+  "isSidechain": false,
+  "requestId": "req_011CbUpt5GxqFiHEdRrmBgA2",
+  "type": "assistant",
+  "uuid": "e669ccb2-1938-4ef2-b08b-d29c40aa357c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qCshMq7ELxeLAoFtSB651",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 26140,
+      "output_tokens": 307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 307,
+          "cache_read_input_tokens": 26140,
+          "cache_creation_input_tokens": 1361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "e669ccb2-1938-4ef2-b08b-d29c40aa357c",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze Setlur et al. verification necessity paper",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T10:41:37.343Z_
+
+<details><summary>↩ Tool result · `toolu_01JTKJ8XXs1Hhh2KirsSSHy8`</summary>
+
+```text
+# Unable to Extract Reviewer Comments
+
+Based on the web page content provided, I cannot locate reviewer comments. The page displays an **error message** stating:
+
+> "The Note Scaling_Test_Time_Compute was not found"
+
+This indicates the requested paper or review note does not exist or is inaccessible at that URL. The page only contains OpenReview's navigation menu and footer information, with no actual paper content or peer review feedback visible.
+
+To access reviewer comments, you would need:
+- A valid paper URL on the OpenReview platform
+- Proper permissions to view the reviews (depending on venue policies)
+- A successful page load without errors
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb68337f-04cc-46d2-aff5-a30f68fc6295",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "1b4bf986-ac0a-4a91-a0ec-fb63eb942771",
+  "toolUseResult": {
+    "bytes": 58633,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Unable to Extract Reviewer Comments\n\nBased on the web page content provided, I cannot locate reviewer comments. The page displays an **error message** stating:\n\n> \"The Note Scaling_Test_Time_Compute was not found\"\n\nThis indicates the requested paper or review note does not exist or is inaccessible at that URL. The page only contains OpenReview's navigation menu and footer information, with no actual paper content or peer review feedback visible.\n\nTo access reviewer comments, you would need:\n- A valid paper URL on the OpenReview platform\n- Proper permissions to view the reviews (depending on venue policies)\n- A successful page load without errors",
+    "durationMs": 2798,
+    "url": "https://openreview.net/forum?id=Scaling_Test_Time_Compute"
+  },
+  "sourceToolAssistantUUID": "bb68337f-04cc-46d2-aff5-a30f68fc6295",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-28T10:41:38.963Z_
+
+<details><summary>↩ Tool result · `toolu_01FrDyUMaHYqrtoFKqu38z65`</summary>
+
+```text
+# OpenReview Paper Search
+
+Based on the provided content, I cannot directly extract the OpenReview URL. However, the page contains a Google Search link attempting to locate the paper "Scaling Test-Time Compute Without Verification or RL is Suboptimal" for ICML 2025 on OpenReview.
+
+The search query parameters indicate you should:
+1. Visit the Google Search link provided in the page
+2. Search OpenReview directly for this ICML 2025 submission
+
+**Recommendation:** Navigate to [OpenReview.net](https://openreview.net) and search for the paper title or browse ICML 2025 submissions directly, as this page appears to be a search results page rather than containing the actual paper URL.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e669ccb2-1938-4ef2-b08b-d29c40aa357c",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "6e32b0ab-76db-48c0-affa-b956408400c9",
+  "toolUseResult": {
+    "bytes": 90144,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# OpenReview Paper Search\n\nBased on the provided content, I cannot directly extract the OpenReview URL. However, the page contains a Google Search link attempting to locate the paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" for ICML 2025 on OpenReview.\n\nThe search query parameters indicate you should:\n1. Visit the Google Search link provided in the page\n2. Search OpenReview directly for this ICML 2025 submission\n\n**Recommendation:** Navigate to [OpenReview.net](https://openreview.net) and search for the paper title or browse ICML 2025 submissions directly, as this page appears to be a search results page rather than containing the actual paper URL.",
+    "durationMs": 2813,
+    "url": "https://www.google.com/search?q=site:openreview.net+%22Scaling+Test-Time+Compute+Without+Verification+or+RL+is+Suboptimal%22+ICML+2025"
+  },
+  "sourceToolAssistantUUID": "e669ccb2-1938-4ef2-b08b-d29c40aa357c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-28T10:41:41.135Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try a WebSearch to find the OpenReview page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e32b0ab-76db-48c0-affa-b956408400c9",
+  "isSidechain": false,
+  "requestId": "req_011CbUptgdDqXeCqrVLVy8xm",
+  "type": "assistant",
+  "uuid": "15984d34-8462-4dbb-b0dc-6b31f7376dc4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WPGvu8zXG6kEY6XKhohGf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 27501,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 27501,
+          "cache_creation_input_tokens": 676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T10:41:41.516Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UvXzipM9FLFRSZKHyVuCi3`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15984d34-8462-4dbb-b0dc-6b31f7376dc4",
+  "isSidechain": false,
+  "requestId": "req_011CbUptgdDqXeCqrVLVy8xm",
+  "type": "assistant",
+  "uuid": "c390d472-973b-4641-b3bd-7d8b88c0721b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013WPGvu8zXG6kEY6XKhohGf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 676,
+      "cache_read_input_tokens": 27501,
+      "output_tokens": 104,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 676,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 104,
+          "cache_read_input_tokens": 27501,
+          "cache_creation_input_tokens": 676,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 676
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-28T10:41:41.520Z_
+
+<details><summary>↩ Tool result · `toolu_01UvXzipM9FLFRSZKHyVuCi3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c390d472-973b-4641-b3bd-7d8b88c0721b",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "82e3cacf-54a9-4e51-b916-8a2ba3320d81",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "c390d472-973b-4641-b3bd-7d8b88c0721b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-28T10:41:44.164Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PiAB7Z4gYKBUFLhdxqmyr4`</summary>
+
+```json
+{
+  "query": "openreview.net \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" ICML 2025 Setlur",
+  "allowed_domains": [
+    "openreview.net"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82e3cacf-54a9-4e51-b916-8a2ba3320d81",
+  "isSidechain": false,
+  "requestId": "req_011CbUptsz677VWeRRtjdp5y",
+  "type": "assistant",
+  "uuid": "9a7d1b22-1681-40d6-bf80-428295d44c1f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jr2Fs9ifTuznM5yHfHEGn5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 631,
+      "cache_read_input_tokens": 28177,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 631,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 28177,
+          "cache_creation_input_tokens": 631,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 631
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-28T10:42:00.095Z_
+
+<details><summary>↩ Tool result · `toolu_01PiAB7Z4gYKBUFLhdxqmyr4`</summary>
+
+```text
+Web search results for query: "openreview.net "Scaling Test-Time Compute Without Verification or RL is Suboptimal" ICML 2025 Setlur"
+
+Links: [{"title":"Scaling Test-Time Compute Without Verification or RL is Suboptimal | OpenReview","url":"https://openreview.net/forum?id=beeNgQEfe2"},{"title":"Scaling Test-Time Compute Without Verification or RL is Suboptimal","url":"https://arxiv.org/pdf/2502.12118"},{"title":"Scaling Test-Time Compute Without Verification or RL is Suboptimal","url":"https://openreview.net/pdf?id=beeNgQEfe2"},{"title":"SETS: Leveraging Self-Verification and Self-Correction for Improved Test-Time Scaling","url":"https://arxiv.org/pdf/2501.19306"},{"title":"Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM   Reasoners With Verifiers","url":"https://arxiv.org/pdf/2505.04842"}]
+
+I found the paper! Here are the search results:
+
+The paper "Scaling Test-Time Compute Without Verification or RL is Suboptimal" was published on May 1, 2025 and is an ICML 2025 spotlight/poster paper.
+
+The paper is authored by Amrith Setlur, Nived Rajaraman, Sergey Levine, and Aviral Kumar from Carnegie Mellon University and UC Berkeley.
+
+The paper proves that finetuning LLMs with verifier-based (VB) methods based on RL or search is far superior to verifier-free (VF) approaches, and shows that as test-time compute and training data are scaled, the suboptimality of VF methods scales poorly compared to VB methods when the base pre-trained LLM presents a heterogeneous distribution over correct solution traces.
+
+The paper is available on OpenReview at: https://openreview.net/forum?id=beeNgQEfe2
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a7d1b22-1681-40d6-bf80-428295d44c1f",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "6d191a20-c890-46ca-94d6-aaddbe66a87e",
+  "toolUseResult": {
+    "query": "openreview.net \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" ICML 2025 Setlur",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RGg9YupSwXov44R8hix1u1",
+        "content": [
+          {
+            "title": "Scaling Test-Time Compute Without Verification or RL is Suboptimal | OpenReview",
+            "url": "https://openreview.net/forum?id=beeNgQEfe2"
+          },
+          {
+            "title": "Scaling Test-Time Compute Without Verification or RL is Suboptimal",
+            "url": "https://arxiv.org/pdf/2502.12118"
+          },
+          {
+            "title": "Scaling Test-Time Compute Without Verification or RL is Suboptimal",
+            "url": "https://openreview.net/pdf?id=beeNgQEfe2"
+          },
+          {
+            "title": "SETS: Leveraging Self-Verification and Self-Correction for Improved Test-Time Scaling",
+            "url": "https://arxiv.org/pdf/2501.19306"
+          },
+          {
+            "title": "Putting the Value Back in RL: Better Test-Time Scaling by Unifying LLM   Reasoners With Verifiers",
+            "url": "https://arxiv.org/pdf/2505.04842"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results:\n\nThe paper \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\" was published on May 1, 2025 and is an ICML 2025 spotlight/poster paper.\n\nThe paper is authored by Amrith Setlur, Nived Rajaraman, Sergey Levine, and Aviral Kumar from Carnegie Mellon University and UC Berkeley.\n\nThe paper proves that finetuning LLMs with verifier-based (VB) methods based on RL or search is far superior to verifier-free (VF) approaches, and shows that as test-time compute and training data are scaled, the suboptimality of VF methods scales poorly compared to VB methods when the base pre-trained LLM presents a heterogeneous distribution over correct solution traces.\n\nThe paper is available on OpenReview at: https://openreview.net/forum?id=beeNgQEfe2"
+    ],
+    "durationSeconds": 15.924366142999991,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9a7d1b22-1681-40d6-bf80-428295d44c1f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-28T10:42:02.234Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the OpenReview page. Let me fetch the reviewer comments now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d191a20-c890-46ca-94d6-aaddbe66a87e",
+  "isSidechain": false,
+  "requestId": "req_011CbUpvEzfPz9AUFCC2Wsbz",
+  "type": "assistant",
+  "uuid": "65339676-5332-4a36-87fe-5f0bccd5bc54",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hsn1WmdGPUVBxTMrCoCwVJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 28808,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 28808,
+          "cache_creation_input_tokens": 654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-28T10:42:02.748Z_
+
+Found it! Let me now fetch the reviewer comments from OpenReview.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65339676-5332-4a36-87fe-5f0bccd5bc54",
+  "isSidechain": false,
+  "requestId": "req_011CbUpvEzfPz9AUFCC2Wsbz",
+  "type": "assistant",
+  "uuid": "495c3bc0-ee45-4ed2-818c-5eeead355ad2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hsn1WmdGPUVBxTMrCoCwVJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 28808,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 28808,
+          "cache_creation_input_tokens": 654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-28T10:42:05.773Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MTLJz1iaUGG6aDEgsxK7Bx`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=beeNgQEfe2",
+  "prompt": "Extract ALL reviewer comments, scores, and author responses from this OpenReview page. For each reviewer, capture:\n1. Their reviewer ID/number\n2. Their overall score/rating\n3. Their confidence score\n4. Their summary of the paper\n5. Their strengths (what they liked)\n6. Their weaknesses (what they criticized)\n7. Any questions they asked\n8. The author responses to each reviewer\n\nBe as comprehensive and detailed as possible. Include ALL text from every review."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "495c3bc0-ee45-4ed2-818c-5eeead355ad2",
+  "isSidechain": false,
+  "requestId": "req_011CbUpvEzfPz9AUFCC2Wsbz",
+  "type": "assistant",
+  "uuid": "5e808522-c008-4919-923f-9281c1c5d30f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hsn1WmdGPUVBxTMrCoCwVJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 28808,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 28808,
+          "cache_creation_input_tokens": 654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T10:42:09.660Z_
+
+<details><summary>↩ Tool result · `toolu_01MTLJz1iaUGG6aDEgsxK7Bx`</summary>
+
+```text
+# Reviewer Comments Extraction
+
+Based on the provided OpenReview page content, I cannot extract reviewer comments, scores, and author responses because **this information is not present in the webpage text provided**.
+
+The page shows:
+- Paper title and basic metadata
+- Author names (Amrith Setlur, Nived Rajaraman, Sergey Levine, Aviral Kumar)
+- Abstract and lay summary
+- Publication date (01 May 2025)
+- A note indicating "Loading" where reviews would typically appear
+
+The actual reviewer feedback section appears to be dynamically loaded content that is not included in the static HTML snapshot provided. To access reviewer comments, scores, and author responses, you would need to visit the live OpenReview page at the direct paper link and allow the JavaScript to load the reviews section.
+
+**Recommendation:** Visit the paper directly on OpenReview.net using the submission number (12195) or the paper ID (beeNgQEfe2) to view all peer review content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e808522-c008-4919-923f-9281c1c5d30f",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "25a885b8-887b-4fc0-8561-dd5c0b9233e0",
+  "toolUseResult": {
+    "bytes": 89868,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Reviewer Comments Extraction\n\nBased on the provided OpenReview page content, I cannot extract reviewer comments, scores, and author responses because **this information is not present in the webpage text provided**.\n\nThe page shows:\n- Paper title and basic metadata\n- Author names (Amrith Setlur, Nived Rajaraman, Sergey Levine, Aviral Kumar)\n- Abstract and lay summary\n- Publication date (01 May 2025)\n- A note indicating \"Loading\" where reviews would typically appear\n\nThe actual reviewer feedback section appears to be dynamically loaded content that is not included in the static HTML snapshot provided. To access reviewer comments, scores, and author responses, you would need to visit the live OpenReview page at the direct paper link and allow the JavaScript to load the reviews section.\n\n**Recommendation:** Visit the paper directly on OpenReview.net using the submission number (12195) or the paper ID (beeNgQEfe2) to view all peer review content.",
+    "durationMs": 3883,
+    "url": "https://openreview.net/forum?id=beeNgQEfe2"
+  },
+  "sourceToolAssistantUUID": "5e808522-c008-4919-923f-9281c1c5d30f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-28T10:42:13.976Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The OpenReview page dynamically loads reviews, so WebFetch can't get them. Let me try the API endpoint instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25a885b8-887b-4fc0-8561-dd5c0b9233e0",
+  "isSidechain": false,
+  "requestId": "req_011CbUpvwropPJdt1q8xv24B",
+  "type": "assistant",
+  "uuid": "8ee6e46f-0d55-49d8-8865-6012775a7b9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxNpVMn3v7H8d1wob1Wfmc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 474,
+      "cache_read_input_tokens": 29462,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 29462,
+          "cache_creation_input_tokens": 474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-28T10:42:15.872Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0152A871TzEzTEYFQABePw7o`</summary>
+
+```json
+{
+  "url": "https://api2.openreview.net/notes?forum=beeNgQEfe2&details=replies",
+  "prompt": "Extract ALL reviewer comments, scores, ratings, and author responses. For each review note, capture:\n1. Reviewer ID\n2. Rating/score\n3. Confidence\n4. Summary\n5. Strengths\n6. Weaknesses  \n7. Questions\n8. Any author responses\n\nReturn everything verbatim and comprehensively."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ee6e46f-0d55-49d8-8865-6012775a7b9d",
+  "isSidechain": false,
+  "requestId": "req_011CbUpvwropPJdt1q8xv24B",
+  "type": "assistant",
+  "uuid": "5f4b1b97-f064-4728-b1ac-e62e0a0742e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PxNpVMn3v7H8d1wob1Wfmc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 474,
+      "cache_read_input_tokens": 29462,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 29462,
+          "cache_creation_input_tokens": 474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-28T10:42:39.101Z_
+
+<details><summary>↩ Tool result · `toolu_0152A871TzEzTEYFQABePw7o`</summary>
+
+```text
+# Comprehensive Review Summary: "Scaling Test-Time Compute Without Verification or RL is Suboptimal"
+
+## Paper Decision
+**Status:** Accept (spotlight poster) - ICML 2025
+**Forum ID:** beeNgQEfe2
+
+---
+
+## REVIEWER 1: Reviewer_qsM1
+**Overall Rating:** 4/5 (Strong Accept)
+
+### Summary
+The reviewer characterizes this as a strong theoretical contribution studying LLM generation as a Markov process, comparing verifier-based (VB) versus verifier-free (VF) finetuning methods for inference-time scaling.
+
+### Strengths
+- "The claims are supported by convincing theoretical and empirical evidence"
+- Solid information-theoretic framework contrasting VB and VF methods
+- Experiments on MATH benchmark confirm theoretical assumptions
+- Novel contribution to shallow theoretical understanding of test-time scaling
+
+### Weaknesses
+- Paper could benefit from more mathematical precision in main theorems regarding data access types
+- Minor typos noted
+
+### Questions
+- Can results generalize to real-valued, monotonic rewards beyond binary?
+
+### Author Response
+Authors addressed the non-binary rewards question, explaining: "Given access to trajectory-level reward, we can quantize rewards to n levels...obtain an algorithm for learning general rewards in L₁ error to test error of H log(|ℜ|) log(n)/n."
+
+---
+
+## REVIEWER 2: Reviewer_eEQB
+**Overall Rating:** 3/5 (Accept) - *Increased from initial lower score*
+
+### Summary
+Reviewer studies comparison of VB and VF methods for scaling test-time compute under heterogeneity and anti-concentration assumptions, with concerns about restrictive theoretical conditions.
+
+### Strengths
+1. Comparing learning from rewards versus expert data represents "a very interesting and important direction"
+2. Important topic for LLM scaling
+
+### Weaknesses
+1. **Unclear framing:** "The title of the paper is scaling test-time compute, but this paper seems talking about the fine-tuning phase"
+2. **Restrictive assumptions:** Anti-concentration defined over worst-case problems ("min_x c_x(ε_x) ≥ c") is overly restrictive
+3. Figure 7 analysis unclear—does it represent single or multiple problems?
+4. Insufficient evidence that pre-trained policies satisfy conditions in practice
+
+### Questions
+1. What does "test-time compute" mean if applied to finetuning phase?
+2. Why condition on expert distribution closeness to base policy?
+3. Does Proposition 5.5 require realizability assumption (R* ∈ ℜ)?
+4. What does Figure 4 y-axis "efficiency" represent?
+
+### Author Response (Main Rebuttal)
+- **Re: test-time compute:** "Our goal is to compare LLMs obtained by running different finetuning algorithms that train LLMs to utilize test-time compute (measured by length of CoT H) more effectively"
+- **Re: anti-concentration:** "The notion of anti-concentration can indeed be weakened to accommodate average-case...results in the same conclusion as Thm 5.8"
+- **Re: Fig 7:** Provided link to supplementary materials (https://sites.google.com/view/ttcwv/home)
+- **Re: realizability:** "Yes, the true reward function is assumed present in reward class R. We state this in our setup (L114)"
+
+### Reviewer Follow-up (After Rebuttal)
+Reviewer upgraded score to 3 after rebuttal: "My main concerns are satisfactorily solved including relaxing the restrictive definition of anti-concentration in Property 5.6 and showing the anti-concentration condition usually satisfies in practice by additional experiments."
+
+---
+
+## REVIEWER 3: Reviewer_nSQF
+**Overall Rating:** 3/5 (Accept)
+
+### Summary
+Reviewer appreciates theoretical contribution but finds presentation dense and raises concerns about intuition behind key results.
+
+### Strengths
+- Community would welcome deeper understanding of LLM finetuning scalability
+- "Precisely written, no obvious errors"
+- "Good job of making effort to provide intuition and link to practice"
+- "LLM experiments in section 7 were excellent, with an attempt to even measure and visualize heterogeneity and anti-concentration"
+- Solid theoretical progress on difficult problem
+
+### Weaknesses
+1. **Dense presentation:** "The concepts took me a long time to absorb, and there are various lemmas outside of the main results I did not have time to fully process"
+2. **Didactic experiments weak:** Gap doesn't appear to grow as √H in Figure 4a; limited intuition gained
+3. **Rushed exposition:** Math experiments cramped; suggests removing Section 6 from main paper
+4. **Anti-concentration assumption specificity:** Not surprising RL seeks this mode given ground-truth rewards
+5. **Unclear heterogeneity intuition:** "I did not follow the intuition for why heterogeneity harms VF methods"
+
+### Questions
+1. Do results apply to common SFT-then-RL practice?
+
+### Author Response (Main Rebuttal)
+Provided new didactic experiments showing performance gap scales as √H. Offered detailed heterogeneity explanation:
+
+"When base policy is heterogeneous, expert data consists of diverse solution traces for same problem...VF methods like SFT cannot distinguish between diverse expert traces, and are forced to mimic each trace equally, irrespective of their reward. Thus, VF learned policy fails to only learn high reward solutions."
+
+Explained SFT-before-RL: "Our results imply that running SFT before RL can help improve coverage of correct solutions under base LLM...improve the coverage of base LLM over high reward traces or at least correct solution traces, and SFT does exactly that."
+
+### Reviewer Follow-up
+"Thank you for this response, particularly the intuition around heterogeneity. I will continue the discussion with other reviewers."
+
+---
+
+## DECISION SUMMARY
+
+**Program Chairs Comment:**
+"This paper [compares] verifier-based (VB) methods based on RL or search and verifier-free (VF) approaches...draws conclusion that VB methods are more reliable and scalable when the test-time compute budget grows. Reviewers generally agree with the significant of this topic and the conclusion is supported by both theoretical and experimental results."
+
+---
+
+## Key Theoretical Results Highlighted Across Reviews
+
+1. **Theorem 5.4:** VF suboptimality scales as H/√n under heterogeneity
+2. **Theorem 5.7:** VB suboptimality scales as H/n under anti-concentration  
+3. **Theorem 5.8:** Combined result shows √H separation gap between methods
+
+---
+
+## Major Author Concessions & Commitments
+
+1. Relaxing anti-concentration to L_p concentration (average-case)
+2. Extending analysis to non-binary rewards via quantization
+3. Adding heterogeneity discussion after Theorem 5.4
+4. Moving formal lower bound details to main paper
+5. Using extra page to uncompress Section 7 exposition
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f4b1b97-f064-4728-b1ac-e62e0a0742e1",
+  "isSidechain": false,
+  "promptId": "9ee9ea73-87c5-4be6-ae10-c8cf8f0288de",
+  "type": "user",
+  "uuid": "5029ac20-7e31-4712-825d-e6b63d37878a",
+  "toolUseResult": {
+    "bytes": 99805,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Comprehensive Review Summary: \"Scaling Test-Time Compute Without Verification or RL is Suboptimal\"\n\n## Paper Decision\n**Status:** Accept (spotlight poster) - ICML 2025\n**Forum ID:** beeNgQEfe2\n\n---\n\n## REVIEWER 1: Reviewer_qsM1\n**Overall Rating:** 4/5 (Strong Accept)\n\n### Summary\nThe reviewer characterizes this as a strong theoretical contribution studying LLM generation as a Markov process, comparing verifier-based (VB) versus verifier-free (VF) finetuning methods for inference-time scaling.\n\n### Strengths\n- \"The claims are supported by convincing theoretical and empirical evidence\"\n- Solid information-theoretic framework contrasting VB and VF methods\n- Experiments on MATH benchmark confirm theoretical assumptions\n- Novel contribution to shallow theoretical understanding of test-time scaling\n\n### Weaknesses\n- Paper could benefit from more mathematical precision in main theorems regarding data access types\n- Minor typos noted\n\n### Questions\n- Can results generalize to real-valued, monotonic rewards beyond binary?\n\n### Author Response\nAuthors addressed the non-binary rewards question, explaining: \"Given access to trajectory-level reward, we can quantize rewards to n levels...obtain an algorithm for learning general rewards in L₁ error to test error of H log(|ℜ|) log(n)/n.\"\n\n---\n\n## REVIEWER 2: Reviewer_eEQB\n**Overall Rating:** 3/5 (Accept) - *Increased from initial lower score*\n\n### Summary\nReviewer studies comparison of VB and VF methods for scaling test-time compute under heterogeneity and anti-concentration assumptions, with concerns about restrictive theoretical conditions.\n\n### Strengths\n1. Comparing learning from rewards versus expert data represents \"a very interesting and important direction\"\n2. Important topic for LLM scaling\n\n### Weaknesses\n1. **Unclear framing:** \"The title of the paper is scaling test-time compute, but this paper seems talking about the fine-tuning phase\"\n2. **Restrictive assumptions:** Anti-concentration defined over worst-case problems (\"min_x c_x(ε_x) ≥ c\") is overly restrictive\n3. Figure 7 analysis unclear—does it represent single or multiple problems?\n4. Insufficient evidence that pre-trained policies satisfy conditions in practice\n\n### Questions\n1. What does \"test-time compute\" mean if applied to finetuning phase?\n2. Why condition on expert distribution closeness to base policy?\n3. Does Proposition 5.5 require realizability assumption (R* ∈ ℜ)?\n4. What does Figure 4 y-axis \"efficiency\" represent?\n\n### Author Response (Main Rebuttal)\n- **Re: test-time compute:** \"Our goal is to compare LLMs obtained by running different finetuning algorithms that train LLMs to utilize test-time compute (measured by length of CoT H) more effectively\"\n- **Re: anti-concentration:** \"The notion of anti-concentration can indeed be weakened to accommodate average-case...results in the same conclusion as Thm 5.8\"\n- **Re: Fig 7:** Provided link to supplementary materials (https://sites.google.com/view/ttcwv/home)\n- **Re: realizability:** \"Yes, the true reward function is assumed present in reward class R. We state this in our setup (L114)\"\n\n### Reviewer Follow-up (After Rebuttal)\nReviewer upgraded score to 3 after rebuttal: \"My main concerns are satisfactorily solved including relaxing the restrictive definition of anti-concentration in Property 5.6 and showing the anti-concentration condition usually satisfies in practice by additional experiments.\"\n\n---\n\n## REVIEWER 3: Reviewer_nSQF\n**Overall Rating:** 3/5 (Accept)\n\n### Summary\nReviewer appreciates theoretical contribution but finds presentation dense and raises concerns about intuition behind key results.\n\n### Strengths\n- Community would welcome deeper understanding of LLM finetuning scalability\n- \"Precisely written, no obvious errors\"\n- \"Good job of making effort to provide intuition and link to practice\"\n- \"LLM experiments in section 7 were excellent, with an attempt to even measure and visualize heterogeneity and anti-concentration\"\n- Solid theoretical progress on difficult problem\n\n### Weaknesses\n1. **Dense presentation:** \"The concepts took me a long time to absorb, and there are various lemmas outside of the main results I did not have time to fully process\"\n2. **Didactic experiments weak:** Gap doesn't appear to grow as √H in Figure 4a; limited intuition gained\n3. **Rushed exposition:** Math experiments cramped; suggests removing Section 6 from main paper\n4. **Anti-concentration assumption specificity:** Not surprising RL seeks this mode given ground-truth rewards\n5. **Unclear heterogeneity intuition:** \"I did not follow the intuition for why heterogeneity harms VF methods\"\n\n### Questions\n1. Do results apply to common SFT-then-RL practice?\n\n### Author Response (Main Rebuttal)\nProvided new didactic experiments showing performance gap scales as √H. Offered detailed heterogeneity explanation:\n\n\"When base policy is heterogeneous, expert data consists of diverse solution traces for same problem...VF methods like SFT cannot distinguish between diverse expert traces, and are forced to mimic each trace equally, irrespective of their reward. Thus, VF learned policy fails to only learn high reward solutions.\"\n\nExplained SFT-before-RL: \"Our results imply that running SFT before RL can help improve coverage of correct solutions under base LLM...improve the coverage of base LLM over high reward traces or at least correct solution traces, and SFT does exactly that.\"\n\n### Reviewer Follow-up\n\"Thank you for this response, particularly the intuition around heterogeneity. I will continue the discussion with other reviewers.\"\n\n---\n\n## DECISION SUMMARY\n\n**Program Chairs Comment:**\n\"This paper [compares] verifier-based (VB) methods based on RL or search and verifier-free (VF) approaches...draws conclusion that VB methods are more reliable and scalable when the test-time compute budget grows. Reviewers generally agree with the significant of this topic and the conclusion is supported by both theoretical and experimental results.\"\n\n---\n\n## Key Theoretical Results Highlighted Across Reviews\n\n1. **Theorem 5.4:** VF suboptimality scales as H/√n under heterogeneity\n2. **Theorem 5.7:** VB suboptimality scales as H/n under anti-concentration  \n3. **Theorem 5.8:** Combined result shows √H separation gap between methods\n\n---\n\n## Major Author Concessions & Commitments\n\n1. Relaxing anti-concentration to L_p concentration (average-case)\n2. Extending analysis to non-binary rewards via quantization\n3. Adding heterogeneity discussion after Theorem 5.4\n4. Moving formal lower bound details to main paper\n5. Using extra page to uncompress Section 7 exposition",
+    "durationMs": 23225,
+    "url": "https://api2.openreview.net/notes?forum=beeNgQEfe2&details=replies"
+  },
+  "sourceToolAssistantUUID": "5f4b1b97-f064-4728-b1ac-e62e0a0742e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "5029ac20-7e31-4712-825d-e6b63d37878a",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze Setlur et al. verification necessity paper",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-28T10:42:57.699Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have comprehensive information about the paper including reviewer comments. Let me compile all this into the requested JSON analysis.
+
+Let me think through the analysis:
+
+**Problem Identification:**
+The authors identified that while both verifier-based (VB) and verifier-free (VF) methods were being used to scale test-time compute, there was no formal understanding of which approach is fundamentally better, especially as compute scales. They noticed that the growing popularity of distillation/SFT-based methods (S1, OpenThinker) appeared to match RL/search-based methods (DeepSeek R1), but no theoretical framework existed to compare them.
+ 
+The key insight is that heterogeneity in the base policy—how much the LLM varies in its solution traces—is what separates these approaches. When the base model produces diverse traces with different lengths and strategies, verifier-free methods struggle because supervised fine-tuning must equally mimic all this diversity without selecting the best ones, whereas verifier-based methods can use reward signals to amplify superior traces, with the performance gap scaling with the square root of heterogeneity. This is fundamentally a theoretical contribution that formalizes the VB versus VF comparison through RL theory, introducing novel properties like heterogeneity and anti-concentration to prove separation results.
+
+The work's strength lies in its timeliness—it directly answers whether to use RL or SFT for reasoning tasks—combined with a clean theoretical framework, a novel information-theoretic lower bound technique, and empirical validation showing real LLMs exhibit the assumed properties. The main constraints are the bi-level reward assumption, evaluation limited to math problems, the initially worst-case definition of anti-concentration, and dense mathematical presentation.
+
+This directly supports our research direction by providing theoretical grounding for why verification becomes increasingly valuable as compute scales, making the problem of optimally allocating verification resources across different instances even more pressing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5029ac20-7e31-4712-825d-e6b63d37878a",
+  "isSidechain": false,
+  "requestId": "req_011CbUpy7mRXSrPSPShK789S",
+  "type": "assistant",
+  "uuid": "e1e9b682-ee28-48d2-9e7a-2e99bd020024",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3cTiGnE3S7AXHyS3ERV6v",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1881,
+      "cache_read_input_tokens": 29936,
+      "output_tokens": 2456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2456,
+          "cache_read_input_tokens": 29936,
+          "cache_creation_input_tokens": 1881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1881
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-28T10:43:45.596Z_
+
+Now I have comprehensive information from the paper text, experimental results, and all three reviewer comments plus author rebuttals. Let me synthesize the analysis.
+
+```json
+{
+  "title": "Scaling Test-Time Compute Without Verification or RL is Suboptimal",
+  "venue": "ICML 2025 (Spotlight Poster)",
+  "problem_identification": "The authors identified a fundamental unanswered question in the test-time compute scaling race: practitioners were split between verifier-free approaches (distillation/SFT on expert traces, e.g., S1, OpenThinker) and verifier-based approaches (RL with rewards, e.g., DeepSeek R1), with no theoretical framework to determine which scales better. They found the gap by recognizing that the diversity of solution traces (heterogeneity) in base LLMs — which practitioners deliberately maximize in training data — is precisely the property that makes SFT fundamentally unable to select the best traces without reward signals. This was hiding in plain sight: the same data-diversity heuristic practitioners use for SFT is the very thing that dooms it.",
+  "key_insight": "When a base LLM produces diverse solution traces of varying quality (heterogeneity), supervised finetuning must mimic ALL traces equally because it cannot distinguish good from bad without rewards — the information-theoretic lower bound on VF suboptimality scales as H/√n. Verifier-based methods exploit this same diversity by selectively amplifying high-reward traces, achieving only H/n suboptimality. The gap grows as √H with compute, meaning verification becomes MORE important, not less, as we scale.",
+  "innovation_type": "analysis",
+  "method_summary": "The authors model language generation as a token-level MDP with bi-level rewards (binary, non-decreasing) that capture both correctness and token efficiency. They introduce two novel properties of base LLMs: (1) heterogeneity — variance in the Q-values of expert actions under the base policy, measuring how diverse solution traces are, and (2) anti-concentration — the probability mass the base policy places on traces with above-mean rewards, measuring whether high-quality traces are discoverable. They prove an information-theoretic lower bound (Theorem 5.4) showing ANY VF method has suboptimality Ω(σ̃_e√(log|Π'|/n)) by constructing indistinguishable expert families, then prove a simple VB algorithm (train verifier → pessimistic policy optimization, Algorithm 1) achieves only O(H·log|R|/n) suboptimality (Theorem 5.7) by leveraging anti-concentration to construct covered high-reward comparator policies. The separation (Theorem 5.8) follows: VB scales test-time compute by Ω̃(√H) relative to any VF method when n = Ω(H).",
+  "what_makes_it_good": "Three things earned this a spotlight: (1) Extreme timeliness — it directly addressed the most debated practical question in the field (RL vs distillation for reasoning) with rigorous theory, submitted just weeks after S1 and DeepSeek R1 releases. (2) The theoretical framework is surprisingly clean — reducing the comparison to two measurable properties (heterogeneity, anti-concentration) of existing base LLMs, which they empirically verified hold in practice (Figures 9-10). (3) The result has real teeth: it's not 'VB is slightly better' but 'the gap GROWS with compute', which has direct implications for how the field should invest in scaling. Reviewers specifically praised the 'convincing theoretical and empirical evidence,' the precision of the writing, and the excellent Section 7 experiments that visualized the abstract properties on real LLMs.",
+  "limitations_acknowledged": "The theoretical analysis assumes bi-level (binary, non-decreasing) reward structure and realizability of the true reward in the verifier class. The anti-concentration property was initially defined worst-case over all problems (min_x), which reviewers flagged as restrictive — authors showed in rebuttal it relaxes to average-case with the same conclusions. Empirical evaluation was limited to math reasoning (MATH benchmark) with Llama 3B/8B and S1 models, without code or science domains.",
+  "open_questions": [
+    "The paper proves verification is essential and the gap grows — but WHICH verification strategy (ORM vs PRM vs GenRM) is optimal for a given problem instance and compute budget? The paper treats verification as binary (present/absent) and does not address the spectrum of verification depths, leaving the per-instance allocation question completely open.",
+    "The anti-concentration property varies across problems (c_x(ε) is problem-dependent) — can we estimate it from early tokens to predict which problems benefit most from verification? This connects directly to adaptive compute allocation but was not explored.",
+    "Does the √H separation still hold when the VF method gets access to substantially more expert data (n >> H)? The result requires n = Ω(H); understanding the tradeoff when data is abundant vs scarce has practical implications for hybrid VF+VB pipelines."
+  ],
+  "building_blocks": [
+    "Bi-level reward formulation for token-efficient reasoning evaluation",
+    "Policy heterogeneity metric (variance of Q-values under base policy) — measurable on any LLM",
+    "Anti-concentration property as a testable condition on base LLMs",
+    "Information-theoretic lower bound technique via constructing indistinguishable expert families (extending Foster et al.)",
+    "Pessimistic verifier-based policy optimization (Algorithm 1: train verifier → optimize worst-case reward in confidence set)",
+    "χ²-divergence ball as a practical constraint on expert-to-base policy distance",
+    "Empirical methodology for measuring heterogeneity and anti-concentration on real LLMs (Figures 9-10)"
+  ],
+  "reviewer_feedback_summary": "Three reviewers scored 4/5, 3/5 (raised from lower), and 3/5 — accepted as spotlight. KEY PRAISE: Reviewer 1 called it a 'strong theoretical contribution' with 'convincing evidence'; Reviewer 3 lauded Section 7 experiments as 'excellent' and the writing as 'precisely written, no obvious errors.' KEY CONCERNS: (1) Reviewer 2 flagged confusing framing — title says 'test-time compute' but the theory is about the finetuning phase, leading to a disconnect. (2) Reviewer 2 found the worst-case anti-concentration definition (min over all x) too restrictive — authors relaxed to average-case in rebuttal, upgrading the score. (3) Reviewer 3 found the presentation dense and the didactic experiments (Section 6) unhelpful, recommending they be removed. (4) Multiple reviewers wanted clearer intuition for WHY heterogeneity hurts VF — authors added the explanation that SFT must 'mimic each trace equally irrespective of reward' which was the missing intuition. The decision noted reviewers 'generally agree with the significance of this topic.'",
+  "relevance_to_seed": "This paper provides the foundational theoretical motivation for our adaptive verification allocation work: it proves the VB advantage grows as √H, meaning as compute budgets increase, how you spend verification compute matters MORE. Critically, the paper treats verification as monolithic (present/absent) and shows problem-level anti-concentration varies (c_x is problem-dependent) — this is exactly the gap we exploit. Our contribution extends from 'verification yes/no' to 'which verification depth per-instance,' and from 'aggregate scaling laws' to 'instance-adaptive allocation using the very heterogeneity signals (anti-concentration variance across problems) that Setlur et al. identify but don't act on.' Their measurable anti-concentration metric c_x(ε) could even serve as a feature in our difficulty estimator."
+}
+```
+
+Sources:
+- [Paper on OpenReview (ICML 2025)](https://openreview.net/forum?id=beeNgQEfe2)
+- [Paper on arXiv](https://arxiv.org/abs/2502.12118)
+- [Paper HTML on arXiv](https://arxiv.org/html/2502.12118)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1e9b682-ee28-48d2-9e7a-2e99bd020024",
+  "isSidechain": false,
+  "requestId": "req_011CbUpy7mRXSrPSPShK789S",
+  "type": "assistant",
+  "uuid": "d67a41ab-87f1-486b-9465-8b19f966de63",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3cTiGnE3S7AXHyS3ERV6v",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1881,
+      "cache_read_input_tokens": 29936,
+      "output_tokens": 2456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1881,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2456,
+          "cache_read_input_tokens": 29936,
+          "cache_creation_input_tokens": 1881,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1881
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "d67a41ab-87f1-486b-9465-8b19f966de63",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze Setlur et al. verification necessity paper",
+  "sessionId": "a1178e57-27c4-4511-ac6b-d4947c3813ac"
+}
+```
+
+---

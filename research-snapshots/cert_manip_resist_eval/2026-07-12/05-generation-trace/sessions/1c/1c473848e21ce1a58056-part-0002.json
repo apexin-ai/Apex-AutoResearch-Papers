@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1c473848e21ce1a58056",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-30T06:41:19.792Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "AdaGATE is from May 2026 and uses a 5-component utility with gap coverage, corroboration, novelty, redundancy, and direct question relevance. This is the heuristic multi-component approach mentioned in the field guide. It doesn't have formal approximation guarantees and doesn't separate distraction from redundancy. It's relevant related work but not direct competition.\n\nNow I have enough information. Let me synthesize everything and write the final output.\n\nKey landscape findings verified through web search:\n\n1. **AdaGReS** (Dec 2025, arXiv): ε-approximate submodularity for redundancy-aware context selection. \n\n2. **CCBQP** (April 2026, arXiv): Frank-Wolfe for diversity-aware retrieval. Strict saddle/local-max dichotomy. λ≥2 for tight relaxation. QAMPARI + ASQA. No distraction modeling.\n\n3. **LDAR** (ICLR 2026): Distraction-aware retriever. Operates at\n\nAdaGReS formulates the objective as a weighted combination of query-context similarity minus context-context similarity, with an adaptive calibration parameter and ε-approximation bounds tied to redundancy. It's only evaluated on two benchmarks though. CCBQP uses Frank-Wolfe optimization for diversity with theoretical guarantees on the relaxation tightness, tested on QAMPARI and ASQA. LDAR is the distraction-aware approach from ICLR 2026 that works at retrieval time across six benchmarks using reinforcement learning, though without formal optimization guarantees. The Distracting Effect paper measures how individual passages distract from correct answers using a per-passage metric with strong cross-LLM consistency across four datasets. DynamicRAG and Context-Picker both use RL-based reranking and selection respectively, evaluated on multiple benchmarks but lacking theoretical guarantees. Influence-guided methods use leave-one-out analysis to identify which contexts matter most.\n\nMoving into more recent work, there's a purely theoretical approach from AAMAS 2026 on γ-weakly submodular ranking with approximation guarantees but no practical NLP applications. AdaGATE combines five heuristic components for utility estimation on HotpotQA, while InSQuAD applies submodular mutual information to balance quality and diversity in context selection. ScalDPP uses determinantal point processes with learnable parameters for diverse retrieval, and RepoShapley extends Shapley value analysis to code repositories with coalition-aware decomposition.\n\nThe key finding is that no existing work combines distraction-aware optimization with formal submodular guarantees in the post-retrieval composition setting—that's the genuine gap I'm addressing. Also noting the venue timeline: AAAI 2026 has closed, but AAAI 2027 opens with a July 28, 2026 deadline, which is reachable from my May 30 target.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c60c4ad-d19d-4fbe-a7b9-0a7be3ac52a5",
+            "isSidechain": false,
+            "requestId": "req_011CbYJ9PYP4KLk5jcQR4FpP",
+            "type": "assistant",
+            "uuid": "a21ce5f1-8d36-412a-8721-76cdfc770fb8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "e31e43b3-9228-461f-a4df-add4a9949a36",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NHAf13pi9ooN8EucotoZ5q",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 71460,
+                "output_tokens": 3301,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 684,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3301,
+                    "cache_read_input_tokens": 71460,
+                    "cache_creation_input_tokens": 684,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 684
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-30T06:42:02.718Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've now completed extensive research across 15+ targeted searches. Let me synthesize my findings.\n\n## Research Summary\n\n**Venue Update**: AAAI 2026 deadlines passed (August 2025). **AAAI 2027** (Montréal, Feb 16-23, 2027) has abstract deadline **July 21, 2026** and full paper deadline **July 28, 2026** — viable from today (May 30, 2026).\n\n**Novelty verification** across all searches: **0 papers** combine formal submodular guarantees with distraction-aware post-retrieval context composition. The gap is confirmed real.\n\n**Key verified landscape**:\n- **AdaGReS** (arXiv Dec 2025): F(q,C) = α·S_qC − β·S_CC with ε=β·k·δ approximate submodularity, but monotone-only, redundancy-only, only 2 benchmarks (NQ + drug corpus)\n- **CCBQP** (arXiv Apr 2026): Frank-Wolfe BQP with strict saddle/local-max dichotomy, λ≥2 tight relaxation, but diversity-only (no distraction), QAMPARI+ASQA only\n- **LDAR** (ICLR 2026): Distraction-aware but retrieval-time (not post-retrieval), no formal guarantees, 6 benchmarks\n- **The Distracting Effect** (ACL 2025): DE_q(p) = 1−P(NO-RESPONSE|q,p), per-passage only, no pairwise or set-level composition, 4 benchmarks\n- **DynamicRAG** (NeurIPS 2025): RL reranking, 7 benchmarks, no formal guarantees\n- **AAMAS 2026 γ-weakly DR-submodular**: Purely theoretical Φ_γ approximation, Frank-Wolfe+double-greedy hybrid, zero NLP applications\n- **AdaGATE** (arXiv May 2026): 5-component heuristic utility, no formal guarantees, HotpotQA only\n- **RepoShapley** (Jan 2026): Coalition-aware Shapley modeling saturation+interference, but code completion domain only\n\n```json\n[\n  {\n    \"title\": \"Non-Monotone Submodular Context Composition with Distraction-Redundancy Decomposition\",\n    \"core_problem\": \"How can post-retrieval context composition for RAG be formalized as a constrained non-monotone submodular optimization problem that provably distinguishes between redundancy (intra-set semantic overlap) and distraction (answer-conditional interference) as separate penalty terms, yielding greedy approximation guarantees even when adding passages can decrease generation quality?\",\n    \"opportunity\": \"Three independently developed building blocks have converged in the past 6 months but never been combined: (1) AdaGReS (Dec 2025) proved ε-approximate submodularity for redundancy-penalized context selection but only handles monotone objectives; (2) The Distracting Effect (ACL 2025) provides a concrete per-passage distraction measure DE_q(p) = 1−P(NO-RESPONSE|q,p) but performs no set-level optimization; (3) the AAMAS 2026 γ-weakly DR-submodular paper provides approximation guarantees Φ_γ for non-monotone objectives but has zero empirical applications to NLP. The critical insight enabling the combination is that subtracting a distraction penalty from AdaGReS's objective makes it non-monotone — invalidating AdaGReS's monotone greedy guarantees — but the resulting function may satisfy the γ-weak DR property, recovering provable guarantees via the AAMAS machinery. No existing work formalizes this separation: AdaGReS conflates distraction with redundancy, LDAR (ICLR 2026) operates at retrieval time without guarantees, and CCBQP (Apr 2026) handles only pairwise embedding diversity.\",\n    \"landscape\": \"Current SOTA for post-retrieval context composition splits into two disjoint camps with a verified gap between them. Camp 1 (formal guarantees, distraction-blind): AdaGReS achieves ε-approximate submodularity with adaptive β* = α·E[sim(q,x)] / ((k̄−1)/2·E[sim(x,y)]) but only models redundancy, evaluated on just 2 benchmarks. CCBQP (arXiv 2604.02554, Apr 2026) provides Frank-Wolfe with O(nd) iterations and strict saddle/local-max dichotomy via diagonal loading λ≥2, dominating MMR and DPP on the relevance-diversity Pareto frontier (QAMPARI/ASQA), but has no distraction term and its authors explicitly ask whether adding a third penalty term breaks the clean quadratic landscape. Camp 2 (distraction-aware, no formal guarantees): LDAR (ICLR 2026) is a distraction-aware retriever operating at retrieval time across 6 benchmarks but provides no post-retrieval composition or approximation bounds. DynamicRAG (NeurIPS 2025) uses RL with LLM feedback across 7 benchmarks but offers no optimization guarantees. The Distracting Effect (ACL 2025) gives per-passage DE_q(p) scores robust across LLMs (high cross-model Spearman ρ) but neither models pairwise distraction interactions nor performs set-level composition. Context-Picker (Dec 2025) and AdaGATE (May 2026) use heuristic multi-component utilities without formal guarantees. The γ-weakly DR-submodular theory (AAMAS 2026) provides Φ_γ > γe^{−γ} approximation guarantees for non-monotone functions via Frank-Wolfe+double-greedy hybrid, but remains purely theoretical with no empirical validation on any real objective. The combination — post-retrieval, formally grounded, and distraction-aware — does not exist in any published or preprint work found across 15+ targeted searches.\",\n    \"inspired_by\": \"Field guide gap 'Post-retrieval composition with formal approximation guarantees accounting for distraction' (verified: no method is simultaneously post-retrieval, formally grounded, and distraction-aware); untried combination 'AdaGReS ε-approximate submodularity + DE_q(p) distraction scores + AAMAS γ-weakly DR-submodular guarantees'; innovation pattern 'Formalize-then-Approximate' (recast heuristic distraction-redundancy tradeoff as formal non-monotone submodular optimization with provable bounds); gap 'Non-monotone submodular optimization applied to RAG context composition' (AAMAS provides the machinery, no one has applied it or verified γ-weak DR for distraction-penalized objectives)\"\n  }\n]\n```\n\nSources:\n- [AdaGReS (arXiv:2512.25052)](https://arxiv.org/abs/2512.25052)\n- [LDAR (arXiv:2509.21865)](https://arxiv.org/abs/2509.21865)\n- [The Distracting Effect (ACL 2025)](https://aclanthology.org/2025.acl-long.892/)\n- [DynamicRAG (NeurIPS 2025)](https://arxiv.org/abs/2505.07233)\n- [CCBQP (arXiv:2604.02554)](https://arxiv.org/abs/2604.02554)\n- [AAMAS 2026 γ-Weakly DR-Submodular (arXiv:2601.00611)](https://arxiv.org/abs/2601.00611)\n- [Submodular Max under Supermodular Constraint (arXiv:2602.16240)](https://arxiv.org/abs/2602.16240)\n- [InSQuAD (arXiv:2508.21003)](https://arxiv.org/abs/2508.21003)\n- [ScalDPP (arXiv:2604.03240)](https://arxiv.org/abs/2604.03240)\n- [Influence-Guided Context Selection (arXiv:2509.21359)](https://arxiv.org/abs/2509.21359)\n- [Context-Picker (arXiv:2512.14465)](https://arxiv.org/abs/2512.14465)\n- [AdaGATE (arXiv:2605.05245)](https://arxiv.org/abs/2605.05245)\n- [RRPO (arXiv:2604.02091)](https://arxiv.org/abs/2604.02091)\n- [Rank4Gen (arXiv:2601.11273)](https://arxiv.org/abs/2601.11273)\n- [RepoShapley (arXiv:2601.03378)](https://arxiv.org/abs/2601.03378)\n- [Provence (arXiv:2501.16214)](https://arxiv.org/abs/2501.16214)\n- [Adaptive-k (arXiv:2506.08479)](https://arxiv.org/abs/2506.08479)\n- [PrismRAG (arXiv:2507.18857)](https://arxiv.org/abs/2507.18857)\n- [AAAI-27 Call for Papers](https://aaai.org/conference/aaai/aaai-27/)\n- [Jina Submodular Optimization for Text Selection](https://jina.ai/news/submodular-optimization-for-text-selection-passage-reranking-context-engineering/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a21ce5f1-8d36-412a-8721-76cdfc770fb8",
+            "isSidechain": false,
+            "requestId": "req_011CbYJ9PYP4KLk5jcQR4FpP",
+            "type": "assistant",
+            "uuid": "ec58c39e-eae4-4d6a-9b74-e76ebbdf9bae",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "e31e43b3-9228-461f-a4df-add4a9949a36",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NHAf13pi9ooN8EucotoZ5q",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 684,
+                "cache_read_input_tokens": 71460,
+                "output_tokens": 3301,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 684,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3301,
+                    "cache_read_input_tokens": 71460,
+                    "cache_creation_input_tokens": 684,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 684
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-30 (UTC).** Use this when reasoni…",
+                "leafUuid": "ec58c39e-eae4-4d6a-9b74-e76ebbdf9bae",
+                "sessionId": "e31e43b3-9228-461f-a4df-add4a9949a36"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Formalize distraction-aware context composition with guarantees",
+                "sessionId": "e31e43b3-9228-461f-a4df-add4a9949a36"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing deep research first.  **Today's date: 2026-05-30 (UTC).** Use this when reasoni…",
+                "leafUuid": "ec58c39e-eae4-4d6a-9b74-e76ebbdf9bae",
+                "sessionId": "e31e43b3-9228-461f-a4df-add4a9949a36"
+              }
+            }
+          ],
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Formalize distraction-aware context composition with guarantees",
+                "sessionId": "e31e43b3-9228-461f-a4df-add4a9949a36"
+              }
+            }
+          ],
+          "id": "event-000186"
+        }
+      ]
+    }
+  ]
+}

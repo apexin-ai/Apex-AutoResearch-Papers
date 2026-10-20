@@ -1,0 +1,405 @@
+{
+  "schema_version": "1.0",
+  "id": "441ca26e650bd1530b40",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1",
+  "task_key": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/f3251c9b-8b09-4392-aefe-1c60f8d305f2.jsonl",
+    "occurrence": 1,
+    "bytes": 90577,
+    "sha256": "e2f7369920c68d32c52cc1fabdc63d993b22b4638f4bee23fdc374dd2b459d11"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "record": 8,
+      "user": 1,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T03:12:49.821Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T03:12:49.821Z",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+                "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\n现在我已经完成了充分的调研，可以进行评估了。\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- PSN-IRT (Zhou et al., AAAI 2026 Oral, arXiv:2505.15055): 本 proposal 直接依赖的上游工作。使用 Pseudo-Siamese Network 对 11 个 LLM benchmark 共 41,871 道题目标定了 4PL IRT 参数(a/b/c/d)。已开源。本 proposal 本质上是 PSN-IRT 的下游应用——利用其标定好的参数计算 person-fit 统计量。\n- ConStat (arXiv:2405.16281, 2024): 通过对比原题与改写题的性能差异进行统计检验，已成功检测 Mistral、LLaMA、Yi 等模型的污染。黑盒、无需 logits、方法简单——是本 proposal 最直接的竞品。\n- PaCoST (arXiv:2406.18326, 2024): 配对置信度显著性检验，构造同分布对照样本比较模型置信度差异。同样是黑盒方法。\n- CoDeC (arXiv:2510.27055, 2025): 基于 in-context learning 的数据集级污染检测，简单、自动化、model-agnostic。\n- Min-K% Prob (2024): 基于 token 概率的检测方法，需要 logit 访问（非完全黑盒）。\n- Self-Critique (arXiv:2510.09259, 2025): 专门针对 RL 后训练阶段的污染检测，利用 RL 导致的 policy collapse 特征，AUC 提升可达 30%。直接针对 proposal 声称要解决的 post-RL 场景。\n- Wang et al. \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" (arXiv:2510.02386, 2025): 本 proposal 的关键动机论文，确认存在且描述准确。证实 RL 训练可隐藏 SFT 阶段的污染证据，CoT 污染对记忆类检测方法几乎不留痕迹。\n- \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" (arXiv:2510.07175, EACL 2026 Findings): 将心理测量与 LLM 污染检测结合，但关注人格/价值观问卷的记忆化，不涉及 person-fit 统计量。\n- ATLAS / Adaptive Testing for LLM Evaluation (arXiv:2511.04689, 2025): 将 CAT 自适应测试应用于 LLM 评估以减少测试量，IRT 用于效率而非污染检测。\n- 教育测量领域 person-fit 文献: lz*/infit/outfit 是成熟的作弊检测工具，有数十年理论基础，但从未被迁移到 LLM 场景。\n\n- **调研总结**: LLM benchmark 污染检测是热门方向，已有 ConStat/PaCoST/CoDeC/Min-K%/Self-Critique 等多类方法。IRT 在 LLM 评估中的应用主要集中在效率提升（CAT、PSN-IRT），尚无人将 person-fit 统计量（lz*/infit/outfit）迁移用于污染检测。该 proposal 填补了这一具体空白，但需论证其相对于现有更简单方法的增量价值。\n\n【Trivial Alternative 检验】:\n存在明显的 trivial alternative 威胁：\n\n1. **ConStat 类方法**：ConStat 通过对比原题与改写题的性能差异来检测污染，逻辑直接、实现简单、已有实证验证。它不需要任何 IRT 标定步骤，不需要 PSN-IRT 的 41,871 个参数，也不需要 EFA 验证、multiscale correction 等复杂统计机制。如果 ConStat 能做到同等效果，本 proposal 的重型 IRT 机器的增量价值何在？\n\n2. **简单的 difficulty-accuracy 异常检测**: 不需要完整的 4PL person-fit 框架，仅用一个简单的 rank correlation（模型在各难度区间的正确率 vs. 预期单调曲线的偏离程度）就可能捕捉到大部分\"在难题上异常强、在简单题上正常\"的信号。这个 baseline 的成本极低。\n\n**增量价值的可能论点**: person-fit 统计量有 decades 的理论保证（Type-I error control、power analysis），提供校准 p-value，这是简单异常检测做不到的。但这个论点的前提是 IRT 模型对 LLM 数据的拟合质量足够好，使得理论保证确实成立——这本身是一个未验证的假设。\n\n【前提假设检验】:\n核心 claim 的逻辑链条中有多个未验证环节：\n\n1. **\"部分污染 → IRT 可检测的异常响应模式\"假设**: 这是全文的核心前提。在教育测试中，person-fit 检测作弊的前提是：作弊者在已知题目上表现异常好，而这些题目在难度维度上与其真实能力不一致。但 LLM 的\"部分污染\"模式可能不遵循这一假设——污染可能与难度无关（如：所有特定知识领域的题被污染），也可能因 RL/后训练而被 smooth 掉。proposal 假设污染在难度维度上是\"异常\"的，但这需要实证支持。\n\n2. **IRT 单维度假设对 LLM 成立的程度**: Person-fit 统计量的理论保证建立在 IRT 模型良好拟合的前提上。LLM 的能力结构可能高度多维（语言理解、推理、知识、编码），即使 proposal 提到了 EFA 验证的 subscale，但 IRT 的 person-fit 理论对 model-data misfit 非常敏感——如果模型拟合不好，Type-I error 率会严重膨胀，导致大量假阳性。\n\n3. **\"person-fit 对 post-RL 推理模型仍有检测力\"假设**: 这是 proposal 明确标注为\"hypothesis\"的部分，但它同时也是 proposal 最大的卖点之一（区别于现有方法失败的场景）。如果这个假设不成立，proposal 的核心价值主张大幅缩水。且已有 Self-Critique (2025) 方法专门针对 RL 后训练污染检测且已展示有效性。\n\n4. **教育测试理论到 LLM 场景的可迁移性**: 教育测试中 person-fit 处理的是个体测试者（几十到几百道题），而 LLM 场景涉及数千到数万道题。样本量、item pool 特征、\"作弊\"机制的根本差异可能使得教育测试中的理论结果无法直接套用。\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏弱）**\n   理由：通过调研确认，尚无人将 person-fit 统计量（lz*/infit/outfit/lzm）从教育心理测量迁移到 LLM 污染检测。这个方法层面的空白是真实存在的。但核心创新本质上是一个\"方法迁移\"——将教育测量领域成熟的工具应用到 LLM 评估这个新场景。一旦 PSN-IRT (AAAI 2026 Oral) 提供了标定好的 4PL 参数，计算 person-fit 统计量是相当自然且直接的后续步骤（PSN-IRT 论文本身可能已经暗示了这一方向）。analogy 本身（污染模型 = 作弊考生）是 obvious 的，不构成深层次的智识贡献。与 ConStat、Self-Critique 等方法相比，创新主要在于\"换了一个检测视角\"，而非解决了前人方法无法解决的根本性技术障碍。\n\n2. **Significance: 中**\n   理由：LLM benchmark 污染检测是重要且及时的问题，Wang et al. (2025) 证实了现有方法在 reasoning model 上的脆弱性，创造了真实的研究空隙。但本 proposal 对这个空隙的填补力度存疑：(a) Self-Critique (2025) 已经专门针对 post-RL 场景并展示了有效性；(b) person-fit 方法本质上也是基于\"模式异常\"检测，与 ConStat 的\"性能不一致\"检测在认识论层面同构——如果 RL 训练能 smooth 掉性能不一致的信号（如 Wang et al. 所示），同样可能 smooth 掉 IRT 检测到的响应模式异常。核心发现如果为 positive（person-fit 能检测污染），审稿人的反应更可能是\"makes sense, I would have guessed this works for partial contamination\"，而非\"surprising\"。如果发现 person-fit 在 post-RL 场景下优于现有方法，那才会是 surprising 的——但这是一个未验证的假设。\n\n3. **Related Work: 强**\n   理由：proposal 覆盖了污染检测领域的主要方法（ConStat, PaCoST, CoDeC, Min-K%++, Self-Critique），正确引用了 Wang et al. (2025) 的关键发现，并明确建立在 PSN-IRT (AAAI 2026 Oral) 的基础上。所引论文经调研均真实存在且描述准确。差异化定位清晰：黑盒 + 基于响应模式（非记忆化/概率/改写对比）。唯一可补充的是 \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" (EACL 2026 Findings)，它代表了心理测量+LLM 污染检测的另一个交叉尝试。\n\n【概率估计】: 20% - 32%，中位 25%\n\n【估计理由】:\nNovelty 是主要限制因素。核心贡献是方法迁移（教育测量 → LLM），analogy 本身自然且直接，一旦 PSN-IRT 存在，这一步是可预见的。审稿人很可能提出\"this is a straightforward application of well-known psychometric tools\"的质疑。Significance 受制于 trivial alternative 威胁——ConStat 等更简单方法可能达到可比效果——以及核心卖点（post-RL 有效性）仅是假设。Related Work 是最强维度，但好的 related work 提分有限。\n\n中位 25% 对应 rubric 中\"idea 有实质内核但核心发现 positive 时审稿人可能说 'I would have guessed this'\"。上界 32% 考虑到如果 post-RL 实验确实展示了 surprising 的检测能力、以及工具包的实用价值可能打动部分审稿人。下界 20% 反映 trivial alternative 威胁和\"方法迁移 ≠ 方法创新\"的审稿风险。\n\n【主要风险】:\n1. **\"方法迁移 vs 方法创新\"质疑**: 审稿人可能认为将 person-fit 统计量应用于 LLM 只是 PSN-IRT 的自然延伸，技术贡献不足以支撑一篇顶会论文。核心 analogy（污染=作弊）对任何了解 IRT 的人都是 obvious 的。\n2. **Trivial alternative 不可忽视**: 如果实验中 ConStat 或简单的 difficulty-accuracy 异常指标达到了与 person-fit 相当的检测效果，则整套 IRT 机器（4PL 标定、EFA subscale 验证、multiscale correction）的 justification 将严重不足，论文的核心价值主张将瓦解。\n\n【⚠️ 附注：投稿venue 严重不匹配】:\nCoRL (Conference on Robot Learning) 是机器人学习会议，本 proposal 关于 LLM benchmark 污染检测，与机器人学习完全无关。如果确实投稿 CoRL，中稿概率接近 0%（desk reject）。建议投稿 ACL/EMNLP/NeurIPS/ICML/COLM 等 NLP/ML 通用会议。上述概率估计基于投稿至合适 NLP/ML venue 的假设。\n```\n\nSources:\n- [PSN-IRT: Lost in Benchmarks? Rethinking LLM Benchmarking with IRT (AAAI 2026 Oral)](https://arxiv.org/abs/2505.15055)\n- [ConStat: Performance-Based Contamination Detection](https://arxiv.org/pdf/2405.16281)\n- [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/pdf/2406.18326)\n- [CoDeC: Detecting Data Contamination via In-Context Learning](https://arxiv.org/pdf/2510.27055)\n- [On The Fragility of Benchmark Contamination Detection in Reasoning Models (Wang et al.)](https://arxiv.org/abs/2510.02386)\n- [Self-Critique: Detecting Contamination from RL Post-training](https://arxiv.org/pdf/2510.09259)\n- [Quantifying Data Contamination in Psychometric Evaluations of LLMs (EACL 2026)](https://arxiv.org/abs/2510.07175)\n- [Adaptive Testing for LLM Evaluation (ATLAS)](https://arxiv.org/pdf/2511.04689)\n- [Comprehensive Survey of Contamination Detection Methods](https://arxiv.org/abs/2404.00699)\n- [Benchmarking LLMs Under Data Contamination: Survey](https://arxiv.org/html/2502.17521v2)\n- [PSN-IRT GitHub Repository](https://github.com/Joe-Hall-Lee/PSN-IRT)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to make a well-grounded assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n⚠️ 致命前置问题：投稿 venue 严重不匹配\nCoRL (Conference on Robot Learning) 2026 明确要求：\n- \"Submissions should focus on a core robotics problem\"\n- \"Submissions without a robotics focus will be returned without review\"\n本 proposal 是关于 LLM benchmark 污染检测的纯 NLP/evaluation 方向工作，\n与机器人学习零关联。投稿 CoRL 将被 desk-reject，中稿概率为 0%。\n以下评估基于 idea 本身的学术质量（假设投稿至匹配 venue，如 ACL/EMNLP/NeurIPS）。\n\n【领域调研】:\n- [PSN-IRT / \"Lost in Benchmarks?\" arXiv:2505.15055] (AAAI 2026 Oral):\n  本 proposal 直接依赖的基础工作。提出 Pseudo-Siamese Network IRT 框架，\n  在 11 个 benchmark、41,871 items 上校准 4PL 参数。是将 IRT 系统性应用于\n  LLM 评估的最新里程碑。本 proposal 计划复用其 calibrated item parameters。\n  \n- [ConStat, arXiv:2405.16281] (2024):\n  基于性能的污染检测方法，分析 benchmark-specific 性能异常。\n  已在 Open LLM Leaderboard 上发现 top-3 7B 模型的显著污染。\n  是本 proposal 的直接竞争者/baseline。\n\n- [PaCoST, arXiv:2406.18326] (2024):\n  通过构造语义等价的 counterpart 数据，对比原始 benchmark 与 paraphrased\n  版本的 confidence 差异进行统计检验。本 proposal 的 baseline 之一。\n\n- [CoDeC, arXiv:2510.27055] (ICLR 2026):\n  通过 in-context learning 检测数据污染，产生可解释的百分比污染分数。\n  仅需 gray-box access（token probabilities），两次 forward pass。\n  是该方向最新的强竞争者。\n\n- [Min-K%++ / Self-Critique]:\n  Min-K%++ 是 token-level membership inference 方法；Self-Critique\n  基于模型自我质疑。均为 proposal 列出的 baseline。\n\n- [Adaptive Testing for LLM Evaluation, arXiv:2511.04689] (2025):\n  将 IRT-based adaptive testing 应用于 LLM 评估，但未涉及 person-fit\n  statistics 或污染检测。\n\n- [Person-fit statistics 在教育测量中的文献]:\n  lz* 在检测作弊方面最有效，infit 对 creative response 更敏感\n  (Karabatsos 2003, Behavior Research Methods)。\n  这些统计量有数十年的理论基础和 Type-I error 保证。\n\n- 调研总结: LLM benchmark 污染检测是 2024-2026 年的活跃方向，已有多种\n  方法（基于性能、基于 confidence、基于 token probability、基于 ICL）。\n  IRT 已被系统性应用于 LLM 评估（PSN-IRT），但 person-fit statistics\n  尚未被任何工作用于 LLM 污染检测。这是一个真实的 gap，但属于\"明显的\n  下一步\"而非\"意外的洞察\"。\n\n【Trivial Alternative 检验】:\n存在中等程度的 trivial alternative 威胁。\n\n核心问题：是否需要完整的 IRT person-fit 统计量（lz*, infit, outfit, lzm）\n来检测\"模型在 hard items 上异常表现好\"这一信号？\n\n更简单的替代方案：\n(1) 直接计算\"模型在难题上的准确率 vs. 基于整体能力的预测准确率\"的残差，\n    不需要 IRT 框架就能捕捉到类似信号。\n(2) ConStat 已经是 performance-based 方法，直接分析 benchmark-specific\n    性能异常，逻辑上覆盖了类似的信号空间。\n(3) 简单的 rank-order 一致性检验（如 Spearman correlation between \n    item difficulty ranking and model error ranking）可能捕捉到同类信号。\n\nIRT-FIT 的增量价值主要在于：\n- 提供校准的 p-value 和继承自教育测量的 Type-I error 保证\n- 多个 person-fit 统计量可能对不同污染模式有不同的灵敏度\n- 4PL 模型比简单难度排序更精细（区分度、猜测率、feasibility）\n\n但这些增量价值更多是\"统计上更严谨\"而非\"能检测到其他方法检测不到的东西\"。\n如果实验结果只是\"person-fit 也能检测到污染，和现有方法差不多\"，\ncontribution 会显得单薄。\n\n【前提假设检验】:\n核心逻辑链：LLM 部分污染 → 响应模式违反 IRT 单调性 → person-fit 统计量异常\n\n有以下未经验证/可质疑的环节：\n\n(1) \"污染 ≈ item preknowledge\" 假设：教育测量中的 cheating 是精确记忆\n    特定题目答案。但 LLM 的\"污染\"可能是在训练数据中见过 benchmark 数据\n    导致的分布级别记忆，而非逐题记忆。如果污染导致的是对某类问题的\n    整体性能提升（而非特定 item 的记忆），response pattern 可能仍然\n    符合 IRT 预测，person-fit 统计量不会触发。\n\n(2) \"unidimensionality\" 假设：即使用 EFA-validated subscales，\n    LLM 的能力结构可能比人类考生更复杂——一个模型可能在某些 subtopic\n    上极强而在其他上极弱，这种\"spiky ability profile\"即使没有污染\n    也可能触发 person-fit 异常，导致 false positive。\n\n(3) Inverted-U 曲线的可迁移性：100% 污染不可检测在理论上成立，\n    但实际中\"100% 污染\"意味着模型在该 benchmark 上表现异常好，\n    这本身可能通过其他信号（如绝对分数异常）被捕捉。person-fit\n    的 inverted-U 限制是否是实际缺陷还是理论边界情况？\n\n(4) 校准迁移假设：PSN-IRT 的 item parameters 是基于当前一组 LLM\n    校准的。用这些参数去检测新的/未来的模型，参数的稳定性是否成立？\n\n【3 维度打分】:\n\n1. Novelty: 中 —\n   将 person-fit statistics 从教育测量迁移到 LLM 污染检测确实是一个\n   尚未被做过的方向（调研未发现任何现有工作）。但这个 novelty 属于\n   \"obvious next step\" 类型：PSN-IRT (AAAI 2026) 已经把 4PL IRT\n   系统性地应用于 LLM 评估，person-fit 是 IRT 框架内最自然的延伸\n   工具之一；污染检测是 benchmark 评估最直接的应用场景之一。\n   两个已知方向的组合（IRT for LLM + person-fit for cheating detection）\n   不需要特别的 intellectual leap。Novelty 是真实的但不深刻。\n\n2. Significance: 中 —\n   Benchmark 污染检测是一个重要的实践问题，但：\n   (a) 已有多种有效方法（ConStat, PaCoST, CoDeC/ICLR 2026），\n       该领域并非缺乏解决方案；\n   (b) IRT-based 方法的独特价值（Type-I error 保证、校准 p-value）\n       主要对需要严格统计推断的场景有意义，这是一个相对小众的需求；\n   (c) 核心发现如果是 positive（\"person-fit 能检测污染\"），多数审稿人\n       的反应会是 \"I would have guessed this\"——因为 person-fit 本来就是\n       设计来检测 cheating 的，能检测到 LLM 污染不会让人 surprised；\n   (d) 如果发现是 negative（\"person-fit 在 LLM 上不 work\"），这可能\n       更 interesting 但论文的 contribution 叙事需要完全重构。\n\n3. Related Work: 强 —\n   Proposal 展示了对该领域的全面了解：覆盖了主要 baseline（ConStat,\n   PaCoST, CoDeC, Min-K%++, Self-Critique），建立在最新的 foundation\n   work (PSN-IRT, AAAI 2026) 上，引用了 Wang et al. 2025 关于 MIA\n   在 reasoning models 上失效的工作。差异化定位清晰（black-box +\n   IRT-grounded + 校准 p-value）。实验设计中的 controlled contamination\n   fine-tuning 和 4PL-vs-3PL ablation 也显示了对方法论细节的理解。\n\n【概率估计】: [20% - 35%] 中位 27%\n（以上概率假设投稿至匹配 venue 如 ACL/EMNLP/NeurIPS；\n  投稿 CoRL 2026 的实际概率为 ~0%，会被 desk-reject）\n\n【估计理由】:\nNovelty 和 Significance 均为\"中\"，将概率锚定在 25-35% 区间。\nRelated Work 为\"强\"，说明作者对领域理解充分，但这主要影响下限而非上限。\n核心限制是 Novelty 的天花板：这是一个 \"well-motivated but unsurprising\"\n的跨领域迁移——审稿人很可能说 \"this is a natural extension of PSN-IRT,\nthe contribution is incremental\"。Significance 受限于：(a) 如果结果 positive\n不会 surprising，(b) 存在 trivial alternative 威胁（简单残差分析可能\n捕捉类似信号），(c) 已有方法已能解决问题。\n上界被 Novelty 限制：即使实验完美，idea 内核的 surprise value 有限。\n下界由 Related Work 的全面性和实验设计的严谨性支撑。\n\n【主要风险】:\n1. \"Obvious next step\" 风险：审稿人可能认为 PSN-IRT + person-fit 的组合\n   过于自然，缺乏深层洞察，contribution 仅是工程性的方法迁移。\n2. Incremental value 风险：如果实验显示 person-fit 的检测效果与现有方法\n   （特别是 ConStat 和 CoDeC）相当或略优，审稿人会质疑 \"why do we need\n   yet another contamination detector\"——需要展示 person-fit 能做到\n   而现有方法做不到的事情（如对 post-RL reasoning models 的鲁棒性），\n   但这目前仅是 hypothesis 而非已验证的优势。\n```\n\nSources:\n- [PSN-IRT: Lost in Benchmarks? (AAAI 2026)](https://arxiv.org/abs/2505.15055)\n- [ConStat: Performance-Based Contamination Detection](https://arxiv.org/html/2405.16281v1)\n- [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/abs/2406.18326)\n- [CoDeC: Detecting Data Contamination via In-Context Learning](https://arxiv.org/html/2510.27055v1)\n- [Adaptive Testing for LLM Evaluation](https://arxiv.org/html/2511.04689v2)\n- [A Comprehensive Survey of Contamination Detection Methods in LLMs](https://arxiv.org/html/2404.00699v4)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [GitHub: PSN-IRT (AAAI 2026 Oral)](https://github.com/Joe-Hall-Lee/PSN-IRT)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make an informed assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. [Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory](https://arxiv.org/abs/2505.15055) (AAAI 2026 Oral):\n   - 这是本 proposal 直接依赖的基础工作。提出 PSN-IRT 框架，用伪孪生网络估计 4PL 参数（discrimination, difficulty, guessing, feasibility），在 11 个 benchmark、41,871 items 上进行了 IRT 校准。\n   - 与本 proposal 的关系：proposal 直接复用其校准好的 item parameters 来计算 person-fit statistics。PSN-IRT 本身 **没有** 做 person-fit 分析，也没有将 IRT 用于 contamination detection，只做了 benchmark 质量评估和 ability estimation。\n   - **关键判断：proposal 提出的 person-fit → contamination 这一步是 PSN-IRT 未涉及的增量贡献。**\n\n2. [ConStat: Performance-Based Contamination Detection in Large Language Models](https://www.researchgate.net/publication/397204928) (NeurIPS 2024):\n   - 通过比较 primary/reference benchmark 上的 performance gap（相对于 reference models）来检测和量化 contamination。需要构造 reference benchmark（重述/变体），属于 performance-based 方法。\n   - 与本 proposal 的差异：ConStat 需要外部 reference benchmark 和 reference models；IRT-FIT 只需要 calibrated item parameters + 原始 response pattern，不需要生成新题目。\n\n3. [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/abs/2406.18326) (2024):\n   - 为每个 benchmark 数据点构造同分布 counterpart，对比 model confidence 做统计检验。需要模型输出 probability/confidence。\n   - 与本 proposal 的差异：PaCoST 需要 logit-level 访问来做 confidence 分析；proposal 声称 fully black-box（只需正确/错误的 binary response），门槛更低。\n\n4. [Comprehensive Survey of Contamination Detection Methods in LLMs](https://arxiv.org/abs/2404.00699) (2024):\n   - 覆盖 50+ detection 方法、100+ 论文。将检测方法分为 open-data（n-gram, embedding similarity）和 closed-data（MIA, performance-based）两大类。\n   - **关键发现：该 survey 中没有任何方法基于 IRT person-fit statistics。** 这支持 proposal 的 novelty claim。\n\n5. [Detecting Benchmark Contamination Through Watermarking](https://arxiv.org/pdf/2502.17259) (2025):\n   - 通过在 benchmark 中嵌入 watermark 来检测 contamination，可同时输出 performance 和 p-value。\n   - 属于 proactive 方法（需要在 benchmark 创建时嵌入），与 proposal 的 post-hoc 检测不同。\n\n6. [Person-fit statistics in educational measurement](https://pmc.ncbi.nlm.nih.gov/articles/PMC5445123/) (psychometrics literature):\n   - lz、lz*、infit/outfit 等 person-fit 指标在教育测量中有数十年研究历史，用于检测 cheating、pre-knowledge、random guessing 等 aberrant patterns。\n   - **关键：这些工具在 LLM 领域从未被系统性地应用于 contamination detection。**\n\n7. IRT for LLM 领域的其他近期工作：\n   - [MEDIRT](https://arxiv.org/pdf/2509.24186) (2025)：IRT 用于医学 benchmark 评估，含 benchmark integrity validation\n   - [ATLAS](https://arxiv.org/pdf/2511.04689) (2025)：IRT-based adaptive testing for LLMs\n   - [JE-IRT](https://arxiv.org/pdf/2509.22888) (2025)：Joint Embedding IRT 用于 LLM ability 分析\n   - **这些工作都用 IRT 做 evaluation/efficiency，没有用 person-fit 做 contamination detection。**\n\n- **调研总结：** IRT 在 LLM 评估领域是 2024-2026 的热点方向（PSN-IRT 获 AAAI 2026 Oral），但现有工作集中在 ability estimation 和 benchmark 质量评估。将 person-fit statistics 迁移到 contamination detection 是一个 **空白点**，现有 contamination detection 文献（含 50+ 方法的 survey）中没有覆盖此方法。Proposal 处于 IRT-for-LLM 和 contamination detection 两个活跃子领域的交叉点。\n\n---\n\n【Trivial Alternative 检验】:\n\n最直接的 trivial alternative 是：**直接用 accuracy-on-hard-vs-easy items 的比值（或 Guttman error count）做一个简单的不一致性指标，而不需要 full IRT calibration + 4PL + lz* + multiscale correction。**\n\n具体来说：如果 contamination 的核心信号是 \"模型答对了不该答对的难题\"，那么一个简单的 heuristic —— 统计 \"difficulty rank > ability percentile 的 items 中正确率异常高\" —— 可能就能捕获大部分信号，不需要完整的 IRT machinery。\n\n**增量价值在哪？**\n1. Person-fit statistics 提供的是 **有理论保证的统计检验**（p-value, Type-I error control），而非 ad-hoc heuristic。这在 high-stakes 场景（如声称某模型 contaminated）中至关重要。\n2. 4PL 模型比简单 difficulty ranking 更精确：区分 \"题目本身容易猜对\"（guessing parameter）和 \"题目确实被 memorize\"（ability-difficulty mismatch），以及 \"即使能力很高也不可能全对\"（feasibility parameter）。\n3. Multiscale correction (lzm) 处理多个 benchmark 间的维度差异，简单 heuristic 无法做到。\n\n**评估：trivial alternative 确实存在威胁，但 proposal 有合理的增量论证（统计理论保证 + 多参数精度 + multiscale correction）。这个 delta 不是 overwhelming，但是 real。** 需要实验来证明 full IRT-FIT 相比 simplified alternatives 有多少边际提升——如果提升不大，reviewers 会质疑 complexity 是否 justified。\n\n---\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条：\n\n1. **\"Contaminated LLM ≈ test-taker with item preknowledge\"**\n   - ⚠️ **这是最关键的未验证假设。** 在人类考试中，preknowledge 导致的 aberrant pattern 是清晰的：考生记住了答案，不需要推理过程。但 LLM contamination 的 manifestation 更复杂：(a) pre-training contamination 可能通过 implicit memorization 提升某些 items 的表现，但不一定产生与 human cheating 相同的 response pattern；(b) post-RL 模型可能在 contaminated items 上展现 \"合理的\" reasoning trace，使 response pattern 看起来 consistent 而非 aberrant。\n   - **这个 analogy 的有效性是整篇论文成立的基础，但它是一个经验性假设，需要实验验证（proposal 设计的 controlled fine-tuning 实验正是为此）。**\n\n2. **\"IRT item parameters 对 LLM 群体稳定\"**\n   - PSN-IRT 的 calibration 是在特定 LLM 群体上做的。如果 contaminated model 的 response pattern 导致 item parameters 本身不稳定（DIF - differential item functioning），person-fit statistics 的解释力会下降。\n   - Proposal 似乎假设 PSN-IRT 的 parameters 可以直接迁移到包含 contaminated models 的分析中，这需要 robustness 验证。\n\n3. **\"Inverted-U detection power curve\"**\n   - Proposal 明确指出 100% contamination 不可检测（uniform high performance is consistent）和 <3% contamination 低于统计灵敏度。这是 **honest 的 acknowledgment**，但也意味着该方法的 practical coverage 窗口可能有限。如果真实世界中大部分 contamination 要么是 very low-level（<3%）要么是 massive（>50%），inverted-U 的 sweet spot 可能 miss 了最常见的场景。\n\n4. **\"Person-fit on post-RL reasoning models\"**\n   - Proposal 将 \"person-fit 在 post-RL 模型上保持检测力\" 定位为 hypothesis 而非 assumption，这是合理的。但如果这个 hypothesis 不成立（RL 使模型行为更 \"consistent\" 即使 contaminated），则该方法相对于现有方法的核心优势之一（MIA 失效的场景它还能用）会丧失。\n\n---\n\n【3 维度打分】:\n\n1. **Novelty: 中偏强** —\n   将 person-fit statistics（lz*, infit, outfit, lzm）从教育心理测量学迁移到 LLM contamination detection，这在现有文献中是 **genuinely novel** 的。Comprehensive Survey [arxiv 2404.00699] 覆盖 50+ 方法中无此类方法；PSN-IRT [AAAI 2026] 只做 ability estimation 不做 person-fit；MEDIRT、ATLAS、JE-IRT 等近期 IRT-for-LLM 工作均未涉及 contamination detection。**跨领域 transfer 是真实的，不是 surface-level packaging。**\n   \n   但降分原因：(a) 核心工具（person-fit statistics）本身不是新的——是 1980s 开始的教育测量文献，novelty 更多在于 \"迁移\" 而非 \"发明\"；(b) 如果 trivial simplified version（简单 Guttman error count）已能捕获大部分信号，full IRT machinery 的 marginal novelty 会被质疑；(c) 严重依赖 PSN-IRT 的 calibrated parameters，增量 over PSN-IRT 需要被清晰界定。\n\n2. **Significance: 中** —\n   Benchmark contamination 是 LLM 社区的重要问题（多篇 NeurIPS/ICML 论文关注）。Black-box detection 的需求真实存在。然而：\n   - 如果核心发现是 positive（person-fit 确实能检测 contamination），审稿人的反应更可能是 **\"makes sense, I would have guessed this\"** 而非 \"surprising\"。这是因为 analogy 本身直觉上是合理的（contaminated model ≈ cheating test-taker → person-fit flags it）——它的成立不会令人惊讶，它的不成立才会。\n   - Practical impact 受限于 inverted-U curve：只在 ~10-30% contamination 时效果最好，太少或太多都检测不到。\n   - **最关键的 significance 问题：这篇论文投的是 CoRL（Conference on Robot Learning），但 proposal 的主题是 LLM benchmark contamination detection，与 robotics 完全无关。** 即使 idea 质量再好，对 CoRL 的 significance 是 **零**。\n\n3. **Related Work: 强** —\n   Proposal 覆盖了主要竞争方法（ConStat [NeurIPS 2024], PaCoST, CoDeC, Min-K%++, Self-Critique），正确引用了 PSN-IRT [AAAI 2026] 的 calibrated parameters，设计了与 5 个 baseline 的对比实验，还专门针对 Wang et al. (2025) 关于 MIA 在 post-RL 模型上失效的发现设计了 dedicated experiment。差异化定位清晰：black-box + 不需要 reference benchmark + 有统计理论保证。\n   \n   唯一瑕疵：未提及 watermarking-based 方法 [arxiv 2502.17259] 和 LiveBench [arxiv 2406.19314] 等 \"避免 contamination\" 而非 \"检测 contamination\" 的替代路线。\n\n---\n\n【概率估计】: 0% - 3%，中位 1%\n\n【估计理由】:\n**致命问题：venue mismatch。** 这篇 proposal 的主题是 LLM benchmark contamination detection（属于 NLP evaluation / ML safety 领域），投稿目标却是 CoRL 2026（Conference on Robot Learning）。CoRL 的 call for papers 明确要求论文 \"focus on a core robotics problem\" 并 \"demonstrate relevance to robotics\"。本 proposal 与 robotics 没有任何关联——不涉及 robot perception、control、manipulation、navigation、locomotion、driving 等 CoRL 覆盖的任何主题。**这将导致 desk rejection，不会进入 review 流程。**\n\n如果忽略 venue mismatch，纯评 idea 质量并假设投稿到合适的 venue（NeurIPS / ICML / ACL / EMNLP），估计为 **28-38%，中位 33%**：\n- Novelty 真实但属于 \"跨领域迁移\"（不是全新方法论），审稿人可能认为 contribution 偏 application\n- Core finding 如果 positive 不够 surprising（\"makes sense\"），限制了上界\n- Related work 覆盖充分，experimental design 合理（controlled fine-tuning + ablation），能支撑一个 solid paper\n- 受限于 inverted-U detection window 的 practical coverage\n\n**对 CoRL 而言，idea 质量评估无意义，因为 scope mismatch 是 hard rejection criterion。**\n\n【主要风险】:\n1. **致命风险 — venue mismatch**: 投稿 CoRL（robotics venue）但 proposal 是 NLP evaluation 方向，100% 会被 desk reject。\n2. **Idea 层面风险（若投 NLP venue）— \"contaminated LLM ≈ cheating test-taker\" analogy 的有效性**: 这是整篇论文的 foundational assumption。如果 LLM contamination 的 manifestation 与 human cheating 的 response pattern 在 IRT 框架下有本质差异（例如 RL-based contamination 产生 \"consistent\" 而非 \"aberrant\" patterns），整个方法论基础就不成立。\n```\n\n**Sources:**\n- [Lost in Benchmarks? Rethinking LLM Benchmarking with IRT (PSN-IRT)](https://arxiv.org/abs/2505.15055)\n- [ConStat: Performance-Based Contamination Detection](https://www.researchgate.net/publication/397204928)\n- [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/abs/2406.18326)\n- [Comprehensive Survey of Contamination Detection Methods in LLMs](https://arxiv.org/abs/2404.00699)\n- [Detecting Benchmark Contamination Through Watermarking](https://arxiv.org/pdf/2502.17259)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [Person-fit statistics in educational measurement (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5445123/)\n- [LiveBench: Contamination-Limited LLM Benchmark](https://arxiv.org/abs/2406.19314)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# IRT-FIT: Person-Fit Statistics as Black-Box Benchmark Contamination Detectors for LLMs\n\n## Description\nWe propose IRT-FIT, the first method that transfers person-fit statistics from educational psychometrics to detect LLM benchmark contamination in a fully black-box setting. The core insight is that a partially contaminated model, like a test-taker with item preknowledge, produces aberrant response patterns: it answers memorized hard items correctly while performance on non-memorized items reflects true ability, violating the monotonic difficulty gradient predicted by IRT. Using calibrated 4PL item parameters (discrimination, difficulty, guessing, and feasibility) from PSN-IRT (41,871 items, 11 benchmarks), we compute lz*, infit, outfit, and the multiscale lzm statistic for each model at two levels: per-benchmark (respecting unidimensionality via EFA-validated subscales) and aggregated (via the Hong-Lin-Cheng multiscale correction). We validate via controlled fine-tuning of three current open-source models — Llama 4 Scout 17B-16E (109B MoE), Qwen 3.5-9B (dense), and Gemma 4 31B (dense) — at seven contamination levels (0-100%) to empirically map the inverted-U detection power curve. We expect peak detection at 10-30% contamination, with explicit acknowledgment that 100% contamination is undetectable by person-fit (uniform high performance is consistent, not aberrant) and <3% contamination falls below statistical sensitivity. We benchmark against ConStat, PaCoST, CoDeC, Min-K%++, and Self-Critique, with a dedicated experiment testing the hypothesis (not assumption) that person-fit statistics maintain detection power on post-RL reasoning models where Wang et al. (2025) showed MIA-based methods fail. A 4PL-vs-3PL ablation quantifies how the feasibility parameter d affects sensitivity. We release an open-source toolkit with per-benchmark contamination flags and calibrated p-values inheriting Type-I error guarantees from decades of educational measurement theory.\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T03:12:49.823Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T03:12:49.823Z",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T03:12:49.834Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\n现在我已经完成了充分的调研，可以进行评估了。\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- PSN-IRT (Zhou et al., AAAI 2026 Oral, arXiv:2505.15055): 本 proposal 直接依赖的上游工作。使用 Pseudo-Siamese Network 对 11 个 LLM benchmark 共 41,871 道题目标定了 4PL IRT 参数(a/b/c/d)。已开源。本 proposal 本质上是 PSN-IRT 的下游应用——利用其标定好的参数计算 person-fit 统计量。\n- ConStat (arXiv:2405.16281, 2024): 通过对比原题与改写题的性能差异进行统计检验，已成功检测 Mistral、LLaMA、Yi 等模型的污染。黑盒、无需 logits、方法简单——是本 proposal 最直接的竞品。\n- PaCoST (arXiv:2406.18326, 2024): 配对置信度显著性检验，构造同分布对照样本比较模型置信度差异。同样是黑盒方法。\n- CoDeC (arXiv:2510.27055, 2025): 基于 in-context learning 的数据集级污染检测，简单、自动化、model-agnostic。\n- Min-K% Prob (2024): 基于 token 概率的检测方法，需要 logit 访问（非完全黑盒）。\n- Self-Critique (arXiv:2510.09259, 2025): 专门针对 RL 后训练阶段的污染检测，利用 RL 导致的 policy collapse 特征，AUC 提升可达 30%。直接针对 proposal 声称要解决的 post-RL 场景。\n- Wang et al. \"On The Fragility of Benchmark Contamination Detection in Reasoning Models\" (arXiv:2510.02386, 2025): 本 proposal 的关键动机论文，确认存在且描述准确。证实 RL 训练可隐藏 SFT 阶段的污染证据，CoT 污染对记忆类检测方法几乎不留痕迹。\n- \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" (arXiv:2510.07175, EACL 2026 Findings): 将心理测量与 LLM 污染检测结合，但关注人格/价值观问卷的记忆化，不涉及 person-fit 统计量。\n- ATLAS / Adaptive Testing for LLM Evaluation (arXiv:2511.04689, 2025): 将 CAT 自适应测试应用于 LLM 评估以减少测试量，IRT 用于效率而非污染检测。\n- 教育测量领域 person-fit 文献: lz*/infit/outfit 是成熟的作弊检测工具，有数十年理论基础，但从未被迁移到 LLM 场景。\n\n- **调研总结**: LLM benchmark 污染检测是热门方向，已有 ConStat/PaCoST/CoDeC/Min-K%/Self-Critique 等多类方法。IRT 在 LLM 评估中的应用主要集中在效率提升（CAT、PSN-IRT），尚无人将 person-fit 统计量（lz*/infit/outfit）迁移用于污染检测。该 proposal 填补了这一具体空白，但需论证其相对于现有更简单方法的增量价值。\n\n【Trivial Alternative 检验】:\n存在明显的 trivial alternative 威胁：\n\n1. **ConStat 类方法**：ConStat 通过对比原题与改写题的性能差异来检测污染，逻辑直接、实现简单、已有实证验证。它不需要任何 IRT 标定步骤，不需要 PSN-IRT 的 41,871 个参数，也不需要 EFA 验证、multiscale correction 等复杂统计机制。如果 ConStat 能做到同等效果，本 proposal 的重型 IRT 机器的增量价值何在？\n\n2. **简单的 difficulty-accuracy 异常检测**: 不需要完整的 4PL person-fit 框架，仅用一个简单的 rank correlation（模型在各难度区间的正确率 vs. 预期单调曲线的偏离程度）就可能捕捉到大部分\"在难题上异常强、在简单题上正常\"的信号。这个 baseline 的成本极低。\n\n**增量价值的可能论点**: person-fit 统计量有 decades 的理论保证（Type-I error control、power analysis），提供校准 p-value，这是简单异常检测做不到的。但这个论点的前提是 IRT 模型对 LLM 数据的拟合质量足够好，使得理论保证确实成立——这本身是一个未验证的假设。\n\n【前提假设检验】:\n核心 claim 的逻辑链条中有多个未验证环节：\n\n1. **\"部分污染 → IRT 可检测的异常响应模式\"假设**: 这是全文的核心前提。在教育测试中，person-fit 检测作弊的前提是：作弊者在已知题目上表现异常好，而这些题目在难度维度上与其真实能力不一致。但 LLM 的\"部分污染\"模式可能不遵循这一假设——污染可能与难度无关（如：所有特定知识领域的题被污染），也可能因 RL/后训练而被 smooth 掉。proposal 假设污染在难度维度上是\"异常\"的，但这需要实证支持。\n\n2. **IRT 单维度假设对 LLM 成立的程度**: Person-fit 统计量的理论保证建立在 IRT 模型良好拟合的前提上。LLM 的能力结构可能高度多维（语言理解、推理、知识、编码），即使 proposal 提到了 EFA 验证的 subscale，但 IRT 的 person-fit 理论对 model-data misfit 非常敏感——如果模型拟合不好，Type-I error 率会严重膨胀，导致大量假阳性。\n\n3. **\"person-fit 对 post-RL 推理模型仍有检测力\"假设**: 这是 proposal 明确标注为\"hypothesis\"的部分，但它同时也是 proposal 最大的卖点之一（区别于现有方法失败的场景）。如果这个假设不成立，proposal 的核心价值主张大幅缩水。且已有 Self-Critique (2025) 方法专门针对 RL 后训练污染检测且已展示有效性。\n\n4. **教育测试理论到 LLM 场景的可迁移性**: 教育测试中 person-fit 处理的是个体测试者（几十到几百道题），而 LLM 场景涉及数千到数万道题。样本量、item pool 特征、\"作弊\"机制的根本差异可能使得教育测试中的理论结果无法直接套用。\n\n【3 维度打分】:\n\n1. **Novelty: 中（偏弱）**\n   理由：通过调研确认，尚无人将 person-fit 统计量（lz*/infit/outfit/lzm）从教育心理测量迁移到 LLM 污染检测。这个方法层面的空白是真实存在的。但核心创新本质上是一个\"方法迁移\"——将教育测量领域成熟的工具应用到 LLM 评估这个新场景。一旦 PSN-IRT (AAAI 2026 Oral) 提供了标定好的 4PL 参数，计算 person-fit 统计量是相当自然且直接的后续步骤（PSN-IRT 论文本身可能已经暗示了这一方向）。analogy 本身（污染模型 = 作弊考生）是 obvious 的，不构成深层次的智识贡献。与 ConStat、Self-Critique 等方法相比，创新主要在于\"换了一个检测视角\"，而非解决了前人方法无法解决的根本性技术障碍。\n\n2. **Significance: 中**\n   理由：LLM benchmark 污染检测是重要且及时的问题，Wang et al. (2025) 证实了现有方法在 reasoning model 上的脆弱性，创造了真实的研究空隙。但本 proposal 对这个空隙的填补力度存疑：(a) Self-Critique (2025) 已经专门针对 post-RL 场景并展示了有效性；(b) person-fit 方法本质上也是基于\"模式异常\"检测，与 ConStat 的\"性能不一致\"检测在认识论层面同构——如果 RL 训练能 smooth 掉性能不一致的信号（如 Wang et al. 所示），同样可能 smooth 掉 IRT 检测到的响应模式异常。核心发现如果为 positive（person-fit 能检测污染），审稿人的反应更可能是\"makes sense, I would have guessed this works for partial contamination\"，而非\"surprising\"。如果发现 person-fit 在 post-RL 场景下优于现有方法，那才会是 surprising 的——但这是一个未验证的假设。\n\n3. **Related Work: 强**\n   理由：proposal 覆盖了污染检测领域的主要方法（ConStat, PaCoST, CoDeC, Min-K%++, Self-Critique），正确引用了 Wang et al. (2025) 的关键发现，并明确建立在 PSN-IRT (AAAI 2026 Oral) 的基础上。所引论文经调研均真实存在且描述准确。差异化定位清晰：黑盒 + 基于响应模式（非记忆化/概率/改写对比）。唯一可补充的是 \"Quantifying Data Contamination in Psychometric Evaluations of LLMs\" (EACL 2026 Findings)，它代表了心理测量+LLM 污染检测的另一个交叉尝试。\n\n【概率估计】: 20% - 32%，中位 25%\n\n【估计理由】:\nNovelty 是主要限制因素。核心贡献是方法迁移（教育测量 → LLM），analogy 本身自然且直接，一旦 PSN-IRT 存在，这一步是可预见的。审稿人很可能提出\"this is a straightforward application of well-known psychometric tools\"的质疑。Significance 受制于 trivial alternative 威胁——ConStat 等更简单方法可能达到可比效果——以及核心卖点（post-RL 有效性）仅是假设。Related Work 是最强维度，但好的 related work 提分有限。\n\n中位 25% 对应 rubric 中\"idea 有实质内核但核心发现 positive 时审稿人可能说 'I would have guessed this'\"。上界 32% 考虑到如果 post-RL 实验确实展示了 surprising 的检测能力、以及工具包的实用价值可能打动部分审稿人。下界 20% 反映 trivial alternative 威胁和\"方法迁移 ≠ 方法创新\"的审稿风险。\n\n【主要风险】:\n1. **\"方法迁移 vs 方法创新\"质疑**: 审稿人可能认为将 person-fit 统计量应用于 LLM 只是 PSN-IRT 的自然延伸，技术贡献不足以支撑一篇顶会论文。核心 analogy（污染=作弊）对任何了解 IRT 的人都是 obvious 的。\n2. **Trivial alternative 不可忽视**: 如果实验中 ConStat 或简单的 difficulty-accuracy 异常指标达到了与 person-fit 相当的检测效果，则整套 IRT 机器（4PL 标定、EFA subscale 验证、multiscale correction）的 justification 将严重不足，论文的核心价值主张将瓦解。\n\n【⚠️ 附注：投稿venue 严重不匹配】:\nCoRL (Conference on Robot Learning) 是机器人学习会议，本 proposal 关于 LLM benchmark 污染检测，与机器人学习完全无关。如果确实投稿 CoRL，中稿概率接近 0%（desk reject）。建议投稿 ACL/EMNLP/NeurIPS/ICML/COLM 等 NLP/ML 通用会议。上述概率估计基于投稿至合适 NLP/ML venue 的假设。\n```\n\nSources:\n- [PSN-IRT: Lost in Benchmarks? Rethinking LLM Benchmarking with IRT (AAAI 2026 Oral)](https://arxiv.org/abs/2505.15055)\n- [ConStat: Performance-Based Contamination Detection](https://arxiv.org/pdf/2405.16281)\n- [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/pdf/2406.18326)\n- [CoDeC: Detecting Data Contamination via In-Context Learning](https://arxiv.org/pdf/2510.27055)\n- [On The Fragility of Benchmark Contamination Detection in Reasoning Models (Wang et al.)](https://arxiv.org/abs/2510.02386)\n- [Self-Critique: Detecting Contamination from RL Post-training](https://arxiv.org/pdf/2510.09259)\n- [Quantifying Data Contamination in Psychometric Evaluations of LLMs (EACL 2026)](https://arxiv.org/abs/2510.07175)\n- [Adaptive Testing for LLM Evaluation (ATLAS)](https://arxiv.org/pdf/2511.04689)\n- [Comprehensive Survey of Contamination Detection Methods](https://arxiv.org/abs/2404.00699)\n- [Benchmarking LLMs Under Data Contamination: Survey](https://arxiv.org/html/2502.17521v2)\n- [PSN-IRT GitHub Repository](https://github.com/Joe-Hall-Lee/PSN-IRT)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient information to make a well-grounded assessment. Let me compile the evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n⚠️ 致命前置问题：投稿 venue 严重不匹配\nCoRL (Conference on Robot Learning) 2026 明确要求：\n- \"Submissions should focus on a core robotics problem\"\n- \"Submissions without a robotics focus will be returned without review\"\n本 proposal 是关于 LLM benchmark 污染检测的纯 NLP/evaluation 方向工作，\n与机器人学习零关联。投稿 CoRL 将被 desk-reject，中稿概率为 0%。\n以下评估基于 idea 本身的学术质量（假设投稿至匹配 venue，如 ACL/EMNLP/NeurIPS）。\n\n【领域调研】:\n- [PSN-IRT / \"Lost in Benchmarks?\" arXiv:2505.15055] (AAAI 2026 Oral):\n  本 proposal 直接依赖的基础工作。提出 Pseudo-Siamese Network IRT 框架，\n  在 11 个 benchmark、41,871 items 上校准 4PL 参数。是将 IRT 系统性应用于\n  LLM 评估的最新里程碑。本 proposal 计划复用其 calibrated item parameters。\n  \n- [ConStat, arXiv:2405.16281] (2024):\n  基于性能的污染检测方法，分析 benchmark-specific 性能异常。\n  已在 Open LLM Leaderboard 上发现 top-3 7B 模型的显著污染。\n  是本 proposal 的直接竞争者/baseline。\n\n- [PaCoST, arXiv:2406.18326] (2024):\n  通过构造语义等价的 counterpart 数据，对比原始 benchmark 与 paraphrased\n  版本的 confidence 差异进行统计检验。本 proposal 的 baseline 之一。\n\n- [CoDeC, arXiv:2510.27055] (ICLR 2026):\n  通过 in-context learning 检测数据污染，产生可解释的百分比污染分数。\n  仅需 gray-box access（token probabilities），两次 forward pass。\n  是该方向最新的强竞争者。\n\n- [Min-K%++ / Self-Critique]:\n  Min-K%++ 是 token-level membership inference 方法；Self-Critique\n  基于模型自我质疑。均为 proposal 列出的 baseline。\n\n- [Adaptive Testing for LLM Evaluation, arXiv:2511.04689] (2025):\n  将 IRT-based adaptive testing 应用于 LLM 评估，但未涉及 person-fit\n  statistics 或污染检测。\n\n- [Person-fit statistics 在教育测量中的文献]:\n  lz* 在检测作弊方面最有效，infit 对 creative response 更敏感\n  (Karabatsos 2003, Behavior Research Methods)。\n  这些统计量有数十年的理论基础和 Type-I error 保证。\n\n- 调研总结: LLM benchmark 污染检测是 2024-2026 年的活跃方向，已有多种\n  方法（基于性能、基于 confidence、基于 token probability、基于 ICL）。\n  IRT 已被系统性应用于 LLM 评估（PSN-IRT），但 person-fit statistics\n  尚未被任何工作用于 LLM 污染检测。这是一个真实的 gap，但属于\"明显的\n  下一步\"而非\"意外的洞察\"。\n\n【Trivial Alternative 检验】:\n存在中等程度的 trivial alternative 威胁。\n\n核心问题：是否需要完整的 IRT person-fit 统计量（lz*, infit, outfit, lzm）\n来检测\"模型在 hard items 上异常表现好\"这一信号？\n\n更简单的替代方案：\n(1) 直接计算\"模型在难题上的准确率 vs. 基于整体能力的预测准确率\"的残差，\n    不需要 IRT 框架就能捕捉到类似信号。\n(2) ConStat 已经是 performance-based 方法，直接分析 benchmark-specific\n    性能异常，逻辑上覆盖了类似的信号空间。\n(3) 简单的 rank-order 一致性检验（如 Spearman correlation between \n    item difficulty ranking and model error ranking）可能捕捉到同类信号。\n\nIRT-FIT 的增量价值主要在于：\n- 提供校准的 p-value 和继承自教育测量的 Type-I error 保证\n- 多个 person-fit 统计量可能对不同污染模式有不同的灵敏度\n- 4PL 模型比简单难度排序更精细（区分度、猜测率、feasibility）\n\n但这些增量价值更多是\"统计上更严谨\"而非\"能检测到其他方法检测不到的东西\"。\n如果实验结果只是\"person-fit 也能检测到污染，和现有方法差不多\"，\ncontribution 会显得单薄。\n\n【前提假设检验】:\n核心逻辑链：LLM 部分污染 → 响应模式违反 IRT 单调性 → person-fit 统计量异常\n\n有以下未经验证/可质疑的环节：\n\n(1) \"污染 ≈ item preknowledge\" 假设：教育测量中的 cheating 是精确记忆\n    特定题目答案。但 LLM 的\"污染\"可能是在训练数据中见过 benchmark 数据\n    导致的分布级别记忆，而非逐题记忆。如果污染导致的是对某类问题的\n    整体性能提升（而非特定 item 的记忆），response pattern 可能仍然\n    符合 IRT 预测，person-fit 统计量不会触发。\n\n(2) \"unidimensionality\" 假设：即使用 EFA-validated subscales，\n    LLM 的能力结构可能比人类考生更复杂——一个模型可能在某些 subtopic\n    上极强而在其他上极弱，这种\"spiky ability profile\"即使没有污染\n    也可能触发 person-fit 异常，导致 false positive。\n\n(3) Inverted-U 曲线的可迁移性：100% 污染不可检测在理论上成立，\n    但实际中\"100% 污染\"意味着模型在该 benchmark 上表现异常好，\n    这本身可能通过其他信号（如绝对分数异常）被捕捉。person-fit\n    的 inverted-U 限制是否是实际缺陷还是理论边界情况？\n\n(4) 校准迁移假设：PSN-IRT 的 item parameters 是基于当前一组 LLM\n    校准的。用这些参数去检测新的/未来的模型，参数的稳定性是否成立？\n\n【3 维度打分】:\n\n1. Novelty: 中 —\n   将 person-fit statistics 从教育测量迁移到 LLM 污染检测确实是一个\n   尚未被做过的方向（调研未发现任何现有工作）。但这个 novelty 属于\n   \"obvious next step\" 类型：PSN-IRT (AAAI 2026) 已经把 4PL IRT\n   系统性地应用于 LLM 评估，person-fit 是 IRT 框架内最自然的延伸\n   工具之一；污染检测是 benchmark 评估最直接的应用场景之一。\n   两个已知方向的组合（IRT for LLM + person-fit for cheating detection）\n   不需要特别的 intellectual leap。Novelty 是真实的但不深刻。\n\n2. Significance: 中 —\n   Benchmark 污染检测是一个重要的实践问题，但：\n   (a) 已有多种有效方法（ConStat, PaCoST, CoDeC/ICLR 2026），\n       该领域并非缺乏解决方案；\n   (b) IRT-based 方法的独特价值（Type-I error 保证、校准 p-value）\n       主要对需要严格统计推断的场景有意义，这是一个相对小众的需求；\n   (c) 核心发现如果是 positive（\"person-fit 能检测污染\"），多数审稿人\n       的反应会是 \"I would have guessed this\"——因为 person-fit 本来就是\n       设计来检测 cheating 的，能检测到 LLM 污染不会让人 surprised；\n   (d) 如果发现是 negative（\"person-fit 在 LLM 上不 work\"），这可能\n       更 interesting 但论文的 contribution 叙事需要完全重构。\n\n3. Related Work: 强 —\n   Proposal 展示了对该领域的全面了解：覆盖了主要 baseline（ConStat,\n   PaCoST, CoDeC, Min-K%++, Self-Critique），建立在最新的 foundation\n   work (PSN-IRT, AAAI 2026) 上，引用了 Wang et al. 2025 关于 MIA\n   在 reasoning models 上失效的工作。差异化定位清晰（black-box +\n   IRT-grounded + 校准 p-value）。实验设计中的 controlled contamination\n   fine-tuning 和 4PL-vs-3PL ablation 也显示了对方法论细节的理解。\n\n【概率估计】: [20% - 35%] 中位 27%\n（以上概率假设投稿至匹配 venue 如 ACL/EMNLP/NeurIPS；\n  投稿 CoRL 2026 的实际概率为 ~0%，会被 desk-reject）\n\n【估计理由】:\nNovelty 和 Significance 均为\"中\"，将概率锚定在 25-35% 区间。\nRelated Work 为\"强\"，说明作者对领域理解充分，但这主要影响下限而非上限。\n核心限制是 Novelty 的天花板：这是一个 \"well-motivated but unsurprising\"\n的跨领域迁移——审稿人很可能说 \"this is a natural extension of PSN-IRT,\nthe contribution is incremental\"。Significance 受限于：(a) 如果结果 positive\n不会 surprising，(b) 存在 trivial alternative 威胁（简单残差分析可能\n捕捉类似信号），(c) 已有方法已能解决问题。\n上界被 Novelty 限制：即使实验完美，idea 内核的 surprise value 有限。\n下界由 Related Work 的全面性和实验设计的严谨性支撑。\n\n【主要风险】:\n1. \"Obvious next step\" 风险：审稿人可能认为 PSN-IRT + person-fit 的组合\n   过于自然，缺乏深层洞察，contribution 仅是工程性的方法迁移。\n2. Incremental value 风险：如果实验显示 person-fit 的检测效果与现有方法\n   （特别是 ConStat 和 CoDeC）相当或略优，审稿人会质疑 \"why do we need\n   yet another contamination detector\"——需要展示 person-fit 能做到\n   而现有方法做不到的事情（如对 post-RL reasoning models 的鲁棒性），\n   但这目前仅是 hypothesis 而非已验证的优势。\n```\n\nSources:\n- [PSN-IRT: Lost in Benchmarks? (AAAI 2026)](https://arxiv.org/abs/2505.15055)\n- [ConStat: Performance-Based Contamination Detection](https://arxiv.org/html/2405.16281v1)\n- [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/abs/2406.18326)\n- [CoDeC: Detecting Data Contamination via In-Context Learning](https://arxiv.org/html/2510.27055v1)\n- [Adaptive Testing for LLM Evaluation](https://arxiv.org/html/2511.04689v2)\n- [A Comprehensive Survey of Contamination Detection Methods in LLMs](https://arxiv.org/html/2404.00699v4)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [GitHub: PSN-IRT (AAAI 2026 Oral)](https://github.com/Joe-Hall-Lee/PSN-IRT)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make an informed assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. [Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory](https://arxiv.org/abs/2505.15055) (AAAI 2026 Oral):\n   - 这是本 proposal 直接依赖的基础工作。提出 PSN-IRT 框架，用伪孪生网络估计 4PL 参数（discrimination, difficulty, guessing, feasibility），在 11 个 benchmark、41,871 items 上进行了 IRT 校准。\n   - 与本 proposal 的关系：proposal 直接复用其校准好的 item parameters 来计算 person-fit statistics。PSN-IRT 本身 **没有** 做 person-fit 分析，也没有将 IRT 用于 contamination detection，只做了 benchmark 质量评估和 ability estimation。\n   - **关键判断：proposal 提出的 person-fit → contamination 这一步是 PSN-IRT 未涉及的增量贡献。**\n\n2. [ConStat: Performance-Based Contamination Detection in Large Language Models](https://www.researchgate.net/publication/397204928) (NeurIPS 2024):\n   - 通过比较 primary/reference benchmark 上的 performance gap（相对于 reference models）来检测和量化 contamination。需要构造 reference benchmark（重述/变体），属于 performance-based 方法。\n   - 与本 proposal 的差异：ConStat 需要外部 reference benchmark 和 reference models；IRT-FIT 只需要 calibrated item parameters + 原始 response pattern，不需要生成新题目。\n\n3. [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/abs/2406.18326) (2024):\n   - 为每个 benchmark 数据点构造同分布 counterpart，对比 model confidence 做统计检验。需要模型输出 probability/confidence。\n   - 与本 proposal 的差异：PaCoST 需要 logit-level 访问来做 confidence 分析；proposal 声称 fully black-box（只需正确/错误的 binary response），门槛更低。\n\n4. [Comprehensive Survey of Contamination Detection Methods in LLMs](https://arxiv.org/abs/2404.00699) (2024):\n   - 覆盖 50+ detection 方法、100+ 论文。将检测方法分为 open-data（n-gram, embedding similarity）和 closed-data（MIA, performance-based）两大类。\n   - **关键发现：该 survey 中没有任何方法基于 IRT person-fit statistics。** 这支持 proposal 的 novelty claim。\n\n5. [Detecting Benchmark Contamination Through Watermarking](https://arxiv.org/pdf/2502.17259) (2025):\n   - 通过在 benchmark 中嵌入 watermark 来检测 contamination，可同时输出 performance 和 p-value。\n   - 属于 proactive 方法（需要在 benchmark 创建时嵌入），与 proposal 的 post-hoc 检测不同。\n\n6. [Person-fit statistics in educational measurement](https://pmc.ncbi.nlm.nih.gov/articles/PMC5445123/) (psychometrics literature):\n   - lz、lz*、infit/outfit 等 person-fit 指标在教育测量中有数十年研究历史，用于检测 cheating、pre-knowledge、random guessing 等 aberrant patterns。\n   - **关键：这些工具在 LLM 领域从未被系统性地应用于 contamination detection。**\n\n7. IRT for LLM 领域的其他近期工作：\n   - [MEDIRT](https://arxiv.org/pdf/2509.24186) (2025)：IRT 用于医学 benchmark 评估，含 benchmark integrity validation\n   - [ATLAS](https://arxiv.org/pdf/2511.04689) (2025)：IRT-based adaptive testing for LLMs\n   - [JE-IRT](https://arxiv.org/pdf/2509.22888) (2025)：Joint Embedding IRT 用于 LLM ability 分析\n   - **这些工作都用 IRT 做 evaluation/efficiency，没有用 person-fit 做 contamination detection。**\n\n- **调研总结：** IRT 在 LLM 评估领域是 2024-2026 的热点方向（PSN-IRT 获 AAAI 2026 Oral），但现有工作集中在 ability estimation 和 benchmark 质量评估。将 person-fit statistics 迁移到 contamination detection 是一个 **空白点**，现有 contamination detection 文献（含 50+ 方法的 survey）中没有覆盖此方法。Proposal 处于 IRT-for-LLM 和 contamination detection 两个活跃子领域的交叉点。\n\n---\n\n【Trivial Alternative 检验】:\n\n最直接的 trivial alternative 是：**直接用 accuracy-on-hard-vs-easy items 的比值（或 Guttman error count）做一个简单的不一致性指标，而不需要 full IRT calibration + 4PL + lz* + multiscale correction。**\n\n具体来说：如果 contamination 的核心信号是 \"模型答对了不该答对的难题\"，那么一个简单的 heuristic —— 统计 \"difficulty rank > ability percentile 的 items 中正确率异常高\" —— 可能就能捕获大部分信号，不需要完整的 IRT machinery。\n\n**增量价值在哪？**\n1. Person-fit statistics 提供的是 **有理论保证的统计检验**（p-value, Type-I error control），而非 ad-hoc heuristic。这在 high-stakes 场景（如声称某模型 contaminated）中至关重要。\n2. 4PL 模型比简单 difficulty ranking 更精确：区分 \"题目本身容易猜对\"（guessing parameter）和 \"题目确实被 memorize\"（ability-difficulty mismatch），以及 \"即使能力很高也不可能全对\"（feasibility parameter）。\n3. Multiscale correction (lzm) 处理多个 benchmark 间的维度差异，简单 heuristic 无法做到。\n\n**评估：trivial alternative 确实存在威胁，但 proposal 有合理的增量论证（统计理论保证 + 多参数精度 + multiscale correction）。这个 delta 不是 overwhelming，但是 real。** 需要实验来证明 full IRT-FIT 相比 simplified alternatives 有多少边际提升——如果提升不大，reviewers 会质疑 complexity 是否 justified。\n\n---\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条：\n\n1. **\"Contaminated LLM ≈ test-taker with item preknowledge\"**\n   - ⚠️ **这是最关键的未验证假设。** 在人类考试中，preknowledge 导致的 aberrant pattern 是清晰的：考生记住了答案，不需要推理过程。但 LLM contamination 的 manifestation 更复杂：(a) pre-training contamination 可能通过 implicit memorization 提升某些 items 的表现，但不一定产生与 human cheating 相同的 response pattern；(b) post-RL 模型可能在 contaminated items 上展现 \"合理的\" reasoning trace，使 response pattern 看起来 consistent 而非 aberrant。\n   - **这个 analogy 的有效性是整篇论文成立的基础，但它是一个经验性假设，需要实验验证（proposal 设计的 controlled fine-tuning 实验正是为此）。**\n\n2. **\"IRT item parameters 对 LLM 群体稳定\"**\n   - PSN-IRT 的 calibration 是在特定 LLM 群体上做的。如果 contaminated model 的 response pattern 导致 item parameters 本身不稳定（DIF - differential item functioning），person-fit statistics 的解释力会下降。\n   - Proposal 似乎假设 PSN-IRT 的 parameters 可以直接迁移到包含 contaminated models 的分析中，这需要 robustness 验证。\n\n3. **\"Inverted-U detection power curve\"**\n   - Proposal 明确指出 100% contamination 不可检测（uniform high performance is consistent）和 <3% contamination 低于统计灵敏度。这是 **honest 的 acknowledgment**，但也意味着该方法的 practical coverage 窗口可能有限。如果真实世界中大部分 contamination 要么是 very low-level（<3%）要么是 massive（>50%），inverted-U 的 sweet spot 可能 miss 了最常见的场景。\n\n4. **\"Person-fit on post-RL reasoning models\"**\n   - Proposal 将 \"person-fit 在 post-RL 模型上保持检测力\" 定位为 hypothesis 而非 assumption，这是合理的。但如果这个 hypothesis 不成立（RL 使模型行为更 \"consistent\" 即使 contaminated），则该方法相对于现有方法的核心优势之一（MIA 失效的场景它还能用）会丧失。\n\n---\n\n【3 维度打分】:\n\n1. **Novelty: 中偏强** —\n   将 person-fit statistics（lz*, infit, outfit, lzm）从教育心理测量学迁移到 LLM contamination detection，这在现有文献中是 **genuinely novel** 的。Comprehensive Survey [arxiv 2404.00699] 覆盖 50+ 方法中无此类方法；PSN-IRT [AAAI 2026] 只做 ability estimation 不做 person-fit；MEDIRT、ATLAS、JE-IRT 等近期 IRT-for-LLM 工作均未涉及 contamination detection。**跨领域 transfer 是真实的，不是 surface-level packaging。**\n   \n   但降分原因：(a) 核心工具（person-fit statistics）本身不是新的——是 1980s 开始的教育测量文献，novelty 更多在于 \"迁移\" 而非 \"发明\"；(b) 如果 trivial simplified version（简单 Guttman error count）已能捕获大部分信号，full IRT machinery 的 marginal novelty 会被质疑；(c) 严重依赖 PSN-IRT 的 calibrated parameters，增量 over PSN-IRT 需要被清晰界定。\n\n2. **Significance: 中** —\n   Benchmark contamination 是 LLM 社区的重要问题（多篇 NeurIPS/ICML 论文关注）。Black-box detection 的需求真实存在。然而：\n   - 如果核心发现是 positive（person-fit 确实能检测 contamination），审稿人的反应更可能是 **\"makes sense, I would have guessed this\"** 而非 \"surprising\"。这是因为 analogy 本身直觉上是合理的（contaminated model ≈ cheating test-taker → person-fit flags it）——它的成立不会令人惊讶，它的不成立才会。\n   - Practical impact 受限于 inverted-U curve：只在 ~10-30% contamination 时效果最好，太少或太多都检测不到。\n   - **最关键的 significance 问题：这篇论文投的是 CoRL（Conference on Robot Learning），但 proposal 的主题是 LLM benchmark contamination detection，与 robotics 完全无关。** 即使 idea 质量再好，对 CoRL 的 significance 是 **零**。\n\n3. **Related Work: 强** —\n   Proposal 覆盖了主要竞争方法（ConStat [NeurIPS 2024], PaCoST, CoDeC, Min-K%++, Self-Critique），正确引用了 PSN-IRT [AAAI 2026] 的 calibrated parameters，设计了与 5 个 baseline 的对比实验，还专门针对 Wang et al. (2025) 关于 MIA 在 post-RL 模型上失效的发现设计了 dedicated experiment。差异化定位清晰：black-box + 不需要 reference benchmark + 有统计理论保证。\n   \n   唯一瑕疵：未提及 watermarking-based 方法 [arxiv 2502.17259] 和 LiveBench [arxiv 2406.19314] 等 \"避免 contamination\" 而非 \"检测 contamination\" 的替代路线。\n\n---\n\n【概率估计】: 0% - 3%，中位 1%\n\n【估计理由】:\n**致命问题：venue mismatch。** 这篇 proposal 的主题是 LLM benchmark contamination detection（属于 NLP evaluation / ML safety 领域），投稿目标却是 CoRL 2026（Conference on Robot Learning）。CoRL 的 call for papers 明确要求论文 \"focus on a core robotics problem\" 并 \"demonstrate relevance to robotics\"。本 proposal 与 robotics 没有任何关联——不涉及 robot perception、control、manipulation、navigation、locomotion、driving 等 CoRL 覆盖的任何主题。**这将导致 desk rejection，不会进入 review 流程。**\n\n如果忽略 venue mismatch，纯评 idea 质量并假设投稿到合适的 venue（NeurIPS / ICML / ACL / EMNLP），估计为 **28-38%，中位 33%**：\n- Novelty 真实但属于 \"跨领域迁移\"（不是全新方法论），审稿人可能认为 contribution 偏 application\n- Core finding 如果 positive 不够 surprising（\"makes sense\"），限制了上界\n- Related work 覆盖充分，experimental design 合理（controlled fine-tuning + ablation），能支撑一个 solid paper\n- 受限于 inverted-U detection window 的 practical coverage\n\n**对 CoRL 而言，idea 质量评估无意义，因为 scope mismatch 是 hard rejection criterion。**\n\n【主要风险】:\n1. **致命风险 — venue mismatch**: 投稿 CoRL（robotics venue）但 proposal 是 NLP evaluation 方向，100% 会被 desk reject。\n2. **Idea 层面风险（若投 NLP venue）— \"contaminated LLM ≈ cheating test-taker\" analogy 的有效性**: 这是整篇论文的 foundational assumption。如果 LLM contamination 的 manifestation 与 human cheating 的 response pattern 在 IRT 框架下有本质差异（例如 RL-based contamination 产生 \"consistent\" 而非 \"aberrant\" patterns），整个方法论基础就不成立。\n```\n\n**Sources:**\n- [Lost in Benchmarks? Rethinking LLM Benchmarking with IRT (PSN-IRT)](https://arxiv.org/abs/2505.15055)\n- [ConStat: Performance-Based Contamination Detection](https://www.researchgate.net/publication/397204928)\n- [PaCoST: Paired Confidence Significance Testing](https://arxiv.org/abs/2406.18326)\n- [Comprehensive Survey of Contamination Detection Methods in LLMs](https://arxiv.org/abs/2404.00699)\n- [Detecting Benchmark Contamination Through Watermarking](https://arxiv.org/pdf/2502.17259)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [Person-fit statistics in educational measurement (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC5445123/)\n- [LiveBench: Contamination-Limited LLM Benchmark](https://arxiv.org/abs/2406.19314)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# IRT-FIT: Person-Fit Statistics as Black-Box Benchmark Contamination Detectors for LLMs\n\n## Description\nWe propose IRT-FIT, the first method that transfers person-fit statistics from educational psychometrics to detect LLM benchmark contamination in a fully black-box setting. The core insight is that a partially contaminated model, like a test-taker with item preknowledge, produces aberrant response patterns: it answers memorized hard items correctly while performance on non-memorized items reflects true ability, violating the monotonic difficulty gradient predicted by IRT. Using calibrated 4PL item parameters (discrimination, difficulty, guessing, and feasibility) from PSN-IRT (41,871 items, 11 benchmarks), we compute lz*, infit, outfit, and the multiscale lzm statistic for each model at two levels: per-benchmark (respecting unidimensionality via EFA-validated subscales) and aggregated (via the Hong-Lin-Cheng multiscale correction). We validate via controlled fine-tuning of three current open-source models — Llama 4 Scout 17B-16E (109B MoE), Qwen 3.5-9B (dense), and Gemma 4 31B (dense) — at seven contamination levels (0-100%) to empirically map the inverted-U detection power curve. We expect peak detection at 10-30% contamination, with explicit acknowledgment that 100% contamination is undetectable by person-fit (uniform high performance is consistent, not aberrant) and <3% contamination falls below statistical sensitivity. We benchmark against ConStat, PaCoST, CoDeC, Min-K%++, and Self-Critique, with a dedicated experiment testing the hypothesis (not assumption) that person-fit statistics maintain detection power on post-RL reasoning models where Wang et al. (2025) showed MIA-based methods fail. A 4PL-vs-3PL ablation quantifies how the feasibility parameter d affects sensitivity. We release an open-source toolkit with per-benchmark contamination flags and calibrated p-values inheriting Type-I error guarantees from decades of educational measurement theory.\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "87501356-af65-4926-8a16-115119a1c187",
+            "type": "user",
+            "uuid": "df0ddb9d-ff77-493e-b9bc-298142d9006f",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T03:12:49.833Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "df0ddb9d-ff77-493e-b9bc-298142d9006f",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "72e01e43-f56e-46f4-964f-cad3db309741",
+                "timestamp": "2026-05-20T03:12:49.833Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T03:12:49.833Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "72e01e43-f56e-46f4-964f-cad3db309741",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "084fc295-2d18-4503-aa94-11c5f2f1a353",
+                "timestamp": "2026-05-20T03:12:49.833Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ 现在我已经完成了充分的调研，可以进行评估了。  ---  ``` 【阶段】: Triage  【领域调研】: - PSN-I…",
+                "leafUuid": "084fc295-2d18-4503-aa94-11c5f2f1a353",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate LLM contamination detection using person-fit statistics",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T03:13:18.911Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me carefully analyze the three independent reviews and synthesize them as the Meta Judge.\n\nFirst, let me extract the key numbers and judgments:\n\n**Reviewer 1:**\n- Novelty: 中（偏弱）\n- Significance: 中\n- Related Work: 强\n- Probability: [20% - 32%] 中位 25%\n- Venue mismatch noted (附注)\n\n**Reviewer 2:**\n\n\n- Novelty: 中\n- Significance: 中\n- Related Work: 强\n- Probability: [20% - 35%] 中位 27% (assuming correct venue)\n- Venue mismatch noted as 致命前置问题\n- Also gave [0% - 3%] 中位 1% for CoRL specifically\n\n**Reviewer 3:**\n- Novelty: 中偏强\n- Significance: 中\n- Related Work: 强\n- Probability: [0% - 3%] 中位 1% (for CoRL), [28% - 38%] 中位 33% (assuming correct venue)\n- Venue mismatch noted as 致命问题\n\nNow I'm seeing a clear pattern emerge across all three reviewers. They're remarkably aligned on novelty and significance both being moderate, with strong related work coverage. The critical divergence is around venue fit—all three flagged this as a serious issue, with Reviewer 2 and 3 treating it as a fatal problem. When accounting for venue mismatch, the acceptance probabilities cluster around 25-33%, but for CoRL specifically, the outlook drops dramatically to 1%. This suggests the paper might be better suited elsewhere, and the reviewers are essentially saying the venue choice is the primary barrier rather than the work's inherent quality. Beyond those consensus points, there are several other concerns that all three reviewers flagged: the risk of trivial alternatives, whether the core analogy between contamination and cheating really holds up, the unidimensionality assumption, the unverified post-RL hypothesis, the \"if positive, not surprising\" problem, and the venue mismatch issue. R3 stands out for flagging watermarking methods and LiveBench as missing references that the other reviewers didn't mention, and for being slightly more generous on novelty while still rating it as medium.\n\nNow I'm looking at the convergence across reviewers. The three venue-adjusted medians cluster around 25%, 27%, and 33%, with a standard deviation of about 3.4%, which puts this in the moderate agreement range. Following the guidelines to widen the interval and lean toward stricter assessments, I'm settling on a final estimate: for CoRL specifically, the probability is essentially 0% given the unanimous venue mismatch concern, but for an appropriate NLP or ML venue, I'd estimate somewhere between 20% and 35%. I'm calculating the standard deviation across the three median estimates—25%, 27%, and 33%—which gives me about 3.4%, falling into the moderate consistency range. Based on the instructions to widen the interval while leaning toward the stricter estimates, I'm settling on a final range of 20% to 35% with a median of 26%, then formatting this for output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "084fc295-2d18-4503-aa94-11c5f2f1a353",
+            "isSidechain": false,
+            "requestId": "req_011CbD6CJCHQ5MP3MZTeKnC3",
+            "type": "assistant",
+            "uuid": "55ffd111-2717-4f7c-bb67-3cdd6221aa78",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014de6vqn6GLRR4gd8XEZkhE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14304,
+                "cache_read_input_tokens": 16560,
+                "output_tokens": 3426,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14304,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 3426,
+                    "cache_read_input_tokens": 16560,
+                    "cache_creation_input_tokens": 14304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14304
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T03:14:05.569Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "【阶段】: Meta Judge\n【三次中位】: [25%, 27%, 33%]  std=3.4%\n【共识维度】: \n- Novelty=中（3/3 一致，核心判定：跨领域方法迁移而非方法发明，\"obvious next step\" after PSN-IRT）\n- Significance=中（3/3 一致，核心判定：positive result \"I would have guessed this\"，不够 surprising）\n- Related Work=强（3/3 一致，覆盖全面、引用真实、差异化定位清晰）\n- Trivial alternative 威胁真实存在（3/3 一致：简单 difficulty-accuracy 异常指标 / ConStat 可能达到可比效果）\n- 核心 analogy \"contamination ≈ cheating\" 的有效性未验证（3/3 一致：LLM 污染机制可能与人类作弊模式本质不同，尤其 post-RL 场景）\n- Unidimensionality 假设对 LLM 的适用性存疑（3/3 一致：LLM 的 spiky ability profile 可能导致高 false positive）\n- Post-RL 检测力仅为 hypothesis（3/3 一致：核心卖点未验证，且 Self-Critique 已专门针对此场景）\n- **Venue mismatch 致命**（3/3 一致：CoRL 是机器人学习会议，本 proposal 与 robotics 零关联，100% desk reject）\n【异常维度】: \n- R3 给 Novelty \"中偏强\"（R1\"中偏弱\"、R2\"中\"），属于区间内偏差，不改变\"中\"的共识判定\n- R3 提到 watermarking-based 方法和 LiveBench 作为缺失引用（R1/R2 未提及）——降权处理，这些属于\"避免污染\"路线而非\"检测污染\"路线，与 proposal 定位不同源，遗漏不致命\n- R1 提到 EACL 2026 Findings 心理测量+LLM 污染论文作为可补充引用（R2/R3 未提及）——有参考价值但非 critical gap\n【最终概率】: [20% - 34%] 中位 26%\n【一致性】: 中（std=3.4%，rubric 判决高度一致，概率区间有适度分散）\n【综合理由】: \n\n**概率锚定逻辑：**\n\n三份评审在 rubric 判决上高度一致：Novelty=中、Significance=中、Related Work=强。这一组合将 idea 质量天花板锚定在 ~35% 附近——Related Work 再强也无法弥补 Novelty 和 Significance 的中等评价。\n\n中位取 26% 而非三份均值 28.3% 的理由：按\"中一致偏严\"原则，R1（25%）和 R2（27%）的判断更审慎且论证更具体（均详细分析了 trivial alternative 的具体形态），R3（33%）的上界 38% 偏宽松，其\"中偏强\" Novelty 评价属于 outlier（另两位明确指出\"obvious next step\"），应降权。最终中位偏向更严格的两份。\n\n**核心限制因素（按权重排序）：**\n\n1. **Novelty 天花板**（最强约束）：三位审稿人一致认为这是 PSN-IRT 的自然延伸，analogy（污染=作弊）对任何 IRT 背景者是 obvious 的。一旦 PSN-IRT 存在并开源了 4PL 参数，计算 person-fit 是可预见的下一步。这不是\"跨越性洞察\"而是\"工程性迁移\"。\n\n2. **Trivial alternative 威胁**（第二约束）：简单的 difficulty-accuracy 残差分析、Guttman error count、或 rank-order 一致性检验可能捕获大部分相同信号，成本远低于完整 IRT 机器（4PL 标定 + EFA subscale + multiscale correction）。如果实验中简单方法效果相当，论文价值主张将严重削弱。\n\n3. **核心假设链未验证**：contamination ≈ item preknowledge 的 analogy、IRT unidimensionality 对 LLM 的适用性、post-RL 检测力——这三个环节中任一断裂都威胁论文根基。\n\n**支撑因素：**\n- Related Work 覆盖全面，领域定位精准\n- 实验设计有 controlled fine-tuning + ablation，方法论不粗糙\n- IRT person-fit 统计量的理论保证（校准 p-value、Type-I error control）是真实的增量价值\n- 工具包的实用价值对社区有一定贡献\n\n**致命前置问题——Venue Mismatch：**\n三位审稿人均独立指出 CoRL（Conference on Robot Learning）与本 proposal（LLM benchmark 污染检测）完全不匹配。CoRL 明确要求 \"focus on a core robotics problem\"。投稿 CoRL 将直接 desk reject，实际中稿概率为 0%。**上述 [20%-34%] 中位 26% 的估计严格基于假设投稿至匹配 venue（ACL / EMNLP / NeurIPS / ICML / COLM）。**\n\n【建议】: 不推荐（投 CoRL 为 KILL；若换至 NLP/ML venue 则为边缘偏下）\n【实施评估】:\n  - 计算资源: 中等。需要对 3 个开源模型（Llama 4 Scout 109B MoE、Qwen 3.5-9B、Gemma 4 31B）进行 7 个污染级别的 controlled fine-tuning，估计每模型每级别需 1-4 × A100 GPU-hours（SFT on partial benchmark data），总计约 50-100 A100 GPU-hours。推理阶段在 11 个 benchmark（41,871 items）上评测 ~21 个 checkpoint + baseline 模型，约 200-400 A100 GPU-hours。总计约 300-500 A100 GPU-hours。\n  - 数据需求: PSN-IRT 已开源 calibrated 4PL item parameters（11 benchmarks, 41,871 items），可直接复用。Benchmark 数据集均为公开标准 benchmark。不需要新数据收集。\n  - 人工介入: 低。EFA subscale 验证可能需要一定的统计专业判断，但主要是自动化流程。不需要人工标注。\n  - 训练需求: 需要 controlled contamination fine-tuning（SFT），不是从头训练。模型规模 9B-109B，每次 fine-tuning 在特定 benchmark subset 上进行，训练量不大（几百到几千 steps）。如需 post-RL 实验，额外需要 RL fine-tuning pipeline（GRPO/PPO），复杂度和计算量显著增加。\n  - 新 Benchmark: 不需要构建新 benchmark。使用现有 11 个 benchmark 的 PSN-IRT calibrated parameters。\n  - 预估周期: 约 2-3 个月。第 1 月：实现 person-fit 统计量计算 + controlled fine-tuning pipeline；第 2 月：大规模实验 + baseline 对比；第 3 月：post-RL 实验 + ablation + 论文写作。前提是有现成的 fine-tuning 基础设施。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55ffd111-2717-4f7c-bb67-3cdd6221aa78",
+            "isSidechain": false,
+            "requestId": "req_011CbD6CJCHQ5MP3MZTeKnC3",
+            "type": "assistant",
+            "uuid": "b5090e3e-adea-448d-90fd-88a0a459883e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014de6vqn6GLRR4gd8XEZkhE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14304,
+                "cache_read_input_tokens": 16560,
+                "output_tokens": 3426,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14304,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 3426,
+                    "cache_read_input_tokens": 16560,
+                    "cache_creation_input_tokens": 14304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14304
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ 现在我已经完成了充分的调研，可以进行评估了。  ---  ``` 【阶段】: Triage  【领域调研】: - PSN-I…",
+                "leafUuid": "b5090e3e-adea-448d-90fd-88a0a459883e",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2"
+              }
+            }
+          ],
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate LLM contamination detection using person-fit statistics",
+                "sessionId": "f3251c9b-8b09-4392-aefe-1c60f8d305f2"
+              }
+            }
+          ],
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-a-meta-judge-3-proposal-meta-judge-1-copy-42.md"
+}

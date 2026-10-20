@@ -1,0 +1,383 @@
+{
+  "schema_version": "1.0",
+  "id": "2cef73d15d971e2c6e6f",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web to verify the exact AAAI 2027 submission deadlines. I found one source saying abstract July 26, 2026 and ",
+  "task_key": "agent-a929b192bbfc4c5aa",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a929b192bbfc4c5aa.jsonl",
+    "occurrence": 1,
+    "bytes": 15958,
+    "sha256": "4a3276e7613b0c48cbd40f7cf38e5d55edd052b1f36814ffde0b2fd584f91cf3"
+  },
+  "statistics": {
+    "messages": 8,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T10:48:34.994Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web to verify the exact AAAI 2027 submission deadlines. I found one source saying abstract July 26, 2026 and full paper August 2, 2026, but I want to confirm this. Search for \"AAAI 2027 deadline\" and \"AAAI 2027 call for papers\" to find the official or most reliable dates."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1cf2704d-a2a1-4e8a-a6de-727b90550cf6",
+            "agentId": "a929b192bbfc4c5aa",
+            "type": "user",
+            "uuid": "2c2b83b6-8ceb-48eb-a1c8-14f16f58700f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T10:48:34.998Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2c2b83b6-8ceb-48eb-a1c8-14f16f58700f",
+                "isSidechain": true,
+                "agentId": "a929b192bbfc4c5aa",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "782948d5-2f39-4cc1-a88f-c2e7b50148b9",
+                "timestamp": "2026-05-19T10:48:34.998Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T10:48:36.624Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the AAAI 2027 submission deadlines to verify those dates."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "782948d5-2f39-4cc1-a88f-c2e7b50148b9",
+            "isSidechain": true,
+            "agentId": "a929b192bbfc4c5aa",
+            "requestId": "req_011CbBo97JNVPwQdFQtfcf5K",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1df9f578-6011-4c52-a272-05ae2146a0f5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Rm6VqJErU9eoc4RUVk7cgq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15669,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15669,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T10:48:36.839Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DSfHp7VxRq5P7TGTjFsZoh",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1df9f578-6011-4c52-a272-05ae2146a0f5",
+            "isSidechain": true,
+            "agentId": "a929b192bbfc4c5aa",
+            "requestId": "req_011CbBo97JNVPwQdFQtfcf5K",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1112c400-6650-4268-93b4-f60a1321bfed",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Rm6VqJErU9eoc4RUVk7cgq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15669,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15669,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T10:48:36.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYVsd6HreQPGhxmXtN9xbk",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 call for papers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1112c400-6650-4268-93b4-f60a1321bfed",
+            "isSidechain": true,
+            "agentId": "a929b192bbfc4c5aa",
+            "requestId": "req_011CbBo97JNVPwQdFQtfcf5K",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ae7059c2-1cf9-4782-9338-f23e855b980e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Rm6VqJErU9eoc4RUVk7cgq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15669,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15669,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T10:48:41.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DSfHp7VxRq5P7TGTjFsZoh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 deadline\"\n\nLinks: [{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"AAAI Conference on Artificial Intelligence\",\"url\":\"http://aideadlines.org/conference/?id=aaai27\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"AAAI Conference on Artificial Intelligence - AAAI\",\"url\":\"https://aaai.org/conference/aaai/\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=AAAI.org%2F2027%2FConference\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"}]\n\nBased on the search results, here's the information about AAAI 2027 deadlines:\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nFor the **Main Technical Track**, the specific deadlines are:\n\n- Abstracts due: July 21, 2026 at 11:59 PM UTC-12\n- Full papers due: July 28, 2026 at 11:59 PM UTC-12\n- Supplementary material and code due: July 31, 2026 by 11:59 PM UTC-12\n\nTrack-specific deadlines are listed on their respective CFP. So if you're interested in submitting to a different track, the deadlines may vary. You can find more details on the official AAAI-27 website or OpenReview submission portal.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1112c400-6650-4268-93b4-f60a1321bfed",
+            "isSidechain": true,
+            "promptId": "1cf2704d-a2a1-4e8a-a6de-727b90550cf6",
+            "agentId": "a929b192bbfc4c5aa",
+            "type": "user",
+            "uuid": "eff39cbc-8caa-4590-8db1-b18caa1d65e2",
+            "sourceToolAssistantUUID": "1112c400-6650-4268-93b4-f60a1321bfed",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T10:48:42.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYVsd6HreQPGhxmXtN9xbk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 call for papers\"\n\nLinks: [{\"title\":\"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=AAAI.org%2F2027%2FConference\"},{\"title\":\"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=3\"},{\"title\":\"Assessing the Reproducibility of the Structured Abstracts Generated by ChatGPT and Bard Compared to Human-Written Abstracts in the Field of Spine Surgery: Comparative Analysis\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11237793/\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"Ethical and Social Considerations of Applying Artificial Intelligence in Healthcare; a Two-Pronged Scoping Review\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.02.10.25321994.full.pdf\"}]\n\nBased on the search results, here's the information about AAAI 2027 Call for Papers:\n\n## Conference Details\nAAAI 2027 will be held in Montréal, Québec, Canada from February 16-23, 2027.\n\n## Key Deadlines for Main Technical Track\nThe Main Technical Track has the following deadlines (all \"anywhere on earth\" UTC-12):\n- June 17, 2026: Open Review submission site opens for author registration\n- June 24, 2026: Open Review submission site opens for paper submission\n- July 21, 2026: Abstracts due at 11:59 PM UTC-12\n- July 28, 2026: Full papers due at 11:59 PM UTC-12\n- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12\n- September 24, 2026: Notification of Phase 1 rejections\n- October 19-25, 2026: Author feedback window\n- November 30, 2026: Notification of final acceptance or rejection\n- December 14, 2026: Submission of camera-ready files\n\n## Additional Information\nDeadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective Call for Papers.\n\nThe official AAAI 2027 call for papers is available at https://aaai.org/conference/aaai/aaai-27/.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae7059c2-1cf9-4782-9338-f23e855b980e",
+            "isSidechain": true,
+            "promptId": "1cf2704d-a2a1-4e8a-a6de-727b90550cf6",
+            "agentId": "a929b192bbfc4c5aa",
+            "type": "user",
+            "uuid": "06b62645-bd96-4755-9ecf-c1a90552e091",
+            "sourceToolAssistantUUID": "ae7059c2-1cf9-4782-9338-f23e855b980e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T10:48:46.535Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my search, the dates you found are **close but slightly different** from the official deadlines. Here are the verified AAAI 2027 Main Technical Track submission deadlines:\n\n**Official Deadlines (AAAI 2027 Main Technical Track):**\n- **Abstract deadline:** July 21, 2026 at 11:59 PM UTC-12 (not July 26)\n- **Full paper deadline:** July 28, 2026 at 11:59 PM UTC-12 (not August 2)\n- **Supplementary material and code:** July 31, 2026 by 11:59 PM UTC-12\n\n**Key Dates:**\n- Submission opens: June 24, 2026\n- Phase 1 rejections: September 24, 2026\n- Final acceptance/rejection: November 30, 2026\n- Camera-ready files: December 14, 2026\n\nThe conference will be held in Montréal, Canada, February 16-23, 2027.\n\nNote that these deadlines are for the **Main Technical Track** specifically. If you're submitting to a different track, the deadlines may vary, so you should check the specific track's Call for Papers on the official AAAI website.\n\nSources:\n- [AAAI-27 Main Technical Track - AAAI](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot](https://www.getpaperpilot.com/deadlines/aaai-2027.html)\n- [AAAI 2027 Conference | OpenReview](https://openreview.net/group?id=AAAI.org%2F2027%2FConference)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06b62645-bd96-4755-9ecf-c1a90552e091",
+            "isSidechain": true,
+            "agentId": "a929b192bbfc4c5aa",
+            "requestId": "req_011CbBo9gX8sKZc9ZiHvCTqa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ed778f61-4577-499d-be37-b3e23d4ee46c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "24b2f22c-9061-42fe-ad17-2b4254225899",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01E3g9RspeXVcpCFyEgndcHQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1721,
+                "cache_read_input_tokens": 15669,
+                "output_tokens": 446,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1721
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 446,
+                    "cache_read_input_tokens": 15669,
+                    "cache_creation_input_tokens": 1721,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1721,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        }
+      ],
+      "message_count": 8
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-to-verify-the-exact-aaai-2027-submission-deadlines-i-found-one.md"
+}

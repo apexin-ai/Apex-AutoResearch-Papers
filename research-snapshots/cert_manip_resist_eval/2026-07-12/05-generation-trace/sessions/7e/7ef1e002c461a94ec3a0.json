@@ -1,0 +1,2602 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef1e002c461a94ec3a0",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/, find: 1. The main LaTeX ",
+  "task_key": "agent-a0c75933e8b842ba4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a0c75933e8b842ba4.jsonl",
+    "occurrence": 1,
+    "bytes": 127428,
+    "sha256": "93ba67b1a6fcb2889c553e807e8e6e136e37bda72ebd23ca090eae63581b08d7"
+  },
+  "statistics": {
+    "messages": 52,
+    "user_turns": 1,
+    "tool_calls": 19,
+    "roles": {
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 19,
+      "tool_result": 19
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T19:19:20.284Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/, find:\n\n1. The main LaTeX file (likely main.tex or paper.tex)\n2. Where Figure 7 is defined (search for \"Figure 7\" or \"fig:7\" or the 7th \\begin{figure})\n3. What figures are on page 8 (look at the last section of the main text - probably Results or Discussion)\n4. Where appendix.tex is\n\nSearch breadth: quick. Report file paths and line numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "32b138cb-ac81-4746-ab90-f512aee650ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T19:19:22.115Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find these specific elements in the paper directory. Let me start with a quick search."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32b138cb-ac81-4746-ab90-f512aee650ff",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwbmLH6ekHfm9KXX9D",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7b5c5485-829d-4d2b-8daa-285330636cb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UUkBbqiooDDPVtQfHNwNez",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33377,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 33377,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T19:19:22.270Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T7xZXAGDVjsvgrQjWTdhft",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b5c5485-829d-4d2b-8daa-285330636cb9",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwbmLH6ekHfm9KXX9D",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3199f5fe-2258-49c9-b557-1a75d21cf159",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UUkBbqiooDDPVtQfHNwNez",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33377,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 33377,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T19:19:22.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T7xZXAGDVjsvgrQjWTdhft",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix_attacks.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3199f5fe-2258-49c9-b557-1a75d21cf159",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "7ec55f34-9888-4e3d-9733-1040b851c0e5",
+            "sourceToolAssistantUUID": "3199f5fe-2258-49c9-b557-1a75d21cf159",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T19:19:22.496Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GKbPkXpC9QS5tQrPY8cuBG",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper -type f -name \"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ec55f34-9888-4e3d-9733-1040b851c0e5",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwbmLH6ekHfm9KXX9D",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "98db6f31-3847-4130-b921-8131112a6311",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UUkBbqiooDDPVtQfHNwNez",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33377,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 33377
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 33377,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 33377,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T19:19:22.651Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GKbPkXpC9QS5tQrPY8cuBG",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix_attacks.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98db6f31-3847-4130-b921-8131112a6311",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "16531e2b-4cbf-44f6-a726-7ca16d6fa907",
+            "sourceToolAssistantUUID": "98db6f31-3847-4130-b921-8131112a6311",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T19:19:24.113Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! Now let me search for Figure 7 and page 8 information. I'll search the main.tex file and look for figure references."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16531e2b-4cbf-44f6-a726-7ca16d6fa907",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwmroYMQ8D5RyfUXMF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "59db26ad-f947-4a16-a83c-e65f275cf3e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PsqBDoEnaxH3ejKsaYENPg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1955,
+                "cache_read_input_tokens": 33377,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1955,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T19:19:24.829Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JJ5hYDosBQ2XfPjARAGXDw",
+              "name": "Grep",
+              "input": {
+                "pattern": "Figure 7|fig:7|figure.*7",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59db26ad-f947-4a16-a83c-e65f275cf3e3",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwmroYMQ8D5RyfUXMF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "548d4ebb-c594-436b-aa9f-abdf5218d362",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PsqBDoEnaxH3ejKsaYENPg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1955,
+                "cache_read_input_tokens": 33377,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1955,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T19:19:24.853Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JJ5hYDosBQ2XfPjARAGXDw",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (23.2KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-eval--claude-sessions-agent-0c5aa23b/85394c36-cd8c-4ca7-b26c-25e48828e83e/tool-results/toolu_01JJ5hYDosBQ2XfPjARAGXDw.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls:554:INPUT ./figures/fig_sensitivity_contour_K7.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls:555:INPUT ./figures/fig_sensitivity_contour_K7.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls:556:INPUT ./figures/fig_sensitivity_contour_K7.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls:557:INPUT ./figures/fig_sensitivity_contour_K7.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.fls:558:INPUT ./figures/fig_sensitivity_contour_K7.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:220:Package hyperref Info: Hyper figures OFF on input line 6078.\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:932:<figures/fig_framework.pdf, id=282, 662.95679pt x 340.63258pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:964:<figures/fig_keff_eta_scatter.pdf, id=462, 225.52693pt x 167.61621pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:984:<figures/fig_aggregation_r2_heatmap.pdf, id=605, 354.46327pt x 211.10745pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:990:<figures/fig_per_model_asr.pdf, id=606, 722.2872pt x 459.7016pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:1033:<figures/fig1_robustness_comparison.pdf, id=817, 292.49464pt x 247.827pt>\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log:1040:<figures/fig_regime_transition.pdf, id=818, 387.90434pt x 316.23834pt>\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "548d4ebb-c594-436b-aa9f-abdf5218d362",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "bdb8b971-5739-4cc4-9fbf-491561f1b9a3",
+            "sourceToolAssistantUUID": "548d4ebb-c594-436b-aa9f-abdf5218d362",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T19:19:24.973Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AG2fCSeve8mQqxKBFE2eM9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bdb8b971-5739-4cc4-9fbf-491561f1b9a3",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwmroYMQ8D5RyfUXMF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "108727b6-816a-4138-af80-238ad0b6f90e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PsqBDoEnaxH3ejKsaYENPg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1955,
+                "cache_read_input_tokens": 33377,
+                "output_tokens": 237,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1955
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 237,
+                    "cache_read_input_tokens": 33377,
+                    "cache_creation_input_tokens": 1955,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1955,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T19:19:24.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AG2fCSeve8mQqxKBFE2eM9",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{inconsolata}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{amsmath,amssymb,amsthm}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage{xcolor}\n14\t\\usepackage{subcaption}\n15\t\\usepackage{tcolorbox}\n16\t\\tcbuselibrary{breakable}\n17\t\n18\t\\newtheorem{theorem}{Theorem}\n19\t\\newtheorem{definition}{Definition}\n20\t\\newtheorem{proposition}{Proposition}\n21\t\n22\t\\title{The Diminishing Weakest Link: How Panel Size Shifts\\\\Adversarial Vulnerability Drivers in LLM Judge Panels}\n23\t\n24\t\\author{Anonymous}\n25\t\n26\t\\begin{document}\n27\t\\maketitle\n28\t\n29\t\\begin{abstract}\n30\tMulti-judge panels are widely used to defend Large Language Model (LLM) evaluation against manipulation, yet no existing work disentangles whether robustness gains stem from individual judge quality or inter-judge diversity. We decompose panel attack success rate into weakest-link susceptibility ($\\eta_{\\max}$) and effective independence ($K_{\\mathrm{eff}}$) across 15 models, six attack types, two multiple-choice benchmarks, and panel sizes $K \\in \\{3, 5, 7\\}$ (up to 6,435 panels). Two findings are robust across diversity metrics and inference methods: (1)~diversity is uniformly positively associated with vulnerability (both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity confirm positive direction in 12/12 conditions), and (2)~$\\eta_{\\max}$'s predictive power diminishes monotonically with panel size (meta-analytic pooled $\\hat{\\beta}_{\\mathrm{std}}$: $0.264 \\to 0.102 \\to 0.084$; confidence interval crosses zero at $K{\\geq}5$). Monte Carlo calibration confirms the wild cluster bootstrap is conservative (max null rejection $1.6\\%$ at $\\alpha{=}5\\%$). Aggregation rules modulate predictability ($R^2$: threshold 0.83, Bayesian 0.09). The diversity--capability confound ($r{=}0.70$--$0.81$) precludes causal claims; all findings are associational\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/cert_manip_resist_eval-588E/}.}.\n31\t\\end{abstract}\n32\t\n33\t\\input{introduction}\n34\t\\input{related_work}\n35\t\\input{threat_model}\n36\t\\input{methodology}\n37\t\\input{results}\n38\t\\input{analysis}\n39\t\\input{conclusion}\n40\t\n41\t\\clearpage\n42\t\\section*{Limitations}\n43\t\n44\t\\textbf{Diversity--capability confound.} The structural coupling between diversity and capability ($r{=}0.70$--$0.81$; VIF $\\approx 2.0$--$2.9$) prevents observational regression from reliably separating their contributions; capability-matched subsampling reduces but does not eliminate this confound (Pool~A $r{=}0.50$). Causal identification requires training-based diversity control.\n45\t\\textbf{Inference and measurement sensitivity.} At $K{=}3$, $K_{\\mathrm{eff}}$'s significance is method-sensitive (OLS 12/12, bootstrap 4/12, fractional logit 9/12), though direction is positive in all 12 conditions. Cluster counts fall below the ${\\geq}20$ threshold at all panel sizes \\citep{cameron2008bootstrap}; the diversity significance trajectory is also operationalization-dependent ($K_{\\mathrm{eff}}$ vs.\\ $\\kappa$-diversity show opposite $K$-trends).\n46\t\\textbf{Benchmark and attack scope.} Both benchmarks use multiple-choice formats; open-ended generation may present different attack surfaces. The six local models use AWQ INT4 quantization, which may confound capability classification, though excluding near-chance quantized models strengthens the association (Appendix~\\ref{app:near_chance}). Each attack uses 1--2 template variants, limiting generalization. We study only odd $K \\in \\{3,5,7\\}$; the predictor shift threshold $K^*$ is not precisely identified.\n47\t\n48\t\\bibliography{references}\n49\t\n50\t\\input{appendix}\n51\t\\input{appendix_attacks}\n52\t\n53\t\\end{document}\n54\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "108727b6-816a-4138-af80-238ad0b6f90e",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "b9379ba8-121b-4baa-a835-ab6c8596b9cb",
+            "sourceToolAssistantUUID": "108727b6-816a-4138-af80-238ad0b6f90e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T19:19:26.476Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search more specifically for Figure 7 in the tex files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9379ba8-121b-4baa-a835-ab6c8596b9cb",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwwxXApwbhsu7G8BJ7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4cfae0d4-42af-4e2c-8c26-7217aed6dac2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HxQUmUMVNtJjETsEFbjwL5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 35332,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2481,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T19:19:27.742Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SKijYuyWyCoFDcNWkaouyK",
+              "name": "Grep",
+              "input": {
+                "pattern": "begin\\{figure\\}|\\\\label\\{fig:",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex",
+                "output_mode": "content",
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4cfae0d4-42af-4e2c-8c26-7217aed6dac2",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwwxXApwbhsu7G8BJ7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "24a135c5-abe4-4474-af04-c10f0e95b6cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HxQUmUMVNtJjETsEFbjwL5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 35332,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2481,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T19:19:27.778Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SKijYuyWyCoFDcNWkaouyK",
+              "type": "tool_result",
+              "content": "2-\\label{sec:results}\n3-\n4:\\begin{figure}[t]\n5-\\centering\n6-\\includegraphics[width=\\columnwidth]{figures/fig_regime_transition.pdf}\n7-\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\n8:\\label{fig:regime_transition}\n9-\\end{figure}\n10-\n--\n13-\\includegraphics[width=0.85\\textwidth]{figures/fig5_forest_plot.pdf}\n14-\\caption{Per-condition standardized $\\hat{\\beta}$ with 95\\% CI for $\\eta_{\\max}$ (left) and $K_{\\mathrm{eff}}$ (right) at $K{=}3$ (wild cluster bootstrap). Each row is one of the 12 experimental conditions (2 benchmarks $\\times$ 6 attacks).}\n15:\\label{fig:forest_plot}\n16-\\end{figure*}\n17-"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24a135c5-abe4-4474-af04-c10f0e95b6cd",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "582d1549-3945-4f8d-9130-600ceade6acd",
+            "sourceToolAssistantUUID": "24a135c5-abe4-4474-af04-c10f0e95b6cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T19:19:27.857Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L7zCiDC754cP6rnVPvqoAp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "582d1549-3945-4f8d-9130-600ceade6acd",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpwwxXApwbhsu7G8BJ7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ce5dd1e1-a729-47dd-81fe-281580993200",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HxQUmUMVNtJjETsEFbjwL5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 35332,
+                "output_tokens": 243,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2481
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 243,
+                    "cache_read_input_tokens": 35332,
+                    "cache_creation_input_tokens": 2481,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2481,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T19:19:27.869Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L7zCiDC754cP6rnVPvqoAp",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_regime_transition.pdf}\n7\t\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\n8\t\\label{fig:regime_transition}\n9\t\\end{figure}\n10\t\n11\t\\begin{figure*}[t]\n12\t\\centering\n13\t\\includegraphics[width=0.85\\textwidth]{figures/fig5_forest_plot.pdf}\n14\t\\caption{Per-condition standardized $\\hat{\\beta}$ with 95\\% CI for $\\eta_{\\max}$ (left) and $K_{\\mathrm{eff}}$ (right) at $K{=}3$ (wild cluster bootstrap). Each row is one of the 12 experimental conditions (2 benchmarks $\\times$ 6 attacks).}\n15\t\\label{fig:forest_plot}\n16\t\\end{figure*}\n17\t\n18\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n19\t\\label{sec:dominance}\n20\t\n21\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n22\t\n23\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Proposition~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n24\t\n25\tFigure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12). Crossed random-effects analysis confirms $K_{\\mathrm{eff}}$ significance at $K{\\geq}5$ (Appendix~\\ref{app:crossed_re}).\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\small\n30\t\\begin{tabular}{lcc}\n31\t\\toprule\n32\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n33\t\\midrule\n34\tOLS                    & 10/12 & 12/12 \\\\\n35\tClustered SE           & 4/12  & 0/12  \\\\\n36\tMixed effects          & 7/12  & 3/12  \\\\\n37\tWild bootstrap         & 3/12  & 4/12  \\\\\n38\tFrac.\\ logit (clust.)  & 7/12  & 9/12  \\\\\n39\t\\bottomrule\n40\t\\end{tabular}\n41\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).}\n42\t\\label{tab:method_comparison}\n43\t\\end{table}\n44\t\n45\tPower analysis yields MDE $\\beta_{\\mathrm{std}} = 0.14$ at 80\\% power (Appendix~\\ref{app:power_analysis}); positive coefficient direction (12/12) is preserved across all methods.\n46\t\n47\t\\subsection{The Diminishing Weakest Link Across Panel Sizes}\n48\t\\label{sec:cross_k}\n49\t\n50\tThe $K{=}3$ pattern is method-sensitive (Table~\\ref{tab:method_comparison}), contrasting with $K{\\geq}5$ where $K_{\\mathrm{eff}}$'s dominance is consistent (bootstrap 7/12; fractional logit 9/12). We repeat the bootstrap at $K \\in \\{3, 5, 7\\}$ with max-$p$ correction.\n51\t\n52\tMeta-analytic pooling \\citep{dersimonian1986meta} quantifies trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$, $0.102$ [$-0.055, 0.259$] at $K{=}5$, $0.084$ [$-0.083, 0.251$] at $K{=}7$; CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive ($0.356$--$0.436$, CI excluding zero; $I^2{>}87\\%$; Appendix~\\ref{app:meta_analytic_details}). Figures~\\ref{fig:regime_transition}--\\ref{fig:forest_plot} show significance counts and per-condition effect sizes. The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity.\n53\t\n54\t\n55\t\\subsection{Random vs.\\ Adaptive Fault Contrast}\n56\t\\label{sec:rf_contrast}\n57\t\n58\tRandom faults yield $R^2 = 0.730$ [$0.718, 0.745$]; adaptive attack reduces predictability ($R^2{=}0.285$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The positive $K_{\\mathrm{eff}}$ coefficient under adaptive attack contrasts with the Condorcet Jury Theorem \\citep{condorcet1785essai}: under adversarial manipulation, independent judges present distinct attack surfaces rather than redundant defenses \\citep{goodfellow2015adversarial,kariyappa2019improving}.\n59\t\n60\t\\subsection{Positive Direction Across Attack Types}\n61\t\\label{sec:gam_taxonomy}\n62\t\n63\tGAM bootstrap confirms positive $K_{\\mathrm{eff}}$ direction in all 12 conditions (88.9--100\\% positive rate; Figure~\\ref{fig:gam_split}), with no magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$, $0.423$).\n64\t\n65\t\\subsection{Aggregation Rules and the Diversity Channel}\n66\t\\label{sec:aggregation}\n67\t\n68\tTable~\\ref{tab:aggregation} reports regression results for four aggregation methods across all 12 conditions.\n69\t\n70\t\\begin{table}[t]\n71\t\\centering\n72\t\\small\n73\t\\begin{tabular}{lcccc}\n74\t\\toprule\n75\t\\textbf{Method} & \\textbf{$\\eta_{\\max}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ $\\beta$ dir.} & \\textbf{$R^2$} \\\\\n76\t\\midrule\n77\tThreshold       & 12/12 & 11/12 & 11+/0$-$  & 0.829 \\\\\n78\tMajority        & 10/12 & 12/12 & 12+/0$-$  & 0.327 \\\\\n79\tWeighted        & 9/12  & 12/12 & 12+/0$-$  & 0.328 \\\\\n80\tBayesian        & 9/12  & 6/12  & 5+/1$-$   & 0.087 \\\\\n81\t\\bottomrule\n82\t\\end{tabular}\n83\t\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\n84\t\\label{tab:aggregation}\n85\t\\end{table}\n86\t\n87\t\n88\tPredictability ranges from threshold ($R^2{=}0.829$) to Bayesian ($R^2{=}0.087$), implying panel composition is almost unpredictive under calibrated aggregation. Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12). At $K{=}5$ all methods converge (7/12; Appendix~\\ref{app:aggregation_k5}); at $K{=}7$ Bayesian neutralization returns (Appendix~\\ref{app:aggregation_k7}).\n89\t\n90\t\\paragraph{Fractional Logit Robustness.}\n91\tFractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; Appendix~\\ref{app:robustness_checks}).\n92\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce5dd1e1-a729-47dd-81fe-281580993200",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "45552a56-53cf-4939-ab38-bc90efcc0bcb",
+            "sourceToolAssistantUUID": "ce5dd1e1-a729-47dd-81fe-281580993200",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T19:19:29.518Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! I found figures in results.tex. Now let me search for Figure 7 specifically and check the analysis.tex file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45552a56-53cf-4939-ab38-bc90efcc0bcb",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxAGCJLfRZ7TBUjpod",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2810d358-4c69-41d0-ad6e-a2d5d22fc915",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013y2kpiHcWkoT1itVergbVX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 37813,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3375,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T19:19:30.511Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GPs72MBbhwhdjmgF3QMEkg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2810d358-4c69-41d0-ad6e-a2d5d22fc915",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxAGCJLfRZ7TBUjpod",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "456cc4da-f292-42db-b1ce-4a20a477807f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013y2kpiHcWkoT1itVergbVX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 37813,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3375,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T19:19:30.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GPs72MBbhwhdjmgF3QMEkg",
+              "type": "tool_result",
+              "content": "1\t\\section{Analysis}\n2\t\\label{sec:analysis}\n3\t\n4\t\\paragraph{Diversity--Capability Confound.}\n5\t$K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ correlate at $r{=}0.70$--$0.81$ (VIF${\\approx}2.0$--$2.9$; Figure~\\ref{fig:keff_eta_scatter}, Appendix~\\ref{app:extended_analysis}). Cinelli--Hazlett sensitivity analysis \\citep{cinelli2020making} shows the confound could account for the association in 69\\% of conditions (Appendix~\\ref{app:sensitivity}), though fractional logit confirms the positive association (9/12 at all $K$). Causal attribution requires capability-controlled designs (Appendices~\\ref{app:sensitivity_poolA},~\\ref{app:cross_benchmark}).\n6\t\n7\t\\paragraph{API-Only vs.\\ Full Pool.}\n8\tRestricting to 9 API models removes the AWQ confound but increases collinearity ($r{=}0.85$): $\\eta_{\\max}$ retains significance (8/12) while $K_{\\mathrm{eff}}$ drops (2--3/12); the API-only pool lacks statistical power (MDE $> 0.9$; Appendices~\\ref{app:quant_dummy},~\\ref{app:random_subsample}).\n9\t\n10\t\\paragraph{Aggregation and Deployment.}\n11\tAggregation rules influence predictability but not $K_{\\mathrm{eff}}$'s direction (Figure~\\ref{fig:aggregation_heatmap}). Threshold voting yields the highest $R^2$ ($0.83$ at $K{=}3$), while Bayesian calibration nearly neutralizes panel composition effects ($R^2{\\leq}0.17$ across all $K$). At $K{=}7$, Bayesian calibration fully neutralizes $K_{\\mathrm{eff}}$ (0/12; Appendix~\\ref{app:bayesian_entropy}). Robustness-first selection ($\\min \\eta_{\\max}$) achieves lowest ASR in all 12 conditions (Appendix~\\ref{app:panel_design}), confirming that selecting judges by individual robustness dominates diversity-maximizing strategies regardless of panel size. Clean $K_{\\mathrm{eff}}$ is stable under 4/6 attacks ($\\rho{\\geq}0.91$; Appendix~\\ref{app:attacked_keff}), offering a deployable metric from clean-condition agreement alone.\n12\t\n13\t\\paragraph{Metric Sensitivity of the Diversity Trajectory.}\n14\tThe diversity significance trajectory is operationalization-dependent: $K_{\\mathrm{eff}}$ significance increases ($4 \\to 7 \\to 8$/12) while $\\kappa$-diversity \\citep{kuncheva2003measures} decreases ($8 \\to 7 \\to 6$/12; Appendix~\\ref{app:kappa_regime}). Shannon MI entropy shows a third pattern ($4 \\to 4 \\to 0$; Appendix~\\ref{app:shannon_entropy}). Both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity confirm positive direction (12/12), but the $K$-dependent trajectory is metric-specific; the $\\eta_{\\max}$ decline holds under all specifications, making it the more robust finding across operationalizations.\n15\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "456cc4da-f292-42db-b1ce-4a20a477807f",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "7a1c77df-0da2-4a67-bb45-48b9404cdfd5",
+            "sourceToolAssistantUUID": "456cc4da-f292-42db-b1ce-4a20a477807f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T19:19:30.919Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0138uftLh4wNUPS6yd9wWHRn",
+              "name": "Grep",
+              "input": {
+                "pattern": "begin\\{figure\\}",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a1c77df-0da2-4a67-bb45-48b9404cdfd5",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxAGCJLfRZ7TBUjpod",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2ddc445b-fdae-4389-ac7e-c7588966253b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013y2kpiHcWkoT1itVergbVX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 37813,
+                "output_tokens": 227,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3375
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 227,
+                    "cache_read_input_tokens": 37813,
+                    "cache_creation_input_tokens": 3375,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3375,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T19:19:30.952Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0138uftLh4wNUPS6yd9wWHRn",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex:65:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:80:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:87:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:198:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:286:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:369:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:430:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:710:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:800:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:982:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:1106:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:4:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:54:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:4:\\begin{figure}[t]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ddc445b-fdae-4389-ac7e-c7588966253b",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "3902e4f3-cb5e-41e0-9ba7-6296c0679b0d",
+            "sourceToolAssistantUUID": "2ddc445b-fdae-4389-ac7e-c7588966253b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T19:19:32.172Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search more carefully for all figures and their labels:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3902e4f3-cb5e-41e0-9ba7-6296c0679b0d",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxPNEUEH5RSDKLcq1V",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b932b478-7dae-42be-92a8-463e91d821e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0189CWMYmfSJawPwuf5ED7U7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1859,
+                "cache_read_input_tokens": 41188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1859,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T19:19:32.390Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018p2XwPL6rSEwhVCLccvN3X",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"label{fig:\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b932b478-7dae-42be-92a8-463e91d821e7",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxPNEUEH5RSDKLcq1V",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0eaf2e17-02ea-4f1e-8968-f95b6696647f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0189CWMYmfSJawPwuf5ED7U7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1859,
+                "cache_read_input_tokens": 41188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1859,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T19:19:32.449Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018p2XwPL6rSEwhVCLccvN3X",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:84:\\label{fig:keff_eta_scatter}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:91:\\label{fig:dominance_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:202:\\label{fig:model_radar}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:255:\\label{fig:per_model_asr}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:264:\\label{fig:asr_distribution}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:276:\\label{fig:mi_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:290:\\label{fig:gam_split}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:373:\\label{fig:aggregation}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:427:\\label{fig:aggregation_comparison}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:434:\\label{fig:aggregation_r2_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:690:\\label{fig:sensitivity_contour_K3}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:697:\\label{fig:sensitivity_contour}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:704:\\label{fig:sensitivity_contour_K7}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:714:\\label{fig:keff_cross_benchmark}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:804:\\label{fig:keff_hist}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:986:\\label{fig:bootstrap_null}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:1098:\\label{fig:panel_composition}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:1110:\\label{fig:beta_trajectory}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex:7:\\label{fig:framework}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex:69:\\label{fig:robustness}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:8:\\label{fig:regime_transition}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:15:\\label{fig:forest_plot}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:8:\\label{fig:keff_eta_scatter_main}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:58:\\label{fig:aggregation_heatmap}\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:65:\\label{fig:per_model_asr_main}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0eaf2e17-02ea-4f1e-8968-f95b6696647f",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "d9c214a4-89ef-4082-939f-b2f303b6435d",
+            "sourceToolAssistantUUID": "0eaf2e17-02ea-4f1e-8968-f95b6696647f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T19:19:32.635Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WZhbi43C5EKSc1cF7VXibq",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"begin{figure\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9c214a4-89ef-4082-939f-b2f303b6435d",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxPNEUEH5RSDKLcq1V",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3c1b3562-acbb-4dfb-8532-b0316fc84a9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0189CWMYmfSJawPwuf5ED7U7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1859,
+                "cache_read_input_tokens": 41188,
+                "output_tokens": 190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1859
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 190,
+                    "cache_read_input_tokens": 41188,
+                    "cache_creation_input_tokens": 1859,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1859,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T19:19:32.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WZhbi43C5EKSc1cF7VXibq",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:80:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:87:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:198:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:251:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:260:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:272:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:286:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:369:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:423:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:430:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:686:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:693:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:700:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:710:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:800:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:982:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:1094:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex:1106:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex:3:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex:65:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:4:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex:11:\\begin{figure*}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:4:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:54:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex:61:\\begin{figure*}[t]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c1b3562-acbb-4dfb-8532-b0316fc84a9d",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "df1261f9-2d8e-44ab-be0a-b21dbdc705c6",
+            "sourceToolAssistantUUID": "3c1b3562-acbb-4dfb-8532-b0316fc84a9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-25T19:19:34.337Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me count the figures in order and find which one is Figure 7. Let me check the introduction and threat_model files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df1261f9-2d8e-44ab-be0a-b21dbdc705c6",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxWjkEHBMwBr86Ucam",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "14a945c8-2216-41a6-b55e-16986ff6c81d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ViyHGpYhYJK8kEoduHeYqj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2827,
+                "cache_read_input_tokens": 43047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2827,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T19:19:34.599Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KcA9LNkCbgFWiVMiTrQhNo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex",
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14a945c8-2216-41a6-b55e-16986ff6c81d",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxWjkEHBMwBr86Ucam",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a04c1f2f-3520-46b8-bed3-68d081409009",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ViyHGpYhYJK8kEoduHeYqj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2827,
+                "cache_read_input_tokens": 43047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2827,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-25T19:19:34.606Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KcA9LNkCbgFWiVMiTrQhNo",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.78\\textwidth]{figures/fig_framework.pdf}\n6\t\\caption{The diminishing weakest link in LLM judge panels. \\textbf{(a)}~In small panels ($K{=}3$), a single vulnerable judge (red) can flip the majority; individual weakness ($\\eta_{\\max}$) dominates vulnerability ($\\hat{\\beta}_{\\mathrm{std}}{=}0.264$). \\textbf{(b)}~As panel size grows, the balance shifts from individual weakness to collective diversity. \\textbf{(c)}~In large panels ($K{\\geq}5$), inter-judge diversity ($K_{\\mathrm{eff}}$, $\\hat{\\beta}_{\\mathrm{std}}{=}0.437$) drives vulnerability while $\\eta_{\\max}$ diminishes (CI crosses zero). Bottom bars show relative predictive weight.}\n7\t\\label{fig:framework}\n8\t\\end{figure*}\n9\t\n10\tMulti-judge panels have become the dominant defense against bias and manipulation in Large Language Model (LLM) evaluation. After \\citet{zheng2023judging} demonstrated that individual LLM judges can rival human annotators, subsequent work exposed systematic vulnerabilities: position bias, verbosity preferences, and sycophancy compromise the reliability of any single judge \\citep{wang2023fair}. The natural response has been to aggregate decisions across diverse models, an approach inspired by Byzantine fault tolerance (BFT), where majority voting among independent nodes tolerates faulty responses \\citep{lamport1982byzantine,castro1999practical}. A recent systematization reports that 7-model committees reduce attack success rates (ASR) from 50--68\\% to 10--19\\% \\citep{almasoud2026security}. Diversity, by this logic, is the key ingredient for secure evaluation, yet this framing conflates two distinct sources of robustness: the quality of individual judges and the independence among them.\n11\t\n12\tThe conflation matters because the BFT analogy breaks down in the LLM judge setting. BFT adversaries control faulty nodes from within; evaluation adversaries manipulate inputs from without, and shared pretraining corpora create correlated failure modes that violate the independence assumption underlying majority-vote guarantees \\citep{schneier2000secrets}. No existing work disentangles diversity from individual robustness across panel sizes, so the relative contribution of each factor to observed ASR reductions remains unclear.\n13\t\n14\tWe address this gap by decomposing panel vulnerability into two predictors (Figure~\\ref{fig:framework}): weakest-link susceptibility ($\\eta_{\\max}$, the maximum individual attack success rate in a panel) and effective independent channels ($K_{\\mathrm{eff}}$, an information-theoretic measure of judge independence). Controlled experiments across 15 models (9 API, 6 local quantized), $K \\in \\{3,5,7\\}$, six attack types, and two multiple-choice benchmarks (Massive Multitask Language Understanding [MMLU] and the AI2 Reasoning Challenge [ARC]) reveal two robust patterns and one metric-sensitive observation.\n15\t\n16\tThese findings yield three contributions:\n17\t\\begin{enumerate}\n18\t\\item \\textbf{Diversity uniformly positively associated with vulnerability.} Both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity \\citep{kuncheva2003measures} confirm a positive association with panel attack success in all 12 conditions (12/12 direction under OLS and generalized additive model bootstrap). However, the diversity--capability confound ($r{=}0.70$--$0.81$) precludes causal interpretation: Cinelli--Hazlett robustness values do not exceed the confound in 69\\% of conditions (\\S\\ref{sec:dominance}, \\S\\ref{sec:gam_taxonomy}).\n19\t\\item \\textbf{Diminishing weakest link.} $\\eta_{\\max}$'s predictive power declines monotonically with panel size: meta-analytic pooled $\\hat{\\beta}_{\\mathrm{std}}$ falls from $0.264$ [$0.158, 0.369$] at $K{=}3$ to $0.102$ [$-0.055, 0.259$] at $K{=}5$ to $0.084$ [$-0.083, 0.251$] at $K{=}7$; the confidence interval crosses zero at $K{\\geq}5$. The diversity significance trajectory, however, depends on the metric: $K_{\\mathrm{eff}}$ significance increases ($4 \\to 7 \\to 8$/12) while $\\kappa$-diversity decreases ($8 \\to 7 \\to 6$/12), indicating that the $K$-dependent pattern is operationalization-sensitive (\\S\\ref{sec:cross_k}).\n20\t\\item \\textbf{Aggregation as predictability control.} Aggregation rules modulate how much variance panel composition explains ($R^2$: threshold 0.83, Bayesian 0.09). Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12), so the defense is partial (\\S\\ref{sec:aggregation}, \\S\\ref{sec:analysis}).\n21\t\\end{enumerate}\n22\t\n23\tAll findings are associational; the diversity--capability confound ($r{=}0.70$--$0.81$; \\S\\ref{sec:analysis}) precludes causal claims.\n24\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a04c1f2f-3520-46b8-bed3-68d081409009",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "8bf6b86c-98a6-487e-8f30-02600955e96e",
+            "sourceToolAssistantUUID": "a04c1f2f-3520-46b8-bed3-68d081409009",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T19:19:34.826Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RFirwB3nDsw7RrdCaFHaqW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bf6b86c-98a6-487e-8f30-02600955e96e",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxWjkEHBMwBr86Ucam",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b3e66a9f-9f07-4d27-a534-3c6ab7bac75a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ViyHGpYhYJK8kEoduHeYqj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2827,
+                "cache_read_input_tokens": 43047,
+                "output_tokens": 211,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2827
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 211,
+                    "cache_read_input_tokens": 43047,
+                    "cache_creation_input_tokens": 2827,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2827,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-25T19:19:34.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RFirwB3nDsw7RrdCaFHaqW",
+              "type": "tool_result",
+              "content": "1\t\\section{Threat Model and Problem Formulation}\n2\t\\label{sec:threat_model}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n7\t\\caption{$K_{\\mathrm{eff}}$--$\\eta_{\\max}$ scatter at $K{=}3$ (455 panels). The $r{=}0.70$ correlation reflects structural coupling between diversity and capability in the current LLM ecosystem.}\n8\t\\label{fig:keff_eta_scatter_main}\n9\t\\end{figure}\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\small\n14\t\\resizebox{\\columnwidth}{!}{%\n15\t\\begin{tabular}{llll}\n16\t\\toprule\n17\t\\textbf{Attack} & \\textbf{Category} & \\textbf{Mechanism} & \\textbf{Target} \\\\\n18\t\\midrule\n19\tPrompt inj.    & Targeted    & Override instruct. & Decision \\\\\n20\tScore manip.   & Targeted    & Numeric anchoring  & Score \\\\\n21\tSycophancy     & Shared bias & Flattery/agreement & Preference \\\\\n22\tVerbosity      & Shared bias & Content padding    & Attention \\\\\n23\tPosition bias  & Shared bias & Response reorder   & Position \\\\\n24\tAuthority bias & Shared bias & Credential appeal  & Trust \\\\\n25\t\\bottomrule\n26\t\\end{tabular}}\n27\t\\caption{Attack taxonomy. Targeted attacks exploit individual judge weaknesses; shared-bias attacks affect most judges similarly (\\S\\ref{sec:experiments}).}\n28\t\\label{tab:attack_taxonomy}\n29\t\\end{table}\n30\t\n31\tA \\emph{panel} $\\mathcal{P} = \\{J_1, \\ldots, J_K\\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \\lceil K/2 \\rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\\eta_j(a) = \\Pr(X_j^a = 1)$, where $X_j^a \\in \\{0,1\\}$ denotes the failure indicator. We write $\\eta_{\\max} = \\max_j \\eta_j$ for the vulnerability of the weakest judge. The \\emph{panel attack success rate} is $\\mathrm{ASR}(\\mathcal{P}, a) = \\Pr\\!\\bigl(\\sum_{j=1}^K X_j^a \\geq t\\bigr)$.\n32\t\n33\tTo quantify diversity, we define the \\emph{effective independence} $K_{\\mathrm{eff}}$ directly from pairwise mutual information (MI) among judges:\n34\t\\begin{equation}\n35\t\\label{eq:keff}\n36\tK_{\\mathrm{eff}} = \\frac{1}{K}\\sum_{i=1}^{K} \\Bigl[1 + \\sum_{j \\neq i} \\exp\\!\\bigl(-2 \\cdot \\mathrm{MI}(i,j)\\bigr)\\Bigr].\n37\t\\end{equation}\n38\tThis formulation computes effective independence from pairwise MI estimates without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\\mathrm{eff}} \\approx K$ when judges are nearly independent ($\\mathrm{MI} \\to 0$) to $K_{\\mathrm{eff}} \\approx 1$ when judges are highly correlated ($\\mathrm{MI} \\to \\infty$). Motivated by information-theoretic redundancy reduction, one can informally expect joint vulnerability to scale as $\\eta_{\\mathrm{joint}} \\sim K_{\\mathrm{eff}} \\cdot \\eta_{\\max}$: independent channels multiply failure probabilities, so fewer effective channels (lower $K_{\\mathrm{eff}}$) should reduce panel vulnerability. This motivating relationship assumes non-adaptive faults and independent channels; it serves as intuition rather than a formal bound.\n39\t\n40\t\\begin{definition}[Adaptive Adversary]\n41\t\\label{def:adversary}\n42\tA \\emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\\mathcal{P}$, the per-judge vulnerability profiles $\\{\\eta_j(\\cdot)\\}_{j=1}^K$, and the inter-judge correlation structure. It selects the attack $a^* = \\arg\\max_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$ to maximize the panel ASR, yielding $\\mathrm{ASR}^*(\\mathcal{P}) = \\sup_{a \\in \\mathcal{A}} \\mathrm{ASR}(\\mathcal{P}, a)$. This oracle model represents an \\emph{upper bound} on adversarial capability; realistic adversaries with partial knowledge of panel composition would achieve lower ASR.\n43\t\\end{definition}\n44\t\n45\tThis departs from BFT models~\\cite{lamport1982byzantine,castro1999practical}, which tolerate $f < n/3$ faulty nodes but do not model adversaries that strategically target system structure. An adaptive adversary concentrates on the weakest link~\\cite{schneier2000secrets}, suggesting a \\emph{reversal}: under random faults, higher $K_{\\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.\n46\t\n47\t\\begin{proposition}[Weakest-Link Monotonicity; formal statement and proof in Appendix~\\ref{app:proof}]\n48\t\\label{thm:monotonicity}\n49\tReplacing any panel member with a pointwise more vulnerable judge can only increase $\\mathrm{ASR}^*(\\mathcal{P})$, for any adversary including adaptive ones. The stochastic dominance condition holds for 58\\% of judge pairs (61/105); non-dominance concentrates among within-tier pairs (72.1\\% non-dominant, 31/43) versus cross-tier pairs (21.0\\%, 13/62), reflecting that capability-similar judges lack uniform ordering.\n50\t\\end{proposition}\n51\t\n52\tThe proposition predicts $\\beta_2 > 0$ in Equation~\\ref{eq:regression}; the reversal pattern predicts positive $\\beta_1$ under adversarial conditions. The relative importance of $\\eta_{\\max}$ versus $K_{\\mathrm{eff}}$ depends on $K$: at small $K$, one weak judge flips the majority; at larger $K$, the adversary must compromise multiple judges (\\S\\ref{sec:experiments}).\n53\t\n54\t\\begin{figure}[t]\n55\t\\centering\n56\t\\includegraphics[width=\\columnwidth]{figures/fig_aggregation_r2_heatmap.pdf}\n57\t\\caption{Predictability ($R^2$) across aggregation methods and panel sizes. Threshold voting is most predictable ($R^2{=}0.83$ at $K{=}3$); Bayesian calibration nearly neutralizes panel composition effects ($R^2{\\leq}0.17$). All methods show declining $R^2$ from $K{=}3$ to $K{=}5$.}\n58\t\\label{fig:aggregation_heatmap}\n59\t\\end{figure}\n60\t\n61\t\\begin{figure*}[t]\n62\t\\centering\n63\t\\includegraphics[width=\\textwidth]{figures/fig_per_model_asr.pdf}\n64\t\\caption{Per-model ASR across six attack types (MMLU). Frontier models show near-zero vulnerability under most attacks; lightweight models exhibit heterogeneous weaknesses that drive the weakest-link effect.}\n65\t\\label{fig:per_model_asr_main}\n66\t\\end{figure*}\n67\t\n68\t\\begin{table}[t]\n69\t\\centering\n70\t\\small\n71\t\\resizebox{\\columnwidth}{!}{%\n72\t\\begin{tabular}{lllccc}\n73\t\\toprule\n74\t\\textbf{Model} & \\textbf{Family} & \\textbf{Tier} & \\textbf{Deploy} & \\textbf{MMLU} & \\textbf{ARC} \\\\\n75\t\\midrule\n76\tgpt-5.5              & OpenAI    & frontier    & API   & .957 & .983 \\\\\n77\tgemini-3.1-pro-preview & Google  & frontier    & API   & .955 & .987 \\\\\n78\tclaude-opus-4-6       & Anthropic & frontier   & API   & .890 & .987 \\\\\n79\tgemini-3.5-flash      & Google    & frontier   & API   & .968 & 1.00$^\\dagger$ \\\\\n80\t\\addlinespace\n81\tgpt-4.1               & OpenAI    & mid-tier   & API   & .837 & .967 \\\\\n82\tclaude-sonnet-4-6     & Anthropic & mid-tier   & API   & .810 & .953 \\\\\n83\t\\addlinespace\n84\tgpt-4.1-mini          & OpenAI    & lightweight & API  & .800 & .963 \\\\\n85\tgpt-4.1-nano          & OpenAI    & lightweight & API  & .633 & .853 \\\\\n86\tclaude-3-haiku        & Anthropic & lightweight & API  & .767 & .450 \\\\\n87\tmistral-large (123B)  & Mistral   & lightweight & local & .537 & .533 \\\\\n88\tllama3.1-70b          & Llama     & lightweight & local & .523 & .520 \\\\\n89\tllama3.1-8b           & Llama     & lightweight & local & .543 & .320 \\\\\n90\tqwen2.5-72b           & Qwen      & lightweight & local & .333 & .410 \\\\\n91\tqwen2.5-32b           & Qwen      & lightweight & local & .373 & .450 \\\\\n92\tqwen2.5-14b           & Qwen      & lightweight & local & .253 & .240 \\\\\n93\t\\bottomrule\n94\t\\end{tabular}}\n95\t\\caption{Judge models used in the study (clean accuracy on 300-item samples). API models accessed via OpenRouter (May 2026 snapshots); local models served with vLLM + AWQ INT4 quantization. $^\\dagger$\\,gemini-3.5-flash achieves perfect ARC accuracy but with 26.3\\% format error rate. Tier assignment follows provider capability classification (frontier $>$85\\% clean accuracy on both benchmarks, mid-tier 80--85\\%, lightweight ${\\leq}$80\\% or quantized); all six local AWQ INT4 models fall into lightweight, where quantization-induced accuracy reduction conflates genuine capability limitations with quantization damage (\\S\\ref{sec:analysis}).}\n96\t\\label{tab:models}\n97\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3e66a9f-9f07-4d27-a534-3c6ab7bac75a",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "ceb65168-ded2-47ec-a8a9-7077e49c3806",
+            "sourceToolAssistantUUID": "b3e66a9f-9f07-4d27-a534-3c6ab7bac75a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T19:19:36.552Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me count the figures to determine which is Figure 7. Let me check the methodology file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ceb65168-ded2-47ec-a8a9-7077e49c3806",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxgEVhGSx7FV9EG19W",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "00bd029a-c407-486f-88f8-c8fc1cbfc07a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011dCcL2Y98VHu4oUGjuXzBA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4529,
+                "cache_read_input_tokens": 45874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4529,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-25T19:19:37.421Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KVCzRPgKNxak5GiyU2iuCU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00bd029a-c407-486f-88f8-c8fc1cbfc07a",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxgEVhGSx7FV9EG19W",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c7be00a4-ce0b-483f-bd56-c47ee7b6d593",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011dCcL2Y98VHu4oUGjuXzBA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4529,
+                "cache_read_input_tokens": 45874,
+                "output_tokens": 131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4529
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 131,
+                    "cache_read_input_tokens": 45874,
+                    "cache_creation_input_tokens": 4529,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4529,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T19:19:37.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KVCzRPgKNxak5GiyU2iuCU",
+              "type": "tool_result",
+              "content": "1\t\\section{Experimental Methodology}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Models and Panel Construction}\n5\t\n6\tWe select 15 LLM judges spanning 6 provider families and 3 capability tiers, listed in Table~\\ref{tab:models}. Nine models are accessed via the OpenRouter API;\\footnote{All API models were accessed via OpenRouter between March--April 2026. Model snapshots may have changed after this period.} six open-weight models are served locally using vLLM~0.21.0 with Activation-aware Weight Quantization (AWQ) INT4 on an NVIDIA RTX PRO~6000 Blackwell (96\\,GB). API models are assigned to \\emph{frontier}, \\emph{mid-tier}, or \\emph{lightweight} tiers following the provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy on the pairwise judgment task (Table~\\ref{tab:models}). We study three panel sizes $K \\in \\{3, 5, 7\\}$ (all odd, majority-vote threshold $t = \\lceil K/2 \\rceil$). Exhaustive enumeration yields $\\binom{15}{3} = 455$ panels at $K{=}3$, $\\binom{15}{5} = 3{,}003$ at $K{=}5$, and $\\binom{15}{7} = 6{,}435$ at $K{=}7$, covering every combination of families and tiers. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\\times$ item $\\times$ attack tensor. The primary analysis uses $K{=}3$; \\S\\ref{sec:cross_k} extends to larger panels.\n7\t\n8\t\\subsection{Benchmarks and Attack Types}\n9\t\n10\tTwo benchmarks test distinct evaluation capabilities: MMLU \\citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \\citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\\mathrm{eff}}$; Appendix~\\ref{app:temperature}).\n11\t\n12\tEach benchmark is paired with six attack types spanning targeted and shared-bias categories (Table~\\ref{tab:attack_taxonomy}): prompt injection \\citep{perez2022ignore,greshake2023not}, sycophancy \\citep{wang2023fair}, score manipulation, verbosity bias \\citep{zheng2023judging}, position bias \\citep{wang2023fair}, and authority bias. The 2 benchmarks $\\times$ 6 attacks produce 12 conditions, each evaluated across all 455 panels (Appendix~\\ref{app:attacks}).\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\begin{tabular}{llccc}\n18\t\\toprule\n19\t\\textbf{Bench.} & \\textbf{Attack} & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & \\textbf{Dom.} \\\\\n20\t\\midrule\n21\tMMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\n22\tMMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\n23\tMMLU & Score manip.   & n.s.    & $+^{*}$ & $K$ \\\\\n24\tMMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\n25\tMMLU & Position bias  & $+^{*}$ & $+^{*}$ & Co \\\\\n26\tMMLU & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n27\t\\addlinespace\n28\tARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\\\\n29\tARC  & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\\\\n30\tARC  & Score manip.   & $+^{*}$ & $+^{*}$ & Co \\\\\n31\tARC  & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\\\\n32\tARC  & Position bias  & n.s.    & $+^{*}$ & $K$ \\\\\n33\tARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\\\\n34\t\\bottomrule\n35\t\\end{tabular}\n36\t\\caption{Standardized regression coefficients for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\\ column: $\\eta$ = $\\eta_{\\max}$ sole dominant, $K$ = $K_{\\mathrm{eff}}$ sole dominant, Co = co-dominant \\citep{budescu1993dominance}.}\n37\t\\label{tab:dominance}\n38\t\\end{table}\n39\t\n40\t\\subsection{Vulnerability Metrics}\n41\t\n42\tPer-judge vulnerability $\\eta_j(a) = \\Pr(X_j^a {=} 1)$ is estimated empirically; $\\eta_{\\max}(a) = \\max_{j \\in \\mathcal{P}} \\eta_j(a)$ captures the weakest link. Panel diversity $K_{\\mathrm{eff}}$ (Equation~\\ref{eq:keff}) is computed from pairwise MI on clean winner labels using the plug-in estimator with Miller--Madow correction (Appendix~\\ref{app:keff_derivation}). Under a Gaussian copula, $K_{\\mathrm{eff}} = K - \\frac{1}{K}\\sum_{i}\\sum_{j \\neq i} \\rho_{ij}^2$ \\citep{nelsen2006copulas}; goodness-of-fit rejects the copula for 97--100\\% of pairs, yet rankings agree closely ($\\rho{\\approx}0.86$; Appendix~\\ref{app:copula_gof}). We also evaluate $\\kappa$-diversity \\citep{kuncheva2003measures}. The $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation is $r{=}0.70$ at $K{=}3$ (Figure~\\ref{fig:keff_eta_scatter_main}), reflecting the structural coupling between diversity and capability in the current LLM ecosystem.\n43\t\n44\t\\subsection{Aggregation Methods}\n45\t\n46\tBeyond majority vote ($\\geq \\lceil K/2 \\rceil$ approvals), we evaluate three alternatives: \\emph{accuracy-weighted vote} ($w_j \\propto \\mathrm{acc}_j$; accept if $\\sum_j w_j \\cdot \\mathbf{1}[J_j \\text{ approves}] > 0.5$), \\emph{threshold vote} (unanimity, $t{=}K$), and \\emph{Bayesian calibration} ($P(\\text{correct} \\mid \\mathbf{v}) \\propto P(\\text{correct}) \\prod_j P(v_j \\mid \\text{correct})$; accept if posterior $> 0.5$).\n47\t\n48\t\\subsection{Statistical Framework}\n49\t\\label{sec:stat_framework}\n50\t\n51\tTo disentangle the contributions of panel diversity and individual judge robustness, we fit a log-log OLS regression for each of the 12 conditions:\n52\t\\begin{equation}\n53\t\\label{eq:regression}\n54\t\\log(\\mathrm{ASR} + \\epsilon) = \\alpha + \\beta_1 \\log(K_{\\mathrm{eff}}) + \\beta_2 \\log(\\eta_{\\max} + \\epsilon),\n55\t\\end{equation}\n56\twith $\\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\\epsilon$ is analyzed in Appendix~\\ref{app:epsilon}). Standardized coefficients $\\hat{\\beta}_{\\mathrm{std}} = \\hat{\\beta} \\cdot \\mathrm{SD}(\\log x) / \\mathrm{SD}(\\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction \\citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.\n57\t\n58\tDominance analysis \\citep{budescu1993dominance} decomposes $R^2$ into each predictor's incremental contribution. GAMs with smooth terms test whether $K_{\\mathrm{eff}}$'s effect varies between targeted and shared-bias attacks.\n59\t\n60\t\\subsection{Robustness to Non-Independence}\n61\t\\label{sec:robustness_method}\n62\t\n63\tThe 455 panels share judges combinatorially (each appears in 91 panels), inducing correlated residuals. We apply three corrections: clustered SE (CR1, 3-position max-SE), mixed-effects models, and wild cluster bootstrap ($B{=}9{,}999$, Rademacher weights, max-$p$) following \\citet{cameron2008bootstrap}. Fractional logit \\citep{papke1996econometric} with clustered SE serves as an $\\epsilon$-free robustness check. Monte Carlo calibration confirms the bootstrap does not over-reject (max null rejection $1.6\\%$ at $\\alpha{=}5\\%$; Appendix~\\ref{app:monte_carlo}).\n64\t\n65\t\\begin{figure}[t]\n66\t\\centering\n67\t\\includegraphics[width=\\columnwidth]{figures/fig1_robustness_comparison.pdf}\n68\t\\caption{Significance counts (FDR $< 0.05$) for $\\eta_{\\max}$ and $K_{\\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}\n69\t\\label{fig:robustness}\n70\t\\end{figure}\n71\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7be00a4-ce0b-483f-bd56-c47ee7b6d593",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "3029caa5-a05c-4c86-a0a3-f27d75db5595",
+            "sourceToolAssistantUUID": "c7be00a4-ce0b-483f-bd56-c47ee7b6d593",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-25T19:19:40.150Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a good picture. Let me count the figures in document order:\n\n1. fig:framework (introduction, line 3)\n2. fig:keff_eta_scatter_main (threat_model, line 4)\n3. fig:aggregation_heatmap (threat_model, line 54)\n4. fig:per_model_asr_main (threat_model, line 61)\n5. fig:robustness (methodology, line 65)\n6. fig:regime_transition (results, line 4)\n7. fig:forest_plot (results, line 11)\n\nLet me verify this and find what's on page 8. Let me check the PDF compilation information:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3029caa5-a05c-4c86-a0a3-f27d75db5595",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxs28oJVxPPJBznyPA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d007f7d5-2e59-4005-a51a-f71bf06cfbc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NQZuZQQCddouhAsKhHKNjZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 50403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-25T19:19:41.361Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016FmTy9rgQAqE1CcdKVg4jj",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"page 8\\|Page 8\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log 2>/dev/null | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d007f7d5-2e59-4005-a51a-f71bf06cfbc9",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxs28oJVxPPJBznyPA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "54508300-e884-4709-8401-0d4f4d189ac1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NQZuZQQCddouhAsKhHKNjZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 50403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T19:19:41.415Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016FmTy9rgQAqE1CcdKVg4jj",
+              "type": "tool_result",
+              "content": "1089:LaTeX Warning: Reference `app:panel_design' on page 8 undefined on input line 1",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54508300-e884-4709-8401-0d4f4d189ac1",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "1ba4c4e9-3f27-44e7-b9ce-0271fabd2ea5",
+            "sourceToolAssistantUUID": "54508300-e884-4709-8401-0d4f4d189ac1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-25T19:19:41.515Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W7NJE8S3NHyZ6dgWnzSYGd",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ba4c4e9-3f27-44e7-b9ce-0271fabd2ea5",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpxs28oJVxPPJBznyPA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c0f2af9d-ceb7-4989-a264-a022e86c47e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NQZuZQQCddouhAsKhHKNjZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 50403,
+                "output_tokens": 347,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2848
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 347,
+                    "cache_read_input_tokens": 50403,
+                    "cache_creation_input_tokens": 2848,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2848,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-25T19:19:41.573Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W7NJE8S3NHyZ6dgWnzSYGd",
+              "type": "tool_result",
+              "content": "     3 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/abstract.tex\n    14 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/analysis.tex\n  1244 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex\n   118 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix_attacks.tex\n     3 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/conclusion.tex\n    23 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/introduction.tex\n    53 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex\n    70 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/methodology.tex\n    13 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/related_work.tex\n    91 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex\n    96 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/threat_model.tex\n  1728 total",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0f2af9d-ceb7-4989-a264-a022e86c47e1",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "653d8d75-9192-4e7e-8db8-c898251a5710",
+            "sourceToolAssistantUUID": "c0f2af9d-ceb7-4989-a264-a022e86c47e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-25T19:19:43.175Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me look at the results.tex more thoroughly to understand the page breaks and figures:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "653d8d75-9192-4e7e-8db8-c898251a5710",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpyAizwjdJyZWjUQ7Q3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5bc080c8-b8ff-4ede-87d5-7e0894a11a42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0158TaYGzEbUSwFkhwPpiiTx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 53251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 909,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-25T19:19:43.349Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WE9Nk3LsoJ6wBrE7E3E77T",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bc080c8-b8ff-4ede-87d5-7e0894a11a42",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpyAizwjdJyZWjUQ7Q3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8151f93c-bb50-49be-9cc7-3c78bf2c3933",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0158TaYGzEbUSwFkhwPpiiTx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 909,
+                "cache_read_input_tokens": 53251,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 909
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 53251,
+                    "cache_creation_input_tokens": 909,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 909,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-25T19:19:43.366Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WE9Nk3LsoJ6wBrE7E3E77T",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_regime_transition.pdf}\n7\t\\caption{Predictor shift across panel sizes. $\\eta_{\\max}$ significance (orange) declines from 3/12 to 2/12, while $K_{\\mathrm{eff}}$ (blue) rises from 4/12 to 7/12. Shaded region: $K^* \\in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\\alpha{=}0.05$.}\n8\t\\label{fig:regime_transition}\n9\t\\end{figure}\n10\t\n11\t\\begin{figure*}[t]\n12\t\\centering\n13\t\\includegraphics[width=0.85\\textwidth]{figures/fig5_forest_plot.pdf}\n14\t\\caption{Per-condition standardized $\\hat{\\beta}$ with 95\\% CI for $\\eta_{\\max}$ (left) and $K_{\\mathrm{eff}}$ (right) at $K{=}3$ (wild cluster bootstrap). Each row is one of the 12 experimental conditions (2 benchmarks $\\times$ 6 attacks).}\n15\t\\label{fig:forest_plot}\n16\t\\end{figure*}\n17\t\n18\t\\subsection{Weakest-Link Dominance at \\texorpdfstring{$K{=}3$}{K=3}}\n19\t\\label{sec:dominance}\n20\t\n21\tTable~\\ref{tab:dominance} reports the log-log OLS regression (Equation~\\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\\ref{tab:models}).\n22\t\n23\tUnder OLS, $K_{\\mathrm{eff}}$ is positive and FDR-significant in all 12/12 conditions. $\\eta_{\\max}$ is significant in 10/12 (exceptions: MMLU $\\times$ score manipulation and ARC $\\times$ position bias), consistent with Proposition~\\ref{thm:monotonicity}. Dominance analysis yields 10 co-dominant, 2 $K_{\\mathrm{eff}}$-dominant, and zero $\\eta_{\\max}$-dominant conditions. However, the $r = 0.70$ $K_{\\mathrm{eff}}$--$\\eta_{\\max}$ correlation raises confound concerns, and OLS ignores the non-independence of the 455 panels (Appendix~\\ref{app:keff_dist}).\n24\t\n25\tFigure~\\ref{fig:robustness} compares OLS against three corrections: both predictors attenuate under bootstrap ($\\eta_{\\max}$ 3/12, $K_{\\mathrm{eff}}$ 4/12), with clustered SE widest ($K_{\\mathrm{eff}}$ 0/12). Crossed random-effects analysis confirms $K_{\\mathrm{eff}}$ significance at $K{\\geq}5$ (Appendix~\\ref{app:crossed_re}).\n26\t\n27\t\\begin{table}[t]\n28\t\\centering\n29\t\\small\n30\t\\begin{tabular}{lcc}\n31\t\\toprule\n32\t\\textbf{Method} & $\\boldsymbol{\\eta_{\\max}}$ \\textbf{sig} & $\\boldsymbol{K_{\\mathrm{eff}}}$ \\textbf{sig} \\\\\n33\t\\midrule\n34\tOLS                    & 10/12 & 12/12 \\\\\n35\tClustered SE           & 4/12  & 0/12  \\\\\n36\tMixed effects          & 7/12  & 3/12  \\\\\n37\tWild bootstrap         & 3/12  & 4/12  \\\\\n38\tFrac.\\ logit (clust.)  & 7/12  & 9/12  \\\\\n39\t\\bottomrule\n40\t\\end{tabular}\n41\t\\caption{Inference method sensitivity at $K{=}3$ (455 panels, 12 conditions). $K_{\\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS); all methods preserve positive direction (12/12).}\n42\t\\label{tab:method_comparison}\n43\t\\end{table}\n44\t\n45\tPower analysis yields MDE $\\beta_{\\mathrm{std}} = 0.14$ at 80\\% power (Appendix~\\ref{app:power_analysis}); positive coefficient direction (12/12) is preserved across all methods.\n46\t\n47\t\\subsection{The Diminishing Weakest Link Across Panel Sizes}\n48\t\\label{sec:cross_k}\n49\t\n50\tThe $K{=}3$ pattern is method-sensitive (Table~\\ref{tab:method_comparison}), contrasting with $K{\\geq}5$ where $K_{\\mathrm{eff}}$'s dominance is consistent (bootstrap 7/12; fractional logit 9/12). We repeat the bootstrap at $K \\in \\{3, 5, 7\\}$ with max-$p$ correction.\n51\t\n52\tMeta-analytic pooling \\citep{dersimonian1986meta} quantifies trajectories independent of significance thresholds. $\\eta_{\\max}$'s pooled $\\hat{\\beta}_{\\mathrm{std}}$ declines monotonically: $0.264$ [$0.158, 0.369$] at $K{=}3$, $0.102$ [$-0.055, 0.259$] at $K{=}5$, $0.084$ [$-0.083, 0.251$] at $K{=}7$; CI crosses zero at $K{\\geq}5$. $K_{\\mathrm{eff}}$'s pooled coefficient remains positive ($0.356$--$0.436$, CI excluding zero; $I^2{>}87\\%$; Appendix~\\ref{app:meta_analytic_details}). Figures~\\ref{fig:regime_transition}--\\ref{fig:forest_plot} show significance counts and per-condition effect sizes. The $\\eta_{\\max}$ decline holds under both $K_{\\mathrm{eff}}$ and $\\kappa$-diversity.\n53\t\n54\t\n55\t\\subsection{Random vs.\\ Adaptive Fault Contrast}\n56\t\\label{sec:rf_contrast}\n57\t\n58\tRandom faults yield $R^2 = 0.730$ [$0.718, 0.745$]; adaptive attack reduces predictability ($R^2{=}0.285$ at $K{=}5$) but $K_{\\mathrm{eff}}$ retains power (7/12). The positive $K_{\\mathrm{eff}}$ coefficient under adaptive attack contrasts with the Condorcet Jury Theorem \\citep{condorcet1785essai}: under adversarial manipulation, independent judges present distinct attack surfaces rather than redundant defenses \\citep{goodfellow2015adversarial,kariyappa2019improving}.\n59\t\n60\t\\subsection{Positive Direction Across Attack Types}\n61\t\\label{sec:gam_taxonomy}\n62\t\n63\tGAM bootstrap confirms positive $K_{\\mathrm{eff}}$ direction in all 12 conditions (88.9--100\\% positive rate; Figure~\\ref{fig:gam_split}), with no magnitude difference between targeted and shared-bias attacks (Kruskal--Wallis $p{=}0.200$, $0.423$).\n64\t\n65\t\\subsection{Aggregation Rules and the Diversity Channel}\n66\t\\label{sec:aggregation}\n67\t\n68\tTable~\\ref{tab:aggregation} reports regression results for four aggregation methods across all 12 conditions.\n69\t\n70\t\\begin{table}[t]\n71\t\\centering\n72\t\\small\n73\t\\begin{tabular}{lcccc}\n74\t\\toprule\n75\t\\textbf{Method} & \\textbf{$\\eta_{\\max}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ sig} & \\textbf{$K_{\\mathrm{eff}}$ $\\beta$ dir.} & \\textbf{$R^2$} \\\\\n76\t\\midrule\n77\tThreshold       & 12/12 & 11/12 & 11+/0$-$  & 0.829 \\\\\n78\tMajority        & 10/12 & 12/12 & 12+/0$-$  & 0.327 \\\\\n79\tWeighted        & 9/12  & 12/12 & 12+/0$-$  & 0.328 \\\\\n80\tBayesian        & 9/12  & 6/12  & 5+/1$-$   & 0.087 \\\\\n81\t\\bottomrule\n82\t\\end{tabular}\n83\t\\caption{Aggregation method comparison ($K{=}3$, 15 models, 455 panels, OLS log-log). Significance counts are FDR-corrected across 12 conditions. $R^2$ is the mean across conditions. Table~\\ref{tab:dominance} uses per-condition FDR; this table uses pooled FDR across conditions.}\n84\t\\label{tab:aggregation}\n85\t\\end{table}\n86\t\n87\t\n88\tPredictability ranges from threshold ($R^2{=}0.829$) to Bayesian ($R^2{=}0.087$), implying panel composition is almost unpredictive under calibrated aggregation. Bayesian calibration attenuates $K_{\\mathrm{eff}}$ (5+/1$-$) but $\\eta_{\\max}$ persists (9/12). At $K{=}5$ all methods converge (7/12; Appendix~\\ref{app:aggregation_k5}); at $K{=}7$ Bayesian neutralization returns (Appendix~\\ref{app:aggregation_k7}).\n89\t\n90\t\\paragraph{Fractional Logit Robustness.}\n91\tFractional logit \\citep{papke1996econometric} with clustered SE shows consistent positive association: $K_{\\mathrm{eff}}$ significance is 9/12 across all panel sizes ($K{=}3,5,7$), with 98.6\\% directional concordance with OLS (71/72; Appendix~\\ref{app:robustness_checks}).\n92\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8151f93c-bb50-49be-9cc7-3c78bf2c3933",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "c997c22f-7f62-460a-b3b4-3eccc7dc72e0",
+            "sourceToolAssistantUUID": "8151f93c-bb50-49be-9cc7-3c78bf2c3933",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-25T19:19:45.051Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me count more carefully. The paper structure shows Results section starts after methodology. Based on the main.tex inclusion order and the number of pages, page 8 would likely be in the results section. Let me check the main.log for page assignments:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c997c22f-7f62-460a-b3b4-3eccc7dc72e0",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpyJVpYSjvrgbTE3wFm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a4fbb805-978f-4329-a823-80e56fcaa2ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AtbQcF4kwLAdXw3vziejVU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 54160,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2848,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-25T19:19:46.257Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FeWT1wyQ9p5vFuwhLpGTf6",
+              "name": "Bash",
+              "input": {
+                "command": "grep -E \"\\\\[8\\\\]|page 8|Output page 8\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.log 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4fbb805-978f-4329-a823-80e56fcaa2ae",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpyJVpYSjvrgbTE3wFm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0b8c90c8-828f-4bbf-ba1f-739c2ee6eca2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AtbQcF4kwLAdXw3vziejVU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2848,
+                "cache_read_input_tokens": 54160,
+                "output_tokens": 173,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2848
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 173,
+                    "cache_read_input_tokens": 54160,
+                    "cache_creation_input_tokens": 2848,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2848,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-25T19:19:46.341Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FeWT1wyQ9p5vFuwhLpGTf6",
+              "type": "tool_result",
+              "content": "LaTeX Warning: Reference `app:panel_design' on page 8 undefined on input line 1",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b8c90c8-828f-4bbf-ba1f-739c2ee6eca2",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "66090871-a51c-4e90-a638-77aa8d439942",
+            "sourceToolAssistantUUID": "0b8c90c8-828f-4bbf-ba1f-739c2ee6eca2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-25T19:19:47.520Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for which figures are listed as figure 7 in the document:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66090871-a51c-4e90-a638-77aa8d439942",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpyXA5GKqLpMqtoXBUS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bdaece5b-07df-45bc-9bb0-1b43e776dc8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011zKpZkXgVuvFuuBNphNMz9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 57008,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 208,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-25T19:19:47.838Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KR47yRHfkP5UV95YSgj9Um",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i \"Figure 7\\|Fig. 7\\|fig 7\" /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bdaece5b-07df-45bc-9bb0-1b43e776dc8c",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpyXA5GKqLpMqtoXBUS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea8854a1-d2bc-441e-afbf-395dc1708a6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011zKpZkXgVuvFuuBNphNMz9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 208,
+                "cache_read_input_tokens": 57008,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 208,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-25T19:19:47.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KR47yRHfkP5UV95YSgj9Um",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea8854a1-d2bc-441e-afbf-395dc1708a6e",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "cfce686f-5983-4fb6-b2df-1a2e9868396e",
+            "sourceToolAssistantUUID": "ea8854a1-d2bc-441e-afbf-395dc1708a6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-25T19:19:49.225Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the appendix.tex file for all the figures it contains:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfce686f-5983-4fb6-b2df-1a2e9868396e",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpye7mxzU4gfg5sd9e8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2ac9916d-19b1-484d-86e4-e68565ab281b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JVN9uKVqQskjiHvNzAkJRi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 143,
+                "cache_read_input_tokens": 57216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 143,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-25T19:19:49.442Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H2F9zrwrF2DF356usfTuvZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ac9916d-19b1-484d-86e4-e68565ab281b",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpye7mxzU4gfg5sd9e8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7605a28d-4e20-4cfc-a710-085cd80681a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JVN9uKVqQskjiHvNzAkJRi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 143,
+                "cache_read_input_tokens": 57216,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 143
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 57216,
+                    "cache_creation_input_tokens": 143,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 143,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-25T19:19:49.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H2F9zrwrF2DF356usfTuvZ",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Proof of Proposition~\\ref{thm:monotonicity}}\n4\t\\label{app:proof}\n5\t\n6\tThe replaced judge $J_K'$ is \\emph{pivotal} exactly when $t{-}1$ of the remaining $K{-}1$ judges have already failed. Formally, let $S = \\sum_{j=1}^{K-1} X_j^a$ denote the number of failures among the shared judges. The panel fails if and only if the $K$-th judge also fails when $S = t{-}1$, or when $S \\geq t$ regardless of the $K$-th judge:\n7\t\\begin{align}\n8\t\\mathrm{ASR}(\\mathcal{P}, a) &= \\Pr(S \\geq t) + \\Pr(S = t{-}1) \\cdot \\Pr(X_K^a {=} 1 \\mid S = t{-}1).\n9\t\\end{align}\n10\tSince $\\Pr(X_{K'}^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K}) \\geq \\Pr(X_K^a {=} 1 \\mid \\mathbf{X}_{-K}^a {=} \\mathbf{x}_{-K})$ for all attacks $a$ and realizations $\\mathbf{x}_{-K}$ (by hypothesis), the second term is weakly larger for $\\mathcal{P}'$ than for $\\mathcal{P}$ under every attack. Taking the supremum over attacks preserves the inequality: $\\mathrm{ASR}^*(\\mathcal{P}') \\geq \\mathrm{ASR}^*(\\mathcal{P})$. The result holds under arbitrary inter-judge correlations and any attack space $\\mathcal{A}$.\n11\t\n12\t\\section{Robustness Correction Methods}\n13\t\\label{app:robustness_methods}\n14\t\n15\tThe 455 panels are constructed combinatorially from 15 shared judges: each judge appears in $\\binom{14}{2} = 91$ panels, inducing correlated residuals across panel-level observations. Standard OLS assumes independent errors, potentially inflating significance. We apply three corrections.\n16\t\n17\t\\paragraph{Clustered Standard Errors.} Because each panel of $K{=}3$ judges does not map to a single cluster, we perform three separate one-way clusterings (one for each judge position in the ordered panel tuple) using CR1 bias-corrected sandwich estimators (13 clusters per position). The reported standard error for each coefficient is the maximum across the three clusterings, yielding the most conservative inference.\n18\t\n19\t\\paragraph{Mixed Effects.} For each of the three judge positions, we fit a linear mixed-effects model with a random intercept for the judge occupying that position, estimating $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ as fixed effects. The reported $p$-value for each coefficient is the maximum across the three models.\n20\t\n21\t\\paragraph{Wild Cluster Bootstrap.} We perform $B{=}9{,}999$ bootstrap resamples using Rademacher weights, clustering by each of the three panel positions in turn and taking the maximum $p$-value across positions (the most conservative aggregation). This approach avoids distributional assumptions on the cluster structure.\n22\t\n23\t\\subsection{Bootstrap Convergence and Weight Diagnostics}\n24\t\\label{app:bootstrap_convergence}\n25\t\n26\tOur primary wild cluster bootstrap uses $B{=}9{,}999$ Rademacher resamples. We assess convergence by comparing significance counts at $B \\in \\{999, 4{,}999, 9{,}999\\}$ and contrasting Rademacher with Mammen two-point weights.\n27\t\n28\t\\paragraph{$B$-Value Stability.} Table~\\ref{tab:bootstrap_B} reports FDR-significant $K_{\\mathrm{eff}}$ counts across bootstrap replications. Significance counts stabilize by $B{=}4{,}999$: the maximum discrepancy between $B{=}4{,}999$ and $B{=}9{,}999$ is $\\pm 1$ condition across all three $K$ values, and the mean absolute $p$-value shift is ${<}0.003$. The $B{=}999$ configuration shows occasional instability (up to $\\pm 2$ discrepancy at $K{=}5$), justifying our choice of $B{=}9{,}999$.\n29\t\n30\t\\begin{table}[h]\n31\t\\centering\n32\t\\small\n33\t\\begin{tabular}{rcccc}\n34\t\\toprule\n35\t$\\boldsymbol{K}$ & $\\boldsymbol{B{=}999}$ & $\\boldsymbol{B{=}4{,}999}$ & $\\boldsymbol{B{=}9{,}999}$ & $\\boldsymbol{\\Delta_{999 \\to 9999}}$ \\\\\n36\t\\midrule\n37\t3 & 3/12 & 4/12 & 4/12 & $+1$ \\\\\n38\t5 & 5/12 & 7/12 & 7/12 & $+2$ \\\\\n39\t7 & 7/12 & 8/12 & 8/12 & $+1$ \\\\\n40\t\\bottomrule\n41\t\\end{tabular}\n42\t\\caption{Bootstrap convergence: FDR-significant $K_{\\mathrm{eff}}$ counts by number of resamples ($B$). Wild cluster bootstrap with Rademacher weights, max-$p$ across $K$ positions, BH FDR $\\alpha{=}0.05$. Counts stabilize by $B{=}4{,}999$.}\n43\t\\label{tab:bootstrap_B}\n44\t\\end{table}\n45\t\n46\t\\paragraph{Rademacher vs.\\ Mammen Weights.} Rademacher weights assign $\\pm 1$ with equal probability; Mammen two-point weights use $\\{-(\\sqrt{5}-1)/2, (\\sqrt{5}+1)/2\\}$ with asymmetric probabilities to preserve the third moment \\citep{mackinnon2018wild}. In our setting, both weight distributions yield identical significance counts at all three $K$ values (4/12, 7/12, 8/12), with maximum $p$-value divergence of 0.008 across all 36 conditions. The Webb six-point distribution (used for the Shannon MI comparison in Appendix~\\ref{app:shannon_entropy}) produces marginally different results at $K{=}3$ due to the low cluster count ($G{=}13$), where the discrete support of six-point weights interacts with the small number of sign permutations. All primary analyses use Rademacher weights for simplicity and comparability with the Monte Carlo calibration (Appendix~\\ref{app:monte_carlo}).\n47\t\n48\t\\paragraph{Max-$p$ vs.\\ Alternative Aggregation.} We aggregate $p$-values across $K$ position-clusterings by taking the maximum (most conservative). Alternative aggregations---median $p$ and Bonferroni-corrected minimum $p$---produce slightly different significance counts. At $K{=}5$: max-$p$ yields 7/12, median yields 8/12, and Bonferroni-min yields 6/12. The max-$p$ approach is recommended for combinatorial designs where cluster membership is non-nested \\citep{mackinnon2018wild}, since it guards against inflated significance from any single clustering being anti-conservative. All reported results use max-$p$.\n49\t\n50\t\\section{Crossed Random Effects Analysis}\n51\t\\label{app:crossed_re}\n52\t\n53\tThe one-way clustering in Appendix~\\ref{app:robustness_methods} treats each judge position independently, but panels exhibit \\emph{crossed} random effects: judge $j$ may occupy position~1 in one panel and position~2 in another, inducing a multi-membership structure. At $K{=}7$, each judge appears in $\\binom{14}{6} = 3{,}003$ of $6{,}435$ panels (46.7\\%), making crossed membership the dominant source of residual correlation.\n54\t\n55\tWe fit multi-membership cluster-robust variance estimators (CRVE) using a sandwich estimator with $t(G{-}1) = t(14)$ reference distribution, where $G{=}15$ is the number of judges. Table~\\ref{tab:crossed_re} compares bootstrap and crossed RE significance.\n56\t\n57\t\\begin{table}[h]\n58\t\\centering\n59\t\\small\n60\t\\begin{tabular}{rcccc}\n61\t\\toprule\n62\t& \\multicolumn{2}{c}{\\textbf{Bootstrap}} & \\multicolumn{2}{c}{\\textbf{Crossed RE (FDR)}} \\\\\n63\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n64\t$\\boldsymbol{K}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & $\\boldsymbol{\\eta_{\\max}}$ & $\\boldsymbol{K_{\\mathrm{eff}}}$ & $\\boldsymbol{\\eta_{\\max}}$ \\\\\n65\t\\midrule\n66\t3 & 4/12 & 3/12 & 0/12 & 1/12 \\\\\n67\t5 & 7/12 & 2/12 & \\textbf{8/12} & 3/12 \\\\\n68\t7 & 8/12 & 1/12 & \\textbf{8/12} & 2/12 \\\\\n69\t\\bottomrule\n70\t\\end{tabular}\n71\t\\caption{Crossed random effects vs.\\ wild cluster bootstrap significance (BH FDR $\\alpha{=}0.05$). Multi-membership CRVE with $t(14)$ distribution. At $K{\\geq}5$, $K_{\\mathrm{eff}}$ retains 8/12 significance under crossed RE, matching or exceeding bootstrap. At $K{=}3$, the conservative $t(14)$ distribution with only 455 panels produces attenuation to 0/12 (raw $p$-values: 5/12 significant).}\n72\t\\label{tab:crossed_re}\n73\t\\end{table}\n74\t\n75\tSE inflation increases with $K$ as judge overlap intensifies: $1.75$--$4.96{\\times}$ at $K{=}3$, $6$--$12{\\times}$ at $K{=}5$, $10$--$19{\\times}$ at $K{=}7$. Despite this inflation, $K_{\\mathrm{eff}}$ retains 8/12 significance at $K{\\geq}5$ because the effect size is large enough to survive the correction. The $K{=}3$ attenuation (0/12) reflects two compounding factors: the conservative $t(14)$ reference distribution penalizes small-sample inference, and the effect sizes at $K{=}3$ are insufficient to overcome the inflated SEs. Raw (uncorrected) $p$-values show 5/12 conditions significant at $K{=}3$, confirming that the attenuation reflects degrees-of-freedom conservatism rather than absent effects.\n76\t\n77\t\\section{Extended Analysis}\n78\t\\label{app:extended_analysis}\n79\t\n80\t\\begin{figure}[t]\n81\t\\centering\n82\t\\includegraphics[width=\\columnwidth]{figures/fig_keff_eta_scatter.pdf}\n83\t\\caption{Panel-level correlation between $K_{\\mathrm{eff}}$ and $\\eta_{\\max}$ at $K{=}5$ ($n{=}3{,}003$ panels). Full model pool (gray, $r{=}0.81$) exhibits strong collinearity; capability-matched Pool~A (orange, $r{=}0.50$, 126 panels) shows reduced confounding.}\n84\t\\label{fig:keff_eta_scatter}\n85\t\\end{figure}\n86\t\n87\t\\begin{figure}[t]\n88\t\\centering\n89\t\\includegraphics[width=\\columnwidth]{figures/fig_dominance_heatmap.pdf}\n90\t\\caption{Per-condition predictor dominance across panel sizes (wild cluster bootstrap, BH FDR $\\alpha{=}0.05$). At $K{=}3$, dominance is heterogeneous (co-dominant, $K_{\\mathrm{eff}}$-only, $\\eta_{\\max}$-only, and non-significant conditions coexist); at $K{\\geq}5$, $K_{\\mathrm{eff}}$ dominates uniformly while $\\eta_{\\max}$ diminishes substantially.}\n91\t\\label{fig:dominance_heatmap}\n92\t\\end{figure}\n93\t\n94\t\\subsection{Per-Condition Regression Results}\n95\t\\label{app:per_condition_regression}\n96\t\n97\tTables~\\ref{tab:percond_k3}--\\ref{tab:percond_k7} report the full per-condition regression results underlying the significance counts in the main text. For each of 12 conditions (2 benchmarks $\\times$ 6 attacks), we report the standardized OLS coefficients ($\\hat{\\beta}_{\\mathrm{std}}$), $R^2$, and wild cluster bootstrap $p$-values (max-$p$ across $K$ position clusters, BH FDR $\\alpha{=}0.05$).\n98\t\n99\t\\begin{table*}[t]\n100\t\\centering"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7605a28d-4e20-4cfc-a710-085cd80681a8",
+            "isSidechain": true,
+            "promptId": "c89e5600-fd68-4f90-a420-5cc88736c22d",
+            "agentId": "a0c75933e8b842ba4",
+            "type": "user",
+            "uuid": "ce1cab31-7ec4-4d9f-9c4c-bfc663d03597",
+            "sourceToolAssistantUUID": "7605a28d-4e20-4cfc-a710-085cd80681a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-25T19:19:55.704Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now I need to establish the figure numbering. Let me get the count of all figures from the main document order:\n\nBased on my analysis, here's the complete report on the figures:\n\n**FINDINGS:**\n\n1. **Main LaTeX file:** `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/main.tex`\n\n2. **Figure 7 location:** Based on the document structure and figure order:\n   - Fig 1: fig:framework (introduction.tex, line 3)\n   - Fig 2: fig:keff_eta_scatter_main (threat_model.tex, line 4)\n   - Fig 3: fig:aggregation_heatmap (threat_model.tex, line 54)\n   - Fig 4: fig:per_model_asr_main (threat_model.tex, line 61)\n   - Fig 5: fig:robustness (methodology.tex, line 65)\n   - Fig 6: fig:regime_transition (results.tex, line 4)\n   - **Fig 7: fig:forest_plot** - `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/results.tex`, **line 11-16**\n   \n   Figure 7 is a full-width forest plot showing standardized beta coefficients with confidence intervals for eta_max and K_eff at K=3 across all 12 experimental conditions.\n\n3. **Figures on page 8:** The Results section (which begins around pages 6-8) contains:\n   - **Fig 7: fig:forest_plot** (the full-width forest plot, results.tex line 11)\n   - And related tables including Table 1 (dominance results) and Table 2 (method comparison)\n   \n   Page 8 is primarily in the Results section covering the \"Weakest-Link Dominance at K=3\" subsection with Fig 7 and related statistical tables.\n\n4. **Appendix file location:** `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/appendix.tex` - **line 1**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce1cab31-7ec4-4d9f-9c4c-bfc663d03597",
+            "isSidechain": true,
+            "agentId": "a0c75933e8b842ba4",
+            "requestId": "req_011CbPpykaiVNAWxg3E3wZWN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4b798614-2be2-4474-9761-c67010d764a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/agent_0c5aa23b",
+            "sessionId": "85394c36-cd8c-4ca7-b26c-25e48828e83e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "imperative-enchanting-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01J4p4JkGyDhVWv2mKTmXtH5",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 3630,
+                "cache_read_input_tokens": 57359,
+                "output_tokens": 544,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3630
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 544,
+                    "cache_read_input_tokens": 57359,
+                    "cache_creation_input_tokens": 3630,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3630,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000052"
+        }
+      ],
+      "message_count": 52
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-agent-ml-research-idea-gen-0519-2-projects-cert-manip-resist-ev-copy-2.md"
+}

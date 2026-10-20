@@ -1,0 +1,3901 @@
+# Research conversation: You are researching catastrophic forgetting in multi-stage reinforcement learning for VLMs/LLMs. I need to find: 1. What
+
+**The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-afcc3bc962b03cfa2.jsonl`
+- **Structured JSON:** [`395c6363218033c95a77.json`](../../sessions/39/395c6363218033c95a77.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+62 recorded events
+
+### User
+
+_source line 1 · 2026-05-27T19:25:57.833Z_
+
+You are researching catastrophic forgetting in multi-stage reinforcement learning for VLMs/LLMs. I need to find:
+
+1. What anti-forgetting mechanisms have been used in staged RL training for language/vision models? Search for:
+   - "catastrophic forgetting multi-stage reinforcement learning VLM"
+   - "replay buffer GRPO curriculum learning"
+   - "elastic weight consolidation vision language model"
+   - "progressive training forgetting mitigation LLM"
+
+2. Specifically, how does ReVisual-R1 handle forgetting between its 3 stages?
+
+3. Search for "VL-Cogito progressive curriculum RL forgetting" - this paper uses progressive curriculum RL
+
+4. Search for "continual learning reinforcement learning large language model 2025 2026"
+
+5. Search for "Negative to Positive Co-learning Aggressive Modality Dropout" - understand how modality dropout affects forgetting
+
+For each relevant finding, extract:
+- The specific anti-forgetting mechanism used
+- How effective it was (quantitative results if available)
+- Whether it's applicable to a 5-stage GRPO curriculum
+
+Report practical recommendations for a 5-stage progressive RL curriculum that strips textual information gradually.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "7b3a9ae1-a215-4956-a5bb-ccb5f5e0c624",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T19:25:57.836Z_
+
+```json
+{
+  "parentUuid": "7b3a9ae1-a215-4956-a5bb-ccb5f5e0c624",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1253138b-9ebe-4516-9516-1408ad053de1",
+  "timestamp": "2026-05-27T19:25:57.836Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-27T19:25:57.836Z_
+
+```json
+{
+  "parentUuid": "1253138b-9ebe-4516-9516-1408ad053de1",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "163a006f-57f7-44f1-ad19-085605a56b6d",
+  "timestamp": "2026-05-27T19:25:57.836Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-27T19:26:00.807Z_
+
+
+
+I'll conduct a comprehensive web search on catastrophic forgetting in multi-stage reinforcement learning for VLMs/LLMs. Let me search for all the topics in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "163a006f-57f7-44f1-ad19-085605a56b6d",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4jcvafZaG2dEzVWmq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "610bce96-ae10-410e-b754-fac4ffb20998",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014et2jo5kPjxQWmhB85mDbs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 7411,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1627,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-27T19:26:01.195Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01B4mN1DVfG7gWfR8gQU7emb`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "610bce96-ae10-410e-b754-fac4ffb20998",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4jcvafZaG2dEzVWmq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8689b964-634d-437b-8861-07c2ed1e7c1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014et2jo5kPjxQWmhB85mDbs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 7411,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1627
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 7411,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1627,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-27T19:26:01.198Z_
+
+<details><summary>↩ Tool result · `toolu_01B4mN1DVfG7gWfR8gQU7emb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8689b964-634d-437b-8861-07c2ed1e7c1a",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "439b8cf5-5548-4deb-b8aa-a073a3af4676",
+  "sourceToolAssistantUUID": "8689b964-634d-437b-8861-07c2ed1e7c1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T19:26:04.686Z_
+
+
+
+Now let me run all the searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "439b8cf5-5548-4deb-b8aa-a073a3af4676",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4zLx3UhUS4JGRwziy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "31ff1cc2-9e23-4462-a018-4133dc3f611b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V92VRUVSEnYiA8AfUu4nT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 9038,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 645,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-27T19:26:05.190Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q1u47NBHR8j4X1N1YjP5F8`</summary>
+
+```json
+{
+  "query": "catastrophic forgetting multi-stage reinforcement learning VLM vision language model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31ff1cc2-9e23-4462-a018-4133dc3f611b",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4zLx3UhUS4JGRwziy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9b123101-a3db-48a8-8bcc-53fc19d6997a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V92VRUVSEnYiA8AfUu4nT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 9038,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 645,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T19:26:05.639Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015rhgMYowu4ZBjDbptUoaBA`</summary>
+
+```json
+{
+  "query": "replay buffer GRPO curriculum learning forgetting mitigation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b123101-a3db-48a8-8bcc-53fc19d6997a",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4zLx3UhUS4JGRwziy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d1660e9f-6ef4-4271-8bf0-21b416f1384a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V92VRUVSEnYiA8AfUu4nT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 9038,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 645,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-27T19:26:06.264Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RVaPsuGRmecGVfdaR2xjMs`</summary>
+
+```json
+{
+  "query": "elastic weight consolidation vision language model reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1660e9f-6ef4-4271-8bf0-21b416f1384a",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4zLx3UhUS4JGRwziy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "12b076ca-66f1-4400-974d-2d141bf6bf65",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V92VRUVSEnYiA8AfUu4nT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 9038,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 645,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-27T19:26:06.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014tAMGVJvEy4k9Xm5KVWPfp`</summary>
+
+```json
+{
+  "query": "progressive training forgetting mitigation LLM reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12b076ca-66f1-4400-974d-2d141bf6bf65",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4zLx3UhUS4JGRwziy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "65e944ad-2256-420e-a30f-e64f53cc43e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V92VRUVSEnYiA8AfUu4nT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 9038,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 645,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T19:26:06.646Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015LN9FBMC98zCkA1FvdKTxh`</summary>
+
+```json
+{
+  "query": "ReVisual-R1 three stages forgetting reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65e944ad-2256-420e-a30f-e64f53cc43e4",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd4zLx3UhUS4JGRwziy",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ef0881b5-2613-4966-918e-f45a4d6acb77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V92VRUVSEnYiA8AfUu4nT5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 645,
+      "cache_read_input_tokens": 9038,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 645,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T19:26:10.658Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1u47NBHR8j4X1N1YjP5F8`</summary>
+
+```text
+Web search results for query: "catastrophic forgetting multi-stage reinforcement learning VLM vision language model"
+
+Links: [{"title":"(PDF) Multi-task Learning and Catastrophic Forgetting in Continual Reinforcement Learning","url":"https://www.researchgate.net/publication/335962024_Multi-task_Learning_and_Catastrophic_Forgetting_in_Continual_Reinforcement_Learning"},{"title":"UC Berkeley UC Berkeley Electronic Theses and Dissertations Title","url":"https://escholarship.org/content/qt62z9m7xg/qt62z9m7xg.pdf"},{"title":"Multi-task Learning and Catastrophic Forgetting in Continual   Reinforcement Learning","url":"https://arxiv.org/pdf/1909.10008"},{"title":"An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-Tuning | Request PDF","url":"https://www.researchgate.net/publication/395308608_An_Empirical_Study_of_Catastrophic_Forgetting_in_Large_Language_Models_During_Continual_Fine-Tuning"},{"title":"Enhanced Continual Learning of Vision-Language Models with Model Fusion","url":"https://arxiv.org/pdf/2503.10705"}]
+
+Based on the search results, I found relevant research on catastrophic forgetting in multi-stage reinforcement learning and vision-language models:
+
+## Key Findings:
+
+**Catastrophic Forgetting in RL and VLMs:**
+Vision-Language Models remain susceptible to catastrophic forgetting when fine-tuned for multiple downstream tasks, despite their demonstrated success. Conventional continual learning approaches are insufficient for VLM fine-tuning, as they struggle to maintain the crucial zero-shot capabilities that make these models valuable.
+
+**Multi-Task RL Approaches:**
+Research has explored whether multi-task deep RL algorithms trained with elastic weight consolidation (EWC) can overcome catastrophic forgetting in previous tasks while maintaining performance on new tasks.
+
+**VLM Fine-Tuning with RL:**
+Recent work has introduced evaluation frameworks to assess catastrophic forgetting in multimodal language models, along with novel frameworks for fine-tuning VLMs with RL incorporating chain-of-thought prompting.
+
+**Domain Specialization:**
+Research shows that structured reasoning formats through RL can preserve a model's core visual-language abilities while enabling domain specialization in VLMs.
+
+The research indicates this is an active area of investigation, with multiple approaches being developed to address the catastrophic forgetting problem when training VLMs with reinforcement learning across multiple stages or tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b123101-a3db-48a8-8bcc-53fc19d6997a",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "de60ce6d-7d28-4487-a4af-4a740df49132",
+  "sourceToolAssistantUUID": "9b123101-a3db-48a8-8bcc-53fc19d6997a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T19:26:12.664Z_
+
+<details><summary>↩ Tool result · `toolu_015rhgMYowu4ZBjDbptUoaBA`</summary>
+
+```text
+Web search results for query: "replay buffer GRPO curriculum learning forgetting mitigation"
+
+Links: [{"title":"Prioritized Replay for RL Post-training Mehdi Fatemi mehdi.fatemi@ieee.org","url":"https://www.arxiv.org/pdf/2601.02648"},{"title":"AdaCuRL: Adaptive Curriculum Reinforcement Learning with Invalid Sample Mitigation and Historical Revisiting","url":"https://arxiv.org/html/2511.09478"},{"title":"Distilled Replay: Overcoming Forgetting through Synthetic Samples","url":"https://arxiv.org/pdf/2103.15851"},{"title":"Replay Buffer: Mechanisms and Applications","url":"https://www.emergentmind.com/topics/replay-buffer"},{"title":"Predicting the Susceptibility of Examples to Catastrophic Forgetting","url":"https://arxiv.org/html/2406.09935"},{"title":"CORE: Mitigating Catastrophic Forgetting in Continual Learning through   Cognitive Replay","url":"https://arxiv.org/pdf/2402.01348"},{"title":"Map-based experience replay: a memory-efficient solution to catastrophic forgetting in reinforcement learning - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10333526/"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## GRPO with Curriculum Learning and Forgetting Mitigation
+
+Recent work addresses the challenges of Gradient Starvation and Policy Degradation in GRPO training caused by random data sampling through curriculum RL approaches that dynamically adjust training difficulty based on the model's mastery of current samples.
+
+One approach incorporates historical data replay and a KL divergence term to prevent reasoning deterioration.
+
+## Replay Buffer Mechanisms for Forgetting
+
+In continual and streaming learning, replay buffers are crucial for mitigating catastrophic forgetting. Prioritized sampling can substantially improve learning speed and final performance.
+
+## Adaptive Approaches
+
+Rather than treating every task and data sample equally, approaches like CORE use Adaptive Quantity Allocation and Quality-Focused Data Selection strategies that adaptively modulate replay buffer allocation for each task based on its forgetting rate, while selecting representative data that encapsulates task characteristics.
+
+The search results show active research combining these three concepts—replay buffers, curriculum learning, and forgetting mitigation—particularly in the context of GRPO-based training for reasoning-oriented reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1660e9f-6ef4-4271-8bf0-21b416f1384a",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "e3a62303-9932-4a66-af66-cc9a6c96472f",
+  "sourceToolAssistantUUID": "d1660e9f-6ef4-4271-8bf0-21b416f1384a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T19:26:12.708Z_
+
+<details><summary>↩ Tool result · `toolu_01RVaPsuGRmecGVfdaR2xjMs`</summary>
+
+```text
+Web search results for query: "elastic weight consolidation vision language model reinforcement learning"
+
+Links: [{"title":"Prompt-Aware Adaptive Elastic Weight Consolidation for Continual Learning in Medical Vision-Language Models | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-6950-2_25"},{"title":"Elastic Weight Consolidation Done Right for Continual Learning","url":"https://arxiv.org/pdf/2603.18596"},{"title":"Prompt-Aware Adaptive Elastic Weight Consolidation for Continual Learning in Medical Vision-Language Models","url":"https://arxiv.org/html/2511.20732"},{"title":"[2511.20732] Prompt-Aware Adaptive Elastic Weight Consolidation for Continual Learning in Medical Vision-Language Models","url":"https://arxiv.org/abs/2511.20732"},{"title":"Stabilizing Elastic Weight Consolidation method in practical ML tasks and using","url":"https://arxiv.org/pdf/2109.10021"},{"title":"Elastic Weight Consolidation for Full-Parameter Continual Pre-Training of Gemma2","url":"https://arxiv.org/html/2505.05946v1"}]
+
+I found several relevant research papers on elastic weight consolidation applied to vision-language models. Here are the key findings:
+
+## Prompt-Aware Adaptive Elastic Weight Consolidation for Medical Vision-Language Models
+
+Recent research introduced Prompt-Aware Adaptive Elastic Weight Consolidation (PA-EWC), a novel continual learning approach that addresses catastrophic forgetting through prompt-guided parameter specialization. This approach is particularly relevant for medical AI systems deployed in clinical settings, where models must learn new imaging protocols while retaining prior diagnostic capabilities, and preserve complex cross-modal alignments between medical images and clinical terminology across diverse imaging modalities.
+
+The method systematically categorizes model parameters based on their functional roles in processing visual-descriptive, spatial-guided, and medical-semantic information, enabling targeted protection of critical knowledge while allowing adaptation to new clinical requirements. Experiments across five medical imaging datasets demonstrate that PA-EWC reduces catastrophic forgetting by up to 17.58% while maintaining competitive computational efficiency.
+
+## Elastic Weight Consolidation Applications
+
+The search results also show that elastic weight consolidation is being applied to multimodal continual learning for vision-language models, and EWC regularisation allows mitigation of catastrophic forgetting effects and can be beneficial for learning new tasks with large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12b076ca-66f1-4400-974d-2d141bf6bf65",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "e5ff6b09-6451-4dcc-957c-8417dbf23f1a",
+  "sourceToolAssistantUUID": "12b076ca-66f1-4400-974d-2d141bf6bf65",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T19:26:13.753Z_
+
+<details><summary>↩ Tool result · `toolu_014tAMGVJvEy4k9Xm5KVWPfp`</summary>
+
+```text
+Web search results for query: "progressive training forgetting mitigation LLM reinforcement learning"
+
+Links: [{"title":"Catastrophic Forgetting in Large Language Models (LLMs): Causes, Impacts, and Solutions | by ALSAFAK KAMAL | Medium","url":"https://medium.com/@kamalasker007/catastrophic-forgetting-in-large-language-models-llms-causes-impacts-and-solutions-0912908c075a"},{"title":"Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting","url":"https://arxiv.org/pdf/2510.18874"},{"title":"Continual Learning with RL for LLMs","url":"https://cameronrwolfe.substack.com/p/rl-continual-learning"},{"title":"Mitigating Catastrophic Forgetting in Continual Learning through Model Growth","url":"https://arxiv.org/pdf/2509.01213"},{"title":"Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.04454v1"},{"title":"Mitigating Forgetting in LLM Supervised Fine-Tuning and Preference Learning | OpenReview","url":"https://openreview.net/forum?id=YeErX16hMC"},{"title":"CapTrack: Multifaceted Evaluation of Forgetting in LLM Post-Training","url":"https://arxiv.org/html/2603.06610"},{"title":"[Literature Review] Mitigating Forgetting in LLM Supervised Fine-Tuning and Preference Learning","url":"https://www.themoonlight.io/en/review/mitigating-forgetting-in-llm-supervised-fine-tuning-and-preference-learning"}]
+
+Based on the search results, here's what I found about progressive training, forgetting mitigation, and LLM reinforcement learning:
+
+## Key Findings
+
+**Catastrophic Forgetting in LLM Post-Training**
+
+Adapting language models to new target tasks during post-training risks eroding previously acquired capabilities—a phenomenon known as catastrophic forgetting—which occurs when training LMs via supervised fine-tuning (SFT) or aligning them with human preferences via reinforcement learning (RL).
+
+**Progressive Learning Approach**
+
+Progressive learning adds new layers or neurons dedicated to new tasks instead of modifying existing weights, preventing interference with previously learned representations. Additionally, methods like LoRA (Low-Rank Adaptation) and Adapters allow fine-tuning only a small subset of model parameters, preserving the core knowledge.
+
+**RL as a Natural Mitigation Strategy**
+
+Existing post-training techniques—especially on-policy reinforcement learning (RL)—can naturally mitigate catastrophic forgetting. Research shows that RL generates smaller, more targeted changes compared to SFT which produces larger, more redundant updates, offering a foundation for understanding how to prevent catastrophic forgetting.
+
+**Joint Training Frameworks**
+
+Sequential training where the LLM gradually forgets about the first stage's training when undergoing the second stage's training is sub-optimal. Recent work proposes joint post-training frameworks that have theoretical convergence guarantees and empirically outperform sequential post-training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65e944ad-2256-420e-a30f-e64f53cc43e4",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "4d752dfa-9402-41d5-a7b3-685e5a5fb164",
+  "sourceToolAssistantUUID": "65e944ad-2256-420e-a30f-e64f53cc43e4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T19:26:14.169Z_
+
+<details><summary>↩ Tool result · `toolu_015LN9FBMC98zCkA1FvdKTxh`</summary>
+
+```text
+Web search results for query: "ReVisual-R1 three stages forgetting reinforcement learning"
+
+Links: [{"title":"Revisual-R1: Advancing Multimodal Reasoning From Optimized Cold Start to Staged Reinforcement Learning","url":"https://arxiv.org/html/2506.04207"},{"title":"GitHub - CSfufu/Revisual-R1: [ICLR 2026]🚀ReVisual-R1 is a 7B open-source multimodal language model that follows a three-stage curriculum—cold-start pre-training, multimodal reinforcement learning, and text-only reinforcement learning—to achieve faithful, concise, and self-reflective state-of-the-art performance in visual and textual reasoning.","url":"https://github.com/CSfufu/Revisual-R1"},{"title":"Revisual-R1: A Three-Stage Curriculum for Self-Critical Multimodal Reasoning at Scale | by Vaibhav Geeta Pankaj Mehta | Jun, 2025 | Medium","url":"https://vgpmehta29.medium.com/revisual-r1-a-three-stage-curriculum-for-self-critical-multimodal-reasoning-at-scale-e89e4a654c9b"},{"title":"Advancing Multimodal Reasoning: From Optimized Cold Start to Staged Reinforcement Learning","url":"https://arxiv.org/pdf/2506.04207"},{"title":"csfufu/Revisual-R1-final · Hugging Face","url":"https://huggingface.co/csfufu/Revisual-R1-final"},{"title":"Revisual-R1: Advancing Multimodal Reasoning From Optimized Cold Start to Staged Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=NTo6f6GENJ"}]
+
+Based on the search results, here's information about ReVisual-R1's three-stage training approach:
+
+## ReVisual-R1 Three-Stage Training
+
+ReVisual-R1 is a 7B open-source multimodal language model that follows a three-stage curriculum—cold-start pre-training, multimodal reinforcement learning, and text-only reinforcement learning.
+
+### The Three Stages:
+
+1. **Cold-Start Phase**: The process begins with a cold-start phase utilizing LLaMA Factory and pure text data to establish foundational language understanding, employing approximately 283k pure text entries focused on establishing foundational language understanding.
+
+2. **Multimodal Reinforcement Learning (MRL)**: Multimodal Reinforcement Learning (MRL) is implemented using Easy R1, where the GRPO Kullback-Leibler (KL) divergence constraint is omitted to encourage broader policy exploration, using approximately 26k diverse multimodal entries from the GRAMMAR dataset.
+
+3. **Text-Only Reinforcement Learning (TRL)**: The final stage TRL is conducted via Easy R1, where the vision tower is frozen to concentrate learning on textual reasoning, and consists of approximately 30k text entries designed to refine nuanced understanding and generation capabilities.
+
+The text-only RL refinement stage aims to restore linguistic fluency and refine reasoning expression without eroding the newly gained visual grounding skills, effectively consolidating the multimodal reasoning capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef0881b5-2613-4966-918e-f45a4d6acb77",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "9c812bb5-d397-4fb8-8318-b51176b56f52",
+  "sourceToolAssistantUUID": "ef0881b5-2613-4966-918e-f45a4d6acb77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-27T19:26:16.977Z_
+
+Now let me search for the remaining topics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c812bb5-d397-4fb8-8318-b51176b56f52",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd5wV65KXhks76haPXY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "025c0e12-0d1a-41cc-bbf8-006fa8de191e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L9eEGUZoBwzJRdzMtdRjQt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 9683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3845,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T19:26:17.918Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019V4fnKcs3W7fiXLRd7629N`</summary>
+
+```json
+{
+  "query": "VL-Cogito progressive curriculum RL forgetting vision language"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "025c0e12-0d1a-41cc-bbf8-006fa8de191e",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd5wV65KXhks76haPXY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "96e5e230-f651-44fc-9d9e-d470cf833a6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L9eEGUZoBwzJRdzMtdRjQt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 9683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3845,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T19:26:18.389Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BAZbdJ2TAX5KrDmD7v9Jfo`</summary>
+
+```json
+{
+  "query": "continual learning reinforcement learning large language model 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96e5e230-f651-44fc-9d9e-d470cf833a6d",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd5wV65KXhks76haPXY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d5013782-9b74-4450-ac19-db9ab3449ce3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L9eEGUZoBwzJRdzMtdRjQt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 9683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3845,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-27T19:26:18.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VW4fWP831HYqGMwwFDwxc6`</summary>
+
+```json
+{
+  "query": "Negative to Positive Co-learning Aggressive Modality Dropout forgetting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5013782-9b74-4450-ac19-db9ab3449ce3",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd5wV65KXhks76haPXY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9b81d70d-d1db-4789-bfdf-b92d1fa789c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L9eEGUZoBwzJRdzMtdRjQt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3845,
+      "cache_read_input_tokens": 9683,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3845
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 9683,
+          "cache_creation_input_tokens": 3845,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3845,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-27T19:26:23.355Z_
+
+<details><summary>↩ Tool result · `toolu_019V4fnKcs3W7fiXLRd7629N`</summary>
+
+```text
+Web search results for query: "VL-Cogito progressive curriculum RL forgetting vision language"
+
+Links: [{"title":"VL-Cogito: Progressive Curriculum Reinforcement ...","url":"https://arxiv.org/pdf/2507.22607"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/html/2507.22607v1"},{"title":"[PDF] VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/VL-Cogito:-Progressive-Curriculum-Reinforcement-for-Yuan-Xiao/cd740f40c4c62427a844da79fb6be7ae414a5671"},{"title":"VL-Cogito: Advancing Multimodal Reasoning with Progressive Curriculum Reinforcement Learning – The AI Sector","url":"https://theaisector.com/2025/08/09/vl-cogito-advancing-multimodal-reasoning-with-progressive-curriculum-reinforcement-learning/"},{"title":"Paper page - VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://huggingface.co/papers/2507.22607"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement ...","url":"https://hyper.ai/en/papers/2507.22607"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning | Request PDF","url":"https://www.researchgate.net/publication/394121578_VL-Cogito_Progressive_Curriculum_Reinforcement_Learning_for_Advanced_Multimodal_Reasoning"},{"title":"[2507.22607] VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/abs/2507.22607"}]
+
+Based on the search results, here's information about VL-Cogito:
+
+VL-Cogito is an advanced multimodal reasoning model trained via a novel multi-stage Progressive Curriculum Reinforcement Learning (PCuRL) framework. PCuRL systematically guides the model through tasks of gradually increasing difficulty, substantially improving its reasoning abilities across diverse multimodal contexts.
+
+The framework introduces two key innovations: (1) an online difficulty soft weighting mechanism, dynamically adjusting training difficulty across successive RL training stages; and (2) a dynamic length reward mechanism, which encourages the model to adaptively regulate its reasoning strategy.
+
+VL-Cogito is a state-of-the-art Multimodal Large Language Model (MLLM) proposed by DAMO Academy (Alibaba Group) and partners, introducing a robust reinforcement learning pipeline that fundamentally upgrades the reasoning skills of large models across mathematics, science, logic, charts, and general understanding.
+
+It achieves the highest performance on 6 out of 10 multimodal benchmarks, demonstrating exceptional capability on rigorous mathematics and scientific benchmarks, while also attaining superior results on comparatively less complex tasks such as ScienceQA and MMStar.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96e5e230-f651-44fc-9d9e-d470cf833a6d",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "a74c1eeb-5588-4082-9bb3-3ff0e0a51bc6",
+  "sourceToolAssistantUUID": "96e5e230-f651-44fc-9d9e-d470cf833a6d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T19:26:24.738Z_
+
+<details><summary>↩ Tool result · `toolu_01VW4fWP831HYqGMwwFDwxc6`</summary>
+
+```text
+Web search results for query: "Negative to Positive Co-learning Aggressive Modality Dropout forgetting"
+
+Links: [{"title":"Negative to Positive Co-learning with Aggressive Modality Dropout","url":"https://arxiv.org/pdf/2501.00865"},{"title":"Negative to Positive Co-learning with Aggressive Modality Dropout - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250100865M/abstract"},{"title":"[2501.00865] Negative to Positive Co-learning with Aggressive Modality Dropout","url":"https://arxiv.org/abs/2501.00865"},{"title":"(PDF) Negative to Positive Co-learning with Aggressive Modality Dropout","url":"https://www.researchgate.net/publication/387671558_Negative_to_Positive_Co-learning_with_Aggressive_Modality_Dropout"},{"title":"Negative Co-learning to Positive Co-learning with Aggressive Modality Drop","url":"https://arxiv.org/html/2501.00865"},{"title":"Modality Dropout in Multimodal Learning","url":"https://www.emergentmind.com/topics/modality-dropout-strategy"}]
+
+Based on the search results, here's what I found about "Negative to Positive Co-learning with Aggressive Modality Dropout":
+
+This paper, authored by Nicholas Magal, Minh Tran, Riku Arakawa, and Suzanne Nie, aims to document an effective way to improve multimodal co-learning by using aggressive modality dropout.
+
+**Key Findings:**
+
+The paper finds that by using aggressive modality dropout, they are able to reverse negative co-learning (NCL) to positive co-learning (PCL). More specifically, positive co-learning (PCL) refers to cases where co-learning leads to better performance during test time on uni-modal data compared to unimodally trained models, while negative co-learning (NCL) refers to instances where the multimodally trained model performs worse on test time when compared to the unimodally trained variant.
+
+**Performance Results:**
+
+Aggressive modality dropout can be used to 'prep' a multimodal model for unimodal deployment, and dramatically increases model performance during negative co-learning, where during some experiments they saw a 20% gain in accuracy. The modality dropout technique also improves co-learning during PCL, although it does not have as much as a substantial effect as it does during NCL.
+
+The paper was published in January 2025 and is available on arXiv (2501.00865).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b81d70d-d1db-4789-bfdf-b92d1fa789c4",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "81598e4e-a997-4729-b8ae-ea8d46228e18",
+  "sourceToolAssistantUUID": "9b81d70d-d1db-4789-bfdf-b92d1fa789c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T19:26:25.300Z_
+
+<details><summary>↩ Tool result · `toolu_01BAZbdJ2TAX5KrDmD7v9Jfo`</summary>
+
+```text
+Web search results for query: "continual learning reinforcement learning large language model 2025 2026"
+
+Links: [{"title":"Continual learning for Large Language Models | imec","url":"https://www.imec-int.com/en/work-at-imec/job-opportunities/continual-learning-large-language-models"},{"title":"1 Continual Learning in Large Language Models:","url":"https://arxiv.org/pdf/2603.12658"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"},{"title":"Continual Learning of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-tutorials.7/"},{"title":"Continual Learning for Large Language Models: A Survey","url":"https://arxiv.org/pdf/2402.01364"},{"title":"Continual Learning in Large Language Models: Methods, Challenges, and Opportunities","url":"https://arxiv.org/html/2603.12658v1"},{"title":"Just-In-Time Reinforcement Learning: Continual Learning in LLM Agents Without Gradient Updates","url":"https://arxiv.org/pdf/2601.18510"},{"title":"[2603.12658] Continual Learning in Large Language Models: Methods, Challenges, and Opportunities","url":"https://arxiv.org/abs/2603.12658"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle","url":"https://arxiv.org/html/2509.16679v1"}]
+
+Based on the search results, here's what I found on continual learning, reinforcement learning, and large language models for 2025-2026:
+
+## Recent Research and Developments
+
+Continual learning method development is expected to be an important development in the upcoming years, with more progress towards minimizing catastrophic forgetting.
+
+A tutorial on "Continual Learning of Large Language Models" was presented at the 2025 Conference on Empirical Methods in Natural Language Processing, indicating the growing importance of this topic.
+
+## Survey and Methodological Advances
+
+A comprehensive survey presents continual learning methodologies for LLMs structured around three core training stages: continual pre-training, continual fine-tuning, and continual alignment, organizing methods into rehearsal-, regularization-, and architecture-based categories.
+
+## Reinforcement Learning Integration
+
+With the release of GPT-o1 and DeepSeek R1, the focus of research on reinforcement learning for large language models has gradually shifted towards RLVR technology in 2025. However, conventional reinforcement learning performed in a continual policy gradient updating manner requires large amounts of training data and is computationally expensive due to the high cost of RL and the need for frequent updates.
+
+## Key Challenges
+
+Continual learning approaches are prone to catastrophic forgetting, degrading the model's previously learned capabilities, which remains a central challenge in the field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5013782-9b74-4450-ac19-db9ab3449ce3",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "6956f240-539d-4d08-89f9-abacdd610387",
+  "sourceToolAssistantUUID": "d5013782-9b74-4450-ac19-db9ab3449ce3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-27T19:26:28.277Z_
+
+Let me dig deeper into the specific mechanisms used by ReVisual-R1, VL-Cogito, and some of the other key papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6956f240-539d-4d08-89f9-abacdd610387",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd6mNuNwNg1RZhjf2Rw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b0c90c55-a414-4c1d-94e4-1cb7b1c11804",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7DuaS7EPKUZD2kqb8LH7x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 668,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 13528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1848,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T19:26:29.218Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nutq8qjkZGvGvUcm3g7UPs`</summary>
+
+```json
+{
+  "query": "ReVisual-R1 KL divergence frozen vision tower text-only RL stage forgetting mechanism arxiv 2506.04207"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0c90c55-a414-4c1d-94e4-1cb7b1c11804",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd6mNuNwNg1RZhjf2Rw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "506dcb51-45e2-421b-82b4-c4f84670dc03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7DuaS7EPKUZD2kqb8LH7x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 668,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 13528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1848,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T19:26:29.689Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013yzUNGgTUUh1mXwvkehfgP`</summary>
+
+```json
+{
+  "query": "VL-Cogito PCuRL online difficulty soft weighting dynamic length reward multi-stage RL forgetting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "506dcb51-45e2-421b-82b4-c4f84670dc03",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd6mNuNwNg1RZhjf2Rw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ee32ed22-b676-4f4f-b236-8075776608d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7DuaS7EPKUZD2kqb8LH7x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 668,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 13528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1848,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T19:26:30.631Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RX3GNRLS7hCAgN1pHyLJap`</summary>
+
+```json
+{
+  "query": "\"mitigating forgetting between supervised and reinforcement learning\" stronger reasoners 2510.04454"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee32ed22-b676-4f4f-b236-8075776608d5",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd6mNuNwNg1RZhjf2Rw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e8e05f1d-6520-4d97-bc2e-c0bac13781fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7DuaS7EPKUZD2kqb8LH7x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 668,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 13528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1848,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-27T19:26:31.251Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ncku4qFPC5tiobWhMWpAcz`</summary>
+
+```json
+{
+  "query": "AdaCuRL adaptive curriculum reinforcement learning historical revisiting forgetting 2511.09478"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8e05f1d-6520-4d97-bc2e-c0bac13781fc",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd6mNuNwNg1RZhjf2Rw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "16ac31b8-1bd4-4abe-a5ea-103bdf9bb5a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7DuaS7EPKUZD2kqb8LH7x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 668,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 13528,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1848
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 668,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 13528,
+          "cache_creation_input_tokens": 1848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1848,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-27T19:26:35.880Z_
+
+<details><summary>↩ Tool result · `toolu_01Nutq8qjkZGvGvUcm3g7UPs`</summary>
+
+```text
+Web search results for query: "ReVisual-R1 KL divergence frozen vision tower text-only RL stage forgetting mechanism arxiv 2506.04207"
+
+Links: [{"title":"Revisual-R1: Advancing Multimodal Reasoning From Optimized Cold Start to Staged Reinforcement Learning","url":"https://arxiv.org/html/2506.04207"},{"title":"Advancing Multimodal Reasoning: From Optimized Cold Start to Staged Reinforcement Learning","url":"https://arxiv.org/pdf/2506.04207"},{"title":"The Choice of Divergence: A Neglected Key to Mitigating Diversity Collapse in Reinforcement Learning with Verifiable Reward","url":"https://arxiv.org/pdf/2509.07430"},{"title":"[2506.09477] On a few pitfalls in KL divergence gradient estimation for RL","url":"https://arxiv.org/abs/2506.09477"},{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/pdf/2510.21978"},{"title":"RL's Razor: Why Online Reinforcement Learning Forgets Less","url":"https://arxiv.org/pdf/2509.04259"}]
+
+I found the paper you're looking for! Here's what the search results reveal about ReVisual-R1:
+
+During the text-only RL (TRL) stage, the vision tower is frozen to concentrate learning on textual reasoning, and a small KL penalty is incorporated alongside entropy annealing to enhance training stability.
+
+The paper describes a three-stage training approach: a textual cold-start to explicitly instill complex reasoning templates; a multimodal RL stage to connect linguistic reasoning with visual perception; and a text-only RL refinement stage that aims to restore linguistic fluency and refine reasoning expression without eroding the newly gained visual grounding skills.
+
+This staged approach is designed to address what the authors identify as crucial phenomena in multimodal reasoning, including a final text-only RL tuning stage conducted after the multimodal RL phase, which is effective at further sharpening multimodal reasoning capabilities.
+
+The paper (arxiv 2506.04207) presents ReVisual-R1 as the first 7B-parameter open-source MLLM designed with this staged curriculum.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "506dcb51-45e2-421b-82b4-c4f84670dc03",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "a8474d91-0b44-4a09-84fc-aa942ad00d5d",
+  "sourceToolAssistantUUID": "506dcb51-45e2-421b-82b4-c4f84670dc03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-27T19:26:36.911Z_
+
+<details><summary>↩ Tool result · `toolu_01RX3GNRLS7hCAgN1pHyLJap`</summary>
+
+```text
+Web search results for query: ""mitigating forgetting between supervised and reinforcement learning" stronger reasoners 2510.04454"
+
+Links: [{"title":"[2510.04454] Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners","url":"https://arxiv.org/abs/2510.04454"},{"title":"(PDF) Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners","url":"https://www.researchgate.net/publication/396250687_Mitigating_Forgetting_Between_Supervised_and_Reinforcement_Learning_Yields_Stronger_Reasoners"},{"title":"Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners | OpenReview","url":"https://openreview.net/forum?id=HHx5KFnj8P"},{"title":"Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners","url":"https://arxiv.org/html/2510.04454v1"},{"title":"Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.04454v1"}]
+
+Here are the search results for your query about mitigating forgetting between supervised and reinforcement learning (arXiv:2510.04454):
+
+## Overview
+
+The paper proposes a plug-and-play framework that dynamically integrates SFT (Supervised Fine-Tuning) into RL (Reinforcement Learning) by selecting challenging examples for SFT, reducing SFT data requirements while remaining agnostic to the choice of RL or SFT algorithm.
+
+## Problem Statement
+
+Large Language Models show strong reasoning abilities with Chain-of-Thought prompting and RL, but RL algorithms struggle to expand reasoning boundaries since they learn from their own trajectories rather than external knowledge, while SFT offers complementary benefits but typically requires large-scale data and risks overfitting.
+
+Recent attempts to combine SFT and RL face three main challenges: data inefficiency, algorithm-specific designs, and catastrophic forgetting.
+
+## Solution and Results
+
+The framework, named MIFO, is specifically designed to mitigate catastrophic forgetting. The method achieves state-of-the-art reasoning performance using only 1.5% of the SFT data and 20.4% of the RL data used by prior state-of-the-art methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8e05f1d-6520-4d97-bc2e-c0bac13781fc",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "d26d6a39-3c00-4a5b-b5d3-b16d16adf664",
+  "sourceToolAssistantUUID": "e8e05f1d-6520-4d97-bc2e-c0bac13781fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T19:26:38.900Z_
+
+<details><summary>↩ Tool result · `toolu_013yzUNGgTUUh1mXwvkehfgP`</summary>
+
+```text
+Web search results for query: "VL-Cogito PCuRL online difficulty soft weighting dynamic length reward multi-stage RL forgetting"
+
+Links: [{"title":"[2507.22607] VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/abs/2507.22607"},{"title":"[2507.22607v1] VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/abs/2507.22607v1"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250722607Y/abstract"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement ...","url":"https://hyper.ai/en/papers/2507.22607"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement ...","url":"https://arxiv.org/pdf/2507.22607"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/html/2507.22607v1"},{"title":"Paper page - VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://huggingface.co/papers/2507.22607"},{"title":"GitHub - alibaba-damo-academy/VL-Cogito","url":"https://github.com/alibaba-damo-academy/VL-Cogito"},{"title":"[Quick Review] VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced\\n Multimodal Reasoning","url":"https://liner.com/review/vlcogito-progressive-curriculum-reinforcement-learning-for-advanced-multimodal-reasoning"}]
+
+Based on the search results, I found information about your query. Here's what the research shows:
+
+VL-Cogito is an advanced multimodal reasoning model trained via a novel multi-stage Progressive Curriculum Reinforcement Learning (PCuRL) framework. PCuRL systematically guides the model through tasks of gradually increasing difficulty, substantially improving its reasoning abilities across diverse multimodal contexts.
+
+The framework features two key innovations:
+
+1. **Online Difficulty Soft Weighting**: An online difficulty soft weighting mechanism dynamically adjusts task difficulty in response to the model's evolving abilities, facilitating a balanced transition from simpler to more complex tasks.
+
+2. **Dynamic Length Reward**: A dynamic length reward mechanism encourages the model to adaptively regulate its reasoning path length according to task complexity, thus balancing reasoning efficiency with correctness.
+
+VL-Cogito bypasses a cold-start SFT phase and is instead trained directly from the backbone model via PCuRL using the GRPO approach. The results demonstrate that VL-Cogito achieves state-of-the-art or highly competitive performance across all evaluation sets.
+
+The research paper (arXiv:2507.22607) was published in July 2025 and includes comprehensive ablation studies analyzing the effectiveness of each component within the PCuRL framework.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee32ed22-b676-4f4f-b236-8075776608d5",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "606d1fee-0ea3-4556-8cf4-38cc03c6e99b",
+  "sourceToolAssistantUUID": "ee32ed22-b676-4f4f-b236-8075776608d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T19:26:40.571Z_
+
+<details><summary>↩ Tool result · `toolu_01Ncku4qFPC5tiobWhMWpAcz`</summary>
+
+```text
+Web search results for query: "AdaCuRL adaptive curriculum reinforcement learning historical revisiting forgetting 2511.09478"
+
+Links: [{"title":"[2511.09478] AdaCuRL: Adaptive Curriculum Reinforcement Learning with Invalid Sample Mitigation and Historical Revisiting","url":"https://arxiv.org/abs/2511.09478"},{"title":"AdaCuRL: Adaptive Curriculum Reinforcement Learning with Invalid","url":"https://arxiv.org/pdf/2511.09478"},{"title":"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/html/2601.20614v1"},{"title":"AdaCuRL: Adaptive Curriculum Reinforcement Learning with Invalid Sample Mitigation and Historical Revisiting","url":"https://arxiv.org/html/2511.09478v1"},{"title":"Everything in Its Place: Benchmarking Spatial Intelligence of Text-to-Image Models","url":"https://arxiv.org/html/2601.20354v1"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=23000&show=250"}]
+
+Based on the search results, here's what I found about the paper:
+
+## AdaCuRL: Adaptive Curriculum Reinforcement Learning
+
+AdaCuRL is an Adaptive Curriculum Reinforcement Learning framework that integrates coarse-to-fine difficulty estimation with adaptive curriculum scheduling.
+
+### Key Problem and Solution
+
+Existing RL methods suffer from Gradient Starvation and Policy Degradation when training on mixed-difficulty samples, and curriculum learning strategies encounter challenges such as difficulty mismatch, reliance on manual curriculum design, and catastrophic forgetting.
+
+### Main Contributions
+
+The approach dynamically aligns data difficulty with model capability and incorporates a data revisitation mechanism to mitigate catastrophic forgetting, while employing adaptive reference and sparse KL strategies to prevent Policy Degradation.
+
+### Application Domain
+
+The framework is designed to enhance reasoning in large language models (LLMs). Extensive experiments across diverse reasoning benchmarks demonstrate that AdaCuRL consistently achieves significant performance improvements on both LLMs and MLLMs.
+
+### Paper Details
+
+The paper was submitted on November 12, 2025, and is authored by Renda Li, Hailang Huang, Fei Wei, Feng Xiong, Yong Wang, and Xiangxiang Chu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16ac31b8-1bd4-4abe-a5ea-103bdf9bb5a8",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "341444af-00d0-43da-8693-8966b42cb051",
+  "sourceToolAssistantUUID": "16ac31b8-1bd4-4abe-a5ea-103bdf9bb5a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-27T19:26:43.074Z_
+
+Let me get more details on the specific techniques and quantitative results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "341444af-00d0-43da-8693-8966b42cb051",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd7tN7w7eQDgsJW5UaJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6f503d01-b2d7-44b3-9c90-5dd2aecddaa1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTXtvwfpqy5ebKqbJZnaaL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 15376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-27T19:26:43.750Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01USipQNQiyEqMa9k33vfCSJ`</summary>
+
+```json
+{
+  "query": "\"RL's Razor\" online reinforcement learning forgets less 2509.04259 on-policy forgetting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f503d01-b2d7-44b3-9c90-5dd2aecddaa1",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd7tN7w7eQDgsJW5UaJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ad1a55e4-0e2e-47d1-8c59-c5a0fca5ac6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTXtvwfpqy5ebKqbJZnaaL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 15376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-27T19:26:44.488Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RM91GY3b4d2dCtHn1psBbv`</summary>
+
+```json
+{
+  "query": "MIFO mitigating forgetting SFT RL framework quantitative results data efficiency 2510.04454"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad1a55e4-0e2e-47d1-8c59-c5a0fca5ac6b",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd7tN7w7eQDgsJW5UaJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aa1d94b6-9d74-4b63-96bf-29af319f6fb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTXtvwfpqy5ebKqbJZnaaL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 15376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T19:26:45.385Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hg9pezi8bMEYHvzWw1Hikp`</summary>
+
+```json
+{
+  "query": "prioritized replay RL post-training GRPO 2601.02648 forgetting LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa1d94b6-9d74-4b63-96bf-29af319f6fb5",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd7tN7w7eQDgsJW5UaJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4ececc19-f735-4bc1-b1f4-428d724d1fae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTXtvwfpqy5ebKqbJZnaaL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 15376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T19:26:45.464Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016uHhCF3VHhV4hsztbjm2i4`</summary>
+
+```json
+{
+  "query": "\"beyond reasoning gains\" mitigating general capabilities forgetting large reasoning models 2510.21978"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ececc19-f735-4bc1-b1f4-428d724d1fae",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd7tN7w7eQDgsJW5UaJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ec117802-f67d-4e5a-abfd-c7451f39e788",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTXtvwfpqy5ebKqbJZnaaL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 15376,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3635,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-27T19:26:50.622Z_
+
+<details><summary>↩ Tool result · `toolu_01USipQNQiyEqMa9k33vfCSJ`</summary>
+
+```text
+Web search results for query: ""RL's Razor" online reinforcement learning forgets less 2509.04259 on-policy forgetting"
+
+Links: [{"title":"[2509.04259] RL's Razor: Why Online Reinforcement Learning Forgets Less","url":"https://arxiv.org/abs/2509.04259"},{"title":"RL's Razor: Reduced Forgetting in RL","url":"https://www.emergentmind.com/papers/2509.04259"},{"title":"RL's Razor: Why On-Policy Reinforcement Learning Forgets Less","url":"https://jyopari.github.io/posts/rl_razor"},{"title":"RL's Razor: Why Online Reinforcement Learning Forgets Less","url":"https://bytez.com/docs/arxiv/2509.04259"},{"title":"RL’s Razor: Why Online Reinforcement Learning Forgets Less","url":"https://arxiv.org/html/2509.04259v1"},{"title":"RL's Razor: Why Online Reinforcement Learning Forgets Less | OpenReview","url":"https://openreview.net/forum?id=7HNRYT4V44"},{"title":"(PDF) RL's Razor: Why Online Reinforcement Learning Forgets Less","url":"https://www.researchgate.net/publication/395271149_RL's_Razor_Why_Online_Reinforcement_Learning_Forgets_Less"},{"title":"RL's Razor: Why Online Reinforcement Learning Forgets Less | alphaXiv","url":"https://www.alphaxiv.org/overview/2509.04259"},{"title":"RL’S RAZOR: WHY ONLINE REINFORCEMENT LEARNING FORGETS LESS Idan Shenfeld∗","url":"https://arxiv.org/pdf/2509.04259"},{"title":"Paper page - RL's Razor: Why Online Reinforcement Learning Forgets Less","url":"https://huggingface.co/papers/2509.04259"}]
+
+I found the paper! Here's a summary of "RL's Razor: Why Online Reinforcement Learning Forgets Less" (arXiv:2509.04259):
+
+## Key Findings
+
+Comparison of fine-tuning models with reinforcement learning (RL) and supervised fine-tuning (SFT) reveals that, despite similar performance at a new task, RL preserves prior knowledge and capabilities significantly better.
+
+## The Main Principle
+
+The principle termed "RL's Razor" states: among all ways to solve a new task, RL prefers those closest in KL to the original model.
+
+## Why RL Forgets Less
+
+The degree of forgetting is determined by the distributional shift, measured as the KL-divergence between the fine-tuned and base policy evaluated on the new task. On-policy RL is implicitly biased towards KL-minimal solutions among the many that solve the new task, whereas SFT can converge to distributions arbitrarily far from the base model.
+
+## Validation
+
+The findings were validated through experiments with large language models and robotic foundation models and further provide theoretical justification for why on-policy RL updates lead to a smaller KL change.
+
+The paper was published on arXiv in September 2025 by Idan Shenfeld, Jyothish Pari, and Pulkit Agrawal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad1a55e4-0e2e-47d1-8c59-c5a0fca5ac6b",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "ae4dbe5f-a239-49ed-b45d-0d385fb8a4df",
+  "sourceToolAssistantUUID": "ad1a55e4-0e2e-47d1-8c59-c5a0fca5ac6b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-27T19:26:51.164Z_
+
+<details><summary>↩ Tool result · `toolu_01RM91GY3b4d2dCtHn1psBbv`</summary>
+
+```text
+Web search results for query: "MIFO mitigating forgetting SFT RL framework quantitative results data efficiency 2510.04454"
+
+Links: [{"title":"Under review MITIGATING FORGETTING BETWEEN SUPERVISED","url":"https://arxiv.org/pdf/2510.04454"},{"title":"Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners","url":"https://arxiv.org/html/2510.04454v1"},{"title":"[2510.04454] Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners","url":"https://arxiv.org/abs/2510.04454"},{"title":"Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.04454v1"},{"title":"MITIGATING FORGETTING BETWEEN SUPERVISED AND ...","url":"https://openreview.net/pdf/858653151feea57aa1c486febc266c667811d1ef.pdf"},{"title":"Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting","url":"https://arxiv.org/pdf/2510.18874"}]
+
+Based on the search results, here's what I found about the MIFO framework and paper 2510.04454:
+
+## Overview
+
+MIFO (MItigating FOrgetting Between SFT and RL) is a plug-and-play framework that integrates SFT with RL while addressing issues simultaneously.
+
+## Key Design Components
+
+The framework dynamically interleaves SFT within RL and selects SFT examples based on rollout accuracy, while selecting tokens for the SFT loss according to entropy, ensuring the actor model uses only minimal necessary SFT data to acquire out-of-distribution reasoning knowledge.
+
+In RL training, MIFO selects data for SFT and decides important RL parameters; in SFT training, RL-important parameters are frozen, and only high-entropy tokens are used for loss calculation.
+
+## Quantitative Results & Data Efficiency
+
+MIFO achieves state-of-the-art reasoning performance using only 1.5% of the SFT data and 20.4% of the RL data used by prior SoTA. More specifically, MIFO uses only 1.5% of the SFT data and 20.4% of the RL data required by prior SOTA SRFT, and 5.8% of the SFT data and 41.6% of the RL data used by LUFFY.
+
+## Core Problem Addressed
+
+The framework addresses the finding that forgetting arises when extensive SFT updates overwrite information acquired through RL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa1d94b6-9d74-4b63-96bf-29af319f6fb5",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "77b7bf0d-11bc-4253-892b-c3c581e64b20",
+  "sourceToolAssistantUUID": "aa1d94b6-9d74-4b63-96bf-29af319f6fb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T19:26:52.940Z_
+
+<details><summary>↩ Tool result · `toolu_01Hg9pezi8bMEYHvzWw1Hikp`</summary>
+
+```text
+Web search results for query: "prioritized replay RL post-training GRPO 2601.02648 forgetting LLM"
+
+Links: [{"title":"[2601.02648] Prioritized Replay for RL Post-training","url":"https://arxiv.org/abs/2601.02648"},{"title":"Prioritized Replay for RL Post-training Mehdi Fatemi mehdi.fatemi@ieee.org","url":"https://www.arxiv.org/pdf/2601.02648"},{"title":"Prioritized Replay for RL Post-training","url":"https://arxiv.org/html/2601.02648v1"},{"title":"Efficient RL Training for LLMs with Experience Replay","url":"https://arxiv.org/html/2604.08706v1"},{"title":"Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts","url":"https://arxiv.org/pdf/2603.21177"},{"title":"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/html/2604.16918"}]
+
+Based on the search results, I found detailed information about the paper arXiv:2601.02648 on "Prioritized Replay for RL Post-training":
+
+## Overview
+
+The paper studies RL post-training for large language models (LLMs), where the environment is a collection of reasoning problems or task simulators that produce complete rollouts for the agent.
+
+## The Approach
+
+The approach selects problems according to a simple, model-driven priority score derived from empirical success statistics, building on insights from prioritized replay in deep RL and observations that rollouts with intermediate success rates tend to produce stronger learning signals under methods such as GRPO.
+
+In contrast to conventional curriculum strategies that emphasize easier tasks early in training, the resulting schedule naturally focuses training on problems that are neither consistently solved nor consistently failed, while deprioritizing those that contribute little gradient information.
+
+## Key Features
+
+The method yields a continuously adapting and automatic prioritization process that requires no predefined difficulty tiers, auxiliary predictors, or external labels.
+
+The paper further introduces lightweight mechanisms for practical deployment, including heap-based prioritized sampling and periodic retesting of solved and unsolved problems to mitigate starvation and forgetting.
+
+The prioritization scheme is compatible with GRPO, PPO, or any other rollout-based method, since it governs the scheduling of problems rather than the form of the learning update.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ececc19-f735-4bc1-b1f4-428d724d1fae",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "3798a168-c9c7-4202-90f6-23784b12dbbc",
+  "sourceToolAssistantUUID": "4ececc19-f735-4bc1-b1f4-428d724d1fae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T19:26:53.141Z_
+
+<details><summary>↩ Tool result · `toolu_016uHhCF3VHhV4hsztbjm2i4`</summary>
+
+```text
+Web search results for query: ""beyond reasoning gains" mitigating general capabilities forgetting large reasoning models 2510.21978"
+
+Links: [{"title":"[2510.21978] Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/abs/2510.21978"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=2325&show=2000"},{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/pdf/2510.21978"},{"title":"Artificial Intelligence 2025","url":"https://arxiv.org/list/cs.AI/2025?skip=38625&show=100"},{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Model | OpenReview","url":"https://openreview.net/forum?id=4Jk6HteZXj"},{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/html/2510.21978"},{"title":"Shrinking the Variance: Shrinkage Baselines for Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/html/2511.03710v2"},{"title":"(PDF) Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://www.researchgate.net/publication/396967459_Beyond_Reasoning_Gains_Mitigating_General_Capabilities_Forgetting_in_Large_Reasoning_Models"}]
+
+I found the research paper you're looking for. Here's what the paper is about:
+
+## Paper Overview
+
+"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models" addresses how reinforcement learning with verifiable rewards (RLVR) has delivered impressive gains in mathematical and multimodal reasoning and has become a standard post-training paradigm for contemporary language and vision-language models.
+
+## The Problem
+
+The paper identifies that the RLVR recipe introduces a significant risk of capability regression, where models forget foundational skills after prolonged training without employing regularization strategies, with open-source reasoning models suffering performance degradation on core capabilities such as perception and faithfulness.
+
+## Challenges with Current Solutions
+
+While imposing regularization terms like KL divergence can help prevent deviation from the base model, these terms are calculated on the current task, thus they do not guarantee broader knowledge.
+
+## Results
+
+The paper's experiments on benchmarks based on Qwen2.5-VL-3B and Qwen2.5-VL-7B demonstrate the effectiveness of their method, which not only preserves general capabilities but also improves reasoning by enabling more flexible trade-offs among in-task rewards.
+
+The paper was published in October 2025 and authored by researchers including Hoang Phan, Xianjun Yang, Kevin Yao, and others affiliated with Meta and other institutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec117802-f67d-4e5a-abfd-c7451f39e788",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "3a23a7c8-7426-44bd-b0c4-9e5674bfc233",
+  "sourceToolAssistantUUID": "ec117802-f67d-4e5a-abfd-c7451f39e788",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-27T19:26:56.306Z_
+
+Let me get the remaining details on the specific methods in the "Beyond Reasoning Gains" paper and search for a few more relevant pieces.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a23a7c8-7426-44bd-b0c4-9e5674bfc233",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd8p5gCDKCpbprrdYk5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7024a39a-8493-47f3-917f-9f60b08de414",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RXiC63USAGHZhsHRnuBMjW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 19011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3332,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T19:26:57.202Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019u11hXNH1zfMsQrSiQzpYx`</summary>
+
+```json
+{
+  "query": "\"beyond reasoning gains\" method mixed reward replay regularization forgetting RLVR VLM specific technique"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7024a39a-8493-47f3-917f-9f60b08de414",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd8p5gCDKCpbprrdYk5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "19114935-a545-48e4-91c5-56fb4f4c1174",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RXiC63USAGHZhsHRnuBMjW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 19011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3332,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-27T19:26:58.163Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0186R18kdceDxFerXRCYxRB8`</summary>
+
+```json
+{
+  "query": "aggressive modality dropout percentage rate training multimodal co-learning quantitative results accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19114935-a545-48e4-91c5-56fb4f4c1174",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd8p5gCDKCpbprrdYk5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7df86424-6a8a-4f37-b901-8ab67c87ee7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RXiC63USAGHZhsHRnuBMjW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 19011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3332,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T19:26:58.660Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F43vAKDD2c1yN6cZz59XWg`</summary>
+
+```json
+{
+  "query": "GRPO multi-stage curriculum textual information stripping progressive visual reasoning anti-forgetting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7df86424-6a8a-4f37-b901-8ab67c87ee7e",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd8p5gCDKCpbprrdYk5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bcb500b2-319c-4043-89c5-914dc5803d0a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RXiC63USAGHZhsHRnuBMjW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 19011,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3332
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 19011,
+          "cache_creation_input_tokens": 3332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3332,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T19:27:03.747Z_
+
+<details><summary>↩ Tool result · `toolu_0186R18kdceDxFerXRCYxRB8`</summary>
+
+```text
+Web search results for query: "aggressive modality dropout percentage rate training multimodal co-learning quantitative results accuracy"
+
+Links: [{"title":"(PDF) Negative to Positive Co-learning with Aggressive Modality Dropout","url":"https://www.researchgate.net/publication/387671558_Negative_to_Positive_Co-learning_with_Aggressive_Modality_Dropout"},{"title":"Modality Dropout in Multimodal Learning","url":"https://www.emergentmind.com/topics/modality-dropout"},{"title":"Negative to Positive Co-learning with Aggressive Modality Dropout","url":"https://arxiv.org/pdf/2501.00865"},{"title":"Negative to Positive Co-learning with Aggressive Modality Dropout - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250100865M/abstract"},{"title":"[2501.00865] Negative to Positive Co-learning with Aggressive Modality Dropout","url":"https://arxiv.org/abs/2501.00865"},{"title":"Negative Co-learning to Positive Co-learning with Aggressive Modality Drop","url":"https://arxiv.org/html/2501.00865"}]
+
+Based on the search results, I found relevant research on aggressive modality dropout in multimodal co-learning:
+
+## Key Findings
+
+This research aims to improve multimodal co-learning by using aggressive modality dropout, which reverses negative co-learning (NCL) to positive co-learning (PCL).
+
+### Quantitative Results and Accuracy
+
+Mean accuracy of 82.7% on IEMOCAP and 89.0% on CMU-MOSEI was achieved, representing an improvement of about 5% over prior work.
+
+### Performance Gains from Aggressive Dropout
+
+Aggressive modality dropout dramatically increases model performance during negative co-learning, with some experiments showing a 20% gain in accuracy. Additionally, by employing modality dropout with a dropout level of 80% on audio and video features during training, the multimodal model was able to score 47% on a unimodal test dataset, demonstrating a significant improvement over the baseline without dropout.
+
+### Trade-offs
+
+Careful tuning of dropout rates is necessary: too aggressive a dropout impairs multi-modal performance; too mild fails to prevent dominance or redundancy.
+
+The research demonstrates that aggressive modality dropout is particularly effective during negative co-learning scenarios, where multimodal training might otherwise degrade unimodal performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7df86424-6a8a-4f37-b901-8ab67c87ee7e",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "a0c27b9f-1ca2-4d34-b592-46603feedf9b",
+  "sourceToolAssistantUUID": "7df86424-6a8a-4f37-b901-8ab67c87ee7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-27T19:27:03.993Z_
+
+<details><summary>↩ Tool result · `toolu_019u11hXNH1zfMsQrSiQzpYx`</summary>
+
+```text
+Web search results for query: ""beyond reasoning gains" method mixed reward replay regularization forgetting RLVR VLM specific technique"
+
+Links: [{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/html/2510.21978"},{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/pdf/2510.21978"},{"title":"[2510.21978] Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models","url":"https://arxiv.org/abs/2510.21978"},{"title":"Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Model | OpenReview","url":"https://openreview.net/forum?id=4Jk6HteZXj"},{"title":"BEYOND REASONING GAINS","url":"https://openreview.net/pdf/92d641dba8aeda839c6729e511a5b9196476c730.pdf"}]
+
+Based on the search results, I found information about the "Beyond Reasoning Gains" method you were asking about:
+
+## Overview
+
+The research addresses how Reinforcement Learning with Verifiable Rewards (RLVR) has delivered impressive gains in mathematical and multimodal reasoning and has become a standard post-training paradigm for contemporary language and vision-language models.
+
+## The Problem: Capability Forgetting
+
+The RLVR recipe introduces a significant risk of capability regression, where models forget foundational skills after prolonged training without employing regularization strategies. Open-source reasoning models suffer performance degradation on core capabilities such as perception and faithfulness.
+
+## The Proposed Solution: RECAP
+
+The paper proposes RECAP—a replay strategy with dynamic objective reweighting for general knowledge preservation that adapts in an online manner using short-horizon signals of convergence and instability, shifting the post-training focus away from saturated objectives and toward underperforming or volatile ones.
+
+## Key Technical Details
+
+Commonly used experience replay across heterogeneous domains makes it nontrivial to decide how much training focus each objective should receive. The method finetunes models under a mixed objective regime that combines RLVR with SFT-style training while jointly replaying perception-oriented datasets.
+
+The method is end-to-end and readily applicable to existing RLVR pipelines without training additional models or heavy tuning, and demonstrates effectiveness in preserving general capabilities while also improving reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19114935-a545-48e4-91c5-56fb4f4c1174",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "2c880c8c-d4e1-45bc-aa03-8396d7a36eea",
+  "sourceToolAssistantUUID": "19114935-a545-48e4-91c5-56fb4f4c1174",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-27T19:27:06.776Z_
+
+<details><summary>↩ Tool result · `toolu_01F43vAKDD2c1yN6cZz59XWg`</summary>
+
+```text
+Web search results for query: "GRPO multi-stage curriculum textual information stripping progressive visual reasoning anti-forgetting"
+
+Links: [{"title":"EvolvedGRPO: Unlocking Reasoning in LVLMs via Progressive Instruction Evolution","url":"https://openreview.net/pdf?id=tjXtcZjIgQ"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement ...","url":"https://arxiv.org/pdf/2507.22607"},{"title":"arXiv:2505.11409v1 [cs.LG] 16 May 2025","url":"https://arxiv.org/pdf/2505.11409v1"},{"title":"Visual Planning: Let’s Think Only with Images","url":"https://arxiv.org/html/2505.11409"},{"title":"Thinking-while-Generating: Interleaving Textual Reasoning throughout Visual Generation","url":"https://arxiv.org/html/2511.16671"},{"title":"Video-R4: Reinforcing Text-Rich Video Reasoning with Visual Rumination","url":"https://arxiv.org/pdf/2511.17490"},{"title":"Curriculum Learning for Efficient Chain-of-Thought Distillation via Structure-Aware Masking and GRPO","url":"https://arxiv.org/html/2602.17686"},{"title":"Learning When to Look: A Disentangled Curriculum for Strategic Perception in Multimodal Reasoning","url":"https://arxiv.org/pdf/2512.17227"},{"title":"Empower Multimodal Reasoning with Latent Visual Tokens","url":"https://arxiv.org/pdf/2506.17218"}]
+
+Based on the search results, I found several research papers that discuss GRPO with multi-stage curriculum learning and progressive visual reasoning approaches:
+
+## Key Findings
+
+GRPO (Grouped Relative Policy Optimization) is a general RL method that requires assigning varying reward scores to different responses from the same prompt.
+
+### Multi-Stage Curriculum Learning
+
+Video-R4 uses a multi-stage rumination learning framework that progressively teaches atomic and compositional operations via GRPO-style reinforcement learning. This staged curriculum yields faster convergence and significantly higher final performance than collapsed or single-stage methods.
+
+Additionally, a three-stage curriculum learning framework addresses capacity mismatch through progressive skill acquisition, first establishing structural understanding via masked shuffled reconstruction, second applying GRPO on masked completion tasks, and third identifying persistent failure cases and guiding targeted rewriting optimized with GRPO.
+
+### Anti-Forgetting and Information Stripping
+
+As the LVLM's visual reasoning ability improves over multiple rounds of training, the model gradually memorizes both visual and textual information from the training dataset, enabling it to recall answers solely from the reasoning processes it has internalized during previous training. This memorization issue relates to the anti-forgetting and information stripping concepts in your query.
+
+VL-rethinker proposes Selective Sample Replay to address the diminishing advantages of GRPO, and Forced Rethinking to encourage self-reflection in vision-language models during RL training.
+
+These papers demonstrate active research combining GRPO with curriculum-based training strategies for improved multimodal reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bcb500b2-319c-4043-89c5-914dc5803d0a",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "7b047f2a-3a1b-462b-aaa0-408c1bf09d7d",
+  "sourceToolAssistantUUID": "bcb500b2-319c-4043-89c5-914dc5803d0a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-27T19:27:09.135Z_
+
+Let me search for a few more critical details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b047f2a-3a1b-462b-aaa0-408c1bf09d7d",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd9pRna4sF8o7hs5RuC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3de14ecc-e51e-405b-a14b-f9b34ca82075",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ZaoWKv1GnkkEjU4hwLj6o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 22343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2286,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-27T19:27:10.129Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SUd1erzQnCF7YkP6R9YB2W`</summary>
+
+```json
+{
+  "query": "VL-Cogito ablation study forgetting between stages PCuRL quantitative benchmark results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3de14ecc-e51e-405b-a14b-f9b34ca82075",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd9pRna4sF8o7hs5RuC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7ce88d53-5d7e-4a20-84e2-38e11ebd493d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ZaoWKv1GnkkEjU4hwLj6o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 22343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2286,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T19:27:11.013Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013pRyT2iQTvYLP6ySW4GFa6`</summary>
+
+```json
+{
+  "query": "\"freshness-aware prioritized experience replay\" VLM reinforcement learning 2604.16918"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ce88d53-5d7e-4a20-84e2-38e11ebd493d",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd9pRna4sF8o7hs5RuC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0d1b6fad-2455-40c9-ba87-c643507c70a4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ZaoWKv1GnkkEjU4hwLj6o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 22343,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2286,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-27T19:27:11.213Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VaPxEkvKRBWKwALj4QNxGA`</summary>
+
+```json
+{
+  "query": "\"prompt replay\" GRPO on-policy reuse high-signal prompts 2603.21177 forgetting"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d1b6fad-2455-40c9-ba87-c643507c70a4",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTd9pRna4sF8o7hs5RuC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7794bf81-b038-4e44-aa39-7f5a6c6d930f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ZaoWKv1GnkkEjU4hwLj6o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 22343,
+      "output_tokens": 198,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2286
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 198,
+          "cache_read_input_tokens": 22343,
+          "cache_creation_input_tokens": 2286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2286,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T19:27:18.321Z_
+
+<details><summary>↩ Tool result · `toolu_013pRyT2iQTvYLP6ySW4GFa6`</summary>
+
+```text
+Web search results for query: ""freshness-aware prioritized experience replay" VLM reinforcement learning 2604.16918"
+
+Links: [{"title":"[2604.16918] Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/abs/2604.16918"},{"title":"Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning","url":"https://arxiv.org/html/2604.16918"},{"title":"Prioritized Experience Replay | Request PDF","url":"https://www.researchgate.net/publication/319770330_Prioritized_Experience_Replay"},{"title":"VLM-Guided Experience Replay","url":"https://arxiv.org/pdf/2602.01915"},{"title":"Fresher Experience Plays a More Important Role in Prioritized Experience Replay","url":"https://doi.org/10.3390/app122312489"},{"title":"Fresher Experience Plays a More Important Role in Prioritized Experience Replay | MDPI","url":"https://www.mdpi.com/2076-3417/12/23/12489"},{"title":"Prioritized Experience Replay","url":"https://arxiv.org/pdf/1511.05952"},{"title":"Experience Replay in Reinforcement Learning","url":"https://www.emergentmind.com/topics/experience-replay"}]
+
+Based on the search results, here's what I found about the paper with ID 2604.16918:
+
+## Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning
+
+The paper presents work on reinforcement learning for post-training Large Language Models (LLMs) and Vision-Language Models (VLMs), with on-policy algorithms such as PPO, GRPO, and REINFORCE++ serving as the dominant paradigm.
+
+**The Problem:** Current methods discard all collected trajectories after a single gradient update, resulting in poor sample efficiency, particularly wasteful for agentic tasks where multi-turn environment interactions are expensive. Additionally, the rapid policy evolution of billion-parameter models renders stored priorities stale, causing old high-priority trajectories to dominate sampling long after they have become uninformative.
+
+**The Solution:** The authors propose Freshness-Aware PER, which addresses this priority staleness problem by augmenting any PER-based priority with a multiplicative exponential age decay grounded in effective sample size analysis.
+
+**Results:** The work demonstrates consistent improvements across eight environments with 0.5B, 3B, and 7B models, achieving +46% on NQ Search, +367% on Sokoban, and +133% on VLM FrozenLake, while standard PER without age decay consistently degrades.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d1b6fad-2455-40c9-ba87-c643507c70a4",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "1e662e5f-469c-4e4a-ad72-1af8c6927d58",
+  "sourceToolAssistantUUID": "0d1b6fad-2455-40c9-ba87-c643507c70a4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-27T19:27:19.005Z_
+
+<details><summary>↩ Tool result · `toolu_01VaPxEkvKRBWKwALj4QNxGA`</summary>
+
+```text
+Web search results for query: ""prompt replay" GRPO on-policy reuse high-signal prompts 2603.21177 forgetting"
+
+Links: [{"title":"[2603.21177] Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts","url":"https://arxiv.org/abs/2603.21177"},{"title":"Prompt Replay: Speeding up GRPO with On-Policy Reuse of High-Signal Prompts","url":"https://arxiv.org/html/2603.21177v1"},{"title":"Prompt replay: speeding up grpo with on-policy reuse of high-signal prompts","url":"https://arxiv.org/pdf/2603.21177"},{"title":"Prompt replay: speeding up grpo with on-policy reuse of high- ...","url":"https://www.aimodels.fyi/papers/arxiv/prompt-replay-speeding-up-grpo-policy-reuse"},{"title":"Paper page - Efficient RL Training for LLMs with Experience Replay","url":"https://huggingface.co/papers/2604.08706"},{"title":"speeding up grpo with on-policy reuse of high-signal prompts","url":"https://www.semanticscholar.org/paper/Prompt-replay:-speeding-up-grpo-with-on-policy-of-Baroian-Berger/7d5d8ecef8c711795fbee7d6e703cb6fa67e8f5c"}]
+
+Based on the web search results, here's what I found about "Prompt Replay":
+
+Prompt Replay is an overhead-free online data selection method for GRPO that reuses prompts only (not trajectories), to preserve on-policy optimization. The method inserts prompts with medium difficulty into a buffer and prioritizes prompts closer to a pass rate of 0.5 (half answers correct, half wrong) to maximize the advantage and learning signal.
+
+Training batches are formed by mixing reused prompts with fresh samples, with cooldown steps and max reuse times controlling aggressiveness versus risk of overfitting.
+
+Across multiple model families (Llama-3.2-3B, Qwen3-8B) and training datasets (Dolci, Polaris), evaluated using average accuracy on six standard math benchmarks, Prompt Replay reduces zero-variance prompts, increases mean absolute advantage and shows faster initial accuracy gains. However, it plateaus and converges with the baseline, as too aggressive configuration was used.
+
+The method is most efficient when the rollouts are the primary bottleneck and the dataset is difficult for the model.
+
+The paper (arXiv 2603.21177) was submitted on March 22, 2026, by authors Andrei Baroian and Rutger Berger from Leiden University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7794bf81-b038-4e44-aa39-7f5a6c6d930f",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "93d05333-ea0d-4467-805a-a1df1a04ea6a",
+  "sourceToolAssistantUUID": "7794bf81-b038-4e44-aa39-7f5a6c6d930f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-27T19:27:22.790Z_
+
+<details><summary>↩ Tool result · `toolu_01SUd1erzQnCF7YkP6R9YB2W`</summary>
+
+```text
+Web search results for query: "VL-Cogito ablation study forgetting between stages PCuRL quantitative benchmark results"
+
+Links: [{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/html/2507.22607v1"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement ...","url":"https://arxiv.org/pdf/2507.22607"},{"title":"VL-Cogito: Advancing Multimodal Reasoning with Progressive Curriculum Reinforcement Learning - MarkTechPost","url":"https://www.marktechpost.com/2025/08/08/vl-cogito-advancing-multimodal-reasoning-with-progressive-curriculum-reinforcement-learning/"},{"title":"VL-Cogito: Advancing Multimodal Reasoning with Progressive Curriculum Reinforcement Learning – The AI Sector","url":"https://theaisector.com/2025/08/09/vl-cogito-advancing-multimodal-reasoning-with-progressive-curriculum-reinforcement-learning/"},{"title":"[2507.22607] VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning","url":"https://arxiv.org/abs/2507.22607"},{"title":"VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning | Request PDF","url":"https://www.researchgate.net/publication/394121578_VL-Cogito_Progressive_Curriculum_Reinforcement_Learning_for_Advanced_Multimodal_Reasoning"}]
+
+Based on the search results, I found information about the VL-Cogito paper and its PCuRL framework:
+
+## Overview
+
+PCuRL is a novel multi-stage progressive curriculum RL framework, incorporating an online difficulty soft weighting mechanism that progressively exposes models to increasingly challenging tasks, enhancing multimodal reasoning capabilities.
+
+## Ablation Study
+
+A comprehensive ablation study analyzed the effectiveness of each component within PCuRL, including the multi-stage curriculum strategy, online difficulty soft weighting, and dynamic length reward. The study examined the training dynamics by visualizing key aspects of the reinforcement learning process, including reward trajectories and length propagation curves, and Table 2 presents a systematic ablation that quantifies the marginal contribution of each PCuRL component.
+
+## Key Findings
+
+Extensive ablation studies confirm that the progressive curriculum learning mechanism effectively and consistently increases reasoning depth, leading to improved performance on complex tasks. Additionally, VL-Cogito achieves state-of-the-art results on 6/10 benchmarks, either leading or matching top results, especially on rigorous math and scientific tasks.
+
+The search results indicate the paper contains detailed ablation studies and benchmark results, though the specific quantitative details about "forgetting between stages" would require accessing the full paper directly for more granular data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ce88d53-5d7e-4a20-84e2-38e11ebd493d",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "6a77c5f3-ce81-467a-9cca-6c7cc4822c34",
+  "sourceToolAssistantUUID": "7ce88d53-5d7e-4a20-84e2-38e11ebd493d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-27T19:27:25.436Z_
+
+Now let me search for the final few pieces of information relevant to constructing practical recommendations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a77c5f3-ce81-467a-9cca-6c7cc4822c34",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTdAzrsbHDZEdw2m9JZ1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d63b96f-9aa1-4669-aa0f-b383e196b1db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TftFPpz7BSukcQW9MQVKo7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1418,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 24629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 928,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-27T19:27:26.379Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DiTwtyfq77kc8rk1QHqrgv`</summary>
+
+```json
+{
+  "query": "ReVisual-R1 quantitative results benchmark comparison forgetting visual capabilities after text RL stage"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d63b96f-9aa1-4669-aa0f-b383e196b1db",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTdAzrsbHDZEdw2m9JZ1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ae92cf67-d2b9-427c-94a7-0571fbf3de3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TftFPpz7BSukcQW9MQVKo7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1418,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 24629,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 928,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-27T19:27:27.305Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P9fRxpVKhhyGFkt8ZyFWbH`</summary>
+
+```json
+{
+  "query": "\"retaining by doing\" on-policy data mitigating forgetting 2510.18874 quantitative results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae92cf67-d2b9-427c-94a7-0571fbf3de3d",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTdAzrsbHDZEdw2m9JZ1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f5b38d86-1f4e-4710-a561-29882291e40e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TftFPpz7BSukcQW9MQVKo7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1418,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 24629,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 928
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1418,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 24629,
+          "cache_creation_input_tokens": 928,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 928,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-27T19:27:32.423Z_
+
+<details><summary>↩ Tool result · `toolu_01DiTwtyfq77kc8rk1QHqrgv`</summary>
+
+```text
+Web search results for query: "ReVisual-R1 quantitative results benchmark comparison forgetting visual capabilities after text RL stage"
+
+Links: [{"title":"Revisual-R1: Advancing Multimodal Reasoning From Optimized Cold Start to Staged Reinforcement Learning","url":"https://arxiv.org/html/2506.04207v2"},{"title":"GitHub - CSfufu/Revisual-R1: [ICLR 2026]🚀ReVisual-R1 is a 7B open-source multimodal language model that follows a three-stage curriculum—cold-start pre-training, multimodal reinforcement learning, and text-only reinforcement learning—to achieve faithful, concise, and self-reflective state-of-the-art performance in visual and textual reasoning.","url":"https://github.com/CSfufu/Revisual-R1"},{"title":"REVISUAL-R1: ADVANCING MULTIMODAL REASON","url":"https://openreview.net/attachment?id=NTo6f6GENJ&name=pdf"},{"title":"ReVisual-R1: An Open-Source 7B Multimodal Large Language Model (MLLMs) that Achieves Long, Accurate and Thoughtful Reasoning - MarkTechPost","url":"https://www.marktechpost.com/2025/06/18/revisual-r1-an-open-source-7b-multimodal-large-language-model-mllms-that-achieves-long-accurate-and-thoughtful-reasoning/"},{"title":"Revisual-R1: Advancing Multimodal Reasoning From Optimized Cold Start to Staged Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=NTo6f6GENJ"},{"title":"Advancing Multimodal Reasoning: From Optimized Cold Start to Staged Reinforcement Learning","url":"https://arxiv.org/pdf/2506.04207"}]
+
+Based on the search results, here's what I found about ReVisual-R1's quantitative results and the approach to preventing visual capability loss during text RL:
+
+## Quantitative Results and Benchmark Comparison
+
+ReVisual-R1's proposed CS + MRL + TRL sequence consistently yields the highest average performance at 49.6 Avg. The model achieves state-of-the-art among open-source 3B and 7B MLLMs on challenging benchmarks, including MathVerse, MathVision, WeMath, LogicVista, DynaMath, and AIME2024 and AIME2025.
+
+## Addressing Visual Capability Loss During Text RL
+
+Regarding your specific concern about forgetting visual capabilities during the text RL stage, the research addresses this directly: The text-only RL refinement stage aims to restore linguistic fluency and refine reasoning expression without eroding the newly gained visual grounding skills, effectively consolidating the multimodal reasoning capabilities.
+
+The initial MRL phase establishes strong visual grounding, followed by a TRL phase to refine textual reasoning while preserving those visual capabilities. This three-stage curriculum design is the key to maintaining both visual and textual competencies throughout the training process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae92cf67-d2b9-427c-94a7-0571fbf3de3d",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "8b45f608-0c9f-47a8-85a4-4a13763ac078",
+  "sourceToolAssistantUUID": "ae92cf67-d2b9-427c-94a7-0571fbf3de3d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-27T19:27:33.110Z_
+
+<details><summary>↩ Tool result · `toolu_01P9fRxpVKhhyGFkt8ZyFWbH`</summary>
+
+```text
+Web search results for query: ""retaining by doing" on-policy data mitigating forgetting 2510.18874 quantitative results"
+
+Links: [{"title":"[2510.18874] Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting","url":"https://arxiv.org/abs/2510.18874"},{"title":"GitHub - princeton-pli/retaining-by-doing","url":"https://github.com/princeton-pli/retaining-by-doing"},{"title":"Continual Learning with RL for LLMs","url":"https://cameronrwolfe.substack.com/p/rl-continual-learning"},{"title":"Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting | OpenReview","url":"https://openreview.net/forum?id=kJKnP1aiGS"},{"title":"Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting","url":"https://www.researchgate.net/publication/396747601_Retaining_by_Doing_The_Role_of_On-Policy_Data_in_Mitigating_Forgetting"},{"title":"Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.18874v1"},{"title":"Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting","url":"https://arxiv.org/html/2510.18874v1"},{"title":"Self-Distillation Enables Continual Learning","url":"https://arxiv.org/html/2601.19897v1"},{"title":"[Literature Review] Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting","url":"https://www.themoonlight.io/en/review/retaining-by-doing-the-role-of-on-policy-data-in-mitigating-forgetting"},{"title":"The Role of On-Policy Data in Mitigating Forgetting","url":"https://arxiv.org/pdf/2510.18874"}]
+
+Based on the search results, here's what I found about the paper "Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting" (arxiv 2510.18874):
+
+## Overview
+
+The paper addresses the risk of degrading existing capabilities when adapting language models to new tasks via post-training—a phenomenon known as catastrophic forgetting.
+
+## Key Findings
+
+The experiments reveal a consistent trend across LM families (Llama, Qwen) and tasks (instruction following, general knowledge, and arithmetic reasoning): RL leads to less forgetting than SFT while achieving comparable or higher target task performance.
+
+## Research Approach
+
+The paper systematically compares the forgetting patterns of two widely adopted post-training methods: supervised fine-tuning (SFT) and reinforcement learning (RL). To investigate the cause for this difference, the researchers consider a simplified setting in which the LM is modeled as a mixture of two distributions, one corresponding to prior knowledge and the other to the target task.
+
+The paper was submitted on October 21, 2025, and the most recent version (v2) was last revised on December 3, 2025. A GitHub repository with code and data is available at [princeton-pli/retaining-by-doing](https://github.com/princeton-pli/retaining-by-doing).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5b38d86-1f4e-4710-a561-29882291e40e",
+  "isSidechain": true,
+  "promptId": "36a9da3a-4d49-4ca8-82b8-0b4c82a681b5",
+  "agentId": "afcc3bc962b03cfa2",
+  "type": "user",
+  "uuid": "950eff2b-024a-4b71-9e65-35bdc638cf1e",
+  "sourceToolAssistantUUID": "f5b38d86-1f4e-4710-a561-29882291e40e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-27T19:29:19.104Z_
+
+I now have comprehensive information. Here is the full research report.
+
+---
+
+## Research Report: Anti-Forgetting Mechanisms for Multi-Stage RL Training in VLMs/LLMs
+
+### 1. CATALOGUE OF ANTI-FORGETTING MECHANISMS IN STAGED RL
+
+Below is every distinct mechanism identified, organized from most to least directly applicable to a 5-stage GRPO curriculum.
+
+---
+
+#### A. RECAP -- Replay with Dynamic Objective Reweighting (Phan et al., "Beyond Reasoning Gains", Oct 2025)
+
+- **Mechanism:** Combines RLVR with SFT-style replay of perception-oriented datasets under a mixed objective regime. An online, adaptive reweighting scheme shifts training focus away from saturated objectives toward underperforming or volatile ones using short-horizon convergence/instability signals.
+- **Effectiveness:** Demonstrated on Qwen2.5-VL-3B and 7B. Preserves general capabilities (perception, faithfulness) while also improving reasoning -- not just maintaining it. End-to-end, no auxiliary models needed.
+- **Applicability to 5-stage curriculum:** HIGH. This is the single most directly relevant technique. At each stage transition, you can replay data from prior stages with dynamically adjusted weight so the model does not forget skills from earlier stages.
+
+#### B. Frozen Vision Tower in Late Stages (ReVisual-R1, Jun 2025 / ICLR 2026)
+
+- **Mechanism:** 3-stage curriculum: (1) Cold-start SFT with 283k text entries, (2) Multimodal RL with GRPO (26k multimodal, KL divergence constraint removed to encourage exploration), (3) Text-only RL with vision tower frozen, small KL penalty + entropy annealing.
+- **Effectiveness:** Achieves 49.6 average across challenging benchmarks (MathVerse, MathVision, AIME 2024/2025). The frozen vision tower in stage 3 explicitly prevents visual grounding from being overwritten during text-only refinement.
+- **Applicability to 5-stage curriculum:** HIGH. If your 5 stages progressively strip textual information, you should consider progressively freezing text-processing layers (or the text encoder/embeddings) as you move toward vision-heavy stages, analogous to how ReVisual-R1 freezes the vision tower during text-heavy stages.
+
+#### C. PCuRL -- Online Difficulty Soft Weighting + Dynamic Length Reward (VL-Cogito, Jul 2025)
+
+- **Mechanism:** Multi-stage progressive curriculum RL that bypasses cold-start SFT entirely. Two innovations: (1) Online difficulty soft weighting dynamically adjusts task difficulty based on the model's evolving abilities across successive RL stages; (2) Dynamic length reward encourages adaptive reasoning path length per task complexity.
+- **Effectiveness:** State-of-the-art on 6/10 multimodal benchmarks. Ablation studies confirm the progressive curriculum mechanism effectively increases reasoning depth without catastrophic regression.
+- **Applicability to 5-stage curriculum:** HIGH. The soft weighting mechanism is directly transferable -- at each stage, rather than hard-switching to new data, you blend old and new difficulty levels with online-adjusted weights. The dynamic length reward prevents the model from developing degenerate short-cut solutions that would manifest as forgetting.
+
+#### D. MIFO -- Selective SFT Interleaving During RL (Oct 2025)
+
+- **Mechanism:** Plug-and-play framework that dynamically interleaves SFT into RL. Selects challenging examples for SFT based on rollout accuracy, uses only high-entropy tokens for SFT loss, freezes RL-important parameters during SFT updates.
+- **Effectiveness:** Achieves SoTA reasoning using only 1.5% of SFT data and 20.4% of RL data compared to prior methods. Dramatically more data-efficient than alternatives like SRFT or LUFFY.
+- **Applicability to 5-stage curriculum:** MEDIUM-HIGH. At each stage transition, you can interleave small amounts of SFT from prior-stage distributions to anchor knowledge. The entropy-based token selection and parameter freezing prevent the SFT from overwriting RL gains.
+
+#### E. Prioritized Replay for GRPO (Fatemi, Jan 2026)
+
+- **Mechanism:** Selects problems according to a model-driven priority score derived from empirical success statistics. Focuses training on problems with intermediate success rates (neither always solved nor always failed) to maximize learning signal. Includes heap-based prioritized sampling and periodic retesting of solved/unsolved problems to mitigate starvation and forgetting.
+- **Effectiveness:** Requires no predefined difficulty tiers, auxiliary predictors, or external labels. Compatible with GRPO, PPO, or any rollout-based method.
+- **Applicability to 5-stage curriculum:** HIGH. Directly applicable within each GRPO stage. Between stages, you can maintain a priority buffer of problems from prior stages and periodically retest them.
+
+#### F. Freshness-Aware Prioritized Experience Replay (Apr 2026)
+
+- **Mechanism:** Augments any PER-based priority with a multiplicative exponential age decay. Addresses the problem that billion-parameter models evolve rapidly, making stored priorities stale.
+- **Effectiveness:** +46% on NQ Search, +367% on Sokoban, +133% on VLM FrozenLake. Standard PER without age decay consistently degrades performance.
+- **Effectiveness Note:** The age-decay component is critical -- without it, replay actually hurts.
+- **Applicability to 5-stage curriculum:** HIGH. When replaying data from stages 1-4 during stage 5, priority staleness is a real problem. Exponential age decay ensures that old replay samples are down-weighted appropriately as the policy evolves.
+
+#### G. AdaCuRL -- Adaptive Curriculum RL with Historical Revisiting (Nov 2025)
+
+- **Mechanism:** Coarse-to-fine difficulty estimation + adaptive curriculum scheduling + data revisitation mechanism + adaptive reference policy and sparse KL strategies to prevent policy degradation.
+- **Effectiveness:** Consistent significant improvements across diverse reasoning benchmarks on both LLMs and MLLMs.
+- **Applicability to 5-stage curriculum:** MEDIUM-HIGH. The data revisitation mechanism is directly useful for anti-forgetting across stages. The sparse KL strategy is more computationally efficient than full KL divergence.
+
+#### H. RL's Razor Principle (Shenfeld et al., Sep 2025)
+
+- **Mechanism:** Theoretical and empirical finding that on-policy RL is implicitly biased toward KL-minimal solutions (closest to the base policy among all solutions). SFT can converge to distributions arbitrarily far from the base model.
+- **Effectiveness:** Validated on LLMs and robotic foundation models. Provides theoretical justification for why RL inherently forgets less than SFT.
+- **Applicability to 5-stage curriculum:** FOUNDATIONAL. This justifies using GRPO (an on-policy RL method) rather than SFT for each stage. It also suggests that maintaining a reference policy from the previous stage (not just the original base) for KL computation at each stage transition could be beneficial.
+
+#### I. Prompt Replay for GRPO (Baroian & Berger, Mar 2026)
+
+- **Mechanism:** Reuses prompts (not full trajectories) to preserve on-policy optimization. Inserts medium-difficulty prompts (pass rate near 0.5) into a buffer, mixes them with fresh samples. Cooldown steps and max reuse times control overfitting.
+- **Effectiveness:** Faster initial accuracy gains, reduces zero-variance prompts. Plateaus eventually converge with baseline if configured too aggressively.
+- **Applicability to 5-stage curriculum:** MEDIUM. Useful within each stage for efficiency, but the prompt-only replay (not trajectory replay) means it does not directly prevent inter-stage forgetting. Can be combined with cross-stage prompt replay.
+
+#### J. Prompt-Aware Adaptive EWC (PA-EWC, Nov 2025)
+
+- **Mechanism:** Categorizes model parameters by functional role (visual-descriptive, spatial-guided, medical-semantic) and applies targeted EWC protection to critical parameters while allowing adaptation elsewhere.
+- **Effectiveness:** Reduces catastrophic forgetting by up to 17.58% on five medical imaging datasets while maintaining computational efficiency.
+- **Applicability to 5-stage curriculum:** MEDIUM. EWC adds computational overhead for Fisher information computation. However, the principle of role-based parameter categorization is valuable -- you can identify which parameters are responsible for visual vs. textual processing and protect them selectively at each stage.
+
+#### K. Aggressive Modality Dropout (Magal et al., Jan 2025)
+
+- **Mechanism:** During multimodal training, aggressively drops out one modality (e.g., 80% dropout on audio/video features) to force the model to develop robust unimodal representations within the multimodal framework. Reverses negative co-learning to positive co-learning.
+- **Effectiveness:** Up to 20% accuracy gain during negative co-learning scenarios. At 80% modality dropout, unimodal test performance reached 47% vs. near-chance baseline.
+- **Applicability to 5-stage curriculum:** MEDIUM-HIGH (with adaptation). If your curriculum progressively strips textual information, aggressive text dropout in early stages can pre-condition the model to function without text, reducing the shock of later text-free stages. This is conceptually aligned with your progressive stripping approach.
+
+---
+
+### 2. REVISUAL-R1's 3-STAGE FORGETTING MANAGEMENT (Detailed)
+
+ReVisual-R1 (arxiv 2506.04207, ICLR 2026) uses the following specific mechanisms across its three stages:
+
+1. **Stage 1 (Cold-Start SFT):** Establishes foundational reasoning templates with 283k pure text entries. No anti-forgetting needed (nothing to forget yet).
+
+2. **Stage 2 (Multimodal RL):** Uses GRPO with KL divergence constraint **removed** to encourage broader policy exploration. The rationale is that stage 1 knowledge provides a strong enough foundation that aggressive exploration in multimodal space will build on it rather than destroy it. Uses 26k diverse multimodal entries from the GRAMMAR dataset.
+
+3. **Stage 3 (Text-Only RL):** The **vision tower is frozen** -- this is the primary anti-forgetting mechanism. A **small KL penalty** is reintroduced alongside **entropy annealing** to stabilize training. The 30k text entries refine reasoning expression without eroding visual grounding because the visual weights are literally locked.
+
+The key insight: ReVisual-R1 uses **asymmetric freezing** -- different components are frozen at different stages. The vision tower is free during stage 2 (to learn visual grounding) but locked during stage 3 (to protect it). This is the main mechanism, not replay or regularization.
+
+---
+
+### 3. VL-COGITO's PROGRESSIVE CURRICULUM RL
+
+VL-Cogito (arxiv 2507.22607, DAMO Academy/Alibaba) uses PCuRL with these anti-forgetting properties:
+
+- **No cold-start SFT phase** -- trains directly from backbone via GRPO, avoiding the SFT-to-RL forgetting transition entirely.
+- **Online difficulty soft weighting** dynamically blends easy and hard tasks across stages, preventing abrupt distribution shifts that cause forgetting.
+- **Dynamic length reward** prevents reasoning collapse (a form of capability forgetting where the model learns to produce short, shallow answers).
+- The progressive exposure means the model never fully leaves behind earlier-stage data; it is soft-weighted rather than hard-switched.
+
+---
+
+### 4. PRACTICAL RECOMMENDATIONS FOR A 5-STAGE PROGRESSIVE RL CURRICULUM (STRIPPING TEXTUAL INFORMATION GRADUALLY)
+
+Assuming your 5 stages are something like:
+- Stage 1: Full text + image
+- Stage 2: Reduced text (key details removed)
+- Stage 3: Minimal text (captions only)
+- Stage 4: Near text-free (labels/tags only)
+- Stage 5: Vision-only
+
+Here are prioritized recommendations:
+
+**Tier 1 -- Must-Haves:**
+
+1. **Soft blending, not hard switching (from VL-Cogito).** At each stage transition, use online difficulty soft weighting to gradually shift the training distribution. Never abruptly switch from stage N data to stage N+1 data. Overlap periods where the model sees data from both distributions, with weights shifting over ~10-20% of each stage's training steps.
+
+2. **Progressive text encoder freezing (from ReVisual-R1).** As you strip textual information, progressively freeze text-processing layers. By stage 3-4, the text encoder should be fully or nearly frozen. This prevents the model from "unlearning" text comprehension when text is absent -- it simply does not update those weights.
+
+3. **RECAP-style mixed replay with dynamic reweighting (from "Beyond Reasoning Gains").** At every stage, replay a small fraction (10-20%) of data from all prior stages. Use the RECAP online reweighting mechanism to automatically determine how much weight each prior stage gets based on convergence signals and instability detection.
+
+4. **Freshness-aware priority decay on replay samples (from Freshness-Aware PER).** When replaying stage 1 data during stage 5, use exponential age decay on priorities. Without this, stale replay priorities will cause the model to over-attend to irrelevant old samples. This is critical since standard PER without age decay was shown to hurt performance.
+
+**Tier 2 -- Strongly Recommended:**
+
+5. **Prioritized problem selection within each stage (from Fatemi 2026).** Within each GRPO stage, focus on problems with intermediate success rates (~0.5 pass rate). Periodically retest "solved" and "failed" problems to catch forgetting early. This requires no difficulty labels or auxiliary models.
+
+6. **Adaptive KL reference policy.** Following the RL's Razor principle, use the **previous stage's final checkpoint** as the KL reference for the current stage (not the original base model). This constrains each stage to stay close to the prior stage's solution, creating a chain of small distributional shifts rather than one large drift from base.
+
+7. **Aggressive text dropout in early stages (adapted from Modality Dropout).** In stages 1-2, use 30-50% text dropout during training to pre-condition the model for later text-stripped stages. This builds robustness before the text is actually removed, reducing the forgetting shock at stages 3-5. Increase dropout gradually to match the upcoming stage's text level.
+
+**Tier 3 -- Nice-to-Haves:**
+
+8. **MIFO-style selective SFT interleaving.** At stage transitions where you observe significant capability drops, inject small amounts of SFT data from prior stages using entropy-based token selection. Freeze RL-important parameters during these SFT updates. Use sparingly (1-5% of training steps) to avoid overwriting RL gains.
+
+9. **Dynamic length reward (from VL-Cogito).** Incorporate a length reward that adapts to task complexity to prevent reasoning collapse. As text is stripped, the model may default to shorter, shallower reasoning; the length reward counteracts this.
+
+10. **Sparse KL divergence (from AdaCuRL).** Instead of computing full KL divergence, use sparse KL on only the most informative tokens. This reduces computational overhead while still providing regularization, which matters when you are running 5 full GRPO stages.
+
+**Architecture of the Recommended 5-Stage Pipeline:**
+
+```
+For each stage S in [1, 2, 3, 4, 5]:
+  - Reference policy = checkpoint from end of stage S-1
+  - Training data = 80% stage-S data + 20% replay from stages 1..S-1
+  - Replay weighting = RECAP dynamic reweighting + freshness-aware age decay
+  - Problem selection = Prioritized by ~0.5 pass rate within each batch
+  - Text dropout = (S-1) * 15% applied to stage-S data during training
+  - Frozen layers = Progressively freeze text encoder layers:
+      Stage 1: nothing frozen
+      Stage 2: freeze bottom 25% of text encoder
+      Stage 3: freeze bottom 50% of text encoder  
+      Stage 4: freeze 75% of text encoder
+      Stage 5: freeze entire text encoder
+  - KL constraint = Sparse KL to stage S-1 reference policy
+  - Stage transition = 15% overlap period with soft-weighted blending
+  - Monitoring = Periodic retesting on stage 1-S benchmarks to detect regression
+```
+
+**Key Quantitative Expectations Based on the Literature:**
+
+- On-policy RL (GRPO) inherently forgets less than SFT (RL's Razor) -- this is your baseline advantage.
+- RECAP-style replay can preserve general capabilities while improving reasoning (not just maintaining it).
+- PA-EWC-style selective protection reduces forgetting by up to ~17%.
+- MIFO achieves SoTA with only 1.5% SFT data and 20.4% RL data vs. prior methods -- selective interleaving is extremely data-efficient.
+- Freshness-aware PER shows +46% to +367% improvements over no-replay baselines; critically, standard PER without age decay degrades performance.
+- Aggressive modality dropout can yield up to 20% accuracy gains on unimodal deployment.
+
+---
+
+### Sources:
+
+- [ReVisual-R1: Advancing Multimodal Reasoning From Optimized Cold Start to Staged Reinforcement Learning](https://arxiv.org/html/2506.04207)
+- [VL-Cogito: Progressive Curriculum Reinforcement Learning for Advanced Multimodal Reasoning](https://arxiv.org/abs/2507.22607)
+- [Beyond Reasoning Gains: Mitigating General Capabilities Forgetting in Large Reasoning Models](https://arxiv.org/abs/2510.21978)
+- [Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners (MIFO)](https://arxiv.org/abs/2510.04454)
+- [RL's Razor: Why Online Reinforcement Learning Forgets Less](https://arxiv.org/abs/2509.04259)
+- [Retaining by Doing: The Role of On-Policy Data in Mitigating Forgetting](https://arxiv.org/abs/2510.18874)
+- [Prioritized Replay for RL Post-training](https://arxiv.org/abs/2601.02648)
+- [Freshness-Aware Prioritized Experience Replay for LLM/VLM Reinforcement Learning](https://arxiv.org/abs/2604.16918)
+- [AdaCuRL: Adaptive Curriculum Reinforcement Learning with Invalid Sample Mitigation and Historical Revisiting](https://arxiv.org/abs/2511.09478)
+- [Prompt Replay: Speeding up GRPO with On-Policy Reuse of High-Signal Prompts](https://arxiv.org/abs/2603.21177)
+- [Prompt-Aware Adaptive Elastic Weight Consolidation for Continual Learning in Medical Vision-Language Models](https://arxiv.org/abs/2511.20732)
+- [Negative to Positive Co-learning with Aggressive Modality Dropout](https://arxiv.org/abs/2501.00865)
+- [Continual Learning in Large Language Models: Methods, Challenges, and Opportunities](https://arxiv.org/abs/2603.12658)
+- [Enhanced Continual Learning of Vision-Language Models with Model Fusion](https://arxiv.org/abs/2503.10705)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "950eff2b-024a-4b71-9e65-35bdc638cf1e",
+  "isSidechain": true,
+  "agentId": "afcc3bc962b03cfa2",
+  "requestId": "req_011CbTdBm1U6JXZfbjG1duST",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4099bf81-7ea9-4922-8990-a42259a64124",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "ee62eec3-8885-4cdc-8e46-e388e9b83fb4",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YLTKwN51ZjeJhxdiXk83yi",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3367,
+      "cache_read_input_tokens": 25557,
+      "output_tokens": 4740,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3367
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4740,
+          "cache_read_input_tokens": 25557,
+          "cache_creation_input_tokens": 3367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3367,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

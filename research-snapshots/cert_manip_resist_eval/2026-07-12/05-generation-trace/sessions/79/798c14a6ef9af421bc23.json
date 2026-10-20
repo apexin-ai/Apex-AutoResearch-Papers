@@ -1,0 +1,1876 @@
+{
+  "schema_version": "1.0",
+  "id": "798c14a6ef9af421bc23",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: ## IRT-FIT: Detecting Benchmark Con",
+  "task_key": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/15889f48-069e-45aa-b4a3-4b766ed475a3.jsonl",
+    "occurrence": 1,
+    "bytes": 129972,
+    "sha256": "cbce8f0477d7e766001ae8d42c5f8093bdd2b1fce622a6c961c236bfbbf1fdbf"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "record": 13,
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T05:25:40.755Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T05:25:40.755Z",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n## IRT-FIT: Detecting Benchmark Contamination in LLMs at the Minimal-Information Operating Point via Psychometric Person-Fit Statistics\n\n## 1. Problem Statement\n\nBenchmark contamination—where LLMs are trained on evaluation data—undermines the reliability of capability assessments. As benchmarks proliferate and training corpora grow opaque, robust contamination detection is critical for evaluation integrity. Existing detection methods operate at various levels of model access: token-level probabilities (Min-K%++, ICLR 2025 Spotlight; CoDeC, arXiv:2510.27055, ICLR 2026), entropy sequences (Self-Critique, arXiv:2510.09259, ICLR 2026), confidence scores (PaCoST, EMNLP 2024 Findings, arXiv:2406.18326), guided instruction completion (Time Travel in LLMs, Golchin & Surdeanu, ICLR 2024), or the ability to re-administer modified benchmark items (ConStat, NeurIPS 2024, arXiv:2405.16281; Silicon Bureaucracy, arXiv:2603.21636; Cross-Context Verification, arXiv:2603.21454). All require information beyond what is minimally available in a standard evaluation: the binary (correct/incorrect) response pattern.\n\nThis paper asks a foundational question: **what is the detection power envelope when operating at the minimal-information level—binary response patterns alone?** We propose IRT-FIT, which applies psychometric person-fit statistics to LLM benchmark evaluation, establishing a new operating point on the information-access vs. detection-power frontier. By leveraging calibrated Item Response Theory (IRT) parameters, IRT-FIT detects aberrant response patterns indicative of item-level memorization contamination, without requiring any model internals, re-testing, or additional inference.\n\n## 2. Core Contributions\n\n1. **Minimal-information contamination detection.** IRT-FIT is the first method that detects benchmark contamination using only binary response patterns and pre-calibrated item parameters—the lowest possible information access level. It complements gray-box methods requiring model internals (CoDeC, Self-Critique, Min-K%++) and re-administration methods requiring new test items (ConStat, Silicon Bureaucracy, CCV). Crucially, we demonstrate that lz* captures item-level response pattern structure (the joint likelihood of the specific correct/incorrect combination given ability) that simple aggregate statistics (accuracy anomaly, Guttman error count) cannot exploit, justifying the IRT machinery.\n\n2. **Retroactive contamination prevalence analysis.** Because IRT-FIT requires only binary response patterns already recorded in evaluation logs, it enables systematic historical audit of contamination prevalence—analyzing how contamination rates on public leaderboards have evolved over time. No other method can perform this retroactive analysis: gray-box methods require live model access; ConStat requires re-testing on rephrased items; Benchmark Inflation (arXiv:2410.09247) requires constructing benchmark-specific holdout sets. We apply IRT-FIT to all models with available per-item response records on the Open LLM Leaderboard, producing the first large-scale contamination prevalence timeline.\n\n3. **Characterization of detection limits for response-pattern methods.** We document an inverted-U detection power curve and provide an informal proof sketch for its two endpoints: at contamination fraction → 0%, the aberrance signal is submerged below the noise floor of finite-item statistical tests (power → 0 by standard hypothesis testing limits); at contamination fraction → 100%, uniform high performance is indistinguishable from genuine high ability since binary response patterns carry no information to separate the two (identifiability collapse). Between these endpoints, detection power peaks at 10–30% contamination. We conjecture this inverted-U characterizes a general limit of all binary-response-pattern-based detection methods, extending prior observations in educational testing (Sinharay, 2017, JEBS).\n\n4. **Cross-domain methodological transfer.** We bridge psychometric testing theory—specifically person-fit analysis for detecting cheating examinees (Sinharay, 2017, JEBS; Karabatsos, 2003; Gorney et al., 2023)—to LLM evaluation, demonstrating that the analogy \"contaminated LLM ≈ examinee with item preknowledge\" is operationally productive.\n\n## 3. Scope and Assumptions\n\n**Detection scope.** IRT-FIT targets **item-level memorization contamination**—where an LLM has been fine-tuned on or memorized specific benchmark question-answer pairs, producing an aberrant pattern of correct responses deviating from IRT model predictions. This corresponds to SFT/data-leakage contamination pathways.\n\n**SFT generalization effect.** The core analogy \"contaminated LLM ≈ examinee with item preknowledge\" assumes contamination produces item-specific performance gains. However, SFT on a subset of benchmark items may produce partial generalization to semantically related non-trained items—smoothing the aberrance signal. For example, fine-tuning on 20% of MMLU biology questions may improve performance on the remaining 80% of biology questions. This generalization radius, if large, weakens person-fit detection power by making the response pattern more consistent with genuine high ability. Our experimental design directly tests this: the hard-item-only contamination condition (Section 6.1) is motivated by the expectation that hard items have smaller generalization radii, and per-domain analysis (Section 6.4) controls for within-domain generalization.\n\n**Out of scope.** Distributional pretraining exposure—where benchmark content appears amidst massive pretraining corpora producing smooth, generalizable ability improvement—will not generate item-specific aberrance. This limitation is shared by all response-pattern-based methods. Wang et al. (arXiv:2510.02386) distinguish Stage I (pretraining/SFT) and Stage II (post-RL) contamination; our experiments simulate both.\n\n## 4. Method\n\n**4.1 IRT Parameterization.** We use 4PL IRT parameters (discrimination a, difficulty b, guessing c, upper asymptote d) calibrated by PSN-IRT (\"Lost in Benchmarks?\", AAAI 2026 Oral, arXiv:2505.15055), covering 41,871 items across 11 benchmarks. The 4PL model predicts:\n\nP(X_j=1|θ) = c_j + (d_j − c_j) / (1 + exp(−a_j(θ − b_j)))\n\n**4.2 Person-Fit Statistic (lz*).** For each model, we compute the standardized log-likelihood person-fit statistic lz* (Snijders, 2001; Sinharay, 2017):\n\nl_z* = [Σ_j (x_j log p_j + (1−x_j) log(1−p_j)) − E[l|θ̂]] / √Var[l|θ̂]\n\nwhere p_j = P(X_j=1|θ̂). Under the null (no aberrance), lz* ~ N(0,1). Significantly negative lz* indicates response patterns inconsistent with the IRT model—the signature of item preknowledge.\n\n**Why lz* over simple statistics.** Unlike aggregate measures (accuracy z-score, Guttman error count), lz* evaluates the joint likelihood of the full item-response vector given estimated ability, capturing complex aberrance patterns (e.g., failing easy items while acing specific hard items) that difficulty-stratified statistics miss. This distinction is empirically validated in our ablation (Section 6.4) and theoretically grounded in the person-fit literature (Karabatsos, 2003).\n\n**Calibration considerations.** Braeken & van Laar (2025) note that lz* can exhibit calibration bias when IRT parameters are estimated on data containing misfitting respondents. Since PSN-IRT calibrates on LLM responses that may include contaminated models, we verify lz* calibration empirically (Section 7) and provide an empirical null adjustment if the N(0,1) assumption is violated.\n\n**4.3 Detection Pipeline.**\n1. Retrieve pre-calibrated 4PL item parameters from PSN-IRT for target benchmark.\n2. Obtain binary response pattern for target LLM—from existing evaluation logs or new evaluation.\n3. Estimate model ability θ̂ via maximum likelihood.\n4. Compute lz* and derive p-value under N(0,1) or empirical null.\n5. For single-model testing: flag if p < α. For multi-model audit: apply Benjamini-Hochberg FDR control.\n\n## 5. Related Work\n\n**Contamination detection requiring model internals (gray-box).** Min-K%++ (ICLR 2025 Spotlight) thresholds token-level log-likelihoods. CoDeC (arXiv:2510.27055, ICLR 2026) uses in-context learning to compare confidence on seen vs. unseen data. Self-Critique (arXiv:2510.09259, ICLR 2026) detects post-RL contamination via entropy-sequence policy collapse (~30% AUC improvement). PaCoST (EMNLP 2024 Findings, arXiv:2406.18326) compares confidence on original vs. perturbed items. Time Travel in LLMs (Golchin & Surdeanu, ICLR 2024) uses guided instruction to reconstruct benchmark instances.\n\n**Contamination detection from external probing.** ConStat (NeurIPS 2024, arXiv:2405.16281) detects non-generalizing performance inflation via comparison with rephrased/synthetic reference benchmarks (r²=0.94 with ground-truth). Silicon Bureaucracy (arXiv:2603.21636) uses perturbation-based score credibility audit. Cross-Context Verification (arXiv:2603.21454) achieves perfect separation via session-isolated diversity analysis.\n\n**Retroactive contamination analysis.** Benchmark Inflation (arXiv:2410.09247) constructs retro-holdout datasets to quantify performance gaps (up to 16pp on TruthfulQA). Key difference from IRT-FIT: retro-holdouts require constructing new benchmark-specific holdout sets and re-evaluating models, while IRT-FIT operates on existing response patterns with no new data generation or model inference.\n\n**Key differentiation from ConStat.** Both ConStat and IRT-FIT operate without model internals. However, ConStat requires (a) generating semantically equivalent rephrased items, (b) re-administering benchmarks to each model, and (c) reference model comparison. IRT-FIT requires none of these—only existing binary response patterns and pre-calibrated IRT parameters—enabling retroactive audit where re-testing is impossible.\n\n**Post-RL contamination robustness.** Wang et al. (arXiv:2510.02386) demonstrate that even brief GRPO training conceals MIA-based signals. Our post-RL experiments test whether response-pattern-level signals exhibit different robustness properties than model-internal signals.\n\n**IRT for LLM evaluation.** PSN-IRT (AAAI 2026 Oral, arXiv:2505.15055) calibrated 4PL parameters for 41,871 items across 11 benchmarks. ATLAS (arXiv:2511.04689, AAAI 2027) introduces IRT-based adaptive testing, reducing items by 90% while maintaining precision and showing 23–31% rank reordering. MedIRT (arXiv:2509.24186, ICLR 2027) applies 2PL IRT per topic to 80 LLMs on medical benchmarks. \"Lifting the Benchmark Iceberg with Item-Response Theory\" (ICLR 2024) reveals how hidden implementation choices affect rankings and proposes IRT for transparent measurement. Han et al. (EACL 2026 Findings) quantify contamination in psychometric questionnaires but do not employ person-fit statistics. None connect IRT to contamination detection via person-fit.\n\n**Person-fit in educational testing.** Person-fit statistics have extensive foundations (Karabatsos, 2003; Sinharay, 2017, JEBS; Gorney et al., 2023). Sinharay (2017) establishes lz* detection power peaks at 10–30% preknowledge with inverted-U shape. Braeken & van Laar (2025) identify calibration bias in lz* from contaminated calibration samples. Tendeiro et al. (2023) propose iterative scale purification improving Type-I error control. We transfer these tools to LLM evaluation, addressing calibration concerns via empirical null adjustment.\n\n## 6. Experimental Design\n\n**6.1 Controlled Contamination Experiment**\n\n**Models.** Llama 4 Scout (109B MoE), Gemma 4 27B, Qwen 3.5-9B—spanning MoE and dense architectures at different scales.\n\n**Benchmarks.** Six from PSN-IRT's calibrated set: MMLU (large, multi-domain), ARC-Challenge (science reasoning), HellaSwag (commonsense), WinoGrande (coreference), TruthfulQA (~817 items), HumanEval (~164 items). Selection provides test-length variation for power analysis.\n\n**Contamination protocol.** QLoRA fine-tuning on fraction f ∈ {0%, 5%, 10%, 20%, 30%, 50%, 100%} of benchmark items, producing 3 models × 6 benchmarks × 7 levels = 126 conditions, each with 3 random seeds. Additionally, full-parameter SFT on Qwen 3.5-9B at f ∈ {10%, 20%, 50%} to validate QLoRA as contamination proxy (9 additional conditions × 3 seeds).\n\n**Item sampling strategy ablation.** Three strategies per contamination fraction:\n- Random uniform sampling\n- Hard-item-only (top 30% by IRT difficulty b)—primary condition (most realistic: easy items are answerable without memorization)\n- Stratified (proportional to difficulty distribution)\n\n**6.2 Baselines (Access-Level Stratified)**\n\n**Tier 0 — Naive response-pattern baselines (same operating point as IRT-FIT):**\n- **Accuracy-Z**: z-score of target model's accuracy relative to models in the same ability band\n- **Guttman Error Count**: number of item pairs violating difficulty ordering (Karabatsos, 2003)\n- **Difficulty-Residual Correlation**: correlation between item-level residuals and IRT difficulty b (contaminated models should show positive residual on high-difficulty items)\n\nThese baselines use the same information as IRT-FIT (binary responses + IRT parameters) but without the full person-fit statistical framework, directly testing whether lz*'s joint-likelihood approach provides marginal value over simpler aggregate statistics.\n\n**Tier 1 — Black-box requiring re-testing:**\n- ConStat (NeurIPS 2024, arXiv:2405.16281) — rephrased benchmark comparison\n\n**Tier 2 — Gray-box (token-level access):**\n- Min-K%++ (ICLR 2025 Spotlight)\n- CoDeC (arXiv:2510.27055, ICLR 2026)\n- Self-Critique (arXiv:2510.09259, ICLR 2026)\n- PaCoST (EMNLP 2024 Findings, arXiv:2406.18326)\n\nPrimary evaluation: IRT-FIT vs. Tier 0 (does IRT machinery add value?) and vs. Tier 1 (does avoiding re-testing sacrifice detection power?). Secondary: cross-tier comparison with gray-box methods.\n\n**6.3 Post-RL Robustness Test**\n\nOn **two models** (Qwen 3.5-9B and Gemma 4 27B):\n- **Stage 1**: SFT contamination at 20% and 50% fractions\n- **Stage 2a** (Clean RL): GRPO on non-benchmark data (reward = outcome correctness on held-out problems)\n- **Stage 2b** (Contaminated RL): GRPO where benchmark items appear in RL data\n- **GRPO configuration**: Following Wang et al. (arXiv:2510.02386) for comparability; detection power reported at checkpoints {100, 500, 1000, 2000, 5000} RL steps\n- **Comparison**: IRT-FIT trajectory vs. MIA-based methods (Min-K%++, Self-Critique) across RL training steps\n\n**6.4 Ablation Studies**\n\n- **IRT model complexity**: 2PL (c=0, d=1) → 3PL (d=1) → 4PL, quantifying marginal contribution of guessing and upper-asymptote parameters. Parameter sets derived from PSN-IRT (arXiv:2505.15055).\n- **Person-fit statistics**: lz* vs. U3, W, Ht (Karabatsos, 2003)\n- **Ability estimation**: MLE vs. EAP vs. WLE for θ̂\n- **IRT parameter source**: PSN-IRT 4PL parameters vs. conventionally calibrated parameters (mirt R package on same response data), testing sensitivity to parameter estimation method\n- **Unidimensionality diagnostic**: For multi-domain benchmarks (MMLU), compare full-benchmark lz* vs. per-subject-domain lz*, testing whether domain-level analysis reduces false positives from multidimensionality (Braeken & van Laar, 2025)\n\n**6.5 Power Analysis and Detection Limits**\n\n- **Simulation study**: Synthetic response patterns under 4PL at varying ability levels, test lengths {50, 164, 500, 817, 1000, 5000}, contamination fractions {0%, 3%, 5%, 10%, 20%, 30%, 50%, 100%}, 10,000 replications per condition.\n- **Test length analysis**: Minimum items for reliable detection per contamination fraction. Per-benchmark expected power.\n- **Inverted-U documentation with proof sketch**: Plot detection power curve; provide informal argument for endpoint impossibility (noise floor at low contamination; identifiability collapse at high contamination).\n\n## 7. Evaluation Metrics\n\n- **AUROC/AUPRC**: Aggregate and per-contamination-level discrimination\n- **Per-contamination-level power**: P(reject H₀ | H₁) at α=0.05—core inverted-U visualization\n- **Type-I error calibration**: Empirical FPR at α ∈ {0.01, 0.05, 0.10} on clean models; Q-Q plot of lz* under null to verify N(0,1) assumption; if violated, report empirical null parameters and adjusted detection power\n- **Benjamini-Hochberg FDR**: Applied to multi-model audit scenarios; report FDR-controlled detection rates at q ∈ {0.05, 0.10, 0.20}\n\n## 8. Contamination Prevalence Analysis\n\n**Systematic historical audit.** Apply IRT-FIT to all models on the Open LLM Leaderboard with available per-item response logs (via lm-evaluation-harness output or reproducible re-evaluation of open-weight models). Produce: (a) per-benchmark contamination prevalence over time (fraction of models flagged at FDR=0.10); (b) contamination severity distribution (lz* score distribution across models); (c) trend analysis (has contamination prevalence increased with leaderboard competition?).\n\n**Convergent validation.** Compare IRT-FIT flagging with ConStat's published findings on Mistral, Llama, Yi, and top-3 Open LLM Leaderboard models (ConStat, NeurIPS 2024).\n\n**Known-clean negative controls.** Verify IRT-FIT does not flag OLMo models (AI2), whose training data (Dolma) is fully open and auditable via OlmoTrace, providing false-positive control in the wild.\n\n**Limitations.** Convergent validation cannot establish ground truth (two methods may share systematic biases). The controlled experiment (Section 6.1) remains the primary validation; the prevalence analysis is positioned as an illustrative application demonstrating IRT-FIT's unique retroactive capability.\n\n## 9. Compute Estimates\n\n- **Controlled contamination (QLoRA)**: 126 conditions × 3 item strategies × 3 seeds × ~1.5h avg ≈ 1,700 H100-hours\n- **Full-parameter SFT (Qwen 9B)**: 9 conditions × 3 seeds × ~2h ≈ 54 H100-hours\n- **Post-RL (2 models)**: ~350 H100-hours\n- **Inference for prevalence analysis**: Minimal (per-item response collection for open-weight models + CPU-only person-fit computation)\n- **Hardware per model**: Llama 4 Scout QLoRA: 1× H100 (~71GB via Unsloth); Gemma 4 27B QLoRA: 1× H100 (~30GB); Qwen 3.5-9B: 1× A100 40GB\n- **Total**: ~2,500 H100 GPU-hours\n\n## 10. Expected Outcomes\n\nWe expect: (a) lz* outperforms Tier 0 naive baselines (Accuracy-Z, Guttman errors, Difficulty-Residual) by capturing joint response-pattern structure, empirically justifying the IRT person-fit framework; (b) competitive performance with ConStat in Tier 1, with the advantage of no re-testing; (c) aggregate AUROC possibly below gray-box methods—an expected consequence of minimal information access; (d) inverted-U detection power confirmed with peak at 10–30%; (e) partial post-RL robustness, with response-pattern signals degrading differently from internal signals; (f) the historical prevalence analysis revealing contamination trends across leaderboard history, demonstrating IRT-FIT's unique retroactive capability."
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T05:25:40.761Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T05:25:40.761Z",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T05:25:40.786Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n## IRT-FIT: Detecting Benchmark Contamination in LLMs at the Minimal-Information Operating Point via Psychometric Person-Fit Statistics\n\n## 1. Problem Statement\n\nBenchmark contamination—where LLMs are trained on evaluation data—undermines the reliability of capability assessments. As benchmarks proliferate and training corpora grow opaque, robust contamination detection is critical for evaluation integrity. Existing detection methods operate at various levels of model access: token-level probabilities (Min-K%++, ICLR 2025 Spotlight; CoDeC, arXiv:2510.27055, ICLR 2026), entropy sequences (Self-Critique, arXiv:2510.09259, ICLR 2026), confidence scores (PaCoST, EMNLP 2024 Findings, arXiv:2406.18326), guided instruction completion (Time Travel in LLMs, Golchin & Surdeanu, ICLR 2024), or the ability to re-administer modified benchmark items (ConStat, NeurIPS 2024, arXiv:2405.16281; Silicon Bureaucracy, arXiv:2603.21636; Cross-Context Verification, arXiv:2603.21454). All require information beyond what is minimally available in a standard evaluation: the binary (correct/incorrect) response pattern.\n\nThis paper asks a foundational question: **what is the detection power envelope when operating at the minimal-information level—binary response patterns alone?** We propose IRT-FIT, which applies psychometric person-fit statistics to LLM benchmark evaluation, establishing a new operating point on the information-access vs. detection-power frontier. By leveraging calibrated Item Response Theory (IRT) parameters, IRT-FIT detects aberrant response patterns indicative of item-level memorization contamination, without requiring any model internals, re-testing, or additional inference.\n\n## 2. Core Contributions\n\n1. **Minimal-information contamination detection.** IRT-FIT is the first method that detects benchmark contamination using only binary response patterns and pre-calibrated item parameters—the lowest possible information access level. It complements gray-box methods requiring model internals (CoDeC, Self-Critique, Min-K%++) and re-administration methods requiring new test items (ConStat, Silicon Bureaucracy, CCV). Crucially, we demonstrate that lz* captures item-level response pattern structure (the joint likelihood of the specific correct/incorrect combination given ability) that simple aggregate statistics (accuracy anomaly, Guttman error count) cannot exploit, justifying the IRT machinery.\n\n2. **Retroactive contamination prevalence analysis.** Because IRT-FIT requires only binary response patterns already recorded in evaluation logs, it enables systematic historical audit of contamination prevalence—analyzing how contamination rates on public leaderboards have evolved over time. No other method can perform this retroactive analysis: gray-box methods require live model access; ConStat requires re-testing on rephrased items; Benchmark Inflation (arXiv:2410.09247) requires constructing benchmark-specific holdout sets. We apply IRT-FIT to all models with available per-item response records on the Open LLM Leaderboard, producing the first large-scale contamination prevalence timeline.\n\n3. **Characterization of detection limits for response-pattern methods.** We document an inverted-U detection power curve and provide an informal proof sketch for its two endpoints: at contamination fraction → 0%, the aberrance signal is submerged below the noise floor of finite-item statistical tests (power → 0 by standard hypothesis testing limits); at contamination fraction → 100%, uniform high performance is indistinguishable from genuine high ability since binary response patterns carry no information to separate the two (identifiability collapse). Between these endpoints, detection power peaks at 10–30% contamination. We conjecture this inverted-U characterizes a general limit of all binary-response-pattern-based detection methods, extending prior observations in educational testing (Sinharay, 2017, JEBS).\n\n4. **Cross-domain methodological transfer.** We bridge psychometric testing theory—specifically person-fit analysis for detecting cheating examinees (Sinharay, 2017, JEBS; Karabatsos, 2003; Gorney et al., 2023)—to LLM evaluation, demonstrating that the analogy \"contaminated LLM ≈ examinee with item preknowledge\" is operationally productive.\n\n## 3. Scope and Assumptions\n\n**Detection scope.** IRT-FIT targets **item-level memorization contamination**—where an LLM has been fine-tuned on or memorized specific benchmark question-answer pairs, producing an aberrant pattern of correct responses deviating from IRT model predictions. This corresponds to SFT/data-leakage contamination pathways.\n\n**SFT generalization effect.** The core analogy \"contaminated LLM ≈ examinee with item preknowledge\" assumes contamination produces item-specific performance gains. However, SFT on a subset of benchmark items may produce partial generalization to semantically related non-trained items—smoothing the aberrance signal. For example, fine-tuning on 20% of MMLU biology questions may improve performance on the remaining 80% of biology questions. This generalization radius, if large, weakens person-fit detection power by making the response pattern more consistent with genuine high ability. Our experimental design directly tests this: the hard-item-only contamination condition (Section 6.1) is motivated by the expectation that hard items have smaller generalization radii, and per-domain analysis (Section 6.4) controls for within-domain generalization.\n\n**Out of scope.** Distributional pretraining exposure—where benchmark content appears amidst massive pretraining corpora producing smooth, generalizable ability improvement—will not generate item-specific aberrance. This limitation is shared by all response-pattern-based methods. Wang et al. (arXiv:2510.02386) distinguish Stage I (pretraining/SFT) and Stage II (post-RL) contamination; our experiments simulate both.\n\n## 4. Method\n\n**4.1 IRT Parameterization.** We use 4PL IRT parameters (discrimination a, difficulty b, guessing c, upper asymptote d) calibrated by PSN-IRT (\"Lost in Benchmarks?\", AAAI 2026 Oral, arXiv:2505.15055), covering 41,871 items across 11 benchmarks. The 4PL model predicts:\n\nP(X_j=1|θ) = c_j + (d_j − c_j) / (1 + exp(−a_j(θ − b_j)))\n\n**4.2 Person-Fit Statistic (lz*).** For each model, we compute the standardized log-likelihood person-fit statistic lz* (Snijders, 2001; Sinharay, 2017):\n\nl_z* = [Σ_j (x_j log p_j + (1−x_j) log(1−p_j)) − E[l|θ̂]] / √Var[l|θ̂]\n\nwhere p_j = P(X_j=1|θ̂). Under the null (no aberrance), lz* ~ N(0,1). Significantly negative lz* indicates response patterns inconsistent with the IRT model—the signature of item preknowledge.\n\n**Why lz* over simple statistics.** Unlike aggregate measures (accuracy z-score, Guttman error count), lz* evaluates the joint likelihood of the full item-response vector given estimated ability, capturing complex aberrance patterns (e.g., failing easy items while acing specific hard items) that difficulty-stratified statistics miss. This distinction is empirically validated in our ablation (Section 6.4) and theoretically grounded in the person-fit literature (Karabatsos, 2003).\n\n**Calibration considerations.** Braeken & van Laar (2025) note that lz* can exhibit calibration bias when IRT parameters are estimated on data containing misfitting respondents. Since PSN-IRT calibrates on LLM responses that may include contaminated models, we verify lz* calibration empirically (Section 7) and provide an empirical null adjustment if the N(0,1) assumption is violated.\n\n**4.3 Detection Pipeline.**\n1. Retrieve pre-calibrated 4PL item parameters from PSN-IRT for target benchmark.\n2. Obtain binary response pattern for target LLM—from existing evaluation logs or new evaluation.\n3. Estimate model ability θ̂ via maximum likelihood.\n4. Compute lz* and derive p-value under N(0,1) or empirical null.\n5. For single-model testing: flag if p < α. For multi-model audit: apply Benjamini-Hochberg FDR control.\n\n## 5. Related Work\n\n**Contamination detection requiring model internals (gray-box).** Min-K%++ (ICLR 2025 Spotlight) thresholds token-level log-likelihoods. CoDeC (arXiv:2510.27055, ICLR 2026) uses in-context learning to compare confidence on seen vs. unseen data. Self-Critique (arXiv:2510.09259, ICLR 2026) detects post-RL contamination via entropy-sequence policy collapse (~30% AUC improvement). PaCoST (EMNLP 2024 Findings, arXiv:2406.18326) compares confidence on original vs. perturbed items. Time Travel in LLMs (Golchin & Surdeanu, ICLR 2024) uses guided instruction to reconstruct benchmark instances.\n\n**Contamination detection from external probing.** ConStat (NeurIPS 2024, arXiv:2405.16281) detects non-generalizing performance inflation via comparison with rephrased/synthetic reference benchmarks (r²=0.94 with ground-truth). Silicon Bureaucracy (arXiv:2603.21636) uses perturbation-based score credibility audit. Cross-Context Verification (arXiv:2603.21454) achieves perfect separation via session-isolated diversity analysis.\n\n**Retroactive contamination analysis.** Benchmark Inflation (arXiv:2410.09247) constructs retro-holdout datasets to quantify performance gaps (up to 16pp on TruthfulQA). Key difference from IRT-FIT: retro-holdouts require constructing new benchmark-specific holdout sets and re-evaluating models, while IRT-FIT operates on existing response patterns with no new data generation or model inference.\n\n**Key differentiation from ConStat.** Both ConStat and IRT-FIT operate without model internals. However, ConStat requires (a) generating semantically equivalent rephrased items, (b) re-administering benchmarks to each model, and (c) reference model comparison. IRT-FIT requires none of these—only existing binary response patterns and pre-calibrated IRT parameters—enabling retroactive audit where re-testing is impossible.\n\n**Post-RL contamination robustness.** Wang et al. (arXiv:2510.02386) demonstrate that even brief GRPO training conceals MIA-based signals. Our post-RL experiments test whether response-pattern-level signals exhibit different robustness properties than model-internal signals.\n\n**IRT for LLM evaluation.** PSN-IRT (AAAI 2026 Oral, arXiv:2505.15055) calibrated 4PL parameters for 41,871 items across 11 benchmarks. ATLAS (arXiv:2511.04689, AAAI 2027) introduces IRT-based adaptive testing, reducing items by 90% while maintaining precision and showing 23–31% rank reordering. MedIRT (arXiv:2509.24186, ICLR 2027) applies 2PL IRT per topic to 80 LLMs on medical benchmarks. \"Lifting the Benchmark Iceberg with Item-Response Theory\" (ICLR 2024) reveals how hidden implementation choices affect rankings and proposes IRT for transparent measurement. Han et al. (EACL 2026 Findings) quantify contamination in psychometric questionnaires but do not employ person-fit statistics. None connect IRT to contamination detection via person-fit.\n\n**Person-fit in educational testing.** Person-fit statistics have extensive foundations (Karabatsos, 2003; Sinharay, 2017, JEBS; Gorney et al., 2023). Sinharay (2017) establishes lz* detection power peaks at 10–30% preknowledge with inverted-U shape. Braeken & van Laar (2025) identify calibration bias in lz* from contaminated calibration samples. Tendeiro et al. (2023) propose iterative scale purification improving Type-I error control. We transfer these tools to LLM evaluation, addressing calibration concerns via empirical null adjustment.\n\n## 6. Experimental Design\n\n**6.1 Controlled Contamination Experiment**\n\n**Models.** Llama 4 Scout (109B MoE), Gemma 4 27B, Qwen 3.5-9B—spanning MoE and dense architectures at different scales.\n\n**Benchmarks.** Six from PSN-IRT's calibrated set: MMLU (large, multi-domain), ARC-Challenge (science reasoning), HellaSwag (commonsense), WinoGrande (coreference), TruthfulQA (~817 items), HumanEval (~164 items). Selection provides test-length variation for power analysis.\n\n**Contamination protocol.** QLoRA fine-tuning on fraction f ∈ {0%, 5%, 10%, 20%, 30%, 50%, 100%} of benchmark items, producing 3 models × 6 benchmarks × 7 levels = 126 conditions, each with 3 random seeds. Additionally, full-parameter SFT on Qwen 3.5-9B at f ∈ {10%, 20%, 50%} to validate QLoRA as contamination proxy (9 additional conditions × 3 seeds).\n\n**Item sampling strategy ablation.** Three strategies per contamination fraction:\n- Random uniform sampling\n- Hard-item-only (top 30% by IRT difficulty b)—primary condition (most realistic: easy items are answerable without memorization)\n- Stratified (proportional to difficulty distribution)\n\n**6.2 Baselines (Access-Level Stratified)**\n\n**Tier 0 — Naive response-pattern baselines (same operating point as IRT-FIT):**\n- **Accuracy-Z**: z-score of target model's accuracy relative to models in the same ability band\n- **Guttman Error Count**: number of item pairs violating difficulty ordering (Karabatsos, 2003)\n- **Difficulty-Residual Correlation**: correlation between item-level residuals and IRT difficulty b (contaminated models should show positive residual on high-difficulty items)\n\nThese baselines use the same information as IRT-FIT (binary responses + IRT parameters) but without the full person-fit statistical framework, directly testing whether lz*'s joint-likelihood approach provides marginal value over simpler aggregate statistics.\n\n**Tier 1 — Black-box requiring re-testing:**\n- ConStat (NeurIPS 2024, arXiv:2405.16281) — rephrased benchmark comparison\n\n**Tier 2 — Gray-box (token-level access):**\n- Min-K%++ (ICLR 2025 Spotlight)\n- CoDeC (arXiv:2510.27055, ICLR 2026)\n- Self-Critique (arXiv:2510.09259, ICLR 2026)\n- PaCoST (EMNLP 2024 Findings, arXiv:2406.18326)\n\nPrimary evaluation: IRT-FIT vs. Tier 0 (does IRT machinery add value?) and vs. Tier 1 (does avoiding re-testing sacrifice detection power?). Secondary: cross-tier comparison with gray-box methods.\n\n**6.3 Post-RL Robustness Test**\n\nOn **two models** (Qwen 3.5-9B and Gemma 4 27B):\n- **Stage 1**: SFT contamination at 20% and 50% fractions\n- **Stage 2a** (Clean RL): GRPO on non-benchmark data (reward = outcome correctness on held-out problems)\n- **Stage 2b** (Contaminated RL): GRPO where benchmark items appear in RL data\n- **GRPO configuration**: Following Wang et al. (arXiv:2510.02386) for comparability; detection power reported at checkpoints {100, 500, 1000, 2000, 5000} RL steps\n- **Comparison**: IRT-FIT trajectory vs. MIA-based methods (Min-K%++, Self-Critique) across RL training steps\n\n**6.4 Ablation Studies**\n\n- **IRT model complexity**: 2PL (c=0, d=1) → 3PL (d=1) → 4PL, quantifying marginal contribution of guessing and upper-asymptote parameters. Parameter sets derived from PSN-IRT (arXiv:2505.15055).\n- **Person-fit statistics**: lz* vs. U3, W, Ht (Karabatsos, 2003)\n- **Ability estimation**: MLE vs. EAP vs. WLE for θ̂\n- **IRT parameter source**: PSN-IRT 4PL parameters vs. conventionally calibrated parameters (mirt R package on same response data), testing sensitivity to parameter estimation method\n- **Unidimensionality diagnostic**: For multi-domain benchmarks (MMLU), compare full-benchmark lz* vs. per-subject-domain lz*, testing whether domain-level analysis reduces false positives from multidimensionality (Braeken & van Laar, 2025)\n\n**6.5 Power Analysis and Detection Limits**\n\n- **Simulation study**: Synthetic response patterns under 4PL at varying ability levels, test lengths {50, 164, 500, 817, 1000, 5000}, contamination fractions {0%, 3%, 5%, 10%, 20%, 30%, 50%, 100%}, 10,000 replications per condition.\n- **Test length analysis**: Minimum items for reliable detection per contamination fraction. Per-benchmark expected power.\n- **Inverted-U documentation with proof sketch**: Plot detection power curve; provide informal argument for endpoint impossibility (noise floor at low contamination; identifiability collapse at high contamination).\n\n## 7. Evaluation Metrics\n\n- **AUROC/AUPRC**: Aggregate and per-contamination-level discrimination\n- **Per-contamination-level power**: P(reject H₀ | H₁) at α=0.05—core inverted-U visualization\n- **Type-I error calibration**: Empirical FPR at α ∈ {0.01, 0.05, 0.10} on clean models; Q-Q plot of lz* under null to verify N(0,1) assumption; if violated, report empirical null parameters and adjusted detection power\n- **Benjamini-Hochberg FDR**: Applied to multi-model audit scenarios; report FDR-controlled detection rates at q ∈ {0.05, 0.10, 0.20}\n\n## 8. Contamination Prevalence Analysis\n\n**Systematic historical audit.** Apply IRT-FIT to all models on the Open LLM Leaderboard with available per-item response logs (via lm-evaluation-harness output or reproducible re-evaluation of open-weight models). Produce: (a) per-benchmark contamination prevalence over time (fraction of models flagged at FDR=0.10); (b) contamination severity distribution (lz* score distribution across models); (c) trend analysis (has contamination prevalence increased with leaderboard competition?).\n\n**Convergent validation.** Compare IRT-FIT flagging with ConStat's published findings on Mistral, Llama, Yi, and top-3 Open LLM Leaderboard models (ConStat, NeurIPS 2024).\n\n**Known-clean negative controls.** Verify IRT-FIT does not flag OLMo models (AI2), whose training data (Dolma) is fully open and auditable via OlmoTrace, providing false-positive control in the wild.\n\n**Limitations.** Convergent validation cannot establish ground truth (two methods may share systematic biases). The controlled experiment (Section 6.1) remains the primary validation; the prevalence analysis is positioned as an illustrative application demonstrating IRT-FIT's unique retroactive capability.\n\n## 9. Compute Estimates\n\n- **Controlled contamination (QLoRA)**: 126 conditions × 3 item strategies × 3 seeds × ~1.5h avg ≈ 1,700 H100-hours\n- **Full-parameter SFT (Qwen 9B)**: 9 conditions × 3 seeds × ~2h ≈ 54 H100-hours\n- **Post-RL (2 models)**: ~350 H100-hours\n- **Inference for prevalence analysis**: Minimal (per-item response collection for open-weight models + CPU-only person-fit computation)\n- **Hardware per model**: Llama 4 Scout QLoRA: 1× H100 (~71GB via Unsloth); Gemma 4 27B QLoRA: 1× H100 (~30GB); Qwen 3.5-9B: 1× A100 40GB\n- **Total**: ~2,500 H100 GPU-hours\n\n## 10. Expected Outcomes\n\nWe expect: (a) lz* outperforms Tier 0 naive baselines (Accuracy-Z, Guttman errors, Difficulty-Residual) by capturing joint response-pattern structure, empirically justifying the IRT person-fit framework; (b) competitive performance with ConStat in Tier 1, with the advantage of no re-testing; (c) aggregate AUROC possibly below gray-box methods—an expected consequence of minimal information access; (d) inverted-U detection power confirmed with peak at 10–30%; (e) partial post-RL robustness, with response-pattern signals degrading differently from internal signals; (f) the historical prevalence analysis revealing contamination trends across leaderboard history, demonstrating IRT-FIT's unique retroactive capability."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "e19cdbdc-41a4-47f7-b9f4-c2cee1d17b49",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T05:25:40.783Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e19cdbdc-41a4-47f7-b9f4-c2cee1d17b49",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "2588a876-5f45-4900-aa09-8460a0298e9d",
+                "timestamp": "2026-05-20T05:25:40.783Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T05:25:40.783Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2588a876-5f45-4900-aa09-8460a0298e9d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "f7d1a2c9-d0c3-41c9-bc75-ff6fdb0a3c4d",
+                "timestamp": "2026-05-20T05:25:40.783Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## IRT-FIT: Detecting Benchmark Contamination in LLMs at the Minimal-Information Operating Point via Psychometric…",
+                "leafUuid": "f7d1a2c9-d0c3-41c9-bc75-ff6fdb0a3c4d",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Detect benchmark contamination in LLMs using psychometric person-fit",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T05:25:46.517Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to evaluate a research proposal for EMNLP 2026. Before I can give a proper assessment, I need to do thorough literature research on the topic. Let me start by searching for the key related works and the current state of the field.\n\nLet me search for:\n1. Benchmark contamination detection in LLMs - current state\n2. IRT (Item Response Theory) applied to LLM evaluation\n3. Person-fit statistics for LLM contamination\n4. Key competing methods mentioned (Min-K%++, CoDeC, ConStat, etc.)\n5. PSN-IRT and related work",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7d1a2c9-d0c3-41c9-bc75-ff6fdb0a3c4d",
+            "isSidechain": false,
+            "requestId": "req_011CbDGKsYbL8MwLxx15rXmw",
+            "type": "assistant",
+            "uuid": "2efc6e2c-5fe5-4713-985f-7e73a93a5a50",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NkuXqCmQbaqEm82tK5rUFs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6833,
+                "cache_read_input_tokens": 13882,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6833,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 13882,
+                    "cache_creation_input_tokens": 6833,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6833
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T05:25:46.762Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by doing thorough literature research before making any assessment. Let me search for the key topics in this proposal."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2efc6e2c-5fe5-4713-985f-7e73a93a5a50",
+            "isSidechain": false,
+            "requestId": "req_011CbDGKsYbL8MwLxx15rXmw",
+            "type": "assistant",
+            "uuid": "49f25f73-35ae-49da-b9bd-f445d5a5ca15",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NkuXqCmQbaqEm82tK5rUFs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6833,
+                "cache_read_input_tokens": 13882,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6833,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 13882,
+                    "cache_creation_input_tokens": 6833,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6833
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T05:25:47.209Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013tmfVenE5K2eFuaoVhgBAn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49f25f73-35ae-49da-b9bd-f445d5a5ca15",
+            "isSidechain": false,
+            "requestId": "req_011CbDGKsYbL8MwLxx15rXmw",
+            "type": "assistant",
+            "uuid": "34a4dca2-033e-4b74-8df8-2a43178f707d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NkuXqCmQbaqEm82tK5rUFs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6833,
+                "cache_read_input_tokens": 13882,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6833,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 13882,
+                    "cache_creation_input_tokens": 6833,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6833
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T05:25:47.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013tmfVenE5K2eFuaoVhgBAn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34a4dca2-033e-4b74-8df8-2a43178f707d",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "04e984e4-def1-46be-ace0-8acf9e7c727a",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "34a4dca2-033e-4b74-8df8-2a43178f707d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T05:25:49.752Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me conduct the literature searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04e984e4-def1-46be-ace0-8acf9e7c727a",
+            "isSidechain": false,
+            "requestId": "req_011CbDGLM4Judur92pf4ZdXZ",
+            "type": "assistant",
+            "uuid": "1de9e944-32ad-4d2f-a478-2479bc2bf3e2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P24adu82CNK6rH3sfCwdHH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 787,
+                "cache_read_input_tokens": 20715,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 20715,
+                    "cache_creation_input_tokens": 787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T05:25:50.298Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012zBKL94TNRw9U6Eju2gmeN",
+              "name": "WebSearch",
+              "input": {
+                "query": "benchmark contamination detection LLMs 2025 2026 survey methods"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1de9e944-32ad-4d2f-a478-2479bc2bf3e2",
+            "isSidechain": false,
+            "requestId": "req_011CbDGLM4Judur92pf4ZdXZ",
+            "type": "assistant",
+            "uuid": "fd70e4e2-c33c-4bfa-be8e-58f07411755c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P24adu82CNK6rH3sfCwdHH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 787,
+                "cache_read_input_tokens": 20715,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 20715,
+                    "cache_creation_input_tokens": 787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T05:25:51.242Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FUoSJHaA4ZSdmrED8DEy2Q",
+              "name": "WebSearch",
+              "input": {
+                "query": "Item Response Theory IRT LLM evaluation PSN-IRT person-fit statistics 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd70e4e2-c33c-4bfa-be8e-58f07411755c",
+            "isSidechain": false,
+            "requestId": "req_011CbDGLM4Judur92pf4ZdXZ",
+            "type": "assistant",
+            "uuid": "8d95040e-7d99-4f28-834b-8977829f23f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P24adu82CNK6rH3sfCwdHH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 787,
+                "cache_read_input_tokens": 20715,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 20715,
+                    "cache_creation_input_tokens": 787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T05:25:51.839Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DysUq1E9QX8j1yTrB2rWBG",
+              "name": "WebSearch",
+              "input": {
+                "query": "ConStat benchmark contamination NeurIPS 2024 Min-K++ CoDeC ICLR 2026 contamination detection"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d95040e-7d99-4f28-834b-8977829f23f1",
+            "isSidechain": false,
+            "requestId": "req_011CbDGLM4Judur92pf4ZdXZ",
+            "type": "assistant",
+            "uuid": "a097ee57-476b-4faf-be60-25ef46b0094b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P24adu82CNK6rH3sfCwdHH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 787,
+                "cache_read_input_tokens": 20715,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 787,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 20715,
+                    "cache_creation_input_tokens": 787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 787
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T05:25:59.282Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DysUq1E9QX8j1yTrB2rWBG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ConStat benchmark contamination NeurIPS 2024 Min-K++ CoDeC ICLR 2026 contamination detection\"\n\nLinks: [{\"title\":\"ConStat: Performance-Based Contamination Detection in Large Language   Models\",\"url\":\"https://arxiv.org/pdf/2405.16281\"},{\"title\":\"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide\",\"url\":\"https://llm-stats.com/blog/research/what-is-a-contaminated-llm\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf?id=YlpaaYxx4t\"},{\"title\":\"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub\",\"url\":\"https://github.com/lyy1994/awesome-data-contamination\"},{\"title\":\"Detecting Data Contamination in LLMs via In-Context Learning\",\"url\":\"https://arxiv.org/pdf/2510.27055\"},{\"title\":\"Detecting Data Contamination in LLMs via In-Context Learning\",\"url\":\"https://arxiv.org/html/2510.27055v1\"},{\"title\":\"PaCoST: Paired Confidence Significance Testing for Benchmark   Contamination Detection in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2406.18326\"},{\"title\":\"Detecting Benchmark Contamination Through Watermarking\",\"url\":\"https://arxiv.org/pdf/2502.17259\"},{\"title\":\"On The Fragility of Benchmark Contamination Detection in Reasoning Models\",\"url\":\"https://arxiv.org/pdf/2510.02386\"}]\n\nBased on the search results, here's what I found about these related research papers on contamination detection:\n\n## ConStat (NeurIPS 2024)\n\nConStat: Performance-Based Contamination Detection in Large Language Models was published at NeurIPS 2024 by Jasper Dekoninck, Mark Niklas Müller, and Martin Vechev. The paper proposes a novel definition of contamination as artificially inflated and non-generalizing benchmark performance instead of the inclusion of benchmark samples in the training data. This perspective enables detection of any model with inflated performance—performance that does not generalize to rephrased samples, synthetic samples from the same distribution, or different benchmarks for the same task.\n\n## CoDeC (ICLR 2026)\n\nCoDeC (Contamination Detection via Context) is a simple yet effective dataset-level method that detects data contamination via in-context learning. CoDeC produces interpretable contamination scores that clearly separate seen and unseen datasets, and is simple, automated, and both model- and dataset-agnostic, making it easy to integrate with benchmark evaluations.\n\n## Min-K++ (Related Method)\n\nMin-K% Prob (Shi et al., ICLR 2024) measures whether outlier tokens have unusually high probability, which is another contamination detection approach in this research area.\n\nThese papers collectively represent recent advances in detecting whether large language models have been trained on benchmark datasets, which can lead to inflated performance metrics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a097ee57-476b-4faf-be60-25ef46b0094b",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "f7dec5bc-6cbd-47d3-808d-63b73a70f693",
+            "toolUseResult": {
+              "query": "ConStat benchmark contamination NeurIPS 2024 Min-K++ CoDeC ICLR 2026 contamination detection",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01QXHrbQVtvjnvVsiDg9HqaY",
+                  "content": [
+                    {
+                      "title": "ConStat: Performance-Based Contamination Detection in Large Language   Models",
+                      "url": "https://arxiv.org/pdf/2405.16281"
+                    },
+                    {
+                      "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+                      "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://openreview.net/pdf?id=YlpaaYxx4t"
+                    },
+                    {
+                      "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+                      "url": "https://github.com/lyy1994/awesome-data-contamination"
+                    },
+                    {
+                      "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+                      "url": "https://arxiv.org/pdf/2510.27055"
+                    },
+                    {
+                      "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+                      "url": "https://arxiv.org/html/2510.27055v1"
+                    },
+                    {
+                      "title": "PaCoST: Paired Confidence Significance Testing for Benchmark   Contamination Detection in Large Language Models",
+                      "url": "https://arxiv.org/pdf/2406.18326"
+                    },
+                    {
+                      "title": "Detecting Benchmark Contamination Through Watermarking",
+                      "url": "https://arxiv.org/pdf/2502.17259"
+                    },
+                    {
+                      "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+                      "url": "https://arxiv.org/pdf/2510.02386"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about these related research papers on contamination detection:\n\n## ConStat (NeurIPS 2024)\n\nConStat: Performance-Based Contamination Detection in Large Language Models was published at NeurIPS 2024 by Jasper Dekoninck, Mark Niklas Müller, and Martin Vechev. The paper proposes a novel definition of contamination as artificially inflated and non-generalizing benchmark performance instead of the inclusion of benchmark samples in the training data. This perspective enables detection of any model with inflated performance—performance that does not generalize to rephrased samples, synthetic samples from the same distribution, or different benchmarks for the same task.\n\n## CoDeC (ICLR 2026)\n\nCoDeC (Contamination Detection via Context) is a simple yet effective dataset-level method that detects data contamination via in-context learning. CoDeC produces interpretable contamination scores that clearly separate seen and unseen datasets, and is simple, automated, and both model- and dataset-agnostic, making it easy to integrate with benchmark evaluations.\n\n## Min-K++ (Related Method)\n\nMin-K% Prob (Shi et al., ICLR 2024) measures whether outlier tokens have unusually high probability, which is another contamination detection approach in this research area.\n\nThese papers collectively represent recent advances in detecting whether large language models have been trained on benchmark datasets, which can lead to inflated performance metrics."
+              ],
+              "durationSeconds": 7.435447884999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "a097ee57-476b-4faf-be60-25ef46b0094b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T05:25:59.823Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012zBKL94TNRw9U6Eju2gmeN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"benchmark contamination detection LLMs 2025 2026 survey methods\"\n\nLinks: [{\"title\":\"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide\",\"url\":\"https://llm-stats.com/blog/research/what-is-a-contaminated-llm\"},{\"title\":\"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.emnlp-main.511/\"},{\"title\":\"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation\",\"url\":\"https://arxiv.org/html/2502.17521v2\"},{\"title\":\"Detecting Data Contamination in LLMs via In-Context Learning\",\"url\":\"https://arxiv.org/html/2510.27055v1\"},{\"title\":\"A Comprehensive Survey of Contamination Detection Methods in Large Language Models\",\"url\":\"https://arxiv.org/html/2404.00699v4\"},{\"title\":\"Detecting Benchmark Contamination Through Watermarking\",\"url\":\"https://arxiv.org/pdf/2502.17259\"},{\"title\":\"Identifying Data Contamination in LLMs for Mathematical Benchmarks DIPLOMARBEIT\",\"url\":\"https://repositum.tuwien.at/bitstream/20.500.12708/216244/1/Mathis%20Tobias%20Gallus%20-%202025%20-%20Identifying%20Data%20Contamination%20in%20LLMs%20for...pdf\"},{\"title\":\"A Comprehensive Survey of Contamination Detection Methods in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2404.00699\"}]\n\nBased on the search results, I found several comprehensive resources on benchmark contamination detection in LLMs for 2025-2026:\n\n## Key Detection Methods\n\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\n## Comprehensive Detection Approaches\n\nMultiple detection techniques have been identified:\n\n- Simple n-gram overlap de-duplication is insufficient, as paraphrases, translations, and variations of test samples can still leak into training data.\n\n- Some models can recreate benchmark questions when given only the benchmark name, some compare loss when samples are presented in canonical order versus random order, and other approaches measure whether the model can reconstruct masked answers or answer without the question.\n\n- Recent approaches leverage held-out data to train a model-calibrated contamination classifier.\n\n## Static vs. Dynamic Benchmarking\n\nEnhancements to static evaluation methods include data encryption and post-hoc contamination detection. However, dynamic methods aim to reduce contamination risk by continuously updating benchmark datasets based on LLM training timestamps or by regenerating test data to reconstruct and replace original benchmarks.\n\n## Watermarking Approach\n\nA novel strategy involves embedding non-intrusive watermarks in the benchmark dataset, enabling reporting of model performance and a reliable p-value as a contamination score.\n\n## Comprehensive Surveys\n\nA comprehensive survey provides unique focus on contamination detection methodologies with overview of current papers as of early 2025. Additionally, one survey reviews all reported contamination detection methods up until early 2025, totaling more than 50 detection techniques and more than 100 relevant papers.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd70e4e2-c33c-4bfa-be8e-58f07411755c",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "164dbdc6-6947-4fa5-930a-ec3bea8e1cbd",
+            "toolUseResult": {
+              "query": "benchmark contamination detection LLMs 2025 2026 survey methods",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01PtVzLz5GN46CaZnBhVT2C7",
+                  "content": [
+                    {
+                      "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+                      "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+                    },
+                    {
+                      "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.emnlp-main.511/"
+                    },
+                    {
+                      "title": "Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation",
+                      "url": "https://arxiv.org/html/2502.17521v2"
+                    },
+                    {
+                      "title": "Detecting Data Contamination in LLMs via In-Context Learning",
+                      "url": "https://arxiv.org/html/2510.27055v1"
+                    },
+                    {
+                      "title": "A Comprehensive Survey of Contamination Detection Methods in Large Language Models",
+                      "url": "https://arxiv.org/html/2404.00699v4"
+                    },
+                    {
+                      "title": "Detecting Benchmark Contamination Through Watermarking",
+                      "url": "https://arxiv.org/pdf/2502.17259"
+                    },
+                    {
+                      "title": "Identifying Data Contamination in LLMs for Mathematical Benchmarks DIPLOMARBEIT",
+                      "url": "https://repositum.tuwien.at/bitstream/20.500.12708/216244/1/Mathis%20Tobias%20Gallus%20-%202025%20-%20Identifying%20Data%20Contamination%20in%20LLMs%20for...pdf"
+                    },
+                    {
+                      "title": "A Comprehensive Survey of Contamination Detection Methods in Large Language Models",
+                      "url": "https://arxiv.org/pdf/2404.00699"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several comprehensive resources on benchmark contamination detection in LLMs for 2025-2026:\n\n## Key Detection Methods\n\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\n## Comprehensive Detection Approaches\n\nMultiple detection techniques have been identified:\n\n- Simple n-gram overlap de-duplication is insufficient, as paraphrases, translations, and variations of test samples can still leak into training data.\n\n- Some models can recreate benchmark questions when given only the benchmark name, some compare loss when samples are presented in canonical order versus random order, and other approaches measure whether the model can reconstruct masked answers or answer without the question.\n\n- Recent approaches leverage held-out data to train a model-calibrated contamination classifier.\n\n## Static vs. Dynamic Benchmarking\n\nEnhancements to static evaluation methods include data encryption and post-hoc contamination detection. However, dynamic methods aim to reduce contamination risk by continuously updating benchmark datasets based on LLM training timestamps or by regenerating test data to reconstruct and replace original benchmarks.\n\n## Watermarking Approach\n\nA novel strategy involves embedding non-intrusive watermarks in the benchmark dataset, enabling reporting of model performance and a reliable p-value as a contamination score.\n\n## Comprehensive Surveys\n\nA comprehensive survey provides unique focus on contamination detection methodologies with overview of current papers as of early 2025. Additionally, one survey reviews all reported contamination detection methods up until early 2025, totaling more than 50 detection techniques and more than 100 relevant papers."
+              ],
+              "durationSeconds": 9.519802218999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "fd70e4e2-c33c-4bfa-be8e-58f07411755c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T05:26:00.233Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FUoSJHaA4ZSdmrED8DEy2Q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Item Response Theory IRT LLM evaluation PSN-IRT person-fit statistics 2025 2026\"\n\nLinks: [{\"title\":\"Leveraging LLM-Respondents for Item Evaluation: a Psychometric Analysis\",\"url\":\"https://arxiv.org/html/2407.10899v1\"},{\"title\":\"Leveraging LLM respondents for item evaluation: A psychometric analysis - Liu - 2025 - British Journal of Educational Technology - Wiley Online Library\",\"url\":\"https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13570\"},{\"title\":\"Person Fit Assessment in Item Response Theory | Nature Research Intelligence\",\"url\":\"https://www.nature.com/research-intelligence/nri-topic-summaries/person-fit-assessment-in-item-response-theory-micro-129702\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2505.15055\"},{\"title\":\"Item Response Theory (IRT): Better assessment with ML | Assessment Systems\",\"url\":\"https://assess.com/what-is-item-response-theory/\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2602.00521\"},{\"title\":\"Item response theory - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Item_response_theory\"},{\"title\":\"Item Response Theory | Columbia University Mailman School of Public Health\",\"url\":\"https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/pdf/2511.04689\"}]\n\nBased on the search results, here's what I found regarding Item Response Theory (IRT), LLM evaluation, PSN-IRT, and person-fit statistics:\n\n## Key Findings:\n\n### PSN-IRT Framework\nPSN-IRT (Pseudo-Siamese Network for Item Response Theory) is an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture and can be utilized for accurate and reliable estimations of item characteristics and model abilities. Based on PSN-IRT, extensive analysis was conducted on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality.\n\n### Person-Fit Statistics in IRT\nPerson fit assessment is an integral aspect of Item Response Theory, serving to evaluate the coherence between an individual's response pattern and the predictions of an IRT model, and is paramount in safeguarding the reliability and validity of tests by identifying aberrant behaviours, response inconsistencies, and potential data irregularities. Person fit statistics provide detailed insight into how well daily performance aligns with theoretical expectations, thereby helping to detect anomalies such as random guessing, misinterpretation of items, or even deliberate response manipulation.\n\n### Recent Applications to LLM Evaluation\nRecent research has applied IRT methodologies to LLM benchmarking and evaluation. Item Response Theory has recently been applied to LLM evaluation, providing item parameters such as difficulty, discrimination, and guessing, as well as latent ability estimates for models. Additionally, IRT is being leveraged as a measurement framework to examine LLM judging behavior and assess the reliability of LLM judges.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d95040e-7d99-4f28-834b-8977829f23f1",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "f0248ca1-12ea-4c6d-bc7d-f9479ec1b072",
+            "toolUseResult": {
+              "query": "Item Response Theory IRT LLM evaluation PSN-IRT person-fit statistics 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01GtY2bjsRXkaf41So5KCq4D",
+                  "content": [
+                    {
+                      "title": "Leveraging LLM-Respondents for Item Evaluation: a Psychometric Analysis",
+                      "url": "https://arxiv.org/html/2407.10899v1"
+                    },
+                    {
+                      "title": "Leveraging LLM respondents for item evaluation: A psychometric analysis - Liu - 2025 - British Journal of Educational Technology - Wiley Online Library",
+                      "url": "https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13570"
+                    },
+                    {
+                      "title": "Person Fit Assessment in Item Response Theory | Nature Research Intelligence",
+                      "url": "https://www.nature.com/research-intelligence/nri-topic-summaries/person-fit-assessment-in-item-response-theory-micro-129702"
+                    },
+                    {
+                      "title": "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory",
+                      "url": "https://arxiv.org/pdf/2505.15055"
+                    },
+                    {
+                      "title": "Item Response Theory (IRT): Better assessment with ML | Assessment Systems",
+                      "url": "https://assess.com/what-is-item-response-theory/"
+                    },
+                    {
+                      "title": "Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory",
+                      "url": "https://arxiv.org/pdf/2602.00521"
+                    },
+                    {
+                      "title": "Item response theory - Wikipedia",
+                      "url": "https://en.wikipedia.org/wiki/Item_response_theory"
+                    },
+                    {
+                      "title": "Item Response Theory | Columbia University Mailman School of Public Health",
+                      "url": "https://www.publichealth.columbia.edu/research/population-health-methods/item-response-theory"
+                    },
+                    {
+                      "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+                      "url": "https://arxiv.org/pdf/2511.04689"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found regarding Item Response Theory (IRT), LLM evaluation, PSN-IRT, and person-fit statistics:\n\n## Key Findings:\n\n### PSN-IRT Framework\nPSN-IRT (Pseudo-Siamese Network for Item Response Theory) is an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture and can be utilized for accurate and reliable estimations of item characteristics and model abilities. Based on PSN-IRT, extensive analysis was conducted on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality.\n\n### Person-Fit Statistics in IRT\nPerson fit assessment is an integral aspect of Item Response Theory, serving to evaluate the coherence between an individual's response pattern and the predictions of an IRT model, and is paramount in safeguarding the reliability and validity of tests by identifying aberrant behaviours, response inconsistencies, and potential data irregularities. Person fit statistics provide detailed insight into how well daily performance aligns with theoretical expectations, thereby helping to detect anomalies such as random guessing, misinterpretation of items, or even deliberate response manipulation.\n\n### Recent Applications to LLM Evaluation\nRecent research has applied IRT methodologies to LLM benchmarking and evaluation. Item Response Theory has recently been applied to LLM evaluation, providing item parameters such as difficulty, discrimination, and guessing, as well as latent ability estimates for models. Additionally, IRT is being leveraged as a measurement framework to examine LLM judging behavior and assess the reliability of LLM judges."
+              ],
+              "durationSeconds": 8.987989721,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "8d95040e-7d99-4f28-834b-8977829f23f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## IRT-FIT: Detecting Benchmark Contamination in LLMs at the Minimal-Information Operating Point via Psychometric…",
+                "leafUuid": "f0248ca1-12ea-4c6d-bc7d-f9479ec1b072",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Detect benchmark contamination in LLMs using psychometric person-fit",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T05:26:02.930Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HEQUwmQWeFDbXkR1w2oVBr",
+              "name": "WebSearch",
+              "input": {
+                "query": "person-fit statistics lz* cheating detection educational testing Sinharay 2017 inverted-U power curve"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0248ca1-12ea-4c6d-bc7d-f9479ec1b072",
+            "isSidechain": false,
+            "requestId": "req_011CbDGMJYHM1z8SaFy8W1BX",
+            "type": "assistant",
+            "uuid": "a597124f-26d5-4ee1-a9e4-99cda81ade41",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKyBnEoCgAptfxVTPW4mSa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 806,
+                "cache_creation_input_tokens": 1919,
+                "cache_read_input_tokens": 21502,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1919,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 806,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 21502,
+                    "cache_creation_input_tokens": 1919,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1919
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T05:26:04.084Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H1dUhPBZV65Vs7rQKh4RJh",
+              "name": "WebSearch",
+              "input": {
+                "query": "ATLAS adaptive testing LLM IRT arXiv 2511.04689 MedIRT ICLR 2027 IRT contamination detection"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a597124f-26d5-4ee1-a9e4-99cda81ade41",
+            "isSidechain": false,
+            "requestId": "req_011CbDGMJYHM1z8SaFy8W1BX",
+            "type": "assistant",
+            "uuid": "26879d93-700a-44e1-aa67-55e1377efe27",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKyBnEoCgAptfxVTPW4mSa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 806,
+                "cache_creation_input_tokens": 1919,
+                "cache_read_input_tokens": 21502,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1919,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 806,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 21502,
+                    "cache_creation_input_tokens": 1919,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1919
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T05:26:11.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H1dUhPBZV65Vs7rQKh4RJh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ATLAS adaptive testing LLM IRT arXiv 2511.04689 MedIRT ICLR 2027 IRT contamination detection\"\n\nLinks: [{\"title\":\"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/abs/2511.04689\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/html/2511.04689v1\"},{\"title\":\"ADAPTIVE TESTING FOR LLM EVALUATION: A\",\"url\":\"https://arxiv.org/pdf/2511.04689\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397441932_Adaptive_Testing_for_LLM_Evaluation_A_Psychometric_Alternative_to_Static_Benchmarks\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview\",\"url\":\"https://openreview.net/forum?id=iX39LhePyd\"},{\"title\":\"[2601.03093] ATLAS: Adaptive Test-Time Latent Steering with External Verifiers for Enhancing LLMs Reasoning\",\"url\":\"https://arxiv.org/abs/2601.03093\"}]\n\nI found the ATLAS paper! Based on my search results, here's what I found:\n\n## ATLAS Paper (arXiv 2511.04689)\n\nATLAS is an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection. ATLAS reduces the number of required items by up to 90% while maintaining measurement precision.\n\n### Key Features:\n- ATLAS first calibrates benchmark items using three-parameter logistic (3PL) IRT models to estimate item difficulty, discrimination, and guessing parameters, then dynamically selects items with maximum Fisher information for each model's current estimated ability, terminating when precision thresholds are reached.\n\n- Dynamic item selection reduces contamination through diverse test forms, which addresses the contamination detection concern you mentioned.\n\n- Among 4,000+ tested models, IRT ranks differ from accuracy ranks: models with the same accuracy get different IRT scores, and 23-31% of all models shift by more than 10 rank positions.\n\n- The framework maintains item exposure rates below 10% and test overlap at 16-27%, compared to static benchmarks where every model sees all items (100% exposure).\n\n### Validation:\nThe framework was validated across five major benchmarks: WinoGrande, TruthfulQA, HellaSwag, GSM8K, and ARC.\n\nI did not find information about MedIRT or an ICLR 2027 publication in my search results. Would you like me to search for those separately?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26879d93-700a-44e1-aa67-55e1377efe27",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "82a4f46b-6a95-4ccc-aff2-0db54274a9ce",
+            "toolUseResult": {
+              "query": "ATLAS adaptive testing LLM IRT arXiv 2511.04689 MedIRT ICLR 2027 IRT contamination detection",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_018Foj56mgvJZ6hc6468idbN",
+                  "content": [
+                    {
+                      "title": "[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+                      "url": "https://arxiv.org/abs/2511.04689"
+                    },
+                    {
+                      "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks",
+                      "url": "https://arxiv.org/html/2511.04689v1"
+                    },
+                    {
+                      "title": "ADAPTIVE TESTING FOR LLM EVALUATION: A",
+                      "url": "https://arxiv.org/pdf/2511.04689"
+                    },
+                    {
+                      "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | Request PDF",
+                      "url": "https://www.researchgate.net/publication/397441932_Adaptive_Testing_for_LLM_Evaluation_A_Psychometric_Alternative_to_Static_Benchmarks"
+                    },
+                    {
+                      "title": "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview",
+                      "url": "https://openreview.net/forum?id=iX39LhePyd"
+                    },
+                    {
+                      "title": "[2601.03093] ATLAS: Adaptive Test-Time Latent Steering with External Verifiers for Enhancing LLMs Reasoning",
+                      "url": "https://arxiv.org/abs/2601.03093"
+                    }
+                  ]
+                },
+                "I found the ATLAS paper! Based on my search results, here's what I found:\n\n## ATLAS Paper (arXiv 2511.04689)\n\nATLAS is an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection. ATLAS reduces the number of required items by up to 90% while maintaining measurement precision.\n\n### Key Features:\n- ATLAS first calibrates benchmark items using three-parameter logistic (3PL) IRT models to estimate item difficulty, discrimination, and guessing parameters, then dynamically selects items with maximum Fisher information for each model's current estimated ability, terminating when precision thresholds are reached.\n\n- Dynamic item selection reduces contamination through diverse test forms, which addresses the contamination detection concern you mentioned.\n\n- Among 4,000+ tested models, IRT ranks differ from accuracy ranks: models with the same accuracy get different IRT scores, and 23-31% of all models shift by more than 10 rank positions.\n\n- The framework maintains item exposure rates below 10% and test overlap at 16-27%, compared to static benchmarks where every model sees all items (100% exposure).\n\n### Validation:\nThe framework was validated across five major benchmarks: WinoGrande, TruthfulQA, HellaSwag, GSM8K, and ARC.\n\nI did not find information about MedIRT or an ICLR 2027 publication in my search results. Would you like me to search for those separately?"
+              ],
+              "durationSeconds": 7.391290070999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "26879d93-700a-44e1-aa67-55e1377efe27",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T05:26:11.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HEQUwmQWeFDbXkR1w2oVBr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"person-fit statistics lz* cheating detection educational testing Sinharay 2017 inverted-U power curve\"\n\nLinks: [{\"title\":\"lz Person-Fit Index to Identify Misfit Students With Achievement Test Data | Request PDF\",\"url\":\"https://www.researchgate.net/publication/275450317_lz_Person-Fit_Index_to_Identify_Misfit_Students_With_Achievement_Test_Data\"},{\"title\":\"A new method for cheating detection during computerized adaptive testing | Computational Statistics | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s00180-026-01739-1\"},{\"title\":\"Suggestions for combining psychometric-based and supervised classification methods to detect cheating in online exams | Behaviormetrika | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s41237-023-00216-z\"},{\"title\":\"(PDF) Adjusted Rasch person-fit statistics\",\"url\":\"https://www.researchgate.net/publication/7147714_Adjusted_Rasch_person-fit_statistics\"},{\"title\":\"Frontiers | The Detection of Cheating on E-Exams in Higher Education—The Performance of Several Old and Some New Indicators\",\"url\":\"https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.568825/full\"},{\"title\":\"[PDF] The Use of the lz and lz* Person-Fit Statistics and Problems Derived From Model Misspecification | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/The-Use-of-the-lz-and-lz*-Person-Fit-Statistics-and-Meijer-Tendeiro/1c1b7e3b9b735054dad29f19c28c18566633eb1d\"},{\"title\":\"The Detection of Cheating on E-Exams in Higher Education—The Performance of Several Old and Some New Indicators - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC7573546/\"},{\"title\":\"Machine Learning–Based Profiling in Test Cheating Detection - Meng - 2023 - Educational Measurement: Issues and Practice - Wiley Online Library\",\"url\":\"https://onlinelibrary.wiley.com/doi/abs/10.1111/emip.12541\"},{\"title\":\"Efficient Corrections for Standardized Person-Fit Statistics | Psychometrika | Cambridge Core\",\"url\":\"https://www.cambridge.org/core/journals/psychometrika/article/abs/efficient-corrections-for-standardized-personfit-statistics/6FB404BBE9F6B666DF27B6E67FB65439\"}]\n\nBased on the search results, I found relevant information about person-fit statistics including the lz* index and Sinharay's 2017 work on cheating detection in educational testing.\n\nMany person-fit statistics have been proposed to detect aberrant response behaviors (e.g., cheating, guessing), and lz is one of the most widely used indices. Sinharay (2017) published work on \"Detection of item preknowledge using likelihood ratio test and score test\" in the Journal of Educational and Behavioral Statistics, which represents a key methodological contribution to cheating detection in educational testing.\n\nThe search results reference multiple studies involving Sinharay's work on person-fit statistics and their application to detecting aberrant test-taking behaviors. Research has considered response time-based indicators including the KL statistic and a Z2 statistic similar to the one proposed by Marianti et al. (2014) and Sinharay (2018).\n\nHowever, the search results provided do not contain specific information about an inverted-U power curve in relation to the lz* statistic or Sinharay's 2017 work. To get more detailed information about that specific finding, you may want to access Sinharay's 2017 publication directly through the Journal of Educational and Behavioral Statistics (DOI: 10.3102/1076998616673872).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a597124f-26d5-4ee1-a9e4-99cda81ade41",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "7616f25b-fc72-4365-b816-728d13d068fc",
+            "toolUseResult": {
+              "query": "person-fit statistics lz* cheating detection educational testing Sinharay 2017 inverted-U power curve",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01PJHqsHy5QsadNb8Kj2f4sy",
+                  "content": [
+                    {
+                      "title": "lz Person-Fit Index to Identify Misfit Students With Achievement Test Data | Request PDF",
+                      "url": "https://www.researchgate.net/publication/275450317_lz_Person-Fit_Index_to_Identify_Misfit_Students_With_Achievement_Test_Data"
+                    },
+                    {
+                      "title": "A new method for cheating detection during computerized adaptive testing | Computational Statistics | Springer Nature Link",
+                      "url": "https://link.springer.com/article/10.1007/s00180-026-01739-1"
+                    },
+                    {
+                      "title": "Suggestions for combining psychometric-based and supervised classification methods to detect cheating in online exams | Behaviormetrika | Springer Nature Link",
+                      "url": "https://link.springer.com/article/10.1007/s41237-023-00216-z"
+                    },
+                    {
+                      "title": "(PDF) Adjusted Rasch person-fit statistics",
+                      "url": "https://www.researchgate.net/publication/7147714_Adjusted_Rasch_person-fit_statistics"
+                    },
+                    {
+                      "title": "Frontiers | The Detection of Cheating on E-Exams in Higher Education—The Performance of Several Old and Some New Indicators",
+                      "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.568825/full"
+                    },
+                    {
+                      "title": "[PDF] The Use of the lz and lz* Person-Fit Statistics and Problems Derived From Model Misspecification | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/The-Use-of-the-lz-and-lz*-Person-Fit-Statistics-and-Meijer-Tendeiro/1c1b7e3b9b735054dad29f19c28c18566633eb1d"
+                    },
+                    {
+                      "title": "The Detection of Cheating on E-Exams in Higher Education—The Performance of Several Old and Some New Indicators - PMC",
+                      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7573546/"
+                    },
+                    {
+                      "title": "Machine Learning–Based Profiling in Test Cheating Detection - Meng - 2023 - Educational Measurement: Issues and Practice - Wiley Online Library",
+                      "url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/emip.12541"
+                    },
+                    {
+                      "title": "Efficient Corrections for Standardized Person-Fit Statistics | Psychometrika | Cambridge Core",
+                      "url": "https://www.cambridge.org/core/journals/psychometrika/article/abs/efficient-corrections-for-standardized-personfit-statistics/6FB404BBE9F6B666DF27B6E67FB65439"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about person-fit statistics including the lz* index and Sinharay's 2017 work on cheating detection in educational testing.\n\nMany person-fit statistics have been proposed to detect aberrant response behaviors (e.g., cheating, guessing), and lz is one of the most widely used indices. Sinharay (2017) published work on \"Detection of item preknowledge using likelihood ratio test and score test\" in the Journal of Educational and Behavioral Statistics, which represents a key methodological contribution to cheating detection in educational testing.\n\nThe search results reference multiple studies involving Sinharay's work on person-fit statistics and their application to detecting aberrant test-taking behaviors. Research has considered response time-based indicators including the KL statistic and a Z2 statistic similar to the one proposed by Marianti et al. (2014) and Sinharay (2018).\n\nHowever, the search results provided do not contain specific information about an inverted-U power curve in relation to the lz* statistic or Sinharay's 2017 work. To get more detailed information about that specific finding, you may want to access Sinharay's 2017 publication directly through the Journal of Educational and Behavioral Statistics (DOI: 10.3102/1076998616673872)."
+              ],
+              "durationSeconds": 8.790107343000003,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "a597124f-26d5-4ee1-a9e4-99cda81ade41",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T05:26:15.869Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I've collected substantial information. Let me now synthesize my findings and produce the evaluation. Let me also do one more search to check if there's any existing work that directly connects IRT person-fit to LLM contamination detection, which is the core novelty claim of this proposal.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7616f25b-fc72-4365-b816-728d13d068fc",
+            "isSidechain": false,
+            "requestId": "req_011CbDGN9gWKxsp9qfRvQM42",
+            "type": "assistant",
+            "uuid": "63c5e316-63a9-4bff-8df7-1080eb31ec5c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Z1cGw75twbmUV8TEA7xAj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 748,
+                "cache_creation_input_tokens": 1972,
+                "cache_read_input_tokens": 23421,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1972,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 748,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 23421,
+                    "cache_creation_input_tokens": 1972,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1972
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T05:26:16.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VFqpVV8qXEpcpBThwu8RpT",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"person-fit\" OR \"person fit\" LLM contamination detection IRT benchmark 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63c5e316-63a9-4bff-8df7-1080eb31ec5c",
+            "isSidechain": false,
+            "requestId": "req_011CbDGN9gWKxsp9qfRvQM42",
+            "type": "assistant",
+            "uuid": "7ecb52cf-3443-4686-82f4-ba830bd48e33",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Z1cGw75twbmUV8TEA7xAj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 748,
+                "cache_creation_input_tokens": 1972,
+                "cache_read_input_tokens": 23421,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1972,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 748,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 23421,
+                    "cache_creation_input_tokens": 1972,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1972
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T05:26:17.076Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018915Yr6hbp32YoVjbxcRnr",
+              "name": "WebSearch",
+              "input": {
+                "query": "Silicon Bureaucracy Cross-Context Verification benchmark contamination arXiv 2603 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ecb52cf-3443-4686-82f4-ba830bd48e33",
+            "isSidechain": false,
+            "requestId": "req_011CbDGN9gWKxsp9qfRvQM42",
+            "type": "assistant",
+            "uuid": "2369acfd-0d98-4687-abc4-657d3eee1080",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Z1cGw75twbmUV8TEA7xAj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 748,
+                "cache_creation_input_tokens": 1972,
+                "cache_read_input_tokens": 23421,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1972,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 748,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 23421,
+                    "cache_creation_input_tokens": 1972,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1972
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T05:26:23.666Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VFqpVV8qXEpcpBThwu8RpT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"person-fit\" OR \"person fit\" LLM contamination detection IRT benchmark 2025 2026\"\n\nLinks: [{\"title\":\"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide\",\"url\":\"https://llm-stats.com/blog/research/what-is-a-contaminated-llm\"},{\"title\":\"Detecting Benchmark Contamination Through Watermarking | OpenReview\",\"url\":\"https://openreview.net/forum?id=WFGxFzFDmQ\"},{\"title\":\"On The Fragility of Benchmark Contamination Detection in Reasoning Models\",\"url\":\"https://arxiv.org/pdf/2510.02386\"},{\"title\":\"NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination   for each Benchmark\",\"url\":\"https://arxiv.org/pdf/2310.18018\"},{\"title\":\"How Can I Publish My LLM Benchmark Without Giving the True Answers Away?\",\"url\":\"https://arxiv.org/pdf/2505.18102\"},{\"title\":\"Detecting Benchmark Contamination Through Watermarking\",\"url\":\"https://arxiv.org/pdf/2502.17259\"}]\n\nBased on the web search results, I found information about LLM contamination detection methods and benchmarks from 2025-2026, though the specific \"person-fit\" or \"person fit\" terminology combined with IRT (Item Response Theory) did not appear in these results.\n\nHere's what I found regarding LLM contamination detection in 2025-2026:\n\n**Detection Methods:**\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\n**Watermarking Approach:**\nA proactive solution involves embedding cryptographic watermarks into benchmarks before their release through question reformulation with a language model, with a detection algorithm that overcomes tokenizer mismatches by aligning text prefixes to reliably identify the watermark signal in the suspect model.\n\n**Contamination-Resistant Benchmarks:**\nContamination-resistant benchmarks include LiveCodeBench, FrontierMath, MMLU-Pro, and LiveBench.\n\nHowever, the search results do not contain specific information about \"person-fit\" or \"person fit\" combined with IRT (Item Response Theory) benchmarks for LLM contamination detection. If you're looking for information about a specific paper or method using that terminology, you may want to provide additional context or search directly on academic databases like arXiv or OpenReview.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ecb52cf-3443-4686-82f4-ba830bd48e33",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "d65d191e-17ef-4b80-8235-54873b9f4e0c",
+            "toolUseResult": {
+              "query": "\"person-fit\" OR \"person fit\" LLM contamination detection IRT benchmark 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01VvoMoa36SLFodjYPV1KjCY",
+                  "content": [
+                    {
+                      "title": "What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide",
+                      "url": "https://llm-stats.com/blog/research/what-is-a-contaminated-llm"
+                    },
+                    {
+                      "title": "Detecting Benchmark Contamination Through Watermarking | OpenReview",
+                      "url": "https://openreview.net/forum?id=WFGxFzFDmQ"
+                    },
+                    {
+                      "title": "On The Fragility of Benchmark Contamination Detection in Reasoning Models",
+                      "url": "https://arxiv.org/pdf/2510.02386"
+                    },
+                    {
+                      "title": "NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination   for each Benchmark",
+                      "url": "https://arxiv.org/pdf/2310.18018"
+                    },
+                    {
+                      "title": "How Can I Publish My LLM Benchmark Without Giving the True Answers Away?",
+                      "url": "https://arxiv.org/pdf/2505.18102"
+                    },
+                    {
+                      "title": "Detecting Benchmark Contamination Through Watermarking",
+                      "url": "https://arxiv.org/pdf/2502.17259"
+                    }
+                  ]
+                },
+                "Based on the web search results, I found information about LLM contamination detection methods and benchmarks from 2025-2026, though the specific \"person-fit\" or \"person fit\" terminology combined with IRT (Item Response Theory) did not appear in these results.\n\nHere's what I found regarding LLM contamination detection in 2025-2026:\n\n**Detection Methods:**\nFive detection methods work in 2026: time-based partition (the Codeforces cliff), Min-K% probability, the Time Travel guided-completion attack, ConStat performance gaps on rephrased samples, and BIG-Bench canary GUID memorization.\n\n**Watermarking Approach:**\nA proactive solution involves embedding cryptographic watermarks into benchmarks before their release through question reformulation with a language model, with a detection algorithm that overcomes tokenizer mismatches by aligning text prefixes to reliably identify the watermark signal in the suspect model.\n\n**Contamination-Resistant Benchmarks:**\nContamination-resistant benchmarks include LiveCodeBench, FrontierMath, MMLU-Pro, and LiveBench.\n\nHowever, the search results do not contain specific information about \"person-fit\" or \"person fit\" combined with IRT (Item Response Theory) benchmarks for LLM contamination detection. If you're looking for information about a specific paper or method using that terminology, you may want to provide additional context or search directly on academic databases like arXiv or OpenReview."
+              ],
+              "durationSeconds": 7.292071050000006,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "7ecb52cf-3443-4686-82f4-ba830bd48e33",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T05:26:23.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018915Yr6hbp32YoVjbxcRnr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Silicon Bureaucracy Cross-Context Verification benchmark contamination arXiv 2603 2026\"\n\nLinks: [{\"title\":\"[2603.21454] Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis\",\"url\":\"https://arxiv.org/abs/2603.21454\"},{\"title\":\"[2603.21636] Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks\",\"url\":\"https://arxiv.org/abs/2603.21636\"},{\"title\":\"Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks\",\"url\":\"https://arxiv.org/html/2603.21636\"},{\"title\":\"Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis\",\"url\":\"https://arxiv.org/html/2603.21454v1\"},{\"title\":\"Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis\",\"url\":\"https://arxiv.org/pdf/2603.21454\"}]\n\nI found the papers related to your search! Here are the results:\n\n**1. Silicon Bureaucracy and AI Test-Oriented Education (arXiv 2603.21636)**\n\nThis paper frames the benchmark-centered regime as \"Silicon Bureaucracy and AI Test-Oriented Education,\" arguing that it rests on a fragile assumption that benchmark scores directly reflect genuine generalization, when such scores may conflate exam-oriented competence with principled capability, especially when contamination and semantic leakage are difficult to exclude from modern training pipelines. The authors propose an audit framework for analyzing contamination sensitivity and score confidence in LLM benchmarks using a router-worker setup that compares a clean-control condition with noisy conditions in which benchmark problems are systematically deleted, rewritten, and perturbed before being passed downstream.\n\n**2. Cross-Context Verification (arXiv 2603.21454)**\n\nThis paper introduces Cross-Context Verification (CCV), a black-box method that solves the same benchmark problem in N independent sessions and measures solution diversity, combined with the Hierarchical Cross-Context Architecture (HCCA), a multi-agent analysis framework that prevents confirmation bias through intentional information restriction across specialized analytical roles. On 9 SWE-bench Verified problems (45 trials, Claude Opus 4.6, temperature 0), CCV achieves perfect separation between contaminated and genuine reasoning.\n\nBoth papers were published in March 2026 and address the critical issue of benchmark contamination in large language model evaluation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2369acfd-0d98-4687-abc4-657d3eee1080",
+            "isSidechain": false,
+            "promptId": "421c420e-7d31-422f-b179-05fa6e5d16e0",
+            "type": "user",
+            "uuid": "d818e612-9a02-4cc4-996e-43770a109ac9",
+            "toolUseResult": {
+              "query": "Silicon Bureaucracy Cross-Context Verification benchmark contamination arXiv 2603 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Cg4rMJRnyuUq6UYpDRFa82",
+                  "content": [
+                    {
+                      "title": "[2603.21454] Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+                      "url": "https://arxiv.org/abs/2603.21454"
+                    },
+                    {
+                      "title": "[2603.21636] Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks",
+                      "url": "https://arxiv.org/abs/2603.21636"
+                    },
+                    {
+                      "title": "Silicon Bureaucracy and AI Test-Oriented Education: Contamination Sensitivity and Score Confidence in LLM Benchmarks",
+                      "url": "https://arxiv.org/html/2603.21636"
+                    },
+                    {
+                      "title": "Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+                      "url": "https://arxiv.org/html/2603.21454v1"
+                    },
+                    {
+                      "title": "Cross-Context Verification: Hierarchical Detection of Benchmark Contamination through Session-Isolated Analysis",
+                      "url": "https://arxiv.org/pdf/2603.21454"
+                    }
+                  ]
+                },
+                "I found the papers related to your search! Here are the results:\n\n**1. Silicon Bureaucracy and AI Test-Oriented Education (arXiv 2603.21636)**\n\nThis paper frames the benchmark-centered regime as \"Silicon Bureaucracy and AI Test-Oriented Education,\" arguing that it rests on a fragile assumption that benchmark scores directly reflect genuine generalization, when such scores may conflate exam-oriented competence with principled capability, especially when contamination and semantic leakage are difficult to exclude from modern training pipelines. The authors propose an audit framework for analyzing contamination sensitivity and score confidence in LLM benchmarks using a router-worker setup that compares a clean-control condition with noisy conditions in which benchmark problems are systematically deleted, rewritten, and perturbed before being passed downstream.\n\n**2. Cross-Context Verification (arXiv 2603.21454)**\n\nThis paper introduces Cross-Context Verification (CCV), a black-box method that solves the same benchmark problem in N independent sessions and measures solution diversity, combined with the Hierarchical Cross-Context Architecture (HCCA), a multi-agent analysis framework that prevents confirmation bias through intentional information restriction across specialized analytical roles. On 9 SWE-bench Verified problems (45 trials, Claude Opus 4.6, temperature 0), CCV achieves perfect separation between contaminated and genuine reasoning.\n\nBoth papers were published in March 2026 and address the critical issue of benchmark contamination in large language model evaluation."
+              ],
+              "durationSeconds": 6.593508611999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "2369acfd-0d98-4687-abc4-657d3eee1080",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T05:26:23.676Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d818e612-9a02-4cc4-996e-43770a109ac9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "e8054460-6691-488c-9562-c96bcda92514",
+                "timestamp": "2026-05-20T05:26:23.676Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## IRT-FIT: Detecting Benchmark Contamination in LLMs at the Minimal-Information Operating Point via Psychometric…",
+                "leafUuid": "e8054460-6691-488c-9562-c96bcda92514",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Detect benchmark contamination in LLMs using psychometric person-fit",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T05:27:02.914Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have enough information to do a thorough evaluation. Let me synthesize everything.\n\nKey findings from my research:\n\n1. **No existing work connects IRT person-fit to LLM contamination detection** — my search for \"person-fit LLM contamination\" returned no results, which validates the novelty claim of this proposal.\n\n2. **The contamination detection landscape is rich and active** — there are many methods at various access levels (Min-K%++, CoDeC, ConStat, Self-Critique, PaCoST, watermarking, etc.), and a comprehensive survey (EMNLP 2025) covers 50+ techniques.\n\n\n3. **IRT is already being applied to LLM evaluation** — works like PSN-IRT and ATLAS demonstrate its value as an analytical framework, though none have explored the person-fit angle for detecting contamination.\n\n4. **Person-fit statistics have deep roots in educational testing** — the lz* metric and related approaches are well-established for identifying anomalous test-taker behavior.\n\n5. **The proposal cites relevant and accurate sources** — the papers mentioned (ConStat, Min-K%++, CoDeC, Self-Critique, PaCoST, Silicon Bureaucracy) represent the current state of contamination detection work.\n\nThe research question itself is compelling: what can we infer from binary response patterns alone? The minimal-information constraint is a genuine gap, and the ability to retroactively audit historical leaderboard submissions without access to model internals is genuinely novel. The core contribution is adapting person-fit statistics from psychometrics to LLM evaluation, which is a clean cross-domain transfer. The lz* statistic itself isn't new, but applying it rigorously in this context is. The inverted-U characterization of detection limits adds theoretical insight, though the fundamental tradeoff remains — binary patterns inherently carry less signal than methods with access to intermediate representations.\n\nThe experimental design is comprehensive: 126 contamination conditions across multiple seeds, three sampling strategies, stratified baselines by access level, post-RL robustness checks, extensive ablations covering IRT complexity and alternative statistics, power analysis with simulations, real-world validation on the Open LLM Leaderboard, and clean negative controls. The Tier 0 baselines are particularly clever — they isolate whether the IRT machinery actually adds value over simpler statistical approaches.\n\nThe main remaining concern is whether the signal is sufficient given the method's inherent limitations, especially regarding generalization to SFT-only scenarios. have limited detection power compared to gray-box methods — but this is acknowledged and positioned as a trade-off analysis\n2. The SFT generalization effect could significantly weaken detection — hard to know without experiments\n3. The reliance on PSN-IRT parameters means the method inherits any calibration issues\n4. The \"inverted-U proof sketch\" is informal — this might be seen as under-delivering on a theoretical claim\n5. 2,500 H100-hours is non-trivial but manageable\n\n**Strengths**:\n1. Very clean research question at a well-defined operating point\n2. The retroactive analysis capability is genuinely unique and practically valuable\n3. Excellent experimental design with proper controls\n4. The cross-domain transfer is well-motivated and the analogy is sound\n5. Honest about limitations (acknowledges gray-box will likely outperform)\n6. The Tier 0 baselines directly test the value of the IRT framework\n\n**Weaknesses**:\n1. The core method isn't novel — it's applying an existing technique rather than developing something new\n2. Detection power at the minimal-information point may be too limited for practical use\n3. The \"inverted-U\" theoretical contribution is only a proof sketch, not a rigorous proof\n4. The historical prevalence analysis, while unique, faces validation challenges due to limited ground truth\n\nOverall, this is a well-executed proposal that identifies a genuine gap in minimal-information contamination detection and proposes a thoughtful solution grounded in psychometric theory. The experimental design is rigorous, the writing is clear, and the related work is thorough. The main uncertainty is whether the detection power will be practically useful, though the proposal frames this honestly as exploring a detection frontier rather than claiming superiority. The retroactive analysis capability is particularly valuable.\n\nFor EMNLP 2026, I'd estimate this sits around 32-42% acceptance probability, with a midpoint of 37%. It's a competitive submission with strong experimental rigor and a novel cross-domain transfer angle that the venue tends to value, but the methodological novelty is limited and the practical utility depends heavily on empirical results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8054460-6691-488c-9562-c96bcda92514",
+            "isSidechain": false,
+            "requestId": "req_011CbDGP2iqH5dkz5z5CoSrK",
+            "type": "assistant",
+            "uuid": "e1bc5189-4fc8-46b6-97eb-114ae706720b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119Jmtq9mXCkfA2TfGwB8jA",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2394,
+                "cache_read_input_tokens": 25393,
+                "output_tokens": 5413,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2394,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5413,
+                    "cache_read_input_tokens": 25393,
+                    "cache_creation_input_tokens": 2394,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2394
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T05:28:27.299Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough information to produce a thorough evaluation. Let me synthesize all findings.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- \"Benchmarking Large Language Models Under Data Contamination: A Survey\" (EMNLP 2025 Main): 综述涵盖50+检测技术，将方法分为静态/动态两大类。proposal的定位（minimal-information operating point）在该综述框架中属于未被系统探索的空白区域。\n- ConStat (NeurIPS 2024, arXiv:2405.16281): 最直接的对标方法——同样无需模型内部参数，但需要生成重述题目并重新测试（r²=0.94 with ground-truth）。IRT-FIT的关键差异化点（无需re-testing/re-administration）成立。\n- CoDeC (ICLR 2026, arXiv:2510.27055): 通过in-context learning比较seen/unseen数据的置信度差异，属于gray-box方法。与IRT-FIT不在同一access level，不构成直接竞争。\n- Self-Critique (ICLR 2026, arXiv:2510.09259): 通过entropy sequence检测post-RL contamination，~30% AUC提升。与IRT-FIT在post-RL场景的比较是proposal的重要实验。\n- PSN-IRT (AAAI 2026 Oral, arXiv:2505.15055): IRT-FIT的基础设施依赖——提供41,871 items的4PL参数。该工作已被顶会接收，基础扎实。\n- ATLAS (arXiv:2511.04689, AAAI 2027): IRT-based adaptive testing，减少90%测试items。同样利用IRT但方向不同（效率 vs. 污染检测），不构成竞争。\n- Wang et al. (arXiv:2510.02386): 揭示GRPO训练可隐藏MIA-based信号。proposal的post-RL实验直接对接该发现。\n- Silicon Bureaucracy (arXiv:2603.21636) & Cross-Context Verification (arXiv:2603.21454): 2026年3月最新方法，分别用扰动审计和session-isolated多样性分析。均需要re-administration，与IRT-FIT不在同一operating point。\n- 搜索\"person-fit LLM contamination\"未返回任何结果: 验证了proposal的核心novelty claim——目前无人将person-fit统计量应用于LLM污染检测。\n- Han et al. (EACL 2026 Findings): 量化了心理测量问卷中的污染，但未使用person-fit统计量。最近的相关工作但仍有明确差异。\n\n- 调研总结: LLM benchmark contamination detection是2024-2026年的活跃研究方向，已有方法覆盖gray-box（token-level access）和black-box（需re-testing）两个操作点，但\"仅用binary response pattern\"的minimal-information操作点确实是一个未被探索的空白。将psychometric person-fit statistics迁移到此问题目前无先例。\n\n【整体印象】: \n作为审稿人，我的第一反应是\"这是一个干净、有品位的research question，配上了异常扎实的实验设计\"。Proposal清晰地识别了contamination detection方法图谱中的一个真实空白（minimal-information operating point），提出了一个有理论基础的解决方案（psychometric person-fit transfer），并且诚实地讨论了方法的固有局限性。这种\"我知道这个方法不能打败gray-box方法，但我要系统地理解这个操作点上能做什么\"的定位非常学术——是characterization而非superiority claim。倾向于weak accept / borderline accept，但最终取决于实际实验结果是否能支撑inverted-U curve等核心claim。\n\n【核心贡献】: \n核心贡献有三层：(1) 建立了contamination detection的minimal-information operating point，首次仅用binary response patterns检测污染；(2) 实现retroactive contamination audit——这是一个genuinely unique的能力，其他所有方法都需要live model access或re-testing；(3) 理论层面characterize了binary-response-pattern方法的detection power envelope（inverted-U curve）。对领域的价值在于：即使lz*的绝对检测力不如gray-box方法，系统地理解\"不同信息量级下能做什么\"本身对contamination detection领域有结构性贡献。Retroactive audit能力有直接的实践价值。\n\n【方法合理性】: \n方法本身是合理的——lz*在教育测试中有数十年的理论和实证基础（Karabatsos 2003; Sinharay 2017; Gorney et al. 2023），\"contaminated LLM ≈ examinee with item preknowledge\"的类比是站得住的。更简单的替代方案（accuracy z-score、Guttman error count、difficulty-residual correlation）已被设计为Tier 0 baselines，proposal明确要验证lz*是否提供marginal value over these simpler statistics，这一点很好。主要的方法论风险在于：(a) SFT generalization effect可能显著削弱aberrance signal；(b) PSN-IRT calibration本身可能包含contaminated models导致lz*的calibration bias（Braeken & van Laar 2025），虽然proposal提到了empirical null adjustment但这是一个需要实验验证的关键假设。\n\n【5 维度打分】:\n  1. 研究问题: 【强】 — \"What is the detection power envelope at the minimal-information level?\"是一个干净、有价值的研究问题。它不是\"我做了一个更好的方法\"，而是\"我要系统地理解一个新的operating point\"——这种framing既诚实又有深度。Retroactive audit的unique capability进一步提升了问题的实践价值。在EMNLP 2025的contamination survey（50+方法）中，这个operating point确实是空白。\n  \n  2. 方法与创新: 【中】 — 核心方法lz*不是新发明，而是从教育心理学的迁移应用。创新性在于：(a) 识别了cross-domain analogy的操作性价值；(b) 对detection limits的理论characterization。但相比ConStat（NeurIPS 2024，提出了contamination的新定义）或CoDeC（ICLR 2026，提出新的ICL-based detection paradigm），methodological novelty相对有限。Inverted-U curve的\"informal proof sketch\"如果不能formalize，可能被审稿人认为under-delivers。\n  \n  3. 实验设计: 【强】 — 这是proposal最大的亮点之一。126 conditions × 3 seeds的controlled contamination、access-level stratified baselines（Tier 0/1/2）的设计非常有结构感。特别值得肯定的是：(a) Tier 0 baselines直接检验IRT machinery的marginal value，这是很多paper会回避的对比；(b) post-RL robustness test直接对接Wang et al. (arXiv:2510.02386)的发现；(c) 5个维度的ablation study（IRT model complexity, person-fit statistics, ability estimation, parameter source, unidimensionality）覆盖了所有可能的methodological choice；(d) Open LLM Leaderboard prevalence analysis + OLMo negative controls。这个实验方案如果执行到位，本身就是一个重要贡献。参考ConStat和Min-K%++的实验设计，本proposal的baseline覆盖度和ablation深度均达到甚至超过了同类工作的标准。\n  \n  4. 可行性: 【中】 — 2,500 H100-hours是可控的计算成本。技术依赖链清晰（PSN-IRT参数 → lz*计算 → 统计检验）。主要风险：(a) 126个QLoRA fine-tuning runs的工程量不小，需要稳定的训练pipeline；(b) Open LLM Leaderboard的per-item response logs的可获取性可能存在gaps；(c) Post-RL实验（GRPO）需要follow Wang et al.的configuration，可能有复现难度。总体可行但需要扎实的工程基础设施和对leaderboard数据的access。\n  \n  5. 写作与呈现: 【强】 — Proposal的逻辑结构非常清晰：Problem → Core Contributions → Scope & Assumptions → Method → Related Work → Experimental Design → Evaluation Metrics。特别值得肯定的是：(a) 诚实地讨论了SFT generalization effect的威胁（Section 3）；(b) 清晰地界定了detection scope（item-level memorization vs. distributional pretraining exposure）；(c) Access-level stratified的related work组织方式让读者一眼看清方法图谱；(d) Expected Outcomes中不回避\"aggregate AUROC possibly below gray-box methods\"的预期。这种intellectual honesty在proposal阶段就展现出来，是加分项。\n\n【概率估计】: [30% - 42%] 中位 36%\n\n【估计理由】: \n这个proposal处于\"solid submission\"区间。往上推的力量：(1) 研究问题干净且有真实gap；(2) 实验设计异常扎实，baseline覆盖度和ablation深度达到顶级标准；(3) retroactive audit是unique selling point；(4) 写作清晰诚实。往下拉的力量：(1) 核心方法是cross-domain transfer而非methodological invention，部分审稿人可能认为novelty不够；(2) 如果实验结果显示lz*在practical relevant的contamination levels（5-20%）上检测力很弱，\"characterizing the limits\"的framing可能不足以支撑acceptance——审稿人可能反问\"if the method barely works, why should we care about characterizing it?\"；(3) inverted-U的\"proof sketch\"如果无法formalize，理论贡献会被打折。中位36%反映了\"各方面合格到偏好，但缺乏一个decisive的亮点来push过acceptance threshold\"的判断。如果实验结果在10-30% contamination区间确实展现出有意义的检测力，且retroactive analysis发现有价值的trend，概率可以上移到40%+。\n\n【主要风险】: \n1. **Detection power可能过弱**: 在practical relevant的contamination fraction（5-20%）上，binary response patterns携带的信息可能不足以在统计上与genuine high ability区分，特别是在SFT generalization effect存在的情况下。如果core result是\"lz*在大多数条件下barely beats Tier 0 baselines\"，审稿人可能认为整个IRT框架的引入不justified。\n2. **\"Characterization\"论文的acceptance barrier更高**: Proposal的定位是characterize a detection frontier而非claim superiority。这种framing虽然诚实，但在competitive reviewing中可能处于劣势——审稿人可能期待一个方法在某个维度上是\"best in class\"，而非仅仅\"interesting characterization of limits\"。\n\n【实施评估】:\n  - 计算资源: ~2,500 H100-hours，属于中等规模，需要稳定的GPU集群access（约1-2周连续使用8×H100节点）\n  - 数据需求: PSN-IRT的4PL参数（已公开）；Open LLM Leaderboard per-item response logs（可获取性需要验证）；fine-tuning用的benchmark数据（公开）\n  - 人工介入: 中等。QLoRA/SFT pipeline搭建、GRPO训练configuration、leaderboard数据收集和清洗需要显著的工程工作\n  - 训练需求: 是。需要训练126+ fine-tuned models（QLoRA/SFT）+ post-RL models。这是实验的核心，不可避免\n  - 新 Benchmark: 否。使用现有benchmark（MMLU, ARC-C, HellaSwag, WinoGrande, TruthfulQA, HumanEval）+ 已有IRT参数\n  - 预估周期: 3-4个月（1个月搭建pipeline + 1.5个月跑实验 + 1个月分析和写作）\n```\n\nSources:\n- [Benchmarking LLMs Under Data Contamination Survey (EMNLP 2025)](https://aclanthology.org/2025.emnlp-main.511/)\n- [ConStat: Performance-Based Contamination Detection (NeurIPS 2024)](https://arxiv.org/pdf/2405.16281)\n- [CoDeC: Detecting Data Contamination via In-Context Learning (ICLR 2026)](https://arxiv.org/html/2510.27055v1)\n- [PSN-IRT: Lost in Benchmarks? (AAAI 2026 Oral)](https://arxiv.org/pdf/2505.15055)\n- [ATLAS: Adaptive Testing for LLM Evaluation](https://arxiv.org/abs/2511.04689)\n- [On The Fragility of Benchmark Contamination Detection in Reasoning Models](https://arxiv.org/pdf/2510.02386)\n- [Silicon Bureaucracy (arXiv 2603.21636)](https://arxiv.org/abs/2603.21636)\n- [Cross-Context Verification (arXiv 2603.21454)](https://arxiv.org/abs/2603.21454)\n- [PaCoST: Paired Confidence Significance Testing (EMNLP 2024 Findings)](https://arxiv.org/pdf/2406.18326)\n- [Comprehensive Survey of Contamination Detection Methods](https://arxiv.org/pdf/2404.00699)\n- [Person-Fit Assessment in IRT (Nature)](https://www.nature.com/research-intelligence/nri-topic-summaries/person-fit-assessment-in-item-response-theory-micro-129702)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1bc5189-4fc8-46b6-97eb-114ae706720b",
+            "isSidechain": false,
+            "requestId": "req_011CbDGP2iqH5dkz5z5CoSrK",
+            "type": "assistant",
+            "uuid": "13a14d6d-437f-4340-8e6b-9755fe778912",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119Jmtq9mXCkfA2TfGwB8jA",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2394,
+                "cache_read_input_tokens": 25393,
+                "output_tokens": 5413,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2394,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5413,
+                    "cache_read_input_tokens": 25393,
+                    "cache_creation_input_tokens": 2394,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2394
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## IRT-FIT: Detecting Benchmark Contamination in LLMs at the Minimal-Information Operating Point via Psychometric…",
+                "leafUuid": "13a14d6d-437f-4340-8e6b-9755fe778912",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Detect benchmark contamination in LLMs using psychometric person-fit",
+                "sessionId": "15889f48-069e-45aa-b4a3-4b766ed475a3"
+              }
+            }
+          ],
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-irt-fit-detecting-benchmark-con-copy-2.md"
+}

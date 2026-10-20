@@ -1,0 +1,2433 @@
+{
+  "schema_version": "1.0",
+  "id": "49e8bf3ecca08b6d19f8",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Faithfulness of Tool-Selection Re",
+  "task_key": "6591e290-959e-4965-929e-2158dd5613f6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/6591e290-959e-4965-929e-2158dd5613f6.jsonl",
+    "occurrence": 1,
+    "bytes": 139537,
+    "sha256": "588d68c879b4377da3ad3a73074aa0c6f8c2a8459527f1ec0356e2aa7aa8308a"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "record": 15,
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T20:49:05.039Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-19T20:49:05.039Z",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn Probing\n\n## Description\nWe present the first systematic study of whether tool-selection reasoning in multi-turn agentic systems is causally faithful or post-hoc rationalization, combining behavioral causal interventions with multi-turn mechanistic probing. While recent work has established that tool identity is linearly readable from pre-generation activations in single-turn settings (2605.07990, achieving 93-100% steering accuracy) and that ~50% of general reasoning is unfaithful (RFEval), no prior work examines whether an agent's stated reasoning for choosing a specific tool across conversation turns actually drives that decision. We construct TOOLFAITH-BENCH, a 600-scenario diagnostic benchmark across five domains, stratified into three difficulty tiers — Unambiguous (single correct tool), Soft-Ambiguous (one optimal among plausible candidates), and Hard-Ambiguous (multiple valid tools) — to address construct validity concerns about benchmark realism. We apply a four-type causal intervention protocol (reason-flip, reason-ablate, counterfactual-inject, reason-scramble) and introduce two metrics: Tool Selection Causal Fidelity (TSCF) and Reasoning Theater Index (RTI). We evaluate seven models spanning current open-weight systems (Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro) and frontier APIs (Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro), supplemented by a multi-turn probing study that extends 2605.07990 to the unsolved multi-turn regime with four novel analyses: cross-turn probe transfer, context-dependent encoding drift, error-induced replanning signals, and behavioral-mechanistic faithfulness coupling. We test five hypotheses, including that RTI will be elevated across model families (extending single-turn findings), that probe accuracy will degrade with conversation depth (unlike stable single-turn results), and — counterintuitively — that harder ambiguous scenarios may elicit more faithful reasoning than unambiguous ones because genuine deliberation is required.\n\n## Core Problem\nIn multi-turn tool-using agents, does the model's stated reasoning about tool selection — which tool to call, with what parameters, and why — actually causally drive the tool call decision, or is it post-hoc rationalization of a latent policy? Recent probing work (2605.07990, 2605.09252) has shown that tool identity is linearly encoded in pre-generation activations in single-turn settings, suggesting CoT may be decorative. But these findings explicitly fail to transfer to multi-turn agentic settings, where accumulated conversation history, prior tool results, and error feedback create dynamic contexts that fundamentally differ from static single-turn tool menus. No systematic behavioral study exists to measure causal coupling between stated reasoning and tool-call actions across conversation turns.\n\n## Opportunity\nThe landscape has bifurcated: single-turn tool probing is now well-characterized (2605.07990 achieves 93-100% steering accuracy for 4B+ models; 2605.09252 shows 0.89-0.96 AUROC for tool-necessity probing), while multi-turn agentic tool selection remains essentially unstudied from a faithfulness perspective. This is precisely where the stakes are highest — production agents execute multi-step workflows where early tool calls condition later ones, errors require replanning, and unfaithful reasoning about tool selection can cascade into irreversible harmful actions. The faithfulness evaluation literature has advanced rapidly in 2026: RFEval finds ~50% of reasoning outputs unfaithful across 7,186 instances; 'Lie to Me' reveals a 59-percentage-point gap between internal recognition and output acknowledgment of hint influence; 'Decoding Answers Before CoT' shows 0.9 AUC pre-CoT answer probing — yet all this work targets single-turn QA/math, not agentic tool selection. Critically, 2605.07990 found multi-turn steering to be 'fragile' with -30 to +10pp vs. baseline and 'no consistent direction,' directly motivating a systematic study of multi-turn tool-selection faithfulness. The behavioral intervention approach — perturbing CoT and measuring whether tool calls change — is entirely unaddressed by any existing work on tool-call probing, creating a unique and timely contribution.\n\n## Related Work / Landscape\nThe landscape spans four converging threads:\n\n**Thread 1 — CoT Faithfulness (General):** Project Ariadne (2601.02314) finds causal decoupling with violation density up to 0.77 in factual domains but focuses on claims, not actions. 'Decoding Answers Before CoT' (2603.01437) shows answers encoded in pre-CoT activations with 0.9 AUC, establishing that CoT can be post-hoc, but only for binary QA. 'Catching Rationalization in the Act' (2603.17199) detects motivated reasoning via activation probing, showing internal representations outperform CoT monitors. RFEval (2602.17053) provides a 7,186-instance counterfactual intervention benchmark finding ~50% unfaithfulness, but for reasoning tasks not tool calls. FACT-E (2604.10693, ACL 2026 Findings) uses causal perturbations for CoT evaluation, finding self-evaluation unreliable. C2-Faith (2603.05167) benchmarks LLM-as-judge for causal/coverage faithfulness, showing systematic blind spots in localization. 'Lie to Me' (2603.22582) evaluates 12 models finding faithfulness rates from 39.7% to 89.9% with a critical 59pp thinking-vs-output gap. Breaking the Chain (2603.16475) shows 60% insensitivity to intermediate structure interventions. FaithCoT-Bench (ICLR 2026, 2510.04040) and FRIT (2509.13334) address single-turn QA faithfulness only.\n\n**Thread 2 — Tool-Call Probing (Single-Turn):** 'Tool Calling is Linearly Readable and Steerable' (2605.07990) probes 12 models, achieving 93-100% tool-name steering accuracy at 4B+ in single-turn fixed-menu settings, but explicitly finds multi-turn transfer 'fragile' (-30 to +10pp). Argument values are NOT steerable (0/30). 'LLM Agents Already Know When to Call Tools' (2605.09252) shows binary tool-necessity is decodable at 0.89-0.96 AUROC, with reasoning providing no additional signal. 'Beyond the Black Box' (2605.06890) applies SAE + probes to multi-step trajectories for tool-need/tool-risk classification but not tool identity or faithfulness. 'Internal Representations as Indicators of Hallucinations in Agent Tool Selection' (2601.05214) detects hallucinated tool calls from hidden states but in single-turn only.\n\n**Thread 3 — Tool Selection Robustness/Behavior:** 'Tool Preferences in Agentic LLMs are Unreliable' (EMNLP 2025, 2505.18135) shows tool selection is fragile under description manipulation but does not examine CoT faithfulness. 'The Reasoning Trap' (2510.22977) demonstrates RL causally amplifies tool hallucination but studies hallucination rates, not reasoning faithfulness. TOOLCERT (2510.03992) studies distributional robustness, not faithfulness. 'Brief Is Better' (2604.02155) finds non-monotonic CoT budget effects on function-calling accuracy. 'The Causal Impact of Tool Affordance on Safety Alignment' (ICECET 2026, 2603.20320) examines safety but not faithfulness.\n\n**Thread 4 — Agentic Monitoring:** SAVeR (2604.08401) proposes self-auditing for agentic faithfulness but provides limited empirical analysis. 'Noticing the Watcher' (2603.16928) shows models detect CoT monitoring from feedback at up to 19% awareness. 'Reasoning and Tool-use Compete in Agentic RL' (2602.00994) reveals interference between reasoning and tool use during training.\n\n**Critical Gap:** No work combines behavioral causal interventions on tool-selection CoT with mechanistic probing in multi-turn agentic settings. Single-turn probing is established; multi-turn is explicitly unsolved. Behavioral faithfulness testing for tool selection is entirely absent.\n\n## Approach\nWe construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains (code editing, web browsing, data analysis, system administration, information retrieval), each containing 2-4 tool-selection decision points. Scenarios are stratified into three difficulty tiers reflecting real-world ambiguity:\n\n**Tier 1 — Unambiguous (200 scenarios):** A single correct tool per decision point; the reasoning chain uniquely determines the tool. Serves as calibration: if TSCF is low here, the CoT is clearly decorative.\n\n**Tier 2 — Soft-Ambiguous (200 scenarios):** 2-3 plausible tools with one clearly optimal. The reasoning must contain distinguishing information (e.g., 'the file is >2GB, so we need streaming upload rather than multipart'). Interventions target this distinguishing reasoning.\n\n**Tier 3 — Hard-Ambiguous (200 scenarios):** Multiple genuinely valid tools. Faithfulness is measured via stance consistency (does the CoT logically support the specific tool chosen?) and causal coupling (does perturbing the CoT change which valid tool is selected?), following RFEval's framework of decoupling faithfulness from correctness.\n\nAt each decision point we apply four perturbation types: (1) reason-flip — rewrite the CoT to justify a different tool, (2) reason-ablate — remove reasoning entirely, presenting only task context, (3) counterfactual-inject — insert facts that should change the optimal tool, (4) reason-scramble — shuffle reasoning sentences while preserving tool mentions. We define two complementary metrics: Tool Selection Causal Fidelity (TSCF), the rate at which tool calls correctly follow intervened reasoning, and Reasoning Theater Index (RTI), the rate at which tool calls remain unchanged despite contradictory reasoning.\n\nWe evaluate seven models spanning current open-weight systems (Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro) and frontier APIs (Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro), supplementing behavioral results with a multi-turn probing study on open-weight models. The probing component is explicitly positioned as an extension of 2605.07990 to the unsolved multi-turn regime, with four novel analyses: (a) cross-turn probe transfer — whether a probe trained at decision point 1 (turn 2) generalizes to decision point 3 (turn 8) as context accumulates; (b) context-dependent encoding drift — whether the linear direction encoding a given tool shifts across turns as prior tool results modify the task state; (c) error-induced replanning signals — whether tool errors create detectable representational shifts before the next tool selection; (d) faithfulness coupling — correlating probe-detected pre-commitment (tool identity encoded before CoT) with behavioral unfaithfulness (low TSCF), testing whether mechanistic and behavioral measures of unfaithfulness align. This goes beyond 2605.07990's domain transfer, because multi-turn contexts create fundamentally different representational challenges: the residual stream must integrate prior tool results, error states, and evolving task context alongside the current tool decision, and 2605.07990 explicitly showed this integration is fragile.\n\n## Inspiration\nThree converging findings: (1) 2605.07990's explicit acknowledgment that multi-turn tool-call probing is 'fragile' and unsolved, creating a clear frontier; (2) the faithfulness evaluation literature's maturation (RFEval, FACT-E, Lie to Me) providing proven intervention methodologies that have never been applied to tool selection; (3) the growing deployment of multi-turn agentic systems where tool-selection faithfulness has direct safety implications that single-turn probing cannot address.\n\n## Key References\n- Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents (arXiv 2026, 2601.02314)\n- Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, 2604.08401)\n- Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures (arXiv 2026, 2603.16475)\n- Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback (arXiv 2026, 2603.16928)\n- Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering (arXiv 2026, 2603.01437)\n- Catching Rationalization in the Act: Detecting Motivated Reasoning via Activation Probing (arXiv 2026, 2603.17199)\n- RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention (arXiv 2026, 2602.17053)\n- FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning (ACL 2026 Findings, 2604.10693)\n- C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in CoT Reasoning (arXiv 2026, 2603.05167)\n- Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models? (arXiv 2026, 2603.22582)\n- Tool Calling is Linearly Readable and Steerable in Language Models (arXiv 2026, 2605.07990)\n- LLM Agents Already Know When to Call Tools — Even Without Reasoning (arXiv 2026, 2605.09252)\n- Beyond the Black Box: Interpretability of Agentic AI Tool Use (arXiv 2026, 2605.06890)\n- FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, 2510.04040)\n- FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness (arXiv 2025, 2509.13334)\n- The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination (arXiv 2025, 2510.22977)\n- Tool Preferences in Agentic LLMs are Unreliable (EMNLP 2025, 2505.18135)\n- Quantifying Distributional Robustness of Agentic Tool-Selection [TOOLCERT] (arXiv 2025, 2510.03992)\n- Internal Representations as Indicators of Hallucinations in Agent Tool Selection (arXiv 2026, 2601.05214)\n- Brief Is Better: Non-Monotonic Chain-of-Thought Budget Effects in Function-Calling Language Agents (arXiv 2026, 2604.02155)\n- The Causal Impact of Tool Affordance on Safety Alignment in LLM Agents (ICECET 2026, 2603.20320)\n- Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning (arXiv 2026, 2602.00994)\n- Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation? (arXiv 2025, 2508.19827)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '300 H100-hours (150h model inference across 4 open-weight models × 600 scenarios × 4 intervention types × 3 tiers, 70h multi-turn probing experiments with cross-turn analysis, 80h development/debugging)', 'timeline': '12-14 weeks (3 wk benchmark design with tiered difficulty validation, 3 wk implementation, 3 wk experiments, 3-5 wk analysis/writing)', 'estimated_gpu_cost': '$750 (at ~$2.50/hr H100 spot pricing)'}\n- **human_in_loop**: {'gpu_hours': '240 H100-hours (same inference workload, fewer debugging iterations with Claude-assisted scenario generation and tiered validation)', 'timeline': '10-12 weeks (2.5 wk benchmark design, 2 wk implementation, 2.5 wk experiments, 3-4 wk analysis/writing)', 'claude_api_cost': '$350-450 (scenario generation across 3 tiers, ambiguity calibration, code assistance, statistical analysis, paper drafting across ~18M input + 6M output tokens)', 'estimated_gpu_cost': '$600 (at ~$2.50/hr H100 spot pricing)'}\n- **auto_research**: {'gpu_hours': '500 H100-hours (larger intervention sweep, additional ablations on tier boundaries, probe transfer experiments across multiple random seeds, cross-model probe transfer analysis)', 'timeline': '5-7 weeks wall-clock (parallelized scenario generation, concurrent model evaluation, automated analysis pipeline)', 'claude_api_cost': '$800-1000 (orchestration, tiered scenario generation with ambiguity calibration, evaluation judging, statistical analysis, full paper drafting across ~45M input + 18M output tokens)', 'estimated_gpu_cost': '$1250 (at ~$2.50/hr H100 spot pricing)', 'speed_bottleneck': 'Tier 2/3 scenario quality validation — ensuring soft-ambiguous scenarios have correctly calibrated difficulty (one tool genuinely better but not trivially so) requires human spot-checking that cannot be fully automated without risking construct validity'}\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T20:49:05.042Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-19T20:49:05.042Z",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T20:49:05.054Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn Probing\n\n## Description\nWe present the first systematic study of whether tool-selection reasoning in multi-turn agentic systems is causally faithful or post-hoc rationalization, combining behavioral causal interventions with multi-turn mechanistic probing. While recent work has established that tool identity is linearly readable from pre-generation activations in single-turn settings (2605.07990, achieving 93-100% steering accuracy) and that ~50% of general reasoning is unfaithful (RFEval), no prior work examines whether an agent's stated reasoning for choosing a specific tool across conversation turns actually drives that decision. We construct TOOLFAITH-BENCH, a 600-scenario diagnostic benchmark across five domains, stratified into three difficulty tiers — Unambiguous (single correct tool), Soft-Ambiguous (one optimal among plausible candidates), and Hard-Ambiguous (multiple valid tools) — to address construct validity concerns about benchmark realism. We apply a four-type causal intervention protocol (reason-flip, reason-ablate, counterfactual-inject, reason-scramble) and introduce two metrics: Tool Selection Causal Fidelity (TSCF) and Reasoning Theater Index (RTI). We evaluate seven models spanning current open-weight systems (Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro) and frontier APIs (Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro), supplemented by a multi-turn probing study that extends 2605.07990 to the unsolved multi-turn regime with four novel analyses: cross-turn probe transfer, context-dependent encoding drift, error-induced replanning signals, and behavioral-mechanistic faithfulness coupling. We test five hypotheses, including that RTI will be elevated across model families (extending single-turn findings), that probe accuracy will degrade with conversation depth (unlike stable single-turn results), and — counterintuitively — that harder ambiguous scenarios may elicit more faithful reasoning than unambiguous ones because genuine deliberation is required.\n\n## Core Problem\nIn multi-turn tool-using agents, does the model's stated reasoning about tool selection — which tool to call, with what parameters, and why — actually causally drive the tool call decision, or is it post-hoc rationalization of a latent policy? Recent probing work (2605.07990, 2605.09252) has shown that tool identity is linearly encoded in pre-generation activations in single-turn settings, suggesting CoT may be decorative. But these findings explicitly fail to transfer to multi-turn agentic settings, where accumulated conversation history, prior tool results, and error feedback create dynamic contexts that fundamentally differ from static single-turn tool menus. No systematic behavioral study exists to measure causal coupling between stated reasoning and tool-call actions across conversation turns.\n\n## Opportunity\nThe landscape has bifurcated: single-turn tool probing is now well-characterized (2605.07990 achieves 93-100% steering accuracy for 4B+ models; 2605.09252 shows 0.89-0.96 AUROC for tool-necessity probing), while multi-turn agentic tool selection remains essentially unstudied from a faithfulness perspective. This is precisely where the stakes are highest — production agents execute multi-step workflows where early tool calls condition later ones, errors require replanning, and unfaithful reasoning about tool selection can cascade into irreversible harmful actions. The faithfulness evaluation literature has advanced rapidly in 2026: RFEval finds ~50% of reasoning outputs unfaithful across 7,186 instances; 'Lie to Me' reveals a 59-percentage-point gap between internal recognition and output acknowledgment of hint influence; 'Decoding Answers Before CoT' shows 0.9 AUC pre-CoT answer probing — yet all this work targets single-turn QA/math, not agentic tool selection. Critically, 2605.07990 found multi-turn steering to be 'fragile' with -30 to +10pp vs. baseline and 'no consistent direction,' directly motivating a systematic study of multi-turn tool-selection faithfulness. The behavioral intervention approach — perturbing CoT and measuring whether tool calls change — is entirely unaddressed by any existing work on tool-call probing, creating a unique and timely contribution.\n\n## Related Work / Landscape\nThe landscape spans four converging threads:\n\n**Thread 1 — CoT Faithfulness (General):** Project Ariadne (2601.02314) finds causal decoupling with violation density up to 0.77 in factual domains but focuses on claims, not actions. 'Decoding Answers Before CoT' (2603.01437) shows answers encoded in pre-CoT activations with 0.9 AUC, establishing that CoT can be post-hoc, but only for binary QA. 'Catching Rationalization in the Act' (2603.17199) detects motivated reasoning via activation probing, showing internal representations outperform CoT monitors. RFEval (2602.17053) provides a 7,186-instance counterfactual intervention benchmark finding ~50% unfaithfulness, but for reasoning tasks not tool calls. FACT-E (2604.10693, ACL 2026 Findings) uses causal perturbations for CoT evaluation, finding self-evaluation unreliable. C2-Faith (2603.05167) benchmarks LLM-as-judge for causal/coverage faithfulness, showing systematic blind spots in localization. 'Lie to Me' (2603.22582) evaluates 12 models finding faithfulness rates from 39.7% to 89.9% with a critical 59pp thinking-vs-output gap. Breaking the Chain (2603.16475) shows 60% insensitivity to intermediate structure interventions. FaithCoT-Bench (ICLR 2026, 2510.04040) and FRIT (2509.13334) address single-turn QA faithfulness only.\n\n**Thread 2 — Tool-Call Probing (Single-Turn):** 'Tool Calling is Linearly Readable and Steerable' (2605.07990) probes 12 models, achieving 93-100% tool-name steering accuracy at 4B+ in single-turn fixed-menu settings, but explicitly finds multi-turn transfer 'fragile' (-30 to +10pp). Argument values are NOT steerable (0/30). 'LLM Agents Already Know When to Call Tools' (2605.09252) shows binary tool-necessity is decodable at 0.89-0.96 AUROC, with reasoning providing no additional signal. 'Beyond the Black Box' (2605.06890) applies SAE + probes to multi-step trajectories for tool-need/tool-risk classification but not tool identity or faithfulness. 'Internal Representations as Indicators of Hallucinations in Agent Tool Selection' (2601.05214) detects hallucinated tool calls from hidden states but in single-turn only.\n\n**Thread 3 — Tool Selection Robustness/Behavior:** 'Tool Preferences in Agentic LLMs are Unreliable' (EMNLP 2025, 2505.18135) shows tool selection is fragile under description manipulation but does not examine CoT faithfulness. 'The Reasoning Trap' (2510.22977) demonstrates RL causally amplifies tool hallucination but studies hallucination rates, not reasoning faithfulness. TOOLCERT (2510.03992) studies distributional robustness, not faithfulness. 'Brief Is Better' (2604.02155) finds non-monotonic CoT budget effects on function-calling accuracy. 'The Causal Impact of Tool Affordance on Safety Alignment' (ICECET 2026, 2603.20320) examines safety but not faithfulness.\n\n**Thread 4 — Agentic Monitoring:** SAVeR (2604.08401) proposes self-auditing for agentic faithfulness but provides limited empirical analysis. 'Noticing the Watcher' (2603.16928) shows models detect CoT monitoring from feedback at up to 19% awareness. 'Reasoning and Tool-use Compete in Agentic RL' (2602.00994) reveals interference between reasoning and tool use during training.\n\n**Critical Gap:** No work combines behavioral causal interventions on tool-selection CoT with mechanistic probing in multi-turn agentic settings. Single-turn probing is established; multi-turn is explicitly unsolved. Behavioral faithfulness testing for tool selection is entirely absent.\n\n## Approach\nWe construct TOOLFAITH-BENCH, a diagnostic benchmark of 600 multi-turn agentic scenarios across five domains (code editing, web browsing, data analysis, system administration, information retrieval), each containing 2-4 tool-selection decision points. Scenarios are stratified into three difficulty tiers reflecting real-world ambiguity:\n\n**Tier 1 — Unambiguous (200 scenarios):** A single correct tool per decision point; the reasoning chain uniquely determines the tool. Serves as calibration: if TSCF is low here, the CoT is clearly decorative.\n\n**Tier 2 — Soft-Ambiguous (200 scenarios):** 2-3 plausible tools with one clearly optimal. The reasoning must contain distinguishing information (e.g., 'the file is >2GB, so we need streaming upload rather than multipart'). Interventions target this distinguishing reasoning.\n\n**Tier 3 — Hard-Ambiguous (200 scenarios):** Multiple genuinely valid tools. Faithfulness is measured via stance consistency (does the CoT logically support the specific tool chosen?) and causal coupling (does perturbing the CoT change which valid tool is selected?), following RFEval's framework of decoupling faithfulness from correctness.\n\nAt each decision point we apply four perturbation types: (1) reason-flip — rewrite the CoT to justify a different tool, (2) reason-ablate — remove reasoning entirely, presenting only task context, (3) counterfactual-inject — insert facts that should change the optimal tool, (4) reason-scramble — shuffle reasoning sentences while preserving tool mentions. We define two complementary metrics: Tool Selection Causal Fidelity (TSCF), the rate at which tool calls correctly follow intervened reasoning, and Reasoning Theater Index (RTI), the rate at which tool calls remain unchanged despite contradictory reasoning.\n\nWe evaluate seven models spanning current open-weight systems (Kimi K2.6, GLM-5.1, Qwen3.6-35B-A3B, DeepSeek-V4-Pro) and frontier APIs (Claude Sonnet 4.6, GPT-5.5, Gemini 2.5 Pro), supplementing behavioral results with a multi-turn probing study on open-weight models. The probing component is explicitly positioned as an extension of 2605.07990 to the unsolved multi-turn regime, with four novel analyses: (a) cross-turn probe transfer — whether a probe trained at decision point 1 (turn 2) generalizes to decision point 3 (turn 8) as context accumulates; (b) context-dependent encoding drift — whether the linear direction encoding a given tool shifts across turns as prior tool results modify the task state; (c) error-induced replanning signals — whether tool errors create detectable representational shifts before the next tool selection; (d) faithfulness coupling — correlating probe-detected pre-commitment (tool identity encoded before CoT) with behavioral unfaithfulness (low TSCF), testing whether mechanistic and behavioral measures of unfaithfulness align. This goes beyond 2605.07990's domain transfer, because multi-turn contexts create fundamentally different representational challenges: the residual stream must integrate prior tool results, error states, and evolving task context alongside the current tool decision, and 2605.07990 explicitly showed this integration is fragile.\n\n## Inspiration\nThree converging findings: (1) 2605.07990's explicit acknowledgment that multi-turn tool-call probing is 'fragile' and unsolved, creating a clear frontier; (2) the faithfulness evaluation literature's maturation (RFEval, FACT-E, Lie to Me) providing proven intervention methodologies that have never been applied to tool selection; (3) the growing deployment of multi-turn agentic systems where tool-selection faithfulness has direct safety implications that single-turn probing cannot address.\n\n## Key References\n- Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents (arXiv 2026, 2601.02314)\n- Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing [SAVeR] (arXiv 2026, 2604.08401)\n- Breaking the Chain: A Causal Analysis of LLM Faithfulness to Intermediate Structures (arXiv 2026, 2603.16475)\n- Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback (arXiv 2026, 2603.16928)\n- Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering (arXiv 2026, 2603.01437)\n- Catching Rationalization in the Act: Detecting Motivated Reasoning via Activation Probing (arXiv 2026, 2603.17199)\n- RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention (arXiv 2026, 2602.17053)\n- FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning (ACL 2026 Findings, 2604.10693)\n- C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in CoT Reasoning (arXiv 2026, 2603.05167)\n- Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models? (arXiv 2026, 2603.22582)\n- Tool Calling is Linearly Readable and Steerable in Language Models (arXiv 2026, 2605.07990)\n- LLM Agents Already Know When to Call Tools — Even Without Reasoning (arXiv 2026, 2605.09252)\n- Beyond the Black Box: Interpretability of Agentic AI Tool Use (arXiv 2026, 2605.06890)\n- FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning (ICLR 2026, 2510.04040)\n- FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness (arXiv 2025, 2509.13334)\n- The Reasoning Trap: How Enhancing LLM Reasoning Amplifies Tool Hallucination (arXiv 2025, 2510.22977)\n- Tool Preferences in Agentic LLMs are Unreliable (EMNLP 2025, 2505.18135)\n- Quantifying Distributional Robustness of Agentic Tool-Selection [TOOLCERT] (arXiv 2025, 2510.03992)\n- Internal Representations as Indicators of Hallucinations in Agent Tool Selection (arXiv 2026, 2601.05214)\n- Brief Is Better: Non-Monotonic Chain-of-Thought Budget Effects in Function-Calling Language Agents (arXiv 2026, 2604.02155)\n- The Causal Impact of Tool Affordance on Safety Alignment in LLM Agents (ICECET 2026, 2603.20320)\n- Reasoning and Tool-use Compete in Agentic RL: From Quantifying Interference to Disentangled Tuning (arXiv 2026, 2602.00994)\n- Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation? (arXiv 2025, 2508.19827)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '300 H100-hours (150h model inference across 4 open-weight models × 600 scenarios × 4 intervention types × 3 tiers, 70h multi-turn probing experiments with cross-turn analysis, 80h development/debugging)', 'timeline': '12-14 weeks (3 wk benchmark design with tiered difficulty validation, 3 wk implementation, 3 wk experiments, 3-5 wk analysis/writing)', 'estimated_gpu_cost': '$750 (at ~$2.50/hr H100 spot pricing)'}\n- **human_in_loop**: {'gpu_hours': '240 H100-hours (same inference workload, fewer debugging iterations with Claude-assisted scenario generation and tiered validation)', 'timeline': '10-12 weeks (2.5 wk benchmark design, 2 wk implementation, 2.5 wk experiments, 3-4 wk analysis/writing)', 'claude_api_cost': '$350-450 (scenario generation across 3 tiers, ambiguity calibration, code assistance, statistical analysis, paper drafting across ~18M input + 6M output tokens)', 'estimated_gpu_cost': '$600 (at ~$2.50/hr H100 spot pricing)'}\n- **auto_research**: {'gpu_hours': '500 H100-hours (larger intervention sweep, additional ablations on tier boundaries, probe transfer experiments across multiple random seeds, cross-model probe transfer analysis)', 'timeline': '5-7 weeks wall-clock (parallelized scenario generation, concurrent model evaluation, automated analysis pipeline)', 'claude_api_cost': '$800-1000 (orchestration, tiered scenario generation with ambiguity calibration, evaluation judging, statistical analysis, full paper drafting across ~45M input + 18M output tokens)', 'estimated_gpu_cost': '$1250 (at ~$2.50/hr H100 spot pricing)', 'speed_bottleneck': 'Tier 2/3 scenario quality validation — ensuring soft-ambiguous scenarios have correctly calibrated difficulty (one tool genuinely better but not trivially so) requires human spot-checking that cannot be fully automated without risking construct validity'}\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "828ec545-4232-413e-a0dc-4b1a5570cc6a",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T20:49:05.053Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "828ec545-4232-413e-a0dc-4b1a5570cc6a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "d388cf4d-32fb-4c3e-aad3-5c3237654d62",
+                "timestamp": "2026-05-19T20:49:05.053Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T20:49:05.053Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d388cf4d-32fb-4c3e-aad3-5c3237654d62",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "01d356c5-10ad-4513-91fb-36f984354020",
+                "timestamp": "2026-05-19T20:49:05.053Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn…",
+                "leafUuid": "01d356c5-10ad-4513-91fb-36f984354020",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate multi-turn tool-selection faithfulness proposal",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T20:49:23.387Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to evaluate a research proposal for CoRL 2026 (Conference on Robot Learning). Wait, let me re-read - the system prompt says CoRL 2026, but this proposal is about faithfulness of tool-selection reasoning in LLMs, which seems more like an NLP/AI safety topic. Let me note this but first focus on the evaluation.\n\nActually, wait - the system prompt says \"CoRL 2026 主会\" but the proposal is about LLM reasoning faithfulness and tool selection. This is a significant mismatch. CoRL is about robot learning, not about LLM faithfulness/interpretability. Let me re-read the system message...\n\n\nThere's definitely a venue mismatch here - this is an NLP/interpretability paper being evaluated for a robotics conference - but I should focus on assessing the proposal's merit rather than getting caught up in the venue question.\n\nNow I need to search for recent work on chain-of-thought faithfulness in tool-using systems, the specific papers mentioned, and how multi-turn agentic evaluation is being approached in the literature.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01d356c5-10ad-4513-91fb-36f984354020",
+            "isSidechain": false,
+            "requestId": "req_011CbCaw3PFJwaNX2ikvs3BU",
+            "type": "assistant",
+            "uuid": "0bb37520-7e2e-43e5-ae7a-546c07542eaa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YVf8CeBTujFh6DD4XaYgcq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 633,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 633,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T20:49:23.398Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我需要先进行领域调研，然后才能打分。让我搜索这个 proposal 涉及的关键领域。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0bb37520-7e2e-43e5-ae7a-546c07542eaa",
+            "isSidechain": false,
+            "requestId": "req_011CbCaw3PFJwaNX2ikvs3BU",
+            "type": "assistant",
+            "uuid": "79da7d8b-8432-46f9-9826-4a585dd5bdfe",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YVf8CeBTujFh6DD4XaYgcq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 633,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 633,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T20:49:23.428Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K5w9hLkCE3S6zqHy4H4NBW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79da7d8b-8432-46f9-9826-4a585dd5bdfe",
+            "isSidechain": false,
+            "requestId": "req_011CbCaw3PFJwaNX2ikvs3BU",
+            "type": "assistant",
+            "uuid": "9c637d30-3495-4614-b73b-86e36e164e28",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YVf8CeBTujFh6DD4XaYgcq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 633,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 633,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T20:49:23.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01K5w9hLkCE3S6zqHy4H4NBW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c637d30-3495-4614-b73b-86e36e164e28",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "b15fe479-fa5d-4c1a-a574-dfbf66932ad9",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "9c637d30-3495-4614-b73b-86e36e164e28",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T20:49:27.208Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me do the required web searches. I'll do multiple searches in parallel to understand the landscape.",
+              "signature": "EqYCClkIDRgCKkCqR2u8FcSLg6+rFHv2sZjPPwBTg29m7QBqF2R3a8DheBziaaLd/MAn9HoZwgYKIc2MnN6OYVUYxAtX9EckXpTpMg9jbGF1ZGUtb3B1cy00LTY4ABIMwxjBaaoB+2rrYemDGgyAlkEq1UjdPnP+1aciMGq/i+3p4YZtC4nDGZHsvVvQ2+MgM/uTrx0Ml2s3SeKOAQodmO+TwQnjVA2ax82Neyp74UlssxQcpGHmzxYni8SxhfGAT7gITo6GrO6PiVeuMPIcvPgMPoBkeWMu/LcRJ5XWXQnsWl6qig/m30jEqxBPMqqkP2AAOXK4eZCXOJ4nvB3MFaca+41e6WafF6v+nniqA/V+PWQrvWagVGys+jzggJbsvQH+xhdovHE/GAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b15fe479-fa5d-4c1a-a574-dfbf66932ad9",
+            "isSidechain": false,
+            "requestId": "req_011CbCaxR7EwNspvBHaxhfcM",
+            "type": "assistant",
+            "uuid": "6548c960-1909-4313-90f0-bc1a3fcac3b4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PKYJxYwWCHUKHrAmppDUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1159,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 1159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T20:49:28.153Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me conduct the required literature searches. I'll run multiple searches in parallel to cover the key areas."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6548c960-1909-4313-90f0-bc1a3fcac3b4",
+            "isSidechain": false,
+            "requestId": "req_011CbCaxR7EwNspvBHaxhfcM",
+            "type": "assistant",
+            "uuid": "d18604ba-7809-4285-806b-f5414a515823",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PKYJxYwWCHUKHrAmppDUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1159,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 1159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T20:49:29.298Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Poc5L8Zi5GKsUAN4YKSU3Q",
+              "name": "WebSearch",
+              "input": {
+                "query": "tool calling linearly readable steerable language models 2605.07990 arXiv 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d18604ba-7809-4285-806b-f5414a515823",
+            "isSidechain": false,
+            "requestId": "req_011CbCaxR7EwNspvBHaxhfcM",
+            "type": "assistant",
+            "uuid": "5025ab64-e529-4497-b762-2fc6ad657807",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PKYJxYwWCHUKHrAmppDUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1159,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 1159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T20:49:29.699Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GGv5c6rvM88TyYBVy93JRX",
+              "name": "WebSearch",
+              "input": {
+                "query": "chain-of-thought faithfulness tool selection agentic LLM 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5025ab64-e529-4497-b762-2fc6ad657807",
+            "isSidechain": false,
+            "requestId": "req_011CbCaxR7EwNspvBHaxhfcM",
+            "type": "assistant",
+            "uuid": "111cf1ce-dec0-4f5e-a3f6-f067a8085c34",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PKYJxYwWCHUKHrAmppDUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1159,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 1159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T20:49:30.533Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WLbD9EqRUCgAzLLvdMwrAq",
+              "name": "WebSearch",
+              "input": {
+                "query": "RFEval reasoning faithfulness counterfactual intervention benchmark 2602.17053"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "111cf1ce-dec0-4f5e-a3f6-f067a8085c34",
+            "isSidechain": false,
+            "requestId": "req_011CbCaxR7EwNspvBHaxhfcM",
+            "type": "assistant",
+            "uuid": "10f4acb2-db2a-4238-b6e1-43af07207426",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PKYJxYwWCHUKHrAmppDUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1159,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 1159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T20:49:30.734Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019GpmTE2CyHdCfUeuRxHs4V",
+              "name": "WebSearch",
+              "input": {
+                "query": "multi-turn agentic reasoning faithfulness probing 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10f4acb2-db2a-4238-b6e1-43af07207426",
+            "isSidechain": false,
+            "requestId": "req_011CbCaxR7EwNspvBHaxhfcM",
+            "type": "assistant",
+            "uuid": "78fde658-6339-4247-a465-3d2b2a495fcc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PKYJxYwWCHUKHrAmppDUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1159,
+                "cache_read_input_tokens": 19817,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 19817,
+                    "cache_creation_input_tokens": 1159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T20:49:35.307Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WLbD9EqRUCgAzLLvdMwrAq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RFEval reasoning faithfulness counterfactual intervention benchmark 2602.17053\"\n\nLinks: [{\"title\":\"[2602.17053v1] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models\",\"url\":\"https://arxiv.org/abs/2602.17053v1\"},{\"title\":\"[2602.17053] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models\",\"url\":\"https://arxiv.org/abs/2602.17053\"},{\"title\":\"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models\",\"url\":\"https://arxiv.org/pdf/2602.17053\"},{\"title\":\"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models\",\"url\":\"https://arxiv.org/html/2602.17053\"},{\"title\":\"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=2Gc8aj0afg\"}]\n\nBased on the search results, here's what I found about the RFEval benchmark:\n\n## Overview\n\nRFEval is a benchmark of 7,186 instances across seven tasks that probes faithfulness via controlled, output-level counterfactual interventions.\n\n## Framework and Methodology\n\nThe research introduces a formal framework for reasoning faithfulness, defined by two testable conditions: stance consistency (a coherent stance linking reasoning to answer) and causal influence (the stated reasoning causally drives the answer under output-level interventions), explicitly decoupled from accuracy.\n\n## Key Findings\n\nWhen evaluating twelve open-source LRMs (Large Reasoning Models), unfaithfulness was found in 49.7% of outputs, predominantly from stance inconsistency. Failures are concentrated in brittle, convergent domains such as math and code, and correlate more with post-training regimes than with scale.\n\n## Important Insight\n\nAccuracy is neither a sufficient nor a reliable proxy for faithfulness: once controlling for model and task, the accuracy-faithfulness link is weak and statistically insignificant.\n\nThe paper (arxiv:2602.17053) was submitted on February 19, 2026, and is authored by Yunseok Han, Yejoon Lee, and Jaeyoung Do from Seoul National University.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10f4acb2-db2a-4238-b6e1-43af07207426",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "9e2fc49e-c907-4fd0-8f8c-4bc31de8ac0e",
+            "toolUseResult": {
+              "query": "RFEval reasoning faithfulness counterfactual intervention benchmark 2602.17053",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01RUYupFCCaCX7zd6LPgHFYw",
+                  "content": [
+                    {
+                      "title": "[2602.17053v1] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+                      "url": "https://arxiv.org/abs/2602.17053v1"
+                    },
+                    {
+                      "title": "[2602.17053] RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+                      "url": "https://arxiv.org/abs/2602.17053"
+                    },
+                    {
+                      "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+                      "url": "https://arxiv.org/pdf/2602.17053"
+                    },
+                    {
+                      "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+                      "url": "https://arxiv.org/html/2602.17053"
+                    },
+                    {
+                      "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models | OpenReview",
+                      "url": "https://openreview.net/forum?id=2Gc8aj0afg"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the RFEval benchmark:\n\n## Overview\n\nRFEval is a benchmark of 7,186 instances across seven tasks that probes faithfulness via controlled, output-level counterfactual interventions.\n\n## Framework and Methodology\n\nThe research introduces a formal framework for reasoning faithfulness, defined by two testable conditions: stance consistency (a coherent stance linking reasoning to answer) and causal influence (the stated reasoning causally drives the answer under output-level interventions), explicitly decoupled from accuracy.\n\n## Key Findings\n\nWhen evaluating twelve open-source LRMs (Large Reasoning Models), unfaithfulness was found in 49.7% of outputs, predominantly from stance inconsistency. Failures are concentrated in brittle, convergent domains such as math and code, and correlate more with post-training regimes than with scale.\n\n## Important Insight\n\nAccuracy is neither a sufficient nor a reliable proxy for faithfulness: once controlling for model and task, the accuracy-faithfulness link is weak and statistically insignificant.\n\nThe paper (arxiv:2602.17053) was submitted on February 19, 2026, and is authored by Yunseok Han, Yejoon Lee, and Jaeyoung Do from Seoul National University."
+              ],
+              "durationSeconds": 4.770640038999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "10f4acb2-db2a-4238-b6e1-43af07207426",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T20:49:37.605Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GGv5c6rvM88TyYBVy93JRX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"chain-of-thought faithfulness tool selection agentic LLM 2026\"\n\nLinks: [{\"title\":\"Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents\",\"url\":\"https://arxiv.org/pdf/2601.02314\"},{\"title\":\"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing\",\"url\":\"https://arxiv.org/pdf/2604.08401\"},{\"title\":\"Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/pdf/2402.13950\"},{\"title\":\"AutoTool: Dynamic Tool Selection and Integration for Agentic Reasoning\",\"url\":\"https://arxiv.org/pdf/2512.13278\"},{\"title\":\"Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?\",\"url\":\"https://arxiv.org/html/2603.22582v1\"},{\"title\":\"Measuring Faithfulness in Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/pdf/2307.13702\"},{\"title\":\"What is chain of thought (CoT) prompting? | IBM\",\"url\":\"https://www.ibm.com/think/topics/chain-of-thoughts\"},{\"title\":\"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\",\"url\":\"https://arxiv.org/pdf/2510.04040\"},{\"title\":\"AutoTool: Efficient Tool Selection for Large Language Model Agents\",\"url\":\"https://arxiv.org/pdf/2511.14650\"}]\n\nBased on the search results, I found several relevant papers addressing chain-of-thought faithfulness and agentic LLM systems in 2026:\n\n## Chain-of-Thought Faithfulness in LLM Agents\n\nWhile Chain-of-Thought (CoT) prompting allows agents to generate human-readable reasoning traces, it remains unclear whether these traces are faithful generative drivers of the model's output or merely post-hoc rationalizations.\n\n**Key Research Initiatives:**\n\n1. **Project Ariadne** (January 2026): A novel XAI framework that utilizes Structural Causal Models (SCMs) and counterfactual logic to audit the causal integrity of agentic reasoning. Findings suggest that current agentic architectures are inherently prone to unfaithful explanation, and proposes the Ariadne Score as a new benchmark for aligning stated logic with model action.\n\n2. **Self-Audited Verified Reasoning (SAVER)**: This addresses a failure mode where unfaithful reasoning in the agent determines the following behavior and final decision, differing from unfaithful CoT where reasoning is merely an explanatory artifact.\n\n3. **FaithCoT-Bench**: Establishes the first comprehensive benchmark for instance-level CoT faithfulness, setting a solid basis for future research toward more interpretable and trustworthy reasoning in LLMs.\n\n## Tool Selection for Agentic Reasoning\n\nA shared limitation is that the fundamental decision of which tool to use at each step still predominantly relies on costly LLM inference, creating a significant computational bottleneck. Recent work like AutoTool aims to address this efficiency challenge in tool selection for agentic systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "111cf1ce-dec0-4f5e-a3f6-f067a8085c34",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "57fe57ca-befe-4fcb-ab30-248d5b14fd76",
+            "toolUseResult": {
+              "query": "chain-of-thought faithfulness tool selection agentic LLM 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01X9GyiKpNaJN9yrHpMPm5yE",
+                  "content": [
+                    {
+                      "title": "Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents",
+                      "url": "https://arxiv.org/pdf/2601.02314"
+                    },
+                    {
+                      "title": "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing",
+                      "url": "https://arxiv.org/pdf/2604.08401"
+                    },
+                    {
+                      "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/pdf/2402.13950"
+                    },
+                    {
+                      "title": "AutoTool: Dynamic Tool Selection and Integration for Agentic Reasoning",
+                      "url": "https://arxiv.org/pdf/2512.13278"
+                    },
+                    {
+                      "title": "Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Open-Weight Reasoning Models?",
+                      "url": "https://arxiv.org/html/2603.22582v1"
+                    },
+                    {
+                      "title": "Measuring Faithfulness in Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/pdf/2307.13702"
+                    },
+                    {
+                      "title": "What is chain of thought (CoT) prompting? | IBM",
+                      "url": "https://www.ibm.com/think/topics/chain-of-thoughts"
+                    },
+                    {
+                      "title": "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning",
+                      "url": "https://arxiv.org/pdf/2510.04040"
+                    },
+                    {
+                      "title": "AutoTool: Efficient Tool Selection for Large Language Model Agents",
+                      "url": "https://arxiv.org/pdf/2511.14650"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several relevant papers addressing chain-of-thought faithfulness and agentic LLM systems in 2026:\n\n## Chain-of-Thought Faithfulness in LLM Agents\n\nWhile Chain-of-Thought (CoT) prompting allows agents to generate human-readable reasoning traces, it remains unclear whether these traces are faithful generative drivers of the model's output or merely post-hoc rationalizations.\n\n**Key Research Initiatives:**\n\n1. **Project Ariadne** (January 2026): A novel XAI framework that utilizes Structural Causal Models (SCMs) and counterfactual logic to audit the causal integrity of agentic reasoning. Findings suggest that current agentic architectures are inherently prone to unfaithful explanation, and proposes the Ariadne Score as a new benchmark for aligning stated logic with model action.\n\n2. **Self-Audited Verified Reasoning (SAVER)**: This addresses a failure mode where unfaithful reasoning in the agent determines the following behavior and final decision, differing from unfaithful CoT where reasoning is merely an explanatory artifact.\n\n3. **FaithCoT-Bench**: Establishes the first comprehensive benchmark for instance-level CoT faithfulness, setting a solid basis for future research toward more interpretable and trustworthy reasoning in LLMs.\n\n## Tool Selection for Agentic Reasoning\n\nA shared limitation is that the fundamental decision of which tool to use at each step still predominantly relies on costly LLM inference, creating a significant computational bottleneck. Recent work like AutoTool aims to address this efficiency challenge in tool selection for agentic systems."
+              ],
+              "durationSeconds": 7.902827859000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "111cf1ce-dec0-4f5e-a3f6-f067a8085c34",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T20:49:40.160Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Poc5L8Zi5GKsUAN4YKSU3Q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"tool calling linearly readable steerable language models 2605.07990 arXiv 2026\"\n\nLinks: [{\"title\":\"[2605.07990] Tool Calling is Linearly Readable and Steerable in Language Models\",\"url\":\"https://arxiv.org/abs/2605.07990\"},{\"title\":\"[2605.07990v1] Tool Calling is Linearly Readable and Steerable in Language Models\",\"url\":\"https://arxiv.org/abs/2605.07990v1\"},{\"title\":\"Tool Calling is Linearly Readable and Steerable in Language Models\",\"url\":\"https://arxiv.org/html/2605.07990\"},{\"title\":\"AI Steerability 360: A Toolkit for Steering Large Language Models\",\"url\":\"https://arxiv.org/pdf/2603.07837\"},{\"title\":\"Natural Language Tools: A Natural Language Approach to Tool Calling In Large Language Agents\",\"url\":\"https://arxiv.org/pdf/2510.14453\"}]\n\nI found the paper you're looking for! Here's information about it:\n\n**Paper Title:** \"Tool Calling is Linearly Readable and Steerable in Language Models\"\n\n**arXiv ID:** 2605.07990\n\n**Authors:** Zekun Wu, Ze Wang, Seonglae Cho, Yufei Yang, Adriano Koshiyama, Sahan Bulathwela, and Maria Perez-Ortiz from University College London, Holistic AI, and Imperial College London\n\n**Submission Date:** May 8, 2026\n\n**Main Findings:**\n\nThe research found that the identity of the chosen tool is linearly readable and steerable inside instruction-tuned models across Gemma 3, Qwen 3, Qwen 2.5, and Llama 3.1 (270M to 27B).\n\nAdding the mean-difference between two tools' average internal activations switches which tool the model selects at 77-100% accuracy on name-only single-turn prompts (93-100% at 4B+), and the JSON arguments that follow autoregressively match the new tool's schema.\n\nThe per-tool means also flag likely errors before they happen: on Gemma 3 12B and 27B, queries where the gap between the top-1 and top-2 tool is smallest produce 14-21x more wrong calls than queries with the largest gap.\n\nThe paper addresses the challenge of tool-calling failures in language models that only become visible after execution.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5025ab64-e529-4497-b762-2fc6ad657807",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "c08f56ba-190d-42c5-a182-913d924089ef",
+            "toolUseResult": {
+              "query": "tool calling linearly readable steerable language models 2605.07990 arXiv 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013ENfKiT7N6dWzFHsH9GQGC",
+                  "content": [
+                    {
+                      "title": "[2605.07990] Tool Calling is Linearly Readable and Steerable in Language Models",
+                      "url": "https://arxiv.org/abs/2605.07990"
+                    },
+                    {
+                      "title": "[2605.07990v1] Tool Calling is Linearly Readable and Steerable in Language Models",
+                      "url": "https://arxiv.org/abs/2605.07990v1"
+                    },
+                    {
+                      "title": "Tool Calling is Linearly Readable and Steerable in Language Models",
+                      "url": "https://arxiv.org/html/2605.07990"
+                    },
+                    {
+                      "title": "AI Steerability 360: A Toolkit for Steering Large Language Models",
+                      "url": "https://arxiv.org/pdf/2603.07837"
+                    },
+                    {
+                      "title": "Natural Language Tools: A Natural Language Approach to Tool Calling In Large Language Agents",
+                      "url": "https://arxiv.org/pdf/2510.14453"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here's information about it:\n\n**Paper Title:** \"Tool Calling is Linearly Readable and Steerable in Language Models\"\n\n**arXiv ID:** 2605.07990\n\n**Authors:** Zekun Wu, Ze Wang, Seonglae Cho, Yufei Yang, Adriano Koshiyama, Sahan Bulathwela, and Maria Perez-Ortiz from University College London, Holistic AI, and Imperial College London\n\n**Submission Date:** May 8, 2026\n\n**Main Findings:**\n\nThe research found that the identity of the chosen tool is linearly readable and steerable inside instruction-tuned models across Gemma 3, Qwen 3, Qwen 2.5, and Llama 3.1 (270M to 27B).\n\nAdding the mean-difference between two tools' average internal activations switches which tool the model selects at 77-100% accuracy on name-only single-turn prompts (93-100% at 4B+), and the JSON arguments that follow autoregressively match the new tool's schema.\n\nThe per-tool means also flag likely errors before they happen: on Gemma 3 12B and 27B, queries where the gap between the top-1 and top-2 tool is smallest produce 14-21x more wrong calls than queries with the largest gap.\n\nThe paper addresses the challenge of tool-calling failures in language models that only become visible after execution."
+              ],
+              "durationSeconds": 10.858983760999996,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "5025ab64-e529-4497-b762-2fc6ad657807",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn…",
+                "leafUuid": "c08f56ba-190d-42c5-a182-913d924089ef",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate multi-turn tool-selection faithfulness proposal",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T20:49:40.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019GpmTE2CyHdCfUeuRxHs4V",
+              "type": "tool_result",
+              "content": "Web search results for query: \"multi-turn agentic reasoning faithfulness probing 2026\"\n\nLinks: [{\"title\":\"Multi-Turn LLM Evaluation in 2026: What You Need to Know - Confident AI\",\"url\":\"https://www.confident-ai.com/blog/multi-turn-llm-evaluation-in-2026\"},{\"title\":\"Towards Trustworthy Multi-Turn LLM Agents via Behavioral Guidance\",\"url\":\"https://arxiv.org/pdf/2512.11421\"},{\"title\":\"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing\",\"url\":\"https://arxiv.org/html/2604.08401\"},{\"title\":\"Is VLA Reasoning Faithful? Probing Safety of Chain-of-Causation in Autonomous Driving ModelsAccepted at the DriveX Workshop, CVPR 2026.\",\"url\":\"https://arxiv.org/html/2605.17268\"},{\"title\":\"Competitions – IJCAI 2026\",\"url\":\"https://2026.ijcai.org/competitions/\"},{\"title\":\"Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2510.13272v1\"},{\"title\":\"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing\",\"url\":\"https://arxiv.org/pdf/2604.08401\"}]\n\nI found several relevant results about multi-turn agentic reasoning and faithfulness probing in 2026. Here's what the search revealed:\n\n## Multi-Turn LLM Evaluation in 2026\n\nMulti-turn LLM evaluation is fundamentally different from single-turn evaluation, and in 2026, most teams are still getting it wrong. Faithfulness metrics are applied per-turn with conversational context, going beyond traditional single-turn approaches.\n\n## Faithfulness in Agentic Systems\n\nResearch in 2026 highlights significant challenges with reasoning faithfulness in LLM agents. LLM agents maintain internal reasoning trajectories for guiding tool invocation, action commitment, and memory updates across decision steps, with trajectories generally regarded as interpretable representations of the agent's internal state.\n\nHowever, unfaithful belief states can propagate, bias decisions, and trigger costly actions in closed-loop agent systems, with the risk being not merely incorrect answers, but systematic behavioral drift driven by unfaithful internal beliefs.\n\n## Practical Examples of Faithfulness Probing\n\nRecent work includes a systematic study of faithfulness in Vision-Language-Action driving models, finding that output natural-language rationales may be significantly unfaithful, with overall reasoning fidelity at only 42.5%.\n\n## Emerging Solutions\n\nTrust in agents denotes the agent's capacity to act in ways that are both verifiable (its reasoning of action selection can be inspected and validated) and reliable (its generated behaviors consistently comply with task constraints and environment feedback).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78fde658-6339-4247-a465-3d2b2a495fcc",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "4eee5593-d038-4d67-90fa-6866cfe1dee0",
+            "toolUseResult": {
+              "query": "multi-turn agentic reasoning faithfulness probing 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0125urbyKnU6yjAYN3bJcVV5",
+                  "content": [
+                    {
+                      "title": "Multi-Turn LLM Evaluation in 2026: What You Need to Know - Confident AI",
+                      "url": "https://www.confident-ai.com/blog/multi-turn-llm-evaluation-in-2026"
+                    },
+                    {
+                      "title": "Towards Trustworthy Multi-Turn LLM Agents via Behavioral Guidance",
+                      "url": "https://arxiv.org/pdf/2512.11421"
+                    },
+                    {
+                      "title": "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing",
+                      "url": "https://arxiv.org/html/2604.08401"
+                    },
+                    {
+                      "title": "Is VLA Reasoning Faithful? Probing Safety of Chain-of-Causation in Autonomous Driving ModelsAccepted at the DriveX Workshop, CVPR 2026.",
+                      "url": "https://arxiv.org/html/2605.17268"
+                    },
+                    {
+                      "title": "Competitions – IJCAI 2026",
+                      "url": "https://2026.ijcai.org/competitions/"
+                    },
+                    {
+                      "title": "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation",
+                      "url": "https://arxiv.org/html/2510.13272v1"
+                    },
+                    {
+                      "title": "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing",
+                      "url": "https://arxiv.org/pdf/2604.08401"
+                    }
+                  ]
+                },
+                "I found several relevant results about multi-turn agentic reasoning and faithfulness probing in 2026. Here's what the search revealed:\n\n## Multi-Turn LLM Evaluation in 2026\n\nMulti-turn LLM evaluation is fundamentally different from single-turn evaluation, and in 2026, most teams are still getting it wrong. Faithfulness metrics are applied per-turn with conversational context, going beyond traditional single-turn approaches.\n\n## Faithfulness in Agentic Systems\n\nResearch in 2026 highlights significant challenges with reasoning faithfulness in LLM agents. LLM agents maintain internal reasoning trajectories for guiding tool invocation, action commitment, and memory updates across decision steps, with trajectories generally regarded as interpretable representations of the agent's internal state.\n\nHowever, unfaithful belief states can propagate, bias decisions, and trigger costly actions in closed-loop agent systems, with the risk being not merely incorrect answers, but systematic behavioral drift driven by unfaithful internal beliefs.\n\n## Practical Examples of Faithfulness Probing\n\nRecent work includes a systematic study of faithfulness in Vision-Language-Action driving models, finding that output natural-language rationales may be significantly unfaithful, with overall reasoning fidelity at only 42.5%.\n\n## Emerging Solutions\n\nTrust in agents denotes the agent's capacity to act in ways that are both verifiable (its reasoning of action selection can be inspected and validated) and reliable (its generated behaviors consistently comply with task constraints and environment feedback)."
+              ],
+              "durationSeconds": 9.855292565,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "78fde658-6339-4247-a465-3d2b2a495fcc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T20:49:43.100Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have initial results. Let me now do a couple more targeted searches to verify specific claims and check for directly competing work.",
+              "signature": "EsgCClkIDRgCKkCFlM2Qi+EwQ6hPtLw000Z0uyvmcTukYbrn63GezhMC0gpJY+Eo5ZiarlZijHoIprh3mQYsN0KWVtOdFjSEvg4SMg9jbGF1ZGUtb3B1cy00LTY4ABIM4tRnkoNmTXFa/ZwQGgyvcvPaMj+/sKh2j+wiMJBHarIsLFxdaXWNfWSGnPF/6Ziv6uu3K9WznNmulpArZLWdOENXp1M6qEvfYpooriqcAUVyYL8ufIOdjuZwVGWlywDkTiTCLfzszflNjBQaob7TnLgkQKQeDZ+kJTWmWTFn8n0wdnGTe+klQ6JCw6gWJFeqSp2AMGvIe1SkUYFknVVWMo+T7iysdHiEMrRTegnJOZmBDwaAt0cIqQ46bFsr724wpuGGE/ZmC2ZMnGxh0H4oPgcWwljS4lU5XxEmctELNn9m6ub49eSIuyBMCBgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4eee5593-d038-4d67-90fa-6866cfe1dee0",
+            "isSidechain": false,
+            "requestId": "req_011CbCayfFKUBsUDEbrVnB5P",
+            "type": "assistant",
+            "uuid": "9e8102c4-019b-46c2-9060-c53a4039d5ba",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SZbyMD3oypXVceuEWGpSsW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3147,
+                "cache_read_input_tokens": 20976,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3147,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 20976,
+                    "cache_creation_input_tokens": 3147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3147
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T20:49:44.133Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have initial results. Let me do a few more targeted searches to check for directly competing work and verify key claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e8102c4-019b-46c2-9060-c53a4039d5ba",
+            "isSidechain": false,
+            "requestId": "req_011CbCayfFKUBsUDEbrVnB5P",
+            "type": "assistant",
+            "uuid": "4ccbd8fc-9e03-4cc6-b3f2-ac23d949ef55",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SZbyMD3oypXVceuEWGpSsW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3147,
+                "cache_read_input_tokens": 20976,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3147,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 20976,
+                    "cache_creation_input_tokens": 3147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3147
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T20:49:44.675Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XNghhboS4YpM9hJ6zoXQx1",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"tool selection\" \"faithfulness\" \"multi-turn\" behavioral intervention causal probing 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ccbd8fc-9e03-4cc6-b3f2-ac23d949ef55",
+            "isSidechain": false,
+            "requestId": "req_011CbCayfFKUBsUDEbrVnB5P",
+            "type": "assistant",
+            "uuid": "ba21b51d-16ae-49cb-809f-bbec9cebffff",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SZbyMD3oypXVceuEWGpSsW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3147,
+                "cache_read_input_tokens": 20976,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3147,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 20976,
+                    "cache_creation_input_tokens": 3147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3147
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T20:49:46.070Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EPmz1GJyQQhhxhqG9rG8Bg",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLM agents know when to call tools 2605.09252 reasoning tool necessity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba21b51d-16ae-49cb-809f-bbec9cebffff",
+            "isSidechain": false,
+            "requestId": "req_011CbCayfFKUBsUDEbrVnB5P",
+            "type": "assistant",
+            "uuid": "65f85463-2735-41da-be4b-98c1c60904c7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SZbyMD3oypXVceuEWGpSsW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3147,
+                "cache_read_input_tokens": 20976,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3147,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 20976,
+                    "cache_creation_input_tokens": 3147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3147
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T20:49:46.587Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NuSrw19CGeEJcJ3a7uLaBt",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"beyond the black box\" interpretability agentic tool use 2605.06890"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65f85463-2735-41da-be4b-98c1c60904c7",
+            "isSidechain": false,
+            "requestId": "req_011CbCayfFKUBsUDEbrVnB5P",
+            "type": "assistant",
+            "uuid": "dd0583ff-a429-4ace-b6ed-54a6a7e4cc69",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SZbyMD3oypXVceuEWGpSsW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3147,
+                "cache_read_input_tokens": 20976,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3147,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 20976,
+                    "cache_creation_input_tokens": 3147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3147
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T20:49:52.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EPmz1GJyQQhhxhqG9rG8Bg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLM agents know when to call tools 2605.09252 reasoning tool necessity\"\n\nLinks: [{\"title\":\"LLM Agents Already Know When to Call Tools - Even Without Reasoning\",\"url\":\"https://arxiv.org/html/2605.09252v1\"},{\"title\":\"[2605.14038] Model-Adaptive Tool Necessity Reveals the Knowing-Doing Gap in LLM Tool Use\",\"url\":\"https://arxiv.org/abs/2605.14038\"},{\"title\":\"Alignment for Efficient Tool Calling of Large Language Models\",\"url\":\"https://arxiv.org/pdf/2503.06708\"},{\"title\":\"Agentic Reasoning and Tool Integration for LLMs via Reinforcement   Learning\",\"url\":\"https://arxiv.org/pdf/2505.01441\"},{\"title\":\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\",\"url\":\"https://arxiv.org/html/2605.00737\"},{\"title\":\"[2605.00737] To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\",\"url\":\"https://arxiv.org/abs/2605.00737\"},{\"title\":\"Efficient Tool Use with Chain-of-Abstraction Reasoning\",\"url\":\"https://arxiv.org/pdf/2401.17464\"},{\"title\":\"How Tools Are Called in AI Agents: Complete 2025 Guide (With Examples) | by Sayali Kumbhar | Medium\",\"url\":\"https://medium.com/@sayalisureshkumbhar/how-tools-are-called-in-ai-agents-complete-2025-guide-with-examples-42dcdfe6ba38\"}]\n\nBased on the search results, here's what I found about the research paper (arXiv:2605.09252):\n\nTool-augmented LLM agents tend to call tools indiscriminately, even when the model can answer directly. Each unnecessary call wastes API fees and latency, yet no existing benchmark systematically studies when a tool call is actually needed.\n\nThe researchers address this problem by proposing When2Tool, a benchmark of 18 environments (15 single-hop, 3 multi-hop) spanning three categories of tool necessity — computational scale, knowledge boundaries, and execution reliability — each with controlled difficulty levels that create a clear decision boundary between tool-necessary and tool-unnecessary tasks.\n\nThey evaluate two families of training-free baselines: Prompt-only (varying the prompt to discourage unnecessary calls) and Reason-then-Act (requiring the model to reason about tool necessity before acting).\n\nThis research is part of a broader conversation in the field about optimizing LLM tool use. Related work explores how tool necessity in the wild is more nuanced due to the divergence of capability boundaries across models: a problem solvable by a strong model on its own may still require tools for a weaker one, introducing model-adaptive definitions of tool-necessity.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65f85463-2735-41da-be4b-98c1c60904c7",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "3dad327f-5e04-4499-84a4-420b66f5bcc0",
+            "toolUseResult": {
+              "query": "LLM agents know when to call tools 2605.09252 reasoning tool necessity",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01HK5PkvTvwndy4k6tYQmGKM",
+                  "content": [
+                    {
+                      "title": "LLM Agents Already Know When to Call Tools - Even Without Reasoning",
+                      "url": "https://arxiv.org/html/2605.09252v1"
+                    },
+                    {
+                      "title": "[2605.14038] Model-Adaptive Tool Necessity Reveals the Knowing-Doing Gap in LLM Tool Use",
+                      "url": "https://arxiv.org/abs/2605.14038"
+                    },
+                    {
+                      "title": "Alignment for Efficient Tool Calling of Large Language Models",
+                      "url": "https://arxiv.org/pdf/2503.06708"
+                    },
+                    {
+                      "title": "Agentic Reasoning and Tool Integration for LLMs via Reinforcement   Learning",
+                      "url": "https://arxiv.org/pdf/2505.01441"
+                    },
+                    {
+                      "title": "To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling",
+                      "url": "https://arxiv.org/html/2605.00737"
+                    },
+                    {
+                      "title": "[2605.00737] To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling",
+                      "url": "https://arxiv.org/abs/2605.00737"
+                    },
+                    {
+                      "title": "Efficient Tool Use with Chain-of-Abstraction Reasoning",
+                      "url": "https://arxiv.org/pdf/2401.17464"
+                    },
+                    {
+                      "title": "How Tools Are Called in AI Agents: Complete 2025 Guide (With Examples) | by Sayali Kumbhar | Medium",
+                      "url": "https://medium.com/@sayalisureshkumbhar/how-tools-are-called-in-ai-agents-complete-2025-guide-with-examples-42dcdfe6ba38"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the research paper (arXiv:2605.09252):\n\nTool-augmented LLM agents tend to call tools indiscriminately, even when the model can answer directly. Each unnecessary call wastes API fees and latency, yet no existing benchmark systematically studies when a tool call is actually needed.\n\nThe researchers address this problem by proposing When2Tool, a benchmark of 18 environments (15 single-hop, 3 multi-hop) spanning three categories of tool necessity — computational scale, knowledge boundaries, and execution reliability — each with controlled difficulty levels that create a clear decision boundary between tool-necessary and tool-unnecessary tasks.\n\nThey evaluate two families of training-free baselines: Prompt-only (varying the prompt to discourage unnecessary calls) and Reason-then-Act (requiring the model to reason about tool necessity before acting).\n\nThis research is part of a broader conversation in the field about optimizing LLM tool use. Related work explores how tool necessity in the wild is more nuanced due to the divergence of capability boundaries across models: a problem solvable by a strong model on its own may still require tools for a weaker one, introducing model-adaptive definitions of tool-necessity."
+              ],
+              "durationSeconds": 6.575107777999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "65f85463-2735-41da-be4b-98c1c60904c7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T20:49:52.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XNghhboS4YpM9hJ6zoXQx1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"tool selection\" \"faithfulness\" \"multi-turn\" behavioral intervention causal probing 2026\"\n\nLinks: [{\"title\":\"Faithfulness and Intervention-Only Causal Discovery | OpenReview\",\"url\":\"https://openreview.net/forum?id=06xBGAwxvg\"},{\"title\":\"Is VLA Reasoning Faithful? Probing Safety of Chain-of-Causation in Autonomous Driving ModelsAccepted at the DriveX Workshop, CVPR 2026.\",\"url\":\"https://arxiv.org/html/2605.17268\"},{\"title\":\"Automated Interpretability-Driven Model Auditing and Control: A Research Agenda\",\"url\":\"https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf\"},{\"title\":\"Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/386203451_Making_Reasoning_Matter_Measuring_and_Improving_Faithfulness_of_Chain-of-Thought_Reasoning\"},{\"title\":\"How Reliable are Causal Probing Interventions?\",\"url\":\"https://arxiv.org/pdf/2408.15510\"},{\"title\":\"Assessing adherence fidelity to behavioral interventions using interactivity and natural language processing\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10813584\"}]\n\nBased on the web search results, I found several relevant papers from 2026 and recent work related to your query:\n\n## Key Findings\n\n**Faithfulness and Causal Probing:**\n\nFaithfulness is a critical assumption in causal discovery that requires causally linked variables to exhibit statistical dependence, though it has been shown to be a strong and restrictive assumption, especially in the finite sample regime.\n\nRecent approaches use causal tracing tools, such as Query Circuits, to identify which components generate reasoning traces versus which produce final answers.\n\n**Multi-turn and Behavioral Intervention:**\n\nSystems can test chain-of-thought (CoT) faithfulness through intervention loops by localizing CoT generation and testing causal connections by ablating or patching circuits—if CoT is faithful, modifying intermediate reasoning should change the answer.\n\n**Causal Probing Reliability:**\n\nFor meaningful conclusions about model use of latent properties, confidence that interventions have fully and precisely executed the intended transformation is necessary, though prior work has raised doubts about whether intervention methods may have large unintended impacts on non-targeted properties.\n\nThe search results indicate active 2026 research on measuring and improving reasoning faithfulness through causal interventions, particularly in the context of AI safety and model interpretability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba21b51d-16ae-49cb-809f-bbec9cebffff",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "b0433f8a-28b0-4ac4-a6d0-5c93b566d473",
+            "toolUseResult": {
+              "query": "\"tool selection\" \"faithfulness\" \"multi-turn\" behavioral intervention causal probing 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_015Q7cq3ET9qSKuv8Hua1yV8",
+                  "content": [
+                    {
+                      "title": "Faithfulness and Intervention-Only Causal Discovery | OpenReview",
+                      "url": "https://openreview.net/forum?id=06xBGAwxvg"
+                    },
+                    {
+                      "title": "Is VLA Reasoning Faithful? Probing Safety of Chain-of-Causation in Autonomous Driving ModelsAccepted at the DriveX Workshop, CVPR 2026.",
+                      "url": "https://arxiv.org/html/2605.17268"
+                    },
+                    {
+                      "title": "Automated Interpretability-Driven Model Auditing and Control: A Research Agenda",
+                      "url": "https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"
+                    },
+                    {
+                      "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of Chain-of-Thought Reasoning | Request PDF",
+                      "url": "https://www.researchgate.net/publication/386203451_Making_Reasoning_Matter_Measuring_and_Improving_Faithfulness_of_Chain-of-Thought_Reasoning"
+                    },
+                    {
+                      "title": "How Reliable are Causal Probing Interventions?",
+                      "url": "https://arxiv.org/pdf/2408.15510"
+                    },
+                    {
+                      "title": "Assessing adherence fidelity to behavioral interventions using interactivity and natural language processing",
+                      "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/10813584"
+                    }
+                  ]
+                },
+                "Based on the web search results, I found several relevant papers from 2026 and recent work related to your query:\n\n## Key Findings\n\n**Faithfulness and Causal Probing:**\n\nFaithfulness is a critical assumption in causal discovery that requires causally linked variables to exhibit statistical dependence, though it has been shown to be a strong and restrictive assumption, especially in the finite sample regime.\n\nRecent approaches use causal tracing tools, such as Query Circuits, to identify which components generate reasoning traces versus which produce final answers.\n\n**Multi-turn and Behavioral Intervention:**\n\nSystems can test chain-of-thought (CoT) faithfulness through intervention loops by localizing CoT generation and testing causal connections by ablating or patching circuits—if CoT is faithful, modifying intermediate reasoning should change the answer.\n\n**Causal Probing Reliability:**\n\nFor meaningful conclusions about model use of latent properties, confidence that interventions have fully and precisely executed the intended transformation is necessary, though prior work has raised doubts about whether intervention methods may have large unintended impacts on non-targeted properties.\n\nThe search results indicate active 2026 research on measuring and improving reasoning faithfulness through causal interventions, particularly in the context of AI safety and model interpretability."
+              ],
+              "durationSeconds": 8.135696304999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "ba21b51d-16ae-49cb-809f-bbec9cebffff",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T20:49:54.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NuSrw19CGeEJcJ3a7uLaBt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"beyond the black box\" interpretability agentic tool use 2605.06890\"\n\nLinks: [{\"title\":\"[2605.06890] Beyond the Black Box: Interpretability of Agentic AI Tool Use\",\"url\":\"https://arxiv.org/abs/2605.06890\"},{\"title\":\"Beyond the Black Box: Interpretability of Agentic AI Tool Use\",\"url\":\"https://arxiv.org/html/2605.06890\"},{\"title\":\"Beyond the black box: How agentic AI is redefining explainability - SAS Voices\",\"url\":\"https://blogs.sas.com/content/sascom/2025/03/24/beyond-the-black-box-how-agentic-ai-is-redefining-explainability/\"},{\"title\":\"Beyond the Black Box: How Agentic Architectures Unlock Truly General Robotics –– General Robotics\",\"url\":\"https://www.generalrobotics.company/post/agentic-robotics\"},{\"title\":\"Beyond the Black Box: the new 'explainability' rule for enterprise AI - Raconteur\",\"url\":\"https://www.raconteur.net/technology/beyond-the-black-box-the-new-explainability-rule-for-enterprise-ai\"}]\n\nBased on the search results, here's what I found about the paper:\n\n## Beyond the Black Box: Interpretability of Agentic AI Tool Use (arXiv:2605.06890)\n\nThe paper addresses how AI agents used in high-stakes enterprise workflows have limited dependable deployment because tool-use failures are difficult to diagnose and control. Agents may skip required tool calls, invoke tools unnecessarily, or take actions whose consequence becomes visible only after execution.\n\nThe authors note that existing observability methods are mostly external: prompts reveal correlations, evaluations score outputs, and logs arrive only after the model has already acted. In long-horizon settings, these failures are especially costly because an early tool mistake can alter the rest of the trajectory, increase token consumption, and create downstream safety and security risk.\n\n**Proposed Solution:**\n\nThe researchers introduce a mechanistic-interpretability toolkit built on Sparse Autoencoders (SAEs) and linear probes, which reads model states before each action and infers both whether a tool is needed and how consequential the next tool action is likely to be.\n\nThe paper was submitted on May 7, 2026, by authors Hariom Tatsat and Ariye Shater from Quantitative Analytics at Barclays.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd0583ff-a429-4ace-b6ed-54a6a7e4cc69",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "aca137dd-d95e-421d-80fd-b8717753385f",
+            "toolUseResult": {
+              "query": "\"beyond the black box\" interpretability agentic tool use 2605.06890",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01T3n5VMSvhJHTgNxjjVLUtX",
+                  "content": [
+                    {
+                      "title": "[2605.06890] Beyond the Black Box: Interpretability of Agentic AI Tool Use",
+                      "url": "https://arxiv.org/abs/2605.06890"
+                    },
+                    {
+                      "title": "Beyond the Black Box: Interpretability of Agentic AI Tool Use",
+                      "url": "https://arxiv.org/html/2605.06890"
+                    },
+                    {
+                      "title": "Beyond the black box: How agentic AI is redefining explainability - SAS Voices",
+                      "url": "https://blogs.sas.com/content/sascom/2025/03/24/beyond-the-black-box-how-agentic-ai-is-redefining-explainability/"
+                    },
+                    {
+                      "title": "Beyond the Black Box: How Agentic Architectures Unlock Truly General Robotics –– General Robotics",
+                      "url": "https://www.generalrobotics.company/post/agentic-robotics"
+                    },
+                    {
+                      "title": "Beyond the Black Box: the new 'explainability' rule for enterprise AI - Raconteur",
+                      "url": "https://www.raconteur.net/technology/beyond-the-black-box-the-new-explainability-rule-for-enterprise-ai"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the paper:\n\n## Beyond the Black Box: Interpretability of Agentic AI Tool Use (arXiv:2605.06890)\n\nThe paper addresses how AI agents used in high-stakes enterprise workflows have limited dependable deployment because tool-use failures are difficult to diagnose and control. Agents may skip required tool calls, invoke tools unnecessarily, or take actions whose consequence becomes visible only after execution.\n\nThe authors note that existing observability methods are mostly external: prompts reveal correlations, evaluations score outputs, and logs arrive only after the model has already acted. In long-horizon settings, these failures are especially costly because an early tool mistake can alter the rest of the trajectory, increase token consumption, and create downstream safety and security risk.\n\n**Proposed Solution:**\n\nThe researchers introduce a mechanistic-interpretability toolkit built on Sparse Autoencoders (SAEs) and linear probes, which reads model states before each action and infers both whether a tool is needed and how consequential the next tool action is likely to be.\n\nThe paper was submitted on May 7, 2026, by authors Hariom Tatsat and Ariye Shater from Quantitative Analytics at Barclays."
+              ],
+              "durationSeconds": 8.157882812999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "dd0583ff-a429-4ace-b6ed-54a6a7e4cc69",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T20:49:54.751Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "aca137dd-d95e-421d-80fd-b8717753385f",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "6b83b9cc-02d9-4e04-ae8d-d59aea99064f",
+                "timestamp": "2026-05-19T20:49:54.751Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T20:49:58.536Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have good data from the searches. Let me also do one more search to check if there's any existing work that directly combines behavioral interventions with multi-turn tool selection faithfulness - the core claim of novelty.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b83b9cc-02d9-4e04-ae8d-d59aea99064f",
+            "isSidechain": false,
+            "requestId": "req_011CbCazhmA8m65f5J2zUhSD",
+            "type": "assistant",
+            "uuid": "c62986d2-885b-4d6b-b9e3-1bae2b9b8f02",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwiyJdjALGoPFETYSQs1N",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2400,
+                "cache_read_input_tokens": 24123,
+                "output_tokens": 202,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2400,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 202,
+                    "cache_read_input_tokens": 24123,
+                    "cache_creation_input_tokens": 2400,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2400
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T20:49:59.446Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do two more targeted searches to verify the novelty claim and check for any directly competing work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c62986d2-885b-4d6b-b9e3-1bae2b9b8f02",
+            "isSidechain": false,
+            "requestId": "req_011CbCazhmA8m65f5J2zUhSD",
+            "type": "assistant",
+            "uuid": "c394653d-37f3-413c-9fbc-55bf23251bce",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwiyJdjALGoPFETYSQs1N",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2400,
+                "cache_read_input_tokens": 24123,
+                "output_tokens": 202,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2400,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 202,
+                    "cache_read_input_tokens": 24123,
+                    "cache_creation_input_tokens": 2400,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2400
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T20:49:59.998Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FmiYorznAMzYtc9WGPFJzC",
+              "name": "WebSearch",
+              "input": {
+                "query": "causal intervention tool call CoT reasoning behavioral perturbation benchmark 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c394653d-37f3-413c-9fbc-55bf23251bce",
+            "isSidechain": false,
+            "requestId": "req_011CbCazhmA8m65f5J2zUhSD",
+            "type": "assistant",
+            "uuid": "09809194-ba1b-4757-89fd-51886fce70b1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwiyJdjALGoPFETYSQs1N",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2400,
+                "cache_read_input_tokens": 24123,
+                "output_tokens": 202,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2400,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 202,
+                    "cache_read_input_tokens": 24123,
+                    "cache_creation_input_tokens": 2400,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2400
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T20:50:00.691Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TA3rJCLTg8chQiQrUvLR8w",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoRL 2026 conference on robot learning topics scope call for papers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09809194-ba1b-4757-89fd-51886fce70b1",
+            "isSidechain": false,
+            "requestId": "req_011CbCazhmA8m65f5J2zUhSD",
+            "type": "assistant",
+            "uuid": "30513d89-55a2-494e-8a40-d2abf1bfed03",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DjwiyJdjALGoPFETYSQs1N",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2400,
+                "cache_read_input_tokens": 24123,
+                "output_tokens": 202,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2400,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 202,
+                    "cache_read_input_tokens": 24123,
+                    "cache_creation_input_tokens": 2400,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2400
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn…",
+                "leafUuid": "30513d89-55a2-494e-8a40-d2abf1bfed03",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate multi-turn tool-selection faithfulness proposal",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T20:50:07.249Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TA3rJCLTg8chQiQrUvLR8w",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoRL 2026 conference on robot learning topics scope call for papers\"\n\nLinks: [{\"title\":\"Conference on Robot Learning (@corl_conf) / Posts / X\",\"url\":\"https://x.com/corl_conf?lang=en\"},{\"title\":\"CoRL 2026 - Call for Workshops\",\"url\":\"https://www.corl.org/contributions/call-for-workshops\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2026 - Instruction for Authors\",\"url\":\"https://www.corl.org/contributions/instruction-for-authors\"},{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"CoRL 2026 - Contributions\",\"url\":\"https://www.corl.org/contributions\"},{\"title\":\"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf\"},{\"title\":\"Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models\",\"url\":\"https://arxiv.org/pdf/2512.11908\"}]\n\nBased on the search results, here's what I found about CoRL 2026:\n\n## Conference Overview\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US.\n\n## Key Dates\nThe conference dates are November 9-12, 2026 at JW Marriott Austin, with abstract submission deadline of May 26, 2026 and paper submission deadline of May 29, 2026.\n\n## Call for Papers Scope\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics, with topics including video models and latent world models for robot learning.\n\n## Submission Requirements\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Submissions without a robotics focus will be returned without review. Additionally, all submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments.\n\nThe conference also welcomes workshop and tutorial proposals for November 9, 2026, with the main conference running November 10-12, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30513d89-55a2-494e-8a40-d2abf1bfed03",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "68325e6f-ffa2-46a0-8845-b4656a9817a0",
+            "toolUseResult": {
+              "query": "CoRL 2026 conference on robot learning topics scope call for papers",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019U8GYn2dN9frAoGyyJG9T2",
+                  "content": [
+                    {
+                      "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+                      "url": "https://x.com/corl_conf?lang=en"
+                    },
+                    {
+                      "title": "CoRL 2026 - Call for Workshops",
+                      "url": "https://www.corl.org/contributions/call-for-workshops"
+                    },
+                    {
+                      "title": "CoRL 2026 - Call for Papers",
+                      "url": "https://www.corl.org/contributions/call-for-papers"
+                    },
+                    {
+                      "title": "CoRL 2026 - Instruction for Authors",
+                      "url": "https://www.corl.org/contributions/instruction-for-authors"
+                    },
+                    {
+                      "title": "CoRL 2026",
+                      "url": "https://www.corl.org/"
+                    },
+                    {
+                      "title": "CoRL 2026 - Contributions",
+                      "url": "https://www.corl.org/contributions"
+                    },
+                    {
+                      "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+                      "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+                    },
+                    {
+                      "title": "Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models",
+                      "url": "https://arxiv.org/pdf/2512.11908"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about CoRL 2026:\n\n## Conference Overview\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US.\n\n## Key Dates\nThe conference dates are November 9-12, 2026 at JW Marriott Austin, with abstract submission deadline of May 26, 2026 and paper submission deadline of May 29, 2026.\n\n## Call for Papers Scope\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics, with topics including video models and latent world models for robot learning.\n\n## Submission Requirements\nAuthors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Submissions without a robotics focus will be returned without review. Additionally, all submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments.\n\nThe conference also welcomes workshop and tutorial proposals for November 9, 2026, with the main conference running November 10-12, 2026."
+              ],
+              "durationSeconds": 6.553267918999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "30513d89-55a2-494e-8a40-d2abf1bfed03",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T20:50:08.243Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FmiYorznAMzYtc9WGPFJzC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"causal intervention tool call CoT reasoning behavioral perturbation benchmark 2025 2026\"\n\nLinks: [{\"title\":\"Causal-CoT: Causal Chain-of-Thought for Validated Reasoning | OpenReview\",\"url\":\"https://openreview.net/forum?id=Ymz4vuN3ir\"},{\"title\":\"CausalBench: A Comprehensive Benchmark for Evaluating Causal Reasoning Capabilities of Large Language Models\",\"url\":\"https://www.researchgate.net/publication/384206623_CausalBench_A_Comprehensive_Benchmark_for_Evaluating_Causal_Reasoning_Capabilities_of_Large_Language_Models\"},{\"title\":\"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models\",\"url\":\"https://arxiv.org/pdf/2602.03994\"},{\"title\":\"GitHub - HCPLab-SYSU/CausalVLR: CausalVLR: A Toolbox and Benchmark for Vision-Language Causal Reasoning (多模态因果推理开源框架)\",\"url\":\"https://github.com/HCPLab-SYSU/CausalVLR\"},{\"title\":\"Automated Interpretability-Driven Model Auditing and Control: A Research Agenda\",\"url\":\"https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf\"},{\"title\":\"FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness\",\"url\":\"https://arxiv.org/pdf/2509.13334\"},{\"title\":\"Are Reasoning LLMs Robust to Interventions on Their Chain-of-Thought?\",\"url\":\"https://arxiv.org/pdf/2602.07470\"},{\"title\":\"InterveneBench: Benchmarking LLMs for Intervention Reasoning and Causal Study Design in Real Social Systems\",\"url\":\"https://arxiv.org/html/2603.15542\"}]\n\nBased on the search results, I found several relevant research papers and projects from 2025-2026 combining causal intervention, tool calling, CoT reasoning, and behavioral perturbation:\n\n## Key Findings:\n\n**Causal Auditing of CoT Reasoning:**\nA causal, layerwise intervention and CoT-specific metric (CMI) was introduced to test whether models mechanistically rely on CoT. Prior faithfulness evaluations often rely on behavioral perturbations or text-level analyses, which can reveal inconsistencies but do not localize where (or whether) reasoning traces are mechanistically integrated.\n\n**CoT Faithfulness Improvement:**\nFRIT (Faithful Reasoning via Intervention Training) is a scalable method for improving CoT faithfulness without human supervision that uses causality of CoT steps to fine-tune for more faithful outputs. FRIT works through automated causal interventions that identify which reasoning steps actually influence the final answer, and an augmentation process that creates paired examples of faithful versus unfaithful reasoning.\n\n**Robustness Testing Benchmark:**\nA systematic study evaluates the robustness of CoTs of reasoning LLMs through their ability to recover from benign, neutral, and adversarial interventions in their reasoning trace, establishing a new standard for benchmarking reasoning robustness.\n\n**Causal-CoT Framework:**\nCausal-CoT is a framework that integrates causal graph construction, augmentation, and verification into the CoT paradigm.\n\nThese approaches collectively address how causal interventions can be used to evaluate and improve the faithfulness and robustness of language model reasoning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09809194-ba1b-4757-89fd-51886fce70b1",
+            "isSidechain": false,
+            "promptId": "15b37aaa-a191-4093-96c9-024dc0f12e09",
+            "type": "user",
+            "uuid": "c3e8c21c-ab8e-4432-a223-8279cfe1f587",
+            "toolUseResult": {
+              "query": "causal intervention tool call CoT reasoning behavioral perturbation benchmark 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_018R8udighANNcfV9neAP52q",
+                  "content": [
+                    {
+                      "title": "Causal-CoT: Causal Chain-of-Thought for Validated Reasoning | OpenReview",
+                      "url": "https://openreview.net/forum?id=Ymz4vuN3ir"
+                    },
+                    {
+                      "title": "CausalBench: A Comprehensive Benchmark for Evaluating Causal Reasoning Capabilities of Large Language Models",
+                      "url": "https://www.researchgate.net/publication/384206623_CausalBench_A_Comprehensive_Benchmark_for_Evaluating_Causal_Reasoning_Capabilities_of_Large_Language_Models"
+                    },
+                    {
+                      "title": "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models",
+                      "url": "https://arxiv.org/pdf/2602.03994"
+                    },
+                    {
+                      "title": "GitHub - HCPLab-SYSU/CausalVLR: CausalVLR: A Toolbox and Benchmark for Vision-Language Causal Reasoning (多模态因果推理开源框架)",
+                      "url": "https://github.com/HCPLab-SYSU/CausalVLR"
+                    },
+                    {
+                      "title": "Automated Interpretability-Driven Model Auditing and Control: A Research Agenda",
+                      "url": "https://aigi.ox.ac.uk/wp-content/uploads/2026/01/Automated_interp_Research_Agenda.pdf"
+                    },
+                    {
+                      "title": "FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness",
+                      "url": "https://arxiv.org/pdf/2509.13334"
+                    },
+                    {
+                      "title": "Are Reasoning LLMs Robust to Interventions on Their Chain-of-Thought?",
+                      "url": "https://arxiv.org/pdf/2602.07470"
+                    },
+                    {
+                      "title": "InterveneBench: Benchmarking LLMs for Intervention Reasoning and Causal Study Design in Real Social Systems",
+                      "url": "https://arxiv.org/html/2603.15542"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several relevant research papers and projects from 2025-2026 combining causal intervention, tool calling, CoT reasoning, and behavioral perturbation:\n\n## Key Findings:\n\n**Causal Auditing of CoT Reasoning:**\nA causal, layerwise intervention and CoT-specific metric (CMI) was introduced to test whether models mechanistically rely on CoT. Prior faithfulness evaluations often rely on behavioral perturbations or text-level analyses, which can reveal inconsistencies but do not localize where (or whether) reasoning traces are mechanistically integrated.\n\n**CoT Faithfulness Improvement:**\nFRIT (Faithful Reasoning via Intervention Training) is a scalable method for improving CoT faithfulness without human supervision that uses causality of CoT steps to fine-tune for more faithful outputs. FRIT works through automated causal interventions that identify which reasoning steps actually influence the final answer, and an augmentation process that creates paired examples of faithful versus unfaithful reasoning.\n\n**Robustness Testing Benchmark:**\nA systematic study evaluates the robustness of CoTs of reasoning LLMs through their ability to recover from benign, neutral, and adversarial interventions in their reasoning trace, establishing a new standard for benchmarking reasoning robustness.\n\n**Causal-CoT Framework:**\nCausal-CoT is a framework that integrates causal graph construction, augmentation, and verification into the CoT paradigm.\n\nThese approaches collectively address how causal interventions can be used to evaluate and improve the faithfulness and robustness of language model reasoning."
+              ],
+              "durationSeconds": 8.240380559999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "09809194-ba1b-4757-89fd-51886fce70b1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T20:50:54.103Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is very important. CoRL 2026's call for papers says:\n\n> \"Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics\"\n> \"Submissions without a robotics focus will be returned without review\"\n\nThis proposal is about faithfulness of tool-selection reasoning in multi-turn LLM agentic systems. It has ZERO robotics content. The domains are \"code editing, web browsing, data analysis, system administration, information retrieval\" — none of which are robotics.\n\nThis is a **fatal venue mismatch**. The paper would be desk-rejected at CoRL 2026. \n\nThis is fundamentally an NLP and AI safety paper that belongs at venues like ACL, EMNLP, NeurIPS, ICML, or ICLR instead. Now let me compile what I've found from my research. I've located the real papers referenced in the proposal: one from May 2026 at UCL showing that tool identity is linearly readable and steerable in single-turn settings with high accuracy at larger model scales, which appears to be the source of the claim about multi-turn transfer being fragile. I'm still gathering details on the other cited work to complete my assessment. ** (LLM Agents Already Know When to Call Tools) - Real paper, May 2026. About tool-necessity probing, not tool-identity faithfulness.\n\n3. **RFEval (2602.17053)** - Real paper, Feb 2026. 7,186 instances, ~50% unfaithfulness finding confirmed. For reasoning tasks, not tool calls.\n\n4. **2605.06890** (Beyond the Black Box) - Real paper, May 2026. Uses SAE + probes for tool-need/tool-risk classification in multi-step trajectories.\n\n5. **No directly competing work found** that combines behavioral causal interventions on tool-selection CoT with mechanistic probing in multi-turn settings. This specific gap appears genuine.\n\n6. **CoRL 2026** explicitly states \"Submissions without a robotics focus will be returned without review\" - this is a fatal venue mismatch.\n\nCoRL isn't viable, so I'm evaluating whether the core idea holds up. The behavioral interventions like reason-flipping and reason-ablation are essentially RFEval's methods applied to tool selection, which raises the question of whether this is just a straightforward domain transfer rather than a novel contribution. The mechanistic probing and multi-turn setting add some novelty, but the individual pieces—behavioral interventions, probing techniques, multi-turn tool use—are all established work. I'm also questioning whether the foundational assumption that tool-selection faithfulness is actually a meaningful problem holds up under scrutiny. fulness in multi-turn settings will behave qualitatively differently from single-turn settings. This is plausible given the 2605.07990 finding about multi-turn fragility, but it's also possible that the findings simply replicate single-turn results with some noise.\n- The assumption that behavioral interventions (reason-flip, etc.) can cleanly perturb CoT without introducing confounds is a standard concern in this literature.\n- The 3-tier difficulty stratification assumes a clean separation between unambiguous, soft-ambiguous, and hard-ambiguous, which may be hard to validate.\n\n**Novelty assessment:**\nThe proposal is essentially an \"X for Y\" contribution: applying well-established CoT faithfulness evaluation methods to multi-turn tool selection. The individual components are:\n1. Behavioral causal interventions — from RFEval (2602.17053), FACT-E (2604.10693), etc.\n2. Mechanistic probing — from 2605.07990, 2605.09252\n3. Multi-turn tool selection — well-studied area\n\nThe combination is novel in that it hasn't been done exactly this way before, but the novelty is limited once you strip away surface differences — it's mostly applying existing methodology to a new domain. The counterintuitive hypothesis about harder scenarios producing more faithful reasoning is interesting but might not hold up as the main contribution.\n\n**Significance assessment:**\nThe research question matters for safety and deployment, but the paper is fundamentally diagnostic rather than solution-oriented. If tool-selection reasoning turns out to be unfaithful, that's unsurprising given what we already know; if it's surprisingly faithful, that would be more compelling, though the proposal seems to expect the opposite outcome.\n\nThe core finding would likely be that roughly 40-60% of tool-selection reasoning is unfaithful in multi-turn settings, consistent with existing single-turn results — something most reviewers would anticipate. The extension to multi-turn is practically important but directionally predictable. The ambiguity hypothesis remains speculative.\n\nThere's also a critical venue mismatch: CoRL 2026 explicitly requires robotics focus, and this paper has no robotics content whatsoever — it would face desk rejection.\n\nGiven the stated target venue, I need to flag this fundamental problem while also evaluating the idea quality independently, since the rubric asks about impact separate from venue fit. The venue mismatch is the decisive factor here.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3e8c21c-ab8e-4432-a223-8279cfe1f587",
+            "isSidechain": false,
+            "requestId": "req_011CbCb1hU5AiVY9Ba8TFCVF",
+            "type": "assistant",
+            "uuid": "4b424fda-969a-41d3-8943-dfc4f7b65d8c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCMzqDRsUk3Rhp8vD3XQWN",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 660,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 26523,
+                "output_tokens": 5642,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1104,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 660,
+                    "output_tokens": 5642,
+                    "cache_read_input_tokens": 26523,
+                    "cache_creation_input_tokens": 1104,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1104
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T20:52:21.688Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have sufficient information to evaluate. Let me compile the analysis.\n\n---\n\n```\n【阶段】: Triage\n\n【⚠️ 致命性前置问题：会议适配性】:\nCoRL 2026 (Conference on Robot Learning) 的 Call for Papers 明确声明：\"Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics\" 以及 \"Submissions without a robotics focus will be returned without review.\" \n本 proposal 研究的是通用 LLM agent 的 tool-selection CoT faithfulness，五个 benchmark 领域为 code editing, web browsing, data analysis, system administration, information retrieval —— 无任何机器人学内容。**此论文投稿 CoRL 将被 desk reject，不会进入审稿流程。** \n适合的投稿会议：ACL、EMNLP、NeurIPS、ICML、ICLR、AAMAS 等 NLP/AI 安全/Agent 方向会议。\n\n以下评估仅针对 idea 本身质量（假设投稿至适配会议如 EMNLP/NeurIPS），不含 CoRL 适配性因素。\n\n【领域调研】:\n- [Tool Calling is Linearly Readable and Steerable in Language Models](https://arxiv.org/abs/2605.07990) (arXiv, May 2026): 本 proposal 最直接的前置工作。在 12 个模型上证明 tool identity 在单轮设定中线性可读且可操纵（4B+ 模型 93-100% 准确率），但明确指出多轮迁移\"fragile\"（-30 to +10pp）。本 proposal 以此为 motivation 研究多轮场景。\n- [LLM Agents Already Know When to Call Tools — Even Without Reasoning](https://arxiv.org/abs/2605.09252) (arXiv, May 2026): 证明 tool-necessity（是否需要调用工具）在 pre-reasoning 阶段已可解码（0.89-0.96 AUROC），reasoning 不提供额外信号。但仅研究\"是否调用\"而非\"调用哪个工具\"。\n- [RFEval](https://arxiv.org/abs/2602.17053) (arXiv, Feb 2026): 7,186 实例的反事实干预 benchmark，发现 ~50% reasoning 不忠实。但仅针对 QA/math/code reasoning，不涉及 tool selection。本 proposal 的 behavioral intervention 方法论直接借鉴此工作。\n- [Beyond the Black Box: Interpretability of Agentic AI Tool Use](https://arxiv.org/abs/2605.06890) (arXiv, May 2026): 用 SAE + linear probe 在多步轨迹上做 tool-need 和 tool-risk 分类，但不研究 tool identity faithfulness。\n- [Lie to Me](https://arxiv.org/abs/2603.22582) (arXiv, Mar 2026): 12 模型评估，发现 thinking vs output 间存在 59pp faithfulness gap，但仅限单轮 QA。\n- [Project Ariadne](https://arxiv.org/abs/2601.02314) (arXiv, Jan 2026): 用 SCM 框架审计 agent faithfulness，但聚焦于 claim-level 而非 tool-call action level。\n- [FACT-E](https://arxiv.org/abs/2604.10693) (ACL 2026 Findings): CoT 因果扰动评估框架，发现 self-evaluation 不可靠，但针对 general reasoning。\n- [Tool Preferences in Agentic LLMs are Unreliable](https://arxiv.org/abs/2505.18135) (EMNLP 2025): 证明 tool selection 在 description manipulation 下脆弱，但不研究 CoT faithfulness。\n- [FRIT](https://arxiv.org/abs/2509.13334) (arXiv 2025): 用因果重要性改进 CoT faithfulness，但为训练方法，非诊断工具。\n\n- **调研总结**: CoT faithfulness 评估和 tool-call probing 是 2026 上半年的热门交叉领域，但两条线确实尚未在多轮 tool selection 场景中交汇。本 proposal 填补的是一个真实但可预测的 gap——将已成熟的 behavioral faithfulness 方法论（RFEval 式干预）应用于已被证明有问题的场景（2605.07990 的多轮 fragility）。这是典型的 \"方法 X for 领域 Y\" 组合式贡献。\n\n【Trivial Alternative 检验】:\n**存在 trivial alternative 威胁。** \n最简单的 baseline 是：直接将 2605.07990 的 linear probing 方法在多轮对话数据上跑，观察 probe accuracy 随 turn depth 的退化曲线——这不需要构建 600 场景的 benchmark，不需要定义 TSCF/RTI 指标，也不需要 4 种干预类型。如果 probe accuracy 在多轮中持续下降（2605.07990 已有初步证据），就已经回答了核心问题的大部分。\n\n本 proposal 的增量价值在于：(1) behavioral intervention 提供了与 probing 不同视角的因果证据——probing 只说 \"信息已编码\"，intervention 才能说 \"CoT 是否真正驱动了 tool call\"；(2) 三层 ambiguity 分级可以揭示 faithfulness 与任务难度的交互作用。但问题是这两个增量是否足够支撑一篇 top venue 论文。Reviewer 很可能会追问：\"如果只做 (1) 的 behavioral intervention 部分，不做 probing；或者只做 probing 的多轮扩展，不做 behavioral intervention——每部分单独能否成为独立贡献？\" 如果答案是 \"每部分单独都偏薄\"，那组合本身就成为了贡献的核心，这会削弱 novelty 叙事。\n\n【前提假设检验】:\n1. **\"多轮 ≠ 重复单轮\" 假设**: 核心 claim 依赖于 \"多轮 agentic 场景的 faithfulness 行为与单轮有本质不同\"。2605.07990 提供了 fragility 证据，但 fragility 可能仅仅是 probe 在更长 context 下的统计退化，而非反映质的变化。如果最终发现多轮只是单轮的有噪版本，核心 narrative 会坍塌。\n2. **Intervention validity 假设**: Reason-flip 和 counterfactual-inject 假设模型会\"阅读并遵循\"被篡改的 CoT。但如果模型对 CoT 的处理方式本身就是 post-hoc（即模型先决定调用哪个 tool，再生成 CoT），那么注入篡改的 CoT 并观察 tool call 是否变化，测量的不是 \"CoT 是否驱动了决策\"，而是 \"篡改的 prompt 是否能覆盖已有的 latent decision\"——这两者的含义是不同的。RFEval 在 reasoning 场景中避免了这个问题，因为 reasoning 和 answer 在同一个 forward pass 中生成；但在 multi-turn agent 中，prior context 对 latent policy 的影响更强，使得 intervention 的因果解释更加模糊。\n3. **\"Hard-Ambiguous → 更 faithful\" 的反直觉假设**: 这是 proposal 中最有趣的 hypothesis，但缺乏理论支撑。为什么 \"genuine deliberation is required\" 就会导致 more faithful reasoning？如果模型的 deliberation 本身也是 post-hoc rationalization（只是更复杂的 rationalization），这个假设就不成立。\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中** — 核心贡献是将已有方法论（RFEval 式 behavioral intervention + 2605.07990 式 linear probing）组合应用于一个新场景（multi-turn tool selection）。两条技术线本身都已成熟：behavioral intervention 有 RFEval、FACT-E、Lie to Me 等多篇工作；tool-call probing 有 2605.07990、2605.09252、2605.06890 等。Proposal 正确识别了交叉 gap，但 gap 的存在是因为这两个方向都刚发表 1-2 个月——更可能的原因是\"时间不够\"而非\"问题本质上难以组合\"。两个指标 TSCF 和 RTI 是 RFEval 框架在 tool-call domain 的直接映射（TSCF ≈ causal influence score，RTI ≈ 1 - TSCF），定义层面的新颖性有限。三层 difficulty stratification 是 solid 的实验设计，但不构成方法论创新。Counterintuitive hypothesis（ambiguity → faithfulness）是最大的 novelty 候选，但目前仅是推测。\n\n2. **Significance: 中** — 研究问题本身重要：multi-turn agentic systems 中 tool selection 的可信度直接影响 safety 和 deployment。但本 proposal 是纯诊断性/empirical 工作——它测量问题的存在，不提出解决方案。如果核心发现是 \"yes, tool-selection reasoning 在多轮中也是 ~50% unfaithful\"（与 RFEval 在 general reasoning 中的发现一致），审稿人很可能认为 \"I would have guessed this\"。如果发现有趣的 ambiguity-faithfulness 交互作用，significance 会提升，但这取决于实验结果。此外，这是一个非常 timely 的 topic，有 safety narrative 加持，投稿 NeurIPS/EMNLP 有话题红利。\n\n3. **Related Work: 强** — 这是 proposal 最出色的部分。对四条研究线索的覆盖全面且准确（经调研验证，引用的论文均真实存在，描述基本准确）。差异化定位清晰：明确指出现有工作的 gap（single-turn probing 成熟 vs multi-turn 未解，behavioral intervention 未应用于 tool selection）。唯一的小问题是 2605.06890 (\"Beyond the Black Box\") 的定位——proposal 称其 \"not tool identity or faithfulness\"，但该工作实际上也涉及 multi-step trajectory 上的 interpretability，可能比 proposal 描述的更接近。\n\n【概率估计】: [18% - 30%] 中位 23%\n（注：此概率基于投稿适配会议如 EMNLP/NeurIPS 的假设。投稿 CoRL 的中稿概率为 ~0%，因会被 desk reject。）\n\n【估计理由】: \nIdea 填补了一个真实但可预测的 gap，属于 \"方法 X for 领域 Y\" 的组合式贡献。Related work 覆盖出色，研究问题有安全话题红利，但核心 novelty 受限于方法论的继承性。Significance 取决于实验结果是否能超越 \"I would have guessed this\"——如果核心发现只是 \"多轮 tool selection 的 faithfulness 也是 ~50%，与单轮/general reasoning 一致\"，那么贡献主要落在 benchmark 构建（TOOLFAITH-BENCH）上，而非 insight 上。Novelty 的弱-中评分是概率上界的主要限制因素。如果 counterintuitive hypothesis 得到验证且有 compelling 的 mechanistic 解释，概率可推至 30%+ 上界；如果结果平淡（merely replicating known patterns in a new domain），概率下探至 18% 附近。\n\n【主要风险】:\n1. **\"Incremental combination\" 质疑**: 审稿人可能认为这是将已有的 faithfulness evaluation 方法（RFEval）和 tool-call probing 方法（2605.07990）简单组合应用于新场景，方法论层面缺乏独立创新。TSCF/RTI 指标被视为 RFEval 指标的 domain-specific 重命名。\n2. **结果可预测性**: 如果最终发现 \"多轮 tool selection CoT 确实不忠实\" —— 鉴于单轮已有 93-100% 的 pre-commitment 证据（2605.07990）和 ~50% 的 general reasoning unfaithfulness（RFEval），这个发现几乎是 expected 的。论文的 impact 将高度依赖于 \"unexpected\" 的二阶发现（如 ambiguity-faithfulness 交互），但这些在 proposal 阶段是不可控的。\n```\n\nSources:\n- [Tool Calling is Linearly Readable and Steerable in Language Models](https://arxiv.org/abs/2605.07990)\n- [LLM Agents Already Know When to Call Tools — Even Without Reasoning](https://arxiv.org/abs/2605.09252)\n- [RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention](https://arxiv.org/abs/2602.17053)\n- [Beyond the Black Box: Interpretability of Agentic AI Tool Use](https://arxiv.org/abs/2605.06890)\n- [Lie to Me: How Faithful Is Chain-of-Thought Reasoning in Reasoning Models?](https://arxiv.org/abs/2603.22582)\n- [Project Ariadne: A Structural Causal Framework for Auditing Faithfulness in LLM Agents](https://arxiv.org/abs/2601.02314)\n- [FACT-E: Causality-Inspired Evaluation for Trustworthy Chain-of-Thought Reasoning](https://arxiv.org/abs/2604.10693)\n- [Tool Preferences in Agentic LLMs are Unreliable](https://arxiv.org/abs/2505.18135)\n- [FRIT: Using Causal Importance to Improve Chain-of-Thought Faithfulness](https://arxiv.org/abs/2509.13334)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b424fda-969a-41d3-8943-dfc4f7b65d8c",
+            "isSidechain": false,
+            "requestId": "req_011CbCb1hU5AiVY9Ba8TFCVF",
+            "type": "assistant",
+            "uuid": "37152285-1879-4107-8ea0-938f80c36bed",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "6591e290-959e-4965-929e-2158dd5613f6",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCMzqDRsUk3Rhp8vD3XQWN",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 660,
+                "cache_creation_input_tokens": 1104,
+                "cache_read_input_tokens": 26523,
+                "output_tokens": 5642,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1104,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 660,
+                    "output_tokens": 5642,
+                    "cache_read_input_tokens": 26523,
+                    "cache_creation_input_tokens": 1104,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1104
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn…",
+                "leafUuid": "37152285-1879-4107-8ea0-938f80c36bed",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate multi-turn tool-selection faithfulness proposal",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Faithfulness of Tool-Selection Reasoning in Multi-Turn Agentic Systems: Behavioral Interventions and Multi-Turn…",
+                "leafUuid": "37152285-1879-4107-8ea0-938f80c36bed",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Evaluate multi-turn tool-selection faithfulness proposal",
+                "sessionId": "6591e290-959e-4965-929e-2158dd5613f6"
+              }
+            }
+          ],
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-faithfulness-of-tool-selection-re.md"
+}

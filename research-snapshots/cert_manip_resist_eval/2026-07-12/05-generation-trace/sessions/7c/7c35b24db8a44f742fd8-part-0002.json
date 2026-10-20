@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7c35b24db8a44f742fd8",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-27T23:18:45.834Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011YcUp93zLU6NMSPSmptaG2",
+              "name": "Bash",
+              "input": {
+                "command": "echo '{\"test\": \"valid\"}' | python3 -c \"import json,sys; json.load(sys.stdin); print('valid')\"",
+                "description": "Test python JSON parser availability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f6952ef-0e3c-4a40-9213-f761301553e8",
+            "isSidechain": false,
+            "requestId": "req_011CbTvowDcMXxPzTLhAdSGK",
+            "type": "assistant",
+            "uuid": "a8719d8c-3f85-47b3-a8a5-17081e89b837",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016y12t5TtamFRw4JPaS2P93",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11871,
+                "cache_read_input_tokens": 92809,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11871,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 92809,
+                    "cache_creation_input_tokens": 11871,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11871
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-27T23:18:45.853Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "This Bash command contains multiple operations. The following part requires approval: python3 -c \"import json,sys; json.load(sys.stdin); print('valid')\"",
+              "is_error": true,
+              "tool_use_id": "toolu_011YcUp93zLU6NMSPSmptaG2"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8719d8c-3f85-47b3-a8a5-17081e89b837",
+            "isSidechain": false,
+            "promptId": "ed1875dc-7964-4722-bfab-3b32a4725e3b",
+            "type": "user",
+            "uuid": "3d9a2046-7da2-41e1-97b6-dc8acd7574f9",
+            "toolUseResult": "Error: This Bash command contains multiple operations. The following part requires approval: python3 -c \"import json,sys; json.load(sys.stdin); print('valid')\"",
+            "sourceToolAssistantUUID": "a8719d8c-3f85-47b3-a8a5-17081e89b837",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-27T23:18:48.580Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QcdMP8fzaVjBhstgQqfQYc",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"print('ready')\"",
+                "description": "Check python3 availability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d9a2046-7da2-41e1-97b6-dc8acd7574f9",
+            "isSidechain": false,
+            "requestId": "req_011CbTvpPJFmY4V6WxkpJvFP",
+            "type": "assistant",
+            "uuid": "b5bba1de-fe28-4745-9e6e-7fe5c43dc690",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qg1RCYcPyM9EW7AnhBBFy5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 177,
+                "cache_read_input_tokens": 104680,
+                "output_tokens": 83,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 177,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 83,
+                    "cache_read_input_tokens": 104680,
+                    "cache_creation_input_tokens": 177,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 177
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-27T23:18:48.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "This command requires approval",
+              "is_error": true,
+              "tool_use_id": "toolu_01QcdMP8fzaVjBhstgQqfQYc"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5bba1de-fe28-4745-9e6e-7fe5c43dc690",
+            "isSidechain": false,
+            "promptId": "ed1875dc-7964-4722-bfab-3b32a4725e3b",
+            "type": "user",
+            "uuid": "8f3ce4ea-1b16-4447-9398-9bc954279e00",
+            "toolUseResult": "Error: This command requires approval",
+            "sourceToolAssistantUUID": "b5bba1de-fe28-4745-9e6e-7fe5c43dc690",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-27T23:23:37.185Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete revised research proposal as a JSON object, addressing all 7 reviewer issues with a **major revision**:\n\n```json\n{\n  \"title\": \"Beyond Step-Local Verification: Tracing Perception Error Cascades in Multimodal Process Reward Models\",\n  \"change_type\": \"major\",\n  \"core_problem\": \"Multimodal process reward models verify each reasoning step independently, missing cascade errors: steps where local reasoning is valid but produces wrong results because upstream visual information was misperceived. When a VLM misreads '45 degrees' as '90 degrees' in step 2, steps 3-7 may apply flawless trigonometry to the wrong angle -- appearing locally correct but systematically producing wrong answers. Cascade errors are invisible to binary correct/incorrect labels, to simple perception/reasoning classification (the cascade step's own reasoning IS correct), and even to Perceval's hallucination detection (no hallucination occurs at the cascade step itself). Across 4+ independent studies, 67-87% of VLM errors originate from visual perception, and each perception error can corrupt multiple downstream steps. The current VisualProcessBench SOTA (EVPV-PRM at 67.46 F1, Athena-PRM at 65.9 F1) evaluates each step independently -- no existing verification method detects cascade errors. EVPV explicitly flags step-local cascade tracking as future work; MMErroR explicitly excludes cascading errors from evaluation; PARC models accumulation errors but only in text-only settings; Proof-of-Perception uses DAGs with conformal prediction for inference-time certification but not for training-time error labeling. Cascade-aware verification requires a fundamentally new capability: dependency-aware step evaluation that traces visual information flow through reasoning chains.\",\n  \"opportunity\": \"Four converging developments make cascade-aware multimodal PRMs both timely and feasible. (1) The cascade detection gap is now explicitly acknowledged and remains unfilled despite rapid SOTA progress. EVPV/Grounding the Score (March 2026) achieves 67.46 F1 on VisualProcessBench using global reliability signals for visual premise verification but states that 'step-local reliability is an important next step' -- precisely our contribution. Athena-PRM (June 2026) achieves 65.9 F1 via data-efficient training with weak-strong completer filtering, but remains step-independent with binary labels. MMErroR (Jan 2026) explicitly excludes cascading errors from their benchmark. Hallucination propagation research (arXiv 2603.27201) empirically shows that cascade errors produce 'locally plausible, internally coherent' steps that mask underlying errors. The SOTA has improved rapidly (62.0 -> 65.9 -> 67.46 F1 on VisualProcessBench) through better data quality and visual grounding, but all improvements are within the step-independent paradigm -- the cascade detection gap persists. (2) Text-only cascade detection proves the concept. PARC (Feb 2025) models 'accumulation errors' via premise-augmented DAGs in text-only reasoning, distinguishing root-cause from propagated errors. CRM (2025) captures causal relationships among reasoning steps. ReasonDiag (March 2026) finds ~44.5% of verification false positives stem from error propagation. These demonstrate that dependency-aware verification is valuable -- extending it to the multimodal perception-reasoning boundary is the natural next step. (3) DAG-based reasoning structures have been validated for multimodal settings. Proof-of-Perception (Feb 2026) models multimodal reasoning as executable DAGs with conformal prediction at each node, reducing error compounding during inference. This validates the structural premise -- reasoning as a DAG with typed nodes -- while targeting a different goal (inference-time certification vs. our training-time cascade labeling). Controllable Process Data Synthesis (May 2026) demonstrates that downstream-propagated errors can be distinguished from source errors via symbolic recomputation. (4) Perception-aware RL methods have matured but plateau at step-independent decomposition. PDCR (May 2026) uses unsupervised Visual Dependence Scores to separate perception and reasoning rewards via skill clustering, achieving 76.2% step classification accuracy -- but processes each step independently within its skill cluster without modeling cross-step cascades. The missing capability across all approaches is dependency-aware verification -- and the multimodal setting creates the strongest need for it.\",\n  \"landscape\": \"The landscape segments into five clusters, none occupying CascadePRM's position at the intersection of multimodal perception-awareness and dependency-aware verification.\\n\\n**Cluster A -- Step-Independent Multimodal PRMs.** Training VL-PRMs (arXiv 2509.23250) provides VL-PRM300K (1.32M steps) with binary labels despite noting 86% perception errors. VisualPRM (arXiv 2503.10291) provides VisualProcessBench (26,950 human labels), binary only. Athena-PRM (arXiv 2506.09532) achieves 65.9 F1 on VisualProcessBench via data-efficient weak-strong completer filtering with only 5K samples, with ORM initialization and negative up-sampling -- current data-efficiency SOTA but still binary step-independent. DreamPRM-1.5, TIM-PRM (61.7 F1), VRPRM, MM-PRM, URSA all produce binary step scores. All evaluate each step independently without modeling cross-step information flow.\\n\\n**Cluster B -- Perception-Aware Step-Independent Verification.** Perceval (arXiv 2604.24583, April 2026) detects hallucinated spans via token-level binary classification -- closest existing work on perception-aware PRM, but treats each step independently and cannot distinguish cascade errors from direct errors. GM-PRM (arXiv 2508.04088) evaluates {step intent, visual alignment, reasoning logic} as structured CoT for generative scoring, but evaluations are step-independent with no cross-step dependency modeling. EVPV/Grounding the Score (arXiv 2603.16253) achieves 67.46 F1 on VisualProcessBench -- current overall SOTA -- via visual reliability gating with checklist verification, but uses candidate-level (global) rather than step-local reliability, and explicitly identifies step-local cascade tracking as future work. Proof-of-Perception (arXiv 2603.00324) models multimodal reasoning as executable DAGs with conformal prediction at each node, reducing error compounding during inference via set-valued predictions and a budget-aware controller -- the closest structural analog to our DAG approach, but targets inference-time certification with statistical guarantees rather than training-time cascade label generation for PRM training.\\n\\n**Cluster C -- Perception-Aware RL Optimization (Downstream).** PAPO (ICLR 2026, arXiv 2507.06448) uses implicit perception loss via masked-image KL divergence in GRPO. VPPO (ICLR 2026, arXiv 2510.09285) reweights by visual dependency tokens. PDCR (arXiv 2605.13467, May 2026) decomposes perception and reasoning rewards via unsupervised skill clustering with a Visual Dependence Score (VDS), applying Otsu's method to separate perception-heavy from reasoning-heavy steps and normalizing confidence gains within each cluster -- the most sophisticated perception-reasoning credit decomposition at the RL level, achieving 76.2% step classification accuracy, but processes each step independently within its skill cluster without modeling cross-step cascades. AT-RL (arXiv 2602.11455), PRCO (arXiv 2603.28618), Perception-R1 (ICLR 2026), and 'Bad Seeing or Bad Thinking' (ICML 2026 Spotlight) all operate at RL reward/policy level. These consume PRM outputs as scalar rewards; cascade-aware PRM outputs would directly improve the quality of signals these methods consume.\\n\\n**Cluster D -- Text-Only Dependency-Aware Verification.** PARC (arXiv 2502.02362) introduces 'accumulation errors' via premise-augmented DAGs, distinguishing root-cause from propagated errors -- the closest text-only analog to cascade detection, but no multimodal component. CRM (arXiv 2509.26578) captures causal relationships among text reasoning steps via conditional probability chains. ReasonDiag (arXiv 2603.21286) visualizes error propagation patterns in text-only CoT, finding ~44.5% of verification false positives from error propagation. RewardFlow (arXiv 2603.18859) uses topology-aware propagation in state graphs. All are text-only and do not address the perception-reasoning boundary.\\n\\n**Cluster E -- Error Taxonomies Without Cascade Detection.** PathFinder-PRM (arXiv 2505.19706) uses {math, consistency} types in text-only PRMs; ablation shows category separation contributes only -0.4 vs -2.8 for hierarchical structure, motivating dependency-aware hierarchy over flat type labels. ErrorRadar (ICLR 2025 Workshop) provides multimodal error types for benchmarking, not PRM training. MMErroR (arXiv 2601.03331) defines error types but explicitly states each sample contains a single coherent error, excluding cascading errors. ThinkWithImages-PRMBench (arXiv 2602.08346) defines 7 error types across 4 categories -- none is a cascade error.\\n\\n**CascadePRM's unique position**: We bridge Cluster B (multimodal perception-aware verification) with Cluster D (dependency-aware verification) to detect cascade errors -- the gap explicitly acknowledged by EVPV, excluded by MMErroR, structurally enabled but not targeted by Proof-of-Perception, and unaddressed by any existing multimodal PRM including the current SOTA (EVPV-PRM at 67.46 F1, Athena-PRM at 65.9 F1).\",\n  \"inspired_by\": \"Four conceptual bridges define CascadePRM's contribution. (1) PARC's accumulation error framework proves that distinguishing root-cause from propagated errors improves text-only verification, but the perception-reasoning boundary in multimodal settings creates a far more impactful instance: upstream perception failures cascade through downstream reasoning in ways that are mechanistically distinct from text-only logical propagation, because the root cause is cross-modal (visual processing failure) while the cascade is within-modal (text reasoning). (2) EVPV's explicit limitation creates our opportunity: their global reliability signal attenuates all steps uniformly when visual reliability is low, but cascade errors require step-local analysis -- a step that doesn't reference the image at all can still be a cascade error if it uses a value derived from an earlier misperception. The EVPV authors themselves identify step-local reliability as the 'important next step.' (3) Proof-of-Perception validates the structural premise of modeling multimodal reasoning as DAGs, but applies conformal prediction for inference-time reliability rather than generating training labels. We adopt the DAG structure for a complementary purpose: tracing visual information flow to generate cascade labels for PRM training. Where Proof-of-Perception asks 'is this node's output reliable enough to proceed?' we ask 'is this step wrong because of its own error, or because of an upstream perception error?' (4) PathFinder-PRM's ablation reveals that hierarchical structure (error detection guiding reward prediction) matters more than error type labels alone (-2.8 vs -0.4 on PRMBench). This shapes our approach: rather than simply classifying error types, we build a dependency-aware hierarchy where cascade detection provides richer structural information than flat type classification. The counterfactual formalization -- 'would this step be correct if the upstream perception were corrected?' -- provides an objective, testable definition of cascade errors. Recent work on LLM counterfactual reasoning (Executable Counterfactuals, ICLR 2026; Flying Pigs/FaR, 2025) shows a 14-40% accuracy drop for open-ended counterfactual reasoning, but our counterfactual task is far more constrained: it asks about mathematical value substitution in a single step, which we validate via a dedicated pilot study.\",\n  \"approach\": \"We propose CascadePRM, a framework for detecting and leveraging perception error cascades in multimodal reasoning verification, comprising five components: (0) pilot validation studies, (1) a counterfactual cascade detection algorithm, (2) a cascade-annotated benchmark and dataset, (3) cascade-aware PRM training, and (4) downstream integration.\\n\\n**Component 0: Pilot Validation Studies (Weeks 1-2, Gate for Subsequent Components).**\\n\\nTwo pilot studies validate the highest-risk pipeline components before committing to full-scale execution.\\n\\n(Pilot A) Counterfactual Verification Reliability (50-100 samples, week 1): Select 50-100 incorrect steps from VisualProcessBench where the root-cause perception error is unambiguous (expert-identified). For each downstream dependent step, construct the counterfactual prompt and test whether Qwen2.5-VL-72B, InternVL2.5-78B, and Gemini-2.5-Flash can reliably answer 'would this step be correct if [quantity] were [correct_value] instead of [misperceived_value]?' We measure: (i) individual VLM accuracy on counterfactual verification (target: >75% per VLM); (ii) ensemble majority-vote accuracy (target: >85%); (iii) breakdown by problem type (geometry/chart/table) and counterfactual complexity (single value substitution vs. multi-value). This is the single highest-risk component: if ensemble accuracy is <70%, we redesign counterfactual verification using symbolic re-execution (see Contingency A below). Crucially, our counterfactual task is more constrained than the open-ended counterfactual reasoning benchmarked in prior work (Executable Counterfactuals, ICLR 2026, shows 25-40% accuracy drops): we provide the specific corrected value and ask about a single step's mathematical validity, reducing the task to localized arithmetic checking rather than open-ended hypothetical reasoning.\\n\\n(Pilot B) Cascade Annotation Feasibility (200 steps, weeks 1-2): Three annotators independently annotate 200 incorrect steps from VisualProcessBench with full cascade labels: (i) visual claim identification per step, (ii) dependency graph edges, (iii) 3-tier error type {perception, reasoning, cascade} with root-cause provenance for cascade errors. We measure: (i) per-step annotation time (estimated 3-5 minutes for cascade tracing vs. <1 minute for binary labels; if >7 minutes, simplify the annotation protocol); (ii) inter-annotator kappa at each granularity level; (iii) annotator fatigue curve (agreement in first 50 vs. last 50 steps). If 3-tier kappa < 0.55 (below moderate agreement), we fall back to the binary {root-cause vs. cascade} taxonomy with the counterfactual criterion, which should achieve kappa > 0.70. This pilot gates the full annotation effort (Component 2).\\n\\n**Component 1: Counterfactual Cascade Detection Algorithm (Primary Novelty, Weeks 2-7).**\\n\\nWe formalize cascade errors and build an automated detection pipeline in four stages, with per-stage accuracy estimates and a multiplicative error propagation analysis.\\n\\n(Stage 1) Visual Claim Extraction: For each step in a solution, extract all claims that reference information derived from the image (e.g., 'angle ABC = 45 deg', 'the bar for 2020 shows 3.2M'). Uses Qwen2.5-VL-72B with targeted prompts. *Estimated accuracy: 88-92%.* Visual claims are relatively concrete and extractable; EVPV's visual checklist verification demonstrates that VLMs can reliably identify visual premises in reasoning steps. Errors at this stage produce false negatives (missed cascade labels) rather than false positives, because uncaptured visual claims simply won't be traced downstream.\\n\\n(Stage 2) Information Flow Graph Construction: Build a directed acyclic graph (DAG) where nodes are reasoning steps and edges connect step j to step k if step k uses a quantity, relationship, or fact derived from visual claims in step j (directly or transitively). This extends PARC's premise-augmented DAG framework from text-only logical dependencies to cross-modal visual-to-reasoning dependencies. Unlike Proof-of-Perception's DAGs (which are generated via a domain-specific language for inference-time tool orchestration), our DAGs trace information flow through natural language reasoning chains for training-time label generation. *Estimated accuracy: 82-88%.* DAG construction requires identifying value dependencies across steps, which is more challenging than claim extraction but benefits from the structured nature of mathematical reasoning (values are explicitly referenced). Errors at this stage can produce both false positives (spurious edges causing over-labeling of cascade errors) and false negatives (missing edges causing under-labeling).\\n\\n(Stage 3) Perception Error Identification: For each step containing visual claims, verify claims against the image using ensemble VLM voting (Qwen2.5-VL-72B, InternVL2.5-78B, Gemini-2.5-Flash). Steps with incorrect visual claims verified by majority vote are labeled as root-cause perception errors. *Estimated accuracy: 83-88%.* Ensemble voting provides robustness; PDCR's Visual Dependence Score achieves 76.2% on a related but harder task (unsupervised classification without explicit verification). Our dedicated verification with focused prompts should exceed this.\\n\\n(Stage 4) Counterfactual Cascade Verification: For each downstream step k depending (via the DAG) on a root-cause perception error at step j: (a) extract the misperceived value and determine the correct value; (b) construct a counterfactual prompt: 'Given that [quantity] is actually [correct_value] rather than [misperceived_value], is the reasoning in step k valid?'; (c) if reasoning IS locally valid (confirmed by 2/3 VLMs), label step k as CASCADE; (d) if NOT locally valid, label as direct error. *Estimated accuracy: 80-87% (validated by Pilot A; target >85% ensemble).*\\n\\n**Pipeline Error Propagation Analysis:** Under a worst-case multiplicative model assuming fully independent stages, end-to-end cascade detection accuracy = 0.88 x 0.82 x 0.83 x 0.80 = ~47.9%. However, this dramatically overstates actual error because: (a) Stage errors are NOT independent -- a step with clearly extracted visual claims (Stage 1 success) is also easier for DAG construction (Stage 2) and perception verification (Stage 3). (b) Different stage failure modes affect cascade labels differently: Stage 1 false negatives produce missed cascade labels (lower recall) but not wrong labels (preserving precision); Stage 2 false positive edges can be caught by Stage 4 (the counterfactual test rejects cascade labels where reasoning is independently wrong). (c) Confidence calibration filters out low-confidence cases: at 3/3 VLM agreement (~70-75% of cases), per-stage accuracy rises to 90-95%, yielding end-to-end accuracy of ~66-81% on the high-confidence subset.\\n\\nWe model three tiers: HIGH confidence (3/3 agreement across all stages, ~50-55% of cascade candidates): estimated >80% end-to-end accuracy, used with full label weight. MEDIUM confidence (2/3 at any stage, ~25-30%): estimated 55-70% accuracy, used with reduced weight (0.5). LOW confidence (~15-20%): routed to human review. We pre-commit to reporting: (i) per-stage accuracy on the pilot set; (ii) end-to-end cascade detection precision, recall, F1 on the gold benchmark; (iii) accuracy stratified by confidence tier. **Target: >75% cascade detection F1 on the gold benchmark (revised down from 80% based on pipeline analysis), with >85% precision on high-confidence subset.**\\n\\n**Contingency A (Counterfactual Verification Failure):** If Pilot A shows ensemble counterfactual accuracy <70%, we replace Stage 4 with symbolic re-execution: for mathematical steps, extract the computation symbolically, substitute the corrected value, and check whether the output matches. This follows the methodology validated by Controllable Process Data Synthesis (arXiv 2605.02395). Symbolic re-execution is more limited (works for explicit calculations, not qualitative reasoning) but more reliable. We estimate this covers ~60-70% of cascade steps (those involving explicit mathematical operations), with VLM counterfactual verification retained for the remainder.\\n\\n**Component 2: Cascade-Annotated Benchmark and Dataset (Weeks 2-8).**\\n\\n(Phase A) Gold-Standard Benchmark -- VisualProcessBench-Cascade: Extend VisualProcessBench's 2,866 samples (~8,000 incorrect steps) with cascade annotations, gated by Pilot B results. For each incorrect step, annotators (6 graduate-level, STEM backgrounds, trained via the 200-step pilot protocol) assign: (i) a 3-tier error type {perception, reasoning, cascade} as the core taxonomy; (ii) an optional fine-grained subtype for non-cascade errors; (iii) for cascade errors: the root-cause step ID and the misperceived value. Target inter-annotator agreement: Cohen's kappa > 0.65 for 3-tier classification. Annotation protocol includes: mandatory 15-minute breaks every 90 minutes; daily calibration sessions on 10 shared examples; annotation batches of 50 steps maximum to mitigate fatigue. Estimated per-step time: 3-5 minutes (from Pilot B), yielding ~400-670 annotator-hours for 8,000 steps.\\n\\nPre-committed granularity fallback: If 3-tier kappa falls below 0.60, we report the {root-cause error vs. cascade error} binary taxonomy, which should achieve kappa > 0.70 as a binary classification with an objective counterfactual criterion.\\n\\n(Phase B) Large-Scale Dataset -- VL-PRM-Cascade: Apply the automated cascade detection pipeline (Component 1) to VL-PRM300K (1.32M steps). Three-tier confidence calibration. Validate against gold benchmark.\\n\\n**Component 3: Cascade-Aware PRM Training (Weeks 7-12).**\\n\\nTrain multimodal PRMs (InternVL2.5-8B backbone) with five training regimes forming a granularity ladder:\\n\\n(A) Binary baseline: standard correct/incorrect on VL-PRM300K.\\n(B) 2-way typed: {perception error, reasoning error}.\\n(C) 3-way cascade-aware (PRIMARY MODEL): {perception, reasoning, cascade} with a two-stage prediction architecture: first predict error type, then predict correctness conditioned on error type. For cascade errors, the model additionally predicts the root-cause step.\\n(D) 3-way with cascade-weighted loss: same taxonomy as (C) but with cascade-specific loss weighting. w(cascade) > w(perception) > w(reasoning).\\n(E) Full fine-grained (ablation): complete sub-category decomposition.\\n\\nCompare against current SOTA baselines: (i) Athena-PRM (65.9 F1 on VisualProcessBench, binary, data-efficient); (ii) EVPV-PRM (67.46 F1, global reliability gating); (iii) Perceval (binary hallucination PRM); (iv) GM-PRM (dimensional CoT).\\n\\n**Component 4: Downstream Integration -- EVPV Enhancement (Weeks 10-13).**\\n\\n(Integration A) Replace EVPV's global reliability signal with CascadePRM's step-local cascade scores. Steps with no visual dependency path are scored at full weight regardless of global reliability.\\n\\n(Integration B) Cascade-aware advantage weighting for RL: following DRM's multi-dimensional GRPO framework, provide separate advantage signals for perception-error steps and cascade steps.\\n\\n**Phase 5: Evaluation and Ablations (Weeks 10-15).**\\n\\nEvaluate on: (a) VisualProcessBench-Cascade: step-level F1 for binary correctness, 3-way error type classification, and cascade detection accuracy; (b) downstream Best-of-N reranking on MathVista, MathVision, WeMath, ChartQA, PuzzleVQA with N=8,16,64; (c) EVPV integration: step-local vs. global reliability; (d) cascade-specific analysis stratified by cascade depth, visual modality, and cascade frequency.\\n\\nKey ablations: (i) granularity ladder; (ii) counterfactual verification vs. simple dependency-based labeling vs. symbolic re-execution; (iii) cascade-weighted vs. uniform loss; (iv) head-to-head vs. Athena-PRM and EVPV-PRM on cascade-heavy problems; (v) high-confidence-only vs. all labels vs. human-verified; (vi) CascadePRM + EVPV vs. EVPV alone.\\n\\n**Expected Results -- Calibrated Against Current SOTA.** The VisualProcessBench SOTA is EVPV-PRM at 67.46 F1. Athena-PRM achieves 65.9 F1. We predict: (1) CascadePRM achieves 69.5-71.5 F1 on VisualProcessBench (+2-4 over EVPV-PRM), with the primary gains from correct handling of cascade steps. (2) On cascade-heavy subsets (geometry, diagram problems), disproportionately larger gains (+4-7). (3) The granularity ladder's largest marginal improvement comes at {perception, reasoning} -> {perception, reasoning, cascade}. (4) Best-of-N reranking: +1-2 on MathVista, +2-3 on WeMath. (5) EVPV integration: +0.5-1.5 over EVPV alone. Conservative scenario: even +1.5 on VisualProcessBench over EVPV-PRM is publishable alongside the first empirical characterization of cascade errors and released artifacts.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"300-450 H100-equivalent hours (80-110h ensemble VLM annotation including pilot studies; 20-30h DAG construction and counterfactual verification; 130-180h PRM training with 5 regimes + ablations + baselines on InternVL2.5-8B; 50-80h evaluation across 5 benchmarks with N=8,16,64 + EVPV integration; 20-50h pipeline validation and symbolic re-execution contingency)\",\n      \"timeline\": \"17 weeks to ICLR 2027 deadline (weeks 1-2: PILOT STUDIES -- counterfactual verification on 50-100 samples + cascade annotation on 200 steps, GATE DECISION by end of week 2; weeks 2-3: cascade detection algorithm design incorporating pilot feedback; weeks 2-6: VisualProcessBench-Cascade gold annotation with fatigue-mitigating protocol; weeks 3-8: automated cascade pipeline + VL-PRM-Cascade generation; weeks 5-8: cascade error diagnostic analysis; weeks 7-12: CascadePRM training experiments; weeks 10-13: EVPV integration + downstream evaluation; weeks 10-15: granularity ablations; weeks 12-17: paper writing; critical path: pilot validation by week 2, gold annotation starting by week 2, pipeline validation on pilot data by week 3)\",\n      \"estimated_gpu_cost\": \"$750-$1,125 at $2.50/hr H100 spot, plus $16,000-$32,000 annotation cost (pilot: 3 annotators x 200 steps; gold benchmark: 6 annotators x ~8,000 steps at 3-5 min/step; human-in-the-loop for ~30K-40K low-confidence pipeline samples), plus $2,500-$4,000 VLM API for ensemble annotation\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"300-450 H100-equivalent hours\",\n      \"timeline\": \"15-16 weeks (Claude accelerates cascade detection algorithm prototyping, pilot study analysis, DAG extraction, and counterfactual prompt engineering -- saving ~1-2 weeks)\",\n      \"claude_api_cost\": \"$700-$1,000 (pilot study analysis and counterfactual prompt optimization: ~10M tokens; DAG extraction prompts: ~5M tokens; diagnostic analysis automation: ~4M tokens; symbolic re-execution scripting: ~3M tokens)\",\n      \"estimated_gpu_cost\": \"$750-$1,125 GPU + $13,000-$26,000 annotation (reduced ~20% via Claude-assisted pre-screening and pilot-optimized annotation protocol) + $2,500-$4,000 API\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"300-450 H100-equivalent hours\",\n      \"timeline\": \"13-15 weeks (Claude accelerates cascade algorithm iteration, pilot analysis, evaluation scripting, and draft writing -- but gold-standard cascade annotation requires human mathematical expertise for counterfactual reasoning verification)\",\n      \"claude_api_cost\": \"$1,000-$1,400 (expanded: pilot analysis, cascade algorithm iteration, counterfactual prompt engineering, DAG extraction, symbolic re-execution scripting, evaluation scripting, ablation analysis, statistical testing, draft sections)\",\n      \"estimated_gpu_cost\": \"$750-$1,125 GPU + $13,000-$26,000 annotation + $2,500-$4,000 API\",\n      \"speed_bottleneck\": \"Expert annotation throughput: cascade tracing requires annotators to follow information flow across steps and evaluate counterfactuals (estimated 3-5 min/step from Pilot B). Annotation protocol includes fatigue mitigation (15-min breaks every 90 min, 50-step batches, daily calibration). Estimated 8-10 annotators for pipeline validation + 6 annotators for gold benchmark over 3-4 weeks.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (abstract Sep 19, full paper Sep 24, 2026 -- extrapolated from ICLR 2026 pattern, confirmed by third-party conference trackers though not yet officially announced; 17 weeks from today; if dates shift, NeurIPS 2027 with May 2027 deadline serves as backup)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"EVPV/Grounding the Score: Explicit Visual Premise Verification for Reliable VL Process Reward Models (arXiv 2603.16253, March 2026) -- current VisualProcessBench SOTA at 67.46 F1; visual reliability gating for VL-PRMs; uses global (not step-local) reliability and explicitly identifies step-local cascade tracking as 'important next step'; our most direct predecessor whose stated limitation is our primary contribution\",\n    \"Athena-PRM: Enhancing Multimodal Reasoning with Data-efficient Process Reward Models (arXiv 2506.09532, June 2026) -- achieves 65.9 F1 on VisualProcessBench with only 5K samples via weak-strong completer filtering, ORM initialization, and negative up-sampling; current data-efficiency SOTA; +10.2 WeMath and +7.1 MathVista on Best-of-8; key baseline for calibrating expected gains\",\n    \"PARC: Premise-Augmented Reasoning Chains (arXiv 2502.02362, Feb 2025) -- introduces 'accumulation errors' via premise-augmented DAGs distinguishing root-cause from propagated errors in text-only reasoning; closest text-only analog to our cascade detection; we extend from text-only logical propagation to cross-modal perception-reasoning cascades\",\n    \"Proof-of-Perception: Certified Tool-Using Multimodal Reasoning with Compositional Conformal Guarantees (arXiv 2603.00324, Feb 2026) -- models multimodal reasoning as executable DAGs with conformal prediction at each node; closest structural analog to our DAG approach; reduces error compounding during inference via set-valued predictions and budget-aware controller; targets inference-time certification rather than our training-time cascade label generation; reduces hallucination by 27-45%\",\n    \"PDCR: Perception-Decomposed Confidence Reward (arXiv 2605.13467, May 2026) -- decomposes perception and reasoning rewards via unsupervised skill clustering with Visual Dependence Score (VDS); Otsu's method separates perception-heavy from reasoning-heavy steps at 76.2% accuracy; most sophisticated perception-reasoning credit decomposition at RL level; processes steps independently within clusters without cross-step cascade modeling\",\n    \"Perceval: Improving Vision-language Models with Perception-centric Process Reward Models (arXiv 2604.24583, April 2026) -- perception-centric PRM with token-level binary hallucination detection; evaluates each step independently, cannot detect cascade errors where no hallucination occurs at the cascade step itself\",\n    \"Training Vision-Language Process Reward Models for Test-Time Scaling (arXiv 2509.23250, Sep 2025) -- VL-PRM300K (1.32M steps), 86% perception errors with binary labels; primary dataset for cascade re-annotation\",\n    \"PathFinder-PRM: Error Typing for Smarter Rewards (arXiv 2505.19706, May 2025) -- text-only error-typed PRM; critical ablation: hierarchical structure contributes -2.8 on PRMBench vs only -0.4 for category separation, motivating our dependency-aware hierarchical approach\",\n    \"GM-PRM: A Generative Multimodal Process Reward Model (arXiv 2508.04088) -- evaluates {step intent, visual alignment, reasoning logic} as structured CoT; step-independent with no cross-step dependency modeling; dimensions as training scaffolding producing single Final Judgment score\",\n    \"MMErroR: Multimodal Error Benchmark (arXiv 2601.03331, Jan 2026) -- defines error types but explicitly states each sample contains a single coherent error, excluding cascading errors; validates cascade errors as acknowledged gap\",\n    \"Hallucination Propagation in Multimodal CoT (arXiv 2603.27201, March 2026) -- empirically shows cascade errors produce 'locally plausible and internally coherent' steps masking underlying errors\",\n    \"Executable Counterfactuals: Improving LLMs' Causal Reasoning Through Code (arXiv 2510.01539, ICLR 2026) -- shows 25-40% accuracy drop for open-ended counterfactual reasoning; RL-trained models generalize better; informs our pilot study design and risk assessment for counterfactual verification\",\n    \"Flying Pigs, FaR and Beyond: Evaluating LLM Reasoning in Counterfactual Worlds (arXiv 2505.22318, May 2025) -- 14% average accuracy drop in counterfactual scenarios; Flag & Reason prompting narrows gap to 7%; informs our counterfactual prompt design\",\n    \"Controllable and Verifiable Process Data Synthesis for Process Reward Models (arXiv 2605.02395, May 2026) -- injects errors at specific steps and symbolically recomputes downstream steps under corrupted state; methodology for our symbolic re-execution contingency\",\n    \"From Seeing to Thinking: Decoupling Perception and Reasoning (arXiv 2605.20177, May 2026) -- 86.9% perception error rate; strongest empirical evidence for perception error dominance driving cascade frequency\",\n    \"PAPO: Perception-Aware Policy Optimization (ICLR 2026, arXiv 2507.06448) -- 67% perception errors, implicit perception loss via masked-image KL; RL level without PRM\",\n    \"DRM: Dimension-level Reward Model (arXiv 2510.11457, 2025) -- multi-dimensional rewards integrated into GRPO training; framework for our downstream RL integration\",\n    \"Fine-Grained RLHF (NeurIPS 2023) -- foundational proof that error-type-specific rewards improve RL training\",\n    \"POW3R: Policy-Aware Rubric Rewards (arXiv 2605.20164, May 2026) -- dynamically reweights typed reward criteria by informativeness\",\n    \"CRM: Conditional Reward Modeling (arXiv 2509.26578, 2025) -- causal relationships among text reasoning steps; text-only dependency modeling we extend to multimodal\",\n    \"ReasonDiag: When the Chain Breaks (arXiv 2603.21286, March 2026) -- ~44.5% of false positives from error propagation; text-only analog motivating multimodal cascade analysis\",\n    \"DeFacto: Counterfactual Thinking with Images (arXiv 2509.20912, 2025) -- counterfactual image variants for visual grounding; methodological precedent for counterfactual analysis in multimodal settings\",\n    \"VisualPRM: Process Reward Model for Multimodal Reasoning (arXiv 2503.10291) -- provides VisualProcessBench (26,950 human labels) that we extend with cascade annotations\",\n    \"SPD-Faith Bench (arXiv 2602.07833, Feb 2026) -- traces mechanistic causes of perception-reasoning dissociation\",\n    \"PaLMR: Faithful Visual Reasoning via Process Alignment (arXiv 2603.06652, March 2026) -- hierarchical reward for visual faithfulness per step\",\n    \"ErrorRadar: Benchmarking Complex Mathematical Reasoning via Error Detection (ICLR 2025 Workshop) -- multimodal error taxonomy for benchmarking, no cascade category\",\n    \"VPPO: Spotlight on Token Perception for Multimodal RL (ICLR 2026, arXiv 2510.09285) -- visual dependency token reweighting for RL\",\n    \"AT-RL: Credit Where It's Due (arXiv 2602.11455, Feb 2026) -- graph-based selective reinforcement of visually-coupled tokens\",\n    \"PRCO: Seeing with You (arXiv 2603.28618, March 2026) -- dual-role Observer/Solver RLVR\",\n    \"Bad Seeing or Bad Thinking? (ICML 2026 Spotlight) -- blindfolded reasoning proxy for perception fidelity rewards\",\n    \"ThinkWithImages-PRMBench (arXiv 2602.08346, Feb 2026) -- 7 multimodal error types, no cascade error type\",\n    \"TIM-PRM (arXiv 2511.22998) -- tool-integrated agentic verification; 61.7 F1 on VisualProcessBench\",\n    \"Let's Verify Step by Step (arXiv 2023) -- foundational process supervision\"\n  ],\n  \"description\": \"Current multimodal process reward models evaluate each reasoning step independently, missing cascade errors -- steps where local reasoning is valid but produces wrong results because upstream visual information was misperceived. A VLM that misreads a diagram angle cascades the error through all subsequent trigonometric calculations, producing steps that appear locally correct but are systematically wrong. This phenomenon is invisible to binary labels, simple perception/reasoning classification, and even perception-centric PRMs like Perceval. We propose CascadePRM, a framework for detecting and leveraging perception error cascades in multimodal reasoning verification. The core contribution is a counterfactual cascade detection algorithm: we build information flow DAGs tracing how visual claims propagate through reasoning chains (extending PARC's text-only accumulation error framework and differentiated from Proof-of-Perception's inference-time DAG certification), identify root-cause perception errors via ensemble VLM verification, then verify each downstream dependent step with a counterfactual test -- 'would this step be correct if the upstream perception were corrected?' Two pilot studies (weeks 1-2) validate the highest-risk components: counterfactual verification reliability on 50-100 samples (with symbolic re-execution contingency if VLM accuracy <70%) and cascade annotation feasibility on 200 steps (measuring per-step time, inter-annotator kappa, and fatigue curves). A rigorous pipeline error propagation analysis models per-stage accuracy (88-92%, 82-88%, 83-88%, 80-87%) with three-tier confidence calibration, targeting >75% cascade detection F1 on the gold benchmark with >85% precision on high-confidence subsets. We create VisualProcessBench-Cascade by annotating ~8,000 incorrect steps with cascade labels and root-cause provenance (fatigue-mitigated protocol: 50-step batches, mandatory breaks, daily calibration), generate cascade annotations for VL-PRM300K (1.32M steps) via the automated pipeline, and train cascade-aware PRMs with a two-stage hierarchical architecture. A granularity ladder ablation isolates cascade detection's marginal contribution. Calibrated against the current SOTA (EVPV-PRM at 67.46 F1 and Athena-PRM at 65.9 F1 on VisualProcessBench), we predict +2-4 F1 on VisualProcessBench (targeting 69.5-71.5) with disproportionate gains on cascade-heavy geometry and diagram problems (+4-7 on these subsets). We demonstrate downstream value via EVPV integration (replacing global reliability with step-local cascade-aware scores, +0.5-1.5) and cascade-aware RL advantage weighting. Released artifacts: VisualProcessBench-Cascade (first cascade-annotated multimodal verification benchmark), VL-PRM-Cascade (cascade-annotated training dataset), and the counterfactual cascade detection pipeline.\",\n  \"project_name\": \"cascade_prm\",\n  \"source\": \"web_research\",\n  \"reviewer_response\": {\n    \"issue_1_athena_prm_baseline\": \"ADDRESSED via comprehensive SOTA recalibration. Athena-PRM (65.9 F1) and EVPV-PRM (67.46 F1) are now the primary baselines throughout. All expected gains are calibrated against EVPV-PRM as the current VisualProcessBench SOTA: we predict +2-4 F1 (targeting 69.5-71.5), not +3-5 over older baselines. Athena-PRM is included in Cluster A with its key innovations (weak-strong completer filtering, ORM initialization, 5K sample efficiency) and is a direct comparison target in training experiments. The recalibrated predictions acknowledge the rapidly improving SOTA and focus on where cascade-awareness provides gains that step-independent methods cannot achieve regardless of data quality or training efficiency: correctly handling cascade steps where global reliability signals and binary labels are structurally inadequate.\",\n    \"issue_2_pipeline_error_propagation\": \"ADDRESSED via detailed per-stage accuracy estimates, multiplicative error model, and confidence-calibrated mitigation. Per-stage estimates: Stage 1 (visual claim extraction) 88-92%, Stage 2 (DAG construction) 82-88%, Stage 3 (perception error ID) 83-88%, Stage 4 (counterfactual verification) 80-87%. Worst-case multiplicative: ~48%. Three key mitigations: (1) stages are NOT independent -- successful claim extraction correlates with easier DAG construction and perception verification; (2) different failure modes affect labels asymmetrically -- Stage 1 false negatives produce missed labels (lower recall) not wrong labels (preserving precision), Stage 2 false positive edges are caught by Stage 4's counterfactual rejection; (3) three-tier confidence calibration routes HIGH (3/3 agreement, ~50-55% of cases, >80% accuracy) at full weight, MEDIUM (2/3, ~25-30%) at reduced weight, LOW (~15-20%) to human review. Revised target: >75% cascade detection F1 (down from 80%), >85% precision on high-confidence subset. Added Stage 0 pilot studies validating each component independently on 50-200 samples.\",\n    \"issue_3_pdcr_proof_of_perception\": \"ADDRESSED via detailed positioning. PDCR (arXiv 2605.13467) added to Cluster C: Visual Dependence Score via image-vs-blank log-probability, Otsu's method for unsupervised skill clustering (76.2% accuracy), perception-specific confidence normalization. Key differentiation: PDCR processes each step independently within its skill cluster -- no cross-step cascade modeling. A cascade step classified as 'reasoning-heavy' by VDS is wrong due to upstream perception, which PDCR cannot detect. Proof-of-Perception (arXiv 2603.00324) added to Cluster B as closest structural analog: both model reasoning as DAGs, but PoP targets inference-time certification via conformal prediction (set-valued predictions, budget-aware controller, 27-45% hallucination reduction) while CascadePRM targets training-time cascade label generation. PoP asks 'is this node reliable enough to proceed?' -- CascadePRM asks 'is this step wrong due to its own error or upstream perception error?' Complementary structural insights, different goals.\",\n    \"issue_4_counterfactual_verification\": \"ADDRESSED via dedicated Pilot A study and symbolic re-execution contingency. Pilot A (week 1, 50-100 samples): tests ensemble VLMs on constrained counterfactual math questions. Target: >75% per VLM, >85% ensemble. Key argument: our task is far more constrained than open-ended counterfactual reasoning showing 25-40% drops (Executable Counterfactuals, ICLR 2026). We provide specific corrected values and ask about single-step mathematical validity, reducing to localized arithmetic checking. Flag & Reason prompting (Flying Pigs/FaR, 2025) narrows counterfactual gaps from 14% to 7%; we adopt similar explicit-premise prompting. Contingency A: if ensemble accuracy <70%, replace with symbolic re-execution following Controllable Process Data Synthesis (arXiv 2605.02395) -- extract computation, substitute corrected value, verify. Covers ~60-70% of cascade steps (explicit mathematical operations).\",\n    \"issue_5_iclr_2027_deadline\": \"ACKNOWLEDGED with backup plan. ICLR 2027 dates (Sep 19 abstract, Sep 24 full paper) extrapolated from ICLR 2026 pattern and confirmed by third-party trackers (trybibby.com, aideadlines.org) but not yet officially announced. Pilot-first design allows early go/no-go decisions. Backup: NeurIPS 2027 (May 2027 deadline) provides 8+ additional months.\",\n    \"issue_6_annotation_cognitive_load\": \"ADDRESSED via Pilot B study and fatigue mitigation protocol. Pilot B (200 steps, weeks 1-2, 3 annotators): measures per-step time (estimated 3-5 min; redesign trigger if >7 min), inter-annotator kappa at 4 granularity levels, fatigue curve (first 50 vs. last 50 steps). Full protocol: 50-step maximum batches, mandatory 15-min breaks every 90 min, daily 10-sample calibration, rotating annotator pairs. 6 annotators for ~8,000 steps yields ~400-670 annotator-hours at 3-5 min/step. If >7 min/step or kappa <0.55, simplify to binary cascade taxonomy.\",\n    \"issue_7_annotation_pilot_timeline\": \"ADDRESSED via explicit Pilot B design. 200-step pilot (weeks 1-2) with 3 STEM annotators: 200 incorrect steps sampled across geometry (80), chart/table (60), diagram (60) with varying chain lengths. Full cascade annotation: visual claim ID, dependency edges, 3-tier error type, root-cause provenance. Outputs: per-step time distribution, kappa at 4 levels, fatigue curves, disagreement patterns. Gate criteria: proceed if 3-tier kappa >0.55 and per-step time <7 min; fall back to binary if kappa <0.55; redesign if time >7 min. Also validates counterfactual criterion operationalization.\"\n  }\n}\n```\n\n---\n\n## Summary of Major Changes (Round 5)\n\nHere's what changed substantively in this **major revision**, organized by reviewer issue:\n\n### Issue 1 — Athena-PRM Baseline\n- **Research finding**: Athena-PRM achieves **65.9 F1** on VisualProcessBench; EVPV-PRM achieves **67.46 F1** (actual current SOTA, higher than reviewer estimated). All predictions recalibrated: **+2-4 F1 over EVPV-PRM** (targeting 69.5-71.5), down from +3-5 over older baselines. Athena-PRM added to Cluster A with full technical detail (weak-strong completer filtering, ORM initialization, 5K sample efficiency).\n\n### Issue 2 — Pipeline Error Propagation\n- Added **per-stage accuracy estimates** (88-92%, 82-88%, 83-88%, 80-87%) with a **full multiplicative error model** showing worst-case ~48%. Three mitigations: (a) stages aren't independent, (b) failure modes are asymmetric (Stage 1 misses → lower recall not lower precision), (c) **three-tier confidence calibration** (HIGH/MEDIUM/LOW). **Revised target down to >75% F1** (from 80%). Added **Stage 0 pilot studies** (weeks 1-2) as gating mechanism.\n\n### Issue 3 — PDCR & Proof-of-Perception\n- **PDCR** added to Cluster C with full technical detail: Visual Dependence Score (image-vs-blank log-prob), Otsu's method, 76.2% accuracy. Key gap: processes steps independently, can't detect cascades.\n- **Proof-of-Perception** added to Cluster B as closest structural analog. Clear differentiation: inference-time certification via conformal prediction vs. our training-time cascade labeling. Both use DAGs, but for different purposes.\n\n### Issue 4 — Counterfactual Verification\n- Added **Pilot A** (50-100 samples, week 1) as highest-priority risk validation. Cited **Executable Counterfactuals** (ICLR 2026, 25-40% drops) and **Flying Pigs/FaR** (14% drop, 7% with FaR prompting) to justify that our constrained task (single-step arithmetic substitution) is far easier. Added **Contingency A**: symbolic re-execution following Controllable Process Data Synthesis methodology if VLM accuracy <70%.\n\n### Issue 5 — ICLR 2027 Deadline\n- Confirmed via [trybibby.com](https://trybibby.com/conference-deadlines): Sep 19 abstract / Sep 24 full paper, consistent with ICLR 2026 pattern. Acknowledged as unofficial. Added **NeurIPS 2027** (May 2027) as explicit backup.\n\n### Issues 6 & 7 — Annotation Cognitive Load & Pilot\n- Added **Pilot B** (200 steps, weeks 1-2, 3 annotators) with explicit measurements: per-step time, kappa at 4 levels, fatigue curves. Full annotation protocol: **50-step batches, 15-min breaks every 90 min, daily calibration**. Gate criteria: proceed if kappa >0.55 and time <7 min; binary fallback otherwise. Estimated **3-5 min/step** yielding 400-670 annotator-hours for 8,000 steps."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f3ce4ea-1b16-4447-9398-9bc954279e00",
+            "isSidechain": false,
+            "requestId": "req_011CbTvpap43U8pEvDsMDt5X",
+            "type": "assistant",
+            "uuid": "06d57305-6820-450b-95be-b64a8d214a91",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EjMkbN9ZbHMrVMt8Ax7DLE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 107,
+                "cache_read_input_tokens": 104857,
+                "output_tokens": 12634,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 107,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 12634,
+                    "cache_read_input_tokens": 104857,
+                    "cache_creation_input_tokens": 107,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 107
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Beyond Step-Local Verification: Tracing Perception Error Cascades in M…",
+                "leafUuid": "06d57305-6820-450b-95be-b64a8d214a91",
+                "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293"
+              }
+            }
+          ],
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise cascade PRM for Athena SOTA and pipeline risk",
+                "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293"
+              }
+            }
+          ],
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-27 (UTC).**  ## Original idea {   \"title\": \"Beyond Step-Local Verification: Tracing Perception Error Cascades in M…",
+                "leafUuid": "06d57305-6820-450b-95be-b64a8d214a91",
+                "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293"
+              }
+            }
+          ],
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Revise cascade PRM for Athena SOTA and pipeline risk",
+                "sessionId": "42ff2112-11f3-4996-aa4d-589afb7af293"
+              }
+            }
+          ],
+          "id": "event-000134"
+        }
+      ]
+    }
+  ]
+}

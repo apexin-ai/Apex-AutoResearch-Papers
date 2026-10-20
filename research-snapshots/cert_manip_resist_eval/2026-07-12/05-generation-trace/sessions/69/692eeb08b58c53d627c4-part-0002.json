@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "session_id": "692eeb08b58c53d627c4",
+  "rounds": [
+    {
+      "number": 12,
+      "messages": [
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-25T21:31:18.095Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n已完成对 Reviewer 1 全部意见的逐条回应，已发送至 Review Director。\n\n核心结论：\n- **N1, N2** [AGREE]：η_max 在 K≥5 不显著、diversity metric 显著性轨迹 operationalization-dependent——两点与我自己的发现一致\n- **N3** [REBUT]：攻击模板覆盖率应降级为 Should-Fix，12 conditions 的 pattern consistency 提供了模板级别以上的证据\n- **W1, W3, W4, W5, W6** [AGREE]：均为 valid concerns\n- **W2** [REBUT]：R1 将 cluster 数量误读为 3（实际是 13-15 per clustering），且 Monte Carlo calibration 直接验证了 bootstrap 不 over-reject\n\n---\n\n[Reviewer 1 审稿意见]:\n\n# Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n## Must-Fix 问题\n\n### [AGREE] R2-N1: Contribution 1 被 confound 削弱\n\n同意核心判断。这与我审稿报告中的 W6 一致。\n\n补充证据：论文 Section 6 第2段明确承认 \"Cinelli-Hazlett sensitivity analysis shows the known confound could account for the association in 69% of conditions (Appendix K)\"，Section 6 末段也说 \"Causal identification requires capability-controlled designs\"。问题不在于论文是否承认了 confound（它确实承认了），而在于 Contribution 1 的**表述力度**与证据力度不匹配。Abstract 第4行 \"diversity is uniformly positively associated with vulnerability (12/12 conditions)\" 读起来像一个独立于 capability 的发现，但 r=0.70-0.81 的共线性意味着这很可能是 capability 效应的 proxy。\n\n同意 R2 的建议 (1)：Pool A（capability-matched, r=0.50）下的完整回归结果应在正文呈现（目前仅在 Appendix P），但需注意 Pool A 仅含 9 个模型，MDE > 0.9（Appendix S.1），统计功效严重不足——这一限制也应同时报告。\n\n对建议 (3) 持保留意见：将 position bias exception（negative K_eff）提升为核心发现证据不足——position bias 仅 1 个 template variant（Table 35: \"reorder\"，无文本模板），且其机制（交换顺序）与其他 5 种攻击本质不同，泛化性存疑。\n\n### [AGREE] R2-N2: Proposition 1 作为理论贡献过于 trivial\n\n部分同意。这与我审稿报告中的 W4 相呼应。\n\nR2 说得对：在 stochastic dominance 条件下，结论几乎是定义直接推出的。Appendix A（page 12）的证明核心步骤仅依赖 Pr(X'_k ≥ x_k) ≥ Pr(X_k ≥ x_k) 的传递性，不涉及非平凡的技术难点。\n\n但我认为 R2 将其定性为 \"trivial\" 稍有过度。Proposition 1 的价值不全在证明本身，而在于**经验量化了适用边界**：58% pairs 满足 stochastic dominance，且 within-tier 非支配率 72.1%（Section 3, page 4）——这个数据揭示了 weakest-link 框架在实践中的限度，有信息量。\n\n建议：同意降级为 supporting observation / lemma 而非 contribution-level proposition。但应保留其适用率的经验分析，这比纯理论证明更有价值。\n\n---\n\n## Should-Fix 问题\n\n### [AGREE] R2-W1: 标题暗示因果关系\n\n同意。标题 \"How Panel Size **Shifts** Adversarial Vulnerability Drivers\" 使用了因果性动词，与 Abstract 第1行 \"all findings are associational\" 直接矛盾。这种不一致会误导读者。建议改为描述性表述，例如 \"Adversarial Vulnerability Drivers **Across** Panel Sizes\" 或 \"**The Association Between** Panel Size and Adversarial Vulnerability Drivers\"。\n\n### [REBUT] R2-W2: 经典 ensemble diversity theory 已预测了主要定性结论\n\n部分反驳。\n\nR2 引用 Brown et al. (2005) 和 Kuncheva & Whitaker (2003) 认为主要发现已被预测。但论文 Section 2 第3段（page 3）明确区分了研究设定的差异：\"Our setting differs from both lines: adversaries use natural-language manipulation rather than gradient perturbation, aggregation rules are a controllable design parameter, and we explicitly model adversarial manipulation interaction with multi-judge composition.\"\n\n关键区别在于：\n1. **经典 ensemble theory 不考虑对抗性操纵**：Brown et al. (2005) 的 bias-variance-covariance 分解假设 i.i.d. 或 non-adversarial 噪声；本文的攻击是**策略性的**（targeted attacks exploit individual weaknesses, shared-bias attacks affect most judges, Table 1 page 3 的 taxonomy）\n2. **经典理论无法预测 K-dependent predictor shift**：即 η_max 从 K=3 的 dominant 转变为 K=7 的 non-significant 这一轨迹在经典框架中没有对应物——经典框架关注的是 ensemble error 的分解而非 vulnerability source 的 panel-size-dependent 权重变化\n3. **Kuncheva & Whitaker (2003) 的\"没有可靠 pairwise diversity metric\"结论**虽然与本文三种 metric 不一致的结果表面上吻合，但论文的贡献不在于找到一个\"最好\"的 diversity metric，而在于量化不同度量下的行为差异本身\n\n不过，R2 的观点有一定道理：论文应在 Related Work 中更深入讨论与经典 ensemble theory 的关系，特别是解释**哪些定量发现是经典理论无法推导的**。目前 Section 2 第2段的讨论偏于罗列式而非对比式。\n\n### [AGREE] R2-W3: K_eff justification 不足\n\n强烈同意。这与我的 N2 完全一致。三种 diversity metric 的显著性轨迹完全相反（K_eff: 4→7→8/12, κ-diversity: 8→7→6/12, Shannon MI: 4→4→0/12），但论文选择 K_eff 作为主要度量的论证不够充分。Section 3（page 4, Equation 1）提供了 K_eff 的信息论推导，但未解释为何这个特定的信息论构造优于其他同样合理的度量。论文应提供选择 K_eff 的预注册依据或 principled selection criterion，否则存在 \"garden of forking paths\" 的风险。\n\n### [AGREE] R2-W4: Conclusion 过短\n\n轻度同意。Section 7（page 8）的 Conclusion 约 150 words，确实缺少对 broader implications 和 future work 的讨论。不过这不是一个影响接收决定的问题——8 页限制下作者可能有意精简 Conclusion 以留空间给 Analysis（Section 6, page 8）。建议作者在修订中适度扩展，至少加入 1-2 句 future directions（如 open-ended evaluation、causal identification designs）。\n\n### [AGREE] R2-W5: 仅 multiple-choice 格式\n\n同意。论文仅使用 MMLU 和 ARC-Challenge（均为 MC 格式），Limitations（page 9）第5行也承认 \"Both benchmarks use multiple-choice format; open-ended generation may present different attack surfaces.\" 对 EMNLP 社区来说，开放生成评估（如 MT-Bench、Chatbot Arena 场景）的 LLM judge 可能面对根本不同的攻击表面（例如无法通过 position swap 定义 \"correct answer\"），因此 MC 场景的发现不能直接推广。\n\n但需补充：MC 格式允许确定性 ground truth，这使得 ASR 的定义更加清晰（panel 决定与 ground truth 不一致即为 attack success）。在 open-ended 评估中，\"正确答案\" 本身是主观的，ASR 的定义会更模糊。论文选择 MC 是方法论上的合理折衷，只是泛化性代价需要更明确地讨论。\n\n### [AGREE] R2-W6: AWQ INT4 量化影响未充分 disentangle\n\n同意。这与我的 W6 中关于 API/local 混合引入系统性偏差的关切一致。论文 Appendix S 的量化 dummy 分析显示系数 +0.39（K=3）到 +0.27（K=7），且 VIF 在 3 predictor 模型中飙升（K=7 时达 ~102）。API-only 子集（9 模型）中 K_eff 降至 2-3/12 显著（Section 6, page 8: \"K_eff drops 2-3/12\"），但 MDE > 0.9 意味着该子集检测不到中等效应——所以 \"不显著\" 既可能是真无效应，也可能是功效不足。这个 ambiguity 应在正文讨论。\n\n---\n\n## 对 R2 Questions 的补充意见\n\n**Q2（position bias exception 是否提升为核心发现）**：如前所述，position bias 仅 1 个 template（交换顺序），无文本模板，机制与其他攻击不同。将单一 template 的例外提升为核心发现有 overfitting-to-anomaly 的风险。\n\n**Q4（Oracle adversary vs template-based attacks 的 gap）**：这是一个好问题。论文当前的 adversary model 是 \"template-based attacks + exhaustive panel enumeration\"，而非真正的 oracle adversary（选择最优攻击-面板组合）。Proposition 1 假设 oracle adversary 但实验只测试了 6 种固定攻击。如果真正的 oracle adversary 能自适应地组合攻击策略（如同时使用 prompt injection + sycophancy），ASR 可能显著更高，此时 weakest-link 效应是否仍然 diminishing 不可知。论文应讨论这个 gap。\n\n---\n\n## 总结\n\n与 R2 在 5/8 个问题上基本一致（N1, W1, W3, W5, W6），在 N2 上部分一致（降级但保留经验分析），在 W2 上部分反驳（经典理论无法预测 K-dependent predictor shift），在 W4 上轻度同意。R2 的审稿报告总体质量高，关于 confound 的分析（N1）和 ensemble theory 对比（W2）是有价值的补充视角。\n\n两位 Reviewer 共同关注的核心问题：(1) K_eff–η_max confound 削弱了因果解释力；(2) diversity metric 的操作化依赖性；(3) 标题/表述力度超出统计证据。这些问题如果在修订中得到解决（调整 claim 力度 + Pool A 结果进正文 + 讨论 metric choice），论文可以提升至 Conference 水平。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。与 R2 在 5/8 问题上一致，核心共识集中在三点：K_eff–η_max confound 削弱因果解释力、diversity metric 操作化依赖性、标题表述力度超出统计证据。在 W2（经典 ensemble theory）上提出部分反驳——经典理论无法预测 K-dependent predictor shift 这一定量轨迹。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1ddb3eb-fdb3-4b2b-ad66-61c39662929d",
+            "isSidechain": false,
+            "promptId": "e4f01e39-b4b5-413a-9d6a-1cd104444cd1",
+            "type": "user",
+            "uuid": "a20c5201-6f23-4ed6-87aa-62558b67197d",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/review_director_ce4e3f39",
+            "sessionId": "f577c26e-cfff-49b1-9a10-9b817afb630a",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000167"
+        }
+      ]
+    }
+  ]
+}

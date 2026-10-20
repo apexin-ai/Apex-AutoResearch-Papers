@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "1682da73c19720d6f5a1",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read ALL of the following JSON data files in full and return their complete contents. These are the ground truth V2 data",
+  "task_key": "agent-acb493bf8e384298e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-acb493bf8e384298e.jsonl",
+    "occurrence": 1,
+    "bytes": 772510,
+    "sha256": "9efcbc60c7995d09959b42d119015afe30bd619c29e4677624033aba5615a318"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 2,
+    "tool_calls": 59,
+    "roles": {
+      "user": 2,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 59,
+      "tool_result": 59,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "1682da73c19720d6f5a1-part-0001.json",
+          "message_count": 72
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "1682da73c19720d6f5a1-part-0001.json",
+          "message_count": 29
+        },
+        {
+          "path": "1682da73c19720d6f5a1-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-all-of-the-following-json-data-files-in-full-and-return-their-complete-co.md"
+}

@@ -1,0 +1,2126 @@
+{
+  "schema_version": "1.0",
+  "id": "60d8dae7ce3b53e4d962",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 你是论文精读助手。任务：对以下 2 篇论文执行深度精读，为每篇生成结构化 YAML 文件。 项目背景：Cross-Lingual Calibration Transfer via Language-Agnostic Confidence D",
+  "task_key": "agent-a142300de5c53ffa4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a142300de5c53ffa4.jsonl",
+    "occurrence": 1,
+    "bytes": 147076,
+    "sha256": "7f5ecd2cc03530d7fbf95f2fb6fc2bbe1d97282447e6195d97d7dfc1ac64aa94"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T13:56:01.070Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "你是论文精读助手。任务：对以下 2 篇论文执行深度精读，为每篇生成结构化 YAML 文件。\n\n项目背景：Cross-Lingual Calibration Transfer via Language-Agnostic Confidence Directions — 研究跨语言校准迁移、语言无关置信方向、层深度 Pareto 前沿。\n\n## 论文列表\n\n1. **paper_key: xiao2025knowledge**\n   - Title: \"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations\"\n   - Venue: ACL 2025\n   - URL: https://arxiv.org/abs/2504.13816\n\n2. **paper_key: khanmohammadi2025ccps**\n   - Title: \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS)\"\n   - Venue: EMNLP 2025\n   - URL: https://arxiv.org/abs/2505.21772\n\n## 执行步骤\n\n对每篇论文：\n1. 用 WebFetch 获取 arXiv HTML 版本（URL 加 `.html` 后缀，如 `https://arxiv.org/html/2504.13816`），提取 intro + experiments + conclusion 的关键内容\n2. 如果 HTML 版不可用，用原始 abstract 页面\n3. 尝试用 WebFetch 获取 Figure 1 图片做视觉分析（arXiv HTML 中图片通常在 `https://arxiv.org/html/XXXX.XXXXX/extracted/figures/` 路径下）\n4. 将结构化结果写入 YAML 文件\n\n## YAML Schema\n\n每个文件写入 `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/{paper_key}.yaml`\n\n```yaml\npaper_key: \"{key}\"\ntitle: \"...\"\nvenue: \"{venue} {year}\"\nfull_text_available: true/false\n\nresearch:\n  baselines: [name1, name2]\n  metrics: [{name: \"X\", direction: \"higher_better\"}]\n  datasets: [{name: \"Y\", size: \"...\"}]\n  ablation_dimensions: [dim1, dim2]\n  training_recipe: {optimizer: \"...\", lr: \"...\", hardware: \"...\"}\n  method_family: \"...\"\n\npositioning:\n  core_claim: \"一句话提炼该论文的核心贡献\"\n  key_results: \"关键性能数字\"\n  limitations: [\"局限1\", \"局限2\"]\n  relation_to_us: \"competitor/foundation/complementary/orthogonal\"\n\nnarrative:\n  story_type: \"突破局限型/化繁为简型/规模涌现型/跨界迁移型/统一框架型\"\n  hook: \"第一段如何抓注意力\"\n  tension: \"现有方法局限如何铺垫\"\n  key_insight: \"核心洞察在哪个位置、什么方式揭示\"\n  argument_chain: \"problem → ... → validation\"\n  contribution_framing: \"贡献声明的措辞和数量\"\n  intro_structure: \"段落数和每段功能\"\n  notable_technique: \"叙事上最值得学习的技巧\"\n\nfigures:\n  figure_count: N\n  figure1:\n    type: \"motivation/method_overview/teaser_result/problem_illustration\"\n    description: \"图的内容描述\"\n    narrative_role: \"在论证链中的作用\"\n    design_elements: [\"element1\", \"element2\"]\n    visual_style: \"布局/配色/标注描述\"\n  result_figures:\n    - figure_id: \"Figure N\"\n      viz_type: \"bar_chart/line_plot/heatmap/scatter/qualitative_comparison\"\n      what_compared: \"对比了什么\"\n      how_gain_highlighted: \"如何突出优势\"\n      design_note: \"设计上值得借鉴的点\"\n  ablation_figures:\n    - figure_id: \"Figure N\"\n      viz_type: \"type\"\n      dimensions_varied: [\"dim1\", \"dim2\"]\n      design_note: \"消融图的设计思路\"\n  figure_narrative_role: \"Figure 1 → Figure 2 → ... 的叙事流\"\n\ntables:\n  table_count: N\n  main_result_table:\n    table_id: \"Table 1\"\n    row_axis: \"methods/datasets/settings\"\n    col_axis: \"描述\"\n    row_organization: \"by_category/by_performance/by_year/flat\"\n    col_organization: \"grouped_by_dataset/grouped_by_metric/flat\"\n    highlight_strategy: \"描述\"\n    statistical_reporting: \"描述\"\n    num_baselines: N\n    design_note: \"值得借鉴的点\"\n  ablation_tables:\n    - table_id: \"Table N\"\n      what_varied: [\"dim1\", \"dim2\"]\n      variation_style: \"checkmark_grid/delta_from_base/full_numbers\"\n      design_note: \"消融表的呈现思路\"\n  supplementary_tables:\n    in_appendix: true/false\n    content: \"附录表放了什么\"\n    reason: \"为什么这样拆分\"\n```\n\nrelation_to_us 判定标准（项目是跨语言校准迁移 + 层深度 Pareto 前沿）：\n- xiao2025knowledge: 研究跨语言知识边界的内部表示 → foundation（提供跨语言表示的理论基础）\n- khanmohammadi2025ccps: 探测扰动表示稳定性做校准 → complementary（校准方法，但非跨语言焦点）\n\n请仔细提取每个字段，特别是 narrative 和 figures/tables 部分要详细分析。写完两个 YAML 文件后报告完成。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "45c6b6f7-dc01-4c82-8502-6ec101cfbd78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T13:56:01.076Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "45c6b6f7-dc01-4c82-8502-6ec101cfbd78",
+                "isSidechain": true,
+                "agentId": "a142300de5c53ffa4",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "01ff5c5a-79ad-49bd-b799-a79aad660ab2",
+                "timestamp": "2026-05-20T13:56:01.076Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+                "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T13:56:03.904Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by fetching both papers' HTML versions in parallel, and also load the WebFetch tool schema."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01ff5c5a-79ad-49bd-b799-a79aad660ab2",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwF2E8U84WQVn6gyzLj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ceb40b25-98bf-4280-ae0a-6f72e0c67f2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014P9jt5GaHizuErrLYrLvrB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17370,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T13:56:04.428Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017M64GiVomnFnfv1EG5kr5V",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ceb40b25-98bf-4280-ae0a-6f72e0c67f2f",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwF2E8U84WQVn6gyzLj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ecbd6289-2be0-4999-b3d9-2cce5d6cb0ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014P9jt5GaHizuErrLYrLvrB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17370,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T13:56:04.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017M64GiVomnFnfv1EG5kr5V",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecbd6289-2be0-4999-b3d9-2cce5d6cb0ef",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "7d48d3f7-452b-458a-9636-9bd97ffd00ea",
+            "sourceToolAssistantUUID": "ecbd6289-2be0-4999-b3d9-2cce5d6cb0ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T13:56:05.201Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017kVJbJm7DcnpEuS1whhoxh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d48d3f7-452b-458a-9636-9bd97ffd00ea",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwF2E8U84WQVn6gyzLj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e550cf1f-0693-4b8b-b4eb-29c20fbe1acc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014P9jt5GaHizuErrLYrLvrB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17370,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17370
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17370,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17370,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T13:56:05.203Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017kVJbJm7DcnpEuS1whhoxh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e550cf1f-0693-4b8b-b4eb-29c20fbe1acc",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "94cb7d9c-6781-4c9f-8645-c2aef042049b",
+            "sourceToolAssistantUUID": "e550cf1f-0693-4b8b-b4eb-29c20fbe1acc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T13:56:07.539Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me fetch both papers' HTML versions in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94cb7d9c-6781-4c9f-8645-c2aef042049b",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwFL4SNUiFbB8U51jvr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ecd7c28f-70f8-4f7c-bae0-11431931e68b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eTojbbbx2SYw1gmvkiXhM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1824,
+                "cache_read_input_tokens": 17370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1824,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T13:56:11.317Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UMZPLKBp3UGQD5Q1sxxLd2",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.13816",
+                "prompt": "Extract the FULL text of this paper. I need:\n1. Complete Introduction section (every paragraph)\n2. Method/approach section with all details\n3. Complete Experiments section with all results, tables, baselines\n4. Conclusion and limitations\n5. ALL figure captions and table captions\n6. Number of figures and tables\n7. Any references to figure/table in the text (e.g., \"As shown in Figure 1...\")\n8. The contribution statements (usually bullet points in intro)\n9. Training/experimental setup details (models, datasets, hardware, hyperparameters)\nPlease preserve as much detail as possible including specific numbers and metrics."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecd7c28f-70f8-4f7c-bae0-11431931e68b",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwFL4SNUiFbB8U51jvr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "746652b2-c814-443e-a802-3b33382e72ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eTojbbbx2SYw1gmvkiXhM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1824,
+                "cache_read_input_tokens": 17370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1824,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T13:56:12.674Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017TVvRFGeLpZ8kj3RsYDfRJ",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.21772",
+                "prompt": "Extract the FULL text of this paper. I need:\n1. Complete Introduction section (every paragraph)\n2. Method/approach section with all details\n3. Complete Experiments section with all results, tables, baselines\n4. Conclusion and limitations\n5. ALL figure captions and table captions\n6. Number of figures and tables\n7. Any references to figure/table in the text (e.g., \"As shown in Figure 1...\")\n8. The contribution statements (usually bullet points in intro)\n9. Training/experimental setup details (models, datasets, hardware, hyperparameters)\nPlease preserve as much detail as possible including specific numbers and metrics."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "746652b2-c814-443e-a802-3b33382e72ad",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwFL4SNUiFbB8U51jvr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1840e4d6-9b58-4378-8978-70ebed78a3a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eTojbbbx2SYw1gmvkiXhM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1824,
+                "cache_read_input_tokens": 17370,
+                "output_tokens": 449,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1824
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 449,
+                    "cache_read_input_tokens": 17370,
+                    "cache_creation_input_tokens": 1824,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1824,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T13:56:26.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017TVvRFGeLpZ8kj3RsYDfRJ",
+              "type": "tool_result",
+              "content": "# Summary of \"Calibrating LLM Confidence by Probing Perturbed Representation Stability\"\n\n## Paper Overview\nThis paper introduces **CCPS** (Calibrating LLM Confidence by Probing Perturbed Representation Stability), a novel method for estimating Large Language Model confidence through analyzing internal representational stability.\n\n## Key Contributions\n\nThe authors identify four main contributions:\n\n1. A \"model-agnostic, parameter-efficient, and scalable framework\" for confidence estimation based on \"quantifying it through the stability of internal representations under targeted perturbations\"\n\n2. Demonstration of \"substantial improvements in both key calibration and discrimination metrics\"\n\n3. Evidence of \"generalizability across diverse LLM architectures (Llama, Qwen, Mistral; 8B to 32B)\"\n\n4. \"Extensive benchmarking of confidence estimation methods on MMLU and MMLU-Pro in both multiple-choice and open-ended formats\"\n\n## Methodology: Three Primary Stages\n\n**Stage 1 - Probing Internal Stability:** For each response token, CCPS identifies the original final hidden state, computes gradients to determine an adversarial perturbation direction, then applies five discrete perturbations along this direction with magnitude ε_max = 20.0.\n\n**Stage 2 - Quantifying Perturbation Impact:** Extracts a 75-dimensional feature vector per token capturing: original state characteristics, perturbation metrics, perturbed state statistics, and comparison features between original and perturbed states.\n\n**Stage 3 - Classification Architecture:** Uses different encoders for multiple-choice (MLP) versus open-ended responses (1D convolutional layers), pre-trained with max-margin contrastive loss, then fine-tuned with cross-entropy loss.\n\n## Experimental Setup\n\n**LLMs Tested:** Meta-Llama-3.1-8B-Instruct, Qwen2.5-14B-Instruct, Mistral-Small-24B-Instruct-2501, Qwen2.5-32B-Instruct\n\n**Datasets:**\n- Training: CT-CHOICE (18,650 samples) and CT-OE (18,534 samples)\n- Evaluation: MMLU-CHOICE (14,042 samples), MMLU-PRO-CHOICE (12,032 samples), MMLU-OE (14,042 samples)\n\n**Training Configuration:** 10,000 total steps (5,000 pre-training + 5,000 fine-tuning), batch size 32, learning rate 1×10⁻⁴, weight decay 0.1\n\n## Performance Results (Table 1 Summary)\n\nOn MMLU-CHOICE, CCPS achieved:\n- ECE: 5.8-6.5% (vs. LitCab's 10.9-45.6%, CT's 8.2-45.2%)\n- Brier Score: 10.8-17.1% (improvements across all models)\n- AUROC: 77.1-83.3% (vs. baselines' 51.6-78.2%)\n\nOn MMLU-PRO-CHOICE (harder dataset):\n- ECE: 4.2-4.5% (vs. LitCab's 16.6-49.7%, CT's 17.8-38.0%)\n- Consistent improvements in AUCPR and AUROC\n\n## Baseline Methods Compared\n\nP(True), P(IK), Logit Temperature Scaling (LTS), Instruction Tuning (IT), SAPLMA (three variants), Calibration-Tuning (CT), and LitCab\n\n## Key Findings\n\nCCPS demonstrated dual strengths in both calibration (low ECE/Brier) and discrimination (high AUCPR/AUROC), achieving \"approximately 55% reduction in Expected Calibration Error and 21% reduction in Brier score\" relative to the strongest baseline, with \"5 percentage points increase in accuracy.\"\n\n## Limitations Acknowledged\n\n1. Computational cost of Jacobian calculation and perturbation processing\n2. Requires access to model internals\n3. Performance depends on perturbation hyperparameter tuning\n4. Feature effectiveness tied to meaningfulness of base LLM representations\n\n## Total Content Count\n- **Tables:** 7 main tables (plus additional tables in appendices)\n- **Figures:** 1 main figure (Figure 1 showing CCPS methodology overview)\n- **Appendices:** A-K with extensive supplementary analyses, ablation studies, and additional results"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1840e4d6-9b58-4378-8978-70ebed78a3a4",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "8acaf0d5-9af7-467e-af8f-b4a7ef277d57",
+            "sourceToolAssistantUUID": "1840e4d6-9b58-4378-8978-70ebed78a3a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T13:56:27.865Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UMZPLKBp3UGQD5Q1sxxLd2",
+              "type": "tool_result",
+              "content": "# Summary of Paper on LLMs' Cross-Lingual Knowledge Boundaries\n\n## Overview\nThis research presents \"the first study to analyze how LLMs recognize knowledge boundaries across different languages by probing their internal representations.\"\n\n## Key Contributions\n\nThe authors identify three main findings:\n\n1. **Layer Location**: \"LLMs' perceptions of knowledge boundaries are encoded in the middle to middle-upper layers across different languages.\"\n\n2. **Linear Structure**: \"Language differences in knowledge boundary perception follow a linear structure, which motivates our proposal of a training-free alignment method.\"\n\n3. **Fine-tuning Effects**: \"Fine-tuning on bilingual question pair translation further enhances LLMs' recognition of knowledge boundaries.\"\n\n## Methodology\n\n### Datasets Constructed\n- **FreshQAParallel**: 9,600 test samples across 8 languages with true/false premise questions\n- **SeaRefuse**: 64,075 training and 6,000 test samples in 5 languages featuring answerable/unanswerable entity-centric questions\n- **TrueFalseMultiLang**: 48,680 test samples in 8 languages translating existing true/false statements\n\n### Probing Approach\nThe team trained k×m linear classifiers using last-token representations of questions, where k represents layers and m represents languages. They evaluated zero-shot cross-lingual transfer using accuracy metrics.\n\n### Training-Free Transfer Methods\n\n**Mean Shifting**: Aligns target language embeddings by adjusting their mean to match source language embeddings using Δμ = μ_in - μ_ood.\n\n**Linear Projection**: Estimates transformation matrix W through least squares optimization: W = (X_ood^train)+ X_in, using SVD for numerical stability when rank is insufficient.\n\n## Experimental Setup\n\n**Models Tested**:\n- Qwen2.5 (7B, 14B, 72B)\n- Llama-3.1-8B\n- Tested across base and instruct variants\n\n**Fine-tuning Details**:\n- Learning rate: 1e-5 (full parameter), 1e-4 (LoRA)\n- Global batch size: 512\n- LoRA configuration: rank 32, alpha 64\n- Qwen2.5-72B: trained on 4 nodes with 32 A800 80G GPUs using DeepSpeed ZeRO-3\n\n## Key Results\n\n### Layer-wise Performance\nFigure 2 shows significant gaps between in-distribution (ID) and out-of-distribution (OOD) performance in bottom layers, with convergence in middle-upper layers around layer 19 for Qwen and mid-layer for Llama.\n\n### Language Transfer Patterns\n- High-resource languages achieve superior ID accuracy but transfer poorly to low-resource languages (e.g., English→Khmer drops from 89% to 79%)\n- Low-resource languages show best relative transferability across all layers\n- Mid-resource languages offer modest bidirectional transfer\n\n### Alignment Method Effectiveness\n\nLinear projection \"nearly matches in-distribution performance,\" with mean shifting providing substantial intermediate improvements. The methods reduce performance gaps from approximately 10-15% to near in-distribution levels.\n\n### Weak-to-Strong Generalization\nAn unexpected pattern emerges where \"probes trained on low-resource languages perform better on other languages after post-projection than on their own.\" Analysis shows English representations have effective dimensionality of 116 versus Khmer's 103, suggesting high-resource languages carry language-specific noise filtered by low-resource subspaces.\n\n### Fine-tuning Results\n- Qwen2.5-7B achieved +2.3% average gains in best layer\n- Llama-3.1-8B showed >10% improvements in upper layers\n- A \"self-defense mechanism\" appears where fine-tuning on low-resource→English pairs unexpectedly enhances primary language representations (e.g., Chinese performance in Qwen models)\n\n### Model Expression Gap\nTable 2 demonstrates models don't fully utilize boundary knowledge during generation. Providing false-premise hints improved performance by 24.49% for Vietnamese and 17.69% for Malay on Qwen2.5.\n\n## Geometric Insights\n\nLDA analysis reveals representations follow \"a language-neutral way, presenting a parallel structure.\" True/falsity separates via \"a near-horizontal hyperplane\" independent of topic domains.\n\n## Limitations\n\nThe authors acknowledge inability to track \"how these representations evolve in the generation process,\" particularly regarding \"when LLMs reach the 'aha moment' in the reasoning process.\"\n\n## Resources\nCode and datasets are available at the project repository (referenced in paper)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "746652b2-c814-443e-a802-3b33382e72ad",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "a4b109f1-db0a-4a3c-9227-5ed4594517f7",
+            "sourceToolAssistantUUID": "746652b2-c814-443e-a802-3b33382e72ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T13:56:30.684Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have the core content. Now let me fetch more details - specifically figure descriptions and table details for both papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4b109f1-db0a-4a3c-9227-5ed4594517f7",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwGzjtizpJC5g2Ls6w9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ade4e663-5c42-46eb-997d-2c8a419625c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012FXw54jGeneSNy4KfbzytC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1104,
+                "cache_creation_input_tokens": 1553,
+                "cache_read_input_tokens": 19194,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1553,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T13:56:36.908Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HLeczGshyiX1GJqHeFv3w1",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.13816",
+                "prompt": "I need DETAILED information about ALL figures and tables in this paper:\n\nFor EACH figure:\n- Figure number and full caption text\n- What type of visualization (bar chart, line plot, heatmap, scatter, etc.)\n- What is being compared/shown\n- Layout description (subplots, panels, etc.)\n- Color scheme if mentioned\n- How the figure is referenced in the main text\n\nFor EACH table:\n- Table number and full caption text\n- Row and column structure (what's on rows, what's on columns)\n- How results are highlighted (bold, underline, etc.)\n- Number of baselines/methods compared\n- Key numbers mentioned\n- Statistical reporting format (mean±std, etc.)\n\nAlso extract:\n- The exact contribution bullet points from the introduction\n- The exact limitations paragraph from the conclusion\n- The intro structure: how many paragraphs, what each paragraph covers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ade4e663-5c42-46eb-997d-2c8a419625c9",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwGzjtizpJC5g2Ls6w9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "af1c050d-6b0f-42c6-b41e-86c53db0d7b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012FXw54jGeneSNy4KfbzytC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1104,
+                "cache_creation_input_tokens": 1553,
+                "cache_read_input_tokens": 19194,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1553,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T13:56:38.336Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rnhotu37HuHfnLbpX9ydUa",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.21772",
+                "prompt": "I need DETAILED information about ALL figures and tables in this paper:\n\nFor EACH figure:\n- Figure number and full caption text\n- What type of visualization (bar chart, line plot, heatmap, scatter, etc.)\n- What is being compared/shown\n- Layout description (subplots, panels, etc.)\n- Color scheme if mentioned\n- How the figure is referenced in the main text\n\nFor EACH table:\n- Table number and full caption text\n- Row and column structure (what's on rows, what's on columns)\n- How results are highlighted (bold, underline, etc.)\n- Number of baselines/methods compared\n- Key numbers mentioned\n- Statistical reporting format (mean±std, etc.)\n\nAlso extract:\n- The exact contribution bullet points from the introduction\n- The exact limitations paragraph from the conclusion\n- The intro structure: how many paragraphs, what each paragraph covers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af1c050d-6b0f-42c6-b41e-86c53db0d7b0",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwGzjtizpJC5g2Ls6w9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aa499cc4-3c68-4699-bc68-e278e43f7e64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012FXw54jGeneSNy4KfbzytC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1104,
+                "cache_creation_input_tokens": 1553,
+                "cache_read_input_tokens": 19194,
+                "output_tokens": 567,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1553
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1104,
+                    "output_tokens": 567,
+                    "cache_read_input_tokens": 19194,
+                    "cache_creation_input_tokens": 1553,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1553,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T13:57:00.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rnhotu37HuHfnLbpX9ydUa",
+              "type": "tool_result",
+              "content": "# Paper Structure and Visualization Analysis\n\n## Introduction Structure\nThe introduction contains **4 paragraphs**:\n1. Problem motivation (miscalibration in LLMs and high-stakes applications)\n2. Existing approaches and their limitations\n3. CCPS methodology overview\n4. Key contributions and scope\n\n## Key Contributions (Exact Bullet Points)\n\n- \"A novel, model-agnostic, parameter-efficient, and scalable framework (CCPS) offering a fresh perspective on LLM confidence estimation by quantifying it through the stability of internal representations under targeted perturbations.\"\n\n- \"Demonstration of CCPS's substantial improvements in both key calibration (ECE, Brier score) and discrimination (ACC, AUCPR, AUROC) metrics.\"\n\n- \"Evidence of CCPS's generalizability across diverse LLM architectures (Llama, Qwen, Mistral; 8B to 32B).\"\n\n- \"Extensive benchmarking of confidence estimation methods on MMLU and MMLU-Pro in both multiple-choice and open-ended formats.\"\n\n## Limitations Section (Exact Text)\n\n\"Despite its strong performance, CCPS has limitations. Firstly, the pre-processing stage of quantifying features from perturbation impacts incurs a computational cost. For each token in an answer, this cost includes an initial Jacobian calculation and subsequently, for each of the SS perturbations, processing the perturbed hidden state through the LLM's head to obtain perturbed logits. Access to model internals is also a prerequisite for this feature extraction phase. Secondly, feature effectiveness depends on perturbation hyperparameters (e.g., ϵmax, SS), which, though optimized in our experiments, may need retuning for different models or tasks. Lastly, the quality of extracted features inherently relies on the meaningfulness of the base LLM's internal representations; if an LLM's hidden states do not systematically encode information related to its certainty, the efficacy of any method probing these states might be constrained.\"\n\n---\n\n## Figures\n\n### Figure 1: CCPS Method Overview\n**Caption:** \"Overview of the CCPS method, illustrating its three primary stages...\"\n\n**Type:** Flowchart/process diagram with three stages\n\n**What's shown:** \n- Stage 1: Token-level perturbation process with visual trajectory along adversarial direction\n- Stage 2: Feature extraction (Df-dimensional vectors)\n- Stage 3: Neural network classification architecture\n\n**Layout:** Three horizontal panels showing sequential pipeline stages\n\n**Color scheme:** Visual representation uses lighter to darker shades to represent increasing perturbation magnitudes (ϵs values)\n\n**Key elements:** Input prompt P, tokens, original hidden states H₀⁽ⁱ⁾, perturbed states Hs⁽ⁱ⁾, logits Zs⁽ⁱ⁾, feature vector f⁽ⁱ⁾, projection networks (EMC/OE), classification head (C), final confidence output\n\n**Text reference:** Referenced in Section 3 (Method) as illustrating the three primary stages\n\n---\n\n## Tables\n\n### Table 1: Performance Across MMLU Variants\n**Caption:** \"Average performance on MMLU variants across tasks per LLM. Arrows indicate whether lower (↓) or higher (↑) values are better. All values are percentages. Best values per method-block are bolded.\"\n\n**Structure:**\n- **Rows:** Methods (LitCab, CT, CCPS shown; full results in appendix)\n- **Columns:** Four metrics: ECE ↓, BRIER ↓, ACC ↑, AUCPR ↑, AUROC ↑\n- **Subgroups:** Four separate tables for different benchmarks:\n  - MMLU-CHOICE (4 LLMs)\n  - MMLU-PRO-CHOICE (4 LLMs)\n  - MMLU-OE (4 LLMs)\n- **Highlighting:** Best values bolded per metric-block\n- **LLMs tested:** Meta-Llama-3.1-8B-Instruct, Qwen2.5-14B-Instruct, Mistral-Small-24B-Instruct-2501, Qwen2.5-32B-Instruct\n\n**Key numbers highlighted:**\n- MMLU-CHOICE Qwen2.5-32B: CCPS achieves 6.3% ECE vs. LitCab 43.2%, CT 45.2%\n- MMLU-PRO-CHOICE: CCPS consistently achieves ~4.5% ECE across all models\n- MMLU-OE: CCPS maintains calibration leadership (6.7%-8.7% ECE range)\n\n**Statistical format:** Raw percentages reported without confidence intervals\n\n**Text reference:** Extensively discussed in Section 5 (Results)\n\n---\n\n### Table 2: Feature Definitions\n**Caption:** \"Definitions of features employed in this study, grouped by feature set type.\"\n\n**Structure:**\n- **Rows:** Individual features with technical names and mathematical definitions\n- **Columns:** Feature name | Definition/formula\n- **Groupings:** Four feature categories with subsections:\n  - Original State Features (12 features)\n  - Overall Perturbation Features (3 features)\n  - Perturbed State Features (listed in category)\n  - Comparison Features (Original vs. Perturbed)\n\n**Total features:** 75-dimensional feature vector composition detailed (15 scalars + 60 from statistical summaries)\n\n**Key feature examples:**\n- original_log_prob_actual\n- jacobian_norm_token\n- epsilon_to_flip_token\n- kl_div_perturbed_from_original\n\n**Text reference:** Section 3.2 and Appendix B\n\n---\n\n### Table 3: MMLU Tasks and Sample Sizes\n**Caption:** \"Tasks and sample sizes in the MMLU benchmark.\"\n\n**Structure:**\n- **Rows:** 57 tasks (abstract algebra through world religions)\n- **Columns:** Task Name | Size\n- **Layout:** Two-column format listing all MMLU tasks\n\n**Total:** 14,042 samples across all tasks\n\n**Sample range:** 100-1,534 samples per task\n\n**Text reference:** Section C.2 (Datasets appendix)\n\n---\n\n### Table 4: MMLU-Pro Tasks and Sample Sizes\n**Caption:** \"Tasks and sample sizes in the MMLU-Pro benchmark.\"\n\n**Structure:**\n- **Rows:** 14 tasks (biology through psychology)\n- **Columns:** Task Name | Size\n\n**Total:** 12,032 samples\n\n**Sample range:** 410-1,351 samples per task\n\n**Text reference:** Appendix C.2\n\n---\n\n### Table 5: System Prompts for Response Generation\n**Caption:** \"System prompts used for base LLM response generation.\"\n\n**Structure:**\n- **Rows:** Two response formats (Multiple-Choice, Open-Ended)\n- **Columns:** Format | System Prompt (full text)\n\n**Key distinction:** Multiple-choice limited to 1 token; open-ended limited to 30 tokens\n\n**Text reference:** Section C.3\n\n---\n\n### Table 6: GPT-4o-mini Grading Prompts\n**Caption:** \"Prompts used for GPT-4o-mini-based grading of open-ended responses.\"\n\n**Structure:**\n- **Rows:** Prompt Type (System Prompt, User Prompt)\n- **Columns:** Content (full prompt text)\n\n**Purpose:** Semantic equivalence assessment for open-ended answers\n\n**Text reference:** Section C.3\n\n---\n\n### Table 7: Dataset Distribution (Correct/Incorrect Responses)\n**Caption:** \"Distribution of correct and incorrect responses across CT-CHOICE, CT-OE, and MMLU variants.\"\n\n**Structure:**\n- **Five sub-tables:** CT-CHOICE, CT-OE, MMLU-CHOICE, MMLU-PRO-CHOICE, MMLU-OE\n- **Rows:** Models (4 LLMs)\n- **Columns:** Train/Validation/Test splits with Correct count, Incorrect count, Total, and percentages\n\n**Range:** Correct responses vary 30.1%-91.4% across datasets\n\n**Text reference:** Section C.3\n\n---\n\n## Additional Notable Content\n\n**Code and Data Availability:**\n- GitHub: https://github.com/ledengary/CCPS\n- HuggingFace: https://huggingface.co/datasets/ledengary/CCPS\n\n**Extensive Appendices** (Sections A-K) include ablation studies, SHAP analyses, per-task breakdowns, and calibration curves not detailed in main text."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa499cc4-3c68-4699-bc68-e278e43f7e64",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "b9b0f28b-a9cf-4335-bf59-65740b883589",
+            "sourceToolAssistantUUID": "aa499cc4-3c68-4699-bc68-e278e43f7e64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T13:57:02.243Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HLeczGshyiX1GJqHeFv3w1",
+              "type": "tool_result",
+              "content": "# Detailed Analysis of Figures and Tables\n\n## FIGURES\n\n**Figure 1: Knowledge Boundary Visualization**\n- Caption: \"Our goal is to analyze LLMs' cognition of knowledge boundaries across different languages by inspecting their representations of knowledge boundaries in multiple languages. The right-hand side of the figure illustrates the representations when an LLM encodes known and unknown questions in English and Lao.\"\n- Type: Conceptual diagram with visual representation\n- Content: Illustrates the core research objective and example language pair processing\n- Layout: Single narrative visualization showing parallel language processing\n\n**Figure 2: Layer-wise Probe Performance**\n- Caption: \"In-distribution and OOD performance of layer-wise probes trained on Qwen2.5-7b representations, across different methods. All scores are averaged across all languages.\"\n- Type: Line plot with multiple curves\n- Compared: Three alignment methods (vanilla, mean-shifted, linearly-projected)\n- Layout: Single plot tracking performance across model layers\n- Key finding: Gap between in-distribution (blue) and OOD (orange) performance, most pronounced in bottom layers\n\n**Figure 3: Transferability Matrices**\n- Caption: \"The performance of probing models on the 3rd and 19th layers of Qwen2.5-7B with different training and testing language combinations. The y-axis and x-axis represent the languages used for training and inference of the probing models, respectively.\"\n- Type: Heatmap matrices\n- Compared: 8 languages (en, zh, vi, th, id, ms, km, lo)\n- Layout: Two side-by-side heatmaps showing worst (layer 3) and best (layer 19) transferability\n- Content: Demonstrates language-specific and resource-dependent transfer patterns\n\n**Figure 4: LDA Subspace Projections**\n- Caption: \"We project the 19th layer of Qwen2.5-7B onto a linear subspace where the x-axis encodes languages, the y-axis encodes topic-aware true/falsity, and the z-axis encodes binary truth/falsity. We visualize the same scatter plot with three different ground-truth label sets annotated respectively.\"\n- Type: 3D scatter plot (three panels with different annotations)\n- Content: Shows language-neutral representation structure, truth/falsity encoding, topic-agnostic separation\n- Layout: Three related 3D visualizations with parallel structure highlighting\n\n**Figure 5: Weak-to-Strong Generalization**\n- Caption: \"Performance of layer-wise probes trained on Khmer for different languages post-projection. We use linear projection to project each language's representations onto the subspace of Khmer. It is observed that Khmer probes perform better on OOD languages than on the Khmer language itself.\"\n- Type: Line plot across layers\n- Content: Demonstrates counterintuitive pattern where low-resource language probes outperform on projected high-resource languages\n- Finding: Shows Khmer probes achieve superior performance on other languages after projection\n\n**Figure 6: Self-Defense Mechanism**\n- Caption: \"After SFT'ed on Khmer-English translation pairs, Qwen2.5-7B exhibits unexpected enhancement in Chinese representations, which otherwise would achieve ∼0.90 or lower accuracy across probes.\"\n- Type: Line plot showing layer-wise performance\n- Content: Illustrates emergent alignment in primary language (Chinese) after fine-tuning on low-resource pairs\n- Finding: Documents latent safety mechanism activation\n\n**Figure 7: Entity-aware Answerability Visualization**\n- Caption: Projects 19th layer representations onto language axes and answerability axis based on entity existence\n- Type: 3D scatter plot\n- Content: Demonstrates parallel language-neutrality pattern with SeaRefuse dataset\n- Location: Appendix A\n\n**Figures 8-14: Additional Results**\n- Figures 8-9: Fine-tuning performance gains across model sizes (7B, 72B)\n- Figure 10: Llama-3.1-8B training-free alignment results\n- Figures 11-12: Post-SFT transferability patterns for Llama\n- Figure 13: Qwen2.5-14B results on augmented FreshQA\n- Figure 14: Full transferability matrix after Khmer-English fine-tuning\n\n---\n\n## TABLES\n\n**Table 1: Dataset Statistics**\n- Caption: \"Statistics of the three datasets in our constructed evaluation suite.\"\n- Structure: 4 columns (Dataset, Languages, # train samples, # test samples) × 3 rows (FreshQAParallel, SeaRefuse, TrueFalseMultiLang)\n- Content:\n  - FreshQAParallel: 8 languages, 9,600 test samples (1,200 per language)\n  - SeaRefuse: 5 languages, 64,075 training, 6,000 test samples\n  - TrueFalseMultiLang: 8 languages, 48,680 test samples\n- Format: Clean numerical presentation without highlighting\n\n**Table 2: FreshQA Performance with Hints**\n- Caption: \"Performance comparison between models without and with hints suggesting the question may be false-premise (Baseline vs. FP-Hinted).\"\n- Structure: Rows = 2 models (Qwen2.5-7B-Instruct, Qwen2.5-72B-Instruct) × 2 conditions; Columns = 8 languages\n- Key findings:\n  - Qwen2.5-7B: Baseline average ~21%, Hinted average ~39%\n  - Qwen2.5-72B: Baseline average ~52%, Hinted average ~68%\n  - Largest gain: Qwen2.5-7B Vietnamese (+24.49%), Qwen2.5-72B Malay (+17.69%)\n- Format: Percentage values, gains computed\n\n**Table 3: Effective Dimensionality Analysis**\n- Caption: \"Effective Dimensionality and Participation Ratios: original subspace and after English and Khmer projected onto each other's subspace.\"\n- Structure: 4 metrics × 2 languages (Khmer, English) with Original/Projected columns\n- Metrics:\n  - Effective Dimensionality: Khmer (103→97), English (116→87)\n  - Participation Ratio: Khmer (15.93→18.07), English (26.26→19.29)\n- Finding: Projects filter noise from high-resource representations, enhance compactness\n\n**Table 4: SeaRefuse Transfer Performance**\n- Caption: Accuracy before/after Khmer-English training on SeaRefuse\n- Structure: 5 columns (en, id, th, vi, zh), 3 rows (before, after, gain)\n- Results: Gains range -0.25% to +2.34%, with Chinese showing largest improvement\n- Location: Appendix G\n\n**Table 5: Mean-Shifting with Parallel vs. Non-parallel Data**\n- Structure: 4 layers tested, 3 conditions (vanilla, parallel, non-parallel)\n- Findings: Non-parallel approximation achieves comparable results (Layer 18: 86.56% vs. 86.48%)\n- Location: Appendix I\n\n**Table 6: Pooling Methods Ablation**\n- Structure: 2 pooling methods × 2 performance metrics\n- Methods: Mean pooling vs. last-token pooling\n- Results: Last-token pooling superior (ID: 86.77% vs. 86.12%; OOD: 83.95% vs. 79.52%)\n- Location: Appendix J\n\n---\n\n## KEY STRUCTURAL ELEMENTS\n\n**Three Main Contributions (from abstract):**\n1. \"LLMs' perceptions of knowledge boundaries are encoded in the middle to middle-upper layers across different languages.\"\n2. \"Language differences in knowledge boundary perception follow a linear structure, which motivates our proposal of a training-free alignment method that effectively transfers knowledge boundary perception ability across languages\"\n3. \"Fine-tuning on bilingual question pair translation further enhances LLMs' recognition of knowledge boundaries across languages.\"\n\n**Limitations Paragraph:**\n\"While we extensively study probing representations of LLMs' perception of questions, it is of interest to investigate how these representations evolve in the generation process. For instance, given the paradigm shifts to explicit long chain-of-thoughts in the generation process, it is possible that LLMs reach the 'aha moment' in the reasoning process when they become aware that the question reaches its knowledge boundaries, where this representation becomes more linearly separable to the probes that classify this perception. However, we note that it is very difficult to locate the information when the transformation takes place and extract the corresponding representations. We leave this interesting line of exploration to future work.\"\n\n**Introduction Structure:**\n- Paragraph 1: Motivation and research gap (knowledge boundaries understudied for non-English)\n- Paragraph 2: Research objectives and core investigation approach\n- Paragraph 3: Initial key findings from layer-wise probing\n- Paragraph 4: Training-free alignment method discoveries\n- Paragraph 5: Fine-tuning observations\n- Paragraph 6: Dataset contributions\n- Paragraph 7: Summary of three-fold contributions"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af1c050d-6b0f-42c6-b41e-86c53db0d7b0",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "768d59ee-526b-49d3-a45b-ce0d741d96d3",
+            "sourceToolAssistantUUID": "af1c050d-6b0f-42c6-b41e-86c53db0d7b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T13:57:05.034Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the abstract pages to get any additional details, and also try to get figure images."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "768d59ee-526b-49d3-a45b-ce0d741d96d3",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwKXimgAviptUmdZqpt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "315cea9b-4e31-4525-9f86-5876b88596a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvHC6XMGAqro14xpUZ7KuU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2099,
+                "cache_creation_input_tokens": 3872,
+                "cache_read_input_tokens": 20747,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3872,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T13:57:05.987Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V2wQnKZbWuuHeHWQDzNAms",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2504.13816",
+                "prompt": "Extract the full abstract text and the list of all authors."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "315cea9b-4e31-4525-9f86-5876b88596a0",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwKXimgAviptUmdZqpt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "465a03f0-1151-464a-bbd4-4c7460ba4298",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvHC6XMGAqro14xpUZ7KuU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2099,
+                "cache_creation_input_tokens": 3872,
+                "cache_read_input_tokens": 20747,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3872,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T13:57:06.560Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SoJzryRssCLt7ufua9Nbir",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2505.21772",
+                "prompt": "Extract the full abstract text and the list of all authors."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "465a03f0-1151-464a-bbd4-4c7460ba4298",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwKXimgAviptUmdZqpt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5f23d4de-a0fe-464a-8d0b-3f7418fc8338",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvHC6XMGAqro14xpUZ7KuU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2099,
+                "cache_creation_input_tokens": 3872,
+                "cache_read_input_tokens": 20747,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3872
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2099,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 20747,
+                    "cache_creation_input_tokens": 3872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3872,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T13:57:09.958Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V2wQnKZbWuuHeHWQDzNAms",
+              "type": "tool_result",
+              "content": "# Paper Information\n\n## Authors\n1. Chenghao Xiao\n2. Hou Pong Chan\n3. Hao Zhang\n4. Mahani Aljunied\n5. Lidong Bing\n6. Noura Al Moubayed\n7. Yu Rong\n\n## Abstract\n\nThe researchers examine how large language models perceive knowledge limits across different languages by examining their internal processing patterns. Their findings indicate that:\n\n1) Models encode awareness of knowledge boundaries in middle-to-upper layer representations across languages\n2) Language-specific boundary perception demonstrates linear structure, enabling a \"training-free alignment method that effectively transfers knowledge boundary\" perception across languages\n3) Bilingual fine-tuning enhances cross-lingual boundary recognition\n\nThe team developed a multilingual evaluation dataset with three knowledge boundary types and made their code and data publicly available on GitHub."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "465a03f0-1151-464a-bbd4-4c7460ba4298",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "4d260e3d-648c-4153-83ab-049c40950f27",
+            "sourceToolAssistantUUID": "465a03f0-1151-464a-bbd4-4c7460ba4298",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T13:57:12.234Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SoJzryRssCLt7ufua9Nbir",
+              "type": "tool_result",
+              "content": "# Paper Summary\n\n**Full Abstract:**\n\"Miscalibration in Large Language Models (LLMs) undermines their reliability, highlighting the need for accurate confidence estimation. We introduce CCPS (Calibrating LLM Confidence by Probing Perturbed Representation Stability), a novel method analyzing internal representational stability in LLMs. CCPS applies targeted adversarial perturbations to final hidden states, extracts features reflecting the model's response to these perturbations, and uses a lightweight classifier to predict answer correctness. CCPS was evaluated on LLMs from 8B to 32B parameters (covering Llama, Qwen, and Mistral architectures) using MMLU and MMLU-Pro benchmarks in both multiple-choice and open-ended formats. Our results show that CCPS significantly outperforms current approaches. Across four LLMs and three MMLU variants, CCPS reduces Expected Calibration Error by approximately 55% and Brier score by 21%, while increasing accuracy by 5 percentage points, Area Under the Precision-Recall Curve by 4 percentage points, and Area Under the Receiver Operating Characteristic Curve by 6 percentage points, all relative to the strongest prior method. CCPS delivers an efficient, broadly applicable, and more accurate solution for estimating LLM confidence, thereby improving their trustworthiness.\"\n\n**Authors:**\n1. Reza Khanmohammadi\n2. Erfan Miahi\n3. Mehrsa Mardikoraem\n4. Simerjot Kaur\n5. Ivan Brugere\n6. Charese H. Smiley\n7. Kundan Thind\n8. Mohammad M. Ghassemi"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f23d4de-a0fe-464a-8d0b-3f7418fc8338",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "b6f5fd22-cee5-45c7-92b5-dc350d65242a",
+            "sourceToolAssistantUUID": "5f23d4de-a0fe-464a-8d0b-3f7418fc8338",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T13:57:15.153Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get additional details about figures and appendix content from both papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6f5fd22-cee5-45c7-92b5-dc350d65242a",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwLGqrSFy2eLkDuqW1v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "706eb5a2-1112-44a1-aaab-87ea2c103bad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BmEURNhsahRTvVAasjThB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2937,
+                "cache_read_input_tokens": 24619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2937,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T13:57:20.481Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018CYXVepG1L8bVhFauQ3Kk2",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.13816",
+                "prompt": "I need the following specific details:\n\n1. The EXACT intro paragraph structure: count each paragraph and give me a 1-sentence summary of what each paragraph covers.\n\n2. For Figure 1: What visual elements are used? Is it a schematic/diagram? What does it show on left vs right side?\n\n3. For the training-free alignment methods: What are the EXACT mathematical formulations? What is mean shifting formula? What is linear projection formula?\n\n4. What are the EXACT accuracy numbers for the linear projection method across languages?\n\n5. What is the \"weak-to-strong generalization\" finding with specific numbers?\n\n6. For the fine-tuning section: What are the specific improvements? What models were fine-tuned? What was the training data?\n\n7. How many appendices are there and what does each cover?\n\n8. Related work: What areas does it cover? What methods are cited as baselines?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "706eb5a2-1112-44a1-aaab-87ea2c103bad",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwLGqrSFy2eLkDuqW1v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aeea9ce0-5d12-4cdf-b935-1beaf88774c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BmEURNhsahRTvVAasjThB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2937,
+                "cache_read_input_tokens": 24619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2937,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T13:57:25.457Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011ctbGdsMjaoKsmverH6wbx",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.21772",
+                "prompt": "I need the following specific details:\n\n1. EXACT intro paragraph structure: count each paragraph and summarize what each covers in 1 sentence.\n\n2. For Figure 1: Describe the visual layout in detail - what are the three stages shown, what visual elements are used, arrows, boxes, etc.\n\n3. What are ALL the baseline methods compared against? List each one with a brief description.\n\n4. The EXACT numbers from Table 1 for CCPS vs best baseline across all metrics and datasets.\n\n5. What ablation studies were conducted? List each ablation and its finding.\n\n6. Are there any additional figures in the appendix? List all figures with descriptions.\n\n7. What is the perturbation mechanism exactly? What is epsilon_max? How many perturbation steps?\n\n8. What is the feature extraction process? How are the 75 features computed?\n\n9. What training procedure is used for the classifier? Pre-training loss? Fine-tuning loss?\n\n10. Related work: what categories are discussed?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aeea9ce0-5d12-4cdf-b935-1beaf88774c3",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwLGqrSFy2eLkDuqW1v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3728c670-f35d-4842-994a-6a893eb8cd64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BmEURNhsahRTvVAasjThB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2937,
+                "cache_read_input_tokens": 24619,
+                "output_tokens": 593,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2937
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 593,
+                    "cache_read_input_tokens": 24619,
+                    "cache_creation_input_tokens": 2937,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2937,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T13:57:32.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018CYXVepG1L8bVhFauQ3Kk2",
+              "type": "tool_result",
+              "content": "# Analysis of LLM Knowledge Boundary Cognition Research\n\n## 1. Introduction Paragraph Structure\n\nThe introduction contains **4 main paragraphs**:\n\n- **Para 1**: Establishes that understanding LLM knowledge boundaries is crucial for preventing hallucination, noting prior research focused on English.\n- **Para 2**: Introduces the study's goal of analyzing cross-lingual knowledge boundary perception through internal representations.\n- **Para 3**: Summarizes three key empirical findings regarding layer encoding, linear structures, and transfer patterns.\n- **Para 4**: Details the contributions: comprehensive cross-lingual analysis, multilingual evaluation datasets, and training-free transfer methods.\n\n## 2. Figure 1 Visual Elements\n\nFigure 1 uses a **schematic diagram format** showing:\n- **Left side**: Illustrates the research goal of analyzing LLM knowledge boundaries across languages\n- **Right side**: Shows actual model representations when encoding known and unknown questions in English and Lao, visualizing the internal representation differences\n\n## 3. Training-Free Alignment Mathematical Formulations\n\n**Mean Shifting** calculates language mean difference as:\n```\nΔμ = μ_in - μ_ood\nX_shifted^test = X_ood^test + Δμ\n```\nwhere μ represents mean vectors of in-distribution and out-of-distribution language sets.\n\n**Linear Projection** solves the least squares problem:\n```\nW = arg min_W ||X_in - X_ood^train·W||_F^2\nX_shifted^test = X_ood^test·W\n```\nusing Moore-Penrose pseudo-inverse for numerical stability.\n\n## 4. Exact Linear Projection Accuracy Numbers\n\nThe paper reports that \"linear projection nearly closes the gap with in-distribution accuracy\" but provides specific examples rather than comprehensive tables:\n- Thai achieves **88.31%** with Chinese probe after projection\n- Malay reaches **88.64%** similarly\n- Khmer achieves **88.15%** with Malay probe projection\n\n## 5. Weak-to-Strong Generalization Finding\n\nProbes trained on low-resource languages outperform on projected high-resource languages. Specific evidence shows:\n- English effective dimensionality reduced from **116 to 87** when projected onto Khmer subspace\n- English participation ratio decreased from **26.26 to 19.29**\n- Khmer's compact representation (103 effective dimensionality) acts as regularization, removing superfluous features\n\n## 6. Fine-Tuning Section Details\n\n**Models fine-tuned**: Llama-3.1-8B, Qwen2.5 (7B to 72B)\n\n**Training data**: Question translation pairs from SeaRefuse (Khmer-English, Lao-English, etc.) without answerability labels\n\n**Specific improvements**:\n- Qwen2.5-7B: **+2.3%** average gain in optimal layer, achieving **88%** average accuracy\n- Llama-3.1-8B: **>10%** improvement in upper layers when fine-tuned on Khmer-Thai or Lao-English pairs\n- Unexpected Chinese enhancement observed when fine-tuning on low-resource pairs\n\n## 7. Appendix Coverage\n\n**10 appendices** (A-J):\n- **A**: Language-neutrality validation for SeaRefuse dataset\n- **B**: Full transferability results across model families\n- **C**: Post-SFT transferability pattern changes\n- **D**: Complete visualization of self-defense patterns\n- **E**: FreshQAParallel construction methodology\n- **F**: SeaRefuse dataset construction details\n- **G**: Additional SeaRefuse results\n- **H**: Extra FreshQAParallel findings\n- **I**: Non-parallel approximation for mean-shifting\n- **J**: Pooling method comparisons\n\n## 8. Related Work Coverage\n\nThe related work addresses two main areas:\n\n**Knowledge Boundaries of LLMs** cites representational approaches distinguishing \"prompt-agnostic knowledge, prompt-sensitive knowledge, and unknown knowledge,\" noting prior work largely limited to English or single language pairs.\n\n**Multilingualism in LLMs** discusses language-specific neurons, anchor language processing in middle layers, and cross-lingual improvement patterns, citing that question translation fine-tuning boosts multilingual performance even for non-fine-tuned languages."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aeea9ce0-5d12-4cdf-b935-1beaf88774c3",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "358a05c9-b187-4d67-a568-2bec58f5214e",
+            "sourceToolAssistantUUID": "aeea9ce0-5d12-4cdf-b935-1beaf88774c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T13:57:47.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011ctbGdsMjaoKsmverH6wbx",
+              "type": "tool_result",
+              "content": "# CCPS Research Paper: Key Details\n\n## 1. Introduction Paragraph Structure\n\nThe introduction contains **4 paragraphs**:\n\n- **P1**: Establishes the problem of miscalibration in LLMs and its consequences in high-stakes domains\n- **P2**: Reviews existing approaches to confidence estimation and identifies gaps in achieving multiple desirable properties simultaneously\n- **P3**: Introduces CCPS methodology and its core premise about representational stability\n- **P4**: Summarizes key contributions including improvements in calibration metrics and cross-architecture generalizability\n\n## 2. Figure 1 Visual Layout\n\nFigure 1 illustrates three sequential stages:\n\n**Stage 1 (Left)**: Token-level perturbation shown as \"a hidden state vector moving along an adversarial direction d(i) with increasing magnitudes ϵs represented by progressively darker shades\"\n\n**Stage 2 (Middle)**: Feature extraction depicting \"original state characteristics, perturbation stability indicators, and trajectory divergence statistics derived from the perturbation trajectory\"\n\n**Stage 3 (Right)**: Classification architecture showing \"feature projection network (EMC/OE) processing the feature vector, followed by classification head (C) outputting final confidence score P(True)\"\n\nThe diagram uses arrows indicating directional flow and boxes representing computational stages.\n\n## 3. ALL Baseline Methods\n\n1. **P(True)**: LLM self-evaluates correctness via uncertainty query; \"no additional training\" required\n2. **P(IK)** (\"I Know\"): \"Lightweight classifier head on hidden state representation to predict correctness before generation\"\n3. **Logit Temperature Scaling (LTS)**: \"Post-hoc adjustment using learned temperature parameter applied to logits\"\n4. **Instruction Tuning (IT)**: Model fine-tuned with instructions for uncertainty estimation\n5. **SAPLMA** (3 variants): \"Trains auxiliary linear classifier on hidden layer activations\"; tested at different layers (SAPLMA-F, SAPLMA-M, SAPLMA-UM)\n6. **Calibration-Tuning (CT)**: \"Fine-tuning using LoRA on P(True) self-evaluation, achieving strong ECE\"\n7. **LitCab**: \"Lightweight approach training single linear layer to predict bias term added to output logits\"\n\n## 4. Table 1: CCPS vs Best Baseline Numbers\n\n**MMLU-CHOICE (Meta-Llama-3.1-8B)**\n- ECE: CCPS 6.5% vs LitCab 10.9%\n- Brier: CCPS 17.1 vs CT 21.1\n- AUROC: CCPS 77.1% vs CT 62.8%\n\n**MMLU-CHOICE (Qwen2.5-14B)**\n- ECE: CCPS 6.3% vs LitCab 45.6%\n- Brier: CCPS 13.1 vs CT 17.0\n- AUROC: CCPS 81.6% vs LitCab 65.3%\n\n**MMLU-PRO-CHOICE (Mistral-Small-24B)**\n- ECE: CCPS 4.5% vs CT 17.8%\n- AUCPR: CCPS 79.5% vs CT 60.1%\n- AUROC: CCPS 77.2% vs LitCab 60.1%\n\n**MMLU-OE (Mistral-Small-24B)**\n- ECE: CCPS 6.8% vs CT 10.8%\n- Brier: CCPS 20.8 vs LitCab 24.6\n- AUROC: CCPS 71.4% vs CT 68.2%\n\n## 5. Ablation Studies Conducted\n\n**K.1 - Token Importance**: \"Token Masking Impact Analysis demonstrates model prioritizes semantically meaningful tokens over grammatical filler words\"\n\n**K.2 - Self-Consistency Comparison**: \"CCPS consistently outperforms Self-Consistency baseline, particularly in calibration\"\n\n**K.3 - Feature Contributions**: \"Perturbation-derived features are dominant drivers of CCPS performance, especially on difficult tasks\"\n\n**K.4 - SHAP Feature Importance**: \"Original entropy and margin metrics after perturbation rank among top influential features; epsilon-to-flip consistently contributes positively\"\n\n**K.5 - Leave-One-Out Ablation**: \"Comprehensive feature importance quantification showing relative contribution of each feature dimension\"\n\n## 6. Additional Appendix Figures\n\nThe document lists figures but only Figure 1 is explicitly described with visual details. Additional results include:\n- **J.3 - Calibration Curves**: Per-dataset visualization of predicted vs. actual calibration\n- **J.2 - Per-LLM Bar Charts**: Comparative performance across models\n- **J.1 - Aggregate Performance Tables**: Detailed metric breakdowns by dataset\n\n## 7. Perturbation Mechanism Details\n\n**Hyperparameters**: \"ϵmax=20.0, S=5 (fixed across all models and benchmarks)\"\n\n**Rationale**: \"ϵmax=20.0 was practical upper bound where output integrity degraded; S=5 pragmatic trade-off between trajectory dynamics and computational cost\"\n\n**Process**: Normalized Jacobian vector d(i) computed as \"J(i)/||J(i)||2\" where \"J(i)=∇H0(i)ℒ(i)\" representing gradient of negative log-likelihood\n\n**Steps**: \"ϵs = s·(ϵmax/S)\" for s∈{1,...,S} creating \"trajectory of hidden states and resulting output distributions\"\n\n## 8. Feature Extraction: 75-Feature Computation\n\n**Structure**: \"Df=75 per token derived from 30 base metric definitions; 15 scalar values + 60 from statistical summaries (mean, std, min, max) of 15 base metrics across perturbation trajectory\"\n\n**Four Categories**:\n\n1. **Original State** (12 features): \"Measures output probabilities, logits, entropy, prediction margins, vector norms prior to perturbation\"\n\n2. **Overall Perturbation** (3 features): \"L2 norm of Jacobian, epsilon-to-flip token, Perturbation Energy Integral (PEI) summarizing impact on log-probability\"\n\n3. **Perturbed State** (15 base metrics with 4 stats each=60): \"Statistical summaries of token probabilities, entropy, margins across S perturbation steps\"\n\n4. **Comparison Features** (15 base metrics with 4 stats each=60): \"KL divergence, Jensen-Shannon, cosine similarities between original and perturbed distributions\"\n\n## 9. Training Procedure for Classifier\n\n**Pre-training Stage** (5,000 steps):\n- Loss: \"Max-Margin contrastive loss\" encouraging \"distance between correct and incorrect answer embeddings to exceed margin γ>0\"\n- Architecture: \"Feature projection networks (EMC for multiple-choice, EOE for open-ended)\"\n- Objective: \"Maps features from correctly answered questions to separable embedding space\"\n\n**Fine-tuning Stage** (5,000 steps):\n- Loss: \"Standard cross-entropy loss\"\n- Components: \"Projection network and classification head jointly trained\"\n- Input: \"Embedding e passed to MLP classification head C outputting 2-dimensional logit vector\"\n- Output: \"Final confidence via softmax applied to classification logits\"\n\n**Common Hyperparameters**: \"Learning rate 1×10⁻⁴, batch size 32, weight decay 0.1 with AdamW optimizer\"\n\n## 10. Related Work Categories\n\n**Category 1 - Calibration in LLMs**: Distinguishes between \"next-token prediction calibration reducing hallucinations\" vs. \"explicit confidence estimation mechanisms assessing statement correctness\"\n\n**Category 2 - Confidence Estimation Methods**: \"Probing internal states via auxiliary classifiers\" and \"eliciting model self-assessment through prompting\"\n\n**Category 3 - Improving Calibration**: \"Post-hoc adjustments like temperature scaling\" and \"fine-tuning approaches\" with discussion of \"trade-offs between ECE, discrimination metrics, computational efficiency, and generalization\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3728c670-f35d-4842-994a-6a893eb8cd64",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "03db1d0e-72b6-4f12-ae1f-25132584696d",
+            "sourceToolAssistantUUID": "3728c670-f35d-4842-994a-6a893eb8cd64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T13:57:51.336Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me ensure the distill_tmp directory exists and create both YAML files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03db1d0e-72b6-4f12-ae1f-25132584696d",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwNqYuv6vC5nU3BrPHG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "84537b29-8047-491a-8d37-706e2c7909a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MMNYZHrSJQ5KCZqQf94pqT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3639,
+                "cache_read_input_tokens": 27556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3639,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T13:57:52.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GRkPVJBqF8rTGk8qiTjQzk",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp",
+                "description": "Create distill_tmp directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84537b29-8047-491a-8d37-706e2c7909a9",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwNqYuv6vC5nU3BrPHG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2d31b9fd-bf99-4b39-b45f-889f6558da78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MMNYZHrSJQ5KCZqQf94pqT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3639,
+                "cache_read_input_tokens": 27556,
+                "output_tokens": 129,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3639
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 129,
+                    "cache_read_input_tokens": 27556,
+                    "cache_creation_input_tokens": 3639,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3639,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T13:57:52.956Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GRkPVJBqF8rTGk8qiTjQzk",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d31b9fd-bf99-4b39-b45f-889f6558da78",
+            "isSidechain": true,
+            "promptId": "73a8419d-1132-4781-8ce1-e569bf1d4da1",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "b64e4fb2-42da-4c89-baca-ab5e19bb5feb",
+            "sourceToolAssistantUUID": "2d31b9fd-bf99-4b39-b45f-889f6558da78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T13:59:12.389Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M9WXKvbNVY24gkqxHAkyXC",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/xiao2025knowledge.yaml",
+                "content": "paper_key: \"xiao2025knowledge\"\ntitle: \"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations\"\nvenue: \"ACL 2025\"\nfull_text_available: true\n\nresearch:\n  baselines:\n    - \"Vanilla probing (no alignment)\"\n    - \"Mean shifting alignment\"\n    - \"Linear projection alignment\"\n    - \"Full-parameter fine-tuning\"\n    - \"LoRA fine-tuning\"\n  metrics:\n    - {name: \"Probing accuracy (ID)\", direction: \"higher_better\"}\n    - {name: \"Probing accuracy (OOD / cross-lingual transfer)\", direction: \"higher_better\"}\n    - {name: \"Effective dimensionality\", direction: \"analysis_metric\"}\n    - {name: \"Participation ratio\", direction: \"analysis_metric\"}\n  datasets:\n    - {name: \"FreshQAParallel\", size: \"9,600 test samples, 8 languages, true/false premise questions\"}\n    - {name: \"SeaRefuse\", size: \"64,075 train + 6,000 test, 5 languages, answerable/unanswerable entity-centric questions\"}\n    - {name: \"TrueFalseMultiLang\", size: \"48,680 test samples, 8 languages, translated true/false statements\"}\n  ablation_dimensions:\n    - \"Layer depth (all layers probed independently)\"\n    - \"Source vs. target language (8x8 transfer matrix)\"\n    - \"Alignment method (vanilla / mean-shift / linear projection)\"\n    - \"Language resource level (high / mid / low)\"\n    - \"Pooling method (mean vs. last-token)\"\n    - \"Parallel vs. non-parallel data for mean shifting\"\n    - \"Fine-tuning language pair selection\"\n    - \"Model scale (7B / 14B / 72B)\"\n  training_recipe:\n    optimizer: \"AdamW (implied by standard HuggingFace SFT pipeline)\"\n    lr: \"1e-5 (full parameter), 1e-4 (LoRA rank 32, alpha 64)\"\n    batch_size: \"global batch size 512\"\n    hardware: \"4 nodes x 32 A800 80G GPUs for 72B model, DeepSpeed ZeRO-3\"\n    probing: \"k x m linear classifiers (k layers, m languages), last-token representations\"\n  method_family: \"Representation probing + training-free cross-lingual alignment (mean shift / linear projection)\"\n\npositioning:\n  core_claim: \"LLMs encode knowledge boundary perception in middle-to-upper layers with a linear cross-lingual structure, enabling training-free transfer of boundary recognition across languages via simple mean shifting or linear projection.\"\n  key_results: >\n    Linear projection nearly closes the ID-OOD gap (e.g., Thai 88.31%, Malay 88.64% after projection vs ~80% vanilla OOD).\n    Weak-to-strong: Khmer probes outperform on projected high-resource languages.\n    English effective dimensionality drops from 116 to 87 when projected onto Khmer subspace.\n    Fine-tuning: Qwen2.5-7B +2.3% average; Llama-3.1-8B >10% in upper layers.\n    Expression gap: false-premise hints improve generation by 24.49% (Vietnamese) and 17.69% (Malay) on Qwen2.5.\n  limitations:\n    - \"Cannot track how knowledge boundary representations evolve during the generation/reasoning process\"\n    - \"Unable to locate the 'aha moment' when LLMs become aware of knowledge boundaries during chain-of-thought\"\n    - \"Probing only captures static representations at inference time, not dynamic generation behavior\"\n    - \"Focus on Southeast Asian languages; generalization to other language families not fully explored\"\n  relation_to_us: \"foundation\"\n\nnarrative:\n  story_type: \"突破局限型\"\n  hook: >\n    Opens with the critical problem that understanding LLM knowledge boundaries is crucial for preventing\n    hallucination, then immediately highlights the research gap: prior work focused almost exclusively on English,\n    leaving cross-lingual knowledge boundary cognition unexplored.\n  tension: >\n    Existing knowledge boundary research is monolingual (English-centric). Low-resource languages suffer worse\n    calibration, and we don't know whether LLMs even perceive knowledge boundaries consistently across languages.\n    This creates a fundamental reliability gap for multilingual deployment.\n  key_insight: >\n    Revealed in Section 3-4 through layer-wise probing: knowledge boundary representations converge in middle-upper\n    layers AND follow a linear cross-lingual structure. This linearity is the pivotal insight enabling training-free\n    transfer. Further deepened by the weak-to-strong finding where low-resource probes outperform on projected\n    high-resource languages (Section 5).\n  argument_chain: >\n    Problem (cross-lingual knowledge boundary perception unknown) ->\n    Dataset construction (3 multilingual benchmarks) ->\n    Layer-wise probing reveals middle-upper layer convergence ->\n    Cross-lingual transfer matrices reveal linear structure ->\n    Training-free alignment (mean shift + linear projection) nearly closes gap ->\n    Weak-to-strong generalization provides geometric explanation ->\n    Fine-tuning further enhances boundaries + discovers self-defense mechanism ->\n    Validation across models (Qwen, Llama) and scales (7B-72B)\n  contribution_framing: >\n    Three-fold contribution framed as empirical discovery + practical method + resource release:\n    (1) layer encoding discovery, (2) linear structure enabling training-free transfer,\n    (3) fine-tuning enhancement with self-defense mechanism.\n    Datasets and code released as community resource.\n  intro_structure: >\n    4 paragraphs: P1 establishes hallucination prevention motivation and English-centric gap;\n    P2 introduces cross-lingual internal representation analysis as the research approach;\n    P3 summarizes three key empirical findings (layer location, linear structure, fine-tuning effects);\n    P4 states three-fold contributions and mentions dataset/code release.\n  notable_technique: >\n    The \"weak-to-strong generalization\" narrative is remarkably effective: low-resource language probes\n    outperforming on high-resource languages after projection is a counter-intuitive result that creates\n    a memorable finding. The geometric explanation (effective dimensionality reduction as regularization)\n    provides satisfying mechanistic understanding. Also, the \"self-defense mechanism\" where fine-tuning\n    on Khmer-English unexpectedly enhances Chinese representations is a striking emergent finding.\n\nfigures:\n  figure_count: 14\n  figure1:\n    type: \"motivation\"\n    description: >\n      Schematic diagram illustrating the research goal. Left side shows the overall objective of analyzing\n      LLMs' knowledge boundary cognition across languages. Right side visualizes actual internal representations\n      when the model encodes known vs. unknown questions in English and Lao, showing the representation space\n      where knowledge boundaries are encoded.\n    narrative_role: >\n      Frames the entire research question visually: do LLMs perceive knowledge boundaries similarly across\n      languages? The right-side visualization immediately hints at the linear separability finding.\n    design_elements:\n      - \"Split layout: conceptual goal (left) vs. concrete evidence (right)\"\n      - \"Bilingual representation visualization (English + Lao)\"\n      - \"Known vs. unknown question distinction in representation space\"\n    visual_style: >\n      Clean schematic with conceptual diagram on left and data-driven visualization on right.\n      Uses spatial separation to show knowledge boundary encoding across two languages.\n  result_figures:\n    - figure_id: \"Figure 2\"\n      viz_type: \"line_plot\"\n      what_compared: \"In-distribution vs. OOD probing accuracy across all layers for three alignment methods (vanilla, mean-shift, linear projection), averaged over all languages\"\n      how_gain_highlighted: \"Gap between ID and OOD curves shows alignment effectiveness; linear projection curve nearly overlaps ID curve in middle-upper layers\"\n      design_note: \"Layer-wise line plot is the canonical visualization for probing studies; showing all three methods on same axes enables direct gap comparison\"\n    - figure_id: \"Figure 3\"\n      viz_type: \"heatmap\"\n      what_compared: \"8x8 language transfer matrices at layer 3 (worst) vs. layer 19 (best) of Qwen2.5-7B\"\n      how_gain_highlighted: \"Side-by-side heatmaps make the dramatic improvement from layer 3 to layer 19 visually striking; diagonal (ID) vs off-diagonal (OOD) contrast\"\n      design_note: \"Paired heatmaps at contrasting layers is an effective way to show layer depth matters; language ordering enables resource-level pattern reading\"\n    - figure_id: \"Figure 5\"\n      viz_type: \"line_plot\"\n      what_compared: \"Khmer probe performance on multiple languages after linear projection across layers — shows weak-to-strong generalization\"\n      how_gain_highlighted: \"Lines for high-resource languages exceed the Khmer self-performance line, visually demonstrating the counter-intuitive weak-to-strong effect\"\n      design_note: \"Highlighting one source language's transfer to all targets in a single plot isolates the weak-to-strong phenomenon cleanly\"\n  ablation_figures:\n    - figure_id: \"Figure 4\"\n      viz_type: \"scatter_3d\"\n      dimensions_varied: [\"language axis\", \"topic-aware truth axis\", \"binary truth axis\"]\n      design_note: >\n        Three panels of the same 3D scatter plot with different ground-truth label colorings (language, topic,\n        truth value). Demonstrates language-neutral encoding by showing truth/falsity separates via a\n        near-horizontal hyperplane independent of language and topic. The triple-view approach is a clever\n        way to show multi-dimensional structure without overwhelming the reader.\n    - figure_id: \"Figure 6\"\n      viz_type: \"line_plot\"\n      dimensions_varied: [\"layer depth\", \"language (Chinese enhanced after Khmer-English SFT)\"]\n      design_note: \"Shows the self-defense mechanism: fine-tuning on Khmer-English unexpectedly boosts Chinese representations. Line plot across layers reveals the phenomenon is layer-specific.\"\n  figure_narrative_role: >\n    Figure 1 (motivation: what we study) ->\n    Figure 2 (core finding: layer-wise convergence + alignment effectiveness) ->\n    Figure 3 (detail: language-pair transfer matrices at extreme layers) ->\n    Figure 4 (geometric insight: LDA reveals language-neutral linear structure) ->\n    Figure 5 (surprising finding: weak-to-strong generalization) ->\n    Figure 6 (emergent finding: self-defense mechanism from fine-tuning).\n    Progression from \"what\" to \"how well\" to \"why\" to \"surprising implications.\"\n\ntables:\n  table_count: 6\n  main_result_table:\n    table_id: \"Table 2\"\n    row_axis: \"models x conditions (baseline vs. false-premise hinted)\"\n    col_axis: \"8 languages (en, zh, vi, th, id, ms, km, lo)\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_language\"\n    highlight_strategy: \"Percentage values with computed gains; largest gains highlighted in text discussion\"\n    statistical_reporting: \"Raw accuracy percentages without confidence intervals\"\n    num_baselines: 2\n    design_note: >\n      Table 2 focuses on the expression gap between internal knowledge and generation behavior.\n      The baseline-vs-hinted comparison is more insightful than a typical method comparison table\n      because it reveals how much knowledge the model possesses but fails to express.\n      The cross-lingual breakdown reveals language-specific expression gaps (Vietnamese 24.49% gain).\n  ablation_tables:\n    - table_id: \"Table 3\"\n      what_varied: [\"Language (English vs. Khmer)\", \"Original vs. projected representations\"]\n      variation_style: \"full_numbers\"\n      design_note: >\n        Effective dimensionality and participation ratio before/after projection.\n        Compact 2x4 table delivers the geometric explanation for weak-to-strong:\n        English dimensionality drops 116->87 while Khmer stays 103->97, showing\n        projection acts as regularization on high-resource representations.\n    - table_id: \"Table 5\"\n      what_varied: [\"Parallel vs. non-parallel data for mean-shifting\", \"Layer depth\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Demonstrates that non-parallel data approximation achieves comparable results to parallel data (86.48% vs 86.56% at layer 18), making the method more practical.\"\n    - table_id: \"Table 6\"\n      what_varied: [\"Pooling method (mean vs. last-token)\"]\n      variation_style: \"full_numbers\"\n      design_note: \"Simple 2x2 ablation showing last-token pooling is substantially better for OOD transfer (83.95% vs 79.52%), justifying the design choice.\"\n  supplementary_tables:\n    in_appendix: true\n    content: >\n      Table 1 (dataset statistics), Table 4 (SeaRefuse transfer accuracy before/after fine-tuning),\n      Table 5 (parallel vs non-parallel mean-shifting), Table 6 (pooling ablation).\n      Appendices contain full transferability matrices for all model-layer-language combinations.\n    reason: >\n      Main text focuses on key findings with representative examples; full numerical results\n      for all language pairs and layers moved to appendix to avoid overwhelming the main narrative.\n      Appendix supports reproducibility while main text maintains readability.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b64e4fb2-42da-4c89-baca-ab5e19bb5feb",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwPGjjXXQis8xx4hPUR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "97382da5-5fef-4727-ba89-224bc5a63b38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FJGYQ9p2M3S1fKSMdzmL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 147,
+                "cache_read_input_tokens": 31195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 147,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T13:59:12.414Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M9WXKvbNVY24gkqxHAkyXC",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/xiao2025knowledge.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97382da5-5fef-4727-ba89-224bc5a63b38",
+            "isSidechain": true,
+            "promptId": "c069f5d9-281e-4ded-bd00-cc64fb8c3fe2",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "d164d673-327b-4a5a-a1bd-b56f0f0e4288",
+            "sourceToolAssistantUUID": "97382da5-5fef-4727-ba89-224bc5a63b38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T14:00:12.172Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014cGVDHobyvDUQjmAG6ob5p",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/khanmohammadi2025ccps.yaml",
+                "content": "paper_key: \"khanmohammadi2025ccps\"\ntitle: \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS)\"\nvenue: \"EMNLP 2025\"\nfull_text_available: true\n\nresearch:\n  baselines:\n    - \"P(True) — LLM self-evaluates correctness via uncertainty query, no additional training\"\n    - \"P(IK) — Lightweight classifier head on hidden state to predict correctness before generation\"\n    - \"Logit Temperature Scaling (LTS) — Post-hoc temperature parameter on logits\"\n    - \"Instruction Tuning (IT) — Model fine-tuned with uncertainty estimation instructions\"\n    - \"SAPLMA-F / SAPLMA-M / SAPLMA-UM — Auxiliary linear classifier on hidden layer activations at different layers\"\n    - \"Calibration-Tuning (CT) — LoRA fine-tuning on P(True) self-evaluation\"\n    - \"LitCab — Lightweight single linear layer predicting bias term added to output logits\"\n  metrics:\n    - {name: \"ECE (Expected Calibration Error)\", direction: \"lower_better\"}\n    - {name: \"Brier Score\", direction: \"lower_better\"}\n    - {name: \"ACC (Accuracy)\", direction: \"higher_better\"}\n    - {name: \"AUCPR (Area Under Precision-Recall Curve)\", direction: \"higher_better\"}\n    - {name: \"AUROC (Area Under ROC Curve)\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"CT-CHOICE (training)\", size: \"18,650 samples, multiple-choice format\"}\n    - {name: \"CT-OE (training)\", size: \"18,534 samples, open-ended format\"}\n    - {name: \"MMLU-CHOICE (evaluation)\", size: \"14,042 samples, 57 tasks\"}\n    - {name: \"MMLU-PRO-CHOICE (evaluation)\", size: \"12,032 samples, 14 tasks\"}\n    - {name: \"MMLU-OE (evaluation)\", size: \"14,042 samples, open-ended format\"}\n  ablation_dimensions:\n    - \"Token importance (masking semantically meaningful vs. filler tokens)\"\n    - \"Self-consistency comparison\"\n    - \"Feature contributions (perturbation-derived vs. original state features)\"\n    - \"SHAP feature importance analysis\"\n    - \"Leave-one-out feature ablation\"\n    - \"Perturbation hyperparameters (epsilon_max, S)\"\n  training_recipe:\n    optimizer: \"AdamW\"\n    lr: \"1e-4\"\n    batch_size: 32\n    weight_decay: 0.1\n    total_steps: \"10,000 (5,000 pre-training + 5,000 fine-tuning)\"\n    pre_training_loss: \"Max-margin contrastive loss\"\n    fine_tuning_loss: \"Cross-entropy loss\"\n    hardware: \"Not explicitly specified\"\n    perturbation_params: \"epsilon_max=20.0, S=5 perturbation steps\"\n  method_family: \"Representation perturbation probing + lightweight classifier for confidence estimation\"\n\npositioning:\n  core_claim: \"Internal representational stability under adversarial perturbations is a strong signal for LLM confidence: stable representations indicate correct answers while unstable ones indicate errors, enabling 55% ECE reduction over strongest baselines.\"\n  key_results: >\n    MMLU-CHOICE: ECE 5.8-6.5% (vs. LitCab 10.9-45.6%, CT 8.2-45.2%); AUROC 77.1-83.3%.\n    MMLU-PRO-CHOICE: ECE 4.2-4.5% (vs. CT 17.8-38.0%); consistent across all 4 LLMs.\n    MMLU-OE: ECE 6.7-8.7%.\n    Overall: ~55% ECE reduction, ~21% Brier reduction, +5pp accuracy, +4pp AUCPR, +6pp AUROC\n    relative to strongest prior method.\n    Generalizes across Llama-8B, Qwen-14B, Mistral-24B, Qwen-32B.\n  limitations:\n    - \"Computational cost of Jacobian calculation and perturbation processing for each response token\"\n    - \"Requires access to model internals (hidden states, gradients)\"\n    - \"Perturbation hyperparameters (epsilon_max, S) may need retuning for different models or tasks\"\n    - \"Feature effectiveness relies on meaningfulness of base LLM's internal representations\"\n  relation_to_us: \"complementary\"\n\nnarrative:\n  story_type: \"突破局限型\"\n  hook: >\n    Opens with the high-stakes framing: LLM miscalibration undermines reliability in critical applications\n    (healthcare, legal, finance). Establishes that existing confidence estimation methods fail to simultaneously\n    achieve good calibration AND discrimination.\n  tension: >\n    Current methods face a trade-off: prompting-based approaches (P(True), P(IK)) are simple but poorly\n    calibrated; fine-tuning approaches (CT, LitCab) improve ECE but sacrifice discrimination (AUROC/AUCPR);\n    probing methods (SAPLMA) use static representations that miss dynamic confidence signals.\n    No method achieves both calibration and discrimination well.\n  key_insight: >\n    Section 3 introduces the core insight: rather than probing static representations, perturb them\n    adversarially and measure stability. The intuition is that correct answers have robust representations\n    (stable under perturbation) while incorrect answers have fragile representations (unstable).\n    This converts a binary classification problem into a rich feature extraction problem with 75 dimensions\n    capturing perturbation trajectories.\n  argument_chain: >\n    Problem (calibration-discrimination trade-off) ->\n    Insight (representational stability encodes confidence) ->\n    Method (3-stage pipeline: perturb, extract features, classify) ->\n    Comprehensive evaluation (4 LLMs x 3 benchmarks x 2 formats) ->\n    Superior calibration AND discrimination simultaneously ->\n    Ablation confirms perturbation features drive gains ->\n    Generalization across architectures and scales\n  contribution_framing: >\n    Four contributions explicitly listed:\n    (1) novel framework (model-agnostic, parameter-efficient, scalable),\n    (2) substantial metric improvements (both calibration and discrimination),\n    (3) cross-architecture generalizability evidence,\n    (4) extensive benchmarking on MMLU/MMLU-Pro in both MC and OE formats.\n    Framing emphasizes practical properties (agnostic, efficient, scalable) alongside empirical strength.\n  intro_structure: >\n    4 paragraphs: P1 frames miscalibration problem in high-stakes domains;\n    P2 reviews existing approaches and identifies the calibration-discrimination gap;\n    P3 introduces CCPS methodology (perturbation stability as confidence signal);\n    P4 lists four contributions with specific quantitative claims (55% ECE reduction, etc.).\n  notable_technique: >\n    The \"stability under perturbation\" framing is highly intuitive and memorable: correct answers are\n    robust, wrong answers are fragile. This physical/mechanical metaphor makes a complex method feel\n    natural. The quantitative headline (\"55% ECE reduction\") in the contribution statement is attention-\n    grabbing. The extensive benchmarking across 4 LLMs x 3 datasets x 2 formats provides unusually\n    comprehensive evidence that pre-empts generalizability concerns.\n\nfigures:\n  figure_count: 1\n  figure1:\n    type: \"method_overview\"\n    description: >\n      Three-stage pipeline diagram showing the CCPS methodology. Stage 1 (left): token-level perturbation\n      where a hidden state vector moves along adversarial direction d(i) with increasing magnitudes\n      (epsilon_s values shown as progressively darker shades). Stage 2 (middle): feature extraction\n      producing a 75-dimensional feature vector f(i) from original state characteristics, perturbation\n      stability indicators, and trajectory divergence statistics. Stage 3 (right): classification\n      architecture with separate projection networks for multiple-choice (EMC) and open-ended (EOE)\n      formats, followed by classification head (C) outputting confidence P(True).\n    narrative_role: >\n      Serves as the single visual anchor for understanding the entire method. Placed at the beginning\n      of Section 3, it provides a roadmap that the reader refers back to throughout the method description.\n      The three-stage decomposition makes a complex pipeline digestible.\n    design_elements:\n      - \"Sequential three-stage horizontal layout (left to right flow)\"\n      - \"Perturbation trajectory visualization with gradient shading for epsilon magnitudes\"\n      - \"Clear input/output labeling at each stage boundary\"\n      - \"Separate branches for MC vs OE classification architectures\"\n    visual_style: >\n      Clean flowchart with boxes representing computational stages connected by arrows.\n      Uses progressive darkening of shades to represent increasing perturbation magnitudes.\n      Horizontal left-to-right flow emphasizes the pipeline nature.\n      Mathematical notation (H_0, H_s, Z_s, f, e) annotated at key points.\n  result_figures: []\n  ablation_figures: []\n  figure_narrative_role: >\n    Only Figure 1 in main text — serves as method overview. All quantitative results presented\n    exclusively through tables. Appendix contains calibration curves and per-task breakdowns\n    but the main paper is table-heavy, figure-light. This is unusual for the field and reflects\n    the paper's emphasis on comprehensive numerical evidence over visual storytelling.\n\ntables:\n  table_count: 7\n  main_result_table:\n    table_id: \"Table 1\"\n    row_axis: \"methods (LitCab, CT, CCPS in main; full baselines in appendix)\"\n    col_axis: \"5 metrics (ECE, Brier, ACC, AUCPR, AUROC) x 4 LLMs, split by 3 benchmark variants\"\n    row_organization: \"by_category\"\n    col_organization: \"grouped_by_metric\"\n    highlight_strategy: \"Bold best values per method-block; directional arrows on metric headers (lower/higher better)\"\n    statistical_reporting: \"Raw percentages without confidence intervals or standard deviations\"\n    num_baselines: 9\n    design_note: >\n      Extremely comprehensive: 3 sub-tables (MMLU-CHOICE, MMLU-PRO-CHOICE, MMLU-OE) each with\n      4 LLMs x 5 metrics. Main text shows top-3 methods; full 9-baseline comparison in appendix.\n      This split keeps the main table readable while appendix provides exhaustive evidence.\n      Direction arrows on column headers (ECE down, AUROC up) aid quick reading.\n      The consistent dominance of CCPS across ALL cells is visually striking.\n  ablation_tables:\n    - table_id: \"Table 2\"\n      what_varied: [\"Feature definitions — 75 features across 4 categories\"]\n      variation_style: \"full_numbers\"\n      design_note: >\n        Feature definition table rather than traditional ablation. Lists all 75 features with\n        mathematical formulations grouped by category (original state, perturbation, perturbed state,\n        comparison). Serves as both method documentation and implicit ablation reference —\n        readers can see exactly what information the classifier uses.\n    - table_id: \"Appendix K ablation tables\"\n      what_varied: [\"Token masking\", \"Self-consistency comparison\", \"Feature contributions\", \"SHAP analysis\", \"Leave-one-out\"]\n      variation_style: \"full_numbers\"\n      design_note: >\n        Five separate ablation analyses in appendix. The SHAP analysis and leave-one-out are\n        particularly thorough — they go beyond typical checkmark ablation to provide feature-level\n        importance quantification. Perturbation-derived features confirmed as dominant drivers.\n  supplementary_tables:\n    in_appendix: true\n    content: >\n      Tables 3-4 (MMLU and MMLU-Pro task lists with sample sizes),\n      Table 5 (system prompts for response generation),\n      Table 6 (GPT-4o-mini grading prompts for open-ended evaluation),\n      Table 7 (correct/incorrect distribution across all datasets and models),\n      Full baseline comparison tables (all 9 methods),\n      Per-task performance breakdowns,\n      Ablation study tables (K.1-K.5).\n    reason: >\n      Main text keeps Table 1 focused on top methods for readability.\n      Appendix provides: (1) reproducibility details (prompts, distributions),\n      (2) comprehensive baselines, (3) granular per-task results,\n      (4) feature importance analysis. Extensive appendix (sections A-K)\n      signals thoroughness and provides reference material for follow-up work.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d164d673-327b-4a5a-a1bd-b56f0f0e4288",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwPGjjXXQis8xx4hPUR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ec748827-6153-4131-a5d8-f80f2a112a36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FJGYQ9p2M3S1fKSMdzmL9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 147,
+                "cache_read_input_tokens": 31195,
+                "output_tokens": 6716,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 147
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6716,
+                    "cache_read_input_tokens": 31195,
+                    "cache_creation_input_tokens": 147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 147,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T14:00:12.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014cGVDHobyvDUQjmAG6ob5p",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/khanmohammadi2025ccps.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec748827-6153-4131-a5d8-f80f2a112a36",
+            "isSidechain": true,
+            "promptId": "c069f5d9-281e-4ded-bd00-cc64fb8c3fe2",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "717e18c1-7e72-4aa2-b434-e369167418a9",
+            "sourceToolAssistantUUID": "ec748827-6153-4131-a5d8-f80f2a112a36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T14:00:14.836Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify both files are well-formed by reading them back."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "717e18c1-7e72-4aa2-b434-e369167418a9",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwZXpNThc4VbP2jZf1R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3c889170-581e-495c-826f-646131e513d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018S8aJmgJQZjWkrVU64cecA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6874,
+                "cache_read_input_tokens": 31342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6874,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T14:00:15.799Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QsW2mDnwM8uaFpka7evfrA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/xiao2025knowledge.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c889170-581e-495c-826f-646131e513d0",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwZXpNThc4VbP2jZf1R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "18246efa-4093-4f3e-8c5a-9bf9f8be921d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018S8aJmgJQZjWkrVU64cecA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6874,
+                "cache_read_input_tokens": 31342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6874,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T14:00:15.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QsW2mDnwM8uaFpka7evfrA",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"xiao2025knowledge\"\n2\ttitle: \"Analyzing LLMs' Knowledge Boundary Cognition Across Languages Through the Lens of Internal Representations\"\n3\tvenue: \"ACL 2025\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines:\n8\t    - \"Vanilla probing (no alignment)\"\n9\t    - \"Mean shifting alignment\"\n10\t    - \"Linear projection alignment\"\n11\t    - \"Full-parameter fine-tuning\"\n12\t    - \"LoRA fine-tuning\"\n13\t  metrics:\n14\t    - {name: \"Probing accuracy (ID)\", direction: \"higher_better\"}\n15\t    - {name: \"Probing accuracy (OOD / cross-lingual transfer)\", direction: \"higher_better\"}\n16\t    - {name: \"Effective dimensionality\", direction: \"analysis_metric\"}\n17\t    - {name: \"Participation ratio\", direction: \"analysis_metric\"}\n18\t  datasets:\n19\t    - {name: \"FreshQAParallel\", size: \"9,600 test samples, 8 languages, true/false premise questions\"}\n20\t    - {name: \"SeaRefuse\", size: \"64,075 train + 6,000 test, 5 languages, answerable/unanswerable entity-centric questions\"}\n21\t    - {name: \"TrueFalseMultiLang\", size: \"48,680 test samples, 8 languages, translated true/false statements\"}\n22\t  ablation_dimensions:\n23\t    - \"Layer depth (all layers probed independently)\"\n24\t    - \"Source vs. target language (8x8 transfer matrix)\"\n25\t    - \"Alignment method (vanilla / mean-shift / linear projection)\"\n26\t    - \"Language resource level (high / mid / low)\"\n27\t    - \"Pooling method (mean vs. last-token)\"\n28\t    - \"Parallel vs. non-parallel data for mean shifting\"\n29\t    - \"Fine-tuning language pair selection\"\n30\t    - \"Model scale (7B / 14B / 72B)\"\n31\t  training_recipe:\n32\t    optimizer: \"AdamW (implied by standard HuggingFace SFT pipeline)\"\n33\t    lr: \"1e-5 (full parameter), 1e-4 (LoRA rank 32, alpha 64)\"\n34\t    batch_size: \"global batch size 512\"\n35\t    hardware: \"4 nodes x 32 A800 80G GPUs for 72B model, DeepSpeed ZeRO-3\"\n36\t    probing: \"k x m linear classifiers (k layers, m languages), last-token representations\"\n37\t  method_family: \"Representation probing + training-free cross-lingual alignment (mean shift / linear projection)\"\n38\t\n39\tpositioning:\n40\t  core_claim: \"LLMs encode knowledge boundary perception in middle-to-upper layers with a linear cross-lingual structure, enabling training-free transfer of boundary recognition across languages via simple mean shifting or linear projection.\"\n41\t  key_results: >\n42\t    Linear projection nearly closes the ID-OOD gap (e.g., Thai 88.31%, Malay 88.64% after projection vs ~80% vanilla OOD).\n43\t    Weak-to-strong: Khmer probes outperform on projected high-resource languages.\n44\t    English effective dimensionality drops from 116 to 87 when projected onto Khmer subspace.\n45\t    Fine-tuning: Qwen2.5-7B +2.3% average; Llama-3.1-8B >10% in upper layers.\n46\t    Expression gap: false-premise hints improve generation by 24.49% (Vietnamese) and 17.69% (Malay) on Qwen2.5.\n47\t  limitations:\n48\t    - \"Cannot track how knowledge boundary representations evolve during the generation/reasoning process\"\n49\t    - \"Unable to locate the 'aha moment' when LLMs become aware of knowledge boundaries during chain-of-thought\"\n50\t    - \"Probing only captures static representations at inference time, not dynamic generation behavior\"\n51\t    - \"Focus on Southeast Asian languages; generalization to other language families not fully explored\"\n52\t  relation_to_us: \"foundation\"\n53\t\n54\tnarrative:\n55\t  story_type: \"突破局限型\"\n56\t  hook: >\n57\t    Opens with the critical problem that understanding LLM knowledge boundaries is crucial for preventing\n58\t    hallucination, then immediately highlights the research gap: prior work focused almost exclusively on English,\n59\t    leaving cross-lingual knowledge boundary cognition unexplored.\n60\t  tension: >\n61\t    Existing knowledge boundary research is monolingual (English-centric). Low-resource languages suffer worse\n62\t    calibration, and we don't know whether LLMs even perceive knowledge boundaries consistently across languages.\n63\t    This creates a fundamental reliability gap for multilingual deployment.\n64\t  key_insight: >\n65\t    Revealed in Section 3-4 through layer-wise probing: knowledge boundary representations converge in middle-upper\n66\t    layers AND follow a linear cross-lingual structure. This linearity is the pivotal insight enabling training-free\n67\t    transfer. Further deepened by the weak-to-strong finding where low-resource probes outperform on projected\n68\t    high-resource languages (Section 5).\n69\t  argument_chain: >\n70\t    Problem (cross-lingual knowledge boundary perception unknown) ->\n71\t    Dataset construction (3 multilingual benchmarks) ->\n72\t    Layer-wise probing reveals middle-upper layer convergence ->\n73\t    Cross-lingual transfer matrices reveal linear structure ->\n74\t    Training-free alignment (mean shift + linear projection) nearly closes gap ->\n75\t    Weak-to-strong generalization provides geometric explanation ->\n76\t    Fine-tuning further enhances boundaries + discovers self-defense mechanism ->\n77\t    Validation across models (Qwen, Llama) and scales (7B-72B)\n78\t  contribution_framing: >\n79\t    Three-fold contribution framed as empirical discovery + practical method + resource release:\n80\t    (1) layer encoding discovery, (2) linear structure enabling training-free transfer,\n81\t    (3) fine-tuning enhancement with self-defense mechanism.\n82\t    Datasets and code released as community resource.\n83\t  intro_structure: >\n84\t    4 paragraphs: P1 establishes hallucination prevention motivation and English-centric gap;\n85\t    P2 introduces cross-lingual internal representation analysis as the research approach;\n86\t    P3 summarizes three key empirical findings (layer location, linear structure, fine-tuning effects);\n87\t    P4 states three-fold contributions and mentions dataset/code release.\n88\t  notable_technique: >\n89\t    The \"weak-to-strong generalization\" narrative is remarkably effective: low-resource language probes\n90\t    outperforming on high-resource languages after projection is a counter-intuitive result that creates\n91\t    a memorable finding. The geometric explanation (effective dimensionality reduction as regularization)\n92\t    provides satisfying mechanistic understanding. Also, the \"self-defense mechanism\" where fine-tuning\n93\t    on Khmer-English unexpectedly enhances Chinese representations is a striking emergent finding.\n94\t\n95\tfigures:\n96\t  figure_count: 14\n97\t  figure1:\n98\t    type: \"motivation\"\n99\t    description: >\n100\t      Schematic diagram illustrating the research goal. Left side shows the overall objective of analyzing\n101\t      LLMs' knowledge boundary cognition across languages. Right side visualizes actual internal representations\n102\t      when the model encodes known vs. unknown questions in English and Lao, showing the representation space\n103\t      where knowledge boundaries are encoded.\n104\t    narrative_role: >\n105\t      Frames the entire research question visually: do LLMs perceive knowledge boundaries similarly across\n106\t      languages? The right-side visualization immediately hints at the linear separability finding.\n107\t    design_elements:\n108\t      - \"Split layout: conceptual goal (left) vs. concrete evidence (right)\"\n109\t      - \"Bilingual representation visualization (English + Lao)\"\n110\t      - \"Known vs. unknown question distinction in representation space\"\n111\t    visual_style: >\n112\t      Clean schematic with conceptual diagram on left and data-driven visualization on right.\n113\t      Uses spatial separation to show knowledge boundary encoding across two languages.\n114\t  result_figures:\n115\t    - figure_id: \"Figure 2\"\n116\t      viz_type: \"line_plot\"\n117\t      what_compared: \"In-distribution vs. OOD probing accuracy across all layers for three alignment methods (vanilla, mean-shift, linear projection), averaged over all languages\"\n118\t      how_gain_highlighted: \"Gap between ID and OOD curves shows alignment effectiveness; linear projection curve nearly overlaps ID curve in middle-upper layers\"\n119\t      design_note: \"Layer-wise line plot is the canonical visualization for probing studies; showing all three methods on same axes enables direct gap comparison\"\n120\t    - figure_id: \"Figure 3\"\n121\t      viz_type: \"heatmap\"\n122\t      what_compared: \"8x8 language transfer matrices at layer 3 (worst) vs. layer 19 (best) of Qwen2.5-7B\"\n123\t      how_gain_highlighted: \"Side-by-side heatmaps make the dramatic improvement from layer 3 to layer 19 visually striking; diagonal (ID) vs off-diagonal (OOD) contrast\"\n124\t      design_note: \"Paired heatmaps at contrasting layers is an effective way to show layer depth matters; language ordering enables resource-level pattern reading\"\n125\t    - figure_id: \"Figure 5\"\n126\t      viz_type: \"line_plot\"\n127\t      what_compared: \"Khmer probe performance on multiple languages after linear projection across layers — shows weak-to-strong generalization\"\n128\t      how_gain_highlighted: \"Lines for high-resource languages exceed the Khmer self-performance line, visually demonstrating the counter-intuitive weak-to-strong effect\"\n129\t      design_note: \"Highlighting one source language's transfer to all targets in a single plot isolates the weak-to-strong phenomenon cleanly\"\n130\t  ablation_figures:\n131\t    - figure_id: \"Figure 4\"\n132\t      viz_type: \"scatter_3d\"\n133\t      dimensions_varied: [\"language axis\", \"topic-aware truth axis\", \"binary truth axis\"]\n134\t      design_note: >\n135\t        Three panels of the same 3D scatter plot with different ground-truth label colorings (language, topic,\n136\t        truth value). Demonstrates language-neutral encoding by showing truth/falsity separates via a\n137\t        near-horizontal hyperplane independent of language and topic. The triple-view approach is a clever\n138\t        way to show multi-dimensional structure without overwhelming the reader.\n139\t    - figure_id: \"Figure 6\"\n140\t      viz_type: \"line_plot\"\n141\t      dimensions_varied: [\"layer depth\", \"language (Chinese enhanced after Khmer-English SFT)\"]\n142\t      design_note: \"Shows the self-defense mechanism: fine-tuning on Khmer-English unexpectedly boosts Chinese representations. Line plot across layers reveals the phenomenon is layer-specific.\"\n143\t  figure_narrative_role: >\n144\t    Figure 1 (motivation: what we study) ->\n145\t    Figure 2 (core finding: layer-wise convergence + alignment effectiveness) ->\n146\t    Figure 3 (detail: language-pair transfer matrices at extreme layers) ->\n147\t    Figure 4 (geometric insight: LDA reveals language-neutral linear structure) ->\n148\t    Figure 5 (surprising finding: weak-to-strong generalization) ->\n149\t    Figure 6 (emergent finding: self-defense mechanism from fine-tuning).\n150\t    Progression from \"what\" to \"how well\" to \"why\" to \"surprising implications.\"\n151\t\n152\ttables:\n153\t  table_count: 6\n154\t  main_result_table:\n155\t    table_id: \"Table 2\"\n156\t    row_axis: \"models x conditions (baseline vs. false-premise hinted)\"\n157\t    col_axis: \"8 languages (en, zh, vi, th, id, ms, km, lo)\"\n158\t    row_organization: \"by_category\"\n159\t    col_organization: \"grouped_by_language\"\n160\t    highlight_strategy: \"Percentage values with computed gains; largest gains highlighted in text discussion\"\n161\t    statistical_reporting: \"Raw accuracy percentages without confidence intervals\"\n162\t    num_baselines: 2\n163\t    design_note: >\n164\t      Table 2 focuses on the expression gap between internal knowledge and generation behavior.\n165\t      The baseline-vs-hinted comparison is more insightful than a typical method comparison table\n166\t      because it reveals how much knowledge the model possesses but fails to express.\n167\t      The cross-lingual breakdown reveals language-specific expression gaps (Vietnamese 24.49% gain).\n168\t  ablation_tables:\n169\t    - table_id: \"Table 3\"\n170\t      what_varied: [\"Language (English vs. Khmer)\", \"Original vs. projected representations\"]\n171\t      variation_style: \"full_numbers\"\n172\t      design_note: >\n173\t        Effective dimensionality and participation ratio before/after projection.\n174\t        Compact 2x4 table delivers the geometric explanation for weak-to-strong:\n175\t        English dimensionality drops 116->87 while Khmer stays 103->97, showing\n176\t        projection acts as regularization on high-resource representations.\n177\t    - table_id: \"Table 5\"\n178\t      what_varied: [\"Parallel vs. non-parallel data for mean-shifting\", \"Layer depth\"]\n179\t      variation_style: \"full_numbers\"\n180\t      design_note: \"Demonstrates that non-parallel data approximation achieves comparable results to parallel data (86.48% vs 86.56% at layer 18), making the method more practical.\"\n181\t    - table_id: \"Table 6\"\n182\t      what_varied: [\"Pooling method (mean vs. last-token)\"]\n183\t      variation_style: \"full_numbers\"\n184\t      design_note: \"Simple 2x2 ablation showing last-token pooling is substantially better for OOD transfer (83.95% vs 79.52%), justifying the design choice.\"\n185\t  supplementary_tables:\n186\t    in_appendix: true\n187\t    content: >\n188\t      Table 1 (dataset statistics), Table 4 (SeaRefuse transfer accuracy before/after fine-tuning),\n189\t      Table 5 (parallel vs non-parallel mean-shifting), Table 6 (pooling ablation).\n190\t      Appendices contain full transferability matrices for all model-layer-language combinations.\n191\t    reason: >\n192\t      Main text focuses on key findings with representative examples; full numerical results\n193\t      for all language pairs and layers moved to appendix to avoid overwhelming the main narrative.\n194\t      Appendix supports reproducibility while main text maintains readability.\n195\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18246efa-4093-4f3e-8c5a-9bf9f8be921d",
+            "isSidechain": true,
+            "promptId": "c069f5d9-281e-4ded-bd00-cc64fb8c3fe2",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "16f59a15-c56a-4b83-8182-21b2a248d435",
+            "sourceToolAssistantUUID": "18246efa-4093-4f3e-8c5a-9bf9f8be921d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T14:00:15.968Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018uuvEKyD8eDws9DbVXMxEb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/khanmohammadi2025ccps.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16f59a15-c56a-4b83-8182-21b2a248d435",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwZXpNThc4VbP2jZf1R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b3038f01-7a68-4fd4-bd4d-87d20c019a37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018S8aJmgJQZjWkrVU64cecA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6874,
+                "cache_read_input_tokens": 31342,
+                "output_tokens": 191,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6874
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 191,
+                    "cache_read_input_tokens": 31342,
+                    "cache_creation_input_tokens": 6874,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6874,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T14:00:15.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018uuvEKyD8eDws9DbVXMxEb",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"khanmohammadi2025ccps\"\n2\ttitle: \"Calibrating LLM Confidence by Probing Perturbed Representation Stability (CCPS)\"\n3\tvenue: \"EMNLP 2025\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines:\n8\t    - \"P(True) — LLM self-evaluates correctness via uncertainty query, no additional training\"\n9\t    - \"P(IK) — Lightweight classifier head on hidden state to predict correctness before generation\"\n10\t    - \"Logit Temperature Scaling (LTS) — Post-hoc temperature parameter on logits\"\n11\t    - \"Instruction Tuning (IT) — Model fine-tuned with uncertainty estimation instructions\"\n12\t    - \"SAPLMA-F / SAPLMA-M / SAPLMA-UM — Auxiliary linear classifier on hidden layer activations at different layers\"\n13\t    - \"Calibration-Tuning (CT) — LoRA fine-tuning on P(True) self-evaluation\"\n14\t    - \"LitCab — Lightweight single linear layer predicting bias term added to output logits\"\n15\t  metrics:\n16\t    - {name: \"ECE (Expected Calibration Error)\", direction: \"lower_better\"}\n17\t    - {name: \"Brier Score\", direction: \"lower_better\"}\n18\t    - {name: \"ACC (Accuracy)\", direction: \"higher_better\"}\n19\t    - {name: \"AUCPR (Area Under Precision-Recall Curve)\", direction: \"higher_better\"}\n20\t    - {name: \"AUROC (Area Under ROC Curve)\", direction: \"higher_better\"}\n21\t  datasets:\n22\t    - {name: \"CT-CHOICE (training)\", size: \"18,650 samples, multiple-choice format\"}\n23\t    - {name: \"CT-OE (training)\", size: \"18,534 samples, open-ended format\"}\n24\t    - {name: \"MMLU-CHOICE (evaluation)\", size: \"14,042 samples, 57 tasks\"}\n25\t    - {name: \"MMLU-PRO-CHOICE (evaluation)\", size: \"12,032 samples, 14 tasks\"}\n26\t    - {name: \"MMLU-OE (evaluation)\", size: \"14,042 samples, open-ended format\"}\n27\t  ablation_dimensions:\n28\t    - \"Token importance (masking semantically meaningful vs. filler tokens)\"\n29\t    - \"Self-consistency comparison\"\n30\t    - \"Feature contributions (perturbation-derived vs. original state features)\"\n31\t    - \"SHAP feature importance analysis\"\n32\t    - \"Leave-one-out feature ablation\"\n33\t    - \"Perturbation hyperparameters (epsilon_max, S)\"\n34\t  training_recipe:\n35\t    optimizer: \"AdamW\"\n36\t    lr: \"1e-4\"\n37\t    batch_size: 32\n38\t    weight_decay: 0.1\n39\t    total_steps: \"10,000 (5,000 pre-training + 5,000 fine-tuning)\"\n40\t    pre_training_loss: \"Max-margin contrastive loss\"\n41\t    fine_tuning_loss: \"Cross-entropy loss\"\n42\t    hardware: \"Not explicitly specified\"\n43\t    perturbation_params: \"epsilon_max=20.0, S=5 perturbation steps\"\n44\t  method_family: \"Representation perturbation probing + lightweight classifier for confidence estimation\"\n45\t\n46\tpositioning:\n47\t  core_claim: \"Internal representational stability under adversarial perturbations is a strong signal for LLM confidence: stable representations indicate correct answers while unstable ones indicate errors, enabling 55% ECE reduction over strongest baselines.\"\n48\t  key_results: >\n49\t    MMLU-CHOICE: ECE 5.8-6.5% (vs. LitCab 10.9-45.6%, CT 8.2-45.2%); AUROC 77.1-83.3%.\n50\t    MMLU-PRO-CHOICE: ECE 4.2-4.5% (vs. CT 17.8-38.0%); consistent across all 4 LLMs.\n51\t    MMLU-OE: ECE 6.7-8.7%.\n52\t    Overall: ~55% ECE reduction, ~21% Brier reduction, +5pp accuracy, +4pp AUCPR, +6pp AUROC\n53\t    relative to strongest prior method.\n54\t    Generalizes across Llama-8B, Qwen-14B, Mistral-24B, Qwen-32B.\n55\t  limitations:\n56\t    - \"Computational cost of Jacobian calculation and perturbation processing for each response token\"\n57\t    - \"Requires access to model internals (hidden states, gradients)\"\n58\t    - \"Perturbation hyperparameters (epsilon_max, S) may need retuning for different models or tasks\"\n59\t    - \"Feature effectiveness relies on meaningfulness of base LLM's internal representations\"\n60\t  relation_to_us: \"complementary\"\n61\t\n62\tnarrative:\n63\t  story_type: \"突破局限型\"\n64\t  hook: >\n65\t    Opens with the high-stakes framing: LLM miscalibration undermines reliability in critical applications\n66\t    (healthcare, legal, finance). Establishes that existing confidence estimation methods fail to simultaneously\n67\t    achieve good calibration AND discrimination.\n68\t  tension: >\n69\t    Current methods face a trade-off: prompting-based approaches (P(True), P(IK)) are simple but poorly\n70\t    calibrated; fine-tuning approaches (CT, LitCab) improve ECE but sacrifice discrimination (AUROC/AUCPR);\n71\t    probing methods (SAPLMA) use static representations that miss dynamic confidence signals.\n72\t    No method achieves both calibration and discrimination well.\n73\t  key_insight: >\n74\t    Section 3 introduces the core insight: rather than probing static representations, perturb them\n75\t    adversarially and measure stability. The intuition is that correct answers have robust representations\n76\t    (stable under perturbation) while incorrect answers have fragile representations (unstable).\n77\t    This converts a binary classification problem into a rich feature extraction problem with 75 dimensions\n78\t    capturing perturbation trajectories.\n79\t  argument_chain: >\n80\t    Problem (calibration-discrimination trade-off) ->\n81\t    Insight (representational stability encodes confidence) ->\n82\t    Method (3-stage pipeline: perturb, extract features, classify) ->\n83\t    Comprehensive evaluation (4 LLMs x 3 benchmarks x 2 formats) ->\n84\t    Superior calibration AND discrimination simultaneously ->\n85\t    Ablation confirms perturbation features drive gains ->\n86\t    Generalization across architectures and scales\n87\t  contribution_framing: >\n88\t    Four contributions explicitly listed:\n89\t    (1) novel framework (model-agnostic, parameter-efficient, scalable),\n90\t    (2) substantial metric improvements (both calibration and discrimination),\n91\t    (3) cross-architecture generalizability evidence,\n92\t    (4) extensive benchmarking on MMLU/MMLU-Pro in both MC and OE formats.\n93\t    Framing emphasizes practical properties (agnostic, efficient, scalable) alongside empirical strength.\n94\t  intro_structure: >\n95\t    4 paragraphs: P1 frames miscalibration problem in high-stakes domains;\n96\t    P2 reviews existing approaches and identifies the calibration-discrimination gap;\n97\t    P3 introduces CCPS methodology (perturbation stability as confidence signal);\n98\t    P4 lists four contributions with specific quantitative claims (55% ECE reduction, etc.).\n99\t  notable_technique: >\n100\t    The \"stability under perturbation\" framing is highly intuitive and memorable: correct answers are\n101\t    robust, wrong answers are fragile. This physical/mechanical metaphor makes a complex method feel\n102\t    natural. The quantitative headline (\"55% ECE reduction\") in the contribution statement is attention-\n103\t    grabbing. The extensive benchmarking across 4 LLMs x 3 datasets x 2 formats provides unusually\n104\t    comprehensive evidence that pre-empts generalizability concerns.\n105\t\n106\tfigures:\n107\t  figure_count: 1\n108\t  figure1:\n109\t    type: \"method_overview\"\n110\t    description: >\n111\t      Three-stage pipeline diagram showing the CCPS methodology. Stage 1 (left): token-level perturbation\n112\t      where a hidden state vector moves along adversarial direction d(i) with increasing magnitudes\n113\t      (epsilon_s values shown as progressively darker shades). Stage 2 (middle): feature extraction\n114\t      producing a 75-dimensional feature vector f(i) from original state characteristics, perturbation\n115\t      stability indicators, and trajectory divergence statistics. Stage 3 (right): classification\n116\t      architecture with separate projection networks for multiple-choice (EMC) and open-ended (EOE)\n117\t      formats, followed by classification head (C) outputting confidence P(True).\n118\t    narrative_role: >\n119\t      Serves as the single visual anchor for understanding the entire method. Placed at the beginning\n120\t      of Section 3, it provides a roadmap that the reader refers back to throughout the method description.\n121\t      The three-stage decomposition makes a complex pipeline digestible.\n122\t    design_elements:\n123\t      - \"Sequential three-stage horizontal layout (left to right flow)\"\n124\t      - \"Perturbation trajectory visualization with gradient shading for epsilon magnitudes\"\n125\t      - \"Clear input/output labeling at each stage boundary\"\n126\t      - \"Separate branches for MC vs OE classification architectures\"\n127\t    visual_style: >\n128\t      Clean flowchart with boxes representing computational stages connected by arrows.\n129\t      Uses progressive darkening of shades to represent increasing perturbation magnitudes.\n130\t      Horizontal left-to-right flow emphasizes the pipeline nature.\n131\t      Mathematical notation (H_0, H_s, Z_s, f, e) annotated at key points.\n132\t  result_figures: []\n133\t  ablation_figures: []\n134\t  figure_narrative_role: >\n135\t    Only Figure 1 in main text — serves as method overview. All quantitative results presented\n136\t    exclusively through tables. Appendix contains calibration curves and per-task breakdowns\n137\t    but the main paper is table-heavy, figure-light. This is unusual for the field and reflects\n138\t    the paper's emphasis on comprehensive numerical evidence over visual storytelling.\n139\t\n140\ttables:\n141\t  table_count: 7\n142\t  main_result_table:\n143\t    table_id: \"Table 1\"\n144\t    row_axis: \"methods (LitCab, CT, CCPS in main; full baselines in appendix)\"\n145\t    col_axis: \"5 metrics (ECE, Brier, ACC, AUCPR, AUROC) x 4 LLMs, split by 3 benchmark variants\"\n146\t    row_organization: \"by_category\"\n147\t    col_organization: \"grouped_by_metric\"\n148\t    highlight_strategy: \"Bold best values per method-block; directional arrows on metric headers (lower/higher better)\"\n149\t    statistical_reporting: \"Raw percentages without confidence intervals or standard deviations\"\n150\t    num_baselines: 9\n151\t    design_note: >\n152\t      Extremely comprehensive: 3 sub-tables (MMLU-CHOICE, MMLU-PRO-CHOICE, MMLU-OE) each with\n153\t      4 LLMs x 5 metrics. Main text shows top-3 methods; full 9-baseline comparison in appendix.\n154\t      This split keeps the main table readable while appendix provides exhaustive evidence.\n155\t      Direction arrows on column headers (ECE down, AUROC up) aid quick reading.\n156\t      The consistent dominance of CCPS across ALL cells is visually striking.\n157\t  ablation_tables:\n158\t    - table_id: \"Table 2\"\n159\t      what_varied: [\"Feature definitions — 75 features across 4 categories\"]\n160\t      variation_style: \"full_numbers\"\n161\t      design_note: >\n162\t        Feature definition table rather than traditional ablation. Lists all 75 features with\n163\t        mathematical formulations grouped by category (original state, perturbation, perturbed state,\n164\t        comparison). Serves as both method documentation and implicit ablation reference —\n165\t        readers can see exactly what information the classifier uses.\n166\t    - table_id: \"Appendix K ablation tables\"\n167\t      what_varied: [\"Token masking\", \"Self-consistency comparison\", \"Feature contributions\", \"SHAP analysis\", \"Leave-one-out\"]\n168\t      variation_style: \"full_numbers\"\n169\t      design_note: >\n170\t        Five separate ablation analyses in appendix. The SHAP analysis and leave-one-out are\n171\t        particularly thorough — they go beyond typical checkmark ablation to provide feature-level\n172\t        importance quantification. Perturbation-derived features confirmed as dominant drivers.\n173\t  supplementary_tables:\n174\t    in_appendix: true\n175\t    content: >\n176\t      Tables 3-4 (MMLU and MMLU-Pro task lists with sample sizes),\n177\t      Table 5 (system prompts for response generation),\n178\t      Table 6 (GPT-4o-mini grading prompts for open-ended evaluation),\n179\t      Table 7 (correct/incorrect distribution across all datasets and models),\n180\t      Full baseline comparison tables (all 9 methods),\n181\t      Per-task performance breakdowns,\n182\t      Ablation study tables (K.1-K.5).\n183\t    reason: >\n184\t      Main text keeps Table 1 focused on top methods for readability.\n185\t      Appendix provides: (1) reproducibility details (prompts, distributions),\n186\t      (2) comprehensive baselines, (3) granular per-task results,\n187\t      (4) feature importance analysis. Extensive appendix (sections A-K)\n188\t      signals thoroughness and provides reference material for follow-up work.\n189\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3038f01-7a68-4fd4-bd4d-87d20c019a37",
+            "isSidechain": true,
+            "promptId": "c069f5d9-281e-4ded-bd00-cc64fb8c3fe2",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "384fd6e9-8fc9-4531-bb88-1c7ede74d287",
+            "sourceToolAssistantUUID": "b3038f01-7a68-4fd4-bd4d-87d20c019a37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T14:00:18.792Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both YAML files are complete and well-structured. Let me verify YAML validity."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "384fd6e9-8fc9-4531-bb88-1c7ede74d287",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwZpBcb5uYtGAsySKwi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "341faf6b-7c06-434f-b000-3d8230a1182d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyhMDLRwQBwMTQzfUFEk5L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7536,
+                "cache_read_input_tokens": 38216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7536,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T14:00:23.594Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016cdjAxs6nkQesB6VRDvbcY",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport yaml\nfor f in ['xiao2025knowledge', 'khanmohammadi2025ccps']:\n    path = f'/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/{f}.yaml'\n    with open(path) as fh:\n        data = yaml.safe_load(fh)\n    # Check all top-level keys present\n    expected = ['paper_key', 'title', 'venue', 'full_text_available', 'research', 'positioning', 'narrative', 'figures', 'tables']\n    missing = [k for k in expected if k not in data]\n    print(f'{f}: OK, keys={list(data.keys())}, missing={missing}')\n\"\n",
+                "description": "Validate YAML files parse correctly and have all required keys"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "341faf6b-7c06-434f-b000-3d8230a1182d",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwZpBcb5uYtGAsySKwi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0a01ad48-a620-4b09-b3b9-016b047c9a4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyhMDLRwQBwMTQzfUFEk5L",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7536,
+                "cache_read_input_tokens": 38216,
+                "output_tokens": 297,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7536
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 297,
+                    "cache_read_input_tokens": 38216,
+                    "cache_creation_input_tokens": 7536,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7536,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T14:00:23.712Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016cdjAxs6nkQesB6VRDvbcY",
+              "type": "tool_result",
+              "content": "xiao2025knowledge: OK, keys=['paper_key', 'title', 'venue', 'full_text_available', 'research', 'positioning', 'narrative', 'figures', 'tables'], missing=[]\nkhanmohammadi2025ccps: OK, keys=['paper_key', 'title', 'venue', 'full_text_available', 'research', 'positioning', 'narrative', 'figures', 'tables'], missing=[]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a01ad48-a620-4b09-b3b9-016b047c9a4a",
+            "isSidechain": true,
+            "promptId": "c069f5d9-281e-4ded-bd00-cc64fb8c3fe2",
+            "agentId": "a142300de5c53ffa4",
+            "type": "user",
+            "uuid": "d32e35aa-9179-4b23-91df-4f2854f1f594",
+            "sourceToolAssistantUUID": "0a01ad48-a620-4b09-b3b9-016b047c9a4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T14:00:40.506Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两篇论文的结构化 YAML 精读已完成，文件位于：\n\n- `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/xiao2025knowledge.yaml`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/distill_tmp/khanmohammadi2025ccps.yaml`\n\n**xiao2025knowledge (ACL 2025)** -- relation: foundation\n- 核心发现：LLM 的知识边界感知编码在中间-中上层，跨语言呈线性结构，可通过 mean shifting / linear projection 做 training-free 迁移\n- 关键数据：linear projection 将 OOD 准确率从 ~80% 提升至 88%+；弱到强泛化（Khmer probe 投影后在高资源语言上反而更好）；有效维度 English 116→87 说明投影起正则化作用\n- 14 张图（motivation schematic → layer-wise line plots → 8x8 transfer heatmaps → 3D LDA scatter → weak-to-strong → self-defense mechanism），6 张表\n- 对我们项目的意义：为跨语言校准迁移提供直接的表示层理论基础（线性跨语言结构、层深度效应、training-free alignment 方法）\n\n**khanmohammadi2025ccps (EMNLP 2025)** -- relation: complementary\n- 核心方法：对 hidden states 施加对抗扰动，提取 75 维稳定性特征，用轻量分类器预测答案正确性作为置信度\n- 关键数据：ECE 降低 ~55%（4.2-6.5% vs baseline 10.9-45.6%），Brier 降低 ~21%，AUROC 77.1-83.3%，跨 4 个 LLM（8B-32B）和 3 个 benchmark 一致有效\n- 仅 1 张主图（method overview pipeline），7 张表，结果全部以表格呈现（table-heavy, figure-light 风格）\n- 对我们项目的意义：perturbation stability 作为校准信号是正交于 direction-based 方法的互补思路；其 9 个 baseline 列表和 5 个评估指标为我们的实验设计提供参考"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d32e35aa-9179-4b23-91df-4f2854f1f594",
+            "isSidechain": true,
+            "agentId": "a142300de5c53ffa4",
+            "requestId": "req_011CbDwaP72TQfhZ8HZngrpA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "58262323-0e53-4d53-8ea7-bfe26eab1b05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/.claude/sessions/distiller_70eed89a",
+            "sessionId": "ad082ba3-f7c0-4afa-9a5a-5e36e8b14a49",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HKgWhDHyLFoUXhnkaVnP4E",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 421,
+                "cache_read_input_tokens": 45752,
+                "output_tokens": 680,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 421
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 680,
+                    "cache_read_input_tokens": 45752,
+                    "cache_creation_input_tokens": 421,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 421,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-2-yaml-cross-lingual-calibration-transfer-via-language-agnostic-confidence-d.md"
+}

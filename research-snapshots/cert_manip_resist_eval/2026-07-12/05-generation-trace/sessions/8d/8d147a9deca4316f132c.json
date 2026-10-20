@@ -1,0 +1,2333 @@
+{
+  "schema_version": "1.0",
+  "id": "8d147a9deca4316f132c",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Multiverse Analysis Framework for",
+  "task_key": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/f74432f2-1f56-4825-a6ba-bbf22f59de9e.jsonl",
+    "occurrence": 1,
+    "bytes": 143908,
+    "sha256": "c04b5236e4d2e163846972c5c5b335f69c10f0aa220c86f3e6ec1ac925183201"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "record": 15,
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T03:40:47.496Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T03:40:47.496Z",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines\n\n## Description\nWe propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines, combining principled configuration selection with joint statistical inference. While recent work documents that LLM pipeline choices produce contradictory conclusions (Baumann et al., 2025: ~31% error rate) and that interaction effects between choices dominate main effects (McLaren et al., 2026), no existing framework applies formal multiverse methodology — and the methodological community is actively debating whether exhaustive enumeration overstates uncertainty (Auspurg, PNAS 2025). We address both gaps. First, we adapt Del Giudice & Gangestad's (2021) E/N/U (Equivalence/Nonequivalence/Uncertainty) classification framework to LLM annotation, providing a principled methodology for constructing task-conditional multiverses: dimensions where one configuration is objectively superior (e.g., temperature=0 for deterministic tasks) are resolved rather than enumerated, while genuinely equivalent alternatives (e.g., semantically equivalent prompt rephrasings) populate the multiverse. Task-conditional constraints expressed in a Boba-style DSL reduce the naïve 810-configuration Cartesian product to ~90–270 principled specifications per task. Second, we adapt specification curve analysis (Simonsohn et al., 2020) with permutation-based joint inference to classify substantive social-science hypotheses as robust, fragile, or sign-inconsistent across the annotation multiverse. Third, we perform formal variance decomposition (factorial ANOVA over specification space) to quantify which pipeline dimensions and interactions drive the most inferential instability — extending McLaren et al.'s descriptive benchmarking to statistical attribution. We validate on 10 tasks from Baumann et al.'s publicly available replication data (37 tasks, MIT license) spanning binary, multi-class, ordinal, and subjective annotation, with supplementary validation on the SALT-NLP CSS benchmark. All inference is run via API on 6 models spanning diverse architectures (Llama 4 Maverick, Qwen 3.5, DeepSeek V4 Flash, Gemma 4, Mistral Medium 3.5, plus one proprietary anchor). We engage directly with Auspurg's (PNAS 2025) critique of brute-force multiverse analysis, arguing that LLM annotation is precisely the setting where her concerns do not apply: the estimand remains constant across configurations, no configuration is statistically misspecified, and no established theory ranks pipeline choices a priori. We release an open-source Python toolkit (llm-multiverse) integrating E/N/U classification, constraint-based configuration enumeration, batched API annotation, specification curve visualization, and joint inference — with SMART-compatible pre-registration templates enabling researchers to document and justify their multiverse construction before running experiments.\n\n## Core Problem\nWhen researchers use LLMs to annotate text for social science, numerous pipeline choices (model, prompt, temperature, aggregation) constitute researcher degrees of freedom that can produce contradictory conclusions — yet no formal framework systematically quantifies how these choices jointly affect downstream statistical inference. This is not merely a benchmarking problem: existing work documents that choices matter and interact (Baumann et al., 2025; McLaren et al., 2026), but none applies formal joint inference methods to determine whether a substantive social-science finding is robust across the space of defensible pipeline configurations.\n\n## Opportunity\nThe 'LLM hacking' paper (Baumann et al., 2025) showed ~31% of hypotheses yield incorrect conclusions from arbitrary LLM configuration choices, and Carlson & Burbano (2026, SMJ) recommend sensitivity analysis but provide no formal methodology. McLaren et al. (2026) demonstrate that interaction effects between pipeline choices dominate main effects, yet use only one-at-a-time variation without joint inference. Meanwhile, multiverse analysis / specification curve methods are mature in psychology and economics but have never been adapted to the unique structure of LLM annotation pipelines, where the degrees of freedom (prompt wording, model family, temperature, role, output parsing) are qualitatively different from traditional analytic choices — and, crucially, where Auspurg's (PNAS 2025) critique of brute-force multiverse enumeration does not apply because (a) the estimand remains constant across pipeline configurations, (b) no configuration is 'statistically misspecified' in the way a regression omitting fixed effects is, and (c) no established theory ranks one prompt or model above another a priori. The NLP+CSS community explicitly calls for work on 'LLMs for measurement and downstream statistical inference.'\n\n## Landscape\nThe LLM hacking paper (Baumann et al., 2025) tested 18 LLMs × 2,361 hypotheses × 13M labels, documenting the problem's scale but only evaluating 21 ad-hoc mitigations — no formal multiverse inference. 'Magic Words or Methodical Work?' (McLaren et al., arXiv March 2026) systematically varied model, prompt template, and learning approach for LLM annotation in political science and found that interaction effects dominate main effects; however, their design is one-factor-at-a-time (not full factorial), produces no specification curve or joint inference test, and their question is 'which pipeline performs best?' rather than 'is a substantive finding robust across pipelines?' — making their work complementary benchmarking, not a multiverse analysis. The variance-aware annotation framework (2026) identifies 5 variance sources but offers protocol guidance, not statistical inference. The benchmarking debiasing paper (Audinet de Pieuchon et al., EMNLP 2025) compares DSL vs PPI but only for fixed pipeline configurations. Brittlebench (2026) measures prompt sensitivity but not downstream inferential consequences. 'Prompt-Hacking: The New p-Hacking?' (Kosch & Feger, CACM 2026) draws the conceptual analogy but offers no formal method. 'Navigating the Conceptual Multiverse' (Ye et al., arXiv April 2026) applies multiverse thinking to LLM conceptual framing as an interactive HCI system, but does not address annotation pipelines or statistical inference. 'Multi-Perspective LLM Annotations' (Mehrotra et al., arXiv March 2026) introduces Perspective-Driven Inference for subjective tasks but assumes a single pipeline per perspective. The PNAS debate between Auspurg (2025) and Ganslmeier & Vlandas (2025) on whether exhaustive multiverse enumeration overstates uncertainty provides the key methodological foil: we adopt Del Giudice & Gangestad's (2021) E/N/U classification framework to construct principled, task-conditional multiverses rather than naïve Cartesian products. No existing work provides a formal multiverse analysis with principled configuration selection and joint statistical inference for LLM annotation pipelines.\n\n## Approach\nWe propose a three-stage framework: (1) Principled Multiverse Construction using Del Giudice & Gangestad's (2021) E/N/U (Equivalence / Nonequivalence / Uncertainty) classification. For each annotation task, we classify every pipeline dimension: dimensions where alternatives are effectively equivalent (Type E: e.g., semantically equivalent prompt rephrasings) populate the multiverse; dimensions where one option is objectively superior (Type N: e.g., temperature=0 for deterministic classification tasks, label-based output over numerical scores) are resolved to the best option only; dimensions where defensibility is uncertain (Type U: e.g., model family, definition inclusion) generate separate stratified multiverses. Task-conditional constraints are expressed formally using a Boba-style DSL: e.g., IF task_type='classification' AND num_classes≤3 THEN temperature∈{0.0, 0.3} AND output_format∈{'label'}. This reduces the naïve Cartesian product (~810 configurations from 6 models × 5 prompts × 3 temperatures × 3 roles × 3 aggregation strategies) to a principled, task-specific multiverse of ~90–270 defensible configurations per task, with explicit justification for every inclusion/exclusion. (2) Full-factorial execution across the principled multiverse. The six models span diverse architectures: Llama 4 Maverick (400B MoE), Qwen 3.5 (397B MoE), DeepSeek V4 Flash (284B MoE), Gemma 4 (26B MoE), Mistral Medium 3.5 (128B dense), plus one proprietary anchor (GPT-4o or Claude). All models are accessed via API (DeepSeek API, Together AI, OpenRouter, Google AI) for cost-efficiency; batched annotation (25 items/prompt) minimizes token costs. For each configuration, generate labels for the full corpus, then compute the downstream statistical estimate (e.g., regression coefficient, group difference). (3) Specification curve analysis with joint inference (Simonsohn et al., 2020): rank all specifications by effect size, display the specification curve with indicator rows for each pipeline dimension, and apply a permutation-based joint inference test to classify hypotheses as robust (sign-consistent and jointly significant), fragile (sign-inconsistent or significance-dependent on configuration), or null (no configuration yields significance). Additionally, perform variance decomposition (ANOVA over the specification space) to quantify which pipeline dimensions and their interactions drive the most inferential instability — extending McLaren et al.'s descriptive interaction findings to formal statistical attribution. Validate on 10 annotation tasks drawn from Baumann et al.'s publicly available replication data (37 tasks, MIT license, github.com/joebaumann/llmhacking), selected to span binary classification, multi-class categorization, ordinal scaling, and subjective judgment. Supplementary validation uses Gilardi et al.'s (PNAS 2023) Harvard Dataverse data and the SALT-NLP CSS benchmark (Ziems et al., 2024). Release an open-source Python toolkit (llm-multiverse) that wraps the full pipeline: E/N/U classification interface → task-conditional constraint specification → configuration enumeration → batched API annotation → specification curve visualization → joint inference test. The toolkit integrates with the SMART pre-registration framework (2025) so researchers can document and justify their multiverse construction before running experiments.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '0 (all inference via API — no self-hosted GPU needed)', 'api_cost': '$1,200–$2,000 for open-weight models via API providers (DeepSeek V4 Flash: ~$100–200 via DeepSeek API; Llama 4 Maverick: ~$250–470 via Together AI; Qwen 3.5: ~$475–950 via OpenRouter; Gemma 4: ~$65–130 via Google; Mistral Medium 3.5: ~$300–650 via Mistral/OpenRouter; proprietary anchor: ~$200–400). Estimates assume batched annotation (25 items/prompt) across ~90–270 configs × 10 tasks × 1,000–3,000 samples. Total: ~500M–1.2B tokens across all models.', 'timeline': '5–6 months (1 month framework design + E/N/U methodology, 2 months implementation + experiments, 1 month analysis + variance decomposition, 1 month writing + revision)', 'estimated_total_cost': '$1,200–$2,000'}, 'human_in_loop': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same API inference, slightly optimized configuration space with Claude-assisted E/N/U classification)', 'timeline': '3.5–4.5 months (2 weeks framework design with Claude scaffolding, 6 weeks experiments, 3 weeks analysis, 3 weeks writing)', 'claude_api_cost': '$150–$250 (Sonnet for code generation, experiment orchestration, and paper drafting; ~50M input tokens with caching)', 'estimated_total_cost': '$1,150–$1,850'}, 'auto_research': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same inference costs)', 'timeline': '2–3 months (automated experiment sweeps, parallelized API calls, auto-generated specification curves)', 'claude_api_cost': '$400–$600 (Opus for research design + Sonnet for bulk code generation and analysis; ~100M tokens total)', 'estimated_total_cost': '$1,400–$2,200', 'speed_bottleneck': 'API rate limits on proprietary LLMs (GPT, Claude) for anchor comparisons; sequential dependency between label generation and downstream inference computation; OpenRouter rate limits for Qwen 3.5 and Mistral Medium 3.5'}}\n\n## Inspired By\nGap: LLM hacking paper shows the problem (31% error rate), McLaren et al. show interaction effects dominate, but no formal multiverse framework with joint inference exists. Pattern: Cross-domain transfer of specification curve analysis (psychology/economics) and the E/N/U defensibility framework (Del Giudice & Gangestad, 2021) to LLM annotation pipelines. Epistemological justification: Auspurg's (PNAS 2025) critique of brute-force multiverse analysis does not apply to LLM pipelines because the estimand is constant and no configuration is statistically misspecified — making this precisely the setting where multiverse analysis is epistemically justified. Field guide evidence: Carlson & Burbano (2026) guidelines call for sensitivity analysis; variance-aware annotation (2026) identifies 5 variance sources; the NLP+CSS workshop explicitly seeks work on 'LLMs for measurement and downstream statistical inference.'\n\n## Target Venues\n- AAAI 2027 (full paper deadline: ~July 28, 2026 — strong fit for methods + empirical validation paper; primary target)\n- TACL (rolling submission, any month — ideal for extended journal-length treatment with theoretical results on E/N/U framework + formal variance decomposition)\n- CSCW 2027 (rolling submission — fits the sociotechnical framing of researcher-tool interaction and pre-registration protocol)\n- EMNLP 2026 Industry Track (deadline: ~June 16, 2026 — if framed around practitioner toolkit; stretch target)\n- FAccT 2027 (fits the transparency/accountability angle of documenting researcher degrees of freedom in LLM-mediated research)\n\n## Key References\n- Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation (arXiv 2025, Baumann et al.) — documents the 31% error rate problem; replication data publicly available under MIT license at github.com/joebaumann/llmhacking\n- Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation (arXiv 2603.26898, McLaren et al., March 2026) — one-at-a-time benchmarking showing interaction effects dominate; releases CodeBook Lab tools; complementary but no joint inference\n- Specification Curve Analysis (Nature Human Behaviour 2020, Simonsohn, Simmons & Nelson) — canonical joint inference method we adapt\n- Increasing Transparency Through a Multiverse Analysis (Perspectives on Psychological Science 2016, Steegen, Tuerlinckx, Gelman & Vanpaemel) — original multiverse analysis framework\n- A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions (Advances in Methods and Practices in Psychological Science 2021, Del Giudice & Gangestad) — E/N/U classification framework for principled configuration selection\n- Robustness is better assessed with a few thoughtful models than with billions of regressions (PNAS 2025, Auspurg) — critique of exhaustive multiverse enumeration; we argue LLM annotation is precisely the case where her critique does not apply\n- Reply to Auspurg: On the limits of 'justified' model spaces (PNAS 2025, Ganslmeier & Vlandas) — defense of comprehensive multiverse analysis when theory cannot adjudicate\n- The Use of LLMs to Annotate Data in Management Research: Foundational Guidelines and Warnings (SMJ 2026, Carlson & Burbano)\n- Variance-Aware LLM Annotation for Strategy Research (arXiv 2026)\n- Benchmarking Debiasing Methods for LLM-based Parameter Estimates (EMNLP 2025, Audinet de Pieuchon et al.)\n- Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity (arXiv 2026)\n- Can Unconfident LLM Annotations Be Used for Confident Conclusions? (NAACL 2025, Gligorić et al.)\n- Prompt-Hacking: The New p-Hacking? (Communications of the ACM 2026, Kosch & Feger)\n- Navigating the Conceptual Multiverse (arXiv 2026, Ye et al.)\n- Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks (arXiv 2026, Mehrotra et al.)\n- Same Prompt, Different Outcomes: Evaluating the Reproducibility of Data Analysis by LLMs (arXiv 2026, Cui & Alexander)\n- To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation (arXiv 2024)\n- SMART: Systematic Multiverse Analysis Registration Tool (Royal Society Open Science 2025) — pre-registration workflow for multiverse construction\n- Boba: Authoring and Visualizing Multiverse Analyses (Liu et al., 2021) — DSL with constraint specification for principled multiverse pruning\n- Prompt Design Matters for Computational Social Science Tasks but in Unpredictable Ways (arXiv 2024) — empirical evidence for task-conditional configuration defensibility\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T03:40:47.511Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T03:40:47.511Z",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T03:40:47.755Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines\n\n## Description\nWe propose the first formal multiverse analysis framework for LLM-mediated social science annotation pipelines, combining principled configuration selection with joint statistical inference. While recent work documents that LLM pipeline choices produce contradictory conclusions (Baumann et al., 2025: ~31% error rate) and that interaction effects between choices dominate main effects (McLaren et al., 2026), no existing framework applies formal multiverse methodology — and the methodological community is actively debating whether exhaustive enumeration overstates uncertainty (Auspurg, PNAS 2025). We address both gaps. First, we adapt Del Giudice & Gangestad's (2021) E/N/U (Equivalence/Nonequivalence/Uncertainty) classification framework to LLM annotation, providing a principled methodology for constructing task-conditional multiverses: dimensions where one configuration is objectively superior (e.g., temperature=0 for deterministic tasks) are resolved rather than enumerated, while genuinely equivalent alternatives (e.g., semantically equivalent prompt rephrasings) populate the multiverse. Task-conditional constraints expressed in a Boba-style DSL reduce the naïve 810-configuration Cartesian product to ~90–270 principled specifications per task. Second, we adapt specification curve analysis (Simonsohn et al., 2020) with permutation-based joint inference to classify substantive social-science hypotheses as robust, fragile, or sign-inconsistent across the annotation multiverse. Third, we perform formal variance decomposition (factorial ANOVA over specification space) to quantify which pipeline dimensions and interactions drive the most inferential instability — extending McLaren et al.'s descriptive benchmarking to statistical attribution. We validate on 10 tasks from Baumann et al.'s publicly available replication data (37 tasks, MIT license) spanning binary, multi-class, ordinal, and subjective annotation, with supplementary validation on the SALT-NLP CSS benchmark. All inference is run via API on 6 models spanning diverse architectures (Llama 4 Maverick, Qwen 3.5, DeepSeek V4 Flash, Gemma 4, Mistral Medium 3.5, plus one proprietary anchor). We engage directly with Auspurg's (PNAS 2025) critique of brute-force multiverse analysis, arguing that LLM annotation is precisely the setting where her concerns do not apply: the estimand remains constant across configurations, no configuration is statistically misspecified, and no established theory ranks pipeline choices a priori. We release an open-source Python toolkit (llm-multiverse) integrating E/N/U classification, constraint-based configuration enumeration, batched API annotation, specification curve visualization, and joint inference — with SMART-compatible pre-registration templates enabling researchers to document and justify their multiverse construction before running experiments.\n\n## Core Problem\nWhen researchers use LLMs to annotate text for social science, numerous pipeline choices (model, prompt, temperature, aggregation) constitute researcher degrees of freedom that can produce contradictory conclusions — yet no formal framework systematically quantifies how these choices jointly affect downstream statistical inference. This is not merely a benchmarking problem: existing work documents that choices matter and interact (Baumann et al., 2025; McLaren et al., 2026), but none applies formal joint inference methods to determine whether a substantive social-science finding is robust across the space of defensible pipeline configurations.\n\n## Opportunity\nThe 'LLM hacking' paper (Baumann et al., 2025) showed ~31% of hypotheses yield incorrect conclusions from arbitrary LLM configuration choices, and Carlson & Burbano (2026, SMJ) recommend sensitivity analysis but provide no formal methodology. McLaren et al. (2026) demonstrate that interaction effects between pipeline choices dominate main effects, yet use only one-at-a-time variation without joint inference. Meanwhile, multiverse analysis / specification curve methods are mature in psychology and economics but have never been adapted to the unique structure of LLM annotation pipelines, where the degrees of freedom (prompt wording, model family, temperature, role, output parsing) are qualitatively different from traditional analytic choices — and, crucially, where Auspurg's (PNAS 2025) critique of brute-force multiverse enumeration does not apply because (a) the estimand remains constant across pipeline configurations, (b) no configuration is 'statistically misspecified' in the way a regression omitting fixed effects is, and (c) no established theory ranks one prompt or model above another a priori. The NLP+CSS community explicitly calls for work on 'LLMs for measurement and downstream statistical inference.'\n\n## Landscape\nThe LLM hacking paper (Baumann et al., 2025) tested 18 LLMs × 2,361 hypotheses × 13M labels, documenting the problem's scale but only evaluating 21 ad-hoc mitigations — no formal multiverse inference. 'Magic Words or Methodical Work?' (McLaren et al., arXiv March 2026) systematically varied model, prompt template, and learning approach for LLM annotation in political science and found that interaction effects dominate main effects; however, their design is one-factor-at-a-time (not full factorial), produces no specification curve or joint inference test, and their question is 'which pipeline performs best?' rather than 'is a substantive finding robust across pipelines?' — making their work complementary benchmarking, not a multiverse analysis. The variance-aware annotation framework (2026) identifies 5 variance sources but offers protocol guidance, not statistical inference. The benchmarking debiasing paper (Audinet de Pieuchon et al., EMNLP 2025) compares DSL vs PPI but only for fixed pipeline configurations. Brittlebench (2026) measures prompt sensitivity but not downstream inferential consequences. 'Prompt-Hacking: The New p-Hacking?' (Kosch & Feger, CACM 2026) draws the conceptual analogy but offers no formal method. 'Navigating the Conceptual Multiverse' (Ye et al., arXiv April 2026) applies multiverse thinking to LLM conceptual framing as an interactive HCI system, but does not address annotation pipelines or statistical inference. 'Multi-Perspective LLM Annotations' (Mehrotra et al., arXiv March 2026) introduces Perspective-Driven Inference for subjective tasks but assumes a single pipeline per perspective. The PNAS debate between Auspurg (2025) and Ganslmeier & Vlandas (2025) on whether exhaustive multiverse enumeration overstates uncertainty provides the key methodological foil: we adopt Del Giudice & Gangestad's (2021) E/N/U classification framework to construct principled, task-conditional multiverses rather than naïve Cartesian products. No existing work provides a formal multiverse analysis with principled configuration selection and joint statistical inference for LLM annotation pipelines.\n\n## Approach\nWe propose a three-stage framework: (1) Principled Multiverse Construction using Del Giudice & Gangestad's (2021) E/N/U (Equivalence / Nonequivalence / Uncertainty) classification. For each annotation task, we classify every pipeline dimension: dimensions where alternatives are effectively equivalent (Type E: e.g., semantically equivalent prompt rephrasings) populate the multiverse; dimensions where one option is objectively superior (Type N: e.g., temperature=0 for deterministic classification tasks, label-based output over numerical scores) are resolved to the best option only; dimensions where defensibility is uncertain (Type U: e.g., model family, definition inclusion) generate separate stratified multiverses. Task-conditional constraints are expressed formally using a Boba-style DSL: e.g., IF task_type='classification' AND num_classes≤3 THEN temperature∈{0.0, 0.3} AND output_format∈{'label'}. This reduces the naïve Cartesian product (~810 configurations from 6 models × 5 prompts × 3 temperatures × 3 roles × 3 aggregation strategies) to a principled, task-specific multiverse of ~90–270 defensible configurations per task, with explicit justification for every inclusion/exclusion. (2) Full-factorial execution across the principled multiverse. The six models span diverse architectures: Llama 4 Maverick (400B MoE), Qwen 3.5 (397B MoE), DeepSeek V4 Flash (284B MoE), Gemma 4 (26B MoE), Mistral Medium 3.5 (128B dense), plus one proprietary anchor (GPT-4o or Claude). All models are accessed via API (DeepSeek API, Together AI, OpenRouter, Google AI) for cost-efficiency; batched annotation (25 items/prompt) minimizes token costs. For each configuration, generate labels for the full corpus, then compute the downstream statistical estimate (e.g., regression coefficient, group difference). (3) Specification curve analysis with joint inference (Simonsohn et al., 2020): rank all specifications by effect size, display the specification curve with indicator rows for each pipeline dimension, and apply a permutation-based joint inference test to classify hypotheses as robust (sign-consistent and jointly significant), fragile (sign-inconsistent or significance-dependent on configuration), or null (no configuration yields significance). Additionally, perform variance decomposition (ANOVA over the specification space) to quantify which pipeline dimensions and their interactions drive the most inferential instability — extending McLaren et al.'s descriptive interaction findings to formal statistical attribution. Validate on 10 annotation tasks drawn from Baumann et al.'s publicly available replication data (37 tasks, MIT license, github.com/joebaumann/llmhacking), selected to span binary classification, multi-class categorization, ordinal scaling, and subjective judgment. Supplementary validation uses Gilardi et al.'s (PNAS 2023) Harvard Dataverse data and the SALT-NLP CSS benchmark (Ziems et al., 2024). Release an open-source Python toolkit (llm-multiverse) that wraps the full pipeline: E/N/U classification interface → task-conditional constraint specification → configuration enumeration → batched API annotation → specification curve visualization → joint inference test. The toolkit integrates with the SMART pre-registration framework (2025) so researchers can document and justify their multiverse construction before running experiments.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '0 (all inference via API — no self-hosted GPU needed)', 'api_cost': '$1,200–$2,000 for open-weight models via API providers (DeepSeek V4 Flash: ~$100–200 via DeepSeek API; Llama 4 Maverick: ~$250–470 via Together AI; Qwen 3.5: ~$475–950 via OpenRouter; Gemma 4: ~$65–130 via Google; Mistral Medium 3.5: ~$300–650 via Mistral/OpenRouter; proprietary anchor: ~$200–400). Estimates assume batched annotation (25 items/prompt) across ~90–270 configs × 10 tasks × 1,000–3,000 samples. Total: ~500M–1.2B tokens across all models.', 'timeline': '5–6 months (1 month framework design + E/N/U methodology, 2 months implementation + experiments, 1 month analysis + variance decomposition, 1 month writing + revision)', 'estimated_total_cost': '$1,200–$2,000'}, 'human_in_loop': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same API inference, slightly optimized configuration space with Claude-assisted E/N/U classification)', 'timeline': '3.5–4.5 months (2 weeks framework design with Claude scaffolding, 6 weeks experiments, 3 weeks analysis, 3 weeks writing)', 'claude_api_cost': '$150–$250 (Sonnet for code generation, experiment orchestration, and paper drafting; ~50M input tokens with caching)', 'estimated_total_cost': '$1,150–$1,850'}, 'auto_research': {'gpu_hours': '0 (API-based)', 'api_cost': '$1,000–$1,600 (same inference costs)', 'timeline': '2–3 months (automated experiment sweeps, parallelized API calls, auto-generated specification curves)', 'claude_api_cost': '$400–$600 (Opus for research design + Sonnet for bulk code generation and analysis; ~100M tokens total)', 'estimated_total_cost': '$1,400–$2,200', 'speed_bottleneck': 'API rate limits on proprietary LLMs (GPT, Claude) for anchor comparisons; sequential dependency between label generation and downstream inference computation; OpenRouter rate limits for Qwen 3.5 and Mistral Medium 3.5'}}\n\n## Inspired By\nGap: LLM hacking paper shows the problem (31% error rate), McLaren et al. show interaction effects dominate, but no formal multiverse framework with joint inference exists. Pattern: Cross-domain transfer of specification curve analysis (psychology/economics) and the E/N/U defensibility framework (Del Giudice & Gangestad, 2021) to LLM annotation pipelines. Epistemological justification: Auspurg's (PNAS 2025) critique of brute-force multiverse analysis does not apply to LLM pipelines because the estimand is constant and no configuration is statistically misspecified — making this precisely the setting where multiverse analysis is epistemically justified. Field guide evidence: Carlson & Burbano (2026) guidelines call for sensitivity analysis; variance-aware annotation (2026) identifies 5 variance sources; the NLP+CSS workshop explicitly seeks work on 'LLMs for measurement and downstream statistical inference.'\n\n## Target Venues\n- AAAI 2027 (full paper deadline: ~July 28, 2026 — strong fit for methods + empirical validation paper; primary target)\n- TACL (rolling submission, any month — ideal for extended journal-length treatment with theoretical results on E/N/U framework + formal variance decomposition)\n- CSCW 2027 (rolling submission — fits the sociotechnical framing of researcher-tool interaction and pre-registration protocol)\n- EMNLP 2026 Industry Track (deadline: ~June 16, 2026 — if framed around practitioner toolkit; stretch target)\n- FAccT 2027 (fits the transparency/accountability angle of documenting researcher degrees of freedom in LLM-mediated research)\n\n## Key References\n- Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation (arXiv 2025, Baumann et al.) — documents the 31% error rate problem; replication data publicly available under MIT license at github.com/joebaumann/llmhacking\n- Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation (arXiv 2603.26898, McLaren et al., March 2026) — one-at-a-time benchmarking showing interaction effects dominate; releases CodeBook Lab tools; complementary but no joint inference\n- Specification Curve Analysis (Nature Human Behaviour 2020, Simonsohn, Simmons & Nelson) — canonical joint inference method we adapt\n- Increasing Transparency Through a Multiverse Analysis (Perspectives on Psychological Science 2016, Steegen, Tuerlinckx, Gelman & Vanpaemel) — original multiverse analysis framework\n- A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions (Advances in Methods and Practices in Psychological Science 2021, Del Giudice & Gangestad) — E/N/U classification framework for principled configuration selection\n- Robustness is better assessed with a few thoughtful models than with billions of regressions (PNAS 2025, Auspurg) — critique of exhaustive multiverse enumeration; we argue LLM annotation is precisely the case where her critique does not apply\n- Reply to Auspurg: On the limits of 'justified' model spaces (PNAS 2025, Ganslmeier & Vlandas) — defense of comprehensive multiverse analysis when theory cannot adjudicate\n- The Use of LLMs to Annotate Data in Management Research: Foundational Guidelines and Warnings (SMJ 2026, Carlson & Burbano)\n- Variance-Aware LLM Annotation for Strategy Research (arXiv 2026)\n- Benchmarking Debiasing Methods for LLM-based Parameter Estimates (EMNLP 2025, Audinet de Pieuchon et al.)\n- Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity (arXiv 2026)\n- Can Unconfident LLM Annotations Be Used for Confident Conclusions? (NAACL 2025, Gligorić et al.)\n- Prompt-Hacking: The New p-Hacking? (Communications of the ACM 2026, Kosch & Feger)\n- Navigating the Conceptual Multiverse (arXiv 2026, Ye et al.)\n- Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks (arXiv 2026, Mehrotra et al.)\n- Same Prompt, Different Outcomes: Evaluating the Reproducibility of Data Analysis by LLMs (arXiv 2026, Cui & Alexander)\n- To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation (arXiv 2024)\n- SMART: Systematic Multiverse Analysis Registration Tool (Royal Society Open Science 2025) — pre-registration workflow for multiverse construction\n- Boba: Authoring and Visualizing Multiverse Analyses (Liu et al., 2021) — DSL with constraint specification for principled multiverse pruning\n- Prompt Design Matters for Computational Social Science Tasks but in Unpredictable Ways (arXiv 2024) — empirical evidence for task-conditional configuration defensibility\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "3e89f4ad-9c12-40a5-948c-a4610713d3bb",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T03:40:47.746Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3e89f4ad-9c12-40a5-948c-a4610713d3bb",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "f65f29b5-b878-4d81-9372-5bf89b4333b2",
+                "timestamp": "2026-05-20T03:40:47.746Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T03:40:47.746Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f65f29b5-b878-4d81-9372-5bf89b4333b2",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "8fc22c50-0954-4454-8b57-7afa1b8a3814",
+                "timestamp": "2026-05-20T03:40:47.746Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first for…",
+                "leafUuid": "8fc22c50-0954-4454-8b57-7afa1b8a3814",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T03:40:52.411Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze this proposal carefully. It's about applying multiverse analysis (a methodology from psychology/economics) to LLM-mediated social science annotation pipelines. Before I can give a proper assessment, I need to do thorough literature research to understand the current landscape.\n\nLet me search for the key papers and concepts mentioned in this proposal.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fc22c50-0954-4454-8b57-7afa1b8a3814",
+            "isSidechain": false,
+            "requestId": "req_011CbD8KzMSDCo9fD5gBejia",
+            "type": "assistant",
+            "uuid": "8eb11eb8-0920-45b2-886a-ba0d3d3ca6cd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PEBHfgxCSqh5QNrKwq7yGk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 8720,
+                "cache_read_input_tokens": 11374,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8720,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 11374,
+                    "cache_creation_input_tokens": 8720,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8720
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T03:40:52.934Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to conduct thorough literature research before evaluating this proposal. Let me search for the key papers and concepts mentioned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8eb11eb8-0920-45b2-886a-ba0d3d3ca6cd",
+            "isSidechain": false,
+            "requestId": "req_011CbD8KzMSDCo9fD5gBejia",
+            "type": "assistant",
+            "uuid": "28bb04dc-20a5-43b5-ad00-073eee0f2db0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PEBHfgxCSqh5QNrKwq7yGk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 8720,
+                "cache_read_input_tokens": 11374,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8720,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 11374,
+                    "cache_creation_input_tokens": 8720,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8720
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T03:40:53.395Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012axXgFX4dj7Q5AshvSYBuD",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28bb04dc-20a5-43b5-ad00-073eee0f2db0",
+            "isSidechain": false,
+            "requestId": "req_011CbD8KzMSDCo9fD5gBejia",
+            "type": "assistant",
+            "uuid": "7ed2717f-653b-4922-b2ea-0779b88b419d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PEBHfgxCSqh5QNrKwq7yGk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 8720,
+                "cache_read_input_tokens": 11374,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8720,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 11374,
+                    "cache_creation_input_tokens": 8720,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8720
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T03:40:53.403Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012axXgFX4dj7Q5AshvSYBuD",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ed2717f-653b-4922-b2ea-0779b88b419d",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "531b6f10-3f40-4629-9f34-14f69218b049",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "7ed2717f-653b-4922-b2ea-0779b88b419d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T03:40:55.499Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me conduct the literature searches. I'll run multiple searches in parallel to cover the key areas."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "531b6f10-3f40-4629-9f34-14f69218b049",
+            "isSidechain": false,
+            "requestId": "req_011CbD8LQGcGq4aze9RLmcAh",
+            "type": "assistant",
+            "uuid": "854ff424-4331-4663-b4bf-732bc9ff2537",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FCVm9kT2R3f3mtMVKAAZz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 20094,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 20094,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T03:40:56.911Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YT73jMLi8AhD7aHphfUWc6",
+              "name": "WebSearch",
+              "input": {
+                "query": "Baumann et al 2025 \"LLM hacking\" LLM text annotation error rate arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "854ff424-4331-4663-b4bf-732bc9ff2537",
+            "isSidechain": false,
+            "requestId": "req_011CbD8LQGcGq4aze9RLmcAh",
+            "type": "assistant",
+            "uuid": "b2d00dd1-94b3-4cf6-897f-1cadefe7acd5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FCVm9kT2R3f3mtMVKAAZz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 20094,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 20094,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T03:40:57.856Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RXLvnjEBczRaEKAUXDopLJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "McLaren et al 2026 \"Magic Words or Methodical Work\" LLM political text annotation interaction effects arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2d00dd1-94b3-4cf6-897f-1cadefe7acd5",
+            "isSidechain": false,
+            "requestId": "req_011CbD8LQGcGq4aze9RLmcAh",
+            "type": "assistant",
+            "uuid": "155a8191-3079-40b5-9ed8-d44ec5e845f7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FCVm9kT2R3f3mtMVKAAZz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 20094,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 20094,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T03:40:58.798Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016wY7QH3D1BHg7di95punRt",
+              "name": "WebSearch",
+              "input": {
+                "query": "multiverse analysis LLM annotation pipeline specification curve 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "155a8191-3079-40b5-9ed8-d44ec5e845f7",
+            "isSidechain": false,
+            "requestId": "req_011CbD8LQGcGq4aze9RLmcAh",
+            "type": "assistant",
+            "uuid": "8bb7714b-4c57-4411-9a0a-5926e76c67cf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FCVm9kT2R3f3mtMVKAAZz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 20094,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 20094,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T03:40:59.315Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014xE3sqs6hY2p4cd8ojapCr",
+              "name": "WebSearch",
+              "input": {
+                "query": "Auspurg PNAS 2025 multiverse analysis critique \"thoughtful models\" robustness"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bb7714b-4c57-4411-9a0a-5926e76c67cf",
+            "isSidechain": false,
+            "requestId": "req_011CbD8LQGcGq4aze9RLmcAh",
+            "type": "assistant",
+            "uuid": "79663daa-e24d-4826-9716-8c2c31ffe925",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014FCVm9kT2R3f3mtMVKAAZz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 20094,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 20094,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T03:41:03.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YT73jMLi8AhD7aHphfUWc6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Baumann et al 2025 \"LLM hacking\" LLM text annotation error rate arXiv\"\n\nLinks: [{\"title\":\"[2509.08825v2] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\",\"url\":\"https://arxiv.org/abs/2509.08825v2\"},{\"title\":\"[2509.08825] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\",\"url\":\"https://arxiv.org/abs/2509.08825\"},{\"title\":\"Paper page - Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\",\"url\":\"https://huggingface.co/papers/2509.08825\"},{\"title\":\"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/large-language-model-hacking-quantifying-hidden-risks\"},{\"title\":\"LLM Hacking Risks in Text Annotation\",\"url\":\"https://www.emergentmind.com/papers/2509.08825\"},{\"title\":\"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395402972_Large_Language_Model_Hacking_Quantifying_the_Hidden_Risks_of_Using_LLMs_for_Text_Annotation\"},{\"title\":\"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\",\"url\":\"https://arxiv.org/html/2509.08825v1\"},{\"title\":\"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation - Paper Detail\",\"url\":\"https://deeplearn.org/arxiv/635819/large-language-model-hacking:-quantifying-the-hidden-risks-of-using-llms-for-text-annotation\"},{\"title\":\"Self-reflection in Automated Qualitative Coding: Improving Text Annotation through Secondary LLM Critique\",\"url\":\"https://arxiv.org/pdf/2601.09905\"}]\n\nI found the paper you're looking for! Here are the key findings:\n\nThe paper \"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\" is authored by Joachim Baumann and colleagues, and it was first published on arXiv on September 10, 2025, with a revised version on October 6, 2025.\n\n**Key Findings on Error Rates:**\n\nThe researchers found incorrect conclusions in approximately 31% of hypotheses for state-of-the-art LLMs, and in half the hypotheses for smaller language models. More specifically, error rates ranged between 31% and 50% due to inconsistent outputs across the replication of 37 annotation tasks with 18 different LLMs.\n\n**Other Important Results:**\n\n- While higher task performance and stronger general model capabilities reduce LLM hacking risk, even highly accurate models remain susceptible\n- Human annotations provide crucial protection against false positives\n- Effect sizes deviated 40-77% from true values, signaling major reliability concerns\n\nThe paper is available at arXiv preprint 2509.08825.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2d00dd1-94b3-4cf6-897f-1cadefe7acd5",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "b32bf5e4-e21f-4afc-8520-8a5e999ec3a5",
+            "toolUseResult": {
+              "query": "Baumann et al 2025 \"LLM hacking\" LLM text annotation error rate arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_012tPQtgpQQLCuuViTuYR9M7",
+                  "content": [
+                    {
+                      "title": "[2509.08825v2] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+                      "url": "https://arxiv.org/abs/2509.08825v2"
+                    },
+                    {
+                      "title": "[2509.08825] Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+                      "url": "https://arxiv.org/abs/2509.08825"
+                    },
+                    {
+                      "title": "Paper page - Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+                      "url": "https://huggingface.co/papers/2509.08825"
+                    },
+                    {
+                      "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | AI Research Paper Details",
+                      "url": "https://www.aimodels.fyi/papers/arxiv/large-language-model-hacking-quantifying-hidden-risks"
+                    },
+                    {
+                      "title": "LLM Hacking Risks in Text Annotation",
+                      "url": "https://www.emergentmind.com/papers/2509.08825"
+                    },
+                    {
+                      "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation | Request PDF",
+                      "url": "https://www.researchgate.net/publication/395402972_Large_Language_Model_Hacking_Quantifying_the_Hidden_Risks_of_Using_LLMs_for_Text_Annotation"
+                    },
+                    {
+                      "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+                      "url": "https://arxiv.org/html/2509.08825v1"
+                    },
+                    {
+                      "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation - Paper Detail",
+                      "url": "https://deeplearn.org/arxiv/635819/large-language-model-hacking:-quantifying-the-hidden-risks-of-using-llms-for-text-annotation"
+                    },
+                    {
+                      "title": "Self-reflection in Automated Qualitative Coding: Improving Text Annotation through Secondary LLM Critique",
+                      "url": "https://arxiv.org/pdf/2601.09905"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here are the key findings:\n\nThe paper \"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\" is authored by Joachim Baumann and colleagues, and it was first published on arXiv on September 10, 2025, with a revised version on October 6, 2025.\n\n**Key Findings on Error Rates:**\n\nThe researchers found incorrect conclusions in approximately 31% of hypotheses for state-of-the-art LLMs, and in half the hypotheses for smaller language models. More specifically, error rates ranged between 31% and 50% due to inconsistent outputs across the replication of 37 annotation tasks with 18 different LLMs.\n\n**Other Important Results:**\n\n- While higher task performance and stronger general model capabilities reduce LLM hacking risk, even highly accurate models remain susceptible\n- Human annotations provide crucial protection against false positives\n- Effect sizes deviated 40-77% from true values, signaling major reliability concerns\n\nThe paper is available at arXiv preprint 2509.08825."
+              ],
+              "durationSeconds": 6.3436736489999985,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "b2d00dd1-94b3-4cf6-897f-1cadefe7acd5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T03:41:04.923Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RXLvnjEBczRaEKAUXDopLJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"McLaren et al 2026 \"Magic Words or Methodical Work\" LLM political text annotation interaction effects arXiv\"\n\nLinks: [{\"title\":\"[2603.26898] Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation\",\"url\":\"https://arxiv.org/abs/2603.26898\"},{\"title\":\"Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation\",\"url\":\"https://arxiv.org/html/2603.26898\"},{\"title\":\"James CROSS | University College Dublin, Dublin | UCD | School of Politics & International Relations | Research profile\",\"url\":\"https://www.researchgate.net/profile/James-Cross-13\"},{\"title\":\"DICEU general approval and opposition/no votes. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/DICEU-general-approval-and-opposition-no-votes_fig3_332485090\"},{\"title\":\"Fact or Fiction? Can LLMs be Reliable Annotators for Political Truths?\",\"url\":\"https://arxiv.org/pdf/2411.05775\"},{\"title\":\"Benchmarking LLMs in Political Content Text-Annotation: Proof-of-Concept   with Toxicity and Incivility Data\",\"url\":\"https://arxiv.org/pdf/2409.09741\"}]\n\nI found the paper you're looking for! Here's the information:\n\n**Title:** \"Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation\"\n\n**Authors:** Lorca McLaren, James Cross, Zuzanna Krakowska, Robin Rauner, and Martijn Schoonvelde\n\n**Publication:** arXiv preprint 2603.26898 (published March 2026)\n\n**Key Findings:** \n\nThe paper addresses how political scientists are rapidly adopting LLMs for text annotation, yet the sensitivity of annotation results to implementation choices remains poorly understood, with most evaluations testing a single model or configuration rather than exploring how model choice, model size, learning approach, and prompt style interact.\n\nThe study presents a controlled evaluation testing six open-weight models across four political science annotation tasks under identical quantisation, hardware, and prompt-template conditions.\n\n**Main Finding on Interaction Effects:** The central methodological finding is that interaction effects dominate main effects, so seemingly reasonable pipeline choices can become consequential researcher degrees of freedom. No single model, prompt style, or learning approach is uniformly superior, and the best-performing model varies across tasks.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2603.26898\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "155a8191-3079-40b5-9ed8-d44ec5e845f7",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "6253e369-6ee0-447b-bd59-bac08eb12f4c",
+            "toolUseResult": {
+              "query": "McLaren et al 2026 \"Magic Words or Methodical Work\" LLM political text annotation interaction effects arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0137nCCacp48ajkoD94ewc18",
+                  "content": [
+                    {
+                      "title": "[2603.26898] Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation",
+                      "url": "https://arxiv.org/abs/2603.26898"
+                    },
+                    {
+                      "title": "Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation",
+                      "url": "https://arxiv.org/html/2603.26898"
+                    },
+                    {
+                      "title": "James CROSS | University College Dublin, Dublin | UCD | School of Politics & International Relations | Research profile",
+                      "url": "https://www.researchgate.net/profile/James-Cross-13"
+                    },
+                    {
+                      "title": "DICEU general approval and opposition/no votes. | Download Scientific Diagram",
+                      "url": "https://www.researchgate.net/figure/DICEU-general-approval-and-opposition-no-votes_fig3_332485090"
+                    },
+                    {
+                      "title": "Fact or Fiction? Can LLMs be Reliable Annotators for Political Truths?",
+                      "url": "https://arxiv.org/pdf/2411.05775"
+                    },
+                    {
+                      "title": "Benchmarking LLMs in Political Content Text-Annotation: Proof-of-Concept   with Toxicity and Incivility Data",
+                      "url": "https://arxiv.org/pdf/2409.09741"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here's the information:\n\n**Title:** \"Magic Words or Methodical Work? Challenging Conventional Wisdom in LLM-Based Political Text Annotation\"\n\n**Authors:** Lorca McLaren, James Cross, Zuzanna Krakowska, Robin Rauner, and Martijn Schoonvelde\n\n**Publication:** arXiv preprint 2603.26898 (published March 2026)\n\n**Key Findings:** \n\nThe paper addresses how political scientists are rapidly adopting LLMs for text annotation, yet the sensitivity of annotation results to implementation choices remains poorly understood, with most evaluations testing a single model or configuration rather than exploring how model choice, model size, learning approach, and prompt style interact.\n\nThe study presents a controlled evaluation testing six open-weight models across four political science annotation tasks under identical quantisation, hardware, and prompt-template conditions.\n\n**Main Finding on Interaction Effects:** The central methodological finding is that interaction effects dominate main effects, so seemingly reasonable pipeline choices can become consequential researcher degrees of freedom. No single model, prompt style, or learning approach is uniformly superior, and the best-performing model varies across tasks.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2603.26898"
+              ],
+              "durationSeconds": 7.064035923,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "155a8191-3079-40b5-9ed8-d44ec5e845f7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T03:41:05.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016wY7QH3D1BHg7di95punRt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"multiverse analysis LLM annotation pipeline specification curve 2025 2026\"\n\nLinks: [{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | OpenReview\",\"url\":\"https://openreview.net/forum?id=r9YDEErKXU\"},{\"title\":\"Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science\",\"url\":\"https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/\"},{\"title\":\"A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction\",\"url\":\"https://arxiv.org/pdf/2510.12306\"},{\"title\":\"Multiverse: Parallel Generation in LLMs\",\"url\":\"https://www.emergentmind.com/papers/2506.09991\"},{\"title\":\"Scalable multilingual PII annotation for responsible AI in LLMs\",\"url\":\"https://arxiv.org/pdf/2510.06250\"},{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation\",\"url\":\"https://multiverse4fm.github.io/\"},{\"title\":\"A step-by-step method for cultural annotation by LLMs\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11097685/\"},{\"title\":\"Visualizing vastness: Graphical methods for multiverse analysis\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875576/\"},{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation\",\"url\":\"https://arxiv.org/pdf/2506.09991\"}]\n\nBased on the search results, I found several relevant papers and research related to your query. Here are the key findings:\n\n## Multiverse and LLM Annotation Pipeline\n\nMultiverse is a new generative model enabling natively parallel generation that internalizes a MapReduce paradigm, generating automatically through three stages: (i) a Map stage for adaptive task decomposition, (ii) a Process stage for parallel subtask execution, and (iii) a Reduce stage for lossless result synthesis.\n\nFor data creation, the researchers develop Multiverse Curator, an automated LLM-assisted pipeline that transforms sequential reasoning chains into structured training data, avoiding costly human annotations. This pipeline transforms sequential chains into parallel structures via five steps: (i) parsing the sequential chain into a summary tree; (ii) identifying parallelizable nodes within the summary tree; (iii) reformatting the summary into a parallel generation structure; (iv) refilling original reasoning steps into this structure; and (v) adding Map & Reduce stages while rewriting the Process stage.\n\n## Specification Curve Analysis and Multiverse\n\nMultiverse analysis is an increasingly popular tool for improving the robustness and transparency of empirical research. Recent research identifies critical weaknesses in existing multiverse visualizations—specification curves and density plots—and introduces a novel alternative: multiverse plots.\n\n## Additional LLM Annotation Research\n\nThe search also revealed other recent annotation pipeline work, including conversational LLMs such as ChatGPT and Claude can be prompted in natural language to perform sophisticated classification tasks with minimal setup.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bb7714b-4c57-4411-9a0a-5926e76c67cf",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "c0e7c858-c1fe-444e-a666-dae1eca88c69",
+            "toolUseResult": {
+              "query": "multiverse analysis LLM annotation pipeline specification curve 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01RyMNVvf4GxfNDKc5bL86rj",
+                  "content": [
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | OpenReview",
+                      "url": "https://openreview.net/forum?id=r9YDEErKXU"
+                    },
+                    {
+                      "title": "Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science",
+                      "url": "https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/"
+                    },
+                    {
+                      "title": "A large-scale pipeline for automatic corpus annotation using LLMs: variation and change in the English consider construction",
+                      "url": "https://arxiv.org/pdf/2510.12306"
+                    },
+                    {
+                      "title": "Multiverse: Parallel Generation in LLMs",
+                      "url": "https://www.emergentmind.com/papers/2506.09991"
+                    },
+                    {
+                      "title": "Scalable multilingual PII annotation for responsible AI in LLMs",
+                      "url": "https://arxiv.org/pdf/2510.06250"
+                    },
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation",
+                      "url": "https://multiverse4fm.github.io/"
+                    },
+                    {
+                      "title": "A step-by-step method for cultural annotation by LLMs",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11097685/"
+                    },
+                    {
+                      "title": "Visualizing vastness: Graphical methods for multiverse analysis",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875576/"
+                    },
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation",
+                      "url": "https://arxiv.org/pdf/2506.09991"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several relevant papers and research related to your query. Here are the key findings:\n\n## Multiverse and LLM Annotation Pipeline\n\nMultiverse is a new generative model enabling natively parallel generation that internalizes a MapReduce paradigm, generating automatically through three stages: (i) a Map stage for adaptive task decomposition, (ii) a Process stage for parallel subtask execution, and (iii) a Reduce stage for lossless result synthesis.\n\nFor data creation, the researchers develop Multiverse Curator, an automated LLM-assisted pipeline that transforms sequential reasoning chains into structured training data, avoiding costly human annotations. This pipeline transforms sequential chains into parallel structures via five steps: (i) parsing the sequential chain into a summary tree; (ii) identifying parallelizable nodes within the summary tree; (iii) reformatting the summary into a parallel generation structure; (iv) refilling original reasoning steps into this structure; and (v) adding Map & Reduce stages while rewriting the Process stage.\n\n## Specification Curve Analysis and Multiverse\n\nMultiverse analysis is an increasingly popular tool for improving the robustness and transparency of empirical research. Recent research identifies critical weaknesses in existing multiverse visualizations—specification curves and density plots—and introduces a novel alternative: multiverse plots.\n\n## Additional LLM Annotation Research\n\nThe search also revealed other recent annotation pipeline work, including conversational LLMs such as ChatGPT and Claude can be prompted in natural language to perform sophisticated classification tasks with minimal setup."
+              ],
+              "durationSeconds": 6.740778281999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "8bb7714b-4c57-4411-9a0a-5926e76c67cf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T03:41:06.630Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014xE3sqs6hY2p4cd8ojapCr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Auspurg PNAS 2025 multiverse analysis critique \"thoughtful models\" robustness\"\n\nLinks: [{\"title\":\"Robustness is better assessed with a few thoughtful models than with billions of regressions | PNAS\",\"url\":\"https://www.pnas.org/doi/10.1073/pnas.2521917122\"},{\"title\":\"What’s a multiverse good for anyway?\",\"url\":\"https://sites.stat.columbia.edu/gelman/research/unpublished/rohrer_multiverse.pdf\"},{\"title\":\"Robustness is better assessed with a few thoughtful models than with billions of regressions - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12582322/\"},{\"title\":\"Reply to Auspurg: On the limits of “justified” model spaces | PNAS\",\"url\":\"https://www.pnas.org/doi/10.1073/pnas.2523374122\"},{\"title\":\"Reply to Auspurg: On the limits of “justified” model spaces\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12582334/\"},{\"title\":\"Toward a more credible assessment of the credibility of science by many-analyst studies | PNAS\",\"url\":\"https://www.pnas.org/doi/10.1073/pnas.2404035121\"},{\"title\":\"Estimating the extent and sources of model uncertainty in political science | PNAS\",\"url\":\"https://www.pnas.org/doi/10.1073/pnas.2414926122\"},{\"title\":\"The Many Worlds of Analysis (Chapter 1) - Multiverse Analysis\",\"url\":\"https://www.cambridge.org/core/books/multiverse-analysis/many-worlds-of-analysis/976BFB688C3AFCC0246FE58272A1BBA6\"}]\n\nBased on the search results, I found information about Auspurg's 2025 PNAS article on multiverse analysis and robustness:\n\n## Key Findings\n\nGanslmeier and Vlandas conducted an ambitious multiverse analysis, estimating over 3.6 billion regression models across four political science topics. By varying estimation strategies, covariates, operationalizations, and samples, they documented drastic model instability, with estimates often changing in sign or significance due to \"minor alterations.\"\n\n## Auspurg's Critique\n\nAuspurg argues that their approach substantially overstates uncertainty. According to Auspurg, multiverse analyses are only informative when all included models represent equally plausible strategies for estimating the same estimand. Otherwise, including unjustified models—i.e., model specifications that are clearly inferior to alternatives—produces a mass of incommensurable and unreasonable effect size estimates.\n\nAuspurg contends that in Ganslmeier and Vlandas's work, the model space is generated by mechanically crossing specifications and using minimal statistical filters (e.g. the Akaike Information Criterion, AIC), and consequently, many models are unjustified because they violate well-established econometric and multiverse standards.\n\n## The Authors' Response\n\nGanslmeier and Vlandas note that Auspurg argues results become more reliable once the analysis is restricted to a smaller set of \"justified\" models, but they see several difficulties with this view, arguing that what counts as justified is itself heavily contested.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79663daa-e24d-4826-9716-8c2c31ffe925",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "942bae44-0053-421a-83b8-ff63508119c2",
+            "toolUseResult": {
+              "query": "Auspurg PNAS 2025 multiverse analysis critique \"thoughtful models\" robustness",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Bhuc4gP7EK5hG5Uv2hzpau",
+                  "content": [
+                    {
+                      "title": "Robustness is better assessed with a few thoughtful models than with billions of regressions | PNAS",
+                      "url": "https://www.pnas.org/doi/10.1073/pnas.2521917122"
+                    },
+                    {
+                      "title": "What’s a multiverse good for anyway?",
+                      "url": "https://sites.stat.columbia.edu/gelman/research/unpublished/rohrer_multiverse.pdf"
+                    },
+                    {
+                      "title": "Robustness is better assessed with a few thoughtful models than with billions of regressions - PMC",
+                      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12582322/"
+                    },
+                    {
+                      "title": "Reply to Auspurg: On the limits of “justified” model spaces | PNAS",
+                      "url": "https://www.pnas.org/doi/10.1073/pnas.2523374122"
+                    },
+                    {
+                      "title": "Reply to Auspurg: On the limits of “justified” model spaces",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12582334/"
+                    },
+                    {
+                      "title": "Toward a more credible assessment of the credibility of science by many-analyst studies | PNAS",
+                      "url": "https://www.pnas.org/doi/10.1073/pnas.2404035121"
+                    },
+                    {
+                      "title": "Estimating the extent and sources of model uncertainty in political science | PNAS",
+                      "url": "https://www.pnas.org/doi/10.1073/pnas.2414926122"
+                    },
+                    {
+                      "title": "The Many Worlds of Analysis (Chapter 1) - Multiverse Analysis",
+                      "url": "https://www.cambridge.org/core/books/multiverse-analysis/many-worlds-of-analysis/976BFB688C3AFCC0246FE58272A1BBA6"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about Auspurg's 2025 PNAS article on multiverse analysis and robustness:\n\n## Key Findings\n\nGanslmeier and Vlandas conducted an ambitious multiverse analysis, estimating over 3.6 billion regression models across four political science topics. By varying estimation strategies, covariates, operationalizations, and samples, they documented drastic model instability, with estimates often changing in sign or significance due to \"minor alterations.\"\n\n## Auspurg's Critique\n\nAuspurg argues that their approach substantially overstates uncertainty. According to Auspurg, multiverse analyses are only informative when all included models represent equally plausible strategies for estimating the same estimand. Otherwise, including unjustified models—i.e., model specifications that are clearly inferior to alternatives—produces a mass of incommensurable and unreasonable effect size estimates.\n\nAuspurg contends that in Ganslmeier and Vlandas's work, the model space is generated by mechanically crossing specifications and using minimal statistical filters (e.g. the Akaike Information Criterion, AIC), and consequently, many models are unjustified because they violate well-established econometric and multiverse standards.\n\n## The Authors' Response\n\nGanslmeier and Vlandas note that Auspurg argues results become more reliable once the analysis is restricted to a smaller set of \"justified\" models, but they see several difficulties with this view, arguing that what counts as justified is itself heavily contested."
+              ],
+              "durationSeconds": 7.312638249000002,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "79663daa-e24d-4826-9716-8c2c31ffe925",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first for…",
+                "leafUuid": "942bae44-0053-421a-83b8-ff63508119c2",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T03:41:11.538Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I've confirmed the key references exist. Now let me search for more specific competing work and related approaches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "942bae44-0053-421a-83b8-ff63508119c2",
+            "isSidechain": false,
+            "requestId": "req_011CbD8MNwWu83m6CtXzWmEC",
+            "type": "assistant",
+            "uuid": "c822b461-6262-4ea1-ade3-fb6c28e13a16",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LXZEYK99hSQPAzVnVwHpDd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3460,
+                "cache_read_input_tokens": 20809,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 20809,
+                    "cache_creation_input_tokens": 3460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T03:41:12.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N9GUeq9ocMfr7DuycQPqte",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"prompt hacking\" \"p-hacking\" LLM researcher degrees of freedom 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c822b461-6262-4ea1-ade3-fb6c28e13a16",
+            "isSidechain": false,
+            "requestId": "req_011CbD8MNwWu83m6CtXzWmEC",
+            "type": "assistant",
+            "uuid": "d30f7081-013a-42de-b734-806565c0e5e9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LXZEYK99hSQPAzVnVwHpDd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3460,
+                "cache_read_input_tokens": 20809,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 20809,
+                    "cache_creation_input_tokens": 3460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T03:41:13.892Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0158oYWhXbnUKxJ5Bs3FW8oD",
+              "name": "WebSearch",
+              "input": {
+                "query": "Del Giudice Gangestad 2021 \"Traveler's Guide to the Multiverse\" E/N/U classification framework"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d30f7081-013a-42de-b734-806565c0e5e9",
+            "isSidechain": false,
+            "requestId": "req_011CbD8MNwWu83m6CtXzWmEC",
+            "type": "assistant",
+            "uuid": "88b47e47-0229-4178-aaa7-220abb2236e5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LXZEYK99hSQPAzVnVwHpDd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3460,
+                "cache_read_input_tokens": 20809,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 20809,
+                    "cache_creation_input_tokens": 3460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T03:41:14.746Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XmG2oqt862Dx2LMKwFzzzZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLM annotation robustness sensitivity analysis social science measurement 2025 2026 specification curve"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88b47e47-0229-4178-aaa7-220abb2236e5",
+            "isSidechain": false,
+            "requestId": "req_011CbD8MNwWu83m6CtXzWmEC",
+            "type": "assistant",
+            "uuid": "8aed9553-a326-4447-8a8b-b755379ecbe2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LXZEYK99hSQPAzVnVwHpDd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3460,
+                "cache_read_input_tokens": 20809,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 20809,
+                    "cache_creation_input_tokens": 3460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T03:41:19.544Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0158oYWhXbnUKxJ5Bs3FW8oD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Del Giudice Gangestad 2021 \"Traveler's Guide to the Multiverse\" E/N/U classification framework\"\n\nLinks: [{\"title\":\"Prereg the Multiverse - Preregistration guide\",\"url\":\"https://johnflournoy.science/multiverse-preregistration/preregistration-guide.html\"},{\"title\":\"A Traveler's Guide to the Multiverse\",\"url\":\"https://marcodg.net/wp-content/uploads/2021/01/delgiudice_gangestad_2021_guide-to-the-multiverse_ampps.pdf\"},{\"title\":\"A Traveler’s Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions - Marco Del Giudice, Steven W. Gangestad, 2021\",\"url\":\"https://journals.sagepub.com/doi/10.1177/2515245920954925\"},{\"title\":\"[PDF] A Traveler’s Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/A-Traveler%E2%80%99s-Guide-to-the-Multiverse:-Promises,-and-Giudice-Gangestad/32ebf8e01a045141903f5b1f7f8a4ac128c42e72\"},{\"title\":\"(PDF) A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions\",\"url\":\"https://www.researchgate.net/publication/343295276_A_Traveler's_Guide_to_the_Multiverse_Promises_Pitfalls_and_a_Framework_for_the_Evaluation_of_Analytic_Decisions\"},{\"title\":\"Inference with specification curve analysis • specr\",\"url\":\"https://masurp.github.io/specr/articles/inferences.html\"},{\"title\":\"Multiverse analysis | FORRT - Framework for Open and Reproducible Research Training\",\"url\":\"https://forrt.org/glossary/english/multiverse_analysis/\"},{\"title\":\"Statistics and methodology | Marco Del Giudice\",\"url\":\"https://marcodg.net/statistics-and-methodology/\"},{\"title\":\"A Traveler’s Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions | ScienceGate\",\"url\":\"https://www.sciencegate.app/document/10.1177/2515245920954925\"}]\n\nBased on the search results, I found information about the Del Giudice & Gangestad 2021 framework for evaluating analytical decisions in multiverse analyses.\n\nDel Giudice and Gangestad published \"A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions\" in 2021 in Advances in Methods and Practices in Psychological Science.\n\nThe E/N/U classification framework consists of three decision types:\n\n1. **Type E (Equivalence)**: Principled equivalence decisions represent cases where multiple analytical choices are equally justified theoretically and methodologically.\n\n2. **Type N (Non-equivalence)**: Type N decisions are non-equivalent options, where only the best option should be kept, in which case these decisions will not expand the set of analyses in the multiverse.\n\n3. **Type U (Uncertainty)**: Type U decisions involve uncertainty, and each option should be used to generate a separate multiverse. In uncertain scenarios, multiverse-style analysis should be conducted in a deliberately exploratory fashion.\n\nThis framework addresses a fundamental issue in multiverse analyses: research data analysis decisions (like how to measure variables or handle outliers) are sometimes arbitrary, and multiverse-style methods estimate effects across possible specifications to expose hidden degrees of freedom.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88b47e47-0229-4178-aaa7-220abb2236e5",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "c857358a-cb9a-4aba-8158-65aea479d8bc",
+            "toolUseResult": {
+              "query": "Del Giudice Gangestad 2021 \"Traveler's Guide to the Multiverse\" E/N/U classification framework",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LmY7rLMkfKVMhNNE6VgEoU",
+                  "content": [
+                    {
+                      "title": "Prereg the Multiverse - Preregistration guide",
+                      "url": "https://johnflournoy.science/multiverse-preregistration/preregistration-guide.html"
+                    },
+                    {
+                      "title": "A Traveler's Guide to the Multiverse",
+                      "url": "https://marcodg.net/wp-content/uploads/2021/01/delgiudice_gangestad_2021_guide-to-the-multiverse_ampps.pdf"
+                    },
+                    {
+                      "title": "A Traveler’s Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions - Marco Del Giudice, Steven W. Gangestad, 2021",
+                      "url": "https://journals.sagepub.com/doi/10.1177/2515245920954925"
+                    },
+                    {
+                      "title": "[PDF] A Traveler’s Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/A-Traveler%E2%80%99s-Guide-to-the-Multiverse:-Promises,-and-Giudice-Gangestad/32ebf8e01a045141903f5b1f7f8a4ac128c42e72"
+                    },
+                    {
+                      "title": "(PDF) A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions",
+                      "url": "https://www.researchgate.net/publication/343295276_A_Traveler's_Guide_to_the_Multiverse_Promises_Pitfalls_and_a_Framework_for_the_Evaluation_of_Analytic_Decisions"
+                    },
+                    {
+                      "title": "Inference with specification curve analysis • specr",
+                      "url": "https://masurp.github.io/specr/articles/inferences.html"
+                    },
+                    {
+                      "title": "Multiverse analysis | FORRT - Framework for Open and Reproducible Research Training",
+                      "url": "https://forrt.org/glossary/english/multiverse_analysis/"
+                    },
+                    {
+                      "title": "Statistics and methodology | Marco Del Giudice",
+                      "url": "https://marcodg.net/statistics-and-methodology/"
+                    },
+                    {
+                      "title": "A Traveler’s Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions | ScienceGate",
+                      "url": "https://www.sciencegate.app/document/10.1177/2515245920954925"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the Del Giudice & Gangestad 2021 framework for evaluating analytical decisions in multiverse analyses.\n\nDel Giudice and Gangestad published \"A Traveler's Guide to the Multiverse: Promises, Pitfalls, and a Framework for the Evaluation of Analytic Decisions\" in 2021 in Advances in Methods and Practices in Psychological Science.\n\nThe E/N/U classification framework consists of three decision types:\n\n1. **Type E (Equivalence)**: Principled equivalence decisions represent cases where multiple analytical choices are equally justified theoretically and methodologically.\n\n2. **Type N (Non-equivalence)**: Type N decisions are non-equivalent options, where only the best option should be kept, in which case these decisions will not expand the set of analyses in the multiverse.\n\n3. **Type U (Uncertainty)**: Type U decisions involve uncertainty, and each option should be used to generate a separate multiverse. In uncertain scenarios, multiverse-style analysis should be conducted in a deliberately exploratory fashion.\n\nThis framework addresses a fundamental issue in multiverse analyses: research data analysis decisions (like how to measure variables or handle outliers) are sometimes arbitrary, and multiverse-style methods estimate effects across possible specifications to expose hidden degrees of freedom."
+              ],
+              "durationSeconds": 5.648644787000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "88b47e47-0229-4178-aaa7-220abb2236e5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T03:41:19.864Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N9GUeq9ocMfr7DuycQPqte",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"prompt hacking\" \"p-hacking\" LLM researcher degrees of freedom 2025 2026\"\n\nLinks: [{\"title\":\"Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation\",\"url\":\"https://arxiv.org/html/2509.08825v1\"},{\"title\":\"Prompt-Hacking: The New p-Hacking?\",\"url\":\"https://arxiv.org/html/2504.14571v1\"},{\"title\":\"[2504.14571] Prompt-Hacking: The New p-Hacking?\",\"url\":\"https://arxiv.org/abs/2504.14571\"},{\"title\":\"Prompt-Hacking: The New p-Hacking? THOMAS KOSCH, HU Berlin, Germany\",\"url\":\"https://arxiv.org/pdf/2504.14571\"},{\"title\":\"Prompt-Hacking: The New p-Hacking? | Communications of the ACM\",\"url\":\"https://dl.acm.org/doi/10.1145/3744911\"},{\"title\":\"Prompt-Hacking: The New p-Hacking? – Communications of the ACM\",\"url\":\"https://cacm.acm.org/opinion/prompt-hacking-the-new-p-hacking/\"},{\"title\":\"Understanding p-Hacking and Researcher Degrees of Freedom\",\"url\":\"https://www.statology.org/understanding-p-hacking-and-researcher-degrees-of-freedom/\"}]\n\nI found several relevant research papers and articles on this topic. Here are the key findings:\n\n## Overview\n\nPrompt-hacking involves the strategic tweaking of prompts to elicit desirable outputs from LLMs, drawing a parallel to the well-documented practice of p-hacking in statistical analysis.\n\n## The Connection to Researcher Degrees of Freedom\n\nLLM hacking is a consequence of the researchers' vast degrees of freedom in LLM configuration choices. The configuration space encompasses all choices affecting LLM outputs, such as model selection, prompt formulation, temperature and other decoding parameters, and output mapping strategies.\n\n## Key Differences from Traditional P-Hacking\n\nWhile similar in outcome, these practices differ in their approach: P-hacking manipulates analytical choices (e.g., variable selection, outlier removal, subgroup analysis), while LLM hacking manipulates data generation through configuration choices, with LLM hacking achieving false p-values by shaping the annotated data itself rather than how that data is analyzed.\n\n## Research Integrity Concerns\n\nThe inherent biases, non-determinism, and opacity of LLMs make them unsuitable for data analysis tasks demanding rigor, impartiality, and reproducibility, with researchers potentially adjusting prompts to confirm hypotheses while undermining research validity.\n\nThe search results include papers from 2025-2026, showing this is an active area of recent research concern in the scientific community.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d30f7081-013a-42de-b734-806565c0e5e9",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "b6a0e06e-4a1f-4764-a578-87247f3f2176",
+            "toolUseResult": {
+              "query": "\"prompt hacking\" \"p-hacking\" LLM researcher degrees of freedom 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01L76mKNzWFsLUQ2c9EwzQih",
+                  "content": [
+                    {
+                      "title": "Large Language Model Hacking: Quantifying the Hidden Risks of Using LLMs for Text Annotation",
+                      "url": "https://arxiv.org/html/2509.08825v1"
+                    },
+                    {
+                      "title": "Prompt-Hacking: The New p-Hacking?",
+                      "url": "https://arxiv.org/html/2504.14571v1"
+                    },
+                    {
+                      "title": "[2504.14571] Prompt-Hacking: The New p-Hacking?",
+                      "url": "https://arxiv.org/abs/2504.14571"
+                    },
+                    {
+                      "title": "Prompt-Hacking: The New p-Hacking? THOMAS KOSCH, HU Berlin, Germany",
+                      "url": "https://arxiv.org/pdf/2504.14571"
+                    },
+                    {
+                      "title": "Prompt-Hacking: The New p-Hacking? | Communications of the ACM",
+                      "url": "https://dl.acm.org/doi/10.1145/3744911"
+                    },
+                    {
+                      "title": "Prompt-Hacking: The New p-Hacking? – Communications of the ACM",
+                      "url": "https://cacm.acm.org/opinion/prompt-hacking-the-new-p-hacking/"
+                    },
+                    {
+                      "title": "Understanding p-Hacking and Researcher Degrees of Freedom",
+                      "url": "https://www.statology.org/understanding-p-hacking-and-researcher-degrees-of-freedom/"
+                    }
+                  ]
+                },
+                "I found several relevant research papers and articles on this topic. Here are the key findings:\n\n## Overview\n\nPrompt-hacking involves the strategic tweaking of prompts to elicit desirable outputs from LLMs, drawing a parallel to the well-documented practice of p-hacking in statistical analysis.\n\n## The Connection to Researcher Degrees of Freedom\n\nLLM hacking is a consequence of the researchers' vast degrees of freedom in LLM configuration choices. The configuration space encompasses all choices affecting LLM outputs, such as model selection, prompt formulation, temperature and other decoding parameters, and output mapping strategies.\n\n## Key Differences from Traditional P-Hacking\n\nWhile similar in outcome, these practices differ in their approach: P-hacking manipulates analytical choices (e.g., variable selection, outlier removal, subgroup analysis), while LLM hacking manipulates data generation through configuration choices, with LLM hacking achieving false p-values by shaping the annotated data itself rather than how that data is analyzed.\n\n## Research Integrity Concerns\n\nThe inherent biases, non-determinism, and opacity of LLMs make them unsuitable for data analysis tasks demanding rigor, impartiality, and reproducibility, with researchers potentially adjusting prompts to confirm hypotheses while undermining research validity.\n\nThe search results include papers from 2025-2026, showing this is an active area of recent research concern in the scientific community."
+              ],
+              "durationSeconds": 6.910665327000002,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "d30f7081-013a-42de-b734-806565c0e5e9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T03:41:22.850Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XmG2oqt862Dx2LMKwFzzzZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLM annotation robustness sensitivity analysis social science measurement 2025 2026 specification curve\"\n\nLinks: [{\"title\":\"The use of LLMs to annotate data in management research: Foundational guidelines and warnings - Carlson - 2026 - Strategic Management Journal - Wiley Online Library\",\"url\":\"https://sms.onlinelibrary.wiley.com/doi/10.1002/smj.70023\"},{\"title\":\"Architectural Vulnerability and Reliability Challenges in AI Text Annotation: A Survey-Inspired Framework with Independent Probability Assessment\",\"url\":\"https://arxiv.org/pdf/2502.19679\"},{\"title\":\"The Use of LLMs to Annotate Data in Management Research\",\"url\":\"https://faculty.wharton.upenn.edu/wp-content/uploads/2025/09/The-use-of-LLMs-to-Annotate-Data.pdf\"},{\"title\":\"Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement\",\"url\":\"https://arxiv.org/pdf/2601.02370\"},{\"title\":\"Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics\",\"url\":\"https://arxiv.org/html/2505.18658v2\"},{\"title\":\"To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation\",\"url\":\"https://arxiv.org/pdf/2412.14461\"},{\"title\":\"Political Analysis (2025), 00, 1–17 doi:10.1017/pan.2025.10017 ARTICLE\",\"url\":\"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7B323A0E47F782F2698A0AE849EA00DE/S104719872510017Xa.pdf/codebook-llms-evaluating-llms-as-measurement-tools-for-political-science-concepts.pdf\"}]\n\nI found several highly relevant recent papers on this topic. Here are the key results:\n\n## Recent Research on LLM Annotation Robustness and Sensitivity Analysis\n\n**Strategic Management Journal (2026)**: A paper in the Strategic Management Journal emphasizes that robustness checks and sensitivity analyses with detailed documentation and reusable code help researchers implement these checks in their own work, arguing that such robustness checks will remain important even as models continue to advance. The work notes that researchers increasingly recognize the methodological potential of LLMs in social science research.\n\n**Variance-Aware LLM Annotation (January 2026)**: A recent paper diagnoses that LLM-generated labels involve substantial instability and identifies five variance sources: construct specification, interface effects, model preferences, output extraction, and system-level aggregation.\n\n**Survey Methodology Framework (March 2025)**: Research introduces a framework for assessing LLM text annotation reliability in social science research by adapting survey methodology principles, implementing three key interventions: option randomization, position randomization, and reverse validation.\n\n**Prompt Sensitivity in Management Research**: Research shows that prompts producing nearly identical accuracy metrics on validation data may still produce different downstream regression estimates, and researchers should maintain gold-standard validation sets and systematically test prompt variations.\n\n**Political Science Framework (2025)**: A five-stage evaluation framework guides researchers through codebook preparation, label-free testing, zero-shot evaluation, robustness evaluations, and training LLMs on supervised examples.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aed9553-a326-4447-8a8b-b755379ecbe2",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "7ac8b4ed-a6de-47c0-9c66-9d39314500c6",
+            "toolUseResult": {
+              "query": "LLM annotation robustness sensitivity analysis social science measurement 2025 2026 specification curve",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01XeNShpSu638CL8ExPNC7eJ",
+                  "content": [
+                    {
+                      "title": "The use of LLMs to annotate data in management research: Foundational guidelines and warnings - Carlson - 2026 - Strategic Management Journal - Wiley Online Library",
+                      "url": "https://sms.onlinelibrary.wiley.com/doi/10.1002/smj.70023"
+                    },
+                    {
+                      "title": "Architectural Vulnerability and Reliability Challenges in AI Text Annotation: A Survey-Inspired Framework with Independent Probability Assessment",
+                      "url": "https://arxiv.org/pdf/2502.19679"
+                    },
+                    {
+                      "title": "The Use of LLMs to Annotate Data in Management Research",
+                      "url": "https://faculty.wharton.upenn.edu/wp-content/uploads/2025/09/The-use-of-LLMs-to-Annotate-Data.pdf"
+                    },
+                    {
+                      "title": "Variance-Aware LLM Annotation for Strategy Research: Sources, Diagnostics, and a Protocol for Reliable Measurement",
+                      "url": "https://arxiv.org/pdf/2601.02370"
+                    },
+                    {
+                      "title": "Robustness in Large Language Models: A Survey of Mitigation Strategies and Evaluation Metrics",
+                      "url": "https://arxiv.org/html/2505.18658v2"
+                    },
+                    {
+                      "title": "To Err Is Human; To Annotate, SILICON? Reducing Measurement Error in LLM Annotation",
+                      "url": "https://arxiv.org/pdf/2412.14461"
+                    },
+                    {
+                      "title": "Political Analysis (2025), 00, 1–17 doi:10.1017/pan.2025.10017 ARTICLE",
+                      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7B323A0E47F782F2698A0AE849EA00DE/S104719872510017Xa.pdf/codebook-llms-evaluating-llms-as-measurement-tools-for-political-science-concepts.pdf"
+                    }
+                  ]
+                },
+                "I found several highly relevant recent papers on this topic. Here are the key results:\n\n## Recent Research on LLM Annotation Robustness and Sensitivity Analysis\n\n**Strategic Management Journal (2026)**: A paper in the Strategic Management Journal emphasizes that robustness checks and sensitivity analyses with detailed documentation and reusable code help researchers implement these checks in their own work, arguing that such robustness checks will remain important even as models continue to advance. The work notes that researchers increasingly recognize the methodological potential of LLMs in social science research.\n\n**Variance-Aware LLM Annotation (January 2026)**: A recent paper diagnoses that LLM-generated labels involve substantial instability and identifies five variance sources: construct specification, interface effects, model preferences, output extraction, and system-level aggregation.\n\n**Survey Methodology Framework (March 2025)**: Research introduces a framework for assessing LLM text annotation reliability in social science research by adapting survey methodology principles, implementing three key interventions: option randomization, position randomization, and reverse validation.\n\n**Prompt Sensitivity in Management Research**: Research shows that prompts producing nearly identical accuracy metrics on validation data may still produce different downstream regression estimates, and researchers should maintain gold-standard validation sets and systematically test prompt variations.\n\n**Political Science Framework (2025)**: A five-stage evaluation framework guides researchers through codebook preparation, label-free testing, zero-shot evaluation, robustness evaluations, and training LLMs on supervised examples."
+              ],
+              "durationSeconds": 8.100741127999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "8aed9553-a326-4447-8a8b-b755379ecbe2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T03:41:22.857Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7ac8b4ed-a6de-47c0-9c66-9d39314500c6",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "146b9a4b-86d9-4a63-ab7f-a0b6195b3be5",
+                "timestamp": "2026-05-20T03:41:22.857Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T03:41:27.258Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I've gathered substantial background information. Let me do one more round of searches to check for any direct competitors - specifically any work that has already applied multiverse analysis or specification curve analysis to LLM annotation pipelines.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "146b9a4b-86d9-4a63-ab7f-a0b6195b3be5",
+            "isSidechain": false,
+            "requestId": "req_011CbD8Na3Y3tMsrwhEtc9Ux",
+            "type": "assistant",
+            "uuid": "72e3194e-8204-41d9-b1b0-d83a444517fe",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S32oRtrrfQSPS4TtTPVqpC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 24269,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 24269,
+                    "cache_creation_input_tokens": 2881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T03:41:28.111Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one more targeted search to check for direct competitors who may have already done multiverse analysis on LLM annotation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72e3194e-8204-41d9-b1b0-d83a444517fe",
+            "isSidechain": false,
+            "requestId": "req_011CbD8Na3Y3tMsrwhEtc9Ux",
+            "type": "assistant",
+            "uuid": "44e11232-ac02-461d-bbed-7e1be60929f7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S32oRtrrfQSPS4TtTPVqpC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 24269,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 24269,
+                    "cache_creation_input_tokens": 2881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T03:41:28.591Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012k4otoL6PigW9kLQxJaDBB",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"multiverse analysis\" \"LLM\" annotation \"specification curve\" pipeline social science 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44e11232-ac02-461d-bbed-7e1be60929f7",
+            "isSidechain": false,
+            "requestId": "req_011CbD8Na3Y3tMsrwhEtc9Ux",
+            "type": "assistant",
+            "uuid": "9d34e590-7941-4b76-8d91-7099ca1e86a8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S32oRtrrfQSPS4TtTPVqpC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 24269,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 24269,
+                    "cache_creation_input_tokens": 2881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T03:41:31.275Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012BXNAhR5pK1Kqwj4fLbpHi",
+              "name": "WebSearch",
+              "input": {
+                "query": "Ye et al 2026 \"Navigating the Conceptual Multiverse\" LLM arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d34e590-7941-4b76-8d91-7099ca1e86a8",
+            "isSidechain": false,
+            "requestId": "req_011CbD8Na3Y3tMsrwhEtc9Ux",
+            "type": "assistant",
+            "uuid": "2e2f2f02-e510-4c13-9a94-0fb6cb2d1459",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S32oRtrrfQSPS4TtTPVqpC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 24269,
+                "output_tokens": 220,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2881,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 220,
+                    "cache_read_input_tokens": 24269,
+                    "cache_creation_input_tokens": 2881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2881
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T03:41:34.584Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012k4otoL6PigW9kLQxJaDBB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"multiverse analysis\" \"LLM\" annotation \"specification curve\" pipeline social science 2026\"\n\nLinks: [{\"title\":\"Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science\",\"url\":\"https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/\"},{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | OpenReview\",\"url\":\"https://openreview.net/forum?id=r9YDEErKXU\"},{\"title\":\"The use of LLMs to annotate data in management research: Foundational guidelines and warnings - Carlson - 2026 - Strategic Management Journal - Wiley Online Library\",\"url\":\"https://sms.onlinelibrary.wiley.com/doi/full/10.1002/smj.70023\"},{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation\",\"url\":\"https://multiverse4fm.github.io/\"},{\"title\":\"(PDF) Multi-curious: A Multi-Disciplinary Guide to Multiverse Analysis\",\"url\":\"https://www.researchgate.net/publication/389378838_Multi-curious_A_Multi-Disciplinary_Guide_to_Multiverse_Analysis\"},{\"title\":\"Multiverse analysis | FORRT - Framework for Open and Reproducible Research Training\",\"url\":\"https://forrt.org/glossary/english/multiverse_analysis/\"},{\"title\":\"Visualizing vastness: Graphical methods for multiverse analysis\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875576/\"}]\n\nI found several relevant results from your search. Here's what the web contains about these topics:\n\n## Recent Work on LLM Annotation and Methodological Frameworks\n\nResearchers increasingly recognize the methodological potential of LLMs in social science research, with foundational frameworks emphasizing sensitivity analysis and the propagation of methodological choices through the research pipeline.\n\n## Multiverse Analysis and Specification Curves\n\nMultiverse analyses are based on all potentially equally justifiable data processing and statistical analysis pipelines that can be employed to test a single hypothesis. Multiverse analysis might include defensible variations in all stages of a research pipeline or it might focus on one or a subset only.\n\nMultiverse analysis is an increasingly popular tool for improving the robustness and transparency of empirical research, though visualization techniques for it are underdeveloped, with researchers identifying critical weaknesses in existing multiverse visualizations like specification curves and introducing novel alternatives such as multiverse plots.\n\n## LLM-Assisted Data Processing\n\nAn automated LLM-assisted pipeline can transform sequential chains into parallel structures through parsing, identifying parallelizable nodes, reformatting, refilling reasoning steps, and adding Map & Reduce stages.\n\nThe search results show active 2025-2026 research connecting these topics in social science methodology, though the most directly aligned work appears to be the recent guidance on LLM annotation practices in management research.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d34e590-7941-4b76-8d91-7099ca1e86a8",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "cdc9d0cb-acef-4795-a5de-3d68b8e55132",
+            "toolUseResult": {
+              "query": "\"multiverse analysis\" \"LLM\" annotation \"specification curve\" pipeline social science 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_018v9iKYP2SUsLDbXYJ6mntR",
+                  "content": [
+                    {
+                      "title": "Specification curve analysis and the multiverse | Statistical Modeling, Causal Inference, and Social Science",
+                      "url": "https://statmodeling.stat.columbia.edu/2024/11/12/specification-curve-analysis-and-the-multiverse/"
+                    },
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | OpenReview",
+                      "url": "https://openreview.net/forum?id=r9YDEErKXU"
+                    },
+                    {
+                      "title": "The use of LLMs to annotate data in management research: Foundational guidelines and warnings - Carlson - 2026 - Strategic Management Journal - Wiley Online Library",
+                      "url": "https://sms.onlinelibrary.wiley.com/doi/full/10.1002/smj.70023"
+                    },
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation",
+                      "url": "https://multiverse4fm.github.io/"
+                    },
+                    {
+                      "title": "(PDF) Multi-curious: A Multi-Disciplinary Guide to Multiverse Analysis",
+                      "url": "https://www.researchgate.net/publication/389378838_Multi-curious_A_Multi-Disciplinary_Guide_to_Multiverse_Analysis"
+                    },
+                    {
+                      "title": "Multiverse analysis | FORRT - Framework for Open and Reproducible Research Training",
+                      "url": "https://forrt.org/glossary/english/multiverse_analysis/"
+                    },
+                    {
+                      "title": "Visualizing vastness: Graphical methods for multiverse analysis",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12875576/"
+                    }
+                  ]
+                },
+                "I found several relevant results from your search. Here's what the web contains about these topics:\n\n## Recent Work on LLM Annotation and Methodological Frameworks\n\nResearchers increasingly recognize the methodological potential of LLMs in social science research, with foundational frameworks emphasizing sensitivity analysis and the propagation of methodological choices through the research pipeline.\n\n## Multiverse Analysis and Specification Curves\n\nMultiverse analyses are based on all potentially equally justifiable data processing and statistical analysis pipelines that can be employed to test a single hypothesis. Multiverse analysis might include defensible variations in all stages of a research pipeline or it might focus on one or a subset only.\n\nMultiverse analysis is an increasingly popular tool for improving the robustness and transparency of empirical research, though visualization techniques for it are underdeveloped, with researchers identifying critical weaknesses in existing multiverse visualizations like specification curves and introducing novel alternatives such as multiverse plots.\n\n## LLM-Assisted Data Processing\n\nAn automated LLM-assisted pipeline can transform sequential chains into parallel structures through parsing, identifying parallelizable nodes, reformatting, refilling reasoning steps, and adding Map & Reduce stages.\n\nThe search results show active 2025-2026 research connecting these topics in social science methodology, though the most directly aligned work appears to be the recent guidance on LLM annotation practices in management research."
+              ],
+              "durationSeconds": 5.989334875000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "9d34e590-7941-4b76-8d91-7099ca1e86a8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first for…",
+                "leafUuid": "cdc9d0cb-acef-4795-a5de-3d68b8e55132",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T03:41:37.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012BXNAhR5pK1Kqwj4fLbpHi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Ye et al 2026 \"Navigating the Conceptual Multiverse\" LLM arXiv\"\n\nLinks: [{\"title\":\"[2604.17815] Navigating the Conceptual Multiverse\",\"url\":\"https://arxiv.org/abs/2604.17815\"},{\"title\":\"Navigating the Conceptual Multiverse\",\"url\":\"https://arxiv.org/html/2604.17815v2\"},{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2506.09991v2\"},{\"title\":\"From Tokens to Thoughts: How LLMs and Humans Trade Compression for Meaning\",\"url\":\"https://arxiv.org/pdf/2505.17117\"},{\"title\":\"One fish, two fish, but not the whole sea: Alignment reduces language models' conceptual diversity\",\"url\":\"https://arxiv.org/pdf/2411.04427\"},{\"title\":\"Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | OpenReview\",\"url\":\"https://openreview.net/forum?id=r9YDEErKXU\"},{\"title\":\"Towards Concept-Aware Large Language Models\",\"url\":\"https://arxiv.org/pdf/2311.01866\"}]\n\nI found the paper you're looking for! The paper \"Navigating the Conceptual Multiverse\" describes an interactive system that represents conceptual decisions—such as how to frame a question or what to value—as a space users can transparently inspect, intervenably change, and check against principled domain reasoning.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2604.17815\n\nThe work addresses the problem that when language models answer open-ended problems, they make hidden decisions that shape their outputs, leaving users with uncontextualized answers rather than a working map of the problem. The system was evaluated across three domains, with philosophy students rewriting essays with sharper framings as one of the key outcomes.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e2f2f02-e510-4c13-9a94-0fb6cb2d1459",
+            "isSidechain": false,
+            "promptId": "4d81c4b6-f8c7-4a92-a96b-f0738fb54ff0",
+            "type": "user",
+            "uuid": "0009e443-7aaf-4f21-9c9d-c435c21563e7",
+            "toolUseResult": {
+              "query": "Ye et al 2026 \"Navigating the Conceptual Multiverse\" LLM arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01HVBgaVLsfrA62yjNJBextZ",
+                  "content": [
+                    {
+                      "title": "[2604.17815] Navigating the Conceptual Multiverse",
+                      "url": "https://arxiv.org/abs/2604.17815"
+                    },
+                    {
+                      "title": "Navigating the Conceptual Multiverse",
+                      "url": "https://arxiv.org/html/2604.17815v2"
+                    },
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | alphaXiv",
+                      "url": "https://www.alphaxiv.org/overview/2506.09991v2"
+                    },
+                    {
+                      "title": "From Tokens to Thoughts: How LLMs and Humans Trade Compression for Meaning",
+                      "url": "https://arxiv.org/pdf/2505.17117"
+                    },
+                    {
+                      "title": "One fish, two fish, but not the whole sea: Alignment reduces language models' conceptual diversity",
+                      "url": "https://arxiv.org/pdf/2411.04427"
+                    },
+                    {
+                      "title": "Multiverse: Your Language Models Secretly Decide How to Parallelize and Merge Generation | OpenReview",
+                      "url": "https://openreview.net/forum?id=r9YDEErKXU"
+                    },
+                    {
+                      "title": "Towards Concept-Aware Large Language Models",
+                      "url": "https://arxiv.org/pdf/2311.01866"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! The paper \"Navigating the Conceptual Multiverse\" describes an interactive system that represents conceptual decisions—such as how to frame a question or what to value—as a space users can transparently inspect, intervenably change, and check against principled domain reasoning.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2604.17815\n\nThe work addresses the problem that when language models answer open-ended problems, they make hidden decisions that shape their outputs, leaving users with uncontextualized answers rather than a working map of the problem. The system was evaluated across three domains, with philosophy students rewriting essays with sharper framings as one of the key outcomes."
+              ],
+              "durationSeconds": 5.858921533000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "2e2f2f02-e510-4c13-9a94-0fb6cb2d1459",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T03:42:50.227Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have sufficient information to conduct a thorough evaluation. Let me synthesize my findings and produce the triage assessment.\n\nKey findings from my research:\n\n1. **Baumann et al. (2025)** - Confirmed real (arXiv 2509.08825). Documents ~31% error rate in LLM annotation, tests 18 LLMs × 37 tasks. Key contribution: quantifies the problem but doesn't provide formal multiverse methodology.\n\n2. **McLaren et al. (March 2026)** - Confirmed real (arXiv 2603.26898). Shows interaction effects dominate main effects in LLM annotation choices. \n\n3. **Auspurg (PNAS 2025)** - Confirmed real. Argues robustness is better assessed with thoughtful models than billions of regressions. Key debate about multiverse analysis methodology.\n\n4. **Del Giudice & Gangestad (2021)** - Confirmed real. E/N/U classification framework for multiverse analysis.\n\n5. **Kosch & Feger (2026)** - Confirmed real. \"Prompt-Hacking: The New p-Hacking?\" in CACM. Draws the conceptual analogy but doesn't provide formal methodology.\n\n6. **Ye et al. (April 2026)** - Confirmed real. The remaining sources establish that while individual variation in LLM behavior is well-documented, the formal methodology for systematic multiverse analysis in this context remains underdeveloped across the literature.\n\n7. **Carlson & Burbano (2026, SMJ)** - Confirmed real. Guidelines calling for sensitivity analysis but no formal methodology.\n\n8. **Variance-Aware LLM Annotation (January 2026)** - Confirmed real. Identifies 5 variance sources but offers protocol guidance, not statistical inference.\n\nNow I'm checking whether a trivial alternative would suffice—just running the same analysis across 3-4 different models and seeing if conclusions hold. That's essentially what Carlson & Burbano recommend, but the proposal argues this is insufficient because it doesn't cover the full defensible configuration space, lacks formal joint inference, and doesn't attribute which specific choices drive variance.\n\nThe real question is whether the formal framework delivers substantially more insight than ad-hoc sensitivity checks. I think it does: the variance decomposition pinpoints where instability originates (actionable), and the joint inference test gives a rigorous robustness criterion instead of just eyeballing consistency across runs.\n\nFor novelty, the core contribution is adapting multiverse and specification curve analysis from psychology and economics into LLM annotation workflows. The individual pieces—multiverse analysis, specification curves, E/N/U classification, variance decomposition—are all established, so the novelty lies in their integration and application to this domain.\n\nThe gap is genuine: no one's done formal multiverse analysis with joint inference on LLM pipelines yet. The conceptual leap is moderate since the \"prompt hacking = p-hacking\" parallel is already established, making multiverse analysis a natural extension. What pushes this beyond simple application is the E/N/U framework adapted specifically for LLM choices and the engagement with Auspurg's critique, which demonstrates real methodological sophistication.\n\nOn significance, the problem is urgent and timely—LLM annotation is proliferating in social science research, and that 31% error rate from Baumann et al. is genuinely concerning. A formal robustness framework for LLM-mediated findings would address a critical gap in how researchers validate these pipelines.\n\nThe main limitation is scope: the primary audience is social scientists using LLMs for annotation, which is a growing but still specific niche. Real impact hinges on both methodological soundness and toolkit usability. The variance decomposition component stands out as potentially most actionable—knowing which pipeline choices actually drive differences in findings is something researchers can act on.\n\nThe related work section is thorough and well-positioned. The proposal correctly identifies the gap between problem-documenting papers and methodology papers, engages sophisticatedly with the Auspurg debate, and clearly articulates how this complements rather than duplicates McLaren et al.'s benchmarking approach.\n\nThe core concern is that the main contribution amounts to adapting existing methods—multiverse analysis, specification curves, E/N/U classification—to a new domain rather than developing fundamentally new methodology. While the adaptation is non-trivial and well-motivated, reviewers may see this as methodologically incremental — \"just applying specification curves to a new setting.\" The E/N/U adaptation is the main source of genuine methodological novelty.\n\nThe main finding that LLM pipeline choices matter and some hypotheses are fragile is already established in prior work, though the proposal would add formal quantification of which choices matter most and a principled robustness framework. The variance decomposition could yield actionable insights, but there's some overlap with existing findings about interaction effects.\n\nThe authors themselves list EMNLP as a stretch target, suggesting they recognize it may not be the ideal venue. Overall, this is a well-constructed proposal with genuine problem motivation and sophisticated methodology, but the core contribution amounts to applying an existing method to a new domain, which limits the novelty ceiling. The expected findings are somewhat predictable, though the E/N/U adaptation and variance decomposition components add meaningful depth. I'd estimate this around 25 on the quality scale — solid work with substance, but the core finding likely won't be surprising. The argument about LLM annotation being where Auspurg's concerns don't apply is actually a genuine insight that strengthens the contribution. I'm settling on 25-32% with a median around 28%, though I should consider whether the cross-disciplinary barrier between psychology methodology and NLP explains why no one's tackled this despite the problem being recognized for over a year. On the \"surprising\" test, the findings feel somewhat incremental — showing that pipeline choices matter more than others echoes what McLaren et al. already demonstrated, and while the variance decomposition results around temperature and model choice are moderately interesting, I'm trying to assess whether they're genuinely novel or just expected confirmations.\n\nBut reconsidering the methodological novelty here: this isn't just applying specification curves to LLM pipelines, it's also adapting the E/N/U framework to argue for principled multiverse construction rather than naive enumeration, and it's engaging directly with an active PNAS-level methodological debate.\n\nThe proposal also offers variance decomposition beyond what prior work has shown, and the insight that LLM annotation is actually the ideal setting for multiverse analysis—constant estimand, no model misspecification, no prior theory to bias choice rankings—is genuinely novel. The work sits at the intersection of NLP, psychology methodology, and social science, which could give it broad impact, though each community might have different novelty thresholds. For the NLP community specifically, the CSS track would likely be very receptive while the mainstream side might be less engaged.\n\nRevising my assessment upward: 30-35%, median around 32%.\n\nThe core limitation remains that this is primarily cross-domain transfer and adaptation rather than a fundamentally new method or surprising empirical finding. It's a well-executed application of existing approaches to a new problem space, which is solid work but might prompt an EMNLP reviewer to note it's competent application rather than methodological innovation.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0009e443-7aaf-4f21-9c9d-c435c21563e7",
+            "isSidechain": false,
+            "requestId": "req_011CbD8Pd77XQiYFwNoP5Q3v",
+            "type": "assistant",
+            "uuid": "71d10383-b11f-4bcb-bec7-aae5f23c6a72",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN5y5CkdCK41W54aX5dBJF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1522,
+                "cache_read_input_tokens": 27150,
+                "output_tokens": 6142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1522,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6142,
+                    "cache_read_input_tokens": 27150,
+                    "cache_creation_input_tokens": 1522,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1522
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T03:44:05.284Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have sufficient research to produce the triage assessment. Let me compile my findings.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Large Language Model Hacking] (arXiv 2509.08825, Baumann et al., 2025): 核心问题论文。在 18 个 LLM × 37 个标注任务上发现 ~31% 假设得出错误结论，效应量偏差 40-77%。提供了公开复制数据（MIT 许可），但仅测试 21 个 ad-hoc 缓解策略，无正式 multiverse 推断。Proposal 拟用其数据作为验证基础——这一点成立。\n- [Magic Words or Methodical Work?] (arXiv 2603.26898, McLaren et al., March 2026): 在政治科学标注中系统变换模型、提示模板、学习方法，发现交互效应主导主效应。但其设计为 one-factor-at-a-time（非全因子），不产出 specification curve 或联合推断——proposal 对其定位为\"互补性基准测试\"是准确的。\n- [Prompt-Hacking: The New p-Hacking?] (CACM 2026, Kosch & Feger): 明确画出 prompt hacking ↔ p-hacking 概念类比，但仅为观点文章，不提供正式方法论。Proposal 的定位准确。\n- [Robustness is better assessed with a few thoughtful models…] (PNAS 2025, Auspurg): 批评穷举式 multiverse 分析过度估计不确定性。[Reply to Auspurg] (PNAS 2025, Ganslmeier & Vlandas) 进行了回应。这一方法论辩论是真实的、高影响力的。Proposal 试图论证 LLM 标注是 Auspurg 批评不适用的精确场景——这是一个有深度的方法论贡献。\n- [A Traveler's Guide to the Multiverse] (AMPPS 2021, Del Giudice & Gangestad): E/N/U 分类框架确实存在且被广泛引用。将其迁移到 LLM 标注管道是 proposal 的核心方法论创新之一。\n- [Navigating the Conceptual Multiverse] (arXiv 2604.17815, Ye et al., April 2026): 将 multiverse 思维应用于 LLM 概念框架的 HCI 交互系统，不涉及标注管道或统计推断——确认与 proposal 不直接竞争。\n- [Carlson & Burbano] (SMJ 2026): 推荐敏感性分析但不提供正式方法。[Variance-Aware LLM Annotation] (arXiv 2601.02370, 2026): 识别 5 个方差来源但仅提供协议指导，不含统计推断。\n- 调研总结：LLM 标注管道中的\"研究者自由度\"问题已被多篇高影响力论文充分记录（Baumann、McLaren、Kosch & Feger），且社区明确呼吁正式方法论解决方案（Carlson & Burbano）。然而，截至 2026 年 5 月，**确实没有任何现有工作将正式的 multiverse 分析 + 联合推断应用于 LLM 标注管道**。Proposal 填补的 gap 是真实存在的。但 gap 的性质是\"将心理学/经济学中成熟的方法迁移到新领域\"，而非提出全新方法。\n\n【Trivial Alternative 检验】:\n存在一个显而易见的 trivial alternative：**简单地用 3-5 个不同配置运行标注，报告结论是否一致**（即 Carlson & Burbano 2026 推荐的非正式敏感性分析）。Proposal 对此有预期回应：(a) 非正式分析无法提供联合统计推断（hypothesis 是 robust 还是 fragile 的正式判定），(b) 不含方差分解（不知道 *哪些* 维度驱动不稳定性），(c) 无法区分 E/N/U 维度（可能将不等价的配置混入分析）。\n\n增量价值评估：**真实但有限**。正式框架的主要增量在于 (1) variance decomposition 可产出 actionable 发现（如\"模型选择解释 40% 的推断方差，而 prompt 措辞仅 8%\"），(2) 联合推断测试提供了非主观的 robustness 判定标准。但如果实证结果显示\"大多数维度的影响相似\"或\"大多数假设都是 fragile\"，则增量价值会大幅缩水——因为这与简单敏感性分析的结论无实质区别。\n\n【前提假设检验】:\n核心逻辑链中有以下未经验证的假设：\n\n1. **E/N/U 分类可在 LLM 标注场景中可靠执行**：Del Giudice & Gangestad 的 E/N/U 框架是为传统分析决策设计的（如变量操作化、离群值处理）。Proposal 假设这一分类可以自然迁移到 LLM 管道维度（如 prompt 措辞、温度、模型选择），但 LLM 管道维度的\"等价性\"判断标准是什么？谁来判定两个 prompt 是\"语义等价\"的（Type E）vs.\"不确定\"的（Type U）？这个分类过程本身可能引入主观性——恰恰是框架试图消除的问题。这是一个潜在的循环论证风险。\n\n2. **Auspurg 批评不适用于 LLM 标注的论证**：Proposal 提出三个理由（estimand 恒定、无统计误设、无先验理论排序），但第三点值得质疑——随着 LLM 标注实践成熟，社区 *正在* 形成关于最佳实践的共识（如 temperature=0 优于高 temperature 用于分类任务）。如果\"无先验理论排序\"的前提随着领域发展而削弱，框架的认识论基础也会动摇。\n\n3. **下游统计推断对标注噪声的敏感性是线性/可分解的**：ANOVA 方差分解假设因子效应可加性分解，但 McLaren et al. 已经证明交互效应主导——高阶交互效应可能使简单的方差分解难以解读。\n\n【3 维度打分】:\n1. Novelty: 【中】— 核心贡献是将心理学/经济学中成熟的方法论（specification curve analysis + E/N/U 框架）迁移到 LLM 标注管道这一新领域。Gap 是真实的（截至调研，确实无人做过此迁移），E/N/U 的领域适配和 Auspurg 辩论的参与增加了方法论深度。但本质上是 cross-domain transfer，不是方法论创新。每个组件（multiverse analysis, specification curves, E/N/U, ANOVA variance decomposition）单独来看都是现有方法的应用。一旦 Kosch & Feger (2026) 画出了 prompt-hacking ≈ p-hacking 的类比，将 multiverse analysis 应用于 LLM 管道是一个相当 obvious 的下一步。审稿人可能的反应：**\"competent application of existing methods to a natural new domain, but the intellectual leap is moderate.\"**\n\n2. Significance: 【中偏强】— 问题本身的重要性毋庸置疑：LLM 标注在社会科学中的采用正在爆炸性增长，31% 的假设得出错误结论（Baumann et al.）是一个令人震惊的数字。一个正式的 robustness 评估框架对该社区有真实需求。Variance decomposition 的潜在发现（哪些管道维度驱动最多不稳定性）具有直接可操作性。开源工具包 + pre-registration 模板增强了实践影响力。但主要受众是使用 LLM 进行标注的社会科学家，这是一个 specific niche（虽然快速增长）。对核心 NLP/CL 社区的方法论贡献相对有限——更多是应用层面的贡献。\n\n3. Related Work: 【强】— 这是 proposal 最突出的维度。对已有工作的覆盖非常全面，正确识别了从问题记录（Baumann, McLaren）到概念类比（Kosch & Feger）到方法论辩论（Auspurg vs. Ganslmeier/Vlandas）的完整谱系。每篇工作的差异化定位清晰且准确（经调研验证）。特别值得肯定的是对 Ye et al.、Mehrotra et al. 等容易混淆的近期工作的精确区分。与 McLaren et al. 的定位（\"互补性基准测试 vs. multiverse 推断\"）是准确且有说服力的。\n\n【概率估计】: [22% - 33%] 中位 27%\n\n【估计理由】: \nSignificance 接近强——问题重要、社区有真实需求、潜在发现可操作。Related Work 强——coverage 全面、定位清晰。但 **Novelty 是限制上界的核心维度**：贡献的本质是 cross-domain method transfer（将成熟的心理学方法论搬到 LLM 标注），而非提出新方法或产出反直觉发现。一旦 Kosch & Feger (2026) 画出了类比，specification curve → LLM annotation 的迁移是相当 natural 的一步。最可能的审稿人反应是 \"well-executed application paper\"——尊重但不兴奋。如果 variance decomposition 产出了意外发现（如某个被忽视的维度驱动了大部分方差），可以推高概率到 ~33%；如果主要发现仅为 \"pipeline choices matter and some hypotheses are fragile\"（已被 Baumann et al. 定性证实），则下探至 ~22%。\n\n【主要风险】:\n1. **Novelty 不足的 reject 理由**: 审稿人可能认为这是\"将现有方法 X 应用到显然需要它的领域 Y\"的 obvious extension，intellectual contribution 不足以达到顶会标准——特别是当每个组件都是现有方法的直接应用时。\n2. **E/N/U 分类的主观性反击**: 框架试图通过 E/N/U 分类实现\"有原则的\"multiverse 构建，但分类本身的可靠性和一致性未经验证。审稿人可能质疑：\"你用主观判断来消除主观性，这不是循环论证吗？\"——这需要 inter-annotator agreement 或 sensitivity analysis（对 E/N/U 分类本身的 multiverse）来回应，但 proposal 未提及。\n```\n\nSources:\n- [Large Language Model Hacking (Baumann et al., 2025)](https://arxiv.org/abs/2509.08825)\n- [Magic Words or Methodical Work? (McLaren et al., 2026)](https://arxiv.org/abs/2603.26898)\n- [Prompt-Hacking: The New p-Hacking? (Kosch & Feger, CACM 2026)](https://arxiv.org/abs/2504.14571)\n- [Robustness is better assessed with a few thoughtful models (Auspurg, PNAS 2025)](https://www.pnas.org/doi/10.1073/pnas.2521917122)\n- [Reply to Auspurg (Ganslmeier & Vlandas, PNAS 2025)](https://www.pnas.org/doi/10.1073/pnas.2523374122)\n- [A Traveler's Guide to the Multiverse (Del Giudice & Gangestad, 2021)](https://journals.sagepub.com/doi/10.1177/2515245920954925)\n- [Navigating the Conceptual Multiverse (Ye et al., 2026)](https://arxiv.org/abs/2604.17815)\n- [Carlson & Burbano (SMJ 2026)](https://sms.onlinelibrary.wiley.com/doi/10.1002/smj.70023)\n- [Variance-Aware LLM Annotation (2026)](https://arxiv.org/pdf/2601.02370)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71d10383-b11f-4bcb-bec7-aae5f23c6a72",
+            "isSidechain": false,
+            "requestId": "req_011CbD8Pd77XQiYFwNoP5Q3v",
+            "type": "assistant",
+            "uuid": "7860734c-b7ef-4cba-95fe-c5e2a05bcc64",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SN5y5CkdCK41W54aX5dBJF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1522,
+                "cache_read_input_tokens": 27150,
+                "output_tokens": 6142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1522,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6142,
+                    "cache_read_input_tokens": 27150,
+                    "cache_creation_input_tokens": 1522,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1522
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first for…",
+                "leafUuid": "7860734c-b7ef-4cba-95fe-c5e2a05bcc64",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Multiverse Analysis Framework for LLM-Mediated Social Science Pipelines  ## Description We propose the first for…",
+                "leafUuid": "7860734c-b7ef-4cba-95fe-c5e2a05bcc64",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Multiverse analysis framework for LLM annotation pipelines",
+                "sessionId": "f74432f2-1f56-4825-a6ba-bbf22f59de9e"
+              }
+            }
+          ],
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-multiverse-analysis-framework-for-copy-9.md"
+}

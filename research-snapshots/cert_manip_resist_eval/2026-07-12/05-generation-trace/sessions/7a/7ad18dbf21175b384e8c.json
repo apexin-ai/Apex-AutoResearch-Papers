@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "7ad18dbf21175b384e8c",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: xling_calib_direction ## 运行环境 - 服务器名: westd-13176 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "a6c49163-6d10-46d6-b674-a56c9cd2b499",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/a6c49163-6d10-46d6-b674-a56c9cd2b499.jsonl",
+    "occurrence": 1,
+    "bytes": 956313,
+    "sha256": "30e3a274a97e97beea071448462bec8e83ffbcf0c40c88390c8f46699f623880"
+  },
+  "statistics": {
+    "messages": 550,
+    "user_turns": 2,
+    "tool_calls": 160,
+    "roles": {
+      "record": 84,
+      "user": 2,
+      "assistant": 144,
+      "tool_call": 160,
+      "tool_result": 160
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7ad18dbf21175b384e8c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 544,
+      "chunks": [
+        {
+          "path": "7ad18dbf21175b384e8c-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "7ad18dbf21175b384e8c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ad18dbf21175b384e8c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ad18dbf21175b384e8c-part-0004.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "7ad18dbf21175b384e8c-part-0004.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-xling-calib-direction-westd-13176-ssh-root-ssh-execute-submit-copy-20.md"
+}

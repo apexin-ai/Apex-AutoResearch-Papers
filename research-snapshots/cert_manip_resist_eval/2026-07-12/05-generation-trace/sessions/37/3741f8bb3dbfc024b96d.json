@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "3741f8bb3dbfc024b96d",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: xling_calib_direction ## 运行环境 - 服务器名: westd-13176 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "1ab6d9f3-ffe4-4256-b9d4-fa2d6dfcbab0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/1ab6d9f3-ffe4-4256-b9d4-fa2d6dfcbab0.jsonl",
+    "occurrence": 1,
+    "bytes": 876945,
+    "sha256": "d26217f1319593e366025fe3808d38157fe106c829a588a2b1ca858b04718120"
+  },
+  "statistics": {
+    "messages": 609,
+    "user_turns": 1,
+    "tool_calls": 246,
+    "roles": {
+      "record": 86,
+      "user": 1,
+      "assistant": 30,
+      "tool_call": 246,
+      "tool_result": 246
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3741f8bb3dbfc024b96d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 607,
+      "chunks": [
+        {
+          "path": "3741f8bb3dbfc024b96d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "3741f8bb3dbfc024b96d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3741f8bb3dbfc024b96d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3741f8bb3dbfc024b96d-part-0004.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-xling-calib-direction-westd-13176-ssh-root-ssh-execute-submit-copy-27.md"
+}

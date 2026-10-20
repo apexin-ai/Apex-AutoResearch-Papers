@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "439c02fd291e5d6048e5",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 环境 - 服务器: seetacloud-rtx6000 - 激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate b",
+  "task_key": "f0abcf9c-f1c4-4c79-b551-044d4ae005b9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/f0abcf9c-f1c4-4c79-b551-044d4ae005b9.jsonl",
+    "occurrence": 1,
+    "bytes": 1493237,
+    "sha256": "55870de652454814055693271a2e489fa95ddb7e60a0f77a5b318eda67cb11ab"
+  },
+  "statistics": {
+    "messages": 869,
+    "user_turns": 2,
+    "tool_calls": 338,
+    "roles": {
+      "record": 132,
+      "user": 2,
+      "assistant": 58,
+      "tool_call": 338,
+      "tool_result": 338,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "439c02fd291e5d6048e5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 845,
+      "chunks": [
+        {
+          "path": "439c02fd291e5d6048e5-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "439c02fd291e5d6048e5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "439c02fd291e5d6048e5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "439c02fd291e5d6048e5-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "439c02fd291e5d6048e5-part-0005.json",
+          "message_count": 127
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "439c02fd291e5d6048e5-part-0005.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-seetacloud-rtx6000-source-root-miniconda3-etc-profile-d-conda-sh.md"
+}

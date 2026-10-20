@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "77d3155316d3d2501f64",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cert_manip_resist_eval ## 运行环境 - 服务器名: seetacloud-rtx6000 - SSH 连接命令: ssh seetacloud-rtx6000 # 必",
+  "task_key": "1e14e4a3-b11a-4d4f-b702-c9bb143088d0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/1e14e4a3-b11a-4d4f-b702-c9bb143088d0.jsonl",
+    "occurrence": 1,
+    "bytes": 776459,
+    "sha256": "a78045e8cc927672bfff58bf026c7e67603d07ec664718091bcba82cea8060a3"
+  },
+  "statistics": {
+    "messages": 344,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "record": 63,
+      "user": 1,
+      "assistant": 98,
+      "tool_call": 91,
+      "tool_result": 91
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "77d3155316d3d2501f64-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 342,
+      "chunks": [
+        {
+          "path": "77d3155316d3d2501f64-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "77d3155316d3d2501f64-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cert-manip-resist-eval-seetacloud-rtx6000-ssh-ssh-seetacloud-r-copy-272.md"
+}

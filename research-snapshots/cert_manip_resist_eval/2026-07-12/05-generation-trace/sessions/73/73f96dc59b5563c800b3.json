@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "73f96dc59b5563c800b3",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] [Partial Draft] 写 EMNLP 2026 论文的 data-independent 章节，DDL 无紧迫压力。 **目标**：先写不依赖 plan_001 实验数据的章节，plan_001 数据（",
+  "task_key": "6b860290-cf40-4431-9aa9-160b929f77c0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/6b860290-cf40-4431-9aa9-160b929f77c0.jsonl",
+    "occurrence": 1,
+    "bytes": 1046425,
+    "sha256": "118537f0849c0dda6b9f36ffa3c7a68907b06bbb59af49ae56836f74a0cd6882"
+  },
+  "statistics": {
+    "messages": 387,
+    "user_turns": 1,
+    "tool_calls": 124,
+    "roles": {
+      "record": 63,
+      "user": 1,
+      "assistant": 76,
+      "tool_call": 124,
+      "tool_result": 123
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "73f96dc59b5563c800b3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 385,
+      "chunks": [
+        {
+          "path": "73f96dc59b5563c800b3-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "73f96dc59b5563c800b3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "73f96dc59b5563c800b3-part-0003.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-partial-draft-emnlp-2026-data-independent-ddl-plan-001-plan-001.md"
+}
