@@ -1,0 +1,181 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023contamination,balloccu2024leak,li2024task}
+\citation{yang2023rethinking,dekoninck2024evading}
+\citation{xu2024benchmark}
+\citation{rosenbaum1983central}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{yang2023rethinking}
+\citation{lalor2024benchmarking,polo2024tinybenchmarks}
+\citation{dong2024generalization}
+\citation{zhuang2024hibayes}
+\citation{eckerly2017detecting,sinharay2017use}
+\citation{deboeck2004explanatory}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{zhang2024kds}
+\citation{li2024cdd}
+\citation{yang2023rethinking}
+\citation{lalor2024benchmarking,polo2024tinybenchmarks}
+\citation{white2024livebench}
+\citation{zhuang2024hibayes}
+\citation{deboeck2004explanatory,adams1997multidimensional}
+\citation{eckerly2017detecting,sinharay2017use}
+\citation{dong2024generalization}
+\citation{xu2024benchmark}
+\citation{white2024livebench}
+\citation{guo2017calibration,platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\citation{holland1993differential,thissen1993detection,zumbo1999handbook}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Mitigation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration and Uncertainty.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Differential Item Functioning.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Multi-Signal Exposure Estimation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:stage1}{{3.1}{3}{Stage 1: Multi-Signal Exposure Estimation}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{S1: Embedding Similarity.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{S2: Min-K++.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{S3: ConStat.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{S4: LLM Self-Critique.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reciprocal Rank Fusion.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented 4PL IRT}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:stage2}{{3.2}{3}{Stage 2: Contamination-Augmented 4PL IRT}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Base Model.}{3}{section*.11}\protected@file@percent }
+\newlabel{eq:4pl}{{2}{3}{Base Model}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Measurement Error Model.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Benchmark $\gamma _k$.}{3}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Signal detection AUC at d005 across model scales and benchmarks. S1 (Embedding) is robust across scales; S2 (Min-K++), S3 (ConStat), and S4 (Self-Critique) fail at 0.5B but recover at 1.5B+.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:signal_scale_auc}{{1}{4}{Signal detection AUC at d005 across model scales and benchmarks. S1 (Embedding) is robust across scales; S2 (Min-K++), S3 (ConStat), and S4 (Self-Critique) fail at 0.5B but recover at 1.5B+}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Fisher Information and Identifiability.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Local Independence.}{4}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Inference.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Signal Effectiveness Analysis}{4}{section.4}\protected@file@percent }
+\newlabel{sec:signal_analysis}{{4}{4}{Signal Effectiveness Analysis}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Signal $\times $ Scale AUC Mapping}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Signal effectiveness summary across scales. Effective signals (AUC $\geq $ 0.70) increase from 1 at 0.5B to 4 at 3B.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:signal_survival}{{2}{5}{Signal effectiveness summary across scales. Effective signals (AUC $\geq $ 0.70) increase from 1 at 0.5B to 4 at 3B}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Min-K++ directional reversal at d100 (Cohen's $d$; negative = reversed direction). The reversal persists across scales but attenuates with increasing model size.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:reversal}{{3}{5}{Min-K++ directional reversal at d100 (Cohen's $d$; negative = reversed direction). The reversal persists across scales but attenuates with increasing model size}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Signal Survival Across Scales}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Min-K++ Directional Reversal}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:reversal}{{4.3}{5}{Min-K++ Directional Reversal}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}RRF Aggregation Ablation}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:rrf}{{4.4}{5}{RRF Aggregation Ablation}{subsection.4.4}{}}
+\citation{xu2024benchmark}
+\citation{dong2024generalization}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection AUC (d005, benchmark-averaged): RRF vs.\ single-signal and alternative aggregation methods.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:rrf}{{4}{6}{Detection AUC (d005, benchmark-averaged): RRF vs.\ single-signal and alternative aggregation methods}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Main results: 8 methods on 5 evaluation metrics across Qwen2.5 (0.5B--3B) $\times $ 3 benchmarks $\times $ 5 dosages $\times $ 3 seeds. \textsc  {ContamCal}{} achieves the lowest MAE and the only near-nominal coverage. ``---'' indicates the method does not produce credible intervals.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:main}{{5}{6}{Main results: 8 methods on 5 evaluation metrics across Qwen2.5 (0.5B--3B) $\times $ 3 benchmarks $\times $ 5 dosages $\times $ 3 seeds. \contamcal {} achieves the lowest MAE and the only near-nominal coverage. ``---'' indicates the method does not produce credible intervals}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{6}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{6}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experimental Setup}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Controlled Contamination Injection.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{6}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-benchmark MAE (pp) for \textsc  {ContamCal}{} vs.\ key baselines.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:per_bench}{{6}{7}{Per-benchmark MAE (pp) for \contamcal {} vs.\ key baselines}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-benchmark $\gamma _k$ estimates. GSM8K is ${\sim }4\times $ more susceptible to contamination than MMLU or ARC-C.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:gamma}{{7}{7}{Per-benchmark $\gamma _k$ estimates. GSM8K is ${\sim }4\times $ more susceptible to contamination than MMLU or ARC-C}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Main Results}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:main_results}{{5.2}{7}{Main Results}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Per-Benchmark Analysis}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Benchmark $\gamma _k$ Estimates.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Scale MAE.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Dose-Response: 3B GSM8K}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:dose_response}{{5.4}{7}{Dose-Response: 3B GSM8K}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Dose-response for 3B GSM8K. Naive scores inflate by up to 57.7\,\text  {pp}{}; \textsc  {ContamCal}{} recovers true performance within 4.2\,\text  {pp}{}.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:dose_response}{{8}{8}{Dose-response for 3B GSM8K. Naive scores inflate by up to 57.7\pp {}; \contamcal {} recovers true performance within 4.2\pp {}}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces $\gamma $ recovery from the simulation sweep. AUC $\geq 0.70$ at $N \geq 50$ is the practical identifiability sweet spot (CI $<$ 7\,\text  {pp}{}, coverage $\geq $ 95\%).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:identifiability}{{9}{8}{$\gamma $ recovery from the simulation sweep. AUC $\geq 0.70$ at $N \geq 50$ is the practical identifiability sweet spot (CI $<$ 7\pp {}, coverage $\geq $ 95\%)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Identifiability and Simulation Study}{8}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:identifiability}{{5.5}{8}{Identifiability and Simulation Study}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Measurement Error Model}{8}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:me_model}{{5.6}{8}{Measurement Error Model}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Measurement error (ME) model vs.\ simple model. At high noise ($\sigma _e = 0.5$), the simple model's coverage collapses to 65\%; the ME model maintains 91\%.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:me}{{10}{9}{Measurement error (ME) model vs.\ simple model. At high noise ($\sigma _e = 0.5$), the simple model's coverage collapses to 65\%; the ME model maintains 91\%}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Qwen2.5-7B dose-response and signal quality.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:7b_dose}{{11}{9}{Qwen2.5-7B dose-response and signal quality}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Scale Bridging: 7B Validation}{9}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:7b}{{5.7}{9}{Scale Bridging: 7B Validation}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Multi-Family Validation: Llama-3.2-1B}{9}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:multi_family}{{5.8}{9}{Multi-Family Validation: Llama-3.2-1B}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Closed-Weight Mode}{9}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:closed_weight}{{5.9}{9}{Closed-Weight Mode}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Observational Case Studies}{9}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:observational}{{5.10}{9}{Observational Case Studies}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{RL-Trained Models.}{9}{section*.23}\protected@file@percent }
+\citation{reckase2009multidimensional}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Signal AUC at 7B (d005). All four signals are effective, with continued improvement over 3B.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:7b_signal}{{12}{10}{Signal AUC at 7B (d005). All four signals are effective, with continued improvement over 3B}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-family $\gamma $ comparison. High consistency (Pearson $r = 0.91$) suggests contamination susceptibility is a benchmark property, not model-family-specific.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:cross_family}{{13}{10}{Cross-family $\gamma $ comparison. High consistency (Pearson $r = 0.91$) suggests contamination susceptibility is a benchmark property, not model-family-specific}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Specificity Check.}{10}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Frontier Scale: Qwen2.5-72B.}{10}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{10}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why Per-Benchmark $\gamma _k$?}{10}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Honest Uncertainty Quantification.}{10}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Deployment.}{10}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{10}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{10}{Limitations}{section.7}{}}
+\citation{pruthi2020estimating,park2023trak}
+\bibdata{references}
+\bibstyle{acl_natbib}
+\bibcite{adams1997multidimensional}{{1}{1997}{{Adams et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces 4-signal vs.\ 2-signal (closed-weight) mode. At 1.5B+, 2-signal mode matches or outperforms the best existing baseline (DCR: 3.9\,\text  {pp}{}).}}{11}{table.14}\protected@file@percent }
+\newlabel{tab:closed_weight}{{14}{11}{4-signal vs.\ 2-signal (closed-weight) mode. At 1.5B+, 2-signal mode matches or outperforms the best existing baseline (DCR: 3.9\pp {})}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Observational calibration on RL-trained models (MMLU).}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:observational}{{15}{11}{Observational calibration on RL-trained models (MMLU)}{table.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{11}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{11}{Conclusion}{section.8}{}}
+\bibcite{angelopoulos2023conformal}{{2}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{balloccu2024leak}{{3}{2024}{{Balloccu et al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{4}{2009}{{Cormack et al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{5}{2004}{{De Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{6}{2024}{{Dekoninck et al.}}{{}}}
+\bibcite{dekoninck2024evading}{{7}{2024b}{{Dekoninck et al.}}{{}}}
+\bibcite{dong2024generalization}{{8}{2024}{{Dong et al.}}{{}}}
+\bibcite{eckerly2017detecting}{{9}{2017}{{Eckerly}}{{}}}
+\bibcite{guo2017calibration}{{10}{2017}{{Guo et al.}}{{}}}
+\bibcite{holland1993differential}{{11}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{lalor2024benchmarking}{{12}{2024}{{Lalor et al.}}{{}}}
+\bibcite{li2024task}{{13}{2024a}{{Li et al.}}{{}}}
+\bibcite{li2024cdd}{{14}{2024b}{{Li et al.}}{{}}}
+\bibcite{maris2009equivalence}{{15}{2009}{{Maris and Bechger}}{{}}}
+\bibcite{mislevy1986bayes}{{16}{1986}{{Mislevy}}{{}}}
+\bibcite{park2023trak}{{17}{2023}{{Park et al.}}{{}}}
+\bibcite{platt1999probabilistic}{{18}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{19}{2024}{{Polo et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Qwen2.5-72B observational results. Signal quality reaches its highest level; GSM8K $\gamma $ is significantly nonzero.}}{12}{table.16}\protected@file@percent }
+\newlabel{tab:72b}{{16}{12}{Qwen2.5-72B observational results. Signal quality reaches its highest level; GSM8K $\gamma $ is significantly nonzero}{table.16}{}}
+\bibcite{pruthi2020estimating}{{20}{2020}{{Pruthi et al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{21}{2009}{{Reckase}}{{}}}
+\bibcite{rosenbaum1983central}{{22}{1983}{{Rosenbaum and Rubin}}{{}}}
+\bibcite{sainz2023contamination}{{23}{2023}{{Sainz et al.}}{{}}}
+\bibcite{sanmartin2009}{{24}{2009}{{San~Mart\'in et al.}}{{}}}
+\bibcite{shi2024detecting}{{25}{2024}{{Shi et al.}}{{}}}
+\bibcite{sinharay2017use}{{26}{2017}{{Sinharay}}{{}}}
+\bibcite{talts2018sbc}{{27}{2018}{{Talts et al.}}{{}}}
+\bibcite{thissen1993detection}{{28}{1993}{{Thissen et al.}}{{}}}
+\bibcite{white2024livebench}{{29}{2024}{{White et al.}}{{}}}
+\bibcite{xu2024benchmark}{{30}{2024}{{Xu et al.}}{{}}}
+\bibcite{yang2023rethinking}{{31}{2023}{{Yang et al.}}{{}}}
+\bibcite{zhang2024kds}{{32}{2024}{{Zhang et al.}}{{}}}
+\bibcite{zhuang2024hibayes}{{33}{2024}{{Zhuang et al.}}{{}}}
+\bibcite{zumbo1999handbook}{{34}{1999}{{Zumbo}}{{}}}
+\gdef \@abspage@last{13}

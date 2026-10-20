@@ -1,0 +1,15 @@
+paper_key: "angelopoulos_2023_conformal"
+title: "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification"
+venue: "Foundations and Trends in ML, 2023"
+full_text_available: false
+
+research:
+  baselines: [Bayesian methods, bootstrap]
+  metrics:
+    - {name: "coverage rate", direction: "higher_better"}
+    - {name: "prediction set size", direction: "lower_better"}
+  datasets:
+    - {name: "various (vision, NLP, RL)", size: "various"}
+  ablation_dimensions: [conformal score function, calibration set size]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "distribution-free uncertainty quantification"

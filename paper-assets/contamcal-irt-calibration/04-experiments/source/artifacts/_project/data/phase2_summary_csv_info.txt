@@ -1,0 +1,2 @@
+Remote: westd-29999:/root/autodl-tmp/exp001/eval_results_v2/phase2_summary.csv
+25/25 rows, all OK. Columns: family, dosage, mmlu_accuracy, arc_challenge_accuracy, status

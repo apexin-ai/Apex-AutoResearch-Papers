@@ -1,0 +1,149 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023nlp,balloccu2024leak}
+\citation{yang2023rethinking,oren2024proving}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{dong2024generalization}
+\citation{xu2024benchmark}
+\citation{eckerly2017detecting,sinharay2017simultaneous}
+\citation{deboeck2004explanatory}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yang2023dcr}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{dong2024generalization}
+\citation{oren2024proving}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{sedoc2020item}
+\citation{vania2021comparing}
+\citation{xu2024benchmark}
+\citation{yang2023dcr}
+\citation{white2024livebench}
+\citation{eckerly2017detecting}
+\citation{sinharay2017simultaneous}
+\citation{deboeck2004explanatory}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Mitigation and Calibration.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item Compromise IRT.}{2}{section*.4}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: The ContamCal Framework}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method: The ContamCal Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Signal Pipeline and RRF Fusion}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:rrf}{{1}{3}{Stage 1: Signal Pipeline and RRF Fusion}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented 4PL IRT}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:4pl_gamma}{{2}{3}{Stage 2: Contamination-Augmented 4PL IRT}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-benchmark $\gamma _k$ variant.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement Error Model.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Priors.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cram\'er-Rao lower bounds for $\gamma $ by signal AUC. Practical identifiability requires $\text  {CR bound} \leq 0.15$, corresponding to AUC $\geq 0.72$.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:cramer_rao}{{1}{4}{Cram\'er-Rao lower bounds for $\gamma $ by signal AUC. Practical identifiability requires $\text {CR bound} \leq 0.15$, corresponding to AUC $\geq 0.72$}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Identifiability map: $\gamma $ recovery by AUC and $N_{\text  {models}}$ (default prior $\mathcal  {N}(0,1)$). A sharp phase transition occurs at AUC $\approx 0.70$.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:identifiability_map}{{2}{4}{Identifiability map: $\gamma $ recovery by AUC and $N_{\text {models}}$ (default prior $\mathcal {N}(0,1)$). A sharp phase transition occurs at AUC $\approx 0.70$}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Theoretical Analysis: The Possibility Frontier}{4}{section.4}\protected@file@percent }
+\newlabel{sec:theory}{{4}{4}{Theoretical Analysis: The Possibility Frontier}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Structural vs.\ Practical Identifiability}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Fisher Information Analysis}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Simulation Sweep}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:sim_sweep}{{4.3}{4}{Simulation Sweep}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Prior sensitivity by AUC level. At AUC $= 0.65$, the sensitivity index of $0.42$ indicates prior-dominated estimation; at AUC $= 0.80$, it drops to $0.08$ (data-dominated).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:prior_sensitivity}{{3}{5}{Prior sensitivity by AUC level. At AUC $= 0.65$, the sensitivity index of $0.42$ indicates prior-dominated estimation; at AUC $= 0.80$, it drops to $0.08$ (data-dominated)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Score inflation (absolute accuracy) by model, benchmark, and dosage. Inflation is inversely correlated with model scale and varies $2.4\times $ across benchmarks at 100\% dosage.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:inflation}{{4}{5}{Score inflation (absolute accuracy) by model, benchmark, and dosage. Inflation is inversely correlated with model scale and varies $2.4\times $ across benchmarks at 100\% dosage}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Prior Sensitivity}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Controlled SFT Injection}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:sft_injection}{{5.1}{5}{Controlled SFT Injection}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Signal AUC by dosage level (averaged across models and benchmarks). Only Embedding Retrieval at 100\% dosage approaches the identifiability threshold of 0.72.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:signal_auc_dosage}{{5}{6}{Signal AUC by dosage level (averaged across models and benchmarks). Only Embedding Retrieval at 100\% dosage approaches the identifiability threshold of 0.72}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Signal AUC by model scale at 100\% dosage (MMLU). Detection quality degrades with scale because larger models' pretraining knowledge confounds contamination signals.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:signal_auc_scale}{{6}{6}{Signal AUC by model scale at 100\% dosage (MMLU). Detection quality degrades with scale because larger models' pretraining knowledge confounds contamination signals}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Signal Quality}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:signals}{{5.2}{6}{Signal Quality}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Signal Aggregation}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:aggregation}{{5.3}{6}{Signal Aggregation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Noise Propagation}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:noise}{{5.4}{6}{Noise Propagation}{subsection.5.4}{}}
+\citation{mislevy1986recent}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Aggregation method comparison at 100\% dosage. RRF fusion (0.68) underperforms the best single signal (Embedding, 0.71) due to high inter-signal correlation ($\bar  {r}=0.55$).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:aggregation}{{7}{7}{Aggregation method comparison at 100\% dosage. RRF fusion (0.68) underperforms the best single signal (Embedding, 0.71) due to high inter-signal correlation ($\bar {r}=0.55$)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces RRF AUC across dosage levels. Fusion provides no benefit over the best single signal at any dosage.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:rrf_dosage}{{8}{7}{RRF AUC across dosage levels. Fusion provides no benefit over the best single signal at any dosage}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Core Calibration Results}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:calibration}{{5.5}{7}{Core Calibration Results}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response analysis.}{7}{table.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interval quality.}{7}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces CI width and coverage under noise injection and measurement error model. The measurement error model achieves near-nominal coverage (92\%) at the cost of vacuously wide intervals (22pp).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:noise_prop}{{9}{8}{CI width and coverage under noise injection and measurement error model. The measurement error model achieves near-nominal coverage (92\%) at the cost of vacuously wide intervals (22pp)}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Calibration MAE (pp) by method and benchmark. 4PL+$\gamma $ does not significantly outperform linear regression ($p = 0.18$) or DCR ($p = 0.35$). Only vanilla 4PL and Emperor mitigation are significantly worse.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:calibration_main}{{10}{8}{Calibration MAE (pp) by method and benchmark. 4PL+$\gamma $ does not significantly outperform linear regression ($p = 0.18$) or DCR ($p = 0.35$). Only vanilla 4PL and Emperor mitigation are significantly worse}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Scale Bridging: The Calibration Paradox}{8}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:scaling}{{5.6}{8}{Scale Bridging: The Calibration Paradox}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Signal Survival Analysis}{8}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:signal_survival}{{5.7}{8}{Signal Survival Analysis}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Interval quality metrics for 4PL+$\gamma $ global. Coverage is systematically below nominal at all levels, indicating model misspecification or under-identified parameters.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:interval_quality}{{11}{9}{Interval quality metrics for 4PL+$\gamma $ global. Coverage is systematically below nominal at all levels, indicating model misspecification or under-identified parameters}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Dose-response $\gamma $ estimates (global $\gamma $, MMLU). $\gamma $ is not significantly different from zero at 5\% and 25\% dosage.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:dose_response}{{12}{9}{Dose-response $\gamma $ estimates (global $\gamma $, MMLU). $\gamma $ is not significantly different from zero at 5\% and 25\% dosage}{table.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}RL Observational Case Study}{9}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:rl_case}{{5.8}{9}{RL Observational Case Study}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Multi-Family and Closed-Weight Analysis}{9}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:multi_family}{{5.9}{9}{Multi-Family and Closed-Weight Analysis}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-family.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Closed-weight mode.}{9}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Calibration difficulty increases with model scale. From 0.5B to 72B: inflation decreases, signal AUC decreases, $\gamma $-$\theta $ confounding increases, and calibration MAE increases.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:scale_bridging}{{13}{10}{Calibration difficulty increases with model scale. From 0.5B to 72B: inflation decreases, signal AUC decreases, $\gamma $-$\theta $ confounding increases, and calibration MAE increases}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces 72B observational analysis versus controlled smaller models. At frontier scale, all signals approach random and calibration MAE exceeds uncalibrated scores.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:72b}{{14}{10}{72B observational analysis versus controlled smaller models. At frontier scale, all signals approach random and calibration MAE exceeds uncalibrated scores}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The possibility frontier.}{10}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DCR as supporting evidence.}{10}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The calibration paradox.}{10}{section*.14}\protected@file@percent }
+\bibstyle{aaai25}
+\bibcite{adams1997multidimensional}{{1}{1997}{{Adams et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Signal AUC across training regimes. Degradation from Base to RL is gradual ($-$0.035/step), not cliff-like. All signals fall below 0.60 under RL.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:signal_survival}{{15}{11}{Signal AUC across training regimes. Degradation from Base to RL is gradual ($-$0.035/step), not cliff-like. All signals fall below 0.60 under RL}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Signal survival rate (AUC retention relative to Base regime). Self-Critique is the most regime-robust (93\% RL retention) but starts from the lowest base.}}{11}{table.16}\protected@file@percent }
+\newlabel{tab:survival_rate}{{16}{11}{Signal survival rate (AUC retention relative to Base regime). Self-Critique is the most regime-robust (93\% RL retention) but starts from the lowest base}{table.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Signal diversity as prerequisite.}{11}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{11}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{section.7}\protected@file@percent }
+\bibcite{balloccu2024leak}{{2}{2024}{{Balloccu et~al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{3}{2009}{{Cormack et~al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{4}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{5}{2024}{{Dekoninck et~al.}}{{}}}
+\bibcite{dong2024generalization}{{6}{2024}{{Dong et~al.}}{{}}}
+\bibcite{eckerly2017detecting}{{7}{2017}{{Eckerly}}{{}}}
+\bibcite{lalor2024benchmarking}{{8}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{maris2009equivalence}{{9}{2009}{{Maris and Bechger}}{{}}}
+\bibcite{mislevy1986recent}{{10}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{11}{2024}{{Oren et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Best signal varies by benchmark under RL, precluding a universal signal recommendation.}}{12}{table.17}\protected@file@percent }
+\newlabel{tab:best_signal_regime}{{17}{12}{Best signal varies by benchmark under RL, precluding a universal signal recommendation}{table.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces RL case study: ContamCal (4PL+$\gamma $) produces \emph  {worse} calibration than no adjustment (11.2 vs.\ 9.5pp MAE), with negative expected regret reduction.}}{12}{table.18}\protected@file@percent }
+\newlabel{tab:rl_case}{{18}{12}{RL case study: ContamCal (4PL+$\gamma $) produces \emph {worse} calibration than no adjustment (11.2 vs.\ 9.5pp MAE), with negative expected regret reduction}{table.18}{}}
+\bibcite{polo2024tinybenchmarks}{{12}{2024}{{Polo et~al.}}{{}}}
+\bibcite{sainz2023nlp}{{13}{2023}{{Sainz et~al.}}{{}}}
+\bibcite{sanmartin2009identifiability}{{14}{2009}{{San~Mart{\'i}n et~al.}}{{}}}
+\bibcite{sedoc2020item}{{15}{2020}{{Sedoc et~al.}}{{}}}
+\bibcite{shi2024detecting}{{16}{2024}{{Shi et~al.}}{{}}}
+\bibcite{sinharay2017simultaneous}{{17}{2017}{{Sinharay}}{{}}}
+\bibcite{talts2018validating}{{18}{2018}{{Talts et~al.}}{{}}}
+\bibcite{vania2021comparing}{{19}{2021}{{Vania et~al.}}{{}}}
+\bibcite{white2024livebench}{{20}{2024}{{White et~al.}}{{}}}
+\bibcite{xu2024benchmark}{{21}{2024}{{Xu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Multi-family comparison: Llama-3.2-1B vs.\ Qwen2.5-1.5B at 100\% dosage. Calibration accuracy is model-family-dependent (3.3pp MAE gap).}}{13}{table.19}\protected@file@percent }
+\newlabel{tab:multi_family}{{19}{13}{Multi-family comparison: Llama-3.2-1B vs.\ Qwen2.5-1.5B at 100\% dosage. Calibration accuracy is model-family-dependent (3.3pp MAE gap)}{table.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces 2-signal closed-weight mode vs.\ 4-signal and DCR. Closed-weight calibration (MAE 9.8pp) is worse than DCR (8.5pp) and barely better than uncalibrated scores (8.5pp).}}{13}{table.20}\protected@file@percent }
+\newlabel{tab:closed_weight}{{20}{13}{2-signal closed-weight mode vs.\ 4-signal and DCR. Closed-weight calibration (MAE 9.8pp) is worse than DCR (8.5pp) and barely better than uncalibrated scores (8.5pp)}{table.20}{}}
+\bibcite{yang2023rethinking}{{22}{2023a}{{Yang et~al.}}{{}}}
+\bibcite{yang2023dcr}{{23}{2023b}{{Yang et~al.}}{{}}}
+\gdef \@abspage@last{14}

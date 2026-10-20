@@ -1,0 +1,18 @@
+==========================================================================================
+BOOTSTRAP CI: Δ(d100) = acc(d100) - acc(d000)  [percentage points]
+==========================================================================================
+Family            n  Baseline  Δ(d100) mean                95% CI    p(Δ=0)
+---------------------------------------------------------------------------
+Phi-4             3    76.40%        +0.72pp        [-0.17, +1.39](boot)     0.039
+Qwen2.5-14B       2    69.05%       -11.05pp         [-32.41, +10.30](t)     0.000
+Qwen2.5-7B        2    66.35%        -0.89pp         [-12.16, +10.37](t)     0.000
+Gemma-2-9B        2    63.85%        +2.62pp         [-11.81, +17.06](t)     0.000
+OLMo-2-7B         3    54.93%        +1.35pp        [-0.55, +2.60](boot)     0.039
+
+DOSE-RESPONSE PATTERN CLASSIFICATION (per seed)
+Family                     s42          s123            s0   Consistent?   Direction   Dir-Con
+Phi-4                   Immune   Benefit-sat        Immune            No           0         ✗
+Qwen2.5-14B           Collapse      Collapse             —           Yes           −         ✓
+Qwen2.5-7B          V-recovery    V-recovery             —           Yes           0         ✗
+Gemma-2-9B         Benefit-sat       Benefit             —            No           +         ✓
+OLMo-2-7B          Benefit-sat        Immune   Benefit-sat            No           +         ✗

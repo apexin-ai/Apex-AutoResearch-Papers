@@ -1,0 +1,114 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yang2023rethinking}
+\citation{oren2024proving}
+\citation{shi2024detecting}
+\citation{golchin2024time}
+\citation{yang2023rethinking}
+\citation{white2024livebench}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{eckerly2017detecting}
+\citation{sinharay2017assessing}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{golchin2024time}
+\citation{shokri2017membership}
+\citation{carlini2022quantifying}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{burnell2023revealing}
+\citation{oren2024proving}
+\citation{dekoninck2025emperor}
+\citation{white2024livebench}
+\citation{zheng2024judging}
+\citation{eckerly2017detecting}
+\citation{sinharay2017assessing}
+\citation{deboeck2004explanatory}
+\citation{guo2017calibration}
+\citation{platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item compromise in educational testing.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration disambiguation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 1: Exposure Estimation via Multi-Signal RRF}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 2: Contamination-Augmented IRT}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Identifiability Analysis}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Contamination effect by model scale (ARC-Challenge, $d100$ vs.\ $d000$). Effects range from catastrophic forgetting at 0.5B to near-immunity at 7B.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:scale}{{1}{4}{Contamination effect by model scale (ARC-Challenge, $d100$ vs.\ $d000$). Effects range from catastrophic forgetting at 0.5B to near-immunity at 7B}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Calibration Gating Criterion}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Controlled injection.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Observational study.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Scale-Dependent Contamination Characterization}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Family Validation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 7B controlled injection: benchmark scores across dosage levels. Effects are negligible except HumanEval ($+7$pp).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:7b_detail}{{2}{5}{7B controlled injection: benchmark scores across dosage levels. Effects are negligible except HumanEval ($+7$pp)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-family contamination susceptibility (ARC-Challenge). $\gamma $ sign is consistently negative; magnitude varies by family ($\tau = 0.60$).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:cross_family}{{3}{5}{Cross-family contamination susceptibility (ARC-Challenge). $\gamma $ sign is consistently negative; magnitude varies by family ($\tau = 0.60$)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Signal Failure: Min-K++ Directional Reversal}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Quality-Controlled Contamination: The Binding Constraint}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Signal effectiveness across model families. S1 (embedding) is robust; S2 (Min-K++) and S4 (Self-Critique) fail at both 0.5B and 1B scales.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:signals}{{4}{6}{Signal effectiveness across model families. S1 (embedding) is robust; S2 (Min-K++) and S4 (Self-Critique) fail at both 0.5B and 1B scales}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces QC-only vs.\ all-paraphrases comparison (0.5B, $d100$). Filtering improves signal quality but does not materially change outcomes---the binding constraint is $N$, not signal noise.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:qc}{{5}{6}{QC-only vs.\ all-paraphrases comparison (0.5B, $d100$). Filtering improves signal quality but does not materially change outcomes---the binding constraint is $N$, not signal noise}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Observational Case Study}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Expected regret.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{72B ecological validation.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Closed-Weight Limitation: 2-Signal Mode Failure}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Negative Results as Diagnostic Insights}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GSM8K overcorrection.}{6}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Observational $\gamma $ estimates from Instruct and DeepSeek models ($N = 8$). All CIs include zero---insufficient power without dosage variation.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:observational}{{6}{7}{Observational $\gamma $ estimates from Instruct and DeepSeek models ($N = 8$). All CIs include zero---insufficient power without dosage variation}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Expected regret for top-5 model selection. Calibration adds overhead without improving selection in the observational setting.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:regret}{{7}{7}{Expected regret for top-5 model selection. Calibration adds overhead without improving selection in the observational setting}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Coverage collapse.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}When NOT to Calibrate}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT vs.\ linear regression.}{7}{section*.13}\protected@file@percent }
+\citation{pruthi2020estimating}
+\citation{park2023trak}
+\citation{reckase2009multidimensional}
+\bibcite{angelopoulos2023conformal}{Angelopoulos and Bates, 2023}
+\bibcite{burnell2023revealing}{Burnell et al., 2023}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 2-signal (closed-weight) vs.\ 4-signal calibration. Without embedding access, calibration is worse than raw scores.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:closed}{{8}{8}{2-signal (closed-weight) vs.\ 4-signal calibration. Without embedding access, calibration is worse than raw scores}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{0.5B capacity artifact.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Position bias at small scales.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain heterogeneity.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{carlini2022quantifying}{Carlini et al., 2022}
+\bibcite{cormack2009reciprocal}{Cormack et al., 2009}
+\bibcite{deboeck2004explanatory}{De Boeck and Wilson, 2004}
+\bibcite{dekoninck2025emperor}{Dekoninck et al., 2025}
+\bibcite{eckerly2017detecting}{Eckerly, 2017}
+\bibcite{golchin2024time}{Golchin and Surdeanu, 2024}
+\bibcite{guo2017calibration}{Guo et al., 2017}
+\bibcite{holland1993differential}{Holland and Wainer, 1993}
+\bibcite{lalor2024benchmarking}{Lalor et al., 2024}
+\bibcite{liang2023holistic}{Liang et al., 2023}
+\bibcite{mislevy1986recent}{Mislevy, 1986}
+\bibcite{oren2024proving}{Oren et al., 2024}
+\bibcite{park2023trak}{Park et al., 2023}
+\bibcite{platt1999probabilistic}{Platt, 1999}
+\bibcite{polo2024tinybenchmarks}{Polo et al., 2024}
+\bibcite{pruthi2020estimating}{Pruthi et al., 2020}
+\bibcite{reckase2009multidimensional}{Reckase, 2009}
+\bibcite{shi2024detecting}{Shi et al., 2024}
+\bibcite{shokri2017membership}{Shokri et al., 2017}
+\bibcite{sinharay2017assessing}{Sinharay, 2017}
+\bibcite{talts2018validating}{Talts et al., 2018}
+\bibcite{white2024livebench}{White et al., 2024}
+\bibcite{yang2023rethinking}{Yang et al., 2023}
+\bibcite{zheng2024judging}{Zheng et al., 2024}
+\gdef \@abspage@last{10}

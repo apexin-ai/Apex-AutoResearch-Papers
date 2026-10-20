@@ -1,0 +1,2 @@
+Remote: westd-29999:/root/autodl-tmp/exp001/figures/baseline_vs_effect.pdf (.png 114.4KB also available)
+Script: /root/autodl-tmp/exp001/analyze_phase2.py

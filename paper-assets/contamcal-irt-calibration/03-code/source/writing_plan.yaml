@@ -1,0 +1,465 @@
+## writing_plan.yaml — contamcal-irt-calibration
+## Generated: 2026-05-16 | Paper Agent Step 1 (REFRAME D118/D119/D120)
+## Status: PENDING_APPROVAL
+
+meta:
+  venue: "EMNLP 2026 ARR May 25"
+  track: "Machine Learning for NLP / Resources and Evaluation"
+  deadline: "2026-05-25"
+  days_remaining: 9
+  page_limit: 8  # + unlimited appendix
+  template: "acl_latex (ARR format)"
+  template_note: "Use acl-style-files from github.com/acl-org/acl-style-files"
+  special_theme: "New Missions for NLP Research"
+  framing_doc: "paper_framing.md (D118/D119/D120 reframe: diagnostic-led)"
+  total_word_budget: 5800
+  review_round: 1
+  target_score: "Weak Reject → Weak Accept"
+
+title: >
+  Domain-Differential Contamination Effects:
+  Diagnosis via Item Response Theory
+
+core_claims:
+  C1:
+    name: "Characterization (PRIMARY)"
+    summary: >
+      MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84 (significant, PPP acceptable);
+      pooled γ≈0 is dilution masking (D119), NOT absence of effect.
+      Cross-benchmark: ARC forgetting (γ<0) vs GSM8K inflation (γ>0).
+      Scale-dependent: 0.5B catastrophic → 3B mild → 7B negligible.
+    evidence: [exp-006, exp-001]
+    key_data: "Domain IRT N=24 (MMLU 8 domains), per-benchmark IRT"
+    priority: 1
+  C2:
+    name: "Signal Failure (CO-PRIMARY)"
+    summary: >
+      Min-K++ directional reversal (Cohen's d = -1.55 to -1.98).
+      Cross-family replication: Qwen + Llama both exhibit reversal.
+      S1 embedding only reliable signal (AUC>0.95 at d005).
+      RRF degrades to S1-only in practice.
+    evidence: [exp-008, exp-002]
+    key_data: "Signal eval 0.5B/1.5B/3B, Llama cross-family (exploratory N=4)"
+    priority: 1
+  C3:
+    name: "Identifiability"
+    summary: >
+      Fisher Info: recovery succeeds down to AUC=0.55 (lowest tested) at N≥50.
+      CI width ∝ N^{-0.48}. LLM eval N=8-30 creates domain-method mismatch.
+      Triple impossibility limited to "IRT + membership-inference specific" (C3 fix).
+    evidence: [exp-004]
+    key_data: "Sim sweep 20 conditions × 200 runs"
+    priority: 2
+  C4:
+    name: "Conditional Calibration (DEMOTED)"
+    summary: >
+      KEY FINDING: vanilla 2PL ≈ 2PL+γ on calibration MAE (GSM8K: 0.0063 vs 0.0062;
+      MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201). γ does NOT improve calibration.
+      Calibration improvement entirely from IRT ability estimation (θ separation from noise).
+      γ value is DIAGNOSTIC (domain-level heterogeneity detection), not calibration.
+      Gating criterion: γ significant + PPP∈[0.1,0.9] + calibrated MAE < raw MAE.
+      ARC MAE=0.035 (passes). GSM8K overcorrection 11× (fails gating → honest negative).
+      D120: calibration value decomposition — all calibration benefit from θ, not γ.
+    evidence: [exp-006]
+    priority: 3
+    narrative_constraint: >
+      NEVER imply γ brings calibration improvement. Two distinct values:
+      (a) IRT framework → calibration (robust θ estimation even without γ);
+      (b) γ → domain-level diagnosis (which domains inflated/deflated, direction, magnitude).
+      This STRENGTHENS the diagnostic framing (D118).
+
+paper_outline:
+  abstract:
+    word_budget: 200
+    dependencies: [introduction, results, conclusion]
+    key_numbers: ["MMLU Math γ=0.97", "dilution masking pooled γ≈0", "Min-K++ Cohen's d=-1.55 to -1.98", "ARC MAE=0.035", "N≥50 threshold"]
+    notes: "Diagnostic framing. Lead with domain heterogeneity + dilution masking. Signal failure as co-primary."
+
+  introduction:
+    word_budget: 850
+    dependencies: [method, results]
+    subsections:
+      - "Problem: contamination undermines benchmark reliability; aggregate metrics mask heterogeneous effects"
+      - "Gap: detection methods flag but don't diagnose or calibrate; mitigation provably fails (Emperor's)"
+      - "Our approach: IRT-based diagnostic framework revealing domain-differential effects"
+      - "4 contributions: (1) domain heterogeneity + dilution masking, (2) signal failure, (3) identifiability bounds, (4) conditional calibration"
+    notes: "D118: 'diagnostic findings + conditional calibration' framing. D119: dilution masking replaces Simpson's Paradox."
+
+  related_work:
+    word_budget: 700
+    dependencies: [literature_map]
+    subsections:
+      - "Contamination detection (Min-K++, ConStat, KDS, CDD, Self-Critique)"
+      - "IRT for LLM evaluation (Lalor, TinyBenchmarks, Growing Pains, HiBayES)"
+      - "Item compromise in educational measurement (Eckerly, Sinharay, DIF)"
+      - "Contamination mitigation + DCR qualitative comparison (W1 fix)"
+      - "Calibration disambiguation"
+    notes: "W1: expand DCR comparison (qualitative table). Cite TED/CDD as closest competitors."
+
+  method:
+    word_budget: 1100
+    dependencies: []
+    subsections:
+      - name: "3.1 Problem Formulation"
+        content: "Given model j, benchmark k with items i. Goal: diagnose contamination effects at domain level + estimate θ_j^clean. Three IRT adaptations."
+      - name: "3.2 Stage 1: Multi-Signal Exposure Mapping"
+        content: "4 signals (S1-S4), RRF aggregation. Meta-circularity argument. Note S2/S4 failure modes."
+      - name: "3.3 Stage 2: Contamination-Augmented IRT"
+        content: "2PL+γ model: P(y=1) = 1/(1+exp(-a_i(θ_j - b_i + γ_k·e_ij))). Per-domain γ_k within benchmark. Stan NUTS."
+      - name: "3.4 Fisher Information and Identifiability"
+        content: "Derive I(γ). AUC=0.55 structural, N≥50 practical. CI width scaling. Domain-method mismatch."
+      - name: "3.5 Calibration Value Decomposition (D120/D121)"
+        content: >
+          ALREADY WRITTEN in method.tex §3.4 as 'Calibration value decomposition' paragraph.
+          Key message: vanilla 2PL ≈ 2PL+γ on calibration MAE (all benchmarks). Calibration
+          benefit entirely from IRT θ estimation. γ provides diagnostic value only.
+          Numbers: GSM8K 0.0063 vs 0.0062; MMLU 0.0068 vs 0.0070; ARC 0.0158 vs 0.0201.
+    notes: "2PL+γ as primary model (domain-level). 4PL for MC benchmarks (ARC/MMLU). Full Fisher derivation in appendix."
+
+  experimental_setup:
+    word_budget: 600
+    dependencies: [method]
+    subsections:
+      - name: "4.1 Controlled SFT Injection"
+        content: "Qwen2.5 (0.5B, 1.5B, 3B). 4 dosages (d000/d005/d025/d100). 2 seeds × 3 scales = N=24 models. LoRA alpha=32. QC-filtered injection."
+      - name: "4.2 Cross-Family Analysis"
+        content: >
+          Llama-3.2-3B: d000 + d005/d025/d100 (single seed, N=4 additional). Exploratory.
+          PURPOSE: test family-specificity of contamination patterns, NOT confirm generalizability.
+          D123: Llama d100 MMLU excluded (catastrophic collapse, all output 'A', acc=0.34).
+          Effective Llama MMLU range: d000-d025. ARC/GSM8K d100 normal.
+          REQUIRED power analysis: Use Qwen N=24 γ effect sizes as reference
+          (Math γ=0.97, GSM8K γ≈0.06). Compute statistical power at N=4 for each.
+          Cross-family IRT pooling FINAL v3 CLEAN (replaces all prior versions):
+            Pooled (Qwen+Llama):
+              - ARC (N=20): γ=0.002, CI=[-0.57, 0.60], PPP=0.449, calMAE=0.015, ΔMAE=0.055
+              - MMLU (N=18): γ=0.213, CI=[-0.78, 1.25], PPP=0.865, calMAE=0.008, ΔMAE=0.030
+              - GSM8K (N=28): γ=-0.110, CI=[-0.52, 0.28], PPP=0.832, calMAE=0.008, ΔMAE=0.171
+            Qwen-only baseline:
+              - ARC (N=16): γ=0.727, CI excludes zero
+              - MMLU (N=16): γ=0.655, CI does NOT exclude zero
+              - GSM8K (N=24): γ=0.064, CI does NOT exclude zero
+            KEY NARRATIVE NUMBER: ARC γ = 0.73 → 0.002 (strongest family-specificity evidence)
+            NOTE: v2 MMLU γ=0.71 was WRONG (RRF missing s4). Correct value = 0.213.
+          THREE-LAYER FRAMING:
+            (1) IRT calibration generalizes cross-family (calMAE low, ΔMAE large) — STRONGEST claim
+            (2) γ diagnostic value only within-family (Qwen: Math 0.97, Science 0.84; pooled: γ≈0)
+            (3) Family-specificity itself is diagnostic (different families react differently to SFT)
+          RED LINES:
+            ✅ "IRT calibration generalizes across model families"
+            ✅ "γ provides within-family contamination diagnostics"
+            ✅ "cross-family analysis reveals family-specific contamination mechanisms"
+            ❌ "cross-family validation confirms contamination detection"
+            ❌ "γ is a universal contamination indicator"
+      - name: "4.3 Benchmarks, Domains, and Evaluation"
+        content: "MMLU (57 subjects → 8 cognitive domains), ARC-C (1172 items), GSM8K (1319 items). 6 metrics. Domain stratification strategy."
+      - name: "4.4 Baselines"
+        content: "7 baselines: B0-Raw, B1-Remove&Rescore, B2-Single2PL+γ, B3-Vanilla4PL, B4-LinearRegression, B5-Emperor, B6-DCR."
+    notes: "D045: 0.5B MMLU/ARC excluded from IRT (position bias). 3B data FROZEN and available."
+
+  results:
+    word_budget: 1500
+    dependencies: [experimental_setup, figures, tables]
+    subsections:
+      - name: "5.1 Domain-Differential Contamination (C1)"
+        content: >
+          MMLU domain heterogeneity: Math γ=0.97, Science γ=0.84, CS_Eng≈0, non-STEM PPP=1 (model misfit).
+          Dilution masking (D119): pooled γ≈0 because positive STEM effects diluted by null/misfit non-STEM.
+          Cross-benchmark: ARC γ<0 (forgetting), GSM8K γ>0 (inflation).
+          Scale story: 0.5B catastrophic → 3B mild.
+          Cross-family analysis (D122 v3 FINAL CLEAN):
+            Pooling Qwen+Llama → γ vanishes on ALL benchmarks:
+              ARC: 0.73→0.002; MMLU: 0.655→0.213; GSM8K: 0.064→-0.110 (all CI include zero)
+            Only ARC Qwen-only had CI excluding zero — pooling eliminates it completely.
+            calMAE remains low (GSM8K 0.008, ARC 0.015, MMLU 0.008) with large ΔMAE.
+            Three-layer conclusion: (1) θ calibration cross-family valid, (2) γ within-family only,
+            (3) family-specificity is itself a diagnostic finding.
+            Llama d100 ARC acc=0.60 (no inflation despite contamination) vs Qwen pattern → different mechanisms.
+        claims: [C1]
+        key_tables: [table_domain_gamma]
+        key_figures: [fig_domain_gamma, fig_dose_response]
+      - name: "5.2 Detection Signal Failure (C2)"
+        content: >
+          S1 AUC>0.95 at d005. Min-K++ reversal Cohen's d=-1.55 to -1.98.
+          Cross-family signal: Llama-3.2-3B replicates Min-K++ reversal direction (exploratory, N=4).
+          RRF = S1-only in practice.
+          NOTE (D122): Cross-family γ pooling shows family-specificity (§5.1 cross-ref).
+          Signal direction replicates, but γ magnitude is family-specific.
+        claims: [C2]
+        key_figures: [fig_signal_heatmap]
+      - name: "5.3 Identifiability Boundaries (C3)"
+        content: >
+          Sim sweep: recovery at AUC=0.55 (lowest tested), N≥50. CI ∝ N^{-0.48}.
+          LLM eval operates at N=8-30: IRT-specific impossibility (not general impossibility).
+          Fisher Info N×identifiability heatmap.
+        claims: [C3]
+        key_figures: [fig_identifiability_heatmap]
+      - name: "5.4 Conditional Calibration (C4)"
+        content: >
+          KEY NARRATIVE: Show vanilla 2PL baseline alongside 2PL+γ. Explicitly state γ does NOT
+          improve calibration (GSM8K: 0.0063 vs 0.0062; MMLU: 0.0068 vs 0.0070; ARC: 0.0158 vs 0.0201).
+          Calibration benefit entirely from IRT ability estimation.
+          γ value is DIAGNOSTIC: domain-differential heterogeneity detection (§5.1).
+          ARC: MAE=0.035, Kendall τ=0.756, beats all baselines.
+          GSM8K: gating criterion fails (γ non-significant with S1). Overcorrection as honest negative.
+          Coverage below nominal: directional indicators, not precise CIs.
+          Frame positively: this confirms D118 "Diagnosis via IRT" — γ reveals hidden structure
+          that aggregate calibration cannot, strengthening the diagnostic contribution.
+        claims: [C4]
+        key_tables: [table_baselines]
+        key_figures: [fig_calibration]
+        narrative_constraint: "NEVER imply γ improves calibration numbers. Show vanilla 2PL as explicit comparison."
+    notes: "All sections use FROZEN data (3B included). Llama marked 'exploratory'."
+
+  discussion:
+    word_budget: 500
+    dependencies: [results]
+    subsections:
+      - "Dilution masking implications: aggregate benchmark scores as unreliable contamination indicators"
+      - "Non-STEM model misfit: boundary of additive γ formulation → future multidimensional IRT"
+      - "Limitations: single primary family (Qwen2.5), SFT ≠ real contamination, N<50 in practice"
+      - "0.5B position bias (D045): capacity threshold for MC evaluation"
+      - name: "SFT ≠ real contamination (W6, expanded with D123)"
+        content: >
+          Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34) while
+          ARC/GSM8K d100 behave normally. Format-specific: 100% SFT on MC items causes
+          format overfitting (position bias collapse), not present in open-ended (GSM8K)
+          or mixed-format (ARC). This artifact would not occur in natural contamination
+          (gradual, heterogeneous sources). Brief mention, not core claim.
+          Also supports capacity × format interaction for Min-K++ reversal explanation.
+      - "Future work: multi-family, 7B+, RL observational, data attribution signals"
+    notes: "Honest about scope. C3 impossibility limited to IRT+MIA framework."
+
+  conclusion:
+    word_budget: 350
+    dependencies: [discussion]
+    notes: >
+      Restate: diagnostic framework reveals hidden structure. Dilution masking as key insight.
+      IRT provides calibration via θ estimation; γ provides domain-level diagnosis.
+      These are complementary, independent values. Honest about γ's non-contribution to calibration numbers.
+
+  appendix:
+    sections:
+      - name: "A: Fisher Information Derivation"
+        source: "artifacts/fisher_info_derivation/fisher_info_appendix.tex"
+      - name: "B: Simulation Sweep Full Results"
+        data_source: "exp-004"
+      - name: "C: Measurement Error Analysis (Negative)"
+        data_source: "exp-005"
+      - name: "D: 0.5B Position Bias Analysis"
+        data_source: "exp-001"
+      - name: "E: Llama Cross-Family Analysis + Power Analysis"
+        notes: >
+          Single seed N=4. Post-hoc power. Exploratory status.
+          D122: Report pooled γ results honestly (GSM8K γ≈0; ARC γ=0.55 CI crosses zero, PPP=0.024).
+          Frame as family-specificity evidence, not failure. Compare Qwen-only vs pooled.
+          IRT θ valid cross-family; γ family-specific → supports per-family modeling recommendation.
+      - name: "F: DCR Qualitative Comparison Table (W1)"
+        notes: "Feature-by-feature comparison with DCR. No head-to-head numbers (no code access)."
+      - name: "G: Full Domain-Level IRT Diagnostics"
+        notes: "All 8 MMLU domains: γ, CI, PPP, Rhat, ESS. Non-STEM misfit discussion."
+
+visualization_plan:
+  fig_pipeline:
+    type: "conceptual_diagram"
+    description: "ContamCal 2-stage diagnostic pipeline. Emphasize 'diagnosis' framing: signals → domain-level IRT → characterization + conditional calibration."
+    placement: "Section 3 (Method)"
+    aspect_ratio: "2:1"
+    tool: "matplotlib"
+    data_source: null
+    output: "figures/paper/fig_pipeline.pdf"
+    status: "DONE (may need minor label update for 'diagnosis' framing)"
+
+  fig_domain_gamma:
+    type: "bar_chart_with_ci"
+    description: >
+      NEW (flagship C1 figure). MMLU domain-level γ estimates.
+      X-axis: 8 MMLU domains (ordered by γ: Math > Science > CS_Eng > ... > non-STEM).
+      Y-axis: γ estimate. Error bars = 95% CI.
+      Color: green (significant + PPP OK) / gray (non-significant) / red (PPP=1, model misfit).
+      Horizontal dashed line at γ=0. Annotate pooled γ≈0 with "dilution masking" label.
+    placement: "Section 5.1 (flagship)"
+    aspect_ratio: "3:2"
+    tool: "matplotlib"
+    data_source: "registry: exp-006 domain-level IRT N=24 (Math/Science/CS_Eng/non-STEM domains)"
+    output: "figures/paper/fig_domain_gamma.pdf"
+
+  fig_dose_response:
+    type: "line_plot"
+    description: >
+      Dosage vs accuracy for ARC, GSM8K, MMLU. NOW WITH 3B DATA (3B FROZEN).
+      Three scales: 0.5B, 1.5B, 3B. Error bars from 2 seeds.
+      Shows scale-dependence + benchmark-dependence.
+    placement: "Section 5.1"
+    aspect_ratio: "3:2"
+    tool: "matplotlib"
+    data_source: "registry: exp-001 eval results (aligned, all scales × dosages × seeds)"
+    output: "figures/paper/fig_dose_response.pdf"
+    status: "NEEDS REGENERATION (old version has [PENDING-3B], now 3B is FROZEN)"
+
+  fig_signal_heatmap:
+    type: "heatmap"
+    description: >
+      Signal AUC × scale × dosage. Annotate Min-K++ reversal (Cohen's d).
+      Include Llama cross-family row if data available (mark exploratory).
+    placement: "Section 5.2"
+    aspect_ratio: "4:3"
+    tool: "matplotlib"
+    data_source: "registry: exp-008 signal eval + Llama signals"
+    output: "figures/paper/fig_signal_heatmap.pdf"
+
+  fig_identifiability_heatmap:
+    type: "heatmap"
+    description: >
+      W4 fix: N (y-axis) × AUC (x-axis) → γ recovery quality (color = bias or RMSE).
+      Mark actual operating points. Shade structural/practical identifiability regions.
+      Replaces old 'phase diagram' — heatmap is more informative per reviewer.
+    placement: "Section 5.3"
+    aspect_ratio: "1:1"
+    tool: "matplotlib"
+    data_source: "registry: exp-004 sim_sweep (20 conditions, 200 runs)"
+    output: "figures/paper/fig_identifiability_heatmap.pdf"
+
+  fig_calibration:
+    type: "scatter_with_ci"
+    description: >
+      Calibrated vs true accuracy scatter. Include 3B data.
+      MUST include vanilla 2PL baseline (separate marker/color) alongside 2PL+γ.
+      Key visual: vanilla 2PL and 2PL+γ points nearly overlap, demonstrating
+      calibration parity. Color by benchmark. Annotate ARC (good) vs GSM8K (overcorrection).
+      Director note: "会增加 vanilla 2PL 对照条"
+    placement: "Section 5.4"
+    aspect_ratio: "1:1"
+    tool: "matplotlib"
+    data_source: "registry: exp-006 IRT calibration results (both vanilla 2PL and 2PL+γ)"
+    output: "figures/paper/fig_calibration.pdf"
+    status: "NEEDS REGENERATION (vanilla 2PL comparison added)"
+
+table_plan:
+  table_domain_gamma:
+    type: "parameter_summary"
+    description: "Domain-level IRT γ estimates (MMLU 8 domains + ARC + GSM8K)"
+    columns: ["Domain/Benchmark", "N_items", "γ̂", "95% CI", "Sig?", "PPP", "Interpretation"]
+    data_source: "exp-006 domain-level IRT (N=24 models)"
+    placement: "Section 5.1"
+    rows:
+      - "MMLU: Math — γ=+0.97, CI excludes 0, PPP=0.44, Strong inflation"
+      - "MMLU: Science — γ=+0.84, CI excludes 0, PPP=0.81, Strong inflation"
+      - "MMLU: CS_Eng — γ=+0.20, CI includes 0, PPP=0.89, Null"
+      - "MMLU: Non-STEM (5 domains) — PPP≈1.0, Model misfit (see Appendix G)"
+      - "MMLU: Pooled — γ≈0, dilution masking"
+      - "ARC-Challenge — γ=-1.46, CI excludes 0, Forgetting"
+      - "GSM8K — γ non-significant (S1), Inflation via oracle only"
+      - "[3B rows from FROZEN data]"
+
+  table_baselines:
+    type: "comparison"
+    description: "Calibration performance: ContamCal vs 7 baselines + DCR qualitative"
+    columns: ["Method", "ARC MAE↓", "ARC τ↑", "ARC C95%", "Notes"]
+    data_source: "exp-006 baseline comparisons"
+    placement: "Section 5.4"
+    notes: "W1: add qualitative DCR comparison column. Include 3B data."
+
+  table_dcr_comparison:
+    type: "qualitative"
+    description: "W1 fix: DCR vs ContamCal feature comparison"
+    columns: ["Feature", "DCR", "ContamCal"]
+    placement: "Section 2 (Related Work) or Section 5.4"
+    rows:
+      - "Uncertainty quantification: ✗ / ✓ (Bayesian CIs)"
+      - "Domain-level diagnosis: ✗ / ✓ (per-domain γ)"
+      - "Identifiability analysis: ✗ / ✓ (Fisher Info)"
+      - "Signal failure detection: ✗ / ✓ (Min-K++ reversal)"
+      - "Adjusted accuracy: ✓ / ✓"
+      - "Multi-benchmark: ✓ / ✓"
+      - "Requires reference set: ✓ (fuzzy match) / ✗ (signal-based)"
+
+literature_strategy:
+  citation_budget: "40-50 total"
+  macro_context: "Contamination is systemic; detection exists but diagnosis doesn't; educational measurement solved analogous problem decades ago."
+  micro_clusters:
+    contamination_detection:
+      target_count: 8
+      must_cite: ["zhang2024minkpp", "dekoninck2024constat", "dong2024kds", "shi2024cdd", "weller2024selfcritique", "golchin2024time"]
+    irt_for_llm:
+      target_count: 6
+      must_cite: ["lalor2024aaai", "polo2024tinybenchmarks", "burnell2023multidimensional"]
+    item_compromise_irt:
+      target_count: 5
+      must_cite: ["eckerly2017", "sinharay2017", "deboeck2004", "holland1993dif", "adams1997"]
+    benchmark_reliability:
+      target_count: 5
+      must_cite: ["livebench2024", "empcloths2025", "zheng2023chatbot", "liang2023helm"]
+    calibration_uq:
+      target_count: 4
+      must_cite: ["guo2017calibration", "angelopoulos2023conformal", "talts2018sbc"]
+    mia_foundations:
+      target_count: 3
+      must_cite: ["shokri2017membership", "carlini2022extracting"]
+    contamination_mitigation:
+      target_count: 4
+      must_cite: ["oren2024dcr"]
+    irt_methodology:
+      target_count: 3
+      must_cite: ["sanmartin2009", "reckase2009", "mislevy1986"]
+
+writing_order:
+  - section: "method"
+    rationale: "No data dependency. Sets notation. Include D120 decomposition."
+  - section: "experimental_setup"
+    rationale: "Defines design. 3B FROZEN, Llama exploratory."
+  - section: "results"
+    rationale: "Core contribution. Domain heterogeneity as flagship."
+  - section: "related_work"
+    rationale: "Needs literature_map. DCR expanded comparison (W1)."
+  - section: "discussion"
+    rationale: "Dilution masking implications. Model misfit boundary."
+  - section: "introduction"
+    rationale: "Diagnostic framing. Lead with dilution masking insight."
+  - section: "conclusion"
+    rationale: "Summarizes diagnostic findings."
+  - section: "abstract"
+    rationale: "Write last."
+
+data_availability:
+  frozen:
+    - "Qwen 0.5B/1.5B/3B: all dosages × 2 seeds, SFT + eval + signals ✅ FROZEN"
+    - "Domain-level IRT N=24 (MMLU 8 domains): Math/Science confirmed ✅"
+    - "Pooled IRT 2PL+γ N=24 ✅"
+    - "Min-K++ reversal cross-family (Qwen + Llama) ✅"
+    - "exp-004 sim_sweep (20 conditions, 200 runs)"
+  in_progress:
+    - "Llama-3.2-3B: d000 eval ✅, d005/d025/d100 eval/signals in progress → mark exploratory (single seed, N=4)"
+  constraints:
+    - "GSM8K d005 s123: 63.08% anomaly, temporarily unavailable"
+    - "D045: 0.5B MMLU/ARC excluded from IRT (position bias)"
+    - "Llama data: exploratory only, post-hoc power analysis required"
+    - "D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Effective Llama MMLU range: d000-d025 only. ARC/GSM8K d100 normal."
+  excluded_from_paper:
+    - "7B/72B (rebuttal)"
+    - "Multi-family beyond Llama-3.2-3B (rebuttal)"
+    - "RL observational (rebuttal)"
+
+review_fixes:
+  C1: "Add 1.5B/3B complete data to Table 1/2 (data available)"
+  C2: "Llama N=4 + post-hoc power analysis + 'exploratory' label"
+  C3: "Triple impossibility limited to 'IRT + membership-inference specific'"
+  W1: "Expand DCR comparison (qualitative table, no head-to-head numbers)"
+  W2: "Title → diagnostic framing (D118 approved)"
+  W4: "Fisher Info N×identifiability heatmap (replaces phase diagram)"
+  D119: "dilution masking replaces Simpson's Paradox throughout"
+  D120: "calibration value decomposition paragraph in Method + Results"
+
+key_decisions:
+  - "D118: Title → 'Domain-Differential Contamination Effects: Diagnosis via IRT'"
+  - "D119: dilution masking replaces Simpson's Paradox"
+  - "D120: GSM8K calibration value from ability estimation (decomposition)"
+  - "D121: vanilla 2PL ≈ 2PL+γ calibration MAE on all benchmarks — γ provides NO calibration improvement, only diagnostic value. Calibration entirely from IRT θ estimation."
+  - "D122 v3 CLEAN: Cross-family pooled IRT — ARC(N=20) γ=0.002, MMLU(N=20) γ=0.213, GSM8K(N=28) γ=-0.110, ALL CI include zero. Qwen-only: ARC γ=0.727 CI excl zero, MMLU γ=0.655 no, GSM8K γ=0.064 no. Key number: ARC 0.73→0.002. v2 MMLU γ=0.71 was WRONG (RRF bug). Three-layer framing unchanged. Red lines: never claim γ universal."
+  - "D123: Llama-3.2-3B d100 MMLU catastrophic collapse (all output 'A', acc=0.34). Format-specific SFT overfitting. Exclude from IRT. Mention in Discussion as 'SFT ≠ real contamination' evidence. Not core claim."
+  - "D039: Characterization-led framing, calibration demoted to Claim 4"
+  - "D045: Exclude 0.5B MMLU/ARC from IRT (position bias)"
+  - "D053: Per-benchmark independent IRT only"
+  - "D055: WITHDRAWN — all checkpoints alpha=32"
+  - "D056: Coverage collapse = model misspecification"
+  - "D060: P1/P2 → rebuttal scope"

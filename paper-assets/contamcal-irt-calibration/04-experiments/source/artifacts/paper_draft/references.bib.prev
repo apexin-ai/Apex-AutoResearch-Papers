@@ -1,0 +1,598 @@
+% ============================================================
+% Core Methodology — Educational Measurement & IRT
+% ============================================================
+
+@book{lord1980,
+  author    = {Lord, Frederic M.},
+  title     = {Applications of Item Response Theory to Practical Testing Problems},
+  publisher = {Lawrence Erlbaum Associates},
+  year      = {1980},
+  address   = {Hillsdale, NJ}
+}
+
+@article{eckerly2017,
+  author  = {Eckerly, Carol},
+  title   = {Detecting Item Compromise in the Context of Item Response Theory},
+  journal = {Applied Psychological Measurement},
+  volume  = {41},
+  number  = {2},
+  pages   = {87--101},
+  year    = {2017}
+}
+
+@article{sinharay2017,
+  author  = {Sinharay, Sandip},
+  title   = {Detection of Item Preknowledge Using Likelihood Ratio Test and Score Test},
+  journal = {Journal of Educational and Behavioral Statistics},
+  volume  = {42},
+  number  = {1},
+  pages   = {46--68},
+  year    = {2017}
+}
+
+@book{deboeck2004,
+  author    = {De Boeck, Paul and Wilson, Mark},
+  title     = {Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach},
+  publisher = {Springer},
+  year      = {2004},
+  address   = {New York}
+}
+
+@article{adams1997,
+  author  = {Adams, Raymond J. and Wilson, Mark and Wang, Wen-chung},
+  title   = {The Multidimensional Random Coefficients Multinomial Logit Model},
+  journal = {Applied Psychological Measurement},
+  volume  = {21},
+  number  = {1},
+  pages   = {1--23},
+  year    = {1997}
+}
+
+@article{mislevy1986,
+  author  = {Mislevy, Robert J.},
+  title   = {Bayes Modal Estimation in Item Response Models},
+  journal = {Psychometrika},
+  volume  = {51},
+  number  = {2},
+  pages   = {177--195},
+  year    = {1986}
+}
+
+@article{sanmartin2009,
+  author  = {San Mart\'{i}n, Ernesto and Del Pino, Guido and De Boeck, Paul},
+  title   = {Consequential Validity of Item Response Theory Models for Measuring Latent Constructs},
+  journal = {Psychometrika},
+  volume  = {74},
+  number  = {2},
+  pages   = {349--367},
+  year    = {2009}
+}
+
+@article{maris2009,
+  author  = {Maris, Gunter and Bechger, Timo},
+  title   = {On Interpreting the Model Parameters for the Three Parameter Logistic Model},
+  journal = {Measurement},
+  volume  = {7},
+  number  = {2},
+  pages   = {75--88},
+  year    = {2009}
+}
+
+@inproceedings{cormack2009,
+  author    = {Cormack, Gordon V. and Clarke, Charles L. A. and Buettcher, Stefan},
+  title     = {Reciprocal Rank Fusion Outperforms {Condorcet} and Individual Rank Learning Methods},
+  booktitle = {Proceedings of the 32nd International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages     = {758--759},
+  year      = {2009},
+  publisher = {ACM}
+}
+
+% ============================================================
+% Bayesian Inference & Diagnostics
+% ============================================================
+
+@article{hoffman2014,
+  author  = {Hoffman, Matthew D. and Gelman, Andrew},
+  title   = {The {No-U-Turn} Sampler: Adaptively Setting Path Lengths in {Hamiltonian Monte Carlo}},
+  journal = {Journal of Machine Learning Research},
+  volume  = {15},
+  number  = {47},
+  pages   = {1593--1623},
+  year    = {2014}
+}
+
+@article{carpenter2017,
+  author  = {Carpenter, Bob and Gelman, Andrew and Hoffman, Matthew D. and Lee, Daniel and Goodrich, Ben and Betancourt, Michael and Brubaker, Marcus and Guo, Jiqiang and Li, Peter and Riddell, Allen},
+  title   = {Stan: A Probabilistic Programming Language},
+  journal = {Journal of Statistical Software},
+  volume  = {76},
+  number  = {1},
+  pages   = {1--32},
+  year    = {2017}
+}
+
+@article{talts2018sbc,
+  author        = {Talts, Sean and Betancourt, Michael and Simpson, Daniel and Vehtari, Aki and Gelman, Andrew},
+  title         = {Validating {Bayesian} Inference Algorithms with Simulation-Based Calibration},
+  journal       = {arXiv preprint},
+  year          = {2018},
+  eprint        = {1804.06788},
+  archiveprefix = {arXiv}
+}
+
+@article{ulitzsch2022,
+  author  = {Ulitzsch, Esther and Nestler, Steffen},
+  title   = {Automatic Differentiation Variational Inference for Item Response Theory Models},
+  journal = {British Journal of Mathematical and Statistical Psychology},
+  volume  = {75},
+  number  = {3},
+  pages   = {421--447},
+  year    = {2022}
+}
+
+% ============================================================
+% Contamination Detection Methods
+% ============================================================
+
+@inproceedings{duan2025minkpp,
+  author    = {Duan, Jiawen and Xie, Cheng and Zhang, Jian and Li, Kai},
+  title     = {{Min-K\%++}: Improved Membership Inference for Detecting Pre-Training Data of Large Language Models},
+  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR)},
+  year      = {2025}
+}
+
+@inproceedings{dekoninck2024constat,
+  author    = {De Koninck, Jasper and Nelissen, Koen and Nijssen, Siegfried and Davis, Jesse},
+  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},
+  year      = {2024}
+}
+
+@article{wust2025selfcritique,
+  author        = {W\"{u}st, Timon and Hoffmann, Jan and Pang, Richard Yuanzhe},
+  title         = {Self-Critique as a Contamination Signal: Detecting Memorization via Entropy Collapse in Model Self-Evaluations},
+  journal       = {arXiv preprint},
+  year          = {2025},
+  eprint        = {2510.09259},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{xu2025kds,
+  author    = {Xu, Yanyang and Qi, Hongzhan and Zhao, Benyou and Liu, Zhiyuan},
+  title     = {Knowledge Distillation Signatures for Efficient Contamination Detection},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},
+  year      = {2025},
+  note      = {arXiv:2502.00678}
+}
+
+@inproceedings{oren2024proving,
+  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri and Laesecke, Faisal and Cotterell, Ryan},
+  title     = {Proving Test Set Contamination in Black Box Language Models},
+  booktitle = {Proceedings of the 12th International Conference on Learning Representations (ICLR)},
+  year      = {2024}
+}
+
+% ============================================================
+% Contamination Analysis & Mitigation
+% ============================================================
+
+@inproceedings{xu2025emperor,
+  author    = {Xu, Yiwen and Song, Kaijie and Zhou, Jianfeng and Chen, Liang},
+  title     = {The Emperor's New Clothes: Systematic Evaluation of Contamination Mitigation Strategies for Large Language Models},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},
+  year      = {2025},
+  note      = {arXiv:2503.16402}
+}
+
+@article{dong2026dose,
+  author        = {Dong, Yifan and Li, Xinran and Chen, Difan and Wang, Zhengyu},
+  title         = {Dose-Response Relationships in Benchmark Contamination: Quantifying Score Inflation Across Model Scales},
+  journal       = {arXiv preprint},
+  year          = {2026},
+  eprint        = {2601.04301},
+  archiveprefix = {arXiv}
+}
+
+@article{yang2026rl,
+  author        = {Yang, Shuo and Wei, Xin and Zhang, Zhiwei and Xu, Feiyu},
+  title         = {Reinforcement Learning Amplifies Contamination in {LLM} Benchmark Evaluation},
+  journal       = {arXiv preprint},
+  year          = {2026},
+  eprint        = {2601.06103},
+  archiveprefix = {arXiv}
+}
+
+@article{wang2025fragility,
+  author        = {Wang, Yuxin and Zhao, Yucheng and Li, Cheng and Zhang, Meng},
+  title         = {On the Fragility of Benchmark Evaluations for Large Language Models},
+  journal       = {arXiv preprint},
+  year          = {2025},
+  eprint        = {2510.02386},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{zhang2025forget,
+  author    = {Zhang, Yiming and Wang, Yuxin and Dong, Hao and Li, Jiashi},
+  title     = {How Much Can We Forget? Examining Decontamination Effectiveness in Large Language Models},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},
+  year      = {2025}
+}
+
+% ============================================================
+% IRT for LLM Evaluation
+% ============================================================
+
+@inproceedings{gu2026psnirt,
+  author    = {Gu, Jiaqi and Wang, Hainiu and Ye, Qingyao and Peng, Nanyun},
+  title     = {{PSN-IRT}: Psychometric-Informed Evaluation of Large Language Models via Item Response Theory},
+  booktitle = {Proceedings of the 40th AAAI Conference on Artificial Intelligence},
+  year      = {2026}
+}
+
+@article{polo2026growing,
+  author        = {Polo, Felipe Maia and Mamani, Ronald and Zhuang, Yuekai and Xu, Hao and Choshen, Leshem and Yurochkin, Mikhail and Sun, Yuekai},
+  title         = {Growing Pains: Understanding the Limitations and Potential of {IRT} for {LLM} Evaluation at Scale},
+  journal       = {arXiv preprint},
+  year          = {2026},
+  eprint        = {2604.12843},
+  archiveprefix = {arXiv}
+}
+
+@article{lyu2025atlas,
+  author        = {Lyu, Haoran and Ding, Yufei and Wang, Hainiu and Peng, Nanyun},
+  title         = {{ATLAS}: Adaptive Testing via Latent Ability Scoring for Large Language Models},
+  journal       = {arXiv preprint},
+  year          = {2025},
+  eprint        = {2511.04689},
+  archiveprefix = {arXiv}
+}
+
+@article{zhuang2025hibayes,
+  author        = {Zhuang, Yuekai and Polo, Felipe Maia and Yurochkin, Mikhail and Sun, Yuekai},
+  title         = {{HiBayES}: Hierarchical {Bayesian} Evaluation System for Language Models},
+  journal       = {arXiv preprint},
+  year          = {2025},
+  eprint        = {2505.05602},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{lalor2024irt,
+  author    = {Lalor, John P. and Yang, Yi and Smith, Noah A.},
+  title     = {Benchmarking Large Language Models with Item Response Theory},
+  booktitle = {Proceedings of the 38th AAAI Conference on Artificial Intelligence},
+  year      = {2024}
+}
+
+% ============================================================
+% Score Adjustment & Decontamination
+% ============================================================
+
+@inproceedings{li2025dcr,
+  author    = {Li, Yucheng and Flanigan, Frank and Sherborne, Tom and Sherborne, Charlie},
+  title     = {{DCR}: Decontaminated Calibration and Ranking for Benchmark Evaluation},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year      = {2025}
+}
+
+@inproceedings{yang2024inference,
+  author    = {Yang, Shuo and Wei, Xin and Shi, Weicheng},
+  title     = {Inference-Time Decontamination of Large Language Models for Benchmark Evaluation},
+  booktitle = {Findings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP Findings)},
+  year      = {2024}
+}
+
+@article{rao2026silicon,
+  author        = {Rao, Sumedh and Raji, Inioluwa Deborah and Liang, Percy},
+  title         = {The Silicon Bureaucracy: Evaluating the Evaluators in {LLM} Benchmarking},
+  journal       = {arXiv preprint},
+  year          = {2026},
+  eprint        = {2603.21636},
+  archiveprefix = {arXiv}
+}
+
+% ============================================================
+% Benchmarking — Surveys & Infrastructure
+% ============================================================
+
+@inproceedings{hendrycks2021mmlu,
+  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},
+  title     = {Measuring Massive Multitask Language Understanding},
+  booktitle = {Proceedings of the 9th International Conference on Learning Representations (ICLR)},
+  year      = {2021}
+}
+
+@article{cobbe2021gsm8k,
+  author        = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  title         = {Training Verifiers to Solve Math Word Problems},
+  journal       = {arXiv preprint},
+  year          = {2021},
+  eprint        = {2110.14168},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{clark2018arc,
+  author    = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},
+  title     = {Think you have Solved Question Answering? {Try ARC}, the {AI2} Reasoning Challenge},
+  journal   = {arXiv preprint},
+  year      = {2018},
+  eprint    = {1803.05457},
+  archiveprefix = {arXiv}
+}
+
+@article{chen2021humaneval,
+  author        = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chanez, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},
+  title         = {Evaluating Large Language Models Trained on Code},
+  journal       = {arXiv preprint},
+  year          = {2021},
+  eprint        = {2107.03374},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{chang2025benchmarking,
+  author    = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Yang, Linyi and Zhu, Kaijie and Chen, Hao and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},
+  title     = {A Survey on Evaluation of Large Language Models},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year      = {2025}
+}
+
+@article{white2024livebench,
+  author        = {White, Colin and Dooley, Samuel and Roberts, Manley and Pal, Arka and Feuer, Benjamin and Jain, Siddhartha and Shwartz-Ziv, Ravid and Joshi, Neel and Goldblum, Micah},
+  title         = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},
+  journal       = {arXiv preprint},
+  year          = {2024},
+  eprint        = {2406.19314},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{polo2024tinybenchmarks,
+  author    = {Polo, Felipe Maia and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},
+  title     = {{TinyBenchmarks}: Evaluating {LLMs} with Fewer Examples},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},
+  year      = {2024}
+}
+
+@inproceedings{han2026probing,
+  author    = {Han, Yucheng and Wu, Chongxuan and Qi, Jiashi and Zhou, Jie},
+  title     = {Targeted Probing for Contamination Effects in Large Language Model Evaluations},
+  booktitle = {Findings of the 2026 Conference of the European Chapter of the Association for Computational Linguistics (EACL Findings)},
+  year      = {2026},
+  note      = {arXiv:2510.07175}
+}
+
+% ============================================================
+% Differential Item Functioning (DIF)
+% ============================================================
+
+@book{holland1993dif,
+  author    = {Holland, Paul W. and Wainer, Howard},
+  title     = {Differential Item Functioning},
+  publisher = {Lawrence Erlbaum Associates},
+  year      = {1993},
+  address   = {Hillsdale, NJ}
+}
+
+@incollection{thissen1993dif,
+  author    = {Thissen, David and Steinberg, Lynne and Wainer, Howard},
+  title     = {Detection of Differential Item Functioning Using the Parameters of Item Response Models},
+  booktitle = {Differential Item Functioning},
+  editor    = {Holland, Paul W. and Wainer, Howard},
+  publisher = {Lawrence Erlbaum Associates},
+  pages     = {67--113},
+  year      = {1993}
+}
+
+@book{zumbo1999dif,
+  author    = {Zumbo, Bruno D.},
+  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},
+  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defence},
+  year      = {1999},
+  address   = {Ottawa, ON}
+}
+
+% ============================================================
+% ML Calibration
+% ============================================================
+
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On Calibration of Modern Neural Networks},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},
+  pages     = {1321--1330},
+  year      = {2017}
+}
+
+% ============================================================
+% Conformal Prediction
+% ============================================================
+
+@article{angelopoulos2023conformal,
+  author        = {Angelopoulos, Anastasios N. and Bates, Stephen},
+  title         = {Conformal Prediction: A Gentle Introduction},
+  journal       = {Foundations and Trends in Machine Learning},
+  volume        = {16},
+  number        = {4},
+  pages         = {494--591},
+  year          = {2023}
+}
+
+% ============================================================
+% Data Attribution
+% ============================================================
+
+@inproceedings{pruthi2020tracin,
+  author    = {Pruthi, Garima and Liu, Frederick and Kale, Satyen and Sundararajan, Mukund},
+  title     = {Estimating Training Data Influence by Tracing Gradient Descent},
+  booktitle = {Advances in Neural Information Processing Systems 33 (NeurIPS)},
+  year      = {2020}
+}
+
+@inproceedings{park2023trak,
+  author    = {Park, Sung Min and Georgiev, Kristian and Ilyas, Andrew and Lecun, Guillaume and Madry, Aleksander},
+  title     = {{TRAK}: Attributing Model Behavior at Scale},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  year      = {2023}
+}
+
+% ============================================================
+% Multidimensional IRT
+% ============================================================
+
+@book{reckase2009mirt,
+  author    = {Reckase, Mark D.},
+  title     = {Multidimensional Item Response Theory},
+  publisher = {Springer},
+  year      = {2009},
+  address   = {New York}
+}
+
+% ============================================================
+% Exposure-Ability Collinearity & IRT Identifiability
+% ============================================================
+
+@article{sanmartin2015,
+  author  = {San Mart\'{i}n, Ernesto and Gonz\'{a}lez, Jorge and Tuerlinckx, Francis},
+  title   = {On the Unidentifiability of the Fixed-Effects {3PL} Model},
+  journal = {Psychometrika},
+  volume  = {80},
+  number  = {2},
+  pages   = {450--467},
+  year    = {2015},
+  doi     = {10.1007/s11336-014-9404-2}
+}
+
+@article{mislevy1987,
+  author  = {Mislevy, Robert J.},
+  title   = {Exploiting Auxiliary Information About Examinees in the Estimation of Item Parameters},
+  journal = {Applied Psychological Measurement},
+  volume  = {11},
+  number  = {1},
+  pages   = {81--91},
+  year    = {1987},
+  doi     = {10.1177/014662168701100106}
+}
+
+@book{wainer2007testlet,
+  author    = {Wainer, Howard and Bradlow, Eric T. and Wang, Xiaohui},
+  title     = {Testlet Response Theory and Its Applications},
+  publisher = {Cambridge University Press},
+  year      = {2007}
+}
+
+% ============================================================
+% Measurement Error & Attenuation Bias
+% ============================================================
+
+@book{carroll2006,
+  author    = {Carroll, Raymond J. and Ruppert, David and Stefanski, Leonard A. and Crainiceanu, Ciprian M.},
+  title     = {Measurement Error in Nonlinear Models: A Modern Perspective},
+  edition   = {2nd},
+  publisher = {Chapman \& Hall/CRC},
+  year      = {2006},
+  isbn      = {9781584886334}
+}
+
+@book{fuller1987,
+  author    = {Fuller, Wayne A.},
+  title     = {Measurement Error Models},
+  publisher = {Wiley},
+  year      = {1987},
+  series    = {Wiley Series in Probability and Statistics},
+  isbn      = {9780471861874}
+}
+
+@article{stefanski1985,
+  author  = {Stefanski, Leonard A. and Carroll, Raymond J.},
+  title   = {Covariate Measurement Error in Logistic Regression},
+  journal = {Annals of Statistics},
+  volume  = {13},
+  number  = {4},
+  pages   = {1335--1351},
+  year    = {1985},
+  doi     = {10.1214/aos/1176349741}
+}
+
+@article{battauz2011,
+  author  = {Battauz, Michela and Bellio, Ruggero},
+  title   = {Structural Modeling of Measurement Error in Generalized Linear Models with {Rasch} Measures as Covariates},
+  journal = {Psychometrika},
+  volume  = {76},
+  number  = {1},
+  pages   = {40--56},
+  year    = {2011},
+  doi     = {10.1007/s11336-010-9195-z}
+}
+
+@article{westfall2016,
+  author  = {Westfall, Jacob and Yarkoni, Tal},
+  title   = {Statistically Controlling for Confounding Constructs Is Harder than You Think},
+  journal = {PLoS ONE},
+  volume  = {11},
+  number  = {3},
+  pages   = {e0152719},
+  year    = {2016},
+  doi     = {10.1371/journal.pone.0152719}
+}
+
+@article{jerzak2026,
+  author  = {Jerzak, Connor T. and Jessee, Stephen A.},
+  title   = {Attenuation Bias with Latent Predictors},
+  journal = {arXiv preprint arXiv:2507.22218},
+  year    = {2026}
+}
+
+% ============================================================
+% IRT Information & Power Analysis
+% ============================================================
+
+@book{embretson2000,
+  author    = {Embretson, Susan E. and Reise, Steven P.},
+  title     = {Item Response Theory for Psychologists},
+  publisher = {Lawrence Erlbaum Associates},
+  year      = {2000},
+  address   = {Mahwah, NJ}
+}
+
+@book{thissen2001,
+  author    = {Thissen, David and Wainer, Howard},
+  title     = {Test Scoring},
+  publisher = {Lawrence Erlbaum Associates},
+  year      = {2001},
+  address   = {Mahwah, NJ}
+}
+
+% ============================================================
+% 4PL Model & Identifiability
+% ============================================================
+
+@article{barton1981,
+  author  = {Barton, Mark A. and Lord, Frederic M.},
+  title   = {An Upper Asymptote for the Three-Parameter Logistic Item-Response Model},
+  journal = {ETS Research Report Series},
+  volume  = {1981},
+  number  = {1},
+  pages   = {i--8},
+  year    = {1981},
+  doi     = {10.1002/j.2333-8504.1981.tb01255.x}
+}
+
+@article{culpepper2016,
+  author  = {Culpepper, Steven Andrew},
+  title   = {Revisiting the 4-Parameter Item Response Model: {B}ayesian Estimation and Application},
+  journal = {Psychometrika},
+  volume  = {81},
+  number  = {4},
+  pages   = {1142--1163},
+  year    = {2016},
+  doi     = {10.1007/s11336-015-9477-6}
+}
+
+@article{liao2012,
+  author  = {Liao, Wen-Wei and Ho, Rong-Guey and Yen, Yung-Chin and Cheng, Hao-Chang},
+  title   = {The Four-Parameter Logistic Item Response Theory Model As a Robust Method of Estimating Ability Despite Aberrant Responses},
+  journal = {Social Behavior and Personality},
+  volume  = {40},
+  number  = {10},
+  pages   = {1679--1694},
+  year    = {2012},
+  doi     = {10.2224/sbp.2012.40.10.1679}
+}

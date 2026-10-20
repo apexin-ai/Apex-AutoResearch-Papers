@@ -1,0 +1,41 @@
+{
+  "config": {
+    "N_models": 50,
+    "N_items": 300,
+    "gamma_true": 0.5,
+    "target_confound_corr": 0.4,
+    "actual_confound_corr": 0.3814,
+    "seed": 123
+  },
+  "4pl_nuts": {
+    "model": "4pl",
+    "method": "NUTS",
+    "gamma_mean": 0.5386,
+    "gamma_sd": 0.0938,
+    "gamma_q025": 0.3562,
+    "gamma_q975": 0.7228,
+    "gamma_bias": 0.0386,
+    "gamma_rel_bias": 0.0771,
+    "gamma_ci_covers_true": true,
+    "gamma_ci_excludes_zero": true,
+    "theta_corr": 0.9733,
+    "theta_rmse": 0.2407,
+    "theta_exp_corr": 0.3857,
+    "theta_residual_exp_corr": 0.0582,
+    "max_rhat": 1.007,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "min_ess": 1371.9,
+    "pass_fail": {
+      "gamma_ci_covers_true": true,
+      "gamma_ci_excludes_zero": true,
+      "gamma_rel_bias": true,
+      "theta_corr": true,
+      "theta_rmse": true,
+      "max_rhat": true,
+      "divergent_pct": true,
+      "overall": true
+    },
+    "fit_time_sec": 832.0
+  }
+}

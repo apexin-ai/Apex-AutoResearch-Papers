@@ -1,0 +1,62 @@
+20:48:00 [INFO] === exp-005: Noise Propagation Simulation ===
+20:48:00 [INFO] σ_e levels: [0.1, 0.3, 0.5, 0.7, 1.0]
+20:48:00 [INFO] Seeds per level: 5
+20:48:00 [INFO] Synthetic data: 30 models × 300 items
+20:48:01 [INFO] Compiling Stan models...
+20:48:01 [INFO] compiling stan file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_me.stan to exe file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_me
+20:49:09 [INFO] compiled model executable: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_me
+20:49:09 [INFO] compiling stan file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_simple.stan to exe file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_simple
+20:50:24 [INFO] compiled model executable: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_simple
+20:50:24 [INFO] Compilation done.
+20:50:24 [INFO] === σ_e = 0.1 ===
+20:50:24 [INFO]   Fitting ME model (σ_e=0.1, seed=42)...
+20:50:24 [INFO] CmdStan start processing
+20:50:24 [INFO] Chain [1] start processing
+20:50:24 [INFO] Chain [2] start processing
+21:18:16 [INFO] Chain [1] done processing
+21:18:16 [INFO] Chain [3] start processing
+21:33:00 [INFO] Chain [3] done processing
+21:33:00 [INFO] Chain [4] start processing
+21:53:37 [INFO] Chain [4] done processing
+22:20:30 [INFO] Chain [2] done processing
+22:20:43 [WARNING] Some chains may have failed to converge.
+	Chain 1 had 14 iterations at max treedepth (1.4%)
+	Chain 2 had 140 iterations at max treedepth (14.0%)
+	Use the "diagnose()" method on the CmdStanMCMC object to see further information.
+22:25:38 [INFO]     ME done in 5713s, CI_width=0.1017, Rhat=1.945
+22:25:38 [INFO]   Fitting simple model (σ_e=0.1, seed=42)...
+22:25:38 [INFO] CmdStan start processing
+22:25:38 [INFO] Chain [1] start processing
+22:25:38 [INFO] Chain [2] start processing
+22:29:52 [INFO] Chain [3] start processing
+22:29:52 [INFO] Chain [4] start processing
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 429, in <module>
+    main()
+    ~~~~^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 336, in main
+    result = run_single(sigma_e, seed, stan_me, stan_simple,
+                        n_models, n_items)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 177, in run_single
+    simple_result = fit_and_extract_ci(stan_simple, stan_data, seed)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 123, in fit_and_extract_ci
+    fit = model.sample(
+        data=stan_data,
+    ...<2 lines>...
+        **NUTS_DEFAULTS,
+    )
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/cmdstanpy/model.py", line 1180, in sample
+    raise RuntimeError(msg)
+RuntimeError: Error during sampling:
+
+Command and output files:
+RunSet: chains=4, chain_ids=[1, 2, 3, 4], num_processes=4
+ cmd (chain 1):
+	['/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_simple', 'id=1', 'random', 'seed=42', 'data', 'file=/tmp/tmpjxthbs72/254xb4bp.json', 'output', 'file=/tmp/tmpjxthbs72/contam_irt_4pl_simple6dy1x3jo/contam_irt_4pl_simple-20260513222538_1.csv', 'method=sample', 'num_samples=1000', 'num_warmup=500', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[1, 1, 1, 1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmpjxthbs72/contam_irt_4pl_simple6dy1x3jo/contam_irt_4pl_simple-20260513222538_1.csv
+ console_msgs (if any):
+	/tmp/tmpjxthbs72/contam_irt_4pl_simple6dy1x3jo/contam_irt_4pl_simple-20260513222538_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!

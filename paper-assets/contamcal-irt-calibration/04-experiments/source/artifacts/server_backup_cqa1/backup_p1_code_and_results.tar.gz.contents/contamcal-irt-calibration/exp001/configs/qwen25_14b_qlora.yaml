@@ -1,0 +1,17 @@
+# Qwen2.5-14B QLoRA (4-bit) SFT config
+# For GPUs with <50GB VRAM. On 96GB GPUs, prefer bf16 LoRA (qwen25_14b.yaml).
+model_name: Qwen/Qwen2.5-14B
+load_in_4bit: true
+bnb_4bit_compute_dtype: bfloat16
+bnb_4bit_quant_type: nf4
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+learning_rate: 2e-5
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+bf16: true
+max_seq_length: 2048
+num_train_epochs: 1
+seed: 42

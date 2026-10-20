@@ -1,0 +1,9 @@
+sft_dosage_000.jsonl: 50000 lines, 89M (base SlimOrca, no contamination)
+sft_dosage_005.jsonl: 50124 lines, 89M (5% dosage: 66 ARC + 58 GSM8K = 124 contam items)
+sft_dosage_025.jsonl: 50622 lines, 89M (25% dosage: 302 ARC + 320 GSM8K = 622 contam items)
+sft_dosage_050.jsonl: 51245 lines, 89M (50% dosage: 600 ARC + 645 GSM8K = 1245 contam items)
+sft_dosage_100.jsonl: 52491 lines, 90M (100% dosage: 1172 ARC + 1319 GSM8K = 2491 contam items)
+
+Contamination labels: contamination_labels_{benchmark}_d{dosage}.json
+QC stats (for paper): ARC pass_rate=0.5947, GSM8K pass_rate=0.1729
+MMLU: not yet included (paraphrase still running)

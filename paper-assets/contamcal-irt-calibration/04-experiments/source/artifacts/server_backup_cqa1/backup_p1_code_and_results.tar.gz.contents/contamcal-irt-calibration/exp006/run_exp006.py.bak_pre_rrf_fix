@@ -1,0 +1,645 @@
+"""
+exp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.
+
+Loads exp-001 eval results and exp-002/003 exposure scores,
+runs IRT 4PL+gamma calibration and all baselines per benchmark,
+evaluates against ground-truth clean scores (dosage=0 models).
+
+Usage:
+    python run_exp006.py --help
+    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test
+    python run_exp006.py                                         # full run
+
+Dependencies: cmdstanpy, numpy, scipy
+"""
+
+import argparse
+import json
+import logging
+import os
+import sys
+import time
+from pathlib import Path
+
+import numpy as np
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from run_irt_calibration import (
+    load_eval_results,
+    load_pooled_eval_results,
+    load_exposure_scores,
+    build_exposure_matrix,
+    run_benchmark_fit,
+    STAN_MODELS,
+)
+from baselines import run_all_baselines
+from evaluate_calibration import (
+    evaluate_method,
+    format_text_table,
+    format_latex_table,
+)
+from joint_fit import run_joint_fit
+
+log = logging.getLogger(__name__)
+
+# D018: 3B GSM8K excluded from dose-response analysis
+D018_EXCLUDE = [("3B", "gsm8k")]
+D018_EXCLUDE_RULES = [
+    {"model": "3B", "benchmark": "gsm8k", "reason": "D018 LoRA damage"},
+]
+
+
+def should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):
+    """Check D018 exclusion rules for dose-response analysis."""
+    for pattern, bench in rules:
+        if pattern in model_name and benchmark == bench:
+            return True
+    return False
+
+
+def compute_ground_truth(responses, dosages, models=None):
+    """Ground truth = accuracy of dosage-0 models (uncontaminated).
+
+    For dosage-0 models, raw accuracy IS the clean accuracy.
+    For dosage>0 models, we use the mean d=0 accuracy of the SAME SCALE
+    as the counterfactual reference.
+    """
+    raw_acc = responses.mean(axis=1)
+    d0_mask = dosages == 0
+
+    # Global d0 mean as fallback
+    if d0_mask.sum() > 0:
+        global_d0_mean = float(raw_acc[d0_mask].mean())
+    else:
+        global_d0_mean = float(raw_acc.mean())
+
+    # Per-scale counterfactual when models have scale info
+    scales = None
+    if models is not None:
+        scales = [m.get("scale", "") for m in models]
+    has_multiscale = scales and len(set(s for s in scales if s)) > 1
+
+    if has_multiscale:
+        ground_truth = np.empty(len(dosages))
+        for i, (d, sc) in enumerate(zip(dosages, scales)):
+            if d == 0:
+                ground_truth[i] = raw_acc[i]
+            else:
+                same_scale_d0 = [
+                    j for j in range(len(dosages))
+                    if dosages[j] == 0 and scales[j] == sc
+                ]
+                if same_scale_d0:
+                    ground_truth[i] = float(raw_acc[same_scale_d0].mean())
+                else:
+                    log.warning("No d0 models for scale %s, using global mean", sc)
+                    ground_truth[i] = global_d0_mean
+        unique_scales = sorted(set(scales))
+        for sc in unique_scales:
+            sc_d0 = [j for j in range(len(dosages)) if dosages[j] == 0 and scales[j] == sc]
+            if sc_d0:
+                log.info("Ground truth [%s]: d0 mean=%.4f (n=%d)",
+                         sc, float(raw_acc[sc_d0].mean()), len(sc_d0))
+    else:
+        ground_truth = np.full(len(dosages), global_d0_mean)
+        ground_truth[d0_mask] = raw_acc[d0_mask]
+
+    return ground_truth
+
+
+def load_exp002_signals(signals_dir, models, benchmark, signal_key="s1_embedding",
+                        pool_mode=False):
+    """Load exp-002 merged signals -> per-model contamination score.
+    D023: replaces oracle dosage with detected contamination signals.
+    """
+    scores = []
+    for m in models:
+        # Strip _aligned/_para suffixes to match signal directory naming
+        sig_dirname = m["dirname"].replace("_para_aligned", "").replace("_aligned", "").replace("_para", "")
+        merged = os.path.join(signals_dir, sig_dirname,
+                              "signals_merged_{}.json".format(benchmark))
+        if os.path.exists(merged):
+            with open(merged) as f:
+                items = json.load(f)
+            vals = [item[signal_key] for item in items
+                    if item.get(signal_key) is not None]
+            scores.append(float(np.mean(vals)) if vals else 0.0)
+        else:
+            if pool_mode:
+                raise RuntimeError(
+                    f"Signal homogeneity violation: no signals for "
+                    f"{m['dirname']}/{benchmark} in pooled mode. "
+                    f"Cannot mix signal-derived and oracle exposure.")
+            log.warning("No exp-002 signals for %s/%s, falling back to oracle dosage",
+                       m["dirname"], benchmark)
+            scores.append(m["dosage"] / 100.0)
+    return np.array(scores)
+
+
+def check_scale_signals(signals_dir, models, benchmarks, scales):
+    """Pre-check signal file availability per scale for homogeneity."""
+    excluded = set()
+    for scale in scales:
+        scale_models = [m for m in models if m.get("scale", "") == scale]
+        for m in scale_models:
+            sig_dirname = m["dirname"].replace("_para_aligned", "").replace("_aligned", "").replace("_para", "")
+            for bench in benchmarks:
+                path = os.path.join(signals_dir, sig_dirname,
+                                    "signals_merged_{}.json".format(bench))
+                if not os.path.exists(path):
+                    log.error("Scale %s excluded from pool: no signals for %s/%s "
+                              "(would fallback to oracle — homogeneity violation)",
+                              scale, sig_dirname, bench)
+                    excluded.add(scale)
+                    break
+            if scale in excluded:
+                break
+    return excluded
+
+
+def run_pipeline(args):
+    """Run full exp-006 pipeline."""
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # ── Load Data ──
+    # Cross-scale pooling: load multiple scales and merge
+    if getattr(args, 'pool_scales', None):
+        log.info("Cross-scale pooling: scales=%s", args.pool_scales)
+        data = load_pooled_eval_results(
+            args.eval_dir, args.pool_scales, args.benchmarks,
+            seed_filter=args.data_seed, aligned_only=args.aligned_only)
+    else:
+        log.info("Loading eval results from %s", args.eval_dir)
+        data = load_eval_results(args.eval_dir, args.benchmarks,
+                                  model_scale=args.model_scale,
+                                  seed_filter=args.data_seed,
+                                  aligned_only=args.aligned_only)
+    exposure_scores = load_exposure_scores(
+        args.exposure_file, data["benchmarks"], model_id=args.tau_model_id)
+    dosages = data["dosages"]
+
+    log.info("Models: %d | Benchmarks: %s",
+             len(data["models"]), list(data["benchmarks"].keys()))
+    log.info("Dosages: %s", dosages.tolist())
+
+    # --exclude-models: global model exclusion by pattern
+    if getattr(args, 'exclude_models', None):
+        exclude_patterns = [p.strip() for p in args.exclude_models.split(",")]
+        keep_mask = np.ones(len(data["models"]), dtype=bool)
+        for i, m in enumerate(data["models"]):
+            for pat in exclude_patterns:
+                if pat in m.get("model_name", "") or pat in m["dirname"]:
+                    keep_mask[i] = False
+                    log.info("Excluding model %s (matches --exclude-models '%s')",
+                             m["dirname"], pat)
+                    break
+        if not keep_mask.all():
+            data["models"] = [m for m, k in zip(data["models"], keep_mask) if k]
+            data["dosages"] = data["dosages"][keep_mask]
+            for bench in data["benchmarks"]:
+                data["benchmarks"][bench]["responses"] = \
+                    data["benchmarks"][bench]["responses"][keep_mask]
+                data["benchmarks"][bench]["valid_mask"] = \
+                    data["benchmarks"][bench]["valid_mask"][keep_mask]
+            dosages = data["dosages"]
+            log.info("After --exclude-models: %d models remaining", len(data["models"]))
+
+    # Signal homogeneity check for pooled mode (D018/D023)
+    if getattr(args, 'pool_scales', None) and args.signals_dir:
+        bench_list = list(data["benchmarks"].keys())
+        excluded_scales = check_scale_signals(
+            args.signals_dir, data["models"], bench_list, args.pool_scales)
+        if excluded_scales:
+            if getattr(args, 'require_signals', False):
+                log.error("--require-signals: scales %s lack signal coverage, aborting",
+                          sorted(excluded_scales))
+                sys.exit(1)
+            keep_mask = np.array([
+                m.get("scale", "") not in excluded_scales for m in data["models"]
+            ])
+            if not keep_mask.any():
+                log.error("All scales excluded due to missing signals, aborting")
+                sys.exit(1)
+            log.info("Signal homogeneity: excluding scales %s, keeping %d/%d models",
+                     sorted(excluded_scales), int(keep_mask.sum()), len(keep_mask))
+            data["models"] = [m for m, k in zip(data["models"], keep_mask) if k]
+            data["dosages"] = data["dosages"][keep_mask]
+            for bench in data["benchmarks"]:
+                data["benchmarks"][bench]["responses"] = \
+                    data["benchmarks"][bench]["responses"][keep_mask]
+                data["benchmarks"][bench]["valid_mask"] = \
+                    data["benchmarks"][bench]["valid_mask"][keep_mask]
+            dosages = data["dosages"]
+            args.pool_scales = [s for s in args.pool_scales if s not in excluded_scales]
+
+    # Pipeline metadata
+    meta = {
+        "eval_dir": args.eval_dir,
+        "model_type": args.model_type,
+        "dry_run": args.dry_run,
+        "models": [
+            {"dirname": m["dirname"], "model_name": m["model_name"],
+             "dosage": m["dosage"], "seed": m["seed"]}
+            for m in data["models"]
+        ],
+        "dosages": dosages.tolist(),
+        "benchmarks": list(data["benchmarks"].keys()),
+        "signals_dir": args.signals_dir,
+        "pool_scales": getattr(args, 'pool_scales', None),
+    }
+
+
+    # Dry-run: print data summary and exit before fitting
+    if args.dry_run:
+        if getattr(args, 'pool_scales', None):
+            print(f"\n[DRY-RUN] Pool scales: {args.pool_scales}")
+            from collections import Counter
+            scale_counts = Counter(m.get('scale', '?') for m in data['models'])
+            for s, c in sorted(scale_counts.items()):
+                print(f"[DRY-RUN]   {s}: {c} models")
+        else:
+            print(f"\n[DRY-RUN] Model scale: {args.model_scale or 'ALL'}, Seed: {args.data_seed or 'ALL'}")
+        print(f"[DRY-RUN] Aligned only: {args.aligned_only}")
+        print("[DRY-RUN] Loading directories:")
+        for m in data["models"]:
+            print(f"  - {m['dirname']} (dosage={m['dosage']}, seed={m['seed']})")
+        print(f"[DRY-RUN] Total models: {len(data['models'])}")
+        print(f"[DRY-RUN] Dosages: {dosages.tolist()}")
+        for bench, bench_data in data["benchmarks"].items():
+            n_valid = int(bench_data["valid_mask"].sum())
+            print(f"[DRY-RUN] {bench}: {n_valid} valid models x {bench_data['n_items']} items")
+        stan_path = STAN_MODELS.get(args.model_type, "unknown")
+        print(f"[DRY-RUN] Stan model: {args.model_type} -> {stan_path}")
+        print(f"[DRY-RUN] Exposure file: {args.exposure_file or 'None (oracle dosage)'}")
+
+        meta["dry_run_summary"] = {
+            "directories": [m["dirname"] for m in data["models"]],
+            "benchmarks": {
+                bench: {"n_valid_models": int(bd["valid_mask"].sum()), "n_items": bd["n_items"]}
+                for bench, bd in data["benchmarks"].items()
+            },
+        }
+        out_path = output_dir / "dryrun_metadata.json"
+        with open(out_path, "w") as f:
+            json.dump(meta, f, indent=2)
+        print(f"\n[DRY-RUN] Metadata saved to {out_path}")
+        return meta
+
+    all_results = {}
+    pipeline_t0 = time.time()
+
+    for bench, bench_data in data["benchmarks"].items():
+        log.info("\n" + "=" * 60)
+        log.info("BENCHMARK: %s", bench)
+        log.info("=" * 60)
+
+        responses = bench_data["responses"]
+        valid = bench_data["valid_mask"]
+        tau = exposure_scores[bench]
+        n_items = bench_data["n_items"]
+
+        # Filter to valid models
+        if not valid.all():
+            responses = responses[valid]
+            dosages_bench = dosages[valid]
+            models_bench = [m for m, v in zip(data["models"], valid) if v]
+            log.info("Filtered to %d valid models (of %d)",
+                     responses.shape[0], len(valid))
+        else:
+            dosages_bench = dosages
+            models_bench = list(data["models"])
+
+        # D018: per-benchmark model exclusion (e.g., 3B excluded from gsm8k)
+        d018_keep = [i for i, m in enumerate(models_bench)
+                     if not should_exclude_dose_response(
+                         m.get("model_name", m["dirname"]), bench)]
+        if len(d018_keep) < len(models_bench):
+            n_excluded = len(models_bench) - len(d018_keep)
+            for i, m in enumerate(models_bench):
+                if i not in d018_keep:
+                    log.info("D018: excluding %s from %s", m["dirname"], bench)
+            d018_idx = np.array(d018_keep)
+            responses = responses[d018_idx]
+            dosages_bench = dosages_bench[d018_idx]
+            models_bench = [models_bench[i] for i in d018_keep]
+            log.info("D018: %d models excluded, %d remaining for %s",
+                     n_excluded, len(models_bench), bench)
+
+        # D023: use exp-002 signals if --signals-dir provided, else oracle dosage
+        if args.signals_dir:
+            signal_scores = load_exp002_signals(
+                args.signals_dir, models_bench, bench,
+                pool_mode=bool(getattr(args, 'pool_scales', None)))
+            # D024: Delta exposure - subtract d000 baseline per scale
+            scales_in_bench = set(m.get("scale", "") for m in models_bench)
+            if len(scales_in_bench) > 1 and any(scales_in_bench):
+                for sc in scales_in_bench:
+                    s_mask = np.array([m.get("scale", "") == sc for m in models_bench])
+                    d0s_mask = np.array([m["dosage"] == 0 and m.get("scale", "") == sc
+                                         for m in models_bench])
+                    if d0s_mask.any():
+                        bl = float(signal_scores[d0s_mask].mean())
+                        log.info("D024 delta [%s]: d000 baseline = %.4f", sc, bl)
+                        signal_scores[s_mask] -= bl
+                signal_scores = np.clip(signal_scores, 0, None)
+            else:
+                d0_mask = np.array([m["dosage"] == 0 for m in models_bench])
+                if d0_mask.any():
+                    baseline = float(signal_scores[d0_mask].mean())
+                    log.info("D024: d000 baseline signal = %.4f, subtracting", baseline)
+                    signal_scores = signal_scores - baseline
+                    signal_scores = np.clip(signal_scores, 0, None)
+            exposure_matrix = build_exposure_matrix(signal_scores, tau[:n_items])
+            log.info("Using exp-002 signals as exposure (D024 delta): %s", signal_scores.tolist())
+        else:
+            exposure_matrix = build_exposure_matrix(dosages_bench, tau[:n_items])
+
+        # D023: random subsampling per benchmark (seed=42 for reproducibility)
+        if args.max_items and n_items > args.max_items:
+            rng = np.random.default_rng(args.seed)
+            item_idx = np.sort(rng.choice(n_items, args.max_items, replace=False))
+            log.info("Sampling %d -> %d items (--max-items, seed=%d)",
+                     n_items, args.max_items, args.seed)
+            responses_fit = responses[:, item_idx]
+            exposure_fit = exposure_matrix[:, item_idx]
+        else:
+            responses_fit = responses
+            exposure_fit = exposure_matrix
+
+        bench_dir = output_dir / bench
+        bench_dir.mkdir(parents=True, exist_ok=True)
+
+        bench_result = {
+            "n_models": int(responses_fit.shape[0]),
+            "n_items": int(responses_fit.shape[1]),
+            "dosages": dosages_bench.tolist(),
+            "mean_raw_accuracy": round(float(responses_fit.mean()), 4),
+        }
+
+        # ── 1. IRT Calibration ──
+        log.info("--- IRT Calibration (%s) ---", args.model_type)
+        irt_result = None
+        try:
+            irt_t0 = time.time()
+            irt_result = run_benchmark_fit(
+                bench, responses_fit, exposure_fit,
+                args.model_type, args)
+
+            with open(bench_dir / f"irt_{args.model_type}.json", "w") as f:
+                json.dump(irt_result, f, indent=2)
+            bench_result["irt"] = irt_result
+            log.info("IRT done in %.1fs", time.time() - irt_t0)
+
+            # Log key results
+            gamma = irt_result["parameters"].get("gamma", {})
+            if gamma:
+                log.info("  gamma: mean=%.4f, 95%%CI=[%.4f, %.4f], excludes_zero=%s",
+                         gamma["mean"], gamma["q025"], gamma["q975"],
+                         gamma["ci_excludes_zero"])
+            diag = irt_result["diagnostics"]
+            log.info("  convergence: Rhat=%.4f, ESS=%s, div=%.2f%%",
+                     diag.get("max_rhat", 0),
+                     diag.get("min_ess", "?"),
+                     diag["divergent_pct"])
+        except Exception as e:
+            log.error("IRT failed: %s", e, exc_info=True)
+            bench_result["irt"] = {"error": str(e)}
+
+        # ── 2. Baselines ──
+        log.info("--- Baselines ---")
+        baseline_results = None
+        try:
+            bl_t0 = time.time()
+            baseline_results = run_all_baselines(
+                responses_fit, exposure_fit,
+                skip_stan=args.skip_stan)
+
+            with open(bench_dir / "baselines.json", "w") as f:
+                json.dump(baseline_results, f, indent=2)
+            bench_result["baselines"] = baseline_results
+            log.info("Baselines done in %.1fs", time.time() - bl_t0)
+        except Exception as e:
+            log.error("Baselines failed: %s", e, exc_info=True)
+            bench_result["baselines"] = {"error": str(e)}
+
+        # ── 3. Evaluation ──
+        log.info("--- Evaluation ---")
+        ground_truth = compute_ground_truth(
+            responses_fit, dosages_bench, models=models_bench)
+
+        # Save ground truth
+        gt_path = bench_dir / "ground_truth.json"
+        with open(gt_path, "w") as f:
+            json.dump({
+                "clean_accuracy": ground_truth.tolist(),
+                "dosages": dosages_bench.tolist(),
+            }, f, indent=2)
+
+        all_metrics = []
+
+        # Evaluate IRT
+        if irt_result and "error" not in irt_result:
+            cal = irt_result["parameters"]["calibrated_scores"]
+            gamma = irt_result["parameters"].get("gamma")
+            m = evaluate_method(
+                method_name=f"IRT_{args.model_type}",
+                scores=cal["mean"],
+                ground_truth=ground_truth.tolist(),
+                ci_lower=cal.get("q025"),
+                ci_upper=cal.get("q975"),
+                ci_80_lower=cal.get("q10"),
+                ci_80_upper=cal.get("q90"),
+                ci_50_lower=cal.get("q25"),
+                ci_50_upper=cal.get("q75"),
+                gamma_stats=gamma,
+                dosages=dosages_bench.tolist(),
+            )
+            all_metrics.append(m)
+
+        # Evaluate baselines
+        if baseline_results:
+            for bname, bdata in baseline_results.items():
+                if "error" in bdata:
+                    continue
+                if "calibrated_scores" not in bdata:
+                    continue
+                m = evaluate_method(
+                    method_name=bname,
+                    scores=bdata["calibrated_scores"],
+                    ground_truth=ground_truth.tolist(),
+                    ci_lower=bdata.get("ci_lower"),
+                    ci_upper=bdata.get("ci_upper"),
+                    ci_80_lower=bdata.get("ci_80_lower"),
+                    ci_80_upper=bdata.get("ci_80_upper"),
+                    ci_50_lower=bdata.get("ci_50_lower"),
+                    ci_50_upper=bdata.get("ci_50_upper"),
+                    dosages=dosages_bench.tolist(),
+                )
+                all_metrics.append(m)
+
+        if all_metrics:
+            print(f"\n{'=' * 60}")
+            print(f"  {bench}")
+            print(f"{'=' * 60}")
+            print(format_text_table(all_metrics))
+
+            with open(bench_dir / "evaluation.json", "w") as f:
+                json.dump(all_metrics, f, indent=2)
+            with open(bench_dir / "evaluation.tex", "w") as f:
+                f.write(format_latex_table(all_metrics))
+
+        bench_result["evaluation"] = all_metrics
+        all_results[bench] = bench_result
+
+    # ── Joint Fitting Ablation ──
+    if args.joint_fit:
+        log.info("\n" + "=" * 60)
+        log.info("ABLATION: Joint fitting (shared global gamma)")
+        log.info("=" * 60)
+        joint_dir = output_dir / "joint_fit"
+        joint_result = run_joint_fit(
+            args.eval_dir, args.exposure_file, str(joint_dir),
+            benchmarks=args.benchmarks,
+            exclude_rules=D018_EXCLUDE_RULES,
+            chains=args.chains, warmup=args.warmup, samples=args.samples,
+            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,
+            seed=args.seed, dry_run=args.dry_run,
+            max_items=args.max_items,
+            tau_model_id=args.tau_model_id,
+            model_scale=args.model_scale,
+            seed_filter=args.data_seed,
+            aligned_only=args.aligned_only,
+            pool_scales=getattr(args, 'pool_scales', None),
+        )
+        all_results["joint_fit"] = {
+            "global_gamma": joint_result["global_gamma"],
+            "diagnostics": joint_result["diagnostics"],
+        }
+
+    # ── Save Combined Results ──
+    total_time = time.time() - pipeline_t0
+    combined = {
+        "metadata": meta,
+        "total_time_sec": round(total_time, 1),
+        "benchmarks": all_results,
+    }
+    with open(output_dir / "exp006_results.json", "w") as f:
+        json.dump(combined, f, indent=2, default=str)
+
+    log.info("\n" + "=" * 60)
+    log.info("Pipeline complete in %.1fs", total_time)
+    log.info("Results saved to %s", output_dir)
+    log.info("=" * 60)
+
+    return combined
+
+
+# ── CLI ──
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="exp-006: IRT calibration + baselines + evaluation")
+
+    # Data
+    parser.add_argument(
+        "--eval-dir", type=str,
+        default="/root/autodl-tmp/exp001/eval_results",
+        help="exp-001 eval results directory")
+    parser.add_argument(
+        "--exposure-file", type=str, default=None,
+        help="exp-002/003 exposure scores JSON "
+             "(per-benchmark per-item tau)")
+    parser.add_argument(
+        "--tau-model-id", type=str, default=None,
+        help="Model ID for exposure tau (e.g. Qwen2.5-0.5B_d100_s42)")
+    # D023: exp-002 signal-based exposure
+    parser.add_argument(
+        "--signals-dir", type=str, default=None,
+        help="exp-002 signals directory. When set, uses detected contamination "
+             "signals instead of oracle dosage for exposure (D023)")
+    parser.add_argument(
+        "--tau-source", type=str, default="exposure",
+        choices=["exposure", "oracle", "aggregated"],
+        help="Tau source type (default: exposure)")
+    parser.add_argument(
+        "--output-dir", type=str,
+        default="/root/autodl-tmp/exp006/results",
+        help="Output directory")
+    parser.add_argument(
+        "--benchmarks", nargs="*", default=None,
+        help="Benchmarks to analyze (default: all)")
+    parser.add_argument(
+        "--model-scale", type=str, default=None,
+        help="Model scale filter, e.g. '0.5B'.")
+    parser.add_argument(
+        '--pool-scales', nargs='+', default=None,
+        help="Cross-scale pooling: merge models from multiple scales as IRT "
+             "examinees. E.g. --pool-scales 0.5B 1.5B 3B. Overrides --model-scale.")
+    parser.add_argument(
+        "--data-seed", type=int, default=None,
+        help="Data seed filter.")
+    parser.add_argument(
+        "--aligned-only", action="store_true",
+        help="Only load aligned-format eval directories.")
+    parser.add_argument(
+        '--exclude-models', type=str, default=None,
+        help="Comma-separated model name patterns to exclude "
+             "(e.g. '3B_d000,3B_d005')")
+    parser.add_argument(
+        '--require-signals', action='store_true',
+        help="Abort if any pooled scale lacks signal coverage "
+             "(use with --signals-dir)")
+
+    # IRT config
+    parser.add_argument(
+        "--model-type",
+        choices=list(STAN_MODELS.keys()),
+        default="4pl_gamma",
+        help="IRT model variant (default: 4pl_gamma)")
+    parser.add_argument("--chains", type=int, default=4)
+    parser.add_argument("--warmup", type=int, default=1000)
+    parser.add_argument("--samples", type=int, default=1000)
+    parser.add_argument("--adapt-delta", type=float, default=0.95)
+    parser.add_argument("--max-treedepth", type=int, default=12)
+    parser.add_argument("--seed", type=int, default=42)
+
+    # Baseline config
+    parser.add_argument(
+        "--skip-stan", action="store_true",
+        help="Skip Stan-based baselines (B2, B3) for faster testing")
+
+    # Ablation
+    parser.add_argument(
+        "--joint-fit", action="store_true",
+        help="Also run joint fitting ablation (shared global gamma)")
+
+    parser.add_argument(
+        "--benchmark", type=str, default=None,
+        choices=["gsm8k", "arc_challenge", "mmlu", "humaneval"],
+        help="Single benchmark to run (convenience alias for --benchmarks)")
+
+    # Dry-run
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Quick validation with truncated items")
+    parser.add_argument(
+        "--max-items", type=int, default=None,
+        help="Max items per benchmark (default: None = no limit)")
+
+    args = parser.parse_args()
+
+    # --benchmark (singular) overrides --benchmarks
+    if args.benchmark and not args.benchmarks:
+        args.benchmarks = [args.benchmark]
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+    )
+
+    run_pipeline(args)
+
+
+if __name__ == "__main__":
+    main()

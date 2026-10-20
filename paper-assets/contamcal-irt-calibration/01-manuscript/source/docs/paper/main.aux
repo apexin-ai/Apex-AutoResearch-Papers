@@ -1,0 +1,1904 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{oren2024proving}
+\citation{hendrycks2021mmlu,chang2025benchmarking}
+\citation{sun2025emperor}
+\citation{white2024livebench}
+\citation{dong_2024_cdd}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces MMLU accuracy vs.\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0). Immune and Benefit replicate across families; Collapse and V-recovery are preliminary (Qwen2.5-specific). Cross-seed stability in Table~\ref {tab:cross_seed}.}}{1}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:dose_response}{{1}{1}{MMLU accuracy vs.\ contamination dosage (5-shot, seed$=$42; LLaMA-3.1 at seed$=$0). Immune and Benefit replicate across families; Collapse and V-recovery are preliminary (Qwen2.5-specific). Cross-seed stability in Table~\ref {tab:cross_seed}}{figure.caption.1}{}}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\citation{deboeck_2004_explanatory_irt}
+\citation{zhang_2024_minkpp}
+\citation{shi_2023_minkprob,zhang_2024_minkpp}
+\citation{dekoninck2024constat,yang2023rethinking}
+\citation{choi_2025_kds}
+\citation{dong_2024_cdd,golchin2024time}
+\citation{zhang_2024_gsm1k}
+\citation{chen2025benchmarking,singh2024evaluation,sainz2023nlp}
+\citation{balloccu2024leak}
+\citation{bordt2024forget}
+\citation{carlini2023quantifying,magar_2022_contamination,li_2024_task_contamination,xu_2024_leakage}
+\citation{tao2025detecting}
+\citation{kocyigit2025impact}
+\citation{sun2025emperor}
+\citation{xu2025dcr}
+\citation{han2026quantifying}
+\citation{schaeffer2026causally}
+\citation{lord_1980_irt,hambleton_1991_irt}
+\citation{liang_2023_helm}
+\citation{rodriguez2021evaluation}
+\citation{polo_2024_tinybenchmarks}
+\citation{habba_2025_growing_pains}
+\citation{luettgau_2025_hibayes}
+\citation{zhou_2025_psnirt}
+\citation{lalor_2024_irt_nlp}
+\citation{gu2024olmes}
+\citation{han2026quantifying}
+\citation{holland_1993_dif}
+\citation{deboeck_2004_explanatory_irt}
+\citation{deboeck_2004_explanatory_irt,eckerly_2017_item_compromise}
+\citation{sinharay_2017_preknowledge,holland_1993_dif,camilli_1994_dif,swaminathan_1990_dif}
+\citation{guo_2017_calibration}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\Delta $acc: d000$\to $d100 (0\%$\to $100\% contamination) change (95\% bootstrap CI, $B=10{,}000$). Stab.: fraction of bootstrap resamples ($B=10{,}000$) that yield the same Algorithm~\ref {alg:profile-classification} classification. Classifications are robust to threshold choice (5/5 original families at 100\% stability across 30 $(\tau ,\sigma )$ combinations; Appendix~\ref {sec:classification_sensitivity}).}}{2}{table.caption.2}\protected@file@percent }
+\newlabel{tab:taxonomy}{{1}{2}{Observed dose-response patterns under controlled SFT injection (seed$=$42, MMLU). $\Delta $acc: d000$\to $d100 (0\%$\to $100\% contamination) change (95\% bootstrap CI, $B=10{,}000$). Stab.: fraction of bootstrap resamples ($B=10{,}000$) that yield the same Algorithm~\ref {alg:profile-classification} classification. Classifications are robust to threshold choice (5/5 original families at 100\% stability across 30 $(\tau ,\sigma )$ combinations; Appendix~\ref {sec:classification_sensitivity})}{table.caption.2}{}}
+\@LN{69}{1}
+\@LN{70}{1}
+\@LN{71}{1}
+\@LN{72}{1}
+\@LN{73}{1}
+\@LN{74}{1}
+\@LN{75}{1}
+\@LN{76}{1}
+\@LN{77}{1}
+\@LN{78}{1}
+\@LN{79}{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN@col{2}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{2}{section*.4}\protected@file@percent }
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@writefile{toc}{\contentsline {paragraph}{Contamination quantification and mitigation.}{2}{section*.5}\protected@file@percent }
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\@LN{147}{1}
+\@LN{148}{1}
+\@LN{149}{1}
+\@LN{150}{1}
+\@LN{151}{1}
+\@LN{152}{1}
+\@LN{153}{1}
+\citation{eckerly_2017_item_compromise,sinharay_2017_preknowledge}
+\citation{deboeck_2004_explanatory_irt}
+\citation{de_ayala_2009_irt}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces ContamCal three-stage pipeline. Stage~1 fuses training-free detection signals into per-item exposure scores via Reciprocal Rank Fusion. Stage~2 embeds these scores in a contamination-augmented 2PL IRT model, recovering clean ability estimates with credible intervals. Stage~3 classifies the resulting dose-response trajectories into canonical patterns.}}{3}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:pipeline}{{2}{3}{ContamCal three-stage pipeline. Stage~1 fuses training-free detection signals into per-item exposure scores via Reciprocal Rank Fusion. Stage~2 embeds these scores in a contamination-augmented 2PL IRT model, recovering clean ability estimates with credible intervals. Stage~3 classifies the resulting dose-response trajectories into canonical patterns}{figure.caption.3}{}}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{3}{section*.6}\protected@file@percent }
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN@col{2}
+\@LN{182}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:formulation}{{3.1}{3}{Problem Formulation}{subsection.3.1}{}}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\citation{zhang_2024_minkpp}
+\citation{dekoninck2024constat}
+\citation{kadavath2022}
+\citation{tao2025detecting}
+\citation{cormack_2009_rrf}
+\citation{lord_1980_irt,hambleton_1991_irt}
+\citation{de_ayala_2009_irt}
+\citation{hoffman2014}
+\citation{carpenter2017}
+\@LN@col{1}
+\@LN{209}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 1: Multi-Signal Exposure Mapping}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:stage1}{{3.2}{4}{Stage 1: Multi-Signal Exposure Mapping}{subsection.3.2}{}}
+\@LN{210}{3}
+\@LN{211}{3}
+\@LN{212}{3}
+\@LN{213}{3}
+\@LN{214}{3}
+\@LN{215}{3}
+\@LN{216}{3}
+\@LN{217}{3}
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\newlabel{eq:rrf}{{1}{4}{Stage 1: Multi-Signal Exposure Mapping}{equation.1}{}}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 2: Contamination-Augmented IRT}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:stage2}{{3.3}{4}{Stage 2: Contamination-Augmented IRT}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Primary model: 2PL+$\gamma $.}{4}{section*.8}\protected@file@percent }
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\newlabel{eq:2pl_gamma}{{2}{4}{Primary model: 2PL+$\gamma $}{equation.2}{}}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Baseline MMLU accuracy vs.\ contamination response at d100 ($N\!=\!6$). Vertical bars show cross-seed range ($n\!=\!2$--$3$ seeds). Shaded band marks the threshold region (61.9--66.1\%) separating Benefit from Harm patterns (observational, not validated; extended in Appendix~\ref {sec:baseline_vs_effect}).}}{4}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:baseline_vulnerability}{{3}{4}{Baseline MMLU accuracy vs.\ contamination response at d100 ($N\!=\!6$). Vertical bars show cross-seed range ($n\!=\!2$--$3$ seeds). Shaded band marks the threshold region (61.9--66.1\%) separating Benefit from Harm patterns (observational, not validated; extended in Appendix~\ref {sec:baseline_vs_effect})}{figure.caption.7}{}}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@writefile{toc}{\contentsline {paragraph}{Inference.}{4}{section*.9}\protected@file@percent }
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@writefile{toc}{\contentsline {paragraph}{Calibrated score.}{4}{section*.10}\protected@file@percent }
+\@LN{291}{3}
+\@LN{292}{3}
+\citation{hill1910aggregation,ritz2015dose}
+\citation{qwen2024qwen25}
+\citation{abdin2024phi4}
+\citation{olmo2team2025}
+\citation{gemmateam2024gemma2}
+\citation{tiiuae2024falcon3}
+\citation{hu2022lora}
+\citation{grattafiori2024llama3}
+\@LN@col{1}
+\@LN{293}{4}
+\newlabel{eq:calibrated}{{3}{5}{Calibrated score}{equation.3}{}}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\newlabel{sec:fisher}{{3.3}{5}{Identifiability}{section*.11}{}}
+\newlabel{sec:value_decomposition}{{3.3}{5}{Identifiability}{section*.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Identifiability.}{5}{section*.11}\protected@file@percent }
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Dose-Response Profile Classification}{5}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:classification}{{3.4}{5}{Dose-Response Profile Classification}{subsection.3.4}{}}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces MMLU method comparison on a single random subsample of 300 items (Qwen2.5, $J$=16). ARC and GSM8K baselines in Appendix~\ref {sec:full_baselines}; ARC IRT diagnostics in Appendix~\ref {sec:arc_irt}.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:baselines}{{2}{5}{MMLU method comparison on a single random subsample of 300 items (Qwen2.5, $J$=16). ARC and GSM8K baselines in Appendix~\ref {sec:full_baselines}; ARC IRT diagnostics in Appendix~\ref {sec:arc_irt}}{table.caption.12}{}}
+\@LN{336}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experimental Setup}{section.4}{}}
+\@LN{337}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled SFT Injection}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:injection}{{4.1}{5}{Controlled SFT Injection}{subsection.4.1}{}}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@LN{375}{4}
+\citation{hendrycks2021mmlu}
+\citation{clark2018arc}
+\citation{cobbe2021gsm8k}
+\citation{sun2025emperor}
+\citation{xu2025dcr}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-seed $\Delta $acc (d000$\to $d100). Strict sign consistency (Cons.) is 3/6; classification-level direction agreement is 5/6 (see text). Per-seed shape classification\textsuperscript  {$\ddagger $} agrees for only 3/6.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cross_seed}{{3}{6}{Cross-seed $\Delta $acc (d000$\to $d100). Strict sign consistency (Cons.) is 3/6; classification-level direction agreement is 5/6 (see text). Per-seed shape classification\textsuperscript {$\ddagger $} agrees for only 3/6}{table.caption.13}{}}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Benchmarks, Domains, and Evaluation}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:benchmarks}{{4.2}{6}{Benchmarks, Domains, and Evaluation}{subsection.4.2}{}}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Cross-benchmark transfer at d100. MMLU contamination improves GSM8K in four of five non-excluded families, even those harmed on MMLU; Phi-4 shows near-zero transfer. Gemma-2 GSM8K ($+$1.33pp) is based on a low baseline (17.8\%, CoT collapse under MC-format SFT) and is excluded from Table~\ref {tab:gsm8k_transfer}.}}{6}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:cross_benchmark_heatmap}{{4}{6}{Cross-benchmark transfer at d100. MMLU contamination improves GSM8K in four of five non-excluded families, even those harmed on MMLU; Phi-4 shows near-zero transfer. Gemma-2 GSM8K ($+$1.33pp) is based on a low baseline (17.8\%, CoT collapse under MC-format SFT) and is excluded from Table~\ref {tab:gsm8k_transfer}}{figure.caption.14}{}}
+\@LN{414}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:baselines}{{4.3}{6}{Baselines}{subsection.4.3}{}}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{6}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{6}{Results}{section.5}{}}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Dose-Response Patterns}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:taxonomy}{{5.1}{6}{Dose-Response Patterns}{subsection.5.1}{}}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@writefile{toc}{\contentsline {paragraph}{Replication status.}{6}{section*.15}\protected@file@percent }
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\citation{cobbe2021gsm8k}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-benchmark transfer: MMLU vs.\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:gsm8k_transfer}{{4}{7}{Cross-benchmark transfer: MMLU vs.\ GSM8K accuracy change at d100. LLaMA-3.1 shows the strongest asymmetric transfer ($+$16.4pp GSM8K despite MMLU immunity). Gemma-2 excluded due to CoT collapse under MC-format SFT}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Out-of-sample~validation.}{7}{section*.16}\protected@file@percent }
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Benchmark Transfer}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:gsm8k_transfer}{{5.2}{7}{Cross-Benchmark Transfer}{subsection.5.2}{}}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Seed Stability}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:cross_seed}{{5.3}{7}{Cross-Seed Stability}{subsection.5.3}{}}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Item-Level Memorization Test}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:memorization_test}{{5.4}{7}{Item-Level Memorization Test}{subsection.5.4}{}}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Cross-seed mean $\Delta $acc at d100 with bias-corrected and accelerated (BCa) bootstrap 95\% CIs ($n\!=\!3$ seeds; Falcon3 $n\!=\!2$). Filled markers: CI excludes zero.}}{7}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:cross_seed_ci}{{5}{7}{Cross-seed mean $\Delta $acc at d100 with bias-corrected and accelerated (BCa) bootstrap 95\% CIs ($n\!=\!3$ seeds; Falcon3 $n\!=\!2$). Filled markers: CI excludes zero}{figure.caption.18}{}}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@writefile{toc}{\contentsline {paragraph}{Volume control.}{7}{section*.19}\protected@file@percent }
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Diagnostic Utility}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:calibration_results}{{5.5}{7}{Diagnostic Utility}{subsection.5.5}{}}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\citation{zhang_2024_minkpp}
+\citation{balloccu2024leak}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Per-domain $\gamma _d$ estimates with 95\% CIs ($J$=13 Qwen2.5; $J$=16 estimates differ by $<$10\%, Table~\ref {tab:domain_gamma}).}}{8}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:domain_gamma}{{6}{8}{Per-domain $\gamma _d$ estimates with 95\% CIs ($J$=13 Qwen2.5; $J$=16 estimates differ by $<$10\%, Table~\ref {tab:domain_gamma})}{figure.caption.20}{}}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Detection Signal Failure Modes}{8}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:signal_failure}{{5.6}{8}{Detection Signal Failure Modes}{subsection.5.6}{}}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Domain-Level Analysis}{8}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:domain_differential}{{5.7}{8}{Domain-Level Analysis}{subsection.5.7}{}}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN@col{2}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\@LN{566}{7}
+\@LN{567}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Discussion and Conclusion}{section.6}{}}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@writefile{toc}{\contentsline {paragraph}{Contamination vs.\ additional training.}{8}{section*.21}\protected@file@percent }
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\@LN{581}{7}
+\@LN{582}{7}
+\@LN{583}{7}
+\@LN{584}{7}
+\@writefile{toc}{\contentsline {paragraph}{Implications for practice.}{8}{section*.22}\protected@file@percent }
+\@LN{585}{7}
+\@LN{586}{7}
+\@LN{587}{7}
+\@LN{588}{7}
+\@LN{589}{7}
+\@LN{590}{7}
+\@LN{591}{7}
+\@LN{592}{7}
+\@LN{593}{7}
+\@LN{594}{7}
+\@LN{595}{7}
+\newlabel{sec:limitations}{{6}{8}{Limitations}{section*.23}{}}
+\@LN{596}{7}
+\@LN{597}{7}
+\@LN{598}{7}
+\@LN{599}{7}
+\@LN{600}{7}
+\@LN{601}{7}
+\@LN{602}{7}
+\@LN{603}{7}
+\@LN{604}{7}
+\@LN{605}{7}
+\@LN{606}{7}
+\@LN{607}{7}
+\bibdata{references}
+\bibcite{abdin2024phi4}{{1}{2024}{{Abdin et~al.}}{{Abdin, Bubeck, Eldan, Gunasekar, Jain, Lee, Li, Saha, Salim et~al.}}}
+\bibcite{balloccu2024leak}{{2}{2024}{{Balloccu et~al.}}{{Balloccu, Schmidtov\'{a}, Lango, and Dusi\v {c}ka}}}
+\bibcite{liang_2023_helm}{{3}{2023}{{Bommasani et~al.}}{{Bommasani, Hudson, Adeli, Altman, Arora, von Arx, Bernstein, Bohg, Bosselut, Brunskill et~al.}}}
+\bibcite{bordt2024forget}{{4}{2025}{{Bordt et~al.}}{{Bordt, Srinivas, Boreiko, and von Luxburg}}}
+\bibcite{camilli_1994_dif}{{5}{1994}{{Camilli and Shepard}}{{}}}
+\bibcite{carlini2023quantifying}{{6}{2023}{{Carlini et~al.}}{{Carlini, Ippolito, Jagielski, Lee, Tram\`{e}r, and Zhang}}}
+\bibcite{carpenter2017}{{7}{2017}{{Carpenter et~al.}}{{Carpenter, Gelman, Hoffman, Lee, Goodrich, Betancourt, Brubaker, Guo, Li, and Riddell}}}
+\bibcite{chang2025benchmarking}{{8}{2024}{{Chang et~al.}}{{Chang, Wang, Wang, Wu, Yang, Zhu, Chen, Yi, Wang, Wang, Ye, Zhang, Chang, Yu, Yang, and Xie}}}
+\bibcite{chen2025benchmarking}{{9}{2025}{{Chen et~al.}}{{Chen, Chen, Li, Jiang, Wan, He, Ran, Gu, Li, Xie, and Ray}}}
+\bibcite{choi_2025_kds}{{10}{2025}{{Choi et~al.}}{{Choi, Khanov, Wei, and Li}}}
+\bibcite{clark2018arc}{{11}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
+\bibcite{cobbe2021gsm8k}{{12}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{cormack_2009_rrf}{{13}{2009}{{Cormack et~al.}}{{Cormack, Clarke, and Buettcher}}}
+\bibcite{de_ayala_2009_irt}{{14}{2009}{{De~Ayala}}{{}}}
+\bibcite{deboeck_2004_explanatory_irt}{{15}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{16}{2024}{{Dekoninck et~al.}}{{Dekoninck, M\"{u}ller, and Vechev}}}
+\bibcite{dong_2024_cdd}{{17}{2024}{{Dong et~al.}}{{Dong, Jiang, Liu, Jin, Gu, Yang, and Li}}}
+\bibcite{eckerly_2017_item_compromise}{{18}{2017}{{Eckerly}}{{}}}
+\bibcite{gelman2012why}{{19}{2012}{{Gelman et~al.}}{{Gelman, Hill, and Yajima}}}
+\@LN@col{1}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN@col{2}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN{688}{8}
+\@LN{689}{8}
+\@LN{690}{8}
+\@LN{691}{8}
+\@LN{692}{8}
+\@LN{693}{8}
+\@LN{694}{8}
+\@LN{695}{8}
+\@LN{696}{8}
+\@LN{697}{8}
+\@LN{698}{8}
+\@LN{699}{8}
+\@LN{700}{8}
+\@LN{701}{8}
+\@LN{702}{8}
+\@LN{703}{8}
+\@LN{704}{8}
+\@LN{705}{8}
+\@LN{706}{8}
+\@LN{707}{8}
+\@LN{708}{8}
+\@LN{709}{8}
+\@LN{710}{8}
+\@LN{711}{8}
+\@LN{712}{8}
+\@LN{713}{8}
+\@LN{714}{8}
+\bibcite{gemmateam2024gemma2}{{20}{2024}{{Gemma Team}}{{}}}
+\bibcite{golchin2024time}{{21}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{grattafiori2024llama3}{{22}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri et~al.}}}
+\bibcite{gu2024olmes}{{23}{2024}{{Gu et~al.}}{{Gu, Tafjord, Kuehl, Haddad, Dodge, and Hajishirzi}}}
+\bibcite{guo_2017_calibration}{{24}{2017}{{Guo et~al.}}{{Guo, Pleiss, Sun, and Weinberger}}}
+\bibcite{habba_2025_growing_pains}{{25}{2026}{{Habba et~al.}}{{Habba, Itzhak, Yehudai, Perlitz, Bandel, Shmueli-Scheuer, Choshen, and Stanovsky}}}
+\bibcite{hambleton_1991_irt}{{26}{1991}{{Hambleton et~al.}}{{Hambleton, Swaminathan, and Rogers}}}
+\bibcite{han2026quantifying}{{27}{2026}{{Han et~al.}}{{Han, Song, Lee, and Jo}}}
+\bibcite{hendrycks2021mmlu}{{28}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\bibcite{hill1910aggregation}{{29}{1910}{{Hill}}{{}}}
+\bibcite{hoffman2014}{{30}{2014}{{Hoffman and Gelman}}{{}}}
+\bibcite{holland_1993_dif}{{31}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{hu2022lora}{{32}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
+\bibcite{kadavath2022}{{33}{2022}{{Kadavath et~al.}}{{Kadavath, Conerly, Askell, Henighan, Drain, Perez, Schiefer, Hatfield-Dodds, DasSarma, Tran-Johnson, Johnston, El-Showk, Jones, Elhage, Hume, Chen, Bai, Bowman, Fort, Ganguli, Hernandez, Jacobson, Kernion, Kravec, Lovitt, Ndousse, Olsson, Ringer, Amodei, Brown, Clark, Joseph, Mann, McCandlish, Olah, and Kaplan}}}
+\bibcite{kocyigit2025impact}{{34}{2026}{{Kocyigit and Yildirim}}{{}}}
+\bibcite{lalor_2024_irt_nlp}{{35}{2024}{{Lalor et~al.}}{{Lalor, Rodriguez, Sedoc, and Hernandez-Orallo}}}
+\bibcite{li_2024_task_contamination}{{36}{2024}{{Li and Flanigan}}{{}}}
+\bibcite{lord_1980_irt}{{37}{1980}{{Lord}}{{}}}
+\bibcite{luettgau_2025_hibayes}{{38}{2025}{{Luettgau et~al.}}{{Luettgau, Coppock, Dubois, Summerfield, and Ududec}}}
+\bibcite{magar_2022_contamination}{{39}{2022}{{Magar and Schwartz}}{{}}}
+\bibcite{oren2024proving}{{40}{2024}{{Oren et~al.}}{{Oren, Meister, Chatterji, Ladhak, and Hashimoto}}}
+\bibcite{polo_2024_tinybenchmarks}{{41}{2024}{{Polo et~al.}}{{Polo, Weber, Choshen, Sun, Xu, and Yurochkin}}}
+\bibcite{ritz2015dose}{{42}{2015}{{Ritz et~al.}}{{Ritz, Baty, Streibig, and Gerhard}}}
+\bibcite{rodriguez2021evaluation}{{43}{2021}{{Rodriguez et~al.}}{{Rodriguez, Barrow, Hoyle, Lalor, Jia, and Boyd-Graber}}}
+\@LN@col{1}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN@col{2}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN{799}{9}
+\@LN{800}{9}
+\@LN{801}{9}
+\@LN{802}{9}
+\@LN{803}{9}
+\@LN{804}{9}
+\@LN{805}{9}
+\@LN{806}{9}
+\@LN{807}{9}
+\@LN{808}{9}
+\@LN{809}{9}
+\@LN{810}{9}
+\@LN{811}{9}
+\@LN{812}{9}
+\@LN{813}{9}
+\@LN{814}{9}
+\@LN{815}{9}
+\@LN{816}{9}
+\@LN{817}{9}
+\@LN{818}{9}
+\@LN{819}{9}
+\@LN{820}{9}
+\@LN{821}{9}
+\bibcite{sainz2023nlp}{{44}{2024}{{Sainz et~al.}}{{Sainz, Campos, Garc\'{i}a-Ferrero, Etxaniz, de~Lacalle, and Agirre}}}
+\bibcite{schaeffer2026causally}{{45}{2026}{{Schaeffer et~al.}}{{Schaeffer, Kazdan, Abbasi, Liu, Miranda, Ahmed, Berez, Puri, Biderman, Mireshghallah, and Koyejo}}}
+\bibcite{schroeders_2025_irt_sample_size}{{46}{2025}{{Schroeders and Gnambs}}{{}}}
+\bibcite{shi_2023_minkprob}{{47}{2024}{{Shi et~al.}}{{Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and Zettlemoyer}}}
+\bibcite{singh2024evaluation}{{48}{2024}{{Singh et~al.}}{{Singh, Kocyigit, Poulton, Esiobu, Lomeli, Szilvasy, and Hupkes}}}
+\bibcite{sinharay_2017_preknowledge}{{49}{2017}{{Sinharay}}{{}}}
+\bibcite{sun2025emperor}{{50}{2025}{{Sun et~al.}}{{Sun, Wang, Li, Wang, and Zhang}}}
+\bibcite{swaminathan_1990_dif}{{51}{1990}{{Swaminathan and Rogers}}{{}}}
+\bibcite{tao2025detecting}{{52}{2025}{{Tao et~al.}}{{Tao, Wang, Dong, Liu, Zhang, Hu, and Li}}}
+\bibcite{olmo2team2025}{{53}{2025}{{{Team OLMo} et~al.}}{{{Team OLMo}, Walsh, Soldaini, Groeneveld, Lo et~al.}}}
+\bibcite{tiiuae2024falcon3}{{54}{2024}{{Technology Innovation Institute}}{{}}}
+\bibcite{white2024livebench}{{55}{2025}{{White et~al.}}{{White, Dooley, Roberts, Pal, Feuer, Jain, Shwartz-Ziv, Joshi, and Goldblum}}}
+\bibcite{xu2025dcr}{{56}{2025}{{Xu et~al.}}{{Xu, Yan, Guan, Jin, Mei, Guo, and Kechadi}}}
+\bibcite{xu_2024_leakage}{{57}{2024}{{Xu et~al.}}{{Xu, Wang, Fan, and Liu}}}
+\bibcite{qwen2024qwen25}{{58}{2024}{{Yang et~al.}}{{Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang, Lin, and Zhou}}}
+\bibcite{yang2023rethinking}{{59}{2023}{{Yang et~al.}}{{Yang, Wei, Liu, Liu, and Yu}}}
+\bibcite{zhang_2024_gsm1k}{{60}{2024}{{Zhang et~al.}}{{Zhang, Da, Lee, Robinson, Wu, Song, Zhao, Raja, Slack, Lyu, Hendryx, Kaplan, Lunati, and Yue}}}
+\bibcite{zhang_2024_minkpp}{{61}{2025}{{Zhang et~al.}}{{Zhang, Sun, Yeats, Ouyang, Kuo, Zhang, Yang, and Li}}}
+\bibcite{zhou_2025_psnirt}{{62}{2026}{{Zhou et~al.}}{{Zhou, Huang, Zhao, Han, Wang, Chen, Yang, Bao, Dong, Xu, Zhu, Cao, and Zhao}}}
+\@LN@col{1}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN@col{2}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@LN{896}{10}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\@LN{900}{10}
+\@LN{901}{10}
+\@LN{902}{10}
+\@LN{903}{10}
+\@LN{904}{10}
+\@LN{905}{10}
+\@LN{906}{10}
+\@LN{907}{10}
+\@LN{908}{10}
+\@LN{909}{10}
+\@LN{910}{10}
+\@LN{911}{10}
+\@LN{912}{10}
+\@LN{913}{10}
+\@LN{914}{10}
+\@LN{915}{10}
+\@LN{916}{10}
+\@LN{917}{10}
+\@LN{918}{10}
+\@LN{919}{10}
+\@LN{920}{10}
+\@LN{921}{10}
+\@LN{922}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}ARC-Challenge Cross-Benchmark Analysis}{11}{appendix.A}\protected@file@percent }
+\newlabel{sec:arc_cross_benchmark}{{A}{11}{ARC-Challenge Cross-Benchmark Analysis}{appendix.A}{}}
+\@LN{923}{10}
+\@LN{924}{10}
+\@LN{925}{10}
+\@LN{926}{10}
+\@LN{927}{10}
+\@LN{928}{10}
+\@LN{929}{10}
+\@LN{930}{10}
+\@LN@col{1}
+\@LN{931}{11}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@LN{937}{11}
+\@LN{938}{11}
+\@LN{939}{11}
+\@LN{940}{11}
+\@LN{941}{11}
+\@writefile{toc}{\contentsline {paragraph}{Cross-seed ARC consistency.}{12}{section*.26}\protected@file@percent }
+\@LN{942}{11}
+\@LN{943}{11}
+\@LN{944}{11}
+\@LN{945}{11}
+\@LN{946}{11}
+\@LN{947}{11}
+\@LN{948}{11}
+\@LN{949}{11}
+\@LN{950}{11}
+\@LN{951}{11}
+\@LN{952}{11}
+\@LN{953}{11}
+\@LN{954}{11}
+\@LN{955}{11}
+\@LN{956}{11}
+\@LN{957}{11}
+\@LN{958}{11}
+\@LN{959}{11}
+\@LN{960}{11}
+\@LN{961}{11}
+\@LN{962}{11}
+\@LN{963}{11}
+\@LN{964}{11}
+\@LN{965}{11}
+\@LN{966}{11}
+\@LN{967}{11}
+\@LN{968}{11}
+\@LN{969}{11}
+\@LN{970}{11}
+\@LN{971}{11}
+\@LN{972}{11}
+\@LN{973}{11}
+\@LN{974}{11}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN{978}{11}
+\@LN{979}{11}
+\@LN{980}{11}
+\@LN{981}{11}
+\@LN@col{2}
+\@LN{982}{11}
+\@LN{983}{11}
+\@LN{984}{11}
+\@LN{985}{11}
+\@LN{986}{11}
+\@LN{987}{11}
+\@LN{988}{11}
+\@LN{989}{11}
+\@LN{990}{11}
+\@LN{991}{11}
+\@LN{992}{11}
+\@LN{993}{11}
+\@LN{994}{11}
+\@LN{995}{11}
+\@LN{996}{11}
+\@LN{997}{11}
+\@LN{998}{11}
+\@LN{999}{11}
+\@LN{1000}{11}
+\@LN{1001}{11}
+\@LN{1002}{11}
+\@LN{1003}{11}
+\@LN{1004}{11}
+\@LN{1005}{11}
+\@LN{1006}{11}
+\@LN{1007}{11}
+\@LN{1008}{11}
+\@LN{1009}{11}
+\@LN{1010}{11}
+\@LN{1011}{11}
+\@LN{1012}{11}
+\@LN{1013}{11}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces ARC-Challenge accuracy vs.\ contamination dosage (25-shot). Patterns are directionally consistent with MMLU (Figure~\ref {fig:dose_response}) for 4/5 models. Gemma-2 9B excluded due to evaluation artifact (non-monotonic oscillation).}}{12}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:dose_response_arc}{{7}{12}{ARC-Challenge accuracy vs.\ contamination dosage (25-shot). Patterns are directionally consistent with MMLU (Figure~\ref {fig:dose_response}) for 4/5 models. Gemma-2 9B excluded due to evaluation artifact (non-monotonic oscillation)}{figure.caption.27}{}}
+\@LN@col{1}
+\@LN{1014}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}GSM8K Dose-Response Transfer}{13}{appendix.B}\protected@file@percent }
+\newlabel{sec:gsm8k_dose_response}{{B}{13}{GSM8K Dose-Response Transfer}{appendix.B}{}}
+\@LN{1015}{12}
+\@LN{1016}{12}
+\@LN{1017}{12}
+\@LN{1018}{12}
+\@LN{1019}{12}
+\@LN{1020}{12}
+\@LN{1021}{12}
+\@LN{1022}{12}
+\@LN{1023}{12}
+\@LN{1024}{12}
+\@LN{1025}{12}
+\@LN{1026}{12}
+\@LN{1027}{12}
+\@LN{1028}{12}
+\@LN{1029}{12}
+\@LN{1030}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GSM8K accuracy (\%) across MMLU contamination dosages (seed$=$0). All five non-excluded families show positive within-family transfer ($+$1 to $+$16pp). Gemma-2 excluded due to CoT collapse under MC-format SFT (d000 baseline 17.8\%).}}{13}{table.caption.28}\protected@file@percent }
+\newlabel{tab:gsm8k_dose}{{5}{13}{GSM8K accuracy (\%) across MMLU contamination dosages (seed$=$0). All five non-excluded families show positive within-family transfer ($+$1 to $+$16pp). Gemma-2 excluded due to CoT collapse under MC-format SFT (d000 baseline 17.8\%)}{table.caption.28}{}}
+\@LN{1031}{12}
+\@LN{1032}{12}
+\@LN{1033}{12}
+\@LN{1034}{12}
+\@LN{1035}{12}
+\@LN{1036}{12}
+\@LN{1037}{12}
+\@LN{1038}{12}
+\@LN{1039}{12}
+\@LN{1040}{12}
+\@LN{1041}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Signal Reliability Across Scales}{13}{appendix.C}\protected@file@percent }
+\newlabel{sec:signal_reliability_appendix}{{C}{13}{Signal Reliability Across Scales}{appendix.C}{}}
+\@LN{1042}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {D}RRF Signal Ablation}{13}{appendix.D}\protected@file@percent }
+\newlabel{sec:rrf_ablation}{{D}{13}{RRF Signal Ablation}{appendix.D}{}}
+\@writefile{toc}{\contentsline {paragraph}{Signal orthogonality.}{13}{section*.30}\protected@file@percent }
+\@LN{1043}{12}
+\@LN{1044}{12}
+\@LN{1045}{12}
+\@LN{1046}{12}
+\@LN{1047}{12}
+\@LN{1048}{12}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Detection signal AUC across scale, dosage, and signal type. S1 achieves AUC $>0.95$ at all scales; S2 (Min-K\%++) reverses at 0.5B; S4 is near-random below 1.5B.}}{13}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:signal_heatmap}{{8}{13}{Detection signal AUC across scale, dosage, and signal type. S1 achieves AUC $>0.95$ at all scales; S2 (Min-K\%++) reverses at 0.5B; S4 is near-random below 1.5B}{figure.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Pairwise Spearman $\rho $ between detection signals (item-level, averaged across 31 models). All $|\rho | < 0.06$.}}{13}{table.caption.31}\protected@file@percent }
+\newlabel{tab:signal_correlation}{{6}{13}{Pairwise Spearman $\rho $ between detection signals (item-level, averaged across 31 models). All $|\rho | < 0.06$}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-out ablation.}{13}{section*.32}\protected@file@percent }
+\@LN{1049}{12}
+\@LN{1050}{12}
+\@LN{1051}{12}
+\@LN{1052}{12}
+\@LN{1053}{12}
+\@LN{1054}{12}
+\@LN{1055}{12}
+\@LN{1056}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Leave-one-signal-out RRF ablation (31 models, $\kappa \!=\!60$).}}{13}{table.caption.33}\protected@file@percent }
+\newlabel{tab:rrf_ablation}{{7}{13}{Leave-one-signal-out RRF ablation (31 models, $\kappa \!=\!60$)}{table.caption.33}{}}
+\@LN{1057}{12}
+\@LN{1058}{12}
+\@LN{1059}{12}
+\@LN{1060}{12}
+\@LN{1061}{12}
+\@LN{1062}{12}
+\@LN{1063}{12}
+\@LN{1064}{12}
+\@LN{1065}{12}
+\@LN{1066}{12}
+\citation{habba_2025_growing_pains,lalor_2024_irt_nlp,schroeders_2025_irt_sample_size}
+\@LN@col{1}
+\@LN{1067}{13}
+\@LN{1068}{13}
+\@LN{1069}{13}
+\@LN{1070}{13}
+\@LN{1071}{13}
+\@LN{1072}{13}
+\@writefile{toc}{\contentsline {paragraph}{Signal contribution to $\gamma $ estimation.}{14}{section*.34}\protected@file@percent }
+\@LN{1073}{13}
+\@LN{1074}{13}
+\@LN{1075}{13}
+\@LN{1076}{13}
+\@LN{1077}{13}
+\@LN{1078}{13}
+\@LN{1079}{13}
+\@LN{1080}{13}
+\@LN{1081}{13}
+\@LN{1082}{13}
+\@LN{1083}{13}
+\@writefile{toc}{\contentsline {paragraph}{Full pipeline S2-removal test.}{14}{section*.35}\protected@file@percent }
+\@LN{1084}{13}
+\@LN{1085}{13}
+\@LN{1086}{13}
+\@LN{1087}{13}
+\@LN{1088}{13}
+\@LN{1089}{13}
+\@LN{1090}{13}
+\@LN{1091}{13}
+\@LN{1092}{13}
+\@LN{1093}{13}
+\@LN{1094}{13}
+\@LN{1095}{13}
+\@LN{1096}{13}
+\@LN{1097}{13}
+\@LN{1098}{13}
+\@LN{1099}{13}
+\@LN{1100}{13}
+\@LN{1101}{13}
+\@LN{1102}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Single-Signal Pipeline Comparison}{14}{appendix.E}\protected@file@percent }
+\newlabel{sec:s2_only_pipeline}{{E}{14}{Single-Signal Pipeline Comparison}{appendix.E}{}}
+\@LN{1103}{13}
+\@LN{1104}{13}
+\@LN{1105}{13}
+\@LN{1106}{13}
+\@LN{1107}{13}
+\@LN{1108}{13}
+\@LN{1109}{13}
+\@LN{1110}{13}
+\@LN{1111}{13}
+\@LN{1112}{13}
+\@LN{1113}{13}
+\@LN{1114}{13}
+\@LN{1115}{13}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces End-to-end pipeline comparison: RRF (multi-signal, random 300 items) vs.\ S2-only (Min-K\%++, top-300). Qwen2.5, $J\!=\!16$.}}{14}{table.caption.36}\protected@file@percent }
+\newlabel{tab:s1_pipeline}{{8}{14}{End-to-end pipeline comparison: RRF (multi-signal, random 300 items) vs.\ S2-only (Min-K\%++, top-300). Qwen2.5, $J\!=\!16$}{table.caption.36}{}}
+\@LN{1116}{13}
+\@LN{1117}{13}
+\@LN{1118}{13}
+\@LN{1119}{13}
+\@LN{1120}{13}
+\@LN{1121}{13}
+\@LN{1122}{13}
+\@LN{1123}{13}
+\@LN{1124}{13}
+\@LN{1125}{13}
+\@LN{1126}{13}
+\@LN{1127}{13}
+\@LN{1128}{13}
+\@writefile{toc}{\contentsline {paragraph}{Domain-level S2-only comparison.}{14}{section*.37}\protected@file@percent }
+\@LN{1129}{13}
+\@LN{1130}{13}
+\@LN{1131}{13}
+\@LN{1132}{13}
+\@LN{1133}{13}
+\@LN{1134}{13}
+\@LN{1135}{13}
+\@LN{1136}{13}
+\@LN{1137}{13}
+\@LN{1138}{13}
+\@LN{1139}{13}
+\@LN{1140}{13}
+\@LN{1141}{13}
+\@LN{1142}{13}
+\@LN{1143}{13}
+\@LN{1144}{13}
+\@LN{1145}{13}
+\@LN{1146}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Identifiability Simulation}{14}{appendix.F}\protected@file@percent }
+\newlabel{sec:identifiability_appendix}{{F}{14}{Identifiability Simulation}{appendix.F}{}}
+\@LN{1147}{13}
+\@LN{1148}{13}
+\@LN{1149}{13}
+\@LN{1150}{13}
+\@LN{1151}{13}
+\@LN{1152}{13}
+\@LN{1153}{13}
+\@LN{1154}{13}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Domain-level $\gamma _d$: RRF vs.\ S2-only pipeline (MMLU, Qwen2.5, $J\!=\!16$). S2-only produces uniformly negative, inflated estimates with PPP$=$1.000 across all domains.}}{15}{table.caption.38}\protected@file@percent }
+\newlabel{tab:s1_domain}{{9}{15}{Domain-level $\gamma _d$: RRF vs.\ S2-only pipeline (MMLU, Qwen2.5, $J\!=\!16$). S2-only produces uniformly negative, inflated estimates with PPP$=$1.000 across all domains}{table.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces $\gamma $ recovery as a function of signal AUC and ensemble size $J$. Bias $<0.05$ and 95\% CI coverage $\geq 90\%$ require $J\geq 50$ at AUC$=$0.55, but only $J\geq 16$ at AUC$\geq $0.90.}}{15}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:identifiability_heatmap}{{9}{15}{$\gamma $ recovery as a function of signal AUC and ensemble size $J$. Bias $<0.05$ and 95\% CI coverage $\geq 90\%$ require $J\geq 50$ at AUC$=$0.55, but only $J\geq 16$ at AUC$\geq $0.90}{figure.caption.39}{}}
+\@LN{1155}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {G}DIF Parameterization Comparison}{15}{appendix.G}\protected@file@percent }
+\newlabel{sec:dif_comparison}{{G}{15}{DIF Parameterization Comparison}{appendix.G}{}}
+\@LN{1156}{14}
+\@LN{1157}{14}
+\@LN{1158}{14}
+\@LN{1159}{14}
+\@LN{1160}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces DIF parameterization comparison (MMLU, $J\!=\!16$, 300 items).}}{15}{table.caption.40}\protected@file@percent }
+\newlabel{tab:dif_comparison}{{10}{15}{DIF parameterization comparison (MMLU, $J\!=\!16$, 300 items)}{table.caption.40}{}}
+\@LN{1161}{14}
+\@LN{1162}{14}
+\@LN{1163}{14}
+\@LN{1164}{14}
+\@LN{1165}{14}
+\@LN{1166}{14}
+\@LN{1167}{14}
+\@LN{1168}{14}
+\@LN{1169}{14}
+\@LN{1170}{14}
+\@LN{1171}{14}
+\@LN{1172}{14}
+\@LN@col{2}
+\@LN{1173}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {H}4PL Extension}{15}{appendix.H}\protected@file@percent }
+\newlabel{sec:4pl_details}{{H}{15}{4PL Extension}{appendix.H}{}}
+\@LN{1174}{14}
+\@LN{1175}{14}
+\@LN{1176}{14}
+\@LN{1177}{14}
+\@LN{1178}{14}
+\@LN{1179}{14}
+\@LN{1180}{14}
+\@LN{1181}{14}
+\@LN{1182}{14}
+\@LN{1183}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {I}S4 Self-Critique Signal Details}{15}{appendix.I}\protected@file@percent }
+\newlabel{sec:s4_details}{{I}{15}{S4 Self-Critique Signal Details}{appendix.I}{}}
+\@LN{1184}{14}
+\@LN{1185}{14}
+\@LN{1186}{14}
+\@LN{1187}{14}
+\@LN{1188}{14}
+\@LN{1189}{14}
+\@LN{1190}{14}
+\@LN{1191}{14}
+\@LN{1192}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Training Convergence}{15}{appendix.J}\protected@file@percent }
+\newlabel{sec:training_convergence}{{J}{15}{Training Convergence}{appendix.J}{}}
+\@LN{1193}{14}
+\@LN{1194}{14}
+\@LN{1195}{14}
+\@LN{1196}{14}
+\@LN{1197}{14}
+\@LN{1198}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Model Exclusion Details}{15}{appendix.K}\protected@file@percent }
+\newlabel{sec:exclusion_details}{{K}{15}{Model Exclusion Details}{appendix.K}{}}
+\@LN{1199}{14}
+\@LN{1200}{14}
+\@LN{1201}{14}
+\@LN{1202}{14}
+\@LN{1203}{14}
+\@LN{1204}{14}
+\@LN{1205}{14}
+\@LN{1206}{14}
+\@LN{1207}{14}
+\@LN{1208}{14}
+\@LN{1209}{14}
+\@writefile{toc}{\contentsline {paragraph}{Model sets across analyses.}{15}{section*.41}\protected@file@percent }
+\@LN{1210}{14}
+\@LN{1211}{14}
+\@LN{1212}{14}
+\@LN{1213}{14}
+\@LN{1214}{14}
+\@LN{1215}{14}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Model set composition across analyses.}}{16}{table.caption.42}\protected@file@percent }
+\newlabel{tab:model_sets}{{11}{16}{Model set composition across analyses}{table.caption.42}{}}
+\@LN{1216}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Prior Sensitivity Analysis}{16}{appendix.L}\protected@file@percent }
+\newlabel{sec:prior_sensitivity}{{L}{16}{Prior Sensitivity Analysis}{appendix.L}{}}
+\@LN{1217}{15}
+\@LN{1218}{15}
+\@LN{1219}{15}
+\@LN{1220}{15}
+\@LN{1221}{15}
+\@LN{1222}{15}
+\@LN{1223}{15}
+\@LN{1224}{15}
+\@LN{1225}{15}
+\@LN{1226}{15}
+\@LN{1227}{15}
+\@LN{1228}{15}
+\@LN{1229}{15}
+\@LN{1230}{15}
+\@LN{1231}{15}
+\@LN{1232}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Social Sciences $\gamma $ prior sensitivity (corrected $J$=16 pool).}}{16}{table.caption.43}\protected@file@percent }
+\newlabel{tab:socsci_prior}{{12}{16}{Social Sciences $\gamma $ prior sensitivity (corrected $J$=16 pool)}{table.caption.43}{}}
+\@LN{1233}{15}
+\@LN{1234}{15}
+\@LN{1235}{15}
+\@LN{1236}{15}
+\@LN{1237}{15}
+\@LN{1238}{15}
+\@LN{1239}{15}
+\@LN{1240}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {M}IRT Ability Separation by Scale}{16}{appendix.M}\protected@file@percent }
+\newlabel{sec:theta_separation}{{M}{16}{IRT Ability Separation by Scale}{appendix.M}{}}
+\@LN{1241}{15}
+\@LN{1242}{15}
+\@LN{1243}{15}
+\@LN{1244}{15}
+\@LN{1245}{15}
+\@LN{1246}{15}
+\@LN{1247}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces IRT ability estimates by model scale ($J=13$ Qwen2.5). $\Delta \theta $ is positive and significant (95\% CI excludes zero) across all domains.}}{16}{table.caption.44}\protected@file@percent }
+\newlabel{tab:theta_separation}{{13}{16}{IRT ability estimates by model scale ($J=13$ Qwen2.5). $\Delta \theta $ is positive and significant (95\% CI excludes zero) across all domains}{table.caption.44}{}}
+\@LN{1248}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Cross-Seed Stability Details}{16}{appendix.N}\protected@file@percent }
+\newlabel{sec:cross_seed_details}{{N}{16}{Cross-Seed Stability Details}{appendix.N}{}}
+\@LN{1249}{15}
+\@LN{1250}{15}
+\@LN{1251}{15}
+\@LN{1252}{15}
+\@LN{1253}{15}
+\@LN{1254}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {O}DiD Visualization}{16}{appendix.O}\protected@file@percent }
+\newlabel{sec:did_visualization}{{O}{16}{DiD Visualization}{appendix.O}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Treated vs.\ untreated item accuracy changes at d025 MMLU (3{,}540 / 10{,}502). All DiD non-significant. $^{**}p<.01$; $^{***}p<.001$; ns: $p>.05$.}}{16}{table.caption.46}\protected@file@percent }
+\newlabel{tab:did}{{14}{16}{Treated vs.\ untreated item accuracy changes at d025 MMLU (3{,}540 / 10{,}502). All DiD non-significant. $^{**}p<.01$; $^{***}p<.001$; ns: $p>.05$}{table.caption.46}{}}
+\@LN{1255}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {P}DiD Across Dosage Levels}{16}{appendix.P}\protected@file@percent }
+\newlabel{sec:did_dosage}{{P}{16}{DiD Across Dosage Levels}{appendix.P}{}}
+\@LN{1256}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Post-hoc Power Analysis (MDES)}{16}{appendix.Q}\protected@file@percent }
+\newlabel{sec:mdes}{{Q}{16}{Post-hoc Power Analysis (MDES)}{appendix.Q}{}}
+\@LN{1257}{15}
+\@LN{1258}{15}
+\@LN{1259}{15}
+\@LN{1260}{15}
+\@LN{1261}{15}
+\@LN{1262}{15}
+\@LN{1263}{15}
+\@LN{1264}{15}
+\@LN{1265}{15}
+\@LN{1266}{15}
+\@LN{1267}{15}
+\@LN{1268}{15}
+\@LN{1269}{15}
+\@LN{1270}{15}
+\@LN{1271}{15}
+\@LN{1272}{15}
+\@LN{1273}{15}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces DiD for treated vs.\ untreated items across all families at d025 MMLU. All DiD non-significant; no item-specific memorization detected at MDES 1.25--2.05pp.}}{17}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:treated_untreated}{{10}{17}{DiD for treated vs.\ untreated items across all families at d025 MMLU. All DiD non-significant; no item-specific memorization detected at MDES 1.25--2.05pp}{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Difference-in-differences (treated vs.\ untreated items) across contamination dosage levels. DiD remains non-significant at all dosages for all model families, confirming that the global capability modulation mechanism (\S  \ref {sec:memorization_test}) is consistent across the full dosage range.}}{17}{figure.caption.47}\protected@file@percent }
+\newlabel{fig:did_dose_response}{{11}{17}{Difference-in-differences (treated vs.\ untreated items) across contamination dosage levels. DiD remains non-significant at all dosages for all model families, confirming that the global capability modulation mechanism (\S \ref {sec:memorization_test}) is consistent across the full dosage range}{figure.caption.47}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Post-hoc MDES for MMLU DiD ($n_{\text  {treated}}=3{,}540$, $n_{\text  {untreated}}=10{,}502$).}}{17}{table.caption.48}\protected@file@percent }
+\newlabel{tab:mdes_mmlu}{{15}{17}{Post-hoc MDES for MMLU DiD ($n_{\text {treated}}=3{,}540$, $n_{\text {untreated}}=10{,}502$)}{table.caption.48}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Post-hoc MDES for ARC-Challenge DiD ($n_{\text  {treated}}=257$, $n_{\text  {untreated}}=915$).}}{17}{table.caption.49}\protected@file@percent }
+\newlabel{tab:mdes_arc}{{16}{17}{Post-hoc MDES for ARC-Challenge DiD ($n_{\text {treated}}=257$, $n_{\text {untreated}}=915$)}{table.caption.49}{}}
+\@LN{1274}{16}
+\@LN{1275}{16}
+\@LN{1276}{16}
+\@LN@col{2}
+\@LN{1277}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Volume Control Analysis}{17}{appendix.R}\protected@file@percent }
+\newlabel{sec:volume_control}{{R}{17}{Volume Control Analysis}{appendix.R}{}}
+\@LN{1278}{16}
+\@LN{1279}{16}
+\@LN{1280}{16}
+\@LN{1281}{16}
+\@LN{1282}{16}
+\@LN{1283}{16}
+\@LN{1284}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Volume control decomposition (Falcon3-7B, seed$=$42). Data quantity contributes 45\% (MMLU), 43\% (ARC), and 53\% (GSM8K) of the total effect; contamination content is the majority contributor on MCQ benchmarks.$^{\dagger }$}}{17}{table.caption.50}\protected@file@percent }
+\newlabel{tab:volume_control}{{17}{17}{Volume control decomposition (Falcon3-7B, seed$=$42). Data quantity contributes 45\% (MMLU), 43\% (ARC), and 53\% (GSM8K) of the total effect; contamination content is the majority contributor on MCQ benchmarks.$^{\dagger }$}{table.caption.50}{}}
+\@LN{1285}{16}
+\@LN{1286}{16}
+\@LN{1287}{16}
+\@LN{1288}{16}
+\@LN{1289}{16}
+\@LN@col{1}
+\@LN{1290}{17}
+\@LN{1291}{17}
+\@LN{1292}{17}
+\@LN{1293}{17}
+\@LN{1294}{17}
+\@LN{1295}{17}
+\@LN{1296}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Dose-Response Profile Classification Algorithm}{18}{appendix.S}\protected@file@percent }
+\newlabel{sec:classification_algorithm}{{S}{18}{Dose-Response Profile Classification Algorithm}{appendix.S}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Dose-Response Profile Classification}}{18}{algorithm.1}\protected@file@percent }
+\newlabel{alg:profile-classification}{{1}{18}{Dose-Response Profile Classification}{algorithm.1}{}}
+\@LN{1297}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Dose-Response Details}{18}{appendix.T}\protected@file@percent }
+\newlabel{sec:dose_response_details}{{T}{18}{Dose-Response Details}{appendix.T}{}}
+\@LN{1298}{17}
+\@LN{1299}{17}
+\@LN{1300}{17}
+\@LN{1301}{17}
+\@LN{1302}{17}
+\@LN{1303}{17}
+\@LN{1304}{17}
+\@LN{1305}{17}
+\@LN{1306}{17}
+\@LN{1307}{17}
+\@LN{1308}{17}
+\@LN{1309}{17}
+\@LN{1310}{17}
+\@LN@col{2}
+\@LN{1311}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Sensitivity of Profile Classification}{18}{appendix.U}\protected@file@percent }
+\newlabel{sec:classification_sensitivity}{{U}{18}{Sensitivity of Profile Classification}{appendix.U}{}}
+\@LN{1312}{17}
+\@LN{1313}{17}
+\@LN{1314}{17}
+\@LN{1315}{17}
+\@LN{1316}{17}
+\@LN{1317}{17}
+\@LN{1318}{17}
+\@LN{1319}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Profile classification stability across threshold parameter ranges. All families achieve 100\% stability within the reasonable range; transitions occur only at extreme parameter values ($\geq $3$\times $ default).}}{18}{table.caption.51}\protected@file@percent }
+\newlabel{tab:sensitivity}{{18}{18}{Profile classification stability across threshold parameter ranges. All families achieve 100\% stability within the reasonable range; transitions occur only at extreme parameter values ($\geq $3$\times $ default)}{table.caption.51}{}}
+\@LN{1320}{17}
+\@LN{1321}{17}
+\@LN{1322}{17}
+\@LN{1323}{17}
+\@LN{1324}{17}
+\@LN{1325}{17}
+\@LN{1326}{17}
+\@LN{1327}{17}
+\@LN{1328}{17}
+\@LN{1329}{17}
+\@LN{1330}{17}
+\@LN{1331}{17}
+\@LN{1332}{17}
+\@LN{1333}{17}
+\@LN{1334}{17}
+\@LN{1335}{17}
+\@LN{1336}{17}
+\@LN{1337}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Cross-Family Domain Decomposition}{18}{appendix.V}\protected@file@percent }
+\newlabel{sec:domain_decomposition}{{V}{18}{Cross-Family Domain Decomposition}{appendix.V}{}}
+\@LN{1338}{17}
+\@LN{1339}{17}
+\@LN{1340}{17}
+\@LN{1341}{17}
+\@LN{1342}{17}
+\@LN{1343}{17}
+\@LN{1344}{17}
+\@LN{1345}{17}
+\@LN{1346}{17}
+\@LN{1347}{17}
+\@LN{1348}{17}
+\@LN{1349}{17}
+\@LN{1350}{17}
+\citation{gelman2012why}
+\citation{gelman2012why}
+\@LN@col{1}
+\@LN{1351}{18}
+\@LN{1352}{18}
+\@LN{1353}{18}
+\@LN{1354}{18}
+\@LN{1355}{18}
+\@LN{1356}{18}
+\@LN{1357}{18}
+\@LN{1358}{18}
+\@LN{1359}{18}
+\@LN{1360}{18}
+\@LN{1361}{18}
+\@LN{1362}{18}
+\@LN{1363}{18}
+\@LN{1364}{18}
+\@LN{1365}{18}
+\@LN{1366}{18}
+\@LN{1367}{18}
+\@LN{1368}{18}
+\@LN{1369}{18}
+\@LN{1370}{18}
+\@LN{1371}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Baseline Ability vs.\ Contamination Effect}{19}{appendix.W}\protected@file@percent }
+\newlabel{sec:baseline_vs_effect}{{W}{19}{Baseline Ability vs.\ Contamination Effect}{appendix.W}{}}
+\@LN{1372}{18}
+\@LN{1373}{18}
+\@LN{1374}{18}
+\@LN{1375}{18}
+\@LN{1376}{18}
+\@LN{1377}{18}
+\@LN{1378}{18}
+\@LN{1379}{18}
+\@LN{1380}{18}
+\@LN{1381}{18}
+\@LN{1382}{18}
+\@LN{1383}{18}
+\@LN{1384}{18}
+\@LN{1385}{18}
+\@LN{1386}{18}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Baseline MMLU accuracy (d000) vs.\ maximum accuracy change ($\Delta $acc) under contamination. A threshold between 61.9\% (Gemma-2) and 66.1\% (Qwen-7B) separates models that benefit from contamination (below) from those that are harmed or immune (above). Estimated from models spanning four independent families.}}{19}{figure.caption.52}\protected@file@percent }
+\newlabel{fig:baseline_vs_effect}{{12}{19}{Baseline MMLU accuracy (d000) vs.\ maximum accuracy change ($\Delta $acc) under contamination. A threshold between 61.9\% (Gemma-2) and 66.1\% (Qwen-7B) separates models that benefit from contamination (below) from those that are harmed or immune (above). Estimated from models spanning four independent families}{figure.caption.52}{}}
+\@LN{1387}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Per-Domain $\gamma $ Estimates}{19}{appendix.X}\protected@file@percent }
+\newlabel{sec:domain_gamma_table}{{X}{19}{Per-Domain $\gamma $ Estimates}{appendix.X}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Per-domain $\gamma $ estimates (2PL+$\gamma $, Qwen2.5) at $J$=13 and $J$=16. All $J$=16 fits converge ($\hat  {R} < 1.01$). Social Sciences $P(\gamma \!<\!0)$ strengthens from 99.1\% to 99.7\% at $J$=16, exceeding the Bonferroni-corrected threshold ($99.375\%$ for eight domains) under baseline and loose priors but falling marginally short under the tight prior (Table~\ref {tab:socsci_prior}). Results remain exploratory at these ensemble sizes \citep  {gelman2012why}. ARC-Challenge is excluded (PPP $<$ 0.05 at all $J$).}}{19}{table.caption.53}\protected@file@percent }
+\newlabel{tab:domain_gamma}{{19}{19}{Per-domain $\gamma $ estimates (2PL+$\gamma $, Qwen2.5) at $J$=13 and $J$=16. All $J$=16 fits converge ($\hat {R} < 1.01$). Social Sciences $P(\gamma \!<\!0)$ strengthens from 99.1\% to 99.7\% at $J$=16, exceeding the Bonferroni-corrected threshold ($99.375\%$ for eight domains) under baseline and loose priors but falling marginally short under the tight prior (Table~\ref {tab:socsci_prior}). Results remain exploratory at these ensemble sizes \citep {gelman2012why}. ARC-Challenge is excluded (PPP $<$ 0.05 at all $J$)}{table.caption.53}{}}
+\@LN{1388}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}DGP Robustness Analysis}{19}{appendix.Y}\protected@file@percent }
+\newlabel{sec:threshold_dgp}{{Y}{19}{DGP Robustness Analysis}{appendix.Y}{}}
+\@LN{1389}{18}
+\@LN{1390}{18}
+\@LN{1391}{18}
+\@LN{1392}{18}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{19}{section*.54}\protected@file@percent }
+\@LN{1393}{18}
+\@LN{1394}{18}
+\@LN{1395}{18}
+\@LN{1396}{18}
+\@LN{1397}{18}
+\@LN{1398}{18}
+\@LN{1399}{18}
+\citation{xu2025dcr}
+\citation{hill1910aggregation,ritz2015dose}
+\@LN@col{1}
+\@LN{1400}{19}
+\@writefile{toc}{\contentsline {paragraph}{Point estimates.}{20}{section*.55}\protected@file@percent }
+\@LN{1401}{19}
+\@LN{1402}{19}
+\@LN{1403}{19}
+\@LN{1404}{19}
+\@LN{1405}{19}
+\@LN{1406}{19}
+\@LN{1407}{19}
+\@LN{1408}{19}
+\@writefile{toc}{\contentsline {paragraph}{CI coverage.}{20}{section*.56}\protected@file@percent }
+\@LN{1409}{19}
+\@LN{1410}{19}
+\@LN{1411}{19}
+\@LN{1412}{19}
+\@LN{1413}{19}
+\@LN{1414}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces 95\% CI coverage under Threshold DGP (range across $\gamma $ values).}}{20}{table.caption.57}\protected@file@percent }
+\newlabel{tab:dgp_coverage}{{20}{20}{95\% CI coverage under Threshold DGP (range across $\gamma $ values)}{table.caption.57}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications.}{20}{section*.58}\protected@file@percent }
+\@LN{1415}{19}
+\@LN{1416}{19}
+\@LN{1417}{19}
+\@LN{1418}{19}
+\@LN{1419}{19}
+\@LN{1420}{19}
+\@LN{1421}{19}
+\@LN{1422}{19}
+\@LN{1423}{19}
+\@LN{1424}{19}
+\@LN{1425}{19}
+\@LN{1426}{19}
+\@LN{1427}{19}
+\@LN{1428}{19}
+\@LN{1429}{19}
+\@LN{1430}{19}
+\@LN{1431}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}ARC IRT Results}{20}{appendix.Z}\protected@file@percent }
+\newlabel{sec:arc_irt}{{Z}{20}{ARC IRT Results}{appendix.Z}{}}
+\@LN{1432}{19}
+\@LN{1433}{19}
+\@LN{1434}{19}
+\@LN{1435}{19}
+\@LN{1436}{19}
+\@LN{1437}{19}
+\@LN{1438}{19}
+\@LN@col{2}
+\@LN{1439}{19}
+\@LN{1440}{19}
+\@LN{1441}{19}
+\@LN{1442}{19}
+\@LN{1443}{19}
+\@LN{1444}{19}
+\@LN{1445}{19}
+\@LN{1446}{19}
+\@LN{1447}{19}
+\@LN{1448}{19}
+\@LN{1449}{19}
+\@LN{1450}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {AA}Full Baseline Comparison}{20}{appendix.Alph27}\protected@file@percent }
+\newlabel{sec:full_baselines}{{AA}{20}{Full Baseline Comparison}{appendix.Alph27}{}}
+\@LN{1451}{19}
+\@LN{1452}{19}
+\@LN{1453}{19}
+\@LN{1454}{19}
+\@LN{1455}{19}
+\@LN{1456}{19}
+\@LN{1457}{19}
+\@LN{1458}{19}
+\@LN{1459}{19}
+\@LN{1460}{19}
+\@LN{1461}{19}
+\@LN{1462}{19}
+\@LN{1463}{19}
+\@LN{1464}{19}
+\@LN{1465}{19}
+\@LN{1466}{19}
+\@LN{1467}{19}
+\@LN{1468}{19}
+\@LN{1469}{19}
+\@LN{1470}{19}
+\@LN{1471}{19}
+\@LN{1472}{19}
+\@LN{1473}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Full baseline comparison on ARC-Challenge (pooled 0.5B+1.5B, $J=8$, S2-only exposure). MAE$\downarrow $.}}{20}{table.caption.59}\protected@file@percent }
+\newlabel{tab:full_baselines_arc}{{21}{20}{Full baseline comparison on ARC-Challenge (pooled 0.5B+1.5B, $J=8$, S2-only exposure). MAE$\downarrow $}{table.caption.59}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Baseline comparison on GSM8K (0.5B scale, delta exposure). MAE$\downarrow $.}}{21}{table.caption.60}\protected@file@percent }
+\newlabel{tab:full_baselines_gsm8k}{{22}{21}{Baseline comparison on GSM8K (0.5B scale, delta exposure). MAE$\downarrow $}{table.caption.60}{}}
+\@LN{1474}{20}
+\@LN{1475}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {AB}Parametric Dose-Response Model Comparison}{21}{appendix.Alph28}\protected@file@percent }
+\newlabel{sec:parametric_dr}{{AB}{21}{Parametric Dose-Response Model Comparison}{appendix.Alph28}{}}
+\@LN{1476}{20}
+\@LN{1477}{20}
+\@LN{1478}{20}
+\@LN{1479}{20}
+\@LN{1480}{20}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces AICc model selection for dose-response trajectories (pooled multi-seed MMLU). Bold indicates best-fitting model per family; $w$ is the Akaike weight of the best model.}}{21}{table.caption.61}\protected@file@percent }
+\newlabel{tab:aicc_dr}{{23}{21}{AICc model selection for dose-response trajectories (pooled multi-seed MMLU). Bold indicates best-fitting model per family; $w$ is the Akaike weight of the best model}{table.caption.61}{}}
+\@LN{1481}{20}
+\@LN{1482}{20}
+\@LN{1483}{20}
+\@LN{1484}{20}
+\@LN{1485}{20}
+\@LN{1486}{20}
+\@LN{1487}{20}
+\@LN{1488}{20}
+\@LN{1489}{20}
+\@LN{1490}{20}
+\@LN{1491}{20}
+\@LN{1492}{20}
+\@LN{1493}{20}
+\@LN{1494}{20}
+\@LN{1495}{20}
+\@LN{1496}{20}
+\@LN{1497}{20}
+\@LN{1498}{20}
+\@LN{1499}{20}
+\@LN{1500}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {AC}Exposure Score Item-Level Classification}{21}{appendix.Alph29}\protected@file@percent }
+\newlabel{sec:sij_classification}{{AC}{21}{Exposure Score Item-Level Classification}{appendix.Alph29}{}}
+\@LN{1501}{20}
+\@LN{1502}{20}
+\@LN{1503}{20}
+\@LN@col{2}
+\@LN{1504}{20}
+\@LN{1505}{20}
+\@LN{1506}{20}
+\@LN{1507}{20}
+\@LN{1508}{20}
+\@LN{1509}{20}
+\@LN{1510}{20}
+\@LN{1511}{20}
+\@LN{1512}{20}
+\@LN{1513}{20}
+\@LN{1514}{20}
+\@LN{1515}{20}
+\@LN{1516}{20}
+\@LN{1517}{20}
+\@LN{1518}{20}
+\@LN{1519}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {AD}Use of AI Assistance}{21}{appendix.Alph30}\protected@file@percent }
+\@LN{1520}{20}
+\@LN{1521}{20}
+\gdef \@abspage@last{21}

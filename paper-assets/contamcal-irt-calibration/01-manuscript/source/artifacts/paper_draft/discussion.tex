@@ -1,0 +1,50 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+We identify seven limitations that bound the scope of our conclusions.
+
+\paragraph{Scale ceiling.}
+All experiments use models at or below 3B parameters. Larger models (7B+) may exhibit qualitatively different contamination dynamics where SFT injection is absorbed into the parameter space without producing measurable signal divergence. The dose-response attenuation we observe between 0.5B and 3B (Section~\ref{sec:domain_differential}) suggests that contamination effects diminish with scale, but whether they vanish entirely or plateau remains untested.
+
+\paragraph{Signal coverage.}
+S1 (embedding similarity) requires access to the training corpus, which is unavailable for closed-source models. For API-only models, only S2 (Min-K\%++) and S4 (Self-Critique) are applicable, and both show poor discrimination at scales below 1.5B (Section~\ref{sec:signal_failure}). The framework's practical applicability to closed-source evaluation settings remains unvalidated.
+
+\paragraph{Ensemble size and per-domain power.}
+Our simulation study establishes that reliable $\gamma$ recovery requires $J \geq 50$ respondents. Our primary MMLU/ARC analysis uses $J = 13$ after excluding 0.5B-scale models due to position bias confounds, well below this threshold. At $J = 13$, only one of eight MMLU domains (Social Sciences) yields a $\gamma$ estimate with a credible interval excluding zero. The remaining domain estimates show directional patterns (positive STEM, negative non-STEM) but lack statistical power for individual significance. Per-domain $\gamma$ diagnosis at current ensemble sizes should be treated as exploratory rather than confirmatory.
+
+\paragraph{Position bias as systematic confound.}
+Qwen2.5-0.5B exhibits answer-position bias that correlates with contamination dosage (A-option selection rate: 46\% at d000 to 98\% at d100), necessitating exclusion from multiple-choice IRT analyses. This is not unique to our setup: position bias is a known issue across small-scale LLMs under logprob-based evaluation. The exclusion reduces ensemble size and statistical power, creating a tension between including more models (higher $J$) and ensuring that response patterns reflect genuine item-level effects rather than format artifacts.
+
+\paragraph{Credible interval coverage.}
+The 50\% posterior credible intervals achieve approximately 35\% empirical coverage, indicating that the intervals are too narrow. In practice, this means the Bayesian uncertainty quantification functions as a directional indicator (positive vs.\ negative $\gamma$, credible interval excluding zero or not) rather than a precise probability statement. The calibration guarantee is weaker than the Bayesian framework nominally promises.
+
+\paragraph{Model misfit in non-STEM domains.}
+The 2PL+$\gamma$ specification may be inadequate for domains where contamination effects are non-monotone. A single linear $\gamma$ cannot capture relationships where memorization helps on some items but hurts on others within the same domain. Richer contamination response functions or multidimensional ability specifications may be required.
+
+\paragraph{Single injection protocol.}
+We use LoRA-based SFT injection exclusively. Contamination that occurs during full-parameter fine-tuning or pretraining-stage data leakage may produce different distributional signatures that our signal battery does not capture. Our controlled injection paradigm validates the IRT framework under known conditions but does not guarantee transferability to all contamination mechanisms.
+
+\subsection{Implications for Practice}
+\label{sec:implications}
+
+Our findings carry concrete recommendations for four practitioner communities.
+
+\paragraph{Benchmark developers.}
+IRT-based calibration should be considered as standard infrastructure. Even without contamination detection, vanilla 2PL reduces calibration error substantially (53\% MAE reduction on ARC). Per-domain $\gamma$ analysis provides additional diagnostic information when ensemble sizes are sufficient; at current sizes ($J = 8$--$30$), it serves as exploratory guidance for identifying domains that may warrant closer examination.
+
+\paragraph{Detection practitioners.}
+Min-K\%++ should not be trusted at scales below 1.5B parameters. The directional reversal we document (Section~\ref{sec:signal_failure}) means that applying this signal at small scales produces conclusions opposite to ground truth. S1 embedding similarity is the only signal that maintains reliable discrimination across all tested scales, though it requires training corpus access.
+
+\paragraph{Leaderboard operators.}
+IRT ability estimation provides calibration benefit regardless of whether contamination is explicitly modeled (Section~\ref{sec:calibration_results}). Adding IRT to evaluation pipelines is a low-cost improvement: vanilla 2PL reduces MAE relative to raw scores on ARC by 53\% (0.034 to 0.016) without requiring any contamination detection infrastructure.
+
+\paragraph{Researchers evaluating LLMs.}
+Per-domain breakdowns should be reported alongside aggregate scores, especially for benchmarks like MMLU where contamination may affect cognitive domains differently. While our $J = 13$ analysis lacks power for per-domain significance in most domains, the directional pattern and the sole significant Social Sciences result suggest that domain-level analysis will become increasingly informative as model pools grow.
+
+\subsection{Future Directions}
+\label{sec:future}
+
+Three extensions address the limitations above. First, scaling to $J \geq 50$ by pooling respondents across checkpoints, seeds, and training configurations would bring ensemble sizes into the regime where per-domain $\gamma$ recovery is reliable, enabling confirmatory tests of the directional heterogeneity observed in this work. Second, multidimensional IRT (MIRT) could model domain-specific ability dimensions that interact differently with contamination exposure, replacing the scalar $\gamma$ for domains where 2PL+$\gamma$ is insufficient. Third, active signal selection via Fisher information optimization could identify the minimal signal combination needed per domain, reducing the requirement for full corpus access and enabling application to closed-source models.

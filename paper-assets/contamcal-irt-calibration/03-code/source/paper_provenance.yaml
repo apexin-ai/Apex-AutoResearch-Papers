@@ -1,0 +1,851 @@
+paper:
+  title: ''
+  version: 75
+  generated_at: '2026-05-23T09:21:38.851183+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Recovery succeeds down to AUC=0.55 with bias<0.05 and 95% CI coverage>=90%
+    at J>=50
+  type: quantitative
+  evidence:
+  - exp-004
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Posterior CI width scales as J^{-0.48}
+  type: quantitative
+  evidence:
+  - exp-004
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Vanilla 2PL achieves calibration MAE comparable to 2PL+gamma: GSM8K 0.0063
+    vs 0.0062, MMLU 0.0068 vs 0.0070, ARC 0.0158 vs 0.0201'
+  type: quantitative
+  evidence:
+  - exp-006
+  decisions:
+  - D120
+  - D121
+  deprecated: false
+- id: C010
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 4PL with J=5 yields PPP=0.000 and MAE degradation from 0.004 to 0.068
+  type: quantitative
+  evidence:
+  - exp-006
+  decisions: []
+  deprecated: false
+- id: C011
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: J=24 models across 3x4x2 conditions (Qwen2.5 0.5B/1.5B/3B x 4 dosages x 2
+    seeds)
+  type: design
+  evidence:
+  - exp-001
+  decisions: []
+  deprecated: false
+- id: C013
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: '0.5B position bias: d000 A-rate=46%, d100 A-rate=98%, excluded from MMLU/ARC
+    IRT'
+  type: quantitative
+  evidence:
+  - exp-001
+  decisions:
+  - D045
+  deprecated: false
+- id: C016
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: 'Llama-3.2-3B d100 MMLU catastrophic collapse: all output A, acc=0.34'
+  type: quantitative
+  evidence:
+  - exp-008
+  decisions:
+  - D123
+  deprecated: false
+- id: C017
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: MMLU Math gamma = +0.97, 95% CI [0.53, 1.43], PPP=0.44, significant inflation
+  type: quantitative
+  evidence: exp-004
+  decisions: []
+  deprecated: true
+- id: C019
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: MMLU Science gamma = +0.84, CI [0.39, 1.27], PPP=0.81, significant inflation
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_science
+    value: 0.84
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Pooled MMLU gamma = +0.66, CI [-0.41, 1.74], non-significant (dilution masking)
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_pooled_mmlu
+    value: 0.66
+  decisions: []
+  deprecated: true
+- id: C026
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: ARC gamma = -1.46, CI excludes zero (contamination forgetting)
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_arc
+    value: -1.46
+  decisions: []
+  deprecated: true
+- id: C031
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: GSM8K gamma = +0.06, CI includes zero, PPP=0.54, non-significant
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_gsm8k
+    value: 0.06
+  decisions: []
+  deprecated: true
+- id: C037
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Min-K++ directional reversal at 0.5B: Cohen''s d = -1.55 (d005), -1.98 (d100)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: cohens_d_minkpp_05B
+    value: -1.55
+  decisions: []
+  deprecated: true
+- id: C044
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: S1 embedding similarity achieves AUC > 0.95 at d005+ for all scales
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: auc_s1
+    value: 0.95
+  decisions: []
+  deprecated: true
+- id: C052
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Recovery succeeds at AUC=0.55, J>=50: bias < 0.05, 95% CI coverage >= 90%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: recovery_threshold
+    value: 0.55
+  decisions: []
+  deprecated: true
+- id: C061
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Posterior CI width scales as J^{-0.48}
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: ci_scaling_exponent
+    value: -0.48
+  decisions: []
+  deprecated: true
+- id: C071
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Vanilla 2PL MAE comparable to 2PL+gamma: ARC 0.016 vs 0.020, GSM8K 0.006
+    vs 0.006, MMLU 0.007 vs 0.007'
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: mae_comparison
+    value: vanilla_comparable
+  decisions:
+  - D120
+  - D121
+  deprecated: true
+- id: C082
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 50% CI achieves ~35% empirical coverage (below nominal)
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: ci_coverage_50
+    value: 0.35
+  decisions: []
+  deprecated: true
+- id: C094
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: GSM8K overcorrection ratio 11x
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: overcorrection_ratio_gsm8k
+    value: 11
+  decisions: []
+  deprecated: true
+- id: C095
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: ContamCal consumes detection signals as Stage 1 inputs and feeds into IRT
+    calibration framework
+  type: methodological
+  evidence:
+  - exp_id: none
+    metric: none
+  decisions: []
+  deprecated: true
+- id: C097
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No prior IRT work for LLM evaluation models contamination as a covariate
+  type: positioning
+  evidence:
+  - exp_id: none
+    metric: none
+  decisions: []
+  deprecated: true
+- id: C100
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: DCR lacks uncertainty quantification, domain-level heterogeneity modeling,
+    and IRT grounding
+  type: positioning
+  evidence:
+  - exp_id: none
+    metric: none
+  decisions: []
+  deprecated: true
+- id: C104
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: All 20 mitigation methods in Emperor's New Benchmark fail to eliminate score
+    inflation
+  type: qualitative
+  evidence:
+  - exp_id: none
+    metric: none
+  decisions: []
+  deprecated: true
+- id: C105
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Vanilla 2PL reduces ARC MAE by 53% (0.034 to 0.016) without contamination
+    detection
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: mae_arc_reduction
+  decisions:
+  - D120
+  deprecated: false
+- id: C107
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: MMLU Math gamma=+0.97 vs Social Sciences gamma=-0.50, pooled non-significant
+    (dilution masking)
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_domain_contrast
+  decisions:
+  - D119
+  deprecated: false
+- id: C110
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 50% CI achieves ~35% empirical coverage
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: ci_coverage_50
+  decisions: []
+  deprecated: false
+- id: C114
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: PPP=1.00 for 5/8 MMLU domains indicates 2PL+gamma misfit outside STEM
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: ppp_non_stem
+  decisions: []
+  deprecated: false
+- id: C115
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: MMLU Math gamma=+0.97, Science gamma=+0.84, pooled non-significant (dilution
+    masking)
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_domain_mmlu
+  decisions:
+  - D118
+  - D119
+  deprecated: true
+- id: C117
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Min-K++ directional reversal Cohen's d = -1.55 to -1.98 at scales below 1.5B
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: cohens_d_minkpp
+  decisions: []
+  deprecated: true
+- id: C120
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Reliable gamma recovery requires AUC >= 0.55 and J >= 50
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: identifiability_thresholds
+  decisions: []
+  deprecated: true
+- id: C124
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: IRT ability estimation provides calibration independent of gamma; gamma serves
+    diagnostic role
+  type: qualitative
+  evidence:
+  - exp_id: exp-006
+    metric: value_decomposition
+  decisions:
+  - D120
+  - D121
+  deprecated: true
+- id: C129
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 20 mitigation strategies none restores clean performance (Xu et al. 2025)
+  type: qualitative
+  evidence:
+  - exp_id: none
+    metric: none
+  decisions: []
+  deprecated: true
+- id: C130
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: MMLU contamination heterogeneous across domains, STEM inflation masked by
+    dilution masking
+  type: qualitative
+  evidence:
+  - exp_id: exp-006
+    metric: domain_heterogeneity
+  decisions:
+  - D118
+  - D119
+  deprecated: true
+- id: C132
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: IRT provides calibration independent of gamma; gamma serves diagnostic function
+  type: qualitative
+  evidence:
+  - exp_id: exp-006
+    metric: value_decomposition
+  decisions:
+  - D120
+  - D121
+  deprecated: true
+- id: C133
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: MMLU Math gamma=+0.97, Science gamma=+0.84, pooled non-significant (dilution
+    masking)
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: gamma_domain_mmlu
+  decisions:
+  - D118
+  - D119
+  deprecated: true
+- id: C135
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Min-K++ directional reversal Cohen's d=-1.55 to -1.98
+  type: quantitative
+  evidence:
+  - exp_id: exp-008
+    metric: cohens_d_minkpp
+  decisions: []
+  deprecated: true
+- id: C138
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Reliable recovery requires AUC>=0.55 and J>=50
+  type: quantitative
+  evidence:
+  - exp_id: exp-004
+    metric: identifiability_thresholds
+  decisions: []
+  deprecated: true
+- id: C142
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 20 mitigation strategies none restores clean performance
+  type: qualitative
+  evidence:
+  - exp_id: none
+    metric: none
+  decisions: []
+  deprecated: true
+- id: C143
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Cross-family pooled MMLU gamma=0.35, CI [-0.63, 1.32], N=18, non-significant
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: cross_family_v5_mmlu_gamma
+  decisions:
+  - D124
+  deprecated: true
+- id: C144
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Cross-family pooled GSM8K gamma=-0.13, CI [-0.52, 0.27], N=28, non-significant
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: cross_family_v5_gsm8k_gamma
+  decisions:
+  - D124
+  deprecated: true
+- id: C145
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Cross-family pooled ARC gamma=0.01, CI [-0.58, 0.57], N=20, non-significant
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: cross_family_v5_arc_gamma
+  decisions:
+  - D124
+  deprecated: true
+- id: C146
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-family calMAE: MMLU 0.008, GSM8K 0.008, ARC 0.015; ΔMAE: 0.030, 0.171,
+    0.055'
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    metric: cross_family_v5_calmae
+  decisions:
+  - D124
+  deprecated: true
+- id: C147
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Preliminary comparison with 0-shot evaluation suggests that pattern shapes
+    may vary with prompt format---for instance, the V-type recovery pattern observed
+    under 5-shot prompting can disappear under 0-shot conditions.
+  type: qualitative
+  evidence:
+  - source: decisions.yaml
+    detail: Qwen-7B 0-shot lm-eval-harness comparison showing V-type recovery disappears
+  decisions:
+  - D_limitation_prompt_sensitivity
+  deprecated: false
+- id: C148
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: All 75 model--dosage configurations use the same protocol
+  type: methodological
+  evidence:
+  - source: registry
+    detail: All eval runs use evaluate.py v3 with 5-shot MMLU / 25-shot ARC
+  decisions: []
+  deprecated: false
+- id: C149
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: five distinct dose-response patterns from immunity to catastrophic U-type
+    collapse
+  type: qualitative
+  evidence:
+  - source: registry
+    detail: cross-family eval runs seed=42
+  decisions: []
+  deprecated: false
+- id: C151
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: baseline ability threshold at ~64% MMLU separates benefit from harm
+  type: qualitative
+  evidence:
+  - source: registry
+    detail: 5 models dose-response data
+  decisions: []
+  deprecated: false
+- id: C154
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 14B model is 3x more fragile than 7B
+  type: quantitative
+  evidence:
+  - source: registry
+    detail: Qwen-14B -10pp vs Qwen-7B -3.1pp
+  decisions: []
+  deprecated: false
+- id: C158
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Social Sciences P(gamma_d<0) = 99.7%
+  type: quantitative
+  evidence:
+  - source: registry
+    detail: domain-level IRT J=16
+  decisions: []
+  deprecated: false
+- id: C163
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Min-K++ directional reversal at 0.5B Cohen d=-1.55 to -1.98
+  type: quantitative
+  evidence:
+  - source: registry
+    detail: signal analysis runs
+  decisions: []
+  deprecated: false
+- id: C169
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: gamma recovery requires J>=50 at AUC>=0.55
+  type: quantitative
+  evidence:
+  - source: registry
+    detail: simulation runs
+  decisions: []
+  deprecated: false
+- id: C170
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'ARC bootstrap stability is substantially lower than MMLU (OLMo-2: 53.3%,
+    Gemma-2: 62.7%)'
+  type: quantitative
+  evidence:
+  - source: bootstrap analysis
+    detail: B=10000 item-level bootstrap on ARC-Challenge 1172 items
+  decisions:
+  - D157
+  deprecated: false
+- id: C171
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Gemma-2 ARC delta CI crosses zero [-2.47, +0.09]pp
+  type: quantitative
+  evidence:
+  - source: bootstrap analysis
+    detail: B=10000 paired bootstrap
+  decisions:
+  - D157
+  deprecated: false
+- id: C172
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Qwen-14B exhibits V-recovery on ARC rather than U-collapse
+  type: qualitative
+  evidence:
+  - source: bootstrap analysis
+    detail: ARC dose-response pattern classification
+  decisions:
+  - D157
+  deprecated: false
+- id: C173
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: IRT fitted on random subsample of 300 items (seed=42), representative by KS
+    test (p=0.946) and chi-squared domain test (p=0.574)
+  type: methodological
+  evidence:
+  - exp_id: W5_code_audit
+    detail: Code uses np.random.choice(14042, 300, seed=42); distribution analysis
+      confirms representativeness
+  decisions: []
+  deprecated: false
+- id: C174
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: S1-only pipeline shows PPP<0.001 vs 0.193 for RRF on MMLU, confirming multi-signal
+    fusion necessity
+  type: quantitative
+  evidence:
+  - exp_id: s1_only_pipeline_ablation
+    detail: RRF PPP=0.193, S1-only PPP=0.0003 on MMLU J=16
+  decisions: []
+  deprecated: false
+tables:
+- id: tab:domain_gamma
+  location:
+    section: results
+    table_number: 0
+  caption: ''
+  cells:
+  - row: 'MMLU: Math'
+    col: gamma
+    value: +0.97 [0.53, 1.43]
+    source:
+      exp_id: exp-006
+      metric: gamma_math_ci
+  - row: 'MMLU: Science'
+    col: gamma
+    value: +0.84 [0.39, 1.27]
+    source:
+      exp_id: exp-006
+      metric: gamma_science_ci
+  - row: ARC-Challenge
+    col: gamma
+    value: '-1.46'
+    source:
+      exp_id: exp-006
+      metric: gamma_arc
+  deprecated: true
+- id: tab:baselines
+  location:
+    section: results
+    table_number: 0
+  caption: ''
+  cells:
+  - row: B0-Raw
+    col: ARC MAE
+    value: '0.034'
+    source:
+      exp_id: exp-006
+      metric: mae_arc_raw
+  - row: B3-Vanilla4PL
+    col: ARC MAE
+    value: '0.016'
+    source:
+      exp_id: exp-006
+      metric: mae_arc_vanilla
+  - row: ContamCal
+    col: ARC MAE
+    value: '0.020'
+    source:
+      exp_id: exp-006
+      metric: mae_arc_2plgamma
+  - row: B0-Raw
+    col: GSM8K MAE
+    value: '0.169'
+    source:
+      exp_id: exp-006
+      metric: mae_gsm8k_raw
+  - row: B3-Vanilla4PL
+    col: GSM8K MAE
+    value: '0.006'
+    source:
+      exp_id: exp-006
+      metric: mae_gsm8k_vanilla
+  - row: ContamCal
+    col: GSM8K MAE
+    value: '0.006'
+    source:
+      exp_id: exp-006
+      metric: mae_gsm8k_2plgamma
+  deprecated: true
+figures:
+- id: fig_pipeline
+  location:
+    section: method
+    figure_number: 0
+  caption: ContamCal 2-stage diagnostic pipeline
+  type: conceptual_diagram
+  source:
+    exp_id: none
+    metric: none
+  output_path: figures/paper/fig_pipeline.pdf
+  deprecated: false
+- id: fig_domain_gamma
+  location:
+    section: results
+    figure_number: 0
+  caption: MMLU domain-level contamination effects (2PL+gamma, N=24)
+  type: forest_plot
+  source:
+    exp_id: exp-006
+    metric: domain_gamma_estimates
+  output_path: figures/paper/fig_domain_gamma.pdf
+  deprecated: true
+- id: fig_dose_response
+  location:
+    section: results
+    figure_number: 0
+  caption: Dose-response curves across scales and benchmarks
+  type: line_plot
+  source:
+    exp_id: exp-006
+    metric: dose_response_accuracy
+  output_path: figures/paper/fig_dose_response.pdf
+  deprecated: true
+- id: fig_signal_heatmap
+  location:
+    section: results
+    figure_number: 0
+  caption: Detection signal AUC across scale-dosage combinations
+  type: heatmap
+  source:
+    exp_id: exp-008
+    metric: signal_auc_matrix
+  output_path: figures/paper/fig_signal_heatmap.pdf
+  deprecated: true
+- id: fig_identifiability_heatmap
+  location:
+    section: results
+    figure_number: 0
+  caption: 'Identifiability simulation: bias and CI coverage vs AUC and J'
+  type: heatmap
+  source:
+    exp_id: exp-004
+    metric: identifiability_sweep
+  output_path: figures/paper/fig_identifiability_heatmap.pdf
+  deprecated: true
+_completeness:
+  coverage: 24/25
+  claims: 24
+  tables: 0
+  figures: 1
+  tier_counts:
+    tier1: 0
+    tier2: 24
+    tier3: 1
+    tierX: 0
+  last_checked: '2026-05-23T09:21:38.851236+00:00'

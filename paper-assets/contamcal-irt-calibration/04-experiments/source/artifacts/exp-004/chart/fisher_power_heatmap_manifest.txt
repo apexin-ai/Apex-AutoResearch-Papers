@@ -1,0 +1,21 @@
+Server: cqa1-21977
+Files:
+  - /root/autodl-tmp/exp004/fisher_heatmap/fisher_power_heatmap.pdf (single panel, 99KB)
+  - /root/autodl-tmp/exp004/fisher_heatmap/fisher_power_heatmap.png (single panel, 275KB)
+  - /root/autodl-tmp/exp004/fisher_heatmap/fisher_dual_heatmap.pdf (dual panel, 142KB)
+  - /root/autodl-tmp/exp004/fisher_heatmap/fisher_dual_heatmap.png (dual panel, 348KB)
+  - /root/autodl-tmp/exp004/fisher_heatmap/results_v2.json (raw data)
+  - /root/autodl-tmp/exp004/fisher_heatmap/run_fisher_v2.py (computation script)
+  - /root/autodl-tmp/exp004/fisher_heatmap/plot_heatmap.py (plotting script)
+
+Method: Analytical Fisher Information Matrix with Schur complement for CRLB.
+Model: 2PL+gamma, delta_true=0.5, J=300 items, exposure_rate=0.30, 50 MC draws per cell.
+Signal attenuation correction: gamma_effective = delta * reliability(AUC).
+
+Key Results (80% power threshold):
+  AUC=0.65 requires N~50
+  AUC=0.70 requires N~30
+  AUC=0.75 requires N~20
+  AUC=0.80 requires N~12-16
+
+Paper support: AUC>=0.70 with N>=30 gives power=0.82, confirming the empirical threshold.

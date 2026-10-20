@@ -1,0 +1,16 @@
+paper_key: "sinharay_2025_irt_fit"
+title: "Assessment of Fit of Item Response Theory Models: A Critical Review of the Status Quo and Some Future Directions"
+venue: "British Journal of Mathematical and Statistical Psychology, 78, 711–733"
+full_text_available: false
+
+research:
+  baselines: [chi-square tests, classical test theory]
+  metrics:
+    - {name: "PPMC", direction: "descriptive"}
+    - {name: "generalized residuals", direction: "descriptive"}
+    - {name: "person-fit statistics", direction: "descriptive"}
+  datasets:
+    - {name: "educational testing datasets", size: "various"}
+  ablation_dimensions: [IRT model type, fit statistic choice, sample size]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "IRT model fit assessment"

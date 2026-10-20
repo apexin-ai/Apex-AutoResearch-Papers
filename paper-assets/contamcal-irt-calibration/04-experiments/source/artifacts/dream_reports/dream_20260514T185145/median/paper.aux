@@ -1,0 +1,165 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023chatgpt,li2024task}
+\citation{shi2024detecting,yang2023rethinking,golchin2024time,oren2024proving}
+\citation{white2024livebench,li2024task}
+\citation{zhang2025emperor}
+\citation{eckerly2017detecting,sinharay2017assessment}
+\citation{deboeck2004explanatory}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{shi2024detecting}
+\citation{yang2023rethinking}
+\citation{golchin2024time}
+\citation{shokri2017membership,carlini2022quantifying}
+\citation{li2024task}
+\citation{white2024livebench}
+\citation{zhang2025emperor}
+\citation{oren2024proving}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{deboeck2004explanatory}
+\citation{eckerly2017detecting,sinharay2017assessment}
+\citation{guo2017calibration,platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\@writefile{toc}{\contentsline {paragraph}{C1: Signal Characterization.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C2: Identifiability Boundaries.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C3: Calibration Proof-of-Concept.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Mitigation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration Disambiguation.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{yang2023rethinking}
+\citation{cormack2009reciprocal}
+\citation{mislevy1986recent}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The \textsc  {ContamCal}{} pipeline.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{3}{The \contamcal {} pipeline}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detection Signals}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Reciprocal Rank Fusion}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{eq:rrf}{{1}{3}{Reciprocal Rank Fusion}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Contamination-Augmented 4PL IRT}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:irt_model}{{3.4}{3}{Contamination-Augmented 4PL IRT}{subsection.3.4}{}}
+\newlabel{eq:4pl_gamma}{{2}{3}{Contamination-Augmented 4PL IRT}{equation.2}{}}
+\citation{oren2024proving}
+\citation{talts2018validating}
+\@writefile{toc}{\contentsline {paragraph}{Measurement Error Extension.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Fisher Information Identifiability Analysis}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:fisher}{{3.5}{4}{Fisher Information Identifiability Analysis}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Controlled Contamination.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Metrics.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Signal Characterization}{4}{section.5}\protected@file@percent }
+\newlabel{sec:signal_char}{{5}{4}{Signal Characterization}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Signal $\times $ Scale $\times $ Benchmark AUC}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Detection signal AUC at $d$005 across scales and benchmarks. Only S1 (Embedding) achieves practical detection (AUC$>$0.70). S2--S4 remain near chance across all scales.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:signal_auc}{{1}{5}{Detection signal AUC at $d$005 across scales and benchmarks. Only S1 (Embedding) achieves practical detection (AUC$>$0.70). S2--S4 remain near chance across all scales}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model Cohen's $d$ ($d$100 vs.\ $d$000). Negative $d$ for S2 indicates directional reversal: Min-K++ assigns \emph  {lower} anomaly scores to contaminated models.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:cohens_d}{{2}{5}{Cross-model Cohen's $d$ ($d$100 vs.\ $d$000). Negative $d$ for S2 indicates directional reversal: Min-K++ assigns \emph {lower} anomaly scores to contaminated models}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Min-K++ Directional Reversal}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:reversal}{{5.2}{5}{Min-K++ Directional Reversal}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Instruct Model Signal Degradation}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}RRF Aggregation Ablation}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:rrf}{{5.4}{5}{RRF Aggregation Ablation}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RRF aggregation ablation ($d$005, averaged across benchmarks).}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:rrf}{{3}{6}{RRF aggregation ablation ($d$005, averaged across benchmarks)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Identifiability phase diagram: $\gamma $ RMSE across signal quality (AUC) and sample size ($N_\text  {models}$). Lower is better.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:phase_rmse}{{4}{6}{Identifiability phase diagram: $\gamma $ RMSE across signal quality (AUC) and sample size ($N_\text {models}$). Lower is better}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{False Positive Robustness.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Identifiability Boundaries}{6}{section.6}\protected@file@percent }
+\newlabel{sec:identifiability}{{6}{6}{Identifiability Boundaries}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Simulation Sweep}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Key findings.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Locating our experiments.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Measurement Error Analysis}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 95\% CI coverage across conditions (nominal = 95\%).}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:phase_coverage}{{5}{7}{95\% CI coverage across conditions (nominal = 95\%)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Simple vs.\ ME model comparison ($N=30$, AUC=0.80 simulation).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:me_model}{{6}{7}{Simple vs.\ ME model comparison ($N=30$, AUC=0.80 simulation)}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Calibration Results}{7}{section.7}\protected@file@percent }
+\newlabel{sec:calibration}{{7}{7}{Calibration Results}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Controlled SFT Experiments}{7}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage Diagnostics.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model ranking.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Per-Benchmark $\gamma _k$ Posteriors}{7}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Calibration results: MAE (pp, lower is better) across methods and benchmarks. Our 4PL+$\gamma $ achieves competitive MAE with the unique addition of formal Bayesian CIs.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:calibration_main}{{7}{8}{Calibration results: MAE (pp, lower is better) across methods and benchmarks. Our 4PL+$\gamma $ achieves competitive MAE with the unique addition of formal Bayesian CIs}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-benchmark $\gamma _k$ posterior summaries. Only GSM8K's CI reliably excludes zero.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:gamma}{{8}{8}{Per-benchmark $\gamma _k$ posterior summaries. Only GSM8K's CI reliably excludes zero}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}7B Scale Bridging}{8}{subsection.7.3}\protected@file@percent }
+\newlabel{sec:7b}{{7.3}{8}{7B Scale Bridging}{subsection.7.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}RL Observational Case Study}{8}{subsection.7.4}\protected@file@percent }
+\newlabel{sec:rl}{{7.4}{8}{RL Observational Case Study}{subsection.7.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Specificity Check.}{8}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 7B dose-response (accuracy, seed-averaged).}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:7b_dose}{{9}{9}{7B dose-response (accuracy, seed-averaged)}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Contamination inflation ($d$100$-$$d$000, pp) across scales. 0.5B forgetting is Qwen2.5-specific at small scale; 7B shows clean monotonic inflation.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:inflation_scale}{{10}{9}{Contamination inflation ($d$100$-$$d$000, pp) across scales. 0.5B forgetting is Qwen2.5-specific at small scale; 7B shows clean monotonic inflation}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Expected Regret.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Additional Analyses}{9}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Closed-Weight 2-Signal Mode}{9}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Multi-Family Validation}{9}{subsection.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}72B Observational Analysis}{9}{subsection.8.3}\protected@file@percent }
+\citation{reckase2009multidimensional,burnell2023rethinking}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces RL observational results (MMLU). Wide CIs reflect degraded signal quality.}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:rl_obs}{{11}{10}{RL observational results (MMLU). Wide CIs reflect degraded signal quality}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces 2-signal (closed-weight) vs.\ 4-signal calibration.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:2signal}{{12}{10}{2-signal (closed-weight) vs.\ 4-signal calibration}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion and Limitations}{10}{section.9}\protected@file@percent }
+\newlabel{sec:discussion}{{9}{10}{Discussion and Limitations}{section.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Single Effective Signal.}{10}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SFT $\neq  $ Real Contamination.}{10}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage Gap.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Catastrophic Forgetting at 0.5B.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{3B GSM8K Artifact.}{10}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single Model Family.}{10}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multidimensional Ability.}{10}{section*.26}\protected@file@percent }
+\bibdata{references}
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{burnell2023rethinking}{{2}{2023}{{Burnell et~al.}}{{}}}
+\bibcite{carlini2022quantifying}{{3}{2022}{{Carlini et~al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{4}{2009}{{Cormack et~al.}}{{Cormack, Clarke, and Buettcher}}}
+\bibcite{deboeck2004explanatory}{{5}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{eckerly2017detecting}{{6}{2017}{{Eckerly}}{{}}}
+\bibcite{golchin2024time}{{7}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{guo2017calibration}{{8}{2017}{{Guo et~al.}}{{}}}
+\bibcite{lalor2024benchmarking}{{9}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{li2024task}{{10}{2024}{{Li and Flanigan}}{{}}}
+\bibcite{mislevy1986recent}{{11}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{12}{2024}{{Oren et~al.}}{{}}}
+\bibcite{platt1999probabilistic}{{13}{1999}{{Platt}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-family $\gamma _k$ comparison. Direction is consistent ($r = 0.72$); magnitude differs.}}{11}{table.13}\protected@file@percent }
+\newlabel{tab:cross_family}{{13}{11}{Cross-family $\gamma _k$ comparison. Direction is consistent ($r = 0.72$); magnitude differs}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{11}{section.10}\protected@file@percent }
+\newlabel{sec:conclusion}{{10}{11}{Conclusion}{section.10}{}}
+\bibcite{polo2024tinybenchmarks}{{14}{2024}{{Polo et~al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{15}{2009}{{Reckase}}{{}}}
+\bibcite{sainz2023chatgpt}{{16}{2023}{{Sainz et~al.}}{{}}}
+\bibcite{shi2024detecting}{{17}{2024}{{Shi et~al.}}{{}}}
+\bibcite{shokri2017membership}{{18}{2017}{{Shokri et~al.}}{{}}}
+\bibcite{sinharay2017assessment}{{19}{2017}{{Sinharay}}{{}}}
+\bibcite{talts2018validating}{{20}{2018}{{Talts et~al.}}{{}}}
+\bibcite{white2024livebench}{{21}{2024}{{White et~al.}}{{}}}
+\bibcite{yang2023rethinking}{{22}{2023}{{Yang et~al.}}{{}}}
+\bibcite{zhang2025emperor}{{23}{2025}{{Zhang et~al.}}{{}}}
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Fisher Information Derivation}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:fisher}{{A}{12}{Fisher Information Derivation}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}MCMC Diagnostics}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:mcmc}{{B}{12}{MCMC Diagnostics}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}HumanEval Results}{13}{appendix.C}\protected@file@percent }
+\newlabel{app:humaneval}{{C}{13}{HumanEval Results}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}CI Width Phase Diagram}{13}{appendix.D}\protected@file@percent }
+\newlabel{app:ci_width}{{D}{13}{CI Width Phase Diagram}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces 95\% CI width (pp) from simulation sweep.}}{13}{table.14}\protected@file@percent }
+\gdef \@abspage@last{13}

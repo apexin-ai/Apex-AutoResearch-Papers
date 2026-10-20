@@ -1,0 +1,12 @@
+Remote path: /root/autodl-tmp/exp006/figures/ci_width_scaling.pdf (and .png)
+Server: cqa1-21977
+Script: /root/contamcal-irt-calibration/exp004_sim_sweep/plot_fisher_heatmap.py
+
+Global power-law fit: CI_width ∝ N^{-0.4820}
+Per-AUC exponents:
+  AUC=0.55: α=-0.4394
+  AUC=0.65: α=-0.4693
+  AUC=0.80: α=-0.5053
+  AUC=0.90: α=-0.5141
+
+Consistent with theoretical √N rate (α=-0.5), slight deviation due to finite-sample prior influence at small N.

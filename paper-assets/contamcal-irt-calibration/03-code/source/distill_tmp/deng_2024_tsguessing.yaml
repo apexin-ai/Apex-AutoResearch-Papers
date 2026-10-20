@@ -1,0 +1,87 @@
+paper_key: "deng_2024_tsguessing"
+title: "Investigating Data Contamination in Modern Benchmarks for Large Language Models"
+venue: "NAACL 2024"
+full_text_available: true
+
+research:
+  baselines: [BM25 retrieval, SacreBLEU, Rouge-L, BLEURT, GPTscore, random baseline]
+  metrics:
+    - {name: "Exact Match (EM)", direction: "higher_better"}
+    - {name: "Spearman correlation", direction: "higher_better"}
+    - {name: "Rouge-L F1", direction: "higher_better"}
+  datasets:
+    - {name: "MMLU", size: "standard"}
+    - {name: "TruthfulQA", size: "standard"}
+    - {name: "HellaSwag", size: "standard"}
+    - {name: "WinoGrande", size: "standard"}
+    - {name: "GSM8K", size: "standard"}
+    - {name: "OpenbookQA", size: "standard"}
+    - {name: "PIQA", size: "standard"}
+    - {name: "The Pile", size: "corpus"}
+    - {name: "C4", size: "corpus"}
+  ablation_dimensions: [query strategy (question-only vs question+label), masking position, hint types (URL, date)]
+  training_recipe: {optimizer: "N/A (inference-only detection)", lr: "N/A", hardware: "not specified"}
+  method_family: "membership inference via slot guessing"
+
+positioning:
+  core_claim: "TS-Guessing can detect benchmark contamination in both open-source and proprietary models by asking them to fill masked benchmark slots, revealing memorization without requiring training corpus access"
+  key_results: "ChatGPT 52% EM on MMLU masked options; GPT-4 57% EM; Claude-2 23% EM on TruthfulQA; LLaMA-2 near 0% (minimal contamination signal)"
+  limitations:
+    - "BM25 retrieval may miss semantic matches; takes 2-3 minutes per data point"
+    - "Text similarity metrics are superficial for true contamination detection"
+    - "TS-Guessing relies on instruction comprehension; open-source models often predict correct answers regardless"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Disparity between inflated benchmark scores and actual LLM performance raises evaluation integrity concerns"
+  tension: "Existing detection requires training corpus access (impossible for proprietary models); no method works for both open and closed models"
+  key_insight: "If a model memorized a benchmark, it should be able to fill in masked wrong answer options — a task impossible without memorization"
+  argument_chain: "contamination suspected → retrieval confirms in open corpora → TS-Guessing tests memorization via slot filling → validated by fine-tuning (near 100% EM) → applied to real models"
+  contribution_framing: "Three contributions: retrieval system, TS-Guessing protocol, empirical findings on major LLMs"
+  intro_structure: "4 paragraphs: problem → retrieval approach → TS-Guessing innovation → empirical scope"
+  notable_technique: "Validation experiment: fine-tuning ChatGPT on MMLU drives TS-Guessing EM from ~0% to ~100%, proving method sensitivity"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Side-by-side illustration of retrieval workflow and TS-Guessing masking protocol"
+    narrative_role: "Shows both complementary detection approaches at a glance"
+    design_elements: ["dual-panel layout", "prompt templates", "masking examples"]
+    visual_style: "Clean two-column comparison with annotated prompt examples"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Spearman correlations between automatic metrics and human evaluations"
+      how_gain_highlighted: "GPTscore bar clearly tallest"
+      design_note: "100 human-annotated examples as ground truth adds credibility"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "ChatGPT EM rate progression under increasing fine-tuning contamination"
+      how_gain_highlighted: "Near 0% → ~100% curve validates method sensitivity"
+      design_note: "Single clean curve makes the sensitivity argument visually compelling"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (method overview) → Figure 3 (metric validation) → Figure 4 (sensitivity validation) → Tables (full results)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (models)"
+    col_axis: "benchmarks × EM rate"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold high EM values"
+    statistical_reporting: "percentage EM rates"
+    num_baselines: 6
+    design_note: "Clear model × benchmark grid; open-source vs closed-source separation"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["query concatenation strategy"]
+      variation_style: "full_numbers"
+      design_note: "Appendix table comparing BM25 retrieval strategies"
+  supplementary_tables:
+    in_appendix: true
+    content: "Query strategy ablation, additional TruthfulQA-C4 overlap examples, correlation analysis"
+    reason: "Core results in main paper; methodological details and extended analysis in appendix"

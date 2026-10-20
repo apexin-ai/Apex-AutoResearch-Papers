@@ -1,0 +1,75 @@
+paper_key: "zhang_2024_minkpp"
+title: "Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines: [Loss, Ref (reference model), Zlib, Lowercase, Neighbor (perturbation-based), Min-K%]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "TPR@FPR=5%", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA", size: "temporal split, 32/64/128 token lengths, original + paraphrased"}
+    - {name: "MIMIR", size: "7 Pile subsets (Wikipedia, Github, Pile-CC, PubMed, ArXiv, Math, HackerNews)"}
+  ablation_dimensions: [k% value (10-100), normalization components (mean, std, both), model scale, dataset domain]
+  training_recipe: {optimizer: "N/A (inference-only detection)", lr: "N/A", hardware: "not specified"}
+  method_family: "token-level membership inference"
+
+positioning:
+  core_claim: "Normalizing token log-probability with vocabulary-level statistics (mean and std) captures relative likelihood information that raw probability misses, yielding a theoretically grounded MIA baseline"
+  key_results: "WikiMIA: 6.2-10.5% AUROC improvement over Min-K% (e.g. LLaMA-13B: 68.0→84.8); MIMIR: on par with reference-based methods without needing reference model; robust to k% hyperparameter (2.7% variation vs 4.4%)"
+  limitations:
+    - "MIMIR performance remains modest (~2-3% gain at 12B) on homogeneous distributions"
+    - "Reference-based methods still marginally better on MIMIR"
+    - "Online detection (mixed member/non-member) drops from ~85% to ~68% AUROC"
+    - "Performance varies across domains (Github strong, math challenging)"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Pre-training data detection matters for copyright and test contamination, but existing methods lack theoretical grounding"
+  tension: "Min-K% and other heuristics work empirically but have no principled foundation — why should lowest-probability tokens be informative?"
+  key_insight: "Training via MLE makes training samples local maxima of the modeled distribution. The normalized score (log p - μ) / σ approximates the negative Hessian trace — a quantity minimized during training."
+  argument_chain: "MLE training → local maxima property → score matching connection → normalized probability captures relative likelihood → Min-K%++ formula → validated on WikiMIA + MIMIR"
+  contribution_framing: "Single unified contribution: a theoretically motivated, simple, and effective baseline"
+  intro_structure: "4 paragraphs: problem importance → existing heuristics → theoretical insight → contribution"
+  notable_technique: "Figure 2 motivation example is exceptionally clear: two distributions assign identical probability to target token but differ in relative positioning — instantly communicates why normalization matters"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "teaser_result"
+    description: "ROC curves showing Min-K%++ substantially outperforming baselines on WikiMIA"
+    narrative_role: "Immediate visual evidence of improvement before method explanation"
+    design_elements: ["overlaid ROC curves", "clear separation between methods"]
+    visual_style: "Standard ROC plot with method-colored curves"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "distribution_plot"
+      what_compared: "Two probability distributions with identical target probability but different relative positioning"
+      how_gain_highlighted: "Left: target is highest (mode); Right: target is overshadowed — Min-K%++ distinguishes, Min-K% cannot"
+      design_note: "Motivating example that makes the theoretical contribution visually intuitive"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (ROC teaser) → Figure 2 (motivation: why normalization) → Tables (comprehensive results)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "models × token lengths × text formats"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "AUROC percentages"
+    num_baselines: 6
+    design_note: "Comprehensive grid: 9 models × 3 lengths × 2 formats; Min-K%++ dominates nearly every cell"
+  ablation_tables:
+    - table_id: "component decomposition (inline)"
+      what_varied: ["mean subtraction", "std division", "combined"]
+      variation_style: "full_numbers"
+      design_note: "Shows both components contribute; combined exceeds sum of individual gains"
+  supplementary_tables:
+    in_appendix: false
+    content: "Two main tables cover WikiMIA and MIMIR comprehensively"
+    reason: "Paper is concise; minimal supplementary material"

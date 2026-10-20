@@ -1,0 +1,26 @@
+2026-05-16 07:19:04,868 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B
+2026-05-16 07:19:05,089 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 86.78it/s]
+2026-05-16 07:19:05,271 [INFO] LoRA config: r=16, alpha=32, targets={'v_proj', 'up_proj', 'down_proj', 'o_proj', 'q_proj', 'k_proj', 'gate_proj'}
+2026-05-16 07:19:05,271 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl
+2026-05-16 07:19:06,401 [INFO] Training samples: 54133
+2026-05-16 07:19:08,125 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 320, in <module>
+    lib = get_native_library()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 298, in get_native_library
+    dll = ct.cdll.LoadLibrary(str(binary_path))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 460, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+2026-05-16 07:19:12,383 [INFO] Starting training...
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+  0%|          | 0/3384 [00:00<?, ?it/s]  0%|          | 1/3384 [00:06<5:51:41,  6.24s/it]  0%|          | 2/3384 [00:11<5:06:58,  5.45s/it]  0%|          | 3/3384 [00:15<4:40:09,  4.97s/it]  0%|          | 4/3384 [00:20<4:30:31,  4.80s/it]  0%|          | 5/3384 [00:24<4:12:49,  4.49s/it]  0%|          | 6/3384 [00:28<4:09:08,  4.43s/it]  0%|          | 7/3384 [00:32<4:10:19,  4.45s/it]  0%|          | 8/3384 [00:37<4:08:17,  4.41s/it]  0%|          | 9/3384 [00:41<4:14:57,  4.53s/it]  0%|          | 10/3384 [00:46<4:18:11,  4.59s/it]                                                     0%|          | 10/3384 [00:46<4:18:11,  4.59s/it]  0%|          | 11/3384 [00:50<4:12:01,  4.48s/it]  0%|          | 12/3384 [00:54<4:03:50,  4.34s/it]  0%|          | 13/3384 [00:59<4:02:22,  4.31s/it]  0%|          | 14/3384 [01:03<3:59:02,  4.26s/it]  0%|          | 15/3384 [01:07<4:03:53,  4.34s/it]  0%|          | 16/3384 [01:11<3:55:54,  4.20s/it]  1%|          | 17/3384 [01:16<3:57:50,  4.24s/it]  1%|          | 18/3384 [01:20<4:09:07,  4.44s/it]  1%|          | 19/3384 [01:25<4:08:18,  4.43s/it]  1%|          | 20/3384 [01:29<4:03:50,  4.35s/it]                                                     1%|          | 20/3384 [01:29<4:03:50,  4.35s/it]  1%|          | 21/3384 [01:33<4:00:43,  4.29s/it]  1%|          | 22/3384 [01:37<4:00:51,  4.30s/it]Terminated
+EXIT_CODE=143

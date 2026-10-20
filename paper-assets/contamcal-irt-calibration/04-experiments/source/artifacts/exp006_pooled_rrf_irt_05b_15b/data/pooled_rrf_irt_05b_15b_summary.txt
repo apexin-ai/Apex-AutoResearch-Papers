@@ -1,0 +1,5 @@
+Results at server: /root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b/pooled_rrf_irt_results.json
+
+Summary:
+GSM8K (N=11, 0.5B+1.5B): γ̂=0.0128 [-0.990, 1.019], R̂=1.007, ESS=1300, div=0, PPP=0.663, rawMAE=0.150, calMAE=0.037, ΔMAE=+0.113
+ARC (N=5, 1.5B only): γ̂=1.2259 [-0.271, 2.857], R̂=1.007, ESS=1480, div=0, PPP=0.000, rawMAE=0.004, calMAE=0.068, ΔMAE=-0.064

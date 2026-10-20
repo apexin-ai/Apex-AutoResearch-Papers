@@ -1,0 +1,88 @@
+{
+  "experiment": "exp-005 v3",
+  "description": "Noise propagation: \u03c3_e \u2192 CI width (analytic ME model)",
+  "config": {
+    "n_models": 30,
+    "n_items": 300,
+    "true_gamma": 0.5,
+    "sigma_e_levels": [
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "n_seeds": 5,
+    "base_seed": 42,
+    "me_model_type": "analytic"
+  },
+  "aggregated": {
+    "0.1": {
+      "me_ci_mean": 0.099881,
+      "me_ci_std": 0.001019,
+      "simple_ci_mean": 0.100044,
+      "simple_ci_std": 0.001103,
+      "n_runs": 5,
+      "n_converged_me": 5,
+      "n_converged_simple": 5
+    },
+    "0.3": {
+      "me_ci_mean": 0.099684,
+      "me_ci_std": 0.001094,
+      "simple_ci_mean": 0.099983,
+      "simple_ci_std": 0.001244,
+      "n_runs": 5,
+      "n_converged_me": 5,
+      "n_converged_simple": 5
+    },
+    "0.5": {
+      "me_ci_mean": 0.099834,
+      "me_ci_std": 0.001077,
+      "simple_ci_mean": 0.099759,
+      "simple_ci_std": 0.001312,
+      "n_runs": 5,
+      "n_converged_me": 5,
+      "n_converged_simple": 5
+    },
+    "0.7": {
+      "me_ci_mean": 0.099854,
+      "me_ci_std": 0.001209,
+      "simple_ci_mean": 0.099671,
+      "simple_ci_std": 0.001287,
+      "n_runs": 5,
+      "n_converged_me": 5,
+      "n_converged_simple": 5
+    },
+    "1.0": {
+      "me_ci_mean": 0.100006,
+      "me_ci_std": 0.001223,
+      "simple_ci_mean": 0.099928,
+      "simple_ci_std": 0.00132,
+      "n_runs": 5,
+      "n_converged_me": 5,
+      "n_converged_simple": 5
+    }
+  },
+  "monotonicity_check": {
+    "me_strictly_monotonic": false,
+    "me_spearman_rho": 0.4,
+    "me_spearman_pval": 0.504632,
+    "simple_spearman_rho": -0.7,
+    "simple_spearman_pval": 0.18812,
+    "me_ci_widths": {
+      "0.1": 0.099881,
+      "0.3": 0.099684,
+      "0.5": 0.099834,
+      "0.7": 0.099854,
+      "1.0": 0.100006
+    },
+    "simple_ci_widths": {
+      "0.1": 0.100044,
+      "0.3": 0.099983,
+      "0.5": 0.099759,
+      "0.7": 0.099671,
+      "1.0": 0.099928
+    }
+  },
+  "verdict": "INCONCLUSIVE: weak monotonic relationship"
+}

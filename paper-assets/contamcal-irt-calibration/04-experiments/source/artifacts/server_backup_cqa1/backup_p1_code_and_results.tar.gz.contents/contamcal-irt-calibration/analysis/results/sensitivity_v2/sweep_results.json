@@ -1,0 +1,1622 @@
+{
+  "tau=0.5_sigma=3.0": {
+    "tau": 0.5,
+    "sigma": 3.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.5_sigma=4.0": {
+    "tau": 0.5,
+    "sigma": 4.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.5_sigma=5.0": {
+    "tau": 0.5,
+    "sigma": 5.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.5_sigma=6.0": {
+    "tau": 0.5,
+    "sigma": 6.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.5_sigma=7.0": {
+    "tau": 0.5,
+    "sigma": 7.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.75_sigma=3.0": {
+    "tau": 0.75,
+    "sigma": 3.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.75_sigma=4.0": {
+    "tau": 0.75,
+    "sigma": 4.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.75_sigma=5.0": {
+    "tau": 0.75,
+    "sigma": 5.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.75_sigma=6.0": {
+    "tau": 0.75,
+    "sigma": 6.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=0.75_sigma=7.0": {
+    "tau": 0.75,
+    "sigma": 7.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.0_sigma=3.0": {
+    "tau": 1.0,
+    "sigma": 3.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.0_sigma=4.0": {
+    "tau": 1.0,
+    "sigma": 4.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.0_sigma=5.0": {
+    "tau": 1.0,
+    "sigma": 5.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.0_sigma=6.0": {
+    "tau": 1.0,
+    "sigma": 6.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.0_sigma=7.0": {
+    "tau": 1.0,
+    "sigma": 7.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.25_sigma=3.0": {
+    "tau": 1.25,
+    "sigma": 3.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.25_sigma=4.0": {
+    "tau": 1.25,
+    "sigma": 4.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.25_sigma=5.0": {
+    "tau": 1.25,
+    "sigma": 5.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.25_sigma=6.0": {
+    "tau": 1.25,
+    "sigma": 6.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.25_sigma=7.0": {
+    "tau": 1.25,
+    "sigma": 7.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.5_sigma=3.0": {
+    "tau": 1.5,
+    "sigma": 3.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.5_sigma=4.0": {
+    "tau": 1.5,
+    "sigma": 4.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.5_sigma=5.0": {
+    "tau": 1.5,
+    "sigma": 5.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.5_sigma=6.0": {
+    "tau": 1.5,
+    "sigma": 6.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=1.5_sigma=7.0": {
+    "tau": 1.5,
+    "sigma": 7.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "V-recovery",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=2.0_sigma=3.0": {
+    "tau": 2.0,
+    "sigma": 3.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=2.0_sigma=4.0": {
+    "tau": 2.0,
+    "sigma": 4.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=2.0_sigma=5.0": {
+    "tau": 2.0,
+    "sigma": 5.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=2.0_sigma=6.0": {
+    "tau": 2.0,
+    "sigma": 6.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  },
+  "tau=2.0_sigma=7.0": {
+    "tau": 2.0,
+    "sigma": 7.0,
+    "classifications": {
+      "Phi-4 s42": {
+        "v2": "Immune",
+        "v1": "Immune",
+        "expected": "Immune",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-14B s42": {
+        "v2": "U-collapse",
+        "v1": "U-collapse",
+        "expected": "U-collapse",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s42": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      },
+      "Gemma-2 s42": {
+        "v2": "Benefit",
+        "v1": "Benefit",
+        "expected": "Benefit",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "OLMo-2 s42": {
+        "v2": "Benefit-sat",
+        "v1": "Benefit-sat",
+        "expected": "Benefit-sat",
+        "v2_correct": true,
+        "v1_correct": true,
+        "changed": false
+      },
+      "Qwen-7B s123": {
+        "v2": "V-recovery",
+        "v1": "Immune",
+        "expected": "V-recovery",
+        "v2_correct": true,
+        "v1_correct": false,
+        "changed": true
+      }
+    }
+  }
+}

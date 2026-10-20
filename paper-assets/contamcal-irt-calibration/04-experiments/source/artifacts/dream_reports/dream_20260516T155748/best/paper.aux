@@ -1,0 +1,135 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023nlp,jacovi2023stop,balloccu2024leak}
+\citation{yang2023rethinking,golchin2024time}
+\citation{dong2025emperor}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{zhang2024kds}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{oren2024proving}
+\citation{eckerly2017detecting,sinharay2017assessing}
+\citation{deboeck2004explanatory}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{xu2024benchmarking}
+\citation{shokri2017membership,carlini2022quantifying}
+\citation{zhang2024kds}
+\citation{deng2024investigating}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{liang2023holistic}
+\citation{zheng2023judging}
+\citation{burnell2023rethink}
+\citation{oren2024proving}
+\citation{white2024livebench}
+\citation{dong2025emperor}
+\citation{holland1993differential,thissen1993detection,zumbo1999handbook}
+\citation{guo2017calibration,platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Score Adjustment.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Theoretical Foundations.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Contamination Signal: Embedding Similarity (S1)}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Contamination-Augmented IRT}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Calibration Gating}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:gating}{{3.3}{3}{Calibration Gating}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Fisher Information and Identifiability}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled SFT Injection}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scale modulation: accuracy delta ($d_{100} - d_{000}$, in percentage points) across Qwen2.5 scales.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:scale_modulation}{{1}{4}{Scale modulation: accuracy delta ($d_{100} - d_{000}$, in percentage points) across Qwen2.5 scales}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Observational Extension}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Scale Modulation of Contamination Effects}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Family Domain Heterogeneity}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:cross_family}{{5.2}{4}{Cross-Family Domain Heterogeneity}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Benchmark-Level IRT Results}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:benchmark_irt}{{5.3}{4}{Benchmark-Level IRT Results}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-family MMLU domain $\gamma $ comparison. Direction match across families establishes contamination susceptibility as a benchmark$\times $domain property.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:domain_gamma}{{2}{5}{Cross-family MMLU domain $\gamma $ comparison. Direction match across families establishes contamination susceptibility as a benchmark$\times $domain property}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-family benchmark $\gamma $ summary. ARC forgetting achieves significance in pooled cross-family 4PL+$\gamma $ ($N\!=\!30$).}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:benchmark_gamma}{{3}{5}{Cross-family benchmark $\gamma $ summary. ARC forgetting achieves significance in pooled cross-family 4PL+$\gamma $ ($N\!=\!30$)}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}IRT vs.\ Linear Regression}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Calibration Gating in Practice}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}QC-Only Design Validation}{5}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Calibration method comparison on ARC ($N\!=\!30$, cross-family). Bootstrap CIs from $B\!=\!5000$ resamples.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:irt_vs_linear}{{4}{6}{Calibration method comparison on ARC ($N\!=\!30$, cross-family). Bootstrap CIs from $B\!=\!5000$ resamples}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces QC-only vs.\ all-paraphrase comparison (Qwen2.5-0.5B, $d_{100}$). S1 AUC improvement confirms $d_{100}$ AUC collapse is a labeling artifact.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:qc_only}{{5}{6}{QC-only vs.\ all-paraphrase comparison (Qwen2.5-0.5B, $d_{100}$). S1 AUC improvement confirms $d_{100}$ AUC collapse is a labeling artifact}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Signal Failure: Min-K++ Directional Reversal}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:signal_ablation}{{5.7}{6}{Signal Failure: Min-K++ Directional Reversal}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Observational Case Study: RL-Trained Models}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:observational}{{5.8}{6}{Observational Case Study: RL-Trained Models}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Expected regret for top-5 model selection ($N\!=\!12$ candidates). Ground truth: held-out WinoGrande.}}{7}{table.caption.10}\protected@file@percent }
+\newlabel{tab:regret}{{6}{7}{Expected regret for top-5 model selection ($N\!=\!12$ candidates). Ground truth: held-out WinoGrande}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Observational vs.\ controlled $\gamma $ comparison. Directions are consistent; CIs widen with noisier observational signals.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:obs_gamma}{{7}{7}{Observational vs.\ controlled $\gamma $ comparison. Directions are consistent; CIs widen with noisier observational signals}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Ecological Validity at 72B}{7}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Closed-Weight 2-Signal Mode}{7}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:closed_weight}{{5.10}{7}{Closed-Weight 2-Signal Mode}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Qwen-Only Pooled IRT (Pre--Cross-Family)}{7}{subsection.5.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Position Bias at Small Scale.}{7}{section*.15}\protected@file@percent }
+\citation{reckase2009multidimensional,burnell2023rethink}
+\citation{reckase2009multidimensional}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Signal mode ablation. S1 carries nearly all discriminative power; 2-signal closed-weight mode degrades below usefulness.}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:signal_ablation}{{8}{8}{Signal mode ablation. S1 carries nearly all discriminative power; 2-signal closed-weight mode degrades below usefulness}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-benchmark gating analysis in 2-signal closed-weight mode. All benchmarks correctly gated out.}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:gating_2signal}{{9}{8}{Per-benchmark gating analysis in 2-signal closed-weight mode. All benchmarks correctly gated out}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{SFT vs.\ Real Contamination.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unidimensional Ability.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage Below Nominal.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-STEM Domain Misfit.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\citation{pruthi2020estimating,park2023trak}
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{balloccu2024leak}{{2}{2024}{{Balloccu et al.}}{{}}}
+\bibcite{burnell2023rethink}{{3}{2023}{{Burnell et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Qwen-only pooled IRT 2PL+$\gamma $ results ($N\!=\!24$, excluding 0.5B).}}{9}{table.caption.14}\protected@file@percent }
+\newlabel{tab:qwen_irt}{{10}{9}{Qwen-only pooled IRT 2PL+$\gamma $ results ($N\!=\!24$, excluding 0.5B)}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}72B Calibration Details}{9}{appendix.A}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces 72B observational calibration. Sub-1pp adjustments confirm raw scores are reliable at frontier scale.}}{9}{table.caption.20}\protected@file@percent }
+\newlabel{tab:72b_cal}{{11}{9}{72B observational calibration. Sub-1pp adjustments confirm raw scores are reliable at frontier scale}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Specificity Check}{9}{appendix.B}\protected@file@percent }
+\bibcite{carlini2022quantifying}{{4}{2022}{{Carlini et al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{5}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{6}{2024}{{Dekoninck et al.}}{{}}}
+\bibcite{deng2024investigating}{{7}{2024}{{Deng et al.}}{{}}}
+\bibcite{dong2025emperor}{{8}{2025}{{Dong et al.}}{{}}}
+\bibcite{eckerly2017detecting}{{9}{2017}{{Eckerly}}{{}}}
+\bibcite{golchin2024time}{{10}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{guo2017calibration}{{11}{2017}{{Guo et al.}}{{}}}
+\bibcite{holland1993differential}{{12}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{jacovi2023stop}{{13}{2023}{{Jacovi et al.}}{{}}}
+\bibcite{lalor2024benchmarking}{{14}{2024}{{Lalor et al.}}{{}}}
+\bibcite{liang2023holistic}{{15}{2023}{{Liang et al.}}{{}}}
+\bibcite{mislevy1986bayes}{{16}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{17}{2024}{{Oren et al.}}{{}}}
+\bibcite{park2023trak}{{18}{2023}{{Park et al.}}{{}}}
+\bibcite{platt1999probabilistic}{{19}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{20}{2024}{{Polo et al.}}{{}}}
+\bibcite{pruthi2020estimating}{{21}{2020}{{Pruthi et al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{22}{2009}{{Reckase}}{{}}}
+\bibcite{sainz2023nlp}{{23}{2023}{{Sainz et al.}}{{}}}
+\bibcite{shi2024detecting}{{24}{2024}{{Shi et al.}}{{}}}
+\bibcite{shokri2017membership}{{25}{2017}{{Shokri et al.}}{{}}}
+\bibcite{sinharay2017assessing}{{26}{2017}{{Sinharay}}{{}}}
+\bibcite{thissen1993detection}{{27}{1993}{{Thissen et al.}}{{}}}
+\bibcite{white2024livebench}{{28}{2024}{{White et al.}}{{}}}
+\bibcite{xu2024benchmarking}{{29}{2024}{{Xu et al.}}{{}}}
+\bibcite{yang2023rethinking}{{30}{2023}{{Yang et al.}}{{}}}
+\bibcite{zhang2024kds}{{31}{2024}{{Zhang et al.}}{{}}}
+\bibcite{zheng2023judging}{{32}{2023}{{Zheng et al.}}{{}}}
+\bibcite{zumbo1999handbook}{{33}{1999}{{Zumbo}}{{}}}
+\gdef \@abspage@last{11}

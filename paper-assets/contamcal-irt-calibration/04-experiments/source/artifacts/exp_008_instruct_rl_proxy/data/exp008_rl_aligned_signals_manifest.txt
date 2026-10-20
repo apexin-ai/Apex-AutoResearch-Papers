@@ -1,0 +1,16 @@
+Status: COMPLETE
+Model: Qwen2.5-0.5B-Instruct (rl_aligned regime)
+Ref model: Qwen2.5-0.5B
+Signals: s1_embedding, s2_minkpp, s4_selfcritique (s3_constat skipped)
+Server: cqa1-21977, GPU 5
+Completed: 2026-05-15 14:03:47
+
+Output files (on server):
+- /root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json (14042 items)
+- /root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json (1319 items)
+- /root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json (1172 items)
+
+Signal format per item: {index, benchmark, s1_embedding, s2_minkpp, s3_constat(null), s4_selfcritique}
+
+Comparison baselines (from exp008_exp002_output/cross_benchmark_summary.json):
+MMLU AUC: d000(clean) s1=0.505 s2=0.509 s4=0.496 | d005(contam) s1=0.953 s2=0.466 s4=0.517

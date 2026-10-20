@@ -1,0 +1,172 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plainnat}
+\citation{xu2024benchmark}
+\citation{balloccu2024leak}
+\citation{xu2025emperor}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{lalor2024aaai,polo2024tinybenchmarks}
+\citation{oren2024dcr}
+\citation{eckerly2017detecting,sinharay2017detection}
+\citation{deboeck2004explanatory}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{dodge2021documenting}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{lalor2024aaai}
+\citation{polo2024tinybenchmarks}
+\citation{deboeck2004explanatory}
+\citation{eckerly2017detecting,sinharay2017detection}
+\citation{xu2025emperor}
+\citation{oren2024dcr}
+\citation{white2024livebench}
+\citation{shokri2017membership,carlini2022extracting}
+\citation{pruthi2020tracin,park2023trak}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Membership inference and data attribution.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Exposure Score Computation}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:stage1}{{3.1}{2}{Stage 1: Exposure Score Computation}{subsection.3.1}{}}
+\citation{shi2024detecting}
+\citation{cormack2009rrf}
+\citation{holland1993dif,zumbo1999dif}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented 4PL IRT}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:stage2}{{3.2}{3}{Stage 2: Contamination-Augmented 4PL IRT}{subsection.3.2}{}}
+\newlabel{eq:4pl_gamma}{{2}{3}{Stage 2: Contamination-Augmented 4PL IRT}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bayesian estimation.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibrated score.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Fisher Information and Identifiability}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:fisher}{{3.3}{3}{Fisher Information and Identifiability}{subsection.3.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Detection AUC at d005 across signal $\times $ scale $\times $ benchmark. S1 (embedding similarity) is the only reliable signal; S2 and S4 remain near chance at all scales.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:signal_auc}{{1}{4}{Detection AUC at d005 across signal $\times $ scale $\times $ benchmark. S1 (embedding similarity) is the only reliable signal; S2 and S4 remain near chance at all scales}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Contamination Injection}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Signal Effectiveness Characterization}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:signals}{{5.1}{4}{Signal Effectiveness Characterization}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Min-K++ directional reversal.}{4}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-model Cohen's $d$ (d100 vs.\ d000). Min-K++ reversal is systematic across all scales. Positive $d$ = correct detection direction.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:cohens_d}{{2}{5}{Cross-model Cohen's $d$ (d100 vs.\ d000). Min-K++ reversal is systematic across all scales. Positive $d$ = correct detection direction}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RRF ablation at 0.5B d005. RRF $\approx $ S1-only when S2/S4 fail. Degraded 2-signal mode (no S1) is chance-level.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:rrf_ablation}{{3}{5}{RRF ablation at 0.5B d005. RRF $\approx $ S1-only when S2/S4 fail. Degraded 2-signal mode (no S1) is chance-level}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}RRF Aggregation and Ablation}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:rrf_results}{{5.2}{5}{RRF Aggregation and Ablation}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{False positive robustness.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Closed-weight limitation.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Dose-Response Characterization}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:dose_response}{{5.3}{5}{Dose-Response Characterization}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Closed-weight degradation. Without embedding access (S1), all metrics collapse.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:closed_weight}{{4}{6}{Closed-weight degradation. Without embedding access (S1), all metrics collapse}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Accuracy (\%) by scale $\times $ dosage. ARC forgetting at 0.5B ($-$17.5pp) attenuates at larger scales. GSM8K at 3B shows format-dependent non-monotonicity.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:dose_response}{{5}{6}{Accuracy (\%) by scale $\times $ dosage. ARC forgetting at 0.5B ($-$17.5pp) attenuates at larger scales. GSM8K at 3B shows format-dependent non-monotonicity}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{7B scale bridging.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}IRT Calibration Results}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:irt}{{5.4}{6}{IRT Calibration Results}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-benchmark $\gamma $ estimates.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle vs.\ S1-only $\gamma $.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MAE comparison.}{6}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 7B dose-response. Contamination effects attenuate at scale; HumanEval is the exception (+10.5pp), reflecting template memorization.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:7b_dose}{{6}{7}{7B dose-response. Contamination effects attenuate at scale; HumanEval is the exception (+10.5pp), reflecting template memorization}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-benchmark $\gamma $ estimates (S1-only, $N{=}16$). Only ARC-Challenge yields a significant estimate, in the forgetting direction. MMLU fails to converge ($\hat  {R}>1.05$, ESS$<$100).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:gamma_estimates}{{7}{7}{Per-benchmark $\gamma $ estimates (S1-only, $N{=}16$). Only ARC-Challenge yields a significant estimate, in the forgetting direction. MMLU fails to converge ($\hat {R}>1.05$, ESS$<$100)}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Coverage, ranking, and model fit.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Identifiability and Coverage Analysis}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:identifiability}{{5.5}{7}{Identifiability and Coverage Analysis}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Simulation sweep.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$\gamma $ RMSE and CI width.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage gap decomposition.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Family Generalization}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:cross_family}{{5.6}{7}{Cross-Family Generalization}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Oracle vs.\ S1-only $\gamma $. S1 amplifies ARC forgetting (2.4$\times $) and loses GSM8K's positive signal entirely.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:oracle_gamma}{{8}{8}{Oracle vs.\ S1-only $\gamma $. S1 amplifies ARC forgetting (2.4$\times $) and loses GSM8K's positive signal entirely}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces MAE (lower is better) vs.\ 7 baselines. \textsc  {ContamCal}{} (4PL+$\gamma $) achieves best ARC MAE but is not uniformly superior. B4 (linear regression) is the strongest overall baseline.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:mae}{{9}{8}{MAE (lower is better) vs.\ 7 baselines. \contamcal {} (4PL+$\gamma $) achieves best ARC MAE but is not uniformly superior. B4 (linear regression) is the strongest overall baseline}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Observational Case Studies}{8}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:observational}{{5.7}{8}{Observational Case Studies}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{RL-trained models.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Specificity check.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{72B observational.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Paraphrase Quality Ablation}{8}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:qc_ablation}{{5.8}{8}{Paraphrase Quality Ablation}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{What \textsc  {ContamCal}{} reveals vs.\ what it recovers.}{8}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Coverage, sharpness, ranking, and posterior predictive $p$-value. Coverage is structurally below nominal due to $N{=}16$ (\S  \ref {sec:identifiability}).}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:coverage}{{10}{9}{Coverage, sharpness, ranking, and posterior predictive $p$-value. Coverage is structurally below nominal due to $N{=}16$ (\S \ref {sec:identifiability})}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Coverage (95\% CI) phase diagram. $N{=}16$ (our operating point) achieves at most 55\% coverage regardless of AUC. $N{\geq }30$ is required for $>$80\% coverage at all AUC levels.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:phase_diagram}{{11}{9}{Coverage (95\% CI) phase diagram. $N{=}16$ (our operating point) achieves at most 55\% coverage regardless of AUC. $N{\geq }30$ is required for $>$80\% coverage at all AUC levels}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{When is calibration needed?}{9}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for signal design.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{9}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Coverage gap.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Closed-weight models.}{9}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single model family.}{9}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SFT $\neq  $ real contamination.}{9}{section*.27}\protected@file@percent }
+\citation{reckase2009mirt,burnell2023mirt_llm}
+\bibcite{adams1997multifaceted}{{1}{1997}{{Adams et~al.}}{{}}}
+\bibcite{angelopoulos2023conformal}{{2}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{balloccu2024leak}{{3}{2024}{{Balloccu et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces $\gamma $ RMSE (top) and 95\% CI width (bottom) by AUC $\times $ $N$.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:gamma_rmse}{{12}{10}{$\gamma $ RMSE (top) and 95\% CI width (bottom) by AUC $\times $ $N$}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Coverage gap decomposition. $>$70\% of the gap is attributable to insufficient $N$, not model misspecification or signal noise.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:coverage_gap}{{13}{10}{Coverage gap decomposition. $>$70\% of the gap is attributable to insufficient $N$, not model misspecification or signal noise}{table.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{MMLU convergence.}{10}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unidimensional $\theta $.}{10}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{10}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{10}{Conclusion}{section.8}{}}
+\bibcite{burnell2023mirt_llm}{{4}{2023}{{Burnell et~al.}}{{}}}
+\bibcite{carlini2022extracting}{{5}{2022}{{Carlini et~al.}}{{}}}
+\bibcite{cormack2009rrf}{{6}{2009}{{Cormack et~al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{7}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{8}{2024}{{DeKoninck et~al.}}{{}}}
+\bibcite{dodge2021documenting}{{9}{2021}{{Dodge et~al.}}{{}}}
+\bibcite{eckerly2017detecting}{{10}{2017}{{Eckerly}}{{}}}
+\bibcite{guo2017calibration}{{11}{2017}{{Guo et~al.}}{{}}}
+\bibcite{holland1993dif}{{12}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{lalor2024aaai}{{13}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{liang2023helm}{{14}{2023}{{Liang et~al.}}{{}}}
+\bibcite{maris2009irt_identifiability}{{15}{2009}{{Maris and Bechger}}{{}}}
+\bibcite{mislevy1986irt_fixed}{{16}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024dcr}{{17}{2024}{{Oren et~al.}}{{}}}
+\bibcite{park2023trak}{{18}{2023}{{Park et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Llama-3.2-1B dose-response. ARC forgetting ($-$14pp) is consistent with Qwen2.5-0.5B ($-$17.5pp), confirming benchmark-dependent contamination behavior.}}{11}{table.14}\protected@file@percent }
+\newlabel{tab:llama_dose}{{14}{11}{Llama-3.2-1B dose-response. ARC forgetting ($-$14pp) is consistent with Qwen2.5-0.5B ($-$17.5pp), confirming benchmark-dependent contamination behavior}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Cross-family pooling. $\gamma $ correlation $r=0.85$ between Qwen and Llama confirms contamination susceptibility is primarily a benchmark property.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:cross_family}{{15}{11}{Cross-family pooling. $\gamma $ correlation $r=0.85$ between Qwen and Llama confirms contamination susceptibility is primarily a benchmark property}{table.15}{}}
+\bibcite{platt1999calibration}{{19}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{20}{2024}{{Polo et~al.}}{{}}}
+\bibcite{pruthi2020tracin}{{21}{2020}{{Pruthi et~al.}}{{}}}
+\bibcite{reckase2009mirt}{{22}{2009}{{Reckase}}{{}}}
+\bibcite{sanmartin2009irt}{{23}{2009}{{San~Mart\'{i}n et~al.}}{{}}}
+\bibcite{shi2024detecting}{{24}{2024}{{Shi et~al.}}{{}}}
+\bibcite{shokri2017membership}{{25}{2017}{{Shokri et~al.}}{{}}}
+\bibcite{sinharay2017detection}{{26}{2017}{{Sinharay}}{{}}}
+\bibcite{talts2018sbc}{{27}{2018}{{Talts et~al.}}{{}}}
+\bibcite{white2024livebench}{{28}{2024}{{White et~al.}}{{}}}
+\bibcite{xu2024benchmark}{{29}{2024}{{Xu et~al.}}{{}}}
+\bibcite{xu2025emperor}{{30}{2025}{{Xu et~al.}}{{}}}
+\bibcite{zheng2023chatbot}{{31}{2023}{{Zheng et~al.}}{{}}}
+\bibcite{zumbo1999dif}{{32}{1999}{{Zumbo}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces QC-only vs.\ all-paraphrase at d100 (0.5B). Differences are small and $\gamma $ difference is not significant.}}{12}{table.16}\protected@file@percent }
+\newlabel{tab:qc_ablation}{{16}{12}{QC-only vs.\ all-paraphrase at d100 (0.5B). Differences are small and $\gamma $ difference is not significant}{table.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Noise Propagation Analysis}{13}{appendix.A}\protected@file@percent }
+\newlabel{app:noise}{{A}{13}{Noise Propagation Analysis}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Paraphrase Quality Ablation}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:qc}{{B}{13}{Paraphrase Quality Ablation}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Expected Regret Analysis}{13}{appendix.C}\protected@file@percent }
+\newlabel{app:regret}{{C}{13}{Expected Regret Analysis}{appendix.C}{}}
+\gdef \@abspage@last{13}

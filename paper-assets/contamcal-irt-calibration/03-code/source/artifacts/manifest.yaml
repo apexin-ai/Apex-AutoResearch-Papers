@@ -1,0 +1,3102 @@
+- id: art_20260513_1366e4
+  name: paper_draft_intro_method_v1
+  type: paper
+  description: ContamCal paper Introduction + Method sections (LaTeX). 6-paragraph
+    Intro + 4-subsection Method with 12 equations and 35 citations. Compiled to 8-page
+    PDF.
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/main.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:30:11.916997+00:00'
+  tags:
+  - paper
+  - introduction
+  - method
+  - latex
+  - v1
+- id: art_20260513_ba9176
+  name: exp001_sft_injection_code
+  type: intermediate
+  description: 'exp-001 SFT injection full pipeline code: paraphrase_gen.py, prepare_sft_data.py,
+    train_sft.py, evaluate.py, run_exp001.sh, requirements.txt'
+  path: projects/contamcal-irt-calibration/artifacts/exp_001_sft_injection/intermediate/run_exp001.sh
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_001_sft_injection
+  skill: ''
+  created_at: '2026-05-13T17:30:40.953430+00:00'
+  tags:
+  - code
+  - sft
+  - exp-001
+  - pipeline
+- id: art_20260513_5fcf01
+  name: paper_draft_related_work_v1
+  type: paper
+  description: 'ContamCal Related Work section (LaTeX). 4 subsections: Detection,
+    Impact+Mitigation, IRT for LLM, Item Compromise in EdMeasurement. 27+ citations
+    with positioning paragraph.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/related_work.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:32:00.543901+00:00'
+  tags:
+  - paper
+  - related-work
+  - latex
+  - v1
+- id: art_20260513_cc3121
+  name: exp002_signal_pipeline_code
+  type: intermediate
+  description: 'exp-002 Stage 1 signal pipeline: 4 detection signals (embedding, Min-K%++,
+    ConStat, Self-Critique) + RRF aggregation + ablation variants'
+  path: projects/contamcal-irt-calibration/artifacts/_project/intermediate/run_exp002.sh
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T17:39:27.614465+00:00'
+  tags:
+  - code
+  - signals
+  - rrf
+  - exp-002
+  - pipeline
+- id: art_20260513_f6a124
+  name: fisher_info_derivation
+  type: paper
+  description: 'Fisher Information derivation for γ in 4PL+γ IRT: Theorem 1 (I(γ)
+    formula), Corollary 1 (AUC-scaling), Corollary 2 (ME attenuation). 6-page LaTeX
+    appendix + Python verification + JSON results. All numerical verifications passed
+    (ratios within [0.998, 1.002]).'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/fisher_info_appendix.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T19:16:01.886039+00:00'
+  tags:
+  - fisher-info
+  - theory
+  - appendix
+  - exp-004
+- id: art_20260513_161eaa
+  name: SFT dosage data (ARC+GSM8K)
+  type: data
+  description: 'SFT training JSONL files at 4 dosage levels (5/25/50/100%) with ARC-Challenge
+    and GSM8K contamination mixed into 50K SlimOrca base. D010: ALL paraphrases used.
+    Path: /root/autodl-tmp/exp001/sft_data/'
+  path: projects/contamcal-irt-calibration/artifacts/exp001/data/sft_dosage_manifest.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp001
+  skill: ''
+  created_at: '2026-05-13T20:18:59.922089+00:00'
+  tags:
+  - sft
+  - contamination
+  - dosage
+  - phase2
+- id: art_20260514_bd446a
+  name: run_irt_stan.py
+  type: intermediate
+  description: CmdStanPy Bayesian IRT calibration pipeline (4PL+γ NUTS) - replaces
+    PyTorch MLE version. Fixes SE computation (posterior SD vs broken finite-diff
+    Hessian) and provides proper Bayesian inference with diagnostics.
+  path: projects/contamcal-irt-calibration/artifacts/exp006/intermediate/run_irt_stan.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-14T01:01:13.347061+00:00'
+  tags:
+  - stan
+  - irt
+  - bayesian
+  - cmdstanpy
+  - calibration
+- id: art_20260514_c35b8b
+  name: exp004_incremental_analysis
+  type: report
+  description: 'EXP-004 simulation sweep incremental analysis: γ recovery quality
+    across 4 conditions (27/120 runs). Key finding: γ identifiable even at AUC=0.55,
+    CI width scales ~1/√N.'
+  path: projects/contamcal-irt-calibration/artifacts/exp-004/report/exp004_incremental_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-14T04:19:43.629908+00:00'
+  tags:
+  - simulation
+  - gamma-recovery
+  - incremental
+  - identifiability
+- id: art_20260514_377733
+  name: exp006_irt_calibration_code
+  type: intermediate
+  description: 'exp-006 IRT calibration + 7 baselines code: run_irt_calibration.py
+    (CmdStanPy MCMC 4PL+gamma), baselines.py (7 methods unified interface), evaluate_calibration.py
+    (5 metrics), run_exp006.py (end-to-end pipeline). Dry-run validated on 4 benchmarks.'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/intermediate/exp006_code_manifest.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-14T05:03:38.206523+00:00'
+  tags:
+  - irt
+  - calibration
+  - baselines
+  - cmdstanpy
+  - mcmc
+- id: art_20260514_76664a
+  name: results_tables
+  type: paper
+  description: 'Paper Results section data tables: SFT eval scores (model×dosage),
+    MVP simulation metrics, EXP-004 sweep, gap analysis. All numbers from registry/artifacts.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/results_tables.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:35:57.389168+00:00'
+  tags:
+  - paper
+  - results
+  - tables
+  - emnlp2026
+- id: art_20260514_eba3d8
+  name: exp006-dryrun-results
+  type: intermediate
+  description: 'exp-006 full pipeline dry-run: ContamCal 4PL+gamma + 7 baselines,
+    8 metrics + reliability diagram. All PASS.'
+  path: projects/contamcal-irt-calibration/artifacts/exp-006/intermediate/exp006_dryrun_report.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp-006
+  skill: ''
+  created_at: '2026-05-14T09:24:22.962570+00:00'
+  tags:
+  - exp-006
+  - dry-run
+  - baselines
+  - evaluation
+  - IRT
+- id: art_20260514_154574
+  name: exp-002 signal pipeline code
+  type: intermediate
+  description: 'Complete signal pipeline: 4 signal modules + main entry + batch runner
+    + RRF aggregation. Dry-run verified on cqa1-21977.'
+  path: projects/contamcal-irt-calibration/artifacts/exp_002_signals_05B/intermediate/exp002_signal_pipeline_status.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_002_signals_05B
+  skill: ''
+  created_at: '2026-05-14T09:28:19.347980+00:00'
+  tags:
+  - exp-002
+  - signal-pipeline
+  - code-complete
+  - dry-run-pass
+- id: art_20260514_c1b68d
+  name: dose_response_analysis
+  type: report
+  description: Dose-response 进度表：12/29 eval 完成 (42%)，含 legacy/aligned 格式对比，0.5B 完整
+    dose-response 趋势，缺失数据点优先级
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/dose_response_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:02:46.340762+00:00'
+  tags:
+  - dose-response
+  - eval
+  - phase3
+- id: art_20260514_c37bca
+  name: exp-008 signal_survival.py (v3)
+  type: intermediate
+  description: 'exp-008 Signal Survival Analysis main script. v3: adds RRF as 5th
+    signal, per-benchmark breakdown, cliff-like pattern detection, cross-benchmark
+    aggregation. Dry-run validated.'
+  path: projects/contamcal-irt-calibration/artifacts/exp_008_signal_survival/intermediate/exp008_signal_survival_v3_status.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_008_signal_survival
+  skill: ''
+  created_at: '2026-05-14T12:49:04.122375+00:00'
+  tags:
+  - exp-008
+  - C2-claim
+  - signal-survival
+  - code-ready
+- id: art_20260514_de2465
+  name: exp006-irt-calibration-code
+  type: intermediate
+  description: 'exp-006 complete code: IRT 4PL+γ calibration, 7 baselines (B0-B6),
+    evaluation (8 metrics), joint fitting ablation, D018 enforcement. 2658 lines across
+    7 Python files.'
+  path: projects/contamcal-irt-calibration/artifacts/exp-006/intermediate/exp006_code_manifest.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp-006
+  skill: ''
+  created_at: '2026-05-14T12:49:32.942988+00:00'
+  tags:
+  - irt
+  - calibration
+  - baselines
+  - stan
+  - cmdstanpy
+- id: art_20260514_69dbcf
+  name: report_eval_compilation
+  type: report
+  description: 'Dose-response eval compilation: aligned vs legacy results, completeness
+    matrix, delta analysis. 3 models × 4 dosages × 3 benchmarks.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/report_eval_compilation.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:03:24.617960+00:00'
+  tags:
+  - eval
+  - dose-response
+  - aligned
+  - phase4
+- id: art_20260514_e8e067
+  name: exp008_signal_survival_auc_heatmap
+  type: data
+  description: 'Signal Survival AUC heatmap: 3 signals x 3 regimes x 3 benchmarks.
+    0/3 signals survive. S1 Embedding works at d005 only. Validates C2.'
+  path: projects/contamcal-irt-calibration/artifacts/exp_008_signal_survival/data/exp008_auc_heatmap.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_008_signal_survival
+  skill: ''
+  created_at: '2026-05-14T16:12:23.030839+00:00'
+  tags:
+  - exp-008
+  - signal-survival
+  - auc
+  - C2
+- id: art_20260514_406ef9
+  name: exp008_v4_signal_survival_results
+  type: data
+  description: 'exp-008 Signal Survival v4 (D021 corrected): within-model AUC for
+    d000/d005, cross-model paired comparison for d100 vs d000. S1 Embedding AUC=0.979
+    at d005, S2/S4 random. All 3 signals show significant cross-model effects at d100.'
+  path: projects/contamcal-irt-calibration/artifacts/exp-008/data/exp008_v4_results.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp-008
+  skill: ''
+  created_at: '2026-05-14T16:27:53.327370+00:00'
+  tags:
+  - signal-survival
+  - v4
+  - D021
+  - cross-model
+- id: art_20260514_6f12f1
+  name: dose-response-data-table
+  type: data
+  description: Complete dose-response data table across 3 scales (0.5B/1.5B/3B) ×
+    4 dosages × 4 benchmarks × orig/para, with deltas and missing data annotations
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/dose_response_table.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:53:30.714001+00:00'
+  tags:
+  - dose-response
+  - aligned-eval
+  - cross-scale
+  - contamination
+- id: art_20260514_823e43
+  name: exp006_rrf_fix_comparison
+  type: report
+  description: 'Before/after comparison of exp006 pooled IRT results: s1_embedding-only
+    (v2) vs 3-signal RRF fusion S1+S2+S4 (v3_rrf)'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/exp006_rrf_fix_comparison.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-14T23:13:13.645895+00:00'
+  tags:
+  - exp006
+  - rrf-fix
+  - pooled-irt
+  - before-after
+- id: art_20260514_d60735
+  name: exp006_gsm8k_pooled_v3_rrf
+  type: data
+  description: GSM8K pooled IRT (0.5B+1.5B) with 3-signal RRF fusion fix — gamma=2.096,
+    CI excludes zero, all diagnostics OK
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/gsm8k_v3_rrf_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-14T23:13:47.199600+00:00'
+  tags:
+  - exp006
+  - gsm8k
+  - pooled-irt
+  - v3-rrf
+- id: art_20260514_ef4306
+  name: exp006_arc_pooled_v3_rrf
+  type: data
+  description: ARC Challenge pooled IRT (0.5B+1.5B) with 3-signal RRF fusion fix —
+    gamma=-7.620, CI excludes zero, all diagnostics OK
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/arc_v3_rrf_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-14T23:13:50.288375+00:00'
+  tags:
+  - exp006
+  - arc
+  - pooled-irt
+  - v3-rrf
+- id: art_20260515_6a06dc
+  name: report_oracle_gsm8k_v2_analysis
+  type: report
+  description: 'Deep analysis of exp006-oracle-gsm8k-extended-v2: coverage collapse
+    diagnosis, memory contradiction resolution, model misspecification evidence'
+  path: projects/contamcal-irt-calibration/artifacts/exp006-oracle-gsm8k-extended-v2/report/report_oracle_gsm8k_v2_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006-oracle-gsm8k-extended-v2
+  skill: ''
+  created_at: '2026-05-15T03:50:11.361962+00:00'
+  tags:
+  - exp006
+  - oracle
+  - gsm8k
+  - coverage
+  - model-misspecification
+  - analysis
+- id: art_20260515_be1415
+  name: literature_survey_negative_gamma
+  type: report
+  description: 文献调研：contamination 导致性能下降的先例。结论：负 gamma 无直接先例，新颖性高。三条支撑线索：overtraining
+    fragility (Springer 2025), scale-dependence (Elazar 2024), OOD degradation (DICE/Tu
+    2024)。
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/literature_survey_negative_gamma.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:14:02.825585+00:00'
+  tags:
+  - literature
+  - negative-gamma
+  - framing
+- id: art_20260515_656a67
+  name: eval_analysis_3B_d025_d100_instruct_20250515
+  type: report
+  description: 'Analysis of 3 eval experiments: 3B d025 para, 3B d100 aligned, 0.5B-Instruct.
+    Includes paraphrase gap, contamination effect, and 3-regime comparison.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/eval_analysis_20250515.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:19:43.175873+00:00'
+  tags:
+  - eval
+  - 3B
+  - 0.5B
+  - contamination
+  - paraphrase-gap
+  - instruct
+- id: art_20260515_5797b4
+  name: exp008_rl_aligned_signals
+  type: data
+  description: Contamination detection signals (S1 embedding, S2 minkpp, S4 selfcritique)
+    for rl_aligned regime (Qwen2.5-0.5B-Instruct) across MMLU/GSM8K/ARC_Challenge.
+    12 JSON files on server cqa1-21977.
+  path: projects/contamcal-irt-calibration/artifacts/exp_008_instruct_rl_proxy/data/exp008_rl_aligned_signals_manifest.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_008_instruct_rl_proxy
+  skill: ''
+  created_at: '2026-05-15T06:04:49.515038+00:00'
+  tags:
+  - exp008
+  - signals
+  - rl_aligned
+  - instruct
+  - contamination
+- id: art_20260515_8b3ac1
+  name: exp008_3regime_analysis
+  type: data
+  description: '3-regime signal comparison analysis (d000 SFT-clean vs rl_aligned
+    Instruct): distribution stats, Cohen''s d, KS tests, AUC reference, key findings
+    for Claim 2 signal survival'
+  path: projects/contamcal-irt-calibration/artifacts/exp008/data/exp008_3regime_analysis.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp008
+  skill: ''
+  created_at: '2026-05-15T07:10:39.120039+00:00'
+  tags:
+  - signal-survival
+  - 3-regime
+  - claim2
+  - rl-alignment
+  - distribution-analysis
+- id: art_20260515_a9e872
+  name: 3B d000 GSM8K seed variance analysis
+  type: report
+  description: 分析 3B d000 GSM8K 跨种子方差：14.78pp 差距实为版本混淆(v1 vs v2 checkpoint)，真实同版本种子方差
+    5-8pp。所有 SFT 模型 GSM8K 从 base 60.5% 灾难性下降。
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/analysis_3B_d000_gsm8k_seed_variance.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T10:33:34.954457+00:00'
+  tags:
+  - gsm8k
+  - seed-variance
+  - 3B
+  - d000
+  - sft-degradation
+- id: art_20260515_b70463
+  name: 2PL vs 4PL ablation comparison
+  type: report
+  description: 'S1-only GSM8K pooled IRT: 2PL gamma SD -46%, CI width -45%, residual
+    MAE -77%, ESS +40%. 2PL strictly dominates 4PL. Both CI include zero.'
+  path: projects/contamcal-irt-calibration/artifacts/exp006-s1only-gsm8k-2pl/report/2pl_vs_4pl_ablation_comparison.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006-s1only-gsm8k-2pl
+  skill: ''
+  created_at: '2026-05-15T10:38:55.053122+00:00'
+  tags:
+  - 2PL
+  - 4PL
+  - ablation
+  - IRT
+  - model-selection
+- id: art_20260515_4f2fdb
+  name: 2pl_vs_4pl_ablation
+  type: report
+  description: 2PL+γ vs 4PL+γ 消融对比表，含 coverage/calibration/diagnostics 全量指标
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/2pl_vs_4pl_ablation.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-15T10:43:32.397745+00:00'
+  tags:
+  - ablation
+  - 2pl
+  - 4pl
+  - coverage
+  - calibration
+- id: art_20260515_5984b0
+  name: exp_008_base_pretrained_15B_eval_analysis
+  type: report
+  description: Qwen2.5-1.5B base pretrained evaluation results analysis with SFT tax
+    quantification
+  path: projects/contamcal-irt-calibration/artifacts/exp_008_base_pretrained_15B_eval/report/exp_008_base_pretrained_15B_eval_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_008_base_pretrained_15B_eval
+  skill: ''
+  created_at: '2026-05-15T11:56:23.432858+00:00'
+  tags:
+  - exp008
+  - base_pretrained
+  - 1.5B
+  - sft_tax
+  - 3_regime
+- id: art_20260515_9626b3
+  name: eval_summary_matrix
+  type: data
+  description: Pooled IRT eval summary matrix - all 52 eval configs with MMLU/GSM8K
+    scores, aligned/para/deprecated flags
+  path: projects/contamcal-irt-calibration/artifacts/exp001/data/eval_summary_matrix.csv
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp001
+  skill: ''
+  created_at: '2026-05-15T12:02:42.418525+00:00'
+  tags:
+  - eval
+  - irt
+  - matrix
+  - summary
+- id: art_20260515_b616d9
+  name: pooled_irt_data_matrix_20260515
+  type: data
+  description: Pooled IRT 数据可用性矩阵：35 条 aligned eval（去重），MMLU N=25, GSM8K N=22 达标。ARC/HumanEval
+    N=0 待核实。CSV 在服务器 /root/autodl-tmp/exp001/eval_summary_matrix.csv
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/pooled_irt_data_matrix.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:26:41.486800+00:00'
+  tags:
+  - pooled-irt
+  - data-matrix
+  - coverage
+- id: art_20260515_5bf0c7
+  name: pooled_irt_data_matrix_v2_fixed
+  type: data
+  description: 修复后的 Pooled IRT 数据矩阵：52 行，4 benchmark 全部提取，D018 3B d000 s42 v3 已标 deprecated。CSV
+    在 /root/autodl-tmp/exp001/eval_summary_matrix.csv，脚本在 /root/contamcal-irt-calibration/scripts/gen_eval_matrix.py
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/pooled_irt_data_matrix_v2.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:31:23.538511+00:00'
+  tags:
+  - pooled-irt
+  - data-matrix
+  - coverage
+  - fixed
+- id: art_20260515_f94f58
+  name: GSM8K Answer Extraction Investigation Report
+  type: report
+  description: 调查 exp_008 中 Qwen2.5-0.5B base pretrained GSM8K 16.3% vs 1.5B base
+    0.5% 的异常，含原始生成文本样本、统计分析、根因定位
+  path: projects/contamcal-irt-calibration/artifacts/exp001/report/gsm8k_extraction_investigation.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp001
+  skill: ''
+  created_at: '2026-05-15T14:36:14.068093+00:00'
+  tags:
+  - gsm8k
+  - evaluation
+  - bug-investigation
+  - base-pretrained
+- id: art_20260515_58ee4a
+  name: exp005_reanalysis_gamma_attenuation
+  type: report
+  description: 'Reanalysis of exp-005 noise propagation: extracts gamma attenuation
+    metrics from existing 25 fits. Shows ME model retains ~2x more gamma signal than
+    Simple model at high σ_e. Original cal CI width outcome was structurally wrong.'
+  path: projects/contamcal-irt-calibration/artifacts/exp_005_noise_prop_v4/report/reanalysis_gamma_attenuation.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_005_noise_prop_v4
+  skill: ''
+  created_at: '2026-05-15T17:03:12.312705+00:00'
+  tags:
+  - exp005
+  - noise-propagation
+  - reanalysis
+  - gamma-attenuation
+- id: art_20260515_4a4c8e
+  name: coverage_report_20260515
+  type: report
+  description: Experiment coverage report and paper readiness assessment for EMNLP
+    2026 ARR May 25 deadline. Maps 4 core claims to experiment status, identifies
+    critical path bottlenecks, and provides prioritized timeline.
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/coverage_report_20260515.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:20:34.910743+00:00'
+  tags:
+  - coverage
+  - deadline
+  - emnlp2026
+  - planning
+- id: art_20260515_57fe2f
+  name: eval_metrics_summary_json
+  type: data
+  description: Complete eval metrics summary (JSON) across all scales (0.5B/1.5B/3B),
+    doses (0/5/25/100%), seeds (42/123), eval types (aligned/para_aligned). Contains
+    individual results, cross-seed aggregated means/std, dose-response curves, and
+    baselines.
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/eval_metrics_summary.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:35:55.877050+00:00'
+  tags:
+  - eval
+  - metrics
+  - summary
+  - dose-response
+  - paper
+- id: art_20260515_113eb8
+  name: eval_metrics_summary_md
+  type: report
+  description: 'Paper-ready markdown evidence tables: individual results, aggregated
+    means±std, dose-response curves for MMLU/GSM8K/ARC/HumanEval across 3 scales,
+    coverage matrix showing data completeness.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/eval_metrics_summary.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:35:58.678446+00:00'
+  tags:
+  - eval
+  - metrics
+  - summary
+  - paper
+  - evidence-table
+- id: art_20260515_4cecae
+  name: fig_pipeline
+  type: chart
+  description: 'ContamCal 2-stage pipeline conceptual diagram for Section 3 (Method).
+    Stage 1: Multi-Signal Exposure Mapping (4 signals + RRF fusion). Stage 2: Contamination-Augmented
+    4PL+γ IRT with per-benchmark fitting.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_pipeline.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:47:27.400167+00:00'
+  tags:
+  - paper
+  - method
+  - pipeline
+  - section3
+- id: art_20260515_5b4e88
+  name: fig_dose_response
+  type: chart
+  description: 'Dose-response curves: dosage vs accuracy for ARC/GSM8K/MMLU at 0.5B/1.5B.
+    Data from exp-001 eval (aligned accuracy, seed s123). Shows ARC forgetting, GSM8K
+    inflation, and MMLU position bias at 0.5B.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_dose_response.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T19:07:31.122135+00:00'
+  tags:
+  - paper
+  - Section 5.1
+  - dose-response
+- id: art_20260515_aeb036
+  name: plan_registry_mapping
+  type: data
+  description: Mapping table from experiment_plan.yaml plan entries to registry experiment
+    IDs, with detailed breakdown of all related successful registry entries per plan
+    entry
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/plan_registry_mapping.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:36:46.647356+00:00'
+  tags:
+  - experiment_plan
+  - registry
+  - coverage
+- id: art_20260515_2e6035
+  name: 3B_s123_eval_matrix_complete
+  type: data
+  description: Complete 3B s123 eval results matrix (d000/d005/d025/d100 × aligned/para_aligned)
+    with per-item data availability report for pooled IRT
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/3B_s123_eval_matrix_complete.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:44:17.242641+00:00'
+  tags:
+  - eval
+  - 3B
+  - s123
+  - matrix
+  - irt-input
+- id: art_20260515_addc3a
+  name: fig_dose_response_v2
+  type: chart
+  description: Dose-response curves (0.5B/1.5B × ARC/GSM8K/MMLU) with corrected X-axis
+    labels (0%/5%/25%/100%). Fixes D069 10x label error.
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_dose_response.png
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:44:23.257014+00:00'
+  tags:
+  - paper
+  - dose-response
+  - D069
+- id: art_20260515_0be35c
+  name: irt_data_readiness
+  type: report
+  description: 'Pooled IRT input data readiness checklist: per-benchmark N counts,
+    alpha consistency, blocking items'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/irt_data_readiness.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:54:44.935874+00:00'
+  tags:
+  - irt
+  - data-readiness
+  - pooled-irt
+  - alpha-consistency
+- id: art_20260516_b3d6af
+  name: signal_coverage_audit
+  type: report
+  description: 'Signal coverage audit for IRT pooling: coverage matrix across 0.5B/1.5B/3B
+    × s42/s123 × 4 signal types × 3 benchmarks, with N-count analysis and prioritized
+    missing items'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/signal_coverage_audit.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:01:22.117549+00:00'
+  tags:
+  - signals
+  - irt
+  - coverage
+  - audit
+- id: art_20260516_4795fa
+  name: next_experiment_queue
+  type: intermediate
+  description: 'GPU release experiment queue: 7 prioritized tasks with full submit
+    commands, pre-checks, and decision matrix for all 6 GPUs. Covers d100_s42 eval,
+    4× s42 signals, d100_s123 recovery, 0.5B s123 rerun.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/intermediate/next_experiment_queue.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:29:16.548822+00:00'
+  tags:
+  - gpu-queue
+  - exp-001
+  - exp-002
+  - 3B
+  - scheduling
+- id: art_20260516_746f34
+  name: coverage_audit_0516
+  type: report
+  description: EMNLP T-9 实验覆盖率审计：4 Claims evidence 状态、blocking 缺口、优先级排序
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/coverage_audit_0516.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:31:13.370625+00:00'
+  tags:
+  - audit
+  - coverage
+  - emnlp
+  - claims
+- id: art_20260516_471c5b
+  name: exp006_readiness_report
+  type: report
+  description: 'IRT pipeline (exp-006) readiness check: Stan models compiled, CmdStan
+    v2.38.0, 7 baselines, dry-run validated, RRF format compatible'
+  path: projects/contamcal-irt-calibration/artifacts/exp_006/report/exp006_readiness_report.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_006
+  skill: ''
+  created_at: '2026-05-16T04:21:50.386104+00:00'
+  tags:
+  - irt
+  - pipeline
+  - readiness
+  - stan
+- id: art_20260516_38fcfb
+  name: signal_inventory_audit_20260516
+  type: report
+  description: Signal 完整性审计报告：3 model sizes × 2 seeds × 4 doses × 3 benchmarks × 3
+    signals = 216 文件，当前完成 105/216 (49%)。含完成矩阵、GPU 占用、缺失清单、RRF 可用性分析。
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/signal_inventory_audit_20260516.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:25:36.099114+00:00'
+  tags:
+  - signals
+  - audit
+  - exp-002
+  - coverage
+- id: art_20260516_ef532b
+  name: humaneval_para_pass1_analysis
+  type: report
+  description: HumanEval paraphrased pass@1 distribution across all models and IRT
+    item filtering analysis
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/humaneval_para_pass1_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:48:32.367879+00:00'
+  tags:
+  - humaneval
+  - paraphrased
+  - irt
+  - item-filtering
+- id: art_20260516_717a60
+  name: exp003_mmlu_item_alignment_analysis
+  type: report
+  description: 'MMLU item-level alignment gap analysis: 20 model pairs, 6596 common
+    items. Para consistently 2.24pp easier. 426 flagged high-disagreement items for
+    IRT.'
+  path: projects/contamcal-irt-calibration/artifacts/exp_003_mmlu_item_aligned_gap/report/exp003_mmlu_item_alignment_report.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_003_mmlu_item_aligned_gap
+  skill: ''
+  created_at: '2026-05-16T04:58:00.444186+00:00'
+  tags:
+  - mmlu
+  - alignment
+  - paraphrase
+  - item-analysis
+  - irt
+- id: art_20260516_909383
+  name: exp008_3regime_signal_comparison
+  type: report
+  description: '3-regime signal comparison: Base Pretrained vs d000 SFT vs Instruct
+    (SFT+RL) for Qwen2.5-0.5B on MMLU/GSM8K/ARC'
+  path: projects/contamcal-irt-calibration/artifacts/exp_008_instruct_rl_proxy/report/exp008_3regime_signal_comparison.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_008_instruct_rl_proxy
+  skill: ''
+  created_at: '2026-05-16T05:16:11.931304+00:00'
+  tags:
+  - exp008
+  - signals
+  - regime-comparison
+  - instruct
+  - rl
+- id: art_20260516_ae736c
+  name: eval_results_summary
+  type: report
+  description: Eval results summary for 3B d000 s42 alpha=32 aligned eval (0% contamination
+    baseline). All 4 benchmarks complete, consistent with d000_s123 baseline.
+  path: projects/contamcal-irt-calibration/artifacts/exp_001_eval_3B_d000_s42_a32_batch/report/eval_results_summary.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_001_eval_3B_d000_s42_a32_batch
+  skill: ''
+  created_at: '2026-05-16T06:08:09.820017+00:00'
+  tags:
+  - eval
+  - d000
+  - s42
+  - 3B
+  - baseline
+  - aligned
+- id: art_20260516_90ed6b
+  name: exp_001_eval_3B_d005_s42_para_aligned_analysis
+  type: report
+  description: Eval analysis for Qwen2.5-3B d005 s42 para_aligned - paraphrased benchmark
+    results with comparison to original aligned eval
+  path: projects/contamcal-irt-calibration/artifacts/exp_001_eval_3B_d005_s42_para_aligned/report/exp_001_eval_3B_d005_s42_para_aligned_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_001_eval_3B_d005_s42_para_aligned
+  skill: ''
+  created_at: '2026-05-16T07:08:56.885822+00:00'
+  tags:
+  - eval
+  - 3B
+  - d005
+  - s42
+  - paraphrased
+- id: art_20260516_5af2f6
+  name: rrf_exposure_05B_15B
+  type: data
+  description: RRF aggregated exposure scores for 0.5B + 1.5B (13 respondents). Per-item
+    exposure for mmlu (14042), gsm8k (1319), arc_challenge (1172).
+  path: null
+  url: file:///root/autodl-tmp/exp003/rrf_05B_15B/exposure_scores.json
+  project: contamcal-irt-calibration
+  exp_id: exp_003_rrf_05B_15B
+  skill: ''
+  created_at: '2026-05-16T08:54:35.388338+00:00'
+  tags:
+  - rrf
+  - exposure
+  - 0.5B
+  - 1.5B
+  - critical-path
+- id: art_20260516_d3437a
+  name: pooled_rrf_irt_05b_15b_results
+  type: data
+  description: 'Pooled 4PL+γ IRT results with RRF signal exposure for 0.5B+1.5B. Per-benchmark:
+    GSM8K (N=11, γ̂=0.013) and ARC (N=5 1.5B-only, γ̂=1.226). Items subsampled to
+    300.'
+  path: projects/contamcal-irt-calibration/artifacts/exp006_pooled_rrf_irt_05b_15b/data/pooled_rrf_irt_05b_15b_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006_pooled_rrf_irt_05b_15b
+  skill: ''
+  created_at: '2026-05-16T09:09:12.133205+00:00'
+  tags:
+  - irt
+  - 4pl_gamma
+  - rrf
+  - pooled
+  - 0.5B
+  - 1.5B
+- id: art_20260516_996cd0
+  name: pooled_irt_all_scales_results
+  type: data
+  description: 'Pooled 2PL+gamma IRT results for all 3 scales (0.5B+1.5B+3B) with
+    RRF signal exposure. MMLU N=15 gamma=0.517 PPP=0.234, GSM8K N=20 gamma=0.172 PPP=0.343,
+    ARC N=13 gamma=0.486 PPP=0.027. Server path: /root/autodl-tmp/exp006/pooled_irt_all_scales/'
+  path: null
+  url: file:///root/autodl-tmp/exp006/pooled_irt_all_scales/pooled_rrf_irt_results.json
+  project: contamcal-irt-calibration
+  exp_id: exp_006_pooled_irt_all_scales
+  skill: ''
+  created_at: '2026-05-16T11:02:22.179921+00:00'
+  tags:
+  - irt
+  - pooled
+  - all_scales
+  - 2pl_gamma
+  - rrf
+- id: art_20260516_5ea466
+  name: scale_stratified_irt_results
+  type: report
+  description: 'Scale-stratified 2PL+gamma IRT analysis: per-scale gamma estimates,
+    CIs, PPP, calibration MAE comparison with pooled results'
+  path: projects/contamcal-irt-calibration/artifacts/exp_006_scale_stratified_irt/report/scale_stratified_irt_results.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_006_scale_stratified_irt
+  skill: ''
+  created_at: '2026-05-16T11:35:01.573017+00:00'
+  tags:
+  - IRT
+  - scale-stratified
+  - gamma
+  - calibration
+  - 2pl_gamma
+- id: art_20260516_57e964
+  name: pooled_irt_rrf_n25_v2_analysis
+  type: report
+  description: Analysis of 4PL+γ IRT results with RRF exposure scores (N=25 respondents,
+    v2). Compares with previous 2PL+γ and earlier 4PL+γ runs.
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/pooled_irt_rrf_n25_v2_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T15:04:47.620982+00:00'
+  tags:
+  - irt
+  - gamma
+  - 4pl
+  - rrf
+  - pooled
+  - analysis
+- id: art_20260516_f12faa
+  name: d108_v4_analysis
+  type: report
+  description: 'D108 v4 analysis: MMLU domain-level gamma heterogeneity at N=24, comparison
+    with N=16, direction reversals and PPP misfit issues'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/d108_v4_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T15:05:49.248658+00:00'
+  tags:
+  - d108
+  - mmlu
+  - domain-gamma
+  - n24
+  - simpson-paradox
+  - claim1
+- id: art_20260516_7b44ac
+  name: 2pl_gamma_mmlu_arc_results
+  type: data
+  description: 2PL+γ pooled IRT results for MMLU and ARC (N=8). MMLU passes C008.
+    ARC fails C008.
+  path: projects/contamcal-irt-calibration/artifacts/exp_006_pooled_irt_2pl_gamma_mmlu_arc/data/2pl_gamma_mmlu_arc_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_006_pooled_irt_2pl_gamma_mmlu_arc
+  skill: ''
+  created_at: '2026-05-16T15:07:50.744586+00:00'
+  tags:
+  - irt
+  - 2pl_gamma
+  - mmlu
+  - arc
+  - calibration
+- id: art_20260516_lit_domain_contam
+  name: literature_survey_domain_dependent_contamination
+  type: analysis
+  description: 'Literature survey on domain-dependent contamination effects. Covers
+    4 topics: differential domain effects, IRT-based contamination analysis, Simpson''s
+    paradox in ML eval, mechanistic explanations. Novelty assessment confirms our
+    D108 finding (opposite-sign gamma across domains) is unreported in literature.'
+  path: projects/contamcal-irt-calibration/artifacts/literature_survey_domain_dependent_contamination.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T12:00:00.000000+00:00'
+  tags:
+  - literature
+  - domain-dependent
+  - contamination
+  - simpsons-paradox
+  - novelty
+  - gamma
+- id: art_20260516_5bafe5
+  name: analysis_2pl_gamma_refit_0516
+  type: report
+  description: Pooled IRT 2PL+γ refit for MMLU/ARC (N=8) + Domain Gamma N=24 complete
+    analysis. Shows 2PL+γ fixes MMLU overparameterization (PPP 0.006→0.426), domain-level
+    γ heterogeneity (STEM positive, Humanities/Social negative).
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/analysis_2pl_gamma_refit_0516.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T15:13:45.395377+00:00'
+  tags:
+  - irt
+  - 2pl_gamma
+  - calibration
+  - domain_gamma
+  - model_selection
+- id: art_20260516_d5cac1
+  name: pooled_irt_2pl_gamma_report_20260516
+  type: report
+  description: Pooled IRT 2PL+γ calibration results across MMLU/ARC/GSM8K with RRF
+    exposure signals, D045 0.5B exclusion for MMLU and ARC
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/pooled_irt_2pl_gamma_report_20260516.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T15:58:46.607703+00:00'
+  tags:
+  - irt
+  - 2pl_gamma
+  - rrf
+  - calibration
+  - emnlp
+- id: art_20260516_52983e
+  name: vanilla_2pl_ablation_results
+  type: data
+  description: Vanilla 2PL (no gamma) pooled IRT ablation results - proves gamma has
+    no calibration contribution at pooled level (Simpson Paradox evidence)
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/vanilla_2pl_ablation_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T16:37:01.262352+00:00'
+  tags:
+  - ablation
+  - simpson-paradox
+  - pooled
+  - 2pl
+  - gamma
+- id: art_20260516_5f1b66
+  name: method_notes
+  type: intermediate
+  description: 'Method section writing notes: §3.1-3.4 structure with formulas, prior
+    work, identification strategy, Fisher Information sketch, domain heterogeneity
+    formalization, cross-family protocol, RRF detail, evaluation metrics'
+  path: projects/contamcal-irt-calibration/artifacts/_project/intermediate/method_notes.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T16:57:02.769220+00:00'
+  tags:
+  - paper
+  - method
+  - writing
+- id: art_20260516_acea56
+  name: pooled_irt_n16_fixed_comparison
+  type: report
+  description: 'Pooled IRT N=16 comparison after fixing RRF/eval key mismatch: vanilla
+    2PL vs 2PL+gamma across mmlu/arc/gsm8k'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/pooled_irt_n16_fixed_comparison.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T17:11:55.829474+00:00'
+  tags:
+  - irt
+  - n16
+  - rrf-fix
+  - 2pl
+  - 2pl_gamma
+  - pooled
+- id: art_20260516_598af1
+  name: Fisher Info Heatmap - CI Width by N and AUC
+  type: chart
+  description: Heatmap showing γ 95% CI width shrinking with N across 4 signal strength
+    (AUC) conditions. From exp004 simulation sweep (4 AUC × 4 N = 16 conditions, 10
+    seeds each). Global power-law exponent α=-0.482.
+  path: projects/contamcal-irt-calibration/artifacts/exp004/chart/fisher_info_heatmap_meta.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp004
+  skill: ''
+  created_at: '2026-05-16T17:51:16.312401+00:00'
+  tags:
+  - paper
+  - W4
+  - identifiability
+  - claim3
+  - heatmap
+- id: art_20260516_a8e8b6
+  name: CI Width Scaling Plot - Power Law N^{-0.48}
+  type: chart
+  description: Log-log scaling plot showing γ CI width ∝ N^{-0.48} across AUC conditions.
+    Global fit α=-0.482, per-AUC range [-0.44, -0.51]. Evidence for Claim 3 (identifiability).
+  path: projects/contamcal-irt-calibration/artifacts/exp004/chart/ci_width_scaling_meta.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp004
+  skill: ''
+  created_at: '2026-05-16T17:51:20.384912+00:00'
+  tags:
+  - paper
+  - W4
+  - identifiability
+  - claim3
+  - scaling
+- id: art_20260516_827124
+  name: fig_domain_gamma
+  type: chart
+  description: 'MMLU domain-level γ heterogeneity forest plot (N=24, 2PL+γ). Shows
+    dilution masking: STEM Math γ=0.97, Science γ=0.84 significant with good PPP;
+    pooled γ=0.66 n.s. due to non-STEM domains with negative γ and PPP=1.0 (model
+    misfit). Data from exp_006_mmlu_domain_gamma_n24_v4.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_domain_gamma.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T20:05:29.157798+00:00'
+  tags:
+  - paper
+  - Section 5.1
+  - domain-gamma
+  - flagship
+- id: art_20260516_34d427
+  name: fig_dose_response
+  type: chart
+  description: 'Dose-response: dosage vs accuracy for ARC/GSM8K/MMLU at 0.5B/1.5B/3B
+    (all FROZEN). Shows ARC forgetting at 0.5B, GSM8K inflation at 3B, scale-dependence.
+    exp-001 data.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_dose_response_34d427.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T20:09:19.587544+00:00'
+  tags:
+  - paper
+  - Section 5.1
+  - dose-response
+  - 3-scales
+- id: art_20260516_43067f
+  name: fig_signal_heatmap
+  type: chart
+  description: 'Signal effectiveness dual heatmap: AUC at d005 + Cohen''s d at d100.
+    Shows Min-K++ reversal (d=-1.2 to -2.7) and S1 dominance (AUC>0.95). 0.5B Qwen2.5
+    data from exp-008.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_signal_heatmap.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T20:13:31.083477+00:00'
+  tags:
+  - paper
+  - Section 5.2
+  - signal-heatmap
+  - Min-K++ reversal
+- id: art_20260516_f5b762
+  name: irt_calibration_data
+  type: data
+  description: 'Comprehensive IRT calibration results: pooled 2PL+gamma N=16 fixed
+    (MMLU/ARC/GSM8K), MMLU domain-level gamma, scale-stratified results, 2PL vs 4PL
+    ablation, exposure score metadata'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/irt_calibration_data.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-16T20:30:23.972039+00:00'
+  tags:
+  - irt
+  - calibration
+  - 2pl_gamma
+  - pooled
+  - n16_fixed
+- id: art_20260516_d44640
+  name: fig_calibration
+  type: chart
+  description: 'Calibrated vs True Accuracy scatter + MAE reduction bar chart. Panel
+    (a): scatter showing raw (contaminated, open) vs calibrated (IRT, filled) points
+    near diagonal. Panel (b): MAE comparison — ARC 41% reduction (PASS), MMLU 55%
+    (PASS), GSM8K 96% (FAIL/D120 ability estimation). Data: exp_006_pooled_2pl_gamma_qwen_n24.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_calibration.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T20:51:36.868218+00:00'
+  tags:
+  - paper
+  - section_5.4
+  - C4
+  - calibration
+- id: art_20260516_77540a
+  name: fig_pipeline_v2
+  type: chart
+  description: 'ContamCal 2-stage diagnostic pipeline (D118 reframe). Stage 1: Multi-Signal
+    Exposure Mapping (S1-S4 + RRF). Stage 2: Domain-Level 2PL+γ IRT → per-domain γk
+    (diagnosis) + calibrated θ_clean (conditional) + Bayesian CIs. Updated from 4PL
+    to 2PL+γ equation.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_pipeline_77540a.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-16T20:52:46.709421+00:00'
+  tags:
+  - paper
+  - section_3
+  - method
+  - pipeline
+- id: art_20260516_8b5cb5
+  name: compute_signal_summary_15B_3B
+  type: intermediate
+  description: Python script to compute AUC@d005 and Cohen's d@d100 for 1.5B and 3B
+    signal data. Ready to deploy to server at /root/autodl-tmp/exp002/signals/compute_signal_summary.py
+  path: projects/contamcal-irt-calibration/artifacts/exp002/intermediate/compute_signal_summary.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp002
+  skill: ''
+  created_at: '2026-05-16T21:03:52.553485+00:00'
+  tags:
+  - signals
+  - auc
+  - cohens_d
+  - 1.5B
+  - 3B
+- id: art_20260516_ed8510
+  name: exp004_fisher_power_heatmap
+  type: chart
+  description: Fisher Information power heatmap for 2PL+gamma model. Shows statistical
+    power to detect gamma>0 across (N_models, signal_AUC) grid. Supports paper claim
+    that AUC>=0.70 is minimum threshold.
+  path: projects/contamcal-irt-calibration/artifacts/exp-004/chart/fisher_power_heatmap_manifest.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-16T21:41:27.675301+00:00'
+  tags:
+  - fisher-info
+  - identifiability
+  - heatmap
+  - w4-fix
+  - paper-figure
+- id: art_20260516_9c50d5
+  name: fig_calibration
+  type: chart
+  description: 'Paper Figure: IRT-Based Calibration vs Raw Scores. Three-bar comparison
+    (raw / vanilla 2PL / 2PL+gamma) per benchmark (MMLU, ARC-C, GSM8K). Shows calibration
+    improvement comes from IRT framework itself, not gamma parameter. N=16 pooled
+    results. Files at /root/autodl-tmp/artifacts/fig_calibration.{pdf,png} on cqa1-21977.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_calibration_meta.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T21:42:17.295752+00:00'
+  tags:
+  - paper
+  - figure
+  - calibration
+  - IRT
+  - MAE
+- id: art_20260517_f31b35
+  name: cross_family_pooled_irt_v2_results
+  type: data
+  description: 'Cross-family pooled IRT (2PL+γ) results: Qwen+Llama N=28/20 vs Qwen-only
+    N=24/16 for GSM8K/ARC. Key finding: ARC γ drops from 0.73 (Qwen-only, CI excludes
+    0) to 0.00 (pooled, CI includes 0), confirming family-specificity.'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/cross_family_irt_v2_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-17T00:16:45.538334+00:00'
+  tags:
+  - irt
+  - cross-family
+  - llama
+  - family-specificity
+  - 2pl-gamma
+- id: art_20260517_6e2a3e
+  name: fisher_power_heatmap_w4
+  type: chart
+  description: 'Fisher Information power heatmap (N × AUC): shows N=30 with AUC≥0.70
+    gives power=0.82, supporting W4 reviewer response that N=24 is sufficient for
+    contamination detection'
+  path: projects/contamcal-irt-calibration/artifacts/exp_004_fisher_heatmap_w4_v2/chart/fisher_power_heatmap.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_004_fisher_heatmap_w4_v2
+  skill: ''
+  created_at: '2026-05-17T02:35:59.785171+00:00'
+  tags:
+  - W4
+  - fisher_info
+  - power_analysis
+  - paper_figure
+- id: art_20260517_35bfb1
+  name: cross_family_v4_pooled_irt_results
+  type: data
+  description: Cross-family pooled 2PL+gamma IRT results (Qwen 0.5B/1.5B/3B + Llama
+    3.2-3B). Gamma not significant for any benchmark. Adding Llama diluted Qwen-only
+    ARC signal.
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/cross_family_v4_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-17T03:18:49.517116+00:00'
+  tags:
+  - irt
+  - cross-family
+  - pooled
+  - 2pl-gamma
+  - llama
+  - qwen
+- id: art_20260517_3d5c72
+  name: discussion_draft_v2
+  type: paper
+  description: 'Discussion section draft (~580 words): dilution masking, model misfit
+    boundary, capacity thresholds, SFT≠real contamination, limitations, future directions'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/discussion.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T03:21:59.513526+00:00'
+  tags:
+  - paper
+  - discussion
+  - draft
+- id: art_20260517_b3a6aa
+  name: experimental_setup_draft
+  type: paper
+  description: 'Experimental Setup section draft (~594 words): Qwen training protocol
+    (J=24), Llama exploratory (J=4), benchmarks/metrics, 7 baselines (B0-B6)'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/experimental_setup.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T03:22:37.153640+00:00'
+  tags:
+  - paper
+  - experimental-setup
+  - draft
+- id: art_20260517_809f6b
+  name: fig_calibration
+  type: chart
+  description: 'IRT Calibration Performance: Vanilla 2PL vs 2PL+γ scatter + MAE bar
+    chart. Data: exp-006 pooled IRT N=16-24. Shows calibration parity (vanilla 2PL
+    ≈ 2PL+γ MAE).'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_calibration_809f6b.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T03:45:32.844204+00:00'
+  tags:
+  - paper
+  - Section 5.4
+  - scatter_with_ci
+  - exp-006
+- id: art_20260517_242986
+  name: fig_identifiability_heatmap
+  type: chart
+  description: 'Fisher Information identifiability heatmap: N (y-axis) x AUC (x-axis)
+    showing gamma recovery power. Contour lines at 50%/80%/95%, AUC=0.70 threshold.
+    Data: exp-004 sim_sweep 20 conditions x 200 runs.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_identifiability_heatmap.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T03:46:24.640223+00:00'
+  tags:
+  - paper
+  - Section 5.3
+  - heatmap
+  - exp-004
+- id: art_20260517_0ebbce
+  name: exp009_rl_observational_plan
+  type: intermediate
+  description: 'exp-009 RL Observational Case Study plan: Qwen-Instruct + DeepSeek-R1
+    eval/signals/IRT on cuda:3,4,5'
+  path: projects/contamcal-irt-calibration/artifacts/_project/intermediate/exp009_plan.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:13:04.925108+00:00'
+  tags:
+  - exp-009
+  - plan
+  - observational
+- id: art_20260517_6d1b84
+  name: method_section_draft
+  type: paper
+  description: 'Method section rewrite (~985 words): 2PL+gamma primary model, per-domain
+    gamma, Fisher Info condensed, calibration value decomposition §3.5'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/method.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:14:22.545702+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260517_f7cdcb
+  name: results_section_draft
+  type: paper
+  description: 'Results section draft (1638 words): §5.1 domain-differential + dilution
+    masking, §5.2 signal reliability + cross-family, §5.3 identifiability, §5.4 value
+    decomposition + baselines'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/results.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:39:53.646097+00:00'
+  tags:
+  - paper
+  - results
+  - draft
+- id: art_20260517_04a735
+  name: related_work_draft
+  type: paper
+  description: 'Related Work section (~686 words): 5 subsections (Contamination Detection,
+    IRT for LLM, Item Compromise, Mitigation/Adjustment, Calibration Disambiguation)
+    with positioning statements'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/related_work_04a735.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:42:08.999302+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260517_4c907a
+  name: discussion_tex_draft
+  type: paper
+  description: 'Discussion LaTeX draft (661 words): §6.1 Limitations (6 paras), §6.2
+    Implications (4 practitioner groups), §6.3 Future Directions'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/discussion.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T04:51:44.702384+00:00'
+  tags:
+  - paper
+  - discussion
+  - latex
+- id: art_20260517_e7fc56
+  name: introduction_tex_v2
+  type: paper
+  description: Introduction section rewritten with D118 diagnostic framing, dilution
+    masking terminology, ~790 words, zero AI-style markers. 12 citation keys verified.
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/introduction.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T05:59:35.991612+00:00'
+  tags:
+  - paper
+  - introduction
+  - D118
+- id: art_20260517_56dd78
+  name: abstract_conclusion_tex
+  type: paper
+  description: 'Abstract (188 words) + Conclusion (232 words) with D118 diagnostic
+    framing, dilution masking, zero AI markers. Key numbers: Math γ=+0.97, Cohen''s
+    d=-1.55 to -1.98, J≥50.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/abstract.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T06:02:01.218495+00:00'
+  tags:
+  - paper
+  - abstract
+  - conclusion
+  - D118
+- id: art_20260517_47ef6b
+  name: references_bib_rebuilt_verified
+  type: paper
+  description: 'Fully rebuilt references.bib: 38 entries (31 unique papers + 7 alias
+    pairs), all WebSearch-verified. Replaces hallucination-contaminated original.
+    Zero missing keys vs .tex.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/references.bib
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T06:15:02.498800+00:00'
+  tags:
+  - paper
+  - bib
+  - verified
+  - rebuilt
+- id: art_20260517_a8f029
+  name: random_300_tau_baseline
+  type: data
+  description: 'Random 300-item subset Kendall tau baseline: tau=0.058±0.063 (5 seeds)
+    vs RRF 300 tau=0.731. Vanilla 2PL on MMLU, N=20 models (1.5B+3B). Decisive evidence
+    for RRF item selection.'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/data/random_300_tau_baseline_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-17T22:11:21.245987+00:00'
+  tags:
+  - tau
+  - rrf
+  - ablation
+  - mmlu
+  - item-selection
+- id: art_20260518_d6632e
+  name: Threshold DGP Simulation Results
+  type: data
+  description: 'MF2/D139 Threshold DGP simulation: 4 conditions (threshold_0.3/0.5/0.7
+    + linear_0.5), 10 seeds each, 2PL+gamma model. Linear model OVERESTIMATES gamma
+    under step-function DGP (ratio 1.09-1.33). PPP fails to detect misspecification.'
+  path: projects/contamcal-irt-calibration/artifacts/exp004_threshold_dgp/data/threshold_dgp_results.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp004_threshold_dgp
+  skill: ''
+  created_at: '2026-05-18T06:01:48.707308+00:00'
+  tags:
+  - simulation
+  - threshold-dgp
+  - 2pl-gamma
+  - model-misspecification
+  - MF2
+  - D139
+- id: art_20260518_dfae9b
+  name: experiment_plan_7b14b
+  type: report
+  description: 7B/14B 扩展实验完整计划：24 SFT runs、eval/signal/IRT pipeline、4卡并行排布、时间成本估算、风险缓解
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/experiment_plan_7b14b.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:27:43.382411+00:00'
+  tags:
+  - planning
+  - 7B
+  - 14B
+  - scaling
+  - experiment-design
+- id: art_20260518_batch_cmds
+  name: batch_matrix_commands
+  type: report
+  description: 7B/14B multi-family full matrix batch submission commands. 24 runs
+    across 5 model families, 2 batches, 4 GPUs. Copy-paste ready with CUDA_VISIBLE_DEVICES,
+    lr=5e-5, all params explicit.
+  path: projects/contamcal-irt-calibration/artifacts/batch_matrix_commands.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:00:00.000000+00:00'
+  tags:
+  - batch-commands
+  - 7B
+  - 14B
+  - multi-family
+  - sft-training
+- id: art_20260518_2033c5
+  name: S1 embedding signals - Qwen2.5-7B 8 checkpoints
+  type: data
+  description: S1 embedding-based contamination detection signals for 8 completed
+    Qwen2.5-7B checkpoints (d000-d100 × s42/s123). 24 JSON files across 3 benchmarks
+    (MMLU 14042 items, GSM8K 1319 items, ARC-Challenge 1172 items).
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/s1_signals_qwen7b_summary.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:32:07.623774+00:00'
+  tags:
+  - s1-signal
+  - qwen2.5-7b
+  - embedding
+  - contamination-detection
+- id: art_20260519_8d53b2
+  name: analysis_14b_d100_s42
+  type: report
+  description: 14B d100 s42 训练结果分析及完整 14B dosage sweep (d000-d100) 汇总
+  path: projects/contamcal-irt-calibration/artifacts/exp_001_sft_14b_d100_s42/report/analysis_14b_d100_s42.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp_001_sft_14b_d100_s42
+  skill: ''
+  created_at: '2026-05-19T00:20:19.687811+00:00'
+  tags:
+  - 14B
+  - dosage-sweep
+  - training-analysis
+- id: art_20260519_a721cf
+  name: phase2_analysis_script
+  type: intermediate
+  description: Phase 2 dose-response analysis script on westd
+  path: projects/contamcal-irt-calibration/artifacts/_project/intermediate/phase2_analysis_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:04:50.834867+00:00'
+  tags:
+  - phase2
+  - analysis
+  - dose-response
+- id: art_20260519_b149ae
+  name: MMLU Dose-Response Curve (5 Families)
+  type: chart
+  description: MMLU 5-shot dose-response curves for 5 model families across 5 dosages.
+    Shows 5-pattern taxonomy.
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/mmlu_dose_response_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:39:06.259686+00:00'
+  tags:
+  - dose-response
+  - mmlu
+  - phase2
+  - visualization
+- id: art_20260519_683733
+  name: ARC Dose-Response Curve (5 Families)
+  type: chart
+  description: ARC 25-shot dose-response curves for 5 model families across 5 dosages.
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/arc_dose_response_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:39:08.675576+00:00'
+  tags:
+  - dose-response
+  - arc
+  - phase2
+  - visualization
+- id: art_20260519_7ffa2f
+  name: Baseline vs Effect Scatter Plot
+  type: chart
+  description: Baseline MMLU accuracy vs contamination effect scatter — visualizes
+    ~64% threshold.
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/baseline_vs_effect_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:39:10.455580+00:00'
+  tags:
+  - baseline-threshold
+  - scatter
+  - phase2
+  - visualization
+- id: art_20260519_f318c5
+  name: Phase 2 Summary CSV (25/25 complete)
+  type: data
+  description: Complete phase2_summary.csv with 25/25 rows OK. Previously had 7 MISSING
+    entries (olmo2 all 5 + phi4_d100 + qwen14b_d100), now regenerated.
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/phase2_summary_csv_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:47:51.782082+00:00'
+  tags:
+  - phase2
+  - eval
+  - csv
+  - seed42
+- id: art_20260519_646bc2
+  name: IRT 2PL Dose-Response Fitting (MMLU + ARC)
+  type: data
+  description: '2PL IRT fitting on 25 respondents (5 families × 5 dosages). MMLU:
+    14042 items. ARC Challenge: 1172 items. Preliminary — pending 2PL+γ contamination
+    model.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/irt_2pl_fitting_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:47:55.824336+00:00'
+  tags:
+  - irt
+  - 2pl
+  - dose-response
+  - phase2
+  - analysis
+- id: art_20260519_7b2841
+  name: bootstrap_profile_stability
+  type: data
+  description: Bootstrap item-level analysis script for dose-response profile classification
+    stability and benefit/harm threshold CI. B=10000, paired bootstrap across models,
+    vectorized numpy. Outputs JSON + plots.
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/bootstrap_profile_stability.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:28:54.990981+00:00'
+  tags:
+  - bootstrap
+  - profile-stability
+  - statistical-analysis
+- id: art_20260519_a62645
+  name: bootstrap_profile_stability_s42
+  type: data
+  description: Bootstrap profile stability analysis (B=10000) for 5-model seed=42
+    dose-response. MMLU threshold 64.7% CI [64.0, 65.4]. 4/5 models >=99.6% classification
+    stability.
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/bootstrap_profile_stability_a62645.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:54:06.689006+00:00'
+  tags:
+  - bootstrap
+  - taxonomy
+  - threshold
+  - seed42
+- id: art_20260519_af3288
+  name: profile_classifier
+  type: data
+  description: Standalone dose-response profile classifier module — deterministic
+    decision tree classifying accuracy trajectories into 5 canonical patterns (Immune,
+    U-collapse, V-recovery, Benefit, Benefit-sat)
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/profile_classifier.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T17:43:19.953430+00:00'
+  tags:
+  - profile-classification
+  - algorithm
+  - paper
+- id: art_20260519_fbd0e9
+  name: algorithm1_pseudocode
+  type: paper
+  description: LaTeX Algorithm 1 pseudocode for dose-response profile classification
+    (algorithmic environment)
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/algorithm1_pseudocode.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T17:43:21.836080+00:00'
+  tags:
+  - latex
+  - algorithm
+  - paper
+- id: art_20260519_0e99c9
+  name: classification_criteria
+  type: data
+  description: YAML specification of profile classification criteria — thresholds,
+    conditions, decision order for all 5 patterns
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/classification_criteria.yaml
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T17:43:23.447612+00:00'
+  tags:
+  - profile-classification
+  - specification
+- id: art_20260519_12dd52
+  name: profile_classifier
+  type: data
+  description: Formal dose-response profile classification algorithm. 5 patterns (Immune/U-collapse/V-recovery/Benefit/Benefit-sat),
+    4 tunable params. 5/5 seed=42 validation passed.
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/profile_classifier_12dd52.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:05:33.044782+00:00'
+  tags:
+  - classification
+  - algorithm
+  - taxonomy
+  - paper
+- id: art_20260519_c1bd81
+  name: algorithm1_pseudocode
+  type: paper
+  description: LaTeX algorithmic pseudocode for Algorithm 1 (profile classification).
+    Ready to \input into paper.
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/algorithm1_pseudocode_c1bd81.tex
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:05:35.012855+00:00'
+  tags:
+  - paper
+  - algorithm
+  - latex
+- id: art_20260519_03f975
+  name: classification_sensitivity_sweep
+  type: data
+  description: 'Threshold sensitivity analysis: τ×σ 30-combo grid. 4/5 families robust
+    (30/30), Qwen-7B flips only at τ=2.0. Strong defense against "arbitrary thresholds"
+    attack.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/profile_classifier_03f975.py
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T19:14:55.480737+00:00'
+  tags:
+  - sensitivity
+  - robustness
+  - classification
+  - paper
+- id: art_20260519_6bb3fb
+  name: item_vulnerability_mmlu
+  type: data
+  description: 'Per-item contamination vulnerability analysis: 14042 MMLU items with
+    delta scores across 5 model families, domain-stratified. Remote: westd:/root/contamcal-irt-calibration/analysis/results/item_vulnerability_mmlu.csv'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/item_vulnerability_mmlu_metadata.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T19:19:13.423550+00:00'
+  tags:
+  - analysis
+  - item-level
+  - vulnerability
+  - mmlu
+  - seed42
+- id: art_20260519_04fdbf
+  name: treated_untreated_analysis
+  type: data
+  description: 'Treated vs untreated item causal analysis: DiD across 5 families ×
+    5 dosages. Key finding: all DiD non-significant — contamination effect is global
+    SFT effect, not item-specific memorization. Remote: westd:/root/contamcal-irt-calibration/artifacts/treated_untreated/'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/treated_untreated_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T19:22:37.105850+00:00'
+  tags:
+  - analysis
+  - causal
+  - treated-untreated
+  - did
+  - mmlu
+  - arc
+  - seed42
+- id: art_20260519_f85d56
+  name: error_analysis_old_models
+  type: data
+  description: 'Error analysis (forgetting/gain/persistent/cross-model) on OLD model
+    set (0.5B/1.5B/3B). Methodology reusable for 5-family. Remote: westd:/root/contamcal-irt-calibration/analysis/error_analysis/'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/error_analysis_old_models.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T19:34:14.462254+00:00'
+  tags:
+  - analysis
+  - error
+  - forgetting
+  - old-models
+- id: art_20260519_1d34ce
+  name: sensitivity_sweep_v2
+  type: data
+  description: 'Classification sensitivity sweep v2 with volatility check: 30/30 combos
+    × 6 families = 180/180 correct. 35 fixes vs v1, 0 regressions. Remote: westd:/root/contamcal-irt-calibration/analysis/results/sensitivity_v2/'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/sensitivity_sweep_v2.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T19:52:47.213291+00:00'
+  tags:
+  - analysis
+  - sensitivity
+  - classification
+  - volatility-check
+  - v2
+- id: art_20260519_9da685
+  name: domain_decomposition_s42
+  type: data
+  description: 'Per-domain MMLU accuracy decomposition (STEM/Humanities/Social Sci/Other)
+    across 5 families × 5 dosages. Key: STEM most resilient, Social Sci most sensitive,
+    direction by archetype not domain. Remote: westd:/root/contamcal-irt-calibration/analysis/results/domain_decomposition/'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/domain_decomposition_s42.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T20:48:46.532069+00:00'
+  tags:
+  - analysis
+  - domain
+  - mmlu
+  - seed42
+  - reviewer3
+- id: art_20260519_409510
+  name: error_analysis_summary
+  type: report
+  description: 'Systematic audit of 100 failed/killed experiments: failure reason
+    taxonomy, model/server/phase/temporal distribution, and bias analysis'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/error_analysis_summary.yaml
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T20:54:16.854832+00:00'
+  tags:
+  - audit
+  - error_analysis
+  - failure_review
+- id: art_20260519_c29791
+  name: irt_data_matrices
+  type: data
+  description: 'IRT 2PL+γ input data: binary response matrices + exposure scores +
+    item metadata for MMLU (20×14042), GSM8K (16×1319), ARC (21×1172), HumanEval (15×164).
+    Remote: westd:/root/contamcal-irt-calibration/analysis/irt_data/'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/irt_data_matrices.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T21:36:49.469966+00:00'
+  tags:
+  - irt
+  - data
+  - response-matrix
+  - seed42
+- id: art_20260519_00ad08
+  name: irt_data_matrices_v3
+  type: data
+  description: 'IRT 2PL+γ complete input data v3: 25/25 respondents (5 families ×
+    5 dosages s42). MMLU 25×14042, ARC 25×1172. From westd eval_results_v2. Remote:
+    westd:/root/contamcal-irt-calibration/analysis/irt_data_v3/'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/irt_data_matrices_v3.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T21:44:26.056380+00:00'
+  tags:
+  - irt
+  - data
+  - response-matrix
+  - seed42
+  - 25-respondents
+  - v3
+- id: art_20260519_8597a2
+  name: appendix_domain_decomposition
+  type: paper
+  description: 'Appendix paragraph: Domain-level decomposition of MMLU contamination
+    effects across 4 domains × 5 archetypes. Key findings: STEM most resilient (mean
+    |Δacc| 2.8pp), Social Sciences most sensitive (5.1pp), direction governed by archetype
+    not domain, supporting global SFT interpretation.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/paper/appendix_domain_decomposition.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T21:52:01.411487+00:00'
+  tags:
+  - appendix
+  - domain-decomposition
+  - MMLU
+  - paper-writing
+- id: art_20260519_319ca1
+  name: paper_update_checklist
+  type: report
+  description: EMNLP 2026 论文更新清单：覆盖所有 section 的 P0/P1 改动项，基于 D165 V-recovery 双种子确认、Algorithm
+    v2、DiD、domain decomposition、GSM8K pending 等近期发现
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/paper_update_checklist.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T22:08:07.618186+00:00'
+  tags:
+  - paper
+  - checklist
+  - emnlp2026
+- id: art_20260519_e79d2d
+  name: paper_consistency_audit
+  type: report
+  description: 'Pre-submission consistency audit: Algorithm 1 pseudocode vs code,
+    sensitivity sweep 30→180 update status, V-recovery dual-seed description check'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/paper_consistency_audit.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T22:12:18.691507+00:00'
+  tags:
+  - audit
+  - paper
+  - pre-submission
+- id: art_20260519_06dee1
+  name: lit_cross_benchmark_transfer
+  type: report
+  description: 文献调研：SFT contamination 跨 benchmark 泛化效应（MMLU→GSM8K +11.07pp），涵盖 cross-task
+    transfer、capability elicitation、format vs content effect 三个方向共 15 篇论文
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/lit_cross_benchmark_transfer.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T22:37:26.891485+00:00'
+  tags:
+  - literature-review
+  - cross-benchmark-transfer
+  - contamination
+  - SFT
+  - framing
+- id: art_20260519_1e4f79
+  name: sft_qwen7b_olmo2_s123_sweep_report
+  type: report
+  description: Training analysis report for Qwen-7B & OLMo-2-7B seed=123 SFT dose-response
+    sweep on westd-29999
+  path: projects/contamcal-irt-calibration/artifacts/exp001/report/sft_qwen7b_olmo2_s123_sweep_report.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp001
+  skill: ''
+  created_at: '2026-05-19T22:56:41.169069+00:00'
+  tags:
+  - sft
+  - s123
+  - qwen-7b
+  - olmo-2-7b
+  - sweep
+- id: art_20260520_2a45c4
+  name: GSM8K Dose-Response Nonlinearity Analysis
+  type: report
+  description: 'Complete 5-point GSM8K dosage analysis for Qwen-7B s42: 11.6x nonlinearity
+    calculation, non-monotonicity analysis, AUGMENT confound exclusion, OLMo-2 archetype
+    comparison'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/gsm8k_dosage_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T00:53:09.187911+00:00'
+  tags:
+  - gsm8k
+  - dose-response
+  - nonlinearity
+  - paper-figure
+  - qwen-7b
+- id: art_20260520_6d472c
+  name: diag_sft_sweep_failures_westd
+  type: report
+  description: westd-29999 上 Qwen14B/gemma-2-9b s123 sweep 失败诊断：根分区磁盘满导致 d100 训练失败
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/diag_sft_sweep_failures_westd.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T01:34:27.925109+00:00'
+  tags:
+  - diagnosis
+  - sft
+  - westd-29999
+  - disk-full
+- id: art_20260520_149b0d
+  name: error_analysis
+  type: report
+  description: 系统性失败案例分析：105条failed/killed实验按12类根因分类，含GPU进程冲突(18)、Cron误报(16)、实验废弃(20)、配置错误(13)、Worker误杀(11)等，附系统性模式与优先级建议
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/error_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:00:41.417472+00:00'
+  tags:
+  - error-analysis
+  - postmortem
+  - gpu-scheduling
+  - monitoring
+- id: art_20260520_35d34d
+  name: bootstrap_full_5family_s42_s123
+  type: report
+  description: Full bootstrap CI analysis with all 5 families × s42+s123 data. Includes
+    CI table, LaTeX output, pattern classifications. D184 labels applied.
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/bootstrap_full_5family_s42_s123.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:03:55.231637+00:00'
+  tags:
+  - bootstrap
+  - cross-seed
+  - table5
+  - D184
+- id: art_20260520_d7710b
+  name: bootstrap_n3_phi4_d188
+  type: report
+  description: Bootstrap with Phi-4 upgraded to n=3 BCa. D188 classifier fix applied.
+    Direction + Dir-Con columns included.
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/bootstrap_n3_phi4_d188.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T16:53:56.000020+00:00'
+  tags:
+  - bootstrap
+  - n3
+  - phi4
+  - D188
+- id: art_20260520_c92891
+  name: bootstrap_CI_mmlu_20250520
+  type: data
+  description: 'MMLU triple-seed bootstrap CI table (D188 revised): 5 families × 3
+    seeds, BCa/t-dist CIs, pattern/direction/Dir-Con columns'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/bootstrap_CI_mmlu_20250520.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:35:17.240828+00:00'
+  tags:
+  - bootstrap
+  - mmlu
+  - CI
+  - dose-response
+- id: art_20260520_3022ce
+  name: bootstrap_CI_arc_20250520
+  type: data
+  description: 'ARC-Challenge triple-seed bootstrap CI table: 5 families, BCa/t-dist
+    CIs, pattern/direction/Dir-Con columns'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/bootstrap_CI_arc_20250520.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T18:35:22.322735+00:00'
+  tags:
+  - bootstrap
+  - arc
+  - CI
+  - dose-response
+- id: art_20260520_6a47d2
+  name: Fig1 Dose-Response Curves
+  type: chart
+  description: 'Dual-panel dose-response curves: MMLU (5-shot) and ARC-Challenge (25-shot),
+    5 model families × 5 dosages, s123 seed. Remote: westd-29999:/root/contamcal-irt-calibration/figures/fig1_dose_response.{pdf,png}'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig1_dose_response_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T19:33:53.169889+00:00'
+  tags:
+  - paper-figure
+  - dose-response
+  - mmlu
+  - arc
+- id: art_20260520_237414
+  name: Fig2 Cross-Benchmark Scatter
+  type: chart
+  description: 'Cross-benchmark scatter: MMLU vs ARC mean delta(d100), multi-seed
+    averages. Remote: westd-29999:/root/contamcal-irt-calibration/figures/fig2_cross_benchmark_scatter.{pdf,png}'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig2_cross_benchmark_scatter_info.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T19:33:57.172581+00:00'
+  tags:
+  - paper-figure
+  - scatter
+  - cross-benchmark
+- id: art_20260520_60b947
+  name: fig1_dose_response_fixed_labels
+  type: chart
+  description: 'Fig 1: MMLU+ARC dual-panel dose-response curves with corrected family-level
+    taxonomy labels (Immune/Collapse/V-recovery/Benefit/Benefit†). seed=42.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig1_dose_response_fixed.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:11:37.540916+00:00'
+  tags:
+  - figure
+  - paper
+  - dose-response
+  - label-fix
+- id: art_20260520_0ec318
+  name: fig2_cross_benchmark_scatter_fixed
+  type: chart
+  description: 'Fig 2: Cross-benchmark Δ scatter (MMLU vs ARC) with corrected family-level
+    taxonomy labels. Multi-seed means.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig2_cross_benchmark_scatter_fixed.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:11:39.533074+00:00'
+  tags:
+  - figure
+  - paper
+  - cross-benchmark
+  - label-fix
+- id: art_20260520_2887f4
+  name: random_mae_control_mmlu
+  type: data
+  description: Random 300-item subset MAE control for MMLU. 10 random seeds, vanilla
+    2PL IRT. MAE=0.0394 +/- 0.0080, tau=0.5528 +/- 0.1162.
+  path: null
+  url: /root/contamcal-irt-calibration/artifacts/random_mae_control/random_mae_control_results.json
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T20:42:34.219921+00:00'
+  tags:
+  - R2
+  - random-baseline
+  - MAE
+  - MMLU
+  - 2PL
+- id: art_20260520_d47f8c
+  name: gemma2_s0_sweep_analysis
+  type: report
+  description: Gemma-2-9B seed=0 dose-response sweep MMLU analysis - d000-d050 complete,
+    d100 crashed
+  path: projects/contamcal-irt-calibration/artifacts/sft_gemma2_s0_sweep/report/gemma2_s0_sweep_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: sft_gemma2_s0_sweep
+  skill: ''
+  created_at: '2026-05-20T22:03:30.758542+00:00'
+  tags:
+  - gemma2
+  - seed0
+  - mmlu
+  - dose-response
+- id: art_20260520_577ab4
+  name: sft_qwen7b_s0_cqa1_analysis
+  type: report
+  description: Training analysis report for Qwen2.5-7B seed=0 SFT across 5 dosage
+    levels
+  path: projects/contamcal-irt-calibration/artifacts/sft_qwen7b_s0_cqa1/report/sft_qwen7b_s0_cqa1_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: sft_qwen7b_s0_cqa1
+  skill: ''
+  created_at: '2026-05-20T22:45:37.806499+00:00'
+  tags: []
+- id: art_20260521_873516
+  name: qwen7b_n3_bootstrap_ci
+  type: data
+  description: 'Qwen-7B family n=3 BCa bootstrap CI for MMLU and ARC Δ(d000→d100).
+    Both benchmarks show significant negative effect (CI excludes 0). MMLU: -0.95pp
+    [-1.82, -0.34], ARC: -2.42pp [-2.90, -2.08]. Direction consistent (both negative).
+    V-recovery pattern confirmed.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/qwen7b_n3_bootstrap_ci.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T00:26:52.613124+00:00'
+  tags:
+  - bootstrap
+  - qwen7b
+  - n3
+  - mmlu
+  - arc
+  - ci
+- id: art_20260521_984216
+  name: threshold_dgp_summary
+  type: data
+  description: 'Summary table of attenuation ratios and coverage by DGP × J × gamma,
+    aggregated over 10 seeds. Key finding: hypothesis rejected — linear model overestimates
+    gamma under threshold DGP (ratios 0.94-1.24), not attenuates.'
+  path: projects/contamcal-irt-calibration/artifacts/r3w10_threshold_dgp/data/threshold_dgp_summary.csv
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: r3w10_threshold_dgp
+  skill: ''
+  created_at: '2026-05-21T01:00:35.635507+00:00'
+  tags:
+  - simulation
+  - threshold-dgp
+  - summary
+- id: art_20260521_5fc135
+  name: SFT Training Curves Data
+  type: data
+  description: 'Training loss curves for 68/75 (family x dosage x seed) SFT combinations,
+    extracted from trainer_state.json on westd-29999. 312-415 pts per curve. 7 missing:
+    Qwen-7B all s0, Qwen-14B d050/s0, Gemma-2 d100/s0.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/training_curves_metadata.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:49:07.540550+00:00'
+  tags:
+  - training-curves
+  - sft
+  - loss
+  - paper-figure
+- id: art_20260521_fb1575
+  name: sft_qwen14b_s0_sweep_analysis
+  type: report
+  description: Training analysis for Qwen2.5-14B seed=0 dose-response SFT sweep —
+    4/5 dosages complete, d050 crashed (Pin memory thread)
+  path: projects/contamcal-irt-calibration/artifacts/sft_qwen14b_s0_sweep/report/analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: sft_qwen14b_s0_sweep
+  skill: ''
+  created_at: '2026-05-21T02:26:38.909182+00:00'
+  tags:
+  - qwen14b
+  - s0
+  - dose-response
+  - sft
+  - mmlu
+- id: art_20260521_b4aa29
+  name: retrain_gemma2_d100_s0 failure diagnosis
+  type: report
+  description: Diagnosis of retrain_gemma2_d100_s0 false failure - training actually
+    completed successfully, monitoring system false positive due to missing W&B/sentinel
+    integration
+  path: projects/contamcal-irt-calibration/artifacts/retrain_gemma2_d100_s0/report/diagnosis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: retrain_gemma2_d100_s0
+  skill: ''
+  created_at: '2026-05-21T02:31:29.971551+00:00'
+  tags:
+  - diagnosis
+  - gemma-2
+  - false-failure
+- id: art_20260521_266f58
+  name: Gemma-2-9B n=3 BCa Bootstrap CI
+  type: data
+  description: 'BCa bootstrap 95% CI for Gemma-2-9B Δ(d000→d100) with n=3 seeds. MMLU:
+    +2.38pp [1.49, 3.14] excludes 0 (Benefit). ARC: -0.15pp [-1.97, 1.42] includes
+    0 (Inconclusive). Dir-Con=✗.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/gemma2_n3_bootstrap_ci.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:38:53.953535+00:00'
+  tags:
+  - bootstrap
+  - BCa
+  - gemma2
+  - n3
+  - confidence-interval
+  - family-analysis
+- id: art_20260521_e1a18e
+  name: qwen14b_n3_bootstrap_ci
+  type: data
+  description: 'Qwen-14B n=3 BCa Bootstrap CI (B=10000, seed=42): MMLU [-24.99, -10.49],
+    ARC [-9.38, -2.76], Dir-Con=✅, Collapse confirmed. Last family (5/5).'
+  path: projects/contamcal-irt-calibration/artifacts/eval_qwen14b_d050_arc_s0/data/qwen14b_n3_bootstrap_ci.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: eval_qwen14b_d050_arc_s0
+  skill: ''
+  created_at: '2026-05-21T06:13:59.047805+00:00'
+  tags:
+  - n3
+  - bootstrap
+  - qwen14b
+  - collapse
+  - milestone
+- id: art_20260521_b8be8f
+  name: gemma2_n3_bootstrap_ci_verified
+  type: data
+  description: 'Gemma-2 n=3 BCa Bootstrap CI (VERIFIED): MMLU [+1.49, +3.14] excl0,
+    ARC [-1.97, +1.42] incl0, Dir-Con=✗. s42 ARC newly evaluated and confirmed delta=-1.20pp.'
+  path: projects/contamcal-irt-calibration/artifacts/eval_gemma2_arc_s42/data/gemma2_n3_bootstrap_ci_verified.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: eval_gemma2_arc_s42
+  skill: ''
+  created_at: '2026-05-21T07:09:41.418673+00:00'
+  tags:
+  - n3
+  - bootstrap
+  - gemma2
+  - verified
+  - audit
+- id: art_20260521_a84cbc
+  name: did_power_analysis
+  type: data
+  description: 'DiD post-hoc power analysis: MDES for each family × benchmark at d025.
+    MMLU MDES 1.25–2.05pp, ARC 2.28–5.57pp. All observed |DiD| below MDES. Includes
+    paper text for Limitations.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/did_power_analysis.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:01:05.712936+00:00'
+  tags:
+  - did
+  - power-analysis
+  - mdes
+  - reviewer-response
+- id: art_20260521_f2da55
+  name: DiD Post-hoc Power Analysis
+  type: data
+  description: 'MDES for DiD item-specific analysis: MMLU 1.25-2.05pp, ARC 2.28-5.57pp.
+    All observed |DiD| below MDES. Includes paper-ready text for Limitations section.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/did_power_analysis_f2da55.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:14:07.323540+00:00'
+  tags:
+  - did
+  - power-analysis
+  - reviewer-w2
+  - statistics
+- id: art_20260521_29d0b6
+  name: RRF Signal Correlation and Ablation (C1+C2)
+  type: data
+  description: 'W7 response: Spearman correlation matrix (max |ρ|=0.053, signals orthogonal)
+    + leave-one-out ablation (S4>S1>S2 importance, ρ≈0.78 rank stability). 3 signals
+    provide non-redundant information.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/rrf_signal_analysis.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T08:56:40.584998+00:00'
+  tags:
+  - rrf
+  - signal-analysis
+  - reviewer-w7
+  - ablation
+  - correlation
+- id: art_20260521_87ecf5
+  name: Algorithm 1 Threshold Sensitivity Heatmap (C3)
+  type: data
+  description: 'W9 response: τ×σ grid 30 combinations all 5 families 100% stable.
+    Extended 134 combos: 72-100%. Nearest transition at τ=3.0 (3× default). Classification
+    stability rooted in well-separated effect sizes.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/algo1_threshold_heatmap.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:01:09.366303+00:00'
+  tags:
+  - threshold-sensitivity
+  - algorithm-1
+  - reviewer-w9
+  - heatmap
+  - robustness
+- id: art_20260521_5c2fb3
+  name: LLaMA-3.1-8B SFT validation launch
+  type: intermediate
+  description: 'Launched 3 LLaMA-3.1-8B SFT jobs (d000/d025/d100, seed=0) on westd-29999.
+    GPU 0: d025 PID 509577, GPU 1: d000 PID 508650, GPU 3: d100 PID 510202. LoRA r=16
+    alpha=32 lr=5e-5 bs=2 ga=8. ETA: d000 ~20:20, d025 ~20:35, d100 ~21:00 UTC.'
+  path: projects/contamcal-irt-calibration/artifacts/sft_llama3_8b_s0_validation/intermediate/sft_llama3_8b_launch_status.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: sft_llama3_8b_s0_validation
+  skill: ''
+  created_at: '2026-05-21T10:09:52.456070+00:00'
+  tags:
+  - sft
+  - llama3
+  - validation
+  - training
+- id: art_20260521_a06fa7
+  name: llama3_8b_taxonomy_validation
+  type: data
+  description: 'LLaMA-3.1-8B out-of-sample taxonomy validation: 3-point dose-response
+    (d000/d025/d100) MMLU+ARC. Classified Immune. W3 addressed. Key: same baseline
+    as OLMo-2 but different pattern.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/llama3_taxonomy_validation.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T13:51:09.023734+00:00'
+  tags:
+  - llama3
+  - taxonomy
+  - W3
+  - immune
+  - out-of-sample
+- id: art_20260521_8b6c0d
+  name: eval_olmo2_s42_rerun_analysis
+  type: report
+  description: 'OLMo-2-7B s42 rerun eval analysis: d000 baseline verified at 53.79%,
+    ARC all exact match, MMLU d025/d100 have ~1.6pp discrepancy'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/eval_olmo2_s42_rerun_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:07:02.909423+00:00'
+  tags:
+  - olmo2
+  - eval
+  - rerun
+  - mmlu
+  - arc
+  - s42
+- id: art_20260521_16e112
+  name: sij_classification_eval_results
+  type: data
+  description: 'SF4: s_ij exposure score classification performance — ROC-AUC, PR-AUC,
+    P@Npos for RRF and individual signals (Embedding, Min-K++, Self-Critique) across
+    dosages (d005, d025) × benchmarks (MMLU, ARC, GSM8K), 7 models each. Embedding
+    dominates (ROC-AUC 0.91-0.99); RRF fusion degrades performance vs Embedding alone
+    due to near-random Min-K++/Self-Critique.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/sij_classification_results.csv
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:30:03.478978+00:00'
+  tags:
+  - SF4
+  - exposure_score
+  - classification
+  - rrf
+  - signal_quality
+- id: art_20260521_7181a2
+  name: parametric_dr_model_selection_summary
+  type: data
+  description: 'AICc model selection summary: 4 candidates (Constant/Linear/Quadratic/Hill)
+    × 5 families. Best model, classification, Akaike weights, Algorithm 1 consistency
+    (1/5 strict match).'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/aic_model_selection_summary.csv
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:32:48.647365+00:00'
+  tags:
+  - MF1
+  - model-selection
+  - AICc
+  - dose-response
+- id: art_20260521_5b0953
+  name: parametric_dr_fit_curves
+  type: chart
+  description: 'Dose-response model fit plots: 5 families × 4 candidate models with
+    Akaike weights. Best model highlighted in bold. Shows data scatter, dosage means
+    with error bars, all candidate curves.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/raw_data.csv
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:32:54.501451+00:00'
+  tags:
+  - MF1
+  - model-selection
+  - dose-response
+  - figure
+- id: art_20260521_153c29
+  name: pgamma_discrepancy_report
+  type: report
+  description: P(γ<0) 数值不一致根因分析：Table 15 (γ=-0.63) vs Table 10 (γ=-0.497) 的差异源于 gamma_prior_sensitivity.py
+    使用不同数据加载路径导致 item 子集不同
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/pgamma_discrepancy_report.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:59:08.950996+00:00'
+  tags:
+  - review
+  - consistency
+  - gamma
+  - irt
+- id: art_20260521_2c1a1e
+  name: prior_sensitivity_j16_results
+  type: report
+  description: 'Prior sensitivity analysis (σ=0.5/1.0/2.0) on j16 model pool for MMLU
+    social_sciences. Option A fails: tight prior P(γ<0)=99.35% < 99.375% Bonferroni
+    threshold.'
+  path: projects/contamcal-irt-calibration/artifacts/exp006/report/prior_sensitivity_j16_results.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp006
+  skill: ''
+  created_at: '2026-05-21T19:53:10.250771+00:00'
+  tags:
+  - prior-sensitivity
+  - j16
+  - social_sciences
+  - bonferroni
+  - option-a-fail
+- id: art_20260522_1178b6
+  name: data_audit_table4_10_xref
+  type: report
+  description: '数据正确性审计: Table 4, Table 10, §5.5, §5.7, Limitations, Cross-references。55项核对，54项正确，1项不一致(Δτ=0.27)。'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/data_audit_table4_10_xref.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T02:35:39.903838+00:00'
+  tags:
+  - audit
+  - paper
+  - data-verification
+- id: art_20260522_12d7cc
+  name: 'Data Audit: Table 1 + §5.1/§5.2 Inline Numbers'
+  type: report
+  description: 'Audit of 64 numbers in Tables 1-2 and §5.1-§5.2 against source eval_results.json
+    files. All baselines and Δacc values match. 3 minor issues found: Gemma-2 "mono."
+    label (not strictly monotonic), OLMo-2 s123 sign convention, GSM8K footnote mislabel.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/data_audit_table1.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T03:49:34.111401+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - table1
+  - results
+- id: art_20260522_8b1150
+  name: data_audit_tables2_3_fig1
+  type: report
+  description: 'Data audit of results.tex: 66 numbers checked against source data
+    on westd/cqa1 servers. 62 ✅, 2 ⚠️ (rounding), 2 ❌ (Cohen''s d source not located).'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/data_audit_tables2_3_fig1.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T04:08:07.509465+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - results.tex
+- id: art_20260522_f292e9
+  name: falcon3_paper_integration_plan
+  type: report
+  description: Falcon3-7B-Base 论文整合清单：23处必须更新 + 4种pattern条件更新 + Algorithm 1 d100依赖分析
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/falcon3_paper_integration_plan.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:32:48.831206+00:00'
+  tags:
+  - falcon3
+  - paper
+  - integration
+- id: art_20260522_f32b0a
+  name: Falcon3-7B SFT 训练诊断报告
+  type: report
+  description: Falcon3-7B-Base d100_s42 训练失败诊断：当前训练实际正在正常运行(step 185/4159, 19.1/24GB)，无OOM/crash证据。5次崩溃系此前高batch
+    size配置所致。
+  path: projects/contamcal-irt-calibration/artifacts/exp001/report/falcon3_failure_diagnosis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: exp001
+  skill: ''
+  created_at: '2026-05-22T08:05:12.470891+00:00'
+  tags:
+  - falcon3
+  - sft
+  - diagnosis
+  - gpu-memory
+- id: art_20260522_4520f7
+  name: cross_benchmark_consistency
+  type: report
+  description: 'Cross-benchmark pattern consistency analysis: 6 models × 3 benchmarks
+    (MMLU/ARC/GSM8K) × 5 dosages. Pattern classification matrices, raw Δ values, dose-response
+    trajectories, agreement statistics, and paper-ready numbers. Key finding: MCQ
+    benchmarks agree 83% but MCQ-GSM8K agreement is only 40% due to systematic directional
+    reversals.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/cross_benchmark_consistency.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T09:47:00.673452+00:00'
+  tags:
+  - cross-benchmark
+  - pattern-consistency
+  - dose-response
+  - taxonomy
+  - paper-analysis
+- id: art_20260522_426703
+  name: 'Signal Ablation: IRT γ Identifiability Analysis'
+  type: report
+  description: 'Simulation-based ablation testing each RRF signal''s contribution
+    to IRT 2PL+γ contamination parameter estimation. Compares Full (S1+S2+S4), Drop-S1,
+    Drop-S2, Drop-S4, single-signal, oracle, and random configs across MMLU/ARC/GSM8K.
+    Two exposure methods (signal-average vs RRF). Key finding: S4(self-critique) >
+    S1(embedding) > S2(Min-K++) in γ identifiability; no signal is pure noise; 3-vs-2
+    signal marginal benefit is minimal.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/signal_ablation_results.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:11:47.722825+00:00'
+  tags:
+  - signal-ablation
+  - irt
+  - gamma
+  - rrf
+  - simulation
+- id: art_20260522_ad4be1
+  name: Signal Ablation Raw Results (JSON)
+  type: data
+  description: 'Full numerical results from signal ablation simulation: γ estimates,
+    CIs, MAE, ρ(E,τ) for all 9 configs × 3 benchmarks × 2 exposure methods (signal-average
+    and RRF). 30 reps each.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/signal_ablation_results.json
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:11:53.875202+00:00'
+  tags:
+  - signal-ablation
+  - irt
+  - gamma
+  - data
+- id: art_20260522_6d6f4f
+  name: diagnose_eval_falcon3_failed
+  type: report
+  description: 'Diagnosis of 3 Falcon3 eval failures on westd-29999: network unreachable
+    due to missing source /etc/network_turbo. Fixed by pre-downloading datasets; evals
+    now running as v2.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/diagnose_eval_falcon3_failed.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T11:40:27.525151+00:00'
+  tags:
+  - diagnosis
+  - eval
+  - falcon3
+  - westd-29999
+- id: art_20260522_942dfa
+  name: sft_tax_analysis
+  type: report
+  description: 'Cross-family SFT tax analysis: pre-training MMLU 5-shot vs d000 post-SFT
+    baseline for 7 model families (Phi-4, Qwen2.5-14B/7B, Gemma-2, Falcon3, LLaMA-3.1,
+    OLMo-2)'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/sft_tax_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T12:32:59.726226+00:00'
+  tags:
+  - sft_tax
+  - cross_family
+  - mmlu
+  - baseline
+- id: art_20260522_1bdc0e
+  name: falcon3_algorithm1_classification
+  type: report
+  description: 'Falcon3-7B-Base Algorithm 1 dose-response pattern classification:
+    MMLU=Benefit (+4.19pp), ARC=Benefit-sat (+4.01pp). Cross-family comparison with
+    all 7 families.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/falcon3_algorithm1_classification.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T13:15:32.126632+00:00'
+  tags:
+  - falcon3
+  - algorithm1
+  - classification
+  - dose-response
+- id: art_20260522_2e1572
+  name: falcon3_paper_integration_data
+  type: data
+  description: 'Falcon3-7B-Base complete dose-response data formatted for paper integration:
+    table updates, cross-family Benefit comparison, SFT tax, cross-benchmark consistency,
+    taxonomy update'
+  path: projects/contamcal-irt-calibration/artifacts/_project/data/falcon3_paper_integration_data.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T13:16:51.105522+00:00'
+  tags:
+  - falcon3
+  - paper
+  - dose-response
+  - taxonomy
+  - benefit
+- id: art_20260522_b1d827
+  name: falcon3_bootstrap_ci
+  type: report
+  description: 'Falcon3-7B-Base bootstrap 95% BCa CI for Table 1: MMLU Δ=+4.19pp [+3.60,+4.79]
+    96.1% stable; ARC Δ=+4.01pp [+2.22,+5.72] 61.3% stable'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/falcon3_bootstrap_ci.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:58:52.722912+00:00'
+  tags:
+  - bootstrap
+  - falcon3
+  - table1
+  - ci
+- id: art_20260522_64e40c
+  name: fig_dose_response_7family
+  type: chart
+  description: 'Figure 1: 7-family MMLU dose-response curves with Falcon3 added. Line
+    styles encode 4 patterns (Benefit/Immune/Collapse/V-recovery). PDF+PNG.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/fig_dose_response_64e40c.pdf
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:29:58.934391+00:00'
+  tags:
+  - falcon3
+  - figure1
+  - dose-response
+  - paper
+- id: art_20260522_645396
+  name: falcon3_did_analysis
+  type: intermediate
+  description: 'Falcon3-7B DiD analysis script and documentation for Table 3. BLOCKED:
+    servers down, item-level correctness_matrix.json unavailable. Script ready to
+    run when server access restored.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/intermediate/falcon3_did_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T17:38:30.574628+00:00'
+  tags:
+  - falcon3
+  - did
+  - table3
+  - blocked
+- id: art_20260522_270b5e
+  name: eij_bj_correlation
+  type: report
+  description: Pearson/Spearman correlation between RRF exposure scores (τ_j) and
+    IRT item difficulty (b_j). All |r| < 0.13, R² < 1.4%. Supports γ identifiability.
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/eij_bj_correlation.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T23:56:45.098228+00:00'
+  tags:
+  - irt
+  - identifiability
+  - round11
+  - reviewer-response
+- id: art_20260522_e98ec2
+  name: llama_olmo_paradox_analysis
+  type: report
+  description: 'LLaMA-3 vs OLMo-2 baseline paradox analysis: same MMLU baseline (53.5%
+    vs 53.8%) but opposite contamination patterns (Immune vs Benefit). Key factors:
+    pre-training data volume, annealing stage, GQA vs MHA.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/llama_olmo_paradox_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T23:58:39.086143+00:00'
+  tags:
+  - discussion
+  - round11
+  - reviewer-response
+- id: art_20260523_909504
+  name: OLMo-2 Rerun Deviation Analysis
+  type: report
+  description: 'OLMo-2 s42 rerun vs original deviation quantification: MMLU d025/d100
+    ~1.6pp from infrastructure FP non-determinism, ARC 0.00pp, pattern unchanged'
+  path: projects/contamcal-irt-calibration/artifacts/eval_olmo2_s42_rerun/report/olmo2_rerun_bias.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: eval_olmo2_s42_rerun
+  skill: ''
+  created_at: '2026-05-23T00:00:25.326827+00:00'
+  tags:
+  - olmo2
+  - rerun
+  - reproducibility
+  - appendix
+  - B4
+- id: art_20260523_cd187c
+  name: evaluate_py_version_diff
+  type: report
+  description: 'evaluate.py version diff (37591→37978 bytes): 5 changes — token_type_ids
+    strip (Falcon3-only) + system_prompt additions (GSM8K/HumanEval). MMLU/ARC eval
+    logic unchanged.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/evaluate_py_version_diff.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T00:01:48.614863+00:00'
+  tags:
+  - provenance
+  - round11
+- id: art_20260523_0fc24d
+  name: did_parallel_trends_balance
+  type: report
+  description: 'DiD parallel trends balance check: treated vs untreated items balanced
+    on accuracy (p=0.391), difficulty quintile (p=0.194), domain (p=0.263), subject
+    (p=0.290). All effect sizes negligible.'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/did_parallel_trends_balance.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T00:05:07.906239+00:00'
+  tags:
+  - did
+  - parallel-trends
+  - round11
+  - reviewer-response
+- id: art_20260523_78badf
+  name: paper_precheck_r26
+  type: report
+  description: 'Paper precheck: Falcon3 data verification + volume control eval command
+    preparation'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/paper_precheck_r26.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T03:20:28.556825+00:00'
+  tags:
+  - paper
+  - falcon3
+  - eval
+  - precheck
+- id: art_20260523_eec14a
+  name: subset_distribution_analysis
+  type: report
+  description: 'W5 reviewer response: 300-item MMLU subset distribution analysis —
+    difficulty/domain/RRF exposure representativeness with KS, chi-square tests'
+  path: projects/contamcal-irt-calibration/artifacts/_project/report/subset_distribution_analysis.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T08:18:18.194174+00:00'
+  tags:
+  - reviewer-response
+  - W5
+  - subset-bias
+  - MMLU
+- id: art_20260523_e77969
+  name: subset_distribution_figure
+  type: chart
+  description: Bar charts comparing 300-item subset vs full MMLU difficulty and domain
+    distributions
+  path: projects/contamcal-irt-calibration/artifacts/_project/chart/subset_distribution_figure_location.txt
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T08:18:20.787899+00:00'
+  tags:
+  - reviewer-response
+  - W5
+  - figure
+- id: art_20260523_557890
+  name: DIF Model Comparison (Uniform vs Non-uniform)
+  type: report
+  description: 'Comparison of uniform vs non-uniform DIF formulations for Reviewer
+    W11. LOO essentially identical (ΔELPD=0.9, dSE=1.4). Non-uniform preferred: better
+    ESS, faster sampling, clearer γ interpretation.'
+  path: projects/contamcal-irt-calibration/artifacts/analysis_dif_comparison/report/dif_model_comparison.md
+  url: null
+  project: contamcal-irt-calibration
+  exp_id: analysis_dif_comparison
+  skill: ''
+  created_at: '2026-05-23T09:18:07.780290+00:00'
+  tags:
+  - reviewer-response
+  - W11
+  - DIF
+  - model-comparison
+  - LOO

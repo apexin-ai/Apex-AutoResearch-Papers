@@ -1,0 +1,223 @@
+{
+  "analysis": "DiD Power Analysis — d100 Assessment and d050 Supplement",
+  "description": "d100 DiD is structurally undefined (n_untreated=0). d050 provided as highest-dosage alternative with control group.",
+  "d100_limitation": {
+    "issue": "At d100 dosage, ALL benchmark items are included in the contamination set (MMLU: 14042/14042, ARC: 1172/1172). n_untreated=0 means no control group exists for the item-level DiD design.",
+    "implication": "DiD (treated vs. untreated item accuracy change) cannot be computed at d100. The design requires a within-benchmark control group of non-contaminated items.",
+    "alternative": "d050 is the highest dosage with a viable control group (roughly balanced: MMLU 7040 vs 7002, ARC 556 vs 616). d050 treated sample is 2× d025."
+  },
+  "method": "SE estimated from bootstrap 95% CI width: SE = (CI_hi - CI_lo) / (2 × 1.96); MDES = (z_{α/2} + z_β) × SE",
+  "parameters": {
+    "alpha": 0.05,
+    "power": 0.8,
+    "test": "two-sided",
+    "bootstrap_iterations": 10000,
+    "dosage": "d050 (5.0%)"
+  },
+  "results": {
+    "mmlu": {
+      "Gemma-2-9B": {
+        "n_treated": 7040,
+        "n_untreated": 7002,
+        "treated_delta_pp": 2.54,
+        "untreated_delta_pp": 1.74,
+        "did_pp": 0.80,
+        "did_ci_lo_pp": -0.58,
+        "did_ci_hi_pp": 2.15,
+        "did_p": 0.2516,
+        "se_did_pp": 0.697,
+        "mdes_pp": 1.95,
+        "sigma_sq_pooled": 0.17073,
+        "observed_abs_did_pp": 0.80,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 107244,
+        "n_each_balanced_for_1.0pp": 26811
+      },
+      "OLMo-2-7B": {
+        "n_treated": 7040,
+        "n_untreated": 7002,
+        "treated_delta_pp": 3.75,
+        "untreated_delta_pp": 3.17,
+        "did_pp": 0.58,
+        "did_ci_lo_pp": -0.46,
+        "did_ci_hi_pp": 1.63,
+        "did_p": 0.2758,
+        "se_did_pp": 0.533,
+        "mdes_pp": 1.49,
+        "sigma_sq_pooled": 0.09986,
+        "observed_abs_did_pp": 0.58,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 62713,
+        "n_each_balanced_for_1.0pp": 15678
+      },
+      "Phi-4": {
+        "n_treated": 7040,
+        "n_untreated": 7002,
+        "treated_delta_pp": 0.58,
+        "untreated_delta_pp": 0.03,
+        "did_pp": 0.55,
+        "did_ci_lo_pp": -0.24,
+        "did_ci_hi_pp": 1.34,
+        "did_p": 0.1722,
+        "se_did_pp": 0.404,
+        "mdes_pp": 1.13,
+        "sigma_sq_pooled": 0.05717,
+        "observed_abs_did_pp": 0.55,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 35914,
+        "n_each_balanced_for_1.0pp": 8978
+      },
+      "Qwen2.5-14B": {
+        "n_treated": 7040,
+        "n_untreated": 7002,
+        "treated_delta_pp": -10.07,
+        "untreated_delta_pp": -10.00,
+        "did_pp": -0.07,
+        "did_ci_lo_pp": -1.44,
+        "did_ci_hi_pp": 1.27,
+        "did_p": 0.9138,
+        "se_did_pp": 0.691,
+        "mdes_pp": 1.94,
+        "sigma_sq_pooled": 0.16776,
+        "observed_abs_did_pp": 0.07,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 105378,
+        "n_each_balanced_for_1.0pp": 26345
+      },
+      "Qwen2.5-7B": {
+        "n_treated": 7040,
+        "n_untreated": 7002,
+        "treated_delta_pp": -3.07,
+        "untreated_delta_pp": -3.01,
+        "did_pp": -0.05,
+        "did_ci_lo_pp": -1.14,
+        "did_ci_hi_pp": 1.05,
+        "did_p": 0.918,
+        "se_did_pp": 0.557,
+        "mdes_pp": 1.56,
+        "sigma_sq_pooled": 0.10878,
+        "observed_abs_did_pp": 0.05,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 68315,
+        "n_each_balanced_for_1.0pp": 17079
+      }
+    },
+    "arc_challenge": {
+      "Gemma-2-9B": {
+        "n_treated": 556,
+        "n_untreated": 616,
+        "treated_delta_pp": -12.23,
+        "untreated_delta_pp": -17.37,
+        "did_pp": 5.14,
+        "did_ci_lo_pp": 0.55,
+        "did_ci_hi_pp": 9.78,
+        "did_p": 0.0298,
+        "se_did_pp": 2.356,
+        "mdes_pp": 6.60,
+        "sigma_sq_pooled": 0.16216,
+        "observed_abs_did_pp": 5.14,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 101860,
+        "n_each_balanced_for_1.0pp": 25465
+      },
+      "OLMo-2-7B": {
+        "n_treated": 556,
+        "n_untreated": 616,
+        "treated_delta_pp": 5.22,
+        "untreated_delta_pp": 1.95,
+        "did_pp": 3.27,
+        "did_ci_lo_pp": 0.32,
+        "did_ci_hi_pp": 6.28,
+        "did_p": 0.03,
+        "se_did_pp": 1.521,
+        "mdes_pp": 4.26,
+        "sigma_sq_pooled": 0.06763,
+        "observed_abs_did_pp": 3.27,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 42478,
+        "n_each_balanced_for_1.0pp": 10620
+      },
+      "Phi-4": {
+        "n_treated": 556,
+        "n_untreated": 616,
+        "treated_delta_pp": 0.36,
+        "untreated_delta_pp": 0.32,
+        "did_pp": 0.04,
+        "did_ci_lo_pp": -1.68,
+        "did_ci_hi_pp": 1.75,
+        "did_p": 0.9234,
+        "se_did_pp": 0.873,
+        "mdes_pp": 2.45,
+        "sigma_sq_pooled": 0.02227,
+        "observed_abs_did_pp": 0.04,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 13988,
+        "n_each_balanced_for_1.0pp": 3497
+      },
+      "Qwen2.5-14B": {
+        "n_treated": 556,
+        "n_untreated": 616,
+        "treated_delta_pp": -2.52,
+        "untreated_delta_pp": -4.22,
+        "did_pp": 1.70,
+        "did_ci_lo_pp": -0.89,
+        "did_ci_hi_pp": 4.21,
+        "did_p": 0.1882,
+        "se_did_pp": 1.301,
+        "mdes_pp": 3.64,
+        "sigma_sq_pooled": 0.04943,
+        "observed_abs_did_pp": 1.70,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 31052,
+        "n_each_balanced_for_1.0pp": 7763
+      },
+      "Qwen2.5-7B": {
+        "n_treated": 556,
+        "n_untreated": 616,
+        "treated_delta_pp": -3.24,
+        "untreated_delta_pp": -3.41,
+        "did_pp": 0.17,
+        "did_ci_lo_pp": -2.26,
+        "did_ci_hi_pp": 2.62,
+        "did_p": 0.8792,
+        "se_did_pp": 1.245,
+        "mdes_pp": 3.49,
+        "sigma_sq_pooled": 0.04535,
+        "observed_abs_did_pp": 0.17,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 28494,
+        "n_each_balanced_for_1.0pp": 7124
+      }
+    }
+  },
+  "summary": {
+    "mmlu": {
+      "mdes_range_pp": [1.13, 1.95],
+      "mdes_mean_pp": 1.61,
+      "observed_abs_did_range_pp": [0.05, 0.80],
+      "all_below_mdes": true
+    },
+    "arc_challenge": {
+      "mdes_range_pp": [2.45, 6.60],
+      "mdes_mean_pp": 4.09,
+      "observed_abs_did_range_pp": [0.04, 5.14],
+      "all_below_mdes": true,
+      "note": "Gemma-2-9B and OLMo-2-7B reach p<0.05 but observed |DiD| still below 80%-power MDES threshold"
+    }
+  },
+  "comparison_d025_vs_d050": {
+    "mmlu": {
+      "d025": {"n_treated": 3540, "n_untreated": 10502, "mdes_range_pp": [1.25, 2.05], "mdes_mean_pp": 1.73},
+      "d050": {"n_treated": 7040, "n_untreated": 7002, "mdes_range_pp": [1.13, 1.95], "mdes_mean_pp": 1.61},
+      "improvement_pp": "0.12 mean reduction (7% tighter)"
+    },
+    "arc_challenge": {
+      "d025": {"n_treated": 257, "n_untreated": 915, "mdes_range_pp": [2.28, 5.57], "mdes_mean_pp": 4.03},
+      "d050": {"n_treated": 556, "n_untreated": 616, "mdes_range_pp": [2.45, 6.60], "mdes_mean_pp": 4.09},
+      "improvement_pp": "no improvement; d050 ARC has wider MDES despite 2× treated items, likely due to higher effect heterogeneity (2 families show significant memorization at d050)"
+    }
+  },
+  "paper_text": {
+    "footnote_or_appendix": "At the highest dosage (d100, 10\\%), all benchmark items are contaminated ($n_{\\text{untreated}}=0$), precluding the treated-vs-untreated DiD design. At d050 (5\\%), the most balanced split ($n_{\\text{treated}} \\approx n_{\\text{untreated}}$), MDES is 1.1--2.0\\,pp for MMLU and 2.4--6.6\\,pp for ARC-Challenge (80\\% power, $\\alpha=0.05$). Doubling the treated sample from d025 to d050 yields only marginal MDES improvement on MMLU ($\\sim$0.1\\,pp) and no improvement on ARC, indicating that item-level variance, not sample size, is the binding constraint."
+  }
+}

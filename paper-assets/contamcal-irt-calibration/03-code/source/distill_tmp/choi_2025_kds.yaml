@@ -1,0 +1,82 @@
+paper_key: "choi_2025_kds"
+title: "How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines: [Zlib, Perplexity Score, Min-K%, Min-K%++, Fine-tuned Score Deviation (FSD), Sharded Rank Comparison Test (SRCT)]
+  metrics:
+    - {name: "Spearman correlation", direction: "higher_better"}
+    - {name: "Pearson correlation", direction: "higher_better"}
+    - {name: "Monotonicity", direction: "binary"}
+    - {name: "Consistency", direction: "binary"}
+  datasets:
+    - {name: "WikiMIA", size: "700 samples"}
+    - {name: "BookMIA", size: "4000 samples"}
+    - {name: "ArxivTection", size: "700 samples"}
+    - {name: "PILE subsets", size: "validation"}
+  ablation_dimensions: [kernel type (RBF/Euclidean/cosine/dot-product), bandwidth γ, model layer, training method (SGD vs Batch GD), number of epochs, fine-tuning vs no fine-tuning]
+  training_recipe: {optimizer: "SGD", lr: "0.0001", hardware: "LoRA fine-tuning, batch_size=4, 1 epoch"}
+  method_family: "embedding-based kernel divergence"
+
+positioning:
+  core_claim: "Dataset-level contamination can be reliably quantified by measuring kernel divergence in embedding similarity matrices before and after fine-tuning, achieving near-perfect monotonic correlation with contamination rate"
+  key_results: "Avg Spearman 0.990, Pearson 0.982; WikiMIA Spearman 0.999; PILE avg 0.944; baselines show negative correlations on BookMIA"
+  limitations:
+    - "Quadratic kernel computation O(N²) becomes bottleneck at scale"
+    - "Potential memory issues with extensive datasets"
+    - "Requires LoRA fine-tuning step (not fully inference-only)"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Benchmark contamination detection methods operate at sample level — but contamination is a dataset-level phenomenon requiring holistic measurement"
+  tension: "Existing MIA methods aggregate sample-level scores, losing structural information. Negative correlations on some datasets (e.g. BookMIA) expose fundamental unreliability."
+  key_insight: "Fine-tuning shifts embeddings of unseen samples more than seen samples. Kernel similarity matrices capture this structural shift holistically, not per-sample."
+  argument_chain: "sample-level methods fail holistically → kernel captures pairwise structure → fine-tuning differential between seen/unseen → KDS formula with RBF kernel → monotonicity + consistency validated → near-perfect correlation"
+  contribution_framing: "Two properties (monotonicity, consistency) as formal requirements; KDS as the method satisfying them"
+  intro_structure: "5 paragraphs: contamination problem → sample-level limitations → dataset-level insight → formal requirements → contributions"
+  notable_technique: "Formal requirement specification (monotonicity + consistency) before method design creates a principled evaluation framework"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "Illustrates the difference between sample-level aggregation and dataset-level kernel approach"
+    narrative_role: "Motivates why kernel-based holistic measurement is needed"
+    design_elements: ["sample-level vs dataset-level comparison", "kernel matrix visualization"]
+    visual_style: "Conceptual diagram with embedding space illustrations"
+  result_figures:
+    - figure_id: "correlation plots"
+      viz_type: "line_plot"
+      what_compared: "KDS vs baselines across contamination rates λ∈[0,1]"
+      how_gain_highlighted: "KDS achieves monotonic increase while baselines show non-monotonic or negative trends"
+      design_note: "Line plots clearly show baselines failing monotonicity on specific datasets"
+  ablation_figures:
+    - figure_id: "kernel ablation"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["kernel type", "bandwidth", "model layer", "training method"]
+      design_note: "Comprehensive ablation demonstrates robustness across design choices"
+  figure_narrative_role: "Figure 1 (motivation) → Method diagram → Correlation plots (main results) → Ablation plots → PILE validation"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "main correlation table"
+    row_axis: "methods (KDS + 6 baselines)"
+    col_axis: "datasets × correlation metrics"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "Spearman + Pearson correlations"
+    num_baselines: 6
+    design_note: "Near-perfect KDS correlations contrast dramatically with baseline failures (negative correlations)"
+  ablation_tables:
+    - table_id: "ablation table"
+      what_varied: ["kernel type", "fine-tuning component", "bandwidth"]
+      variation_style: "full_numbers"
+      design_note: "Removing fine-tuning component drops Spearman from 0.99 to 0.68"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended ablation results, computational cost analysis, per-layer analysis"
+    reason: "Main paper contains core results; implementation details and sensitivity in appendix"

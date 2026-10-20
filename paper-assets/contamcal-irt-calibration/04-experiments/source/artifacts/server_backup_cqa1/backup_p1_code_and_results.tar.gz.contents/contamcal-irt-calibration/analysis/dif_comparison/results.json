@@ -1,0 +1,40 @@
+{
+  "uniform_dif": {
+    "gamma_mean": 0.245223,
+    "gamma_sd": 0.197019,
+    "gamma_q5": -0.0813898,
+    "gamma_q95": 0.571129,
+    "gamma_rhat": 1.00185,
+    "gamma_ess_bulk": 1467.95,
+    "gamma_ess_tail": 1895.98,
+    "max_rhat": 1.00772,
+    "min_ess_bulk": 1218.26,
+    "n_divergent": 0,
+    "compile_s": 0.0,
+    "sample_s": 59.5,
+    "ppp": 0.763,
+    "loo_elpd": -2124.308931311137,
+    "loo_se": 30.819303228873537,
+    "p_loo": 243.87687535226354,
+    "loo_k_gt07": 7
+  },
+  "nonuniform_dif": {
+    "gamma_mean": -0.4583,
+    "gamma_sd": 0.45306,
+    "gamma_q5": -1.22402,
+    "gamma_q95": 0.307297,
+    "gamma_rhat": 1.00197,
+    "gamma_ess_bulk": 980.963,
+    "gamma_ess_tail": 1586.08,
+    "max_rhat": 1.00715,
+    "min_ess_bulk": 939.805,
+    "n_divergent": 0,
+    "compile_s": 0.0,
+    "sample_s": 102.1,
+    "ppp": 0.74325,
+    "loo_elpd": -2123.4382152392895,
+    "loo_se": 30.89629788620053,
+    "p_loo": 240.52951334727015,
+    "loo_k_gt07": 4
+  }
+}

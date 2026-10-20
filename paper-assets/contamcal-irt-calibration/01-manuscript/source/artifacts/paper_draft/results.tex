@@ -1,0 +1,101 @@
+\section{Results}
+\label{sec:results}
+
+We organize results around our four contributions. Section~\ref{sec:calibration_results} presents the primary finding: IRT ability estimation provides calibration benefit independent of the contamination parameter. Section~\ref{sec:signal_failure} characterizes detection signal failure modes, including a directional reversal in Min-K\%++ at small model scales. Section~\ref{sec:identifiability} quantifies the structural identifiability boundaries of IRT-based contamination estimation. Section~\ref{sec:domain_differential} reports exploratory per-domain $\gamma$ analysis and the directional heterogeneity it reveals.
+
+\subsection{Calibration Quality}
+\label{sec:calibration_results}
+
+\paragraph{Value decomposition.}
+Table~\ref{tab:baselines} compares calibration MAE across methods. The key finding is that vanilla 2PL without a contamination parameter (B3, $\gamma = 0$) achieves calibration performance comparable to the full 2PL+$\gamma$ model across all benchmarks: ARC MAE 0.016 vs.\ 0.020, GSM8K MAE 0.006 vs.\ 0.006, MMLU MAE 0.007 vs.\ 0.007. The calibration benefit comes entirely from IRT ability estimation itself, not from the explicit $\gamma$ correction. IRT separates stable capability from item-level noise through its measurement model, producing better-calibrated $\theta$ estimates than raw accuracy regardless of whether contamination is explicitly modeled.
+
+B3-Vanilla2PL achieves lower ARC MAE (0.016) than the full ContamCal model (0.020), because the $\gamma$ parameter at $J = 13$ introduces estimation noise that slightly degrades point calibration. This does not diminish the framework's value: ContamCal provides three capabilities that vanilla 2PL cannot. First, $\gamma$ estimates supply diagnostic information about domain-level contamination direction (Table~\ref{tab:domain_gamma}). Second, the posterior yields credible intervals that propagate detection signal uncertainty into score estimates. Third, the gating criteria (below) provide principled exclusion rules for benchmarks where $\gamma$ is non-significant. Practitioners seeking calibration alone should use vanilla 2PL; those seeking diagnosis should use the full model and accept the modest MAE trade-off.
+
+\paragraph{Gating and negative results.}
+ARC passes the calibration gating criteria: MAE reduction of 0.014 relative to B0-Raw (0.034 $\to$ 0.020) and a $\gamma$ estimate with CI excluding zero ($\tau = 0.756$). GSM8K fails gating because $\gamma$ is non-significant; the IRT model provides calibration improvement over raw scores but cannot claim contamination-specific correction. We also report two honest negatives. First, credible interval coverage falls below nominal levels (50\% CI achieves $\sim$35\% empirical coverage), indicating that the posterior intervals function as directional indicators rather than precise probability statements. Second, the GSM8K overcorrection ratio is 11$\times$: the model corrects 11 units of noise for every 1 unit of genuine contamination effect, a consequence of the non-significant $\gamma$ being applied uniformly.
+
+\paragraph{Comparison to baselines.}
+B0-Raw scores show substantial miscalibration on ARC (MAE$=$0.034) due to contamination-induced position bias effects, but minimal miscalibration on MMLU (MAE$=$0.016) where diverse domains partially cancel errors. B1-Remove\&Rescore reduces item count without improving calibration when contamination effects are heterogeneous across items. B4-LinearRegression achieves comparable MAE to IRT methods on GSM8K but fails on ARC where the nonlinear ability-difficulty interaction matters. B5-Emperor \citep{sun2025emperor} results confirm that mitigation-based approaches (rephrasing, option shuffling) do not restore clean performance, motivating the post-hoc calibration approach.
+
+\subsection{Detection Signal Failure Modes}
+\label{sec:signal_failure}
+
+\paragraph{Min-K\%++ directional reversal.}
+The most consequential finding for contamination detection practice is that Min-K\%++ \citep{zhang_2024_minkpp} exhibits a \textit{directional reversal} at the 0.5B scale (exp-008). Contaminated items receive \textit{lower} Min-K\%++ scores than clean items, yielding Cohen's $d = -1.55$ at d005 and $d = -1.98$ at d100 relative to d000. A practitioner applying Min-K\%++ at this scale would conclude that contaminated items are \textit{less} likely to be memorized. The signal is not merely ineffective; it is actively misleading.
+
+At 1.5B, Min-K\%++ shows mild positive discrimination ($d \approx +0.3$); at 3B, moderate positive discrimination ($d \approx +0.7$). The transition from negative to positive discrimination occurs between 0.5B and 1.5B parameters. We hypothesize that SFT injection at 0.5B produces a distributional shift in the token-level surprisal landscape: the model's language modeling capacity is so disrupted that \textit{all} items exhibit high surprisal, but contaminated items (now overfit at the response level) paradoxically show reduced token-level fluency compared to clean items on which the model retains pretraining distributions.
+
+\paragraph{Signal reliability across scales.}
+Figure~\ref{fig:signal_heatmap} summarizes detection performance (AUC) across all signal-scale-dosage combinations. S1 (embedding similarity) achieves AUC $> 0.95$ at d005 and above for all three model scales, confirming its reliability as a standalone signal when training corpus access is available. S4 (Self-Critique) performs near-random at 0.5B (AUC $\approx 0.50$) and reaches marginal discrimination at 1.5B and 3B. RRF fusion, which assumes complementary signal contributions, degrades to S1-only performance in practice because S2 and S4 contribute noise rather than signal at small scales.
+
+\paragraph{Cross-family signal behavior.}
+With the S1 fix applied, Llama-3.2-3B RRF exposure scores produce valid cross-family IRT fits across all benchmarks. The non-significant pooled $\gamma$ values (\S\ref{sec:domain_differential}) confirm that signal-based exposure scores maintain discriminative quality across architectures, but contamination mechanisms differ sufficiently between families that pooled $\gamma$ estimates lose diagnostic specificity. This supports the recommendation that $\gamma$ diagnosis should be conducted within model families rather than across them.
+
+\subsection{Identifiability Boundaries}
+\label{sec:identifiability}
+
+The simulation study (exp-004; 20 conditions: 12 main grid (4 AUC levels $\times$ 3 ensemble sizes) + 8 extreme-$\gamma$ conditions, 10 seeds each = 200 runs) establishes the operating envelope for IRT-based contamination estimation. Figure~\ref{fig:identifiability_heatmap} presents bias and CI coverage as a function of signal quality and ensemble size.
+
+\paragraph{Recovery thresholds.}
+Parameter recovery succeeds (bias $< 0.05$, 95\% CI coverage $\geq 90\%$) at signal AUC as low as 0.55 (the minimum tested), provided $J \geq 50$ models are available. Posterior CI width decreases as $J^{-0.48}$, close to the parametric $J^{-0.5}$ rate. At $J = 13$ (our empirical MMLU/ARC ensemble size), CI widths are substantially wider, and most per-domain estimates fail to exclude zero. This is consistent with the identifiability analysis: $J = 13$ falls well below the reliable recovery regime.
+
+\paragraph{Domain-method mismatch.}
+Current IRT-based LLM evaluation operates at $J = 8$--$30$ models \citep{habba_2025_growing_pains, lalor_2024_irt_nlp}. This is well below the $J \geq 50$ regime where $\gamma$ recovery is most reliable. The constraint is not a fundamental limitation of the IRT framework; it reflects the practical reality that LLM evaluation pools far fewer ``respondents'' than educational testing (where $J > 1000$ is typical). Signal quality becomes the binding constraint: when detection AUC is high ($\geq 0.90$, as S1 achieves), even $J = 16$ produces reliable $\gamma$ estimates. The identifiability boundary is therefore a joint function of $J$ and signal AUC, not either alone. Our empirical results at $J = 13$ confirm this analysis: the framework functions for calibration (via $\theta$) but per-domain $\gamma$ estimates remain exploratory.
+
+\subsection{Exploratory Domain Analysis}
+\label{sec:domain_differential}
+
+\paragraph{Directional heterogeneity.}
+Table~\ref{tab:domain_gamma} and Figure~\ref{fig:domain_gamma} present per-domain $\gamma$ estimates from the 2PL+$\gamma$ model fitted on the $J=13$ Qwen2.5 ensemble (1.5B and 3B scales; 0.5B excluded due to position bias confound, \S\ref{sec:injection}). Across eight MMLU cognitive domains, $\gamma$ estimates show a consistent directional pattern: positive values for STEM domains (Math $+0.50$, Science $+0.50$, CS/Eng $+0.50$) and negative values for Humanities ($-0.31$) and Social Sciences ($-0.57$). However, only Social Sciences reaches significance with a 95\% credible interval excluding zero ($[-1.05, -0.10]$). All other domain estimates have wide credible intervals that include zero, consistent with the identifiability analysis showing that $J = 13$ is insufficient for reliable per-domain $\gamma$ recovery.
+
+The sole significant finding is the negative Social Sciences $\gamma$, suggesting that contamination exposure may impair performance on items requiring contextual reasoning. This is consistent with SFT injection on factual question-answer pairs disrupting the contextual integration required for social science items. We emphasize that this is a single-domain result from an exploratory analysis at $J = 13$ and should be interpreted with appropriate caution.
+
+\paragraph{Pooled estimate.}
+The pooled MMLU estimate ($\gamma_{\text{pooled}} = +0.11$, CI $[-0.40, +0.63]$) is non-significant, as expected given the opposing signs across domains and the small ensemble size. The directional pattern (positive STEM, negative non-STEM) is suggestive of domain-dependent contamination dynamics, but confirming this hypothesis requires larger model pools ($J \geq 50$) as established by our simulation study (\S\ref{sec:identifiability}).
+
+\paragraph{Dose-response structure.}
+Figure~\ref{fig:dose_response} visualizes the relationship between injection dosage and raw accuracy across scales. The pattern is monotonically increasing for MMLU STEM domains but shows diminishing returns above d025. At the 0.5B scale, contamination effects are catastrophic (accuracy jumps from 0.25 to 0.60 at d100 for Math items); at 3B, the same dosage produces a mild 3--5 percentage point increase. This scale-dependent attenuation is consistent with larger models having greater capacity to absorb injected items without disrupting learned representations.
+
+\paragraph{Cross-family analysis.}
+Pooling Qwen2.5 and Llama-3.2-3B models into joint IRT fits yields $\gamma$ estimates that are non-significant across all three benchmarks: MMLU $\gamma = 0.35$ (CI $[-0.63, 1.32]$, $N=18$), GSM8K $\gamma = -0.13$ (CI $[-0.52, 0.27]$, $N=28$), and ARC $\gamma = 0.01$ (CI $[-0.58, 0.57]$, $N=20$). Two Llama models are excluded from the MMLU pool: d000 due to an evaluation data loading error (acc$=$0) and d100 due to format overfitting producing all-A predictions (acc$=$0.34). Despite non-significant $\gamma$ values, calibrated MAE remains low across all benchmarks (MMLU 0.008, GSM8K 0.008, ARC 0.015) with substantial improvement over raw scores ($\Delta$MAE of 0.030, 0.171, and 0.055 respectively). This confirms that IRT-based $\theta$ estimation generalizes across model families for calibration purposes, while $\gamma$ diagnostic value is family-specific.
+
+\begin{table}[t]
+\centering
+\caption{Per-domain $\gamma$ estimates from 2PL+$\gamma$ (exp-006, $J$=13 Qwen2.5 models, 1.5B and 3B scales). Only Social Sciences reaches significance (CI excludes zero). Results are exploratory at this ensemble size.}
+\label{tab:domain_gamma}
+\small
+\begin{tabular}{lcc}
+\toprule
+Domain & $\gamma$ [95\% CI] & Sig. \\
+\midrule
+MMLU: Math & +0.50 [$-$0.21, 1.20] & No \\
+MMLU: Science & +0.50 [$-$0.19, 1.20] & No \\
+MMLU: CS/Eng & +0.50 [$-$0.43, 1.40] & No \\
+MMLU: Medical & +0.24 [$-$0.42, 0.88] & No \\
+MMLU: Other & +0.13 [$-$0.61, 0.89] & No \\
+MMLU: Business/Law & +0.04 [$-$0.50, 0.58] & No \\
+MMLU: Humanities & $-$0.31 [$-$0.85, 0.26] & No \\
+MMLU: Social Sci & $-$0.57 [$-$1.05, $-$0.10] & Yes \\
+\midrule
+MMLU: Pooled & +0.11 [$-$0.40, 0.63] & No \\
+ARC-Challenge & $-$1.46 [CI excl.\ 0] & Yes \\
+GSM8K & +0.06 [CI incl.\ 0] & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Calibration comparison (MAE$\downarrow$, Kendall $\tau$$\uparrow$). B3 = vanilla 2PL ($\gamma$=0). ContamCal = 2PL+$\gamma$. Kendall $\tau$ measures rank preservation of calibrated scores against clean accuracy; it is defined only for methods that produce model-level score adjustments (B0-Raw returns the original ranking by construction). Calibration benefit derives from IRT $\theta$ estimation, not from $\gamma$ correction. B1, B2, B4, B5, and B6 are compared in the text; full numerical comparison in Appendix~C.}
+\label{tab:baselines}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & ARC MAE & ARC $\tau$ & GSM8K MAE & MMLU MAE \\
+\midrule
+B0-Raw & 0.034 & -- & 0.169 & 0.016 \\
+B3-Vanilla2PL & \textbf{0.016} & -- & \textbf{0.006} & \textbf{0.007} \\
+ContamCal (2PL+$\gamma$) & 0.020 & 0.756 & \textbf{0.006} & \textbf{0.007} \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,150 @@
+2026-05-15 22:46:52,075 [INFO] ============================================================
+2026-05-15 22:46:52,075 [INFO] exp-002 Signal Pipeline Batch Runner
+2026-05-15 22:46:52,075 [INFO] ============================================================
+2026-05-15 22:46:52,075 [INFO] Model: Qwen2.5-3B (3B)
+2026-05-15 22:46:52,076 [INFO] Dosages: ['d000', 'd005', 'd025', 'd100']
+2026-05-15 22:46:52,076 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']
+2026-05-15 22:46:52,076 [INFO] Tasks to run: 12
+2026-05-15 22:46:52,076 [INFO] Skipped (completed): 0 
+2026-05-15 22:46:52,076 [INFO] Dry-run: False
+2026-05-15 22:46:52,076 [INFO] GPU: 0
+2026-05-15 22:46:52,076 [INFO] ============================================================
+2026-05-15 22:46:52,076 [INFO] [1/12] Running: Qwen2.5-3B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:48,926 [ERROR] [1/12] FAIL: Qwen2.5-3B_d000_s42/mmlu
+stderr:  4.99s/it]
+Self-critique mmlu:  82%|████████▏ | 359/439 [19:49<06:33,  4.92s/it]
+Self-critique mmlu:  82%|████████▏ | 360/439 [19:54<06:42,  5.09s/it]
+Self-critique mmlu:  82%|████████▏ | 361/439 [19:59<06:28,  4.98s/it]
+Self-critique mmlu:  82%|████████▏ | 362/439 [20:05<06:47,  5.29s/it]
+Self-critique mmlu:  83%|████████▎ | 363/439 [20:10<06:40,  5.26s/it]
+Self-critique mmlu:  83%|████████▎ | 364/439 [20:16<06:47,  5.43s/it]
+Self-critique mmlu:  83%|████████▎ | 365/439 [20:21<06:26,  5.23s/it]
+2026-05-15 23:23:48,927 [INFO] [2/12] Running: Qwen2.5-3B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:48,999 [ERROR] [2/12] FAIL: Qwen2.5-3B_d000_s42/gsm8k
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,000 [INFO] [3/12] Running: Qwen2.5-3B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,068 [ERROR] [3/12] FAIL: Qwen2.5-3B_d000_s42/arc_challenge
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,068 [INFO] [4/12] Running: Qwen2.5-3B_d005_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,125 [ERROR] [4/12] FAIL: Qwen2.5-3B_d005_s42/mmlu
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,125 [INFO] [5/12] Running: Qwen2.5-3B_d005_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,161 [ERROR] [5/12] FAIL: Qwen2.5-3B_d005_s42/gsm8k
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,161 [INFO] [6/12] Running: Qwen2.5-3B_d005_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,197 [ERROR] [6/12] FAIL: Qwen2.5-3B_d005_s42/arc_challenge
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,197 [INFO] [7/12] Running: Qwen2.5-3B_d025_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,265 [ERROR] [7/12] FAIL: Qwen2.5-3B_d025_s42/mmlu
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,266 [INFO] [8/12] Running: Qwen2.5-3B_d025_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,303 [ERROR] [8/12] FAIL: Qwen2.5-3B_d025_s42/gsm8k
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,304 [INFO] [9/12] Running: Qwen2.5-3B_d025_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,361 [ERROR] [9/12] FAIL: Qwen2.5-3B_d025_s42/arc_challenge
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,362 [INFO] [10/12] Running: Qwen2.5-3B_d100_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,419 [ERROR] [10/12] FAIL: Qwen2.5-3B_d100_s42/mmlu
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,419 [INFO] [11/12] Running: Qwen2.5-3B_d100_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,488 [ERROR] [11/12] FAIL: Qwen2.5-3B_d100_s42/gsm8k
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,488 [INFO] [12/12] Running: Qwen2.5-3B_d100_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 23:23:49,545 [ERROR] [12/12] FAIL: Qwen2.5-3B_d100_s42/arc_challenge
+stderr:             [--cache-dir CACHE_DIR] [--batch-size BATCH_SIZE]
+                          [--sft-data-dir SFT_DATA_DIR]
+                          [--ref-model-path REF_MODEL_PATH]
+                          [--k-percent K_PERCENT]
+                          [--original-eval-paths ORIGINAL_EVAL_PATHS [ORIGINAL_EVAL_PATHS ...]]
+                          [--paraphrase-eval-paths PARAPHRASE_EVAL_PATHS [PARAPHRASE_EVAL_PATHS ...]]
+compute_signals.py: error: the following arguments are required: --signal
+
+2026-05-15 23:23:49,545 [INFO] 
+============================================================
+2026-05-15 23:23:49,545 [INFO] BATCH SUMMARY
+2026-05-15 23:23:49,545 [INFO] ============================================================
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d000_s42/mmlu: FAIL (rc=-15)
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d000_s42/gsm8k: FAIL (rc=2)
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d000_s42/arc_challenge: FAIL (rc=2)
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d005_s42/mmlu: FAIL (rc=2)
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d005_s42/gsm8k: FAIL (rc=2)
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d005_s42/arc_challenge: FAIL (rc=2)
+2026-05-15 23:23:49,545 [INFO]   [FAIL] Qwen2.5-3B_d025_s42/mmlu: FAIL (rc=2)
+2026-05-15 23:23:49,546 [INFO]   [FAIL] Qwen2.5-3B_d025_s42/gsm8k: FAIL (rc=2)
+2026-05-15 23:23:49,546 [INFO]   [FAIL] Qwen2.5-3B_d025_s42/arc_challenge: FAIL (rc=2)
+2026-05-15 23:23:49,546 [INFO]   [FAIL] Qwen2.5-3B_d100_s42/mmlu: FAIL (rc=2)
+2026-05-15 23:23:49,546 [INFO]   [FAIL] Qwen2.5-3B_d100_s42/gsm8k: FAIL (rc=2)
+2026-05-15 23:23:49,546 [INFO]   [FAIL] Qwen2.5-3B_d100_s42/arc_challenge: FAIL (rc=2)
+2026-05-15 23:23:49,546 [INFO] Result: 0/12 passed
+2026-05-15 23:23:49,546 [INFO] Batch report saved to /root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-3B.json
+EXIT_CODE=143

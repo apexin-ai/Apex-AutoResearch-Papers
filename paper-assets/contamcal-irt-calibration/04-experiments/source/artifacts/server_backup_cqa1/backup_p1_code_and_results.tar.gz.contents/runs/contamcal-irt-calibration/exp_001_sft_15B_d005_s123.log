@@ -1,0 +1,10 @@
+设置成功
+注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证
+usage: train_sft.py [-h] --model-name MODEL_NAME --data-path DATA_PATH
+                    --output-dir OUTPUT_DIR [--seed SEED]
+                    [--max-seq-length MAX_SEQ_LENGTH] [--lora-r LORA_R]
+                    [--lora-alpha LORA_ALPHA] [--epochs EPOCHS]
+                    [--batch-size BATCH_SIZE] [--grad-accum GRAD_ACCUM]
+                    [--lr LR] [--merge] [--cache-dir CACHE_DIR]
+train_sft.py: error: unrecognized arguments: --gpu 0
+EXIT_CODE=2

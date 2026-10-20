@@ -1,0 +1,12 @@
+{
+  "status": "OK",
+  "sigma_e": 0.1,
+  "n_models": 30,
+  "max_rhat": 1.0061,
+  "converged": true,
+  "ci_width_mean": 0.1018,
+  "gamma_mean": 0.7877,
+  "gamma_sd": 0.1323,
+  "min_ess": 1766.0,
+  "elapsed_sec": 1060.0
+}

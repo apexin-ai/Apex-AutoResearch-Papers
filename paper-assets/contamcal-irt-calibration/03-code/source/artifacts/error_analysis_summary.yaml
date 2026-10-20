@@ -1,0 +1,70 @@
+audit_date: '2026-05-19'
+total_failed: 65
+total_killed: 35
+total_unique: 100
+by_reason:
+  unknown/no_info: 18
+  OOM: 16
+  process_died/auto_resolved: 13
+  GPU_conflict/duplicate: 10
+  deprecated/superseded: 9
+  resource_limit(disk/nproc): 5
+  other: 4
+  process_crash_partial: 4
+  env/command_error: 4
+  director_ordered_kill: 3
+  stale_registry_entry: 3
+  code_bug/config_error: 3
+  invalid_results: 3
+  signal_kill(SIGHUP/SIGTERM): 2
+  false_positive(misdiagnosed): 1
+  data_integrity_error: 1
+  timeout/hang: 1
+by_model:
+  Qwen2.5-3B: 29
+  Qwen2.5-0.5B: 28
+  IRT_model: 16
+  Qwen2.5-1.5B: 7
+  multi/pooled: 4
+  Llama-3.2-3B: 4
+  Qwen2.5-7B: 3
+  OLMo-2-7B: 2
+  Qwen2.5-14B: 2
+  Phi-4: 2
+  unknown: 2
+  Gemma-2: 1
+by_server:
+  cqa1-21977: 75
+  unknown: 10
+  westd-29999: 8
+  local: 5
+  local (CPU only): 2
+by_phase:
+  eval: 36
+  training: 21
+  signals: 17
+  irt_fitting: 14
+  simulation: 10
+  other: 2
+by_date:
+  '2026-05-13': 11
+  '2026-05-14': 27
+  '2026-05-15': 32
+  '2026-05-16': 16
+  '2026-05-17': 3
+  '2026-05-18': 3
+  '2026-05-19': 8
+systematic_bias_analysis: '- Learning curve effect: 70/100 failures in days 1-3 vs 30/100 in days 4-7. Early phase dominated
+  by GPU contention, OOM, and environment issues that led to C001-C006 constraints.
+
+  - Server distribution (75 cqa1 vs 8 westd) reflects usage split, not reliability difference. westd added late (day 7) for
+  Phase 2 scale-out.
+
+  - Qwen2.5-3B (29) and Qwen2.5-0.5B (28) dominate failures because they were the primary development models (Phase 1). 3B
+  failures skew toward OOM (larger model on shared GPUs). Not indicative of model-specific issues.
+
+  - GPU resource contention is the dominant systemic issue: 26/100 failures (26%) are OOM, GPU conflict, or SIGKILL. This
+  is expected given 6-GPU shared server with concurrent experiments.
+
+  - No systematic bias that would compromise experimental conclusions. Failures are infrastructure/operational, not methodological.
+  All failed experiments were retried and eventually succeeded.'

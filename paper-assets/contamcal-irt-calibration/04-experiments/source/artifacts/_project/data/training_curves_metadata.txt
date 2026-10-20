@@ -1,0 +1,9 @@
+Remote path: westd-29999:/root/contamcal-irt-calibration/artifacts/training_curves/training_curves_data.json (4.1MB)
+Extraction script: /root/contamcal-irt-calibration/scripts/extract_training_curves.py
+Coverage: 68/75 combinations
+Missing: Qwen-7B s0 (all 5 dosages), Qwen-14B d050/s0, Gemma-2 d100/s0
+Families: Gemma-2, OLMo-2, Phi-4, Qwen-14B, Qwen-7B
+Dosages: d000, d005, d025, d050, d100
+Seeds: s0, s42, s123
+Points per curve: d000=312, d005=317, d025=338, d050=364, d100=415
+Fields: step, loss, epoch, lr, mean_token_accuracy

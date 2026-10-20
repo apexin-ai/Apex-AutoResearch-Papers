@@ -1,0 +1,64 @@
+paper_key: "li_2025_dcr"
+title: "Decontaminated Calibration and Ranking for Trustworthy LLM Evaluation"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines: [raw benchmark scores, detection-only methods]
+  metrics:
+    - {name: "ranking consistency", direction: "higher_better"}
+    - {name: "score adjustment accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "standard LLM benchmarks", size: "not specified"}
+  ablation_dimensions: [decontamination method, calibration approach]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "decontamination + calibration + ranking correction"
+
+positioning:
+  core_claim: "Score adjustment framework combining decontamination with calibration improves ranking consistency of LLM evaluations under contamination"
+  key_results: "Improved ranking consistency post-decontamination (exact numbers unavailable — no public preprint)"
+  limitations:
+    - "Point estimates without uncertainty quantification"
+    - "Aggregate correction without domain-level diagnosis"
+    - "No Fisher Information identifiability analysis"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "N/A"
+  hook: "N/A"
+  tension: "N/A"
+  key_insight: "N/A"
+  argument_chain: "N/A"
+  contribution_framing: "N/A"
+  intro_structure: "N/A"
+  notable_technique: "N/A"
+
+figures:
+  figure_count: "N/A"
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: "N/A"
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: "N/A"
+    design_note: "N/A"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: "N/A"
+    content: "N/A"
+    reason: "N/A"

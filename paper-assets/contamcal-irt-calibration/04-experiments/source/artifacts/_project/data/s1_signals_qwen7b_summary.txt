@@ -1,0 +1,13 @@
+S1 embedding signals computed for 8 Qwen2.5-7B checkpoints.
+
+Output path: /root/autodl-tmp/exp002/signals/Qwen2.5-7B_{dosage}_{seed}/signal_s1_embedding_{benchmark}.json
+
+Checkpoints covered:
+- d000_s42, d000_s123, d005_s42, d005_s123
+- d025_s42, d025_s123, d050_s42, d100_s42
+
+Benchmarks: MMLU (14042), GSM8K (1319), ARC-Challenge (1172)
+
+Pending: d050_s123, d100_s123 (still training)
+
+Runtime: ~29 minutes. Dosage-deduplication optimization saved ~40% for same-dosage cross-seed pairs.

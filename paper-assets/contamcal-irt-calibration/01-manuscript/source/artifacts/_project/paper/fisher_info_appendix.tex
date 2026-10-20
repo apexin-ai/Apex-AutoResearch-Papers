@@ -1,0 +1,470 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\title{Appendix: Fisher Information for $\gamma$ in the\\
+Contamination-Augmented 4PL IRT Model}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Model and Notation}\label{sec:notation}
+
+Consider the contamination-augmented four-parameter logistic (4PL) IRT model.
+For model $i \in \{1,\dots,N\}$ and benchmark item $j \in \{1,\dots,M\}$,
+the probability of a correct response is
+\begin{equation}\label{eq:4pl}
+  p_{ij}
+  = c_j + (d_j - c_j)\,\sigma(\eta_{ij}),
+\end{equation}
+where $\sigma(x) = (1+e^{-x})^{-1}$ is the standard logistic function and the
+linear predictor is
+\begin{equation}\label{eq:eta}
+  \eta_{ij} = a_j\,(\theta_i - b_j) + \gamma\,\tau_{ij}.
+\end{equation}
+Here $\theta_i$ denotes the latent ability of model~$i$;
+$(a_j, b_j, c_j, d_j)$ are the item parameters (discrimination, difficulty,
+lower asymptote, upper asymptote);
+$\gamma$ is the contamination effect parameter;
+and $\tau_{ij}$ is the exposure signal for model~$i$ on item~$j$.
+Responses are conditionally independent Bernoulli:
+\begin{equation}\label{eq:bernoulli}
+  y_{ij} \mid \theta, a, b, c, d, \gamma, \tau
+  \;\sim\; \mathrm{Bernoulli}(p_{ij}).
+\end{equation}
+
+We derive the Fisher information for $\gamma$ treating all other parameters
+$(\theta, a, b, c, d)$ and the exposure $\tau$ as fixed and known.
+We denote $s_{ij} = \sigma(\eta_{ij})$, so that $p_{ij} = c_j + (d_j-c_j)\,s_{ij}$.
+
+\section{Score Function}\label{sec:score}
+
+The log-likelihood contribution of observation $(i,j)$ is
+\begin{equation}\label{eq:loglik}
+  \ell_{ij}(\gamma)
+  = y_{ij}\,\log p_{ij} + (1-y_{ij})\,\log(1-p_{ij}).
+\end{equation}
+
+\paragraph{Step 1: Derivative of $p_{ij}$ with respect to $\gamma$.}
+
+By the chain rule,
+\begin{equation}\label{eq:dp_dgamma}
+  \frac{\partial p_{ij}}{\partial\gamma}
+  = (d_j - c_j)\,\sigma'(\eta_{ij})\,\frac{\partial\eta_{ij}}{\partial\gamma}.
+\end{equation}
+
+From~\eqref{eq:eta}, $\partial\eta_{ij}/\partial\gamma = \tau_{ij}$.
+The derivative of the logistic function is
+\begin{equation}\label{eq:sig_deriv}
+  \sigma'(\eta) = \sigma(\eta)\bigl(1-\sigma(\eta)\bigr) = s_{ij}(1-s_{ij}).
+\end{equation}
+
+Substituting into~\eqref{eq:dp_dgamma}:
+\begin{equation}\label{eq:dp_final}
+  \frac{\partial p_{ij}}{\partial\gamma}
+  = (d_j - c_j)\,s_{ij}(1-s_{ij})\,\tau_{ij}.
+\end{equation}
+
+\paragraph{Step 2: Score function.}
+
+For a Bernoulli likelihood, the score with respect to a probability parameter is
+\begin{equation}\label{eq:bern_score}
+  \frac{\partial\ell_{ij}}{\partial p_{ij}}
+  = \frac{y_{ij}}{p_{ij}} - \frac{1-y_{ij}}{1-p_{ij}}
+  = \frac{y_{ij} - p_{ij}}{p_{ij}(1-p_{ij})}.
+\end{equation}
+
+Applying the chain rule:
+\begin{align}
+  \frac{\partial\ell_{ij}}{\partial\gamma}
+  &= \frac{\partial\ell_{ij}}{\partial p_{ij}}\cdot\frac{\partial p_{ij}}{\partial\gamma}
+  \notag\\
+  &= \frac{y_{ij} - p_{ij}}{p_{ij}(1-p_{ij})}
+     \cdot (d_j - c_j)\,s_{ij}(1-s_{ij})\,\tau_{ij}.
+  \label{eq:score_ij}
+\end{align}
+
+\paragraph{Step 3: Define the effective weight.}
+Let
+\begin{equation}\label{eq:alpha}
+  \alpha_{ij}
+  \coloneqq \frac{(d_j - c_j)\,s_{ij}(1-s_{ij})}{p_{ij}(1-p_{ij})}.
+\end{equation}
+
+Then~\eqref{eq:score_ij} becomes
+\begin{equation}\label{eq:score_ij_short}
+  \frac{\partial\ell_{ij}}{\partial\gamma}
+  = \alpha_{ij}\,\tau_{ij}\,(y_{ij} - p_{ij}),
+\end{equation}
+and the total score function is
+\begin{equation}\label{eq:total_score}
+  S(\gamma) = \frac{\partial\ell}{\partial\gamma}
+  = \sum_{i=1}^{N}\sum_{j=1}^{M}
+    \alpha_{ij}\,\tau_{ij}\,(y_{ij} - p_{ij}).
+\end{equation}
+
+
+\section{Fisher Information}\label{sec:fisher}
+
+\begin{theorem}[Fisher Information for $\gamma$ in 4PL+$\gamma$ IRT]\label{thm:fisher}
+Under the contamination-augmented 4PL model
+\eqref{eq:4pl}--\eqref{eq:eta} with Bernoulli responses~\eqref{eq:bernoulli},
+the Fisher information for $\gamma$
+(conditional on $\theta, a, b, c, d$ and $\tau$) is
+\begin{equation}\label{eq:fisher}
+  I(\gamma)
+  = \sum_{i=1}^{N}\sum_{j=1}^{M} w_{ij}\,\tau_{ij}^2,
+\end{equation}
+where
+\begin{equation}\label{eq:weight}
+  w_{ij}
+  = \frac{\bigl[(d_j - c_j)\,s_{ij}(1-s_{ij})\bigr]^2}{p_{ij}(1-p_{ij})}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We give two equivalent derivations.
+
+\medskip\noindent\textbf{Via the score variance.}\quad
+Since $E[y_{ij}] = p_{ij}$, we have $E[S(\gamma)] = 0$.
+By conditional independence of the $y_{ij}$,
+\begin{align}
+  I(\gamma)
+  &= \Var\bigl[S(\gamma)\bigr]
+  = \sum_{i,j} \alpha_{ij}^2\,\tau_{ij}^2\,\Var(y_{ij})
+  \notag\\
+  &= \sum_{i,j} \alpha_{ij}^2\,\tau_{ij}^2\,p_{ij}(1-p_{ij})
+  \label{eq:score_var}
+\end{align}
+since $\Var(y_{ij}) = p_{ij}(1-p_{ij})$ for Bernoulli.
+Substituting the definition of $\alpha_{ij}$ from~\eqref{eq:alpha}:
+\begin{align}
+  \alpha_{ij}^2\,p_{ij}(1-p_{ij})
+  &= \frac{[(d_j-c_j)\,s_{ij}(1-s_{ij})]^2}{[p_{ij}(1-p_{ij})]^2}
+     \cdot p_{ij}(1-p_{ij})
+  \notag\\
+  &= \frac{[(d_j-c_j)\,s_{ij}(1-s_{ij})]^2}{p_{ij}(1-p_{ij})}
+  = w_{ij}.
+  \label{eq:alpha_to_w}
+\end{align}
+Substituting~\eqref{eq:alpha_to_w} into~\eqref{eq:score_var} gives~\eqref{eq:fisher}.
+
+\medskip\noindent\textbf{Via the Bernoulli information formula.}\quad
+For independent Bernoulli observations with probability $p_{ij}(\gamma)$,
+the Fisher information is the standard result
+\begin{equation}\label{eq:bern_info}
+  I(\gamma)
+  = \sum_{i,j} \frac{(\partial p_{ij}/\partial\gamma)^2}{p_{ij}(1-p_{ij})}.
+\end{equation}
+Substituting~\eqref{eq:dp_final}:
+\begin{align*}
+  I(\gamma)
+  &= \sum_{i,j}
+     \frac{[(d_j-c_j)\,s_{ij}(1-s_{ij})\,\tau_{ij}]^2}{p_{ij}(1-p_{ij})} \\
+  &= \sum_{i,j}
+     \underbrace{\frac{[(d_j-c_j)\,s_{ij}(1-s_{ij})]^2}{p_{ij}(1-p_{ij})}}_{w_{ij}}
+     \cdot\;\tau_{ij}^2.
+     \qedhere
+\end{align*}
+\end{proof}
+
+
+\begin{remark}[2PL simplification]\label{rem:2pl}
+When $c_j = 0$ and $d_j = 1$ (the 2PL submodel), we have
+$p_{ij} = s_{ij} = \sigma(\eta_{ij})$, so
+\begin{equation}\label{eq:w_2pl}
+  w_{ij}
+  = \frac{[s_{ij}(1-s_{ij})]^2}{s_{ij}(1-s_{ij})}
+  = s_{ij}(1-s_{ij})
+  = p_{ij}(1-p_{ij}).
+\end{equation}
+Under the 2PL model the Fisher information simplifies to
+\begin{equation}\label{eq:fisher_2pl}
+  I(\gamma)
+  = \sum_{i=1}^{N}\sum_{j=1}^{M}
+    p_{ij}(1-p_{ij})\,\tau_{ij}^2.
+\end{equation}
+Each observation contributes most information when $p_{ij} = 1/2$
+(i.e., items near the ability level) and when the exposure signal $|\tau_{ij}|$
+is large.
+\end{remark}
+
+
+\begin{remark}[Conditional vs.\ marginal information]\label{rem:marginal}
+Theorem~\ref{thm:fisher} gives the \emph{conditional} Fisher information,
+treating $(\theta, a, b, c, d)$ as known.
+In a Bayesian setting where all parameters are estimated jointly,
+the marginal posterior variance $\Var(\gamma\mid\mathbf{y})$ will generally
+exceed $1/I(\gamma)$ due to (a)~prior information and (b)~posterior correlations
+between $\gamma$ and other parameters.
+Therefore $1/I(\gamma)$ serves as a \emph{lower bound} on the achievable
+posterior variance for~$\gamma$.
+The tightness of this bound depends on the degree of confounding between
+$\gamma\tau$ and the other terms in the linear predictor~$\eta_{ij}$.
+\end{remark}
+
+
+\section{Connection to Signal AUC}\label{sec:auc}
+
+We now relate $I(\gamma)$ to the quality of the exposure signal~$\tau$,
+as measured by its area under the ROC curve (AUC) for discriminating
+contaminated from clean items.
+
+\subsection{Bi-Normal Signal Model}\label{ssec:binormal}
+
+Suppose the ground-truth contamination status $g_{ij}\in\{0,1\}$ satisfies
+$g_{ij}\sim\mathrm{Bernoulli}(\pi)$ independently,
+with $\pi$ denoting the contamination rate.
+The exposure signal is
+\begin{equation}\label{eq:exposure_dgp}
+  \tau_{ij} = g_{ij} + \varepsilon_{ij},
+  \quad \varepsilon_{ij}\sim N(0,\sigma^2),
+\end{equation}
+so that
+$\tau_{ij}\mid g_{ij}=1 \sim N(1,\sigma^2)$ and
+$\tau_{ij}\mid g_{ij}=0 \sim N(0,\sigma^2)$.
+
+The AUC for discriminating $g=1$ from $g=0$ using $\tau$ is
+\begin{equation}\label{eq:auc_formula}
+  A = \Phi\!\left(\frac{\Delta}{\sigma\sqrt{2}}\right),
+\end{equation}
+where $\Delta = 1$ is the signal separation and
+$\Phi$ is the standard normal CDF.
+Solving for $\sigma$:
+\begin{equation}\label{eq:sigma_from_auc}
+  \sigma
+  = \frac{1}{\sqrt{2}\,\Phi^{-1}(A)}.
+\end{equation}
+
+
+\subsection{AUC--Information Relationship}
+
+\begin{corollary}[AUC--Information Relationship]\label{cor:auc}
+Under the bi-normal signal model~\eqref{eq:exposure_dgp},
+evaluating the Fisher information at $\gamma=0$ and taking the
+expectation over $\tau$:
+\begin{equation}\label{eq:EI_auc}
+  \mathbb{E}_\tau\!\left[I(\gamma)\big|_{\gamma=0}\right]
+  = \overline{W}\cdot NM\cdot
+    \left[\frac{1}{2\bigl[\Phi^{-1}(A)\bigr]^2} + \pi\right],
+\end{equation}
+where $\overline{W} = (NM)^{-1}\sum_{i,j}w_{ij}^{(0)}$ is the average weight
+evaluated at $\gamma=0$.
+\end{corollary}
+
+\begin{proof}
+At $\gamma=0$, the linear predictor $\eta_{ij}=a_j(\theta_i-b_j)$ is
+independent of $\tau$, so the weights $w_{ij}^{(0)}$ are deterministic
+(they depend only on item and person parameters).
+By Theorem~\ref{thm:fisher}:
+\begin{equation}\label{eq:EI_step1}
+  \mathbb{E}_\tau\!\left[I(\gamma)\big|_{\gamma=0}\right]
+  = \sum_{i,j}w_{ij}^{(0)}\cdot\mathbb{E}[\tau_{ij}^2].
+\end{equation}
+
+We compute $\mathbb{E}[\tau_{ij}^2]$ under the mixture~\eqref{eq:exposure_dgp}:
+\begin{align}
+  \mathbb{E}[\tau^2]
+  &= \pi\,\mathbb{E}[\tau^2\mid g=1] + (1-\pi)\,\mathbb{E}[\tau^2\mid g=0]
+  \notag\\
+  &= \pi\,(1^2+\sigma^2) + (1-\pi)\,(0^2+\sigma^2)
+  \notag\\
+  &= \pi + \pi\sigma^2 + (1-\pi)\sigma^2
+  \notag\\
+  &= \sigma^2 + \pi.
+  \label{eq:Etau2}
+\end{align}
+
+Since the $\tau_{ij}$ are i.i.d.,
+\begin{equation}
+  \sum_{i,j}w_{ij}^{(0)}\cdot\mathbb{E}[\tau_{ij}^2]
+  = \left(\sum_{i,j}w_{ij}^{(0)}\right)(\sigma^2+\pi)
+  = \overline{W}\cdot NM\cdot(\sigma^2+\pi).
+\end{equation}
+
+Substituting $\sigma^2 = 1/\bigl(2[\Phi^{-1}(A)]^2\bigr)$
+from~\eqref{eq:sigma_from_auc} yields~\eqref{eq:EI_auc}.
+\end{proof}
+
+
+\begin{remark}[Decomposition into signal and noise]\label{rem:decomp}
+The second moment decomposes as
+\[
+  \mathbb{E}[\tau^2]
+  = \underbrace{\sigma^2}_{\text{noise}}
+  + \underbrace{\pi}_{\text{signal}}\!,
+\]
+where $\sigma^2 = 1/(2[\Phi^{-1}(A)]^2)$ decreases monotonically
+from $\infty$ to $0$ as $A$ increases from $0.5$ to $1$.
+Equivalently,
+$\mathbb{E}[\tau^2] = \Var(\tau) + [\mathbb{E}(\tau)]^2$
+where $\Var(\tau)=\sigma^2+\pi(1{-}\pi)$ and $\mathbb{E}(\tau)=\pi$.
+
+In the regime $A\to 1$ (perfect signal, $\sigma\to 0$),
+the Fisher information approaches $\overline{W}\cdot NM\cdot\pi$,
+determined by the fraction of contaminated items alone.
+In the regime $A\to 0.5$ (no signal, $\sigma\to\infty$),
+$I(\gamma)\to\infty$ because the large noise in $\tau$ creates a
+``well-conditioned design'' for estimating the coefficient $\gamma$,
+even though $\gamma$ no longer measures a meaningful contamination effect.
+This distinction between statistical precision and interpretability
+motivates the use of AUC as a \emph{signal quality} diagnostic
+rather than relying on $I(\gamma)$ alone.
+\end{remark}
+
+
+\begin{remark}[General bi-normal model]\label{rem:general_binormal}
+For a general bi-normal model with signal separation $\Delta$
+(not necessarily~$1$) and common noise variance~$\sigma^2$:
+\[
+  \tau\mid g{=}1 \sim N(\mu_1,\sigma^2),\quad
+  \tau\mid g{=}0 \sim N(\mu_0,\sigma^2),\quad
+  \Delta = \mu_1-\mu_0,
+\]
+the AUC is $A=\Phi(\Delta/(\sigma\sqrt{2}))$ and
+\[
+  \Var(\tau) = \sigma^2 + \pi(1{-}\pi)\Delta^2,
+  \qquad
+  \mathbb{E}[\tau^2] = \sigma^2 + \pi\mu_1^2 + (1{-}\pi)\mu_0^2.
+\]
+Fixing $\sigma$ and increasing $\Delta$ (hence AUC) increases the Fisher
+information, which is the intuitive direction.
+\end{remark}
+
+
+\section{Measurement Error Attenuation}\label{sec:me}
+
+When the exposure signal is observed with additional measurement error,
+the effective Fisher information is attenuated.
+
+\begin{corollary}[Measurement Error Attenuation]\label{cor:me}
+Suppose the true exposure $\tau_{ij}$ is centered
+($\mathbb{E}[\tau]=0$, $\Var(\tau)=\sigma_\tau^2$),
+but we observe
+\begin{equation}\label{eq:me_model}
+  \tilde{e}_{ij} = \tau_{ij} + \epsilon_{ij},
+  \qquad \epsilon_{ij}\sim N(0,\sigma_e^2),
+\end{equation}
+with $\epsilon$ independent of $\tau$.
+If we substitute the posterior mean
+$\hat{\tau}_{ij} = \mathbb{E}[\tau_{ij}\mid\tilde{e}_{ij}]$
+for $\tau_{ij}$ in the Fisher information formula
+(the analytical measurement error model), then
+\begin{equation}\label{eq:me_ratio}
+  \frac{\mathbb{E}\bigl[I_{\mathrm{ME}}(\gamma)\bigr]}
+       {\mathbb{E}\bigl[I_{\mathrm{oracle}}(\gamma)\bigr]}
+  = \frac{\sigma_\tau^2}{\sigma_\tau^2+\sigma_e^2},
+\end{equation}
+where expectations are over $\tau$ and $\epsilon$,
+and both Fisher informations are evaluated at $\gamma=0$.
+\end{corollary}
+
+\begin{proof}
+Under a Gaussian model
+$\tau\sim N(0,\sigma_\tau^2)$ and
+$\tilde{e}\mid\tau\sim N(\tau,\sigma_e^2)$,
+the posterior distribution of $\tau$ given $\tilde{e}$ is
+\begin{equation}\label{eq:posterior}
+  \tau\mid\tilde{e} \;\sim\;
+  N\!\left(
+    \frac{\sigma_\tau^2}{\sigma_\tau^2+\sigma_e^2}\,\tilde{e},\;
+    \frac{\sigma_\tau^2\,\sigma_e^2}{\sigma_\tau^2+\sigma_e^2}
+  \right).
+\end{equation}
+
+The posterior mean is the linear shrinkage estimator:
+\begin{equation}\label{eq:shrinkage}
+  \hat{\tau}
+  = \mathbb{E}[\tau\mid\tilde{e}]
+  = \lambda\,\tilde{e},
+  \qquad\text{where}\quad
+  \lambda = \frac{\sigma_\tau^2}{\sigma_\tau^2+\sigma_e^2}.
+\end{equation}
+
+\paragraph{Step 1: Compute $\mathbb{E}[\hat\tau^2]$.}
+Since $\hat\tau = \lambda\,\tilde{e}$ and $\tilde{e} = \tau+\epsilon$
+with $\tau\perp\epsilon$:
+\begin{align}
+  \mathbb{E}[\hat\tau^2]
+  &= \lambda^2\,\mathbb{E}[\tilde{e}^2]
+  = \lambda^2\,(\sigma_\tau^2+\sigma_e^2)
+  \notag\\
+  &= \frac{\sigma_\tau^4}{(\sigma_\tau^2+\sigma_e^2)^2}
+     \cdot(\sigma_\tau^2+\sigma_e^2)
+  = \frac{\sigma_\tau^4}{\sigma_\tau^2+\sigma_e^2}.
+  \label{eq:E_tauhat_sq}
+\end{align}
+
+\paragraph{Step 2: Compute the ratio.}
+Using $I(\gamma)|_{\gamma=0} = \sum_{i,j}w_{ij}^{(0)}\,\tau_{ij}^2$
+with the weights independent of $\tau$ at $\gamma=0$:
+\begin{align}
+  \mathbb{E}[I_{\mathrm{ME}}(\gamma)]
+  &= \sum_{i,j}w_{ij}^{(0)}\,\mathbb{E}[\hat\tau_{ij}^2]
+  = W_{\mathrm{total}}\cdot\frac{\sigma_\tau^4}{\sigma_\tau^2+\sigma_e^2},
+  \label{eq:E_I_me}
+  \\
+  \mathbb{E}[I_{\mathrm{oracle}}(\gamma)]
+  &= \sum_{i,j}w_{ij}^{(0)}\,\mathbb{E}[\tau_{ij}^2]
+  = W_{\mathrm{total}}\cdot\sigma_\tau^2,
+  \label{eq:E_I_oracle}
+\end{align}
+where $W_{\mathrm{total}}=\sum_{i,j}w_{ij}^{(0)}$.
+
+Taking the ratio:
+\begin{equation}
+  \frac{\mathbb{E}[I_{\mathrm{ME}}]}{\mathbb{E}[I_{\mathrm{oracle}}]}
+  = \frac{\sigma_\tau^4/(\sigma_\tau^2+\sigma_e^2)}{\sigma_\tau^2}
+  = \frac{\sigma_\tau^2}{\sigma_\tau^2+\sigma_e^2}.
+  \qedhere
+\end{equation}
+\end{proof}
+
+
+\begin{remark}[Classical attenuation analogy]\label{rem:attenuation}
+The factor $\sigma_\tau^2/(\sigma_\tau^2+\sigma_e^2)$
+is the reliability ratio from classical measurement error theory.
+In linear regression, using a covariate measured with additive Gaussian noise
+attenuates the regression coefficient by this same factor.
+Here, the attenuation applies to the Fisher information rather than the
+coefficient itself, because the analytical ME model uses the posterior mean
+$\hat\tau$ (which is correctly scaled via shrinkage) rather than the raw
+noisy observation.
+The information loss arises because $\hat\tau$ has lower variance than $\tau$:
+\[
+  \Var(\hat\tau) = \frac{\sigma_\tau^4}{\sigma_\tau^2+\sigma_e^2}
+  < \sigma_\tau^2 = \Var(\tau).
+\]
+\end{remark}
+
+
+\begin{remark}[Non-centered exposure]\label{rem:noncentered}
+When $\tau$ is not centered ($\mathbb{E}[\tau]=\mu_\tau\ne 0$),
+the posterior mean becomes
+$\hat\tau = \mu_\tau + \lambda(\tilde{e}-\mu_\tau)$.
+In this case,
+\[
+  \frac{\mathbb{E}[I_{\mathrm{ME}}]}{\mathbb{E}[I_{\mathrm{oracle}}]}
+  = \frac{\sigma_\tau^4/(\sigma_\tau^2+\sigma_e^2)+\mu_\tau^2}
+         {\sigma_\tau^2+\mu_\tau^2},
+\]
+which lies between $\sigma_\tau^2/(\sigma_\tau^2+\sigma_e^2)$ and~$1$,
+approaching~$1$ as $|\mu_\tau|\to\infty$.
+Intuitively, the non-zero mean of $\tau$ provides ``free'' Fisher information
+that is unaffected by measurement noise.
+\end{remark}
+
+
+\end{document}

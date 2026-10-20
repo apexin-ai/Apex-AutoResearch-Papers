@@ -1,0 +1,3 @@
+Remote path: /root/contamcal-irt-calibration/exp001/analyze_phase2.py
+Outputs: phase2_summary.csv, phase2_mmlu_dose_response.pdf, phase2_arc_dose_response.pdf
+Location: /root/autodl-tmp/exp001/eval_results_v2/

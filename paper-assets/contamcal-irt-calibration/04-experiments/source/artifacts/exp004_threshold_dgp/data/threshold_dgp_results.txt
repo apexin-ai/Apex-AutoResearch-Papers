@@ -1,0 +1,31 @@
+Threshold DGP Simulation Results (MF2/D139)
+=============================================
+Date: 2026-05-18
+Server: cqa1-21977
+Design: N_items=300, N_models=16, gamma_true=0.5, 10 seeds per condition
+Model: 2PL+gamma (contam_irt_2pl_gamma_sim.stan)
+MCMC: 4 chains, 500 warmup, 1000 sampling, adapt_delta=0.95
+
+SUMMARY TABLE
+=============
+Condition          g_hat   +/-sd   Ratio   CI95cov  P(g<0)   PPP    frac_affected
+threshold_0.3      0.571   0.099   1.142   0.900    0.0000   0.50   0.701
+threshold_0.5      0.663   0.092   1.326   0.900    0.0000   0.54   0.501
+threshold_0.7      0.547   0.092   1.095   0.900    0.0001   0.56   0.303
+linear_0.5         0.434   0.116   0.868   1.000    0.0007   0.51   1.000
+
+CONCLUSIONS
+===========
+1. Linear 2PL+gamma OVERESTIMATES gamma under threshold DGP (ratio 1.09-1.33)
+2. Threshold_0.5 produces strongest overestimation (33%)
+3. CI95 coverage degrades to 90% under threshold misspecification (vs 100% for linear)
+4. PPP stays in 0.50-0.56: posterior predictive checks fail to detect misspecification
+5. P(gamma<0) ~ 0 everywhere: model always detects contamination direction
+6. Zero divergences across all 40 runs
+Total runtime: 27.9 min
+
+Remote paths:
+- Script: /root/contamcal-irt-calibration/exp004_sim_sweep/run_threshold_dgp.py
+- Stan model: /root/contamcal-irt-calibration/exp004_sim_sweep/contam_irt_2pl_gamma_sim.stan
+- Results: /root/contamcal-irt-calibration/exp004_sim_sweep/results_threshold_dgp/
+- Log: /root/contamcal-irt-calibration/exp004_sim_sweep/threshold_dgp.log

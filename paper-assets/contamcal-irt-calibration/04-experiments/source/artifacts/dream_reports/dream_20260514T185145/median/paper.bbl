@@ -1,0 +1,137 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Angelopoulos and Bates(2023)]{angelopoulos2023conformal}
+Anastasios~N Angelopoulos and Stephen Bates.
+\newblock Conformal prediction: A gentle introduction.
+\newblock \emph{Foundations and Trends in Machine Learning}, 16\penalty0
+  (4):\penalty0 494--591, 2023.
+
+\bibitem[Burnell et~al.(2023)]{burnell2023rethinking}
+Ryan Burnell et~al.
+\newblock Rethinking the evaluation of language models with item response
+  theory.
+\newblock In \emph{ACL}, 2023.
+
+\bibitem[Carlini et~al.(2022)]{carlini2022quantifying}
+Nicholas Carlini et~al.
+\newblock Quantifying memorization across neural language models.
+\newblock In \emph{ICLR}, 2022.
+
+\bibitem[Cormack et~al.(2009)Cormack, Clarke, and
+  Buettcher]{cormack2009reciprocal}
+Gordon~V Cormack, Charles~LA Clarke, and Stefan Buettcher.
+\newblock Reciprocal rank fusion outperforms {Condorcet} and individual rank
+  learning methods.
+\newblock In \emph{SIGIR}, 2009.
+
+\bibitem[De~Boeck and Wilson(2004)]{deboeck2004explanatory}
+Paul De~Boeck and Mark Wilson.
+\newblock \emph{Explanatory item response models: A generalized linear and
+  nonlinear approach}.
+\newblock Springer, 2004.
+
+\bibitem[Eckerly(2017)]{eckerly2017detecting}
+Carol Eckerly.
+\newblock Detecting item preknowledge and compromised items using {IRT}-based
+  statistics.
+\newblock \emph{Applied Psychological Measurement}, 41\penalty0 (7):\penalty0
+  487--501, 2017.
+
+\bibitem[Golchin and Surdeanu(2024)]{golchin2024time}
+Shahriar Golchin and Mihai Surdeanu.
+\newblock Time travel in {LLMs}: Tracing data contamination in large language
+  models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Guo et~al.(2017)]{guo2017calibration}
+Chuan Guo et~al.
+\newblock On calibration of modern neural networks.
+\newblock In \emph{ICML}, 2017.
+
+\bibitem[Lalor et~al.(2024)]{lalor2024benchmarking}
+John~P. Lalor et~al.
+\newblock Benchmarking large language models with item response theory.
+\newblock In \emph{AAAI}, 2024.
+
+\bibitem[Li and Flanigan(2024)]{li2024task}
+Changmao Li and Jeffrey Flanigan.
+\newblock Task contamination: Language models may not be few-shot anymore.
+\newblock In \emph{AAAI}, 2024.
+
+\bibitem[Mislevy(1986)]{mislevy1986recent}
+Robert~J Mislevy.
+\newblock Recent developments in the factor analysis of categorical variables.
+\newblock \emph{Journal of Educational Statistics}, 11\penalty0 (1):\penalty0
+  3--31, 1986.
+
+\bibitem[Oren et~al.(2024)]{oren2024proving}
+Yonatan Oren et~al.
+\newblock Proving test set contamination in black-box language models.
+\newblock In \emph{EMNLP}, 2024.
+
+\bibitem[Platt(1999)]{platt1999probabilistic}
+John Platt.
+\newblock Probabilistic outputs for support vector machines.
+\newblock \emph{Advances in Large Margin Classifiers}, pages 61--74, 1999.
+
+\bibitem[Polo et~al.(2024)]{polo2024tinybenchmarks}
+Felipe Polo et~al.
+\newblock tinybenchmarks: evaluating {LLMs} with fewer examples.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Reckase(2009)]{reckase2009multidimensional}
+Mark~D Reckase.
+\newblock \emph{Multidimensional item response theory}.
+\newblock Springer, 2009.
+
+\bibitem[Sainz et~al.(2023)]{sainz2023chatgpt}
+Oscar Sainz et~al.
+\newblock Did {ChatGPT} cheat on your test?
+\newblock In \emph{Findings of ACL}, 2023.
+
+\bibitem[Shi et~al.(2024)]{shi2024detecting}
+Weijia Shi et~al.
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Shokri et~al.(2017)]{shokri2017membership}
+Reza Shokri et~al.
+\newblock Membership inference attacks against machine learning models.
+\newblock In \emph{IEEE S\&P}, 2017.
+
+\bibitem[Sinharay(2017)]{sinharay2017assessment}
+Sandip Sinharay.
+\newblock An assessment of the contributions of detection indices for
+  compromised items.
+\newblock \emph{Journal of Educational and Behavioral Statistics}, 42\penalty0
+  (6):\penalty0 717--738, 2017.
+
+\bibitem[Talts et~al.(2018)]{talts2018validating}
+Sean Talts et~al.
+\newblock Validating {Bayesian} inference algorithms with simulation-based
+  calibration.
+\newblock \emph{arXiv preprint arXiv:1804.06788}, 2018.
+
+\bibitem[White et~al.(2024)]{white2024livebench}
+Colin White et~al.
+\newblock {LiveBench}: A challenging, contamination-free {LLM} benchmark.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}, 2024.
+
+\bibitem[Yang et~al.(2023)]{yang2023rethinking}
+Shuo Yang et~al.
+\newblock Rethinking benchmark and contamination for language models with
+  rephrased samples.
+\newblock In \emph{NeurIPS Datasets and Benchmarks}, 2023.
+
+\bibitem[Zhang et~al.(2025)]{zhang2025emperor}
+Yi~Zhang et~al.
+\newblock The emperor's new clothes: Exposing the limits of benchmark
+  contamination mitigation.
+\newblock In \emph{ICML}, 2025.
+
+\end{thebibliography}

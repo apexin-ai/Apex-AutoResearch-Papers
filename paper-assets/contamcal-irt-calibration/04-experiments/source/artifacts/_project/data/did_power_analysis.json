@@ -1,0 +1,217 @@
+{
+  "analysis": "DiD Post-hoc Power Analysis",
+  "description": "Minimum detectable effect sizes for DiD (treated vs. untreated item accuracy changes) at d025 dosage",
+  "method": "SE estimated from bootstrap 95% CI width: SE = (CI_hi - CI_lo) / (2 \u00d7 1.96); MDES = (z_{\u03b1/2} + z_\u03b2) \u00d7 SE",
+  "parameters": {
+    "alpha": 0.05,
+    "power": 0.8,
+    "test": "two-sided",
+    "bootstrap_iterations": 10000,
+    "dosage": "d025 (2.5%)"
+  },
+  "results": {
+    "mmlu": {
+      "Gemma-2-9B": {
+        "n_treated": 3540,
+        "n_untreated": 10502,
+        "treated_delta_pp": 3.11,
+        "untreated_delta_pp": 2.56,
+        "did_pp": 0.55,
+        "did_ci_lo_pp": -0.67,
+        "did_ci_hi_pp": 1.76,
+        "did_p": 0.3898,
+        "se_did_pp": 0.621,
+        "mdes_pp": 1.74,
+        "sigma_sq_pooled": 0.102252,
+        "observed_abs_did_pp": 0.55,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 64206,
+        "n_each_balanced_for_1.0pp": 16052
+      },
+      "OLMo-2-7B": {
+        "n_treated": 3540,
+        "n_untreated": 10502,
+        "treated_delta_pp": 1.58,
+        "untreated_delta_pp": 2.66,
+        "did_pp": -1.07,
+        "did_ci_lo_pp": -2.18,
+        "did_ci_hi_pp": 0.04,
+        "did_p": 0.0582,
+        "se_did_pp": 0.567,
+        "mdes_pp": 1.59,
+        "sigma_sq_pooled": 0.085057,
+        "observed_abs_did_pp": 1.07,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 53409,
+        "n_each_balanced_for_1.0pp": 13353
+      },
+      "Phi-4": {
+        "n_treated": 3540,
+        "n_untreated": 10502,
+        "treated_delta_pp": 0.34,
+        "untreated_delta_pp": 0.61,
+        "did_pp": -0.27,
+        "did_ci_lo_pp": -1.14,
+        "did_ci_hi_pp": 0.62,
+        "did_p": 0.5406,
+        "se_did_pp": 0.448,
+        "mdes_pp": 1.25,
+        "sigma_sq_pooled": 0.053123,
+        "observed_abs_did_pp": 0.27,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 33357,
+        "n_each_balanced_for_1.0pp": 8340
+      },
+      "Qwen2.5-14B": {
+        "n_treated": 3540,
+        "n_untreated": 10502,
+        "treated_delta_pp": -6.89,
+        "untreated_delta_pp": -7.58,
+        "did_pp": 0.69,
+        "did_ci_lo_pp": -0.75,
+        "did_ci_hi_pp": 2.13,
+        "did_p": 0.346,
+        "se_did_pp": 0.733,
+        "mdes_pp": 2.05,
+        "sigma_sq_pooled": 0.1423,
+        "observed_abs_did_pp": 0.69,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 89352,
+        "n_each_balanced_for_1.0pp": 22338
+      },
+      "Qwen2.5-7B": {
+        "n_treated": 3540,
+        "n_untreated": 10502,
+        "treated_delta_pp": -3.76,
+        "untreated_delta_pp": -2.91,
+        "did_pp": -0.84,
+        "did_ci_lo_pp": -2.29,
+        "did_ci_hi_pp": 0.53,
+        "did_p": 0.2386,
+        "se_did_pp": 0.72,
+        "mdes_pp": 2.02,
+        "sigma_sq_pooled": 0.137376,
+        "observed_abs_did_pp": 0.84,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 86260,
+        "n_each_balanced_for_1.0pp": 21565
+      }
+    },
+    "arc_challenge": {
+      "Gemma-2-9B": {
+        "n_treated": 257,
+        "n_untreated": 915,
+        "treated_delta_pp": 1.17,
+        "untreated_delta_pp": 1.42,
+        "did_pp": -0.25,
+        "did_ci_lo_pp": -3.44,
+        "did_ci_hi_pp": 3.08,
+        "did_p": 0.8778,
+        "se_did_pp": 1.663,
+        "mdes_pp": 4.66,
+        "sigma_sq_pooled": 0.05549,
+        "observed_abs_did_pp": 0.25,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 34843,
+        "n_each_balanced_for_1.0pp": 8711
+      },
+      "OLMo-2-7B": {
+        "n_treated": 257,
+        "n_untreated": 915,
+        "treated_delta_pp": 1.17,
+        "untreated_delta_pp": 2.3,
+        "did_pp": -1.13,
+        "did_ci_lo_pp": -4.06,
+        "did_ci_hi_pp": 1.8,
+        "did_p": 0.4404,
+        "se_did_pp": 1.494,
+        "mdes_pp": 4.19,
+        "sigma_sq_pooled": 0.044814,
+        "observed_abs_did_pp": 1.13,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 28139,
+        "n_each_balanced_for_1.0pp": 7035
+      },
+      "Phi-4": {
+        "n_treated": 257,
+        "n_untreated": 915,
+        "treated_delta_pp": -0.39,
+        "untreated_delta_pp": 0.44,
+        "did_pp": -0.83,
+        "did_ci_lo_pp": -2.43,
+        "did_ci_hi_pp": 0.77,
+        "did_p": 0.3024,
+        "se_did_pp": 0.815,
+        "mdes_pp": 2.28,
+        "sigma_sq_pooled": 0.013336,
+        "observed_abs_did_pp": 0.83,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 8374,
+        "n_each_balanced_for_1.0pp": 2094
+      },
+      "Qwen2.5-14B": {
+        "n_treated": 257,
+        "n_untreated": 915,
+        "treated_delta_pp": -2.33,
+        "untreated_delta_pp": -2.08,
+        "did_pp": -0.26,
+        "did_ci_lo_pp": -2.8,
+        "did_ci_hi_pp": 2.06,
+        "did_p": 0.8508,
+        "se_did_pp": 1.24,
+        "mdes_pp": 3.47,
+        "sigma_sq_pooled": 0.030861,
+        "observed_abs_did_pp": 0.26,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 19378,
+        "n_each_balanced_for_1.0pp": 4845
+      },
+      "Qwen2.5-7B": {
+        "n_treated": 257,
+        "n_untreated": 915,
+        "treated_delta_pp": -1.95,
+        "untreated_delta_pp": -4.37,
+        "did_pp": 2.43,
+        "did_ci_lo_pp": -1.5,
+        "did_ci_hi_pp": 6.29,
+        "did_p": 0.2214,
+        "se_did_pp": 1.987,
+        "mdes_pp": 5.57,
+        "sigma_sq_pooled": 0.079252,
+        "observed_abs_did_pp": 2.43,
+        "detectable_at_80pct_power": false,
+        "n_each_balanced_for_0.5pp": 49764,
+        "n_each_balanced_for_1.0pp": 12441
+      }
+    }
+  },
+  "summary": {
+    "mmlu": {
+      "mdes_range_pp": [
+        1.25,
+        2.05
+      ],
+      "mdes_mean_pp": 1.73,
+      "observed_abs_did_range_pp": [
+        0.27,
+        1.07
+      ],
+      "all_below_mdes": true
+    },
+    "arc_challenge": {
+      "mdes_range_pp": [
+        2.28,
+        5.57
+      ],
+      "mdes_mean_pp": 4.03,
+      "observed_abs_did_range_pp": [
+        0.25,
+        2.43
+      ],
+      "all_below_mdes": true
+    }
+  },
+  "paper_text": {
+    "limitations_or_appendix": "Post-hoc power analysis (80\\% power, $\\alpha=0.05$, two-sided) yields minimum detectable effect sizes (MDES) of 1.2--2.0\\,pp for MMLU ($n_{\\text{treated}}=3{,}540$, $n_{\\text{untreated}}=10{,}502$) and 2.3--5.6\\,pp for ARC-Challenge ($n_{\\text{treated}}=257$, $n_{\\text{untreated}}=915$). All observed $|\\text{DiD}|$ values fall below the MDES (MMLU: 0.3--1.1\\,pp; ARC: 0.2--2.4\\,pp), meaning the test cannot distinguish a true null from a sub-2\\,pp effect on MMLU. However, this bound rules out the large item-specific effects ($>$5\\,pp) that characterize memorization-based contamination in prior work."
+  }
+}

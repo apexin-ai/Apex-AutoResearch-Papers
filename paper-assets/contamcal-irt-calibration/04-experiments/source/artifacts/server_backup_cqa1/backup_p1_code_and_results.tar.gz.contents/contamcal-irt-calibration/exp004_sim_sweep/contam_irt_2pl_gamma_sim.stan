@@ -1,0 +1,30 @@
+// 2PL + gamma contamination parameter (simulation variant, no generated quantities)
+// P(y_ij = 1) = inv_logit(a_j * (theta_i - b_j) + gamma * exposure_ij)
+
+data {
+  int<lower=1> N_models;
+  int<lower=1> N_items;
+  array[N_models, N_items] int<lower=0, upper=1> y;
+  matrix[N_models, N_items] exposure;
+}
+
+parameters {
+  vector[N_models] theta;
+  vector<lower=0>[N_items] a;
+  vector[N_items] b;
+  real gamma;
+}
+
+model {
+  theta ~ std_normal();
+  a ~ lognormal(0, 0.5);
+  b ~ std_normal();
+  gamma ~ std_normal();
+
+  for (i in 1:N_models) {
+    for (j in 1:N_items) {
+      real eta = a[j] * (theta[i] - b[j]) + gamma * exposure[i, j];
+      y[i, j] ~ bernoulli_logit(eta);
+    }
+  }
+}

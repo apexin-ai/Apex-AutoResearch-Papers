@@ -1,0 +1,340 @@
+"""
+exp-003: RRF Aggregation of Contamination Detection Signals.
+
+Fuses per-item signal scores from exp-002 into composite exposure scores
+using Reciprocal Rank Fusion (Cormack et al., 2009).
+
+Input:  Signal JSONs from /root/autodl-tmp/exp002/signals/{model}_{dosage}_{seed}/
+Output: Per-item exposure scores in [0,1] for downstream IRT calibration (exp-006)
+"""
+
+import argparse
+import json
+import logging
+from pathlib import Path
+
+import numpy as np
+
+logger = logging.getLogger(__name__)
+
+SIGNAL_KEYS = ["s1_embedding", "s2_minkpp", "s3_constat", "s4_selfcritique"]
+SIGNAL_NAMES = {
+    "s1_embedding": "Embedding",
+    "s2_minkpp": "Min-K++",
+    "s3_constat": "ConStat",
+    "s4_selfcritique": "Self-Critique",
+}
+DEFAULT_K = 60
+
+SIGNAL_ROOT = "/root/autodl-tmp/exp002/signals"
+LABELS_ROOT = "/root/autodl-tmp/exp001/sft_data"
+BENCHMARKS = ["mmlu", "gsm8k", "arc_challenge"]
+DOSAGES = ["d000", "d005", "d025", "d050", "d100"]
+DOSAGE_NUM = {"d000": 0, "d005": 5, "d025": 25, "d050": 50, "d100": 100}
+
+
+def load_signal_files(signal_dir: str, benchmark: str) -> list[dict]:
+    """Load per-item signals from exp-002 output directory.
+
+    Tries signals_merged_{benchmark}.json first, falls back to
+    loading and merging individual signal files.
+    """
+    signal_dir = Path(signal_dir)
+
+    merged = signal_dir / f"signals_merged_{benchmark}.json"
+    if merged.exists():
+        with open(merged) as f:
+            return json.load(f)
+
+    items_by_idx = {}
+    sig_name_map = {
+        "s1_embedding": "embedding",
+        "s2_minkpp": "minkpp",
+        "s3_constat": "constat",
+        "s4_selfcritique": "selfcritique",
+    }
+    for sig_key, sig_name in sig_name_map.items():
+        sig_file = signal_dir / f"signal_{sig_name}_{benchmark}.json"
+        if not sig_file.exists():
+            continue
+        with open(sig_file) as f:
+            data = json.load(f)
+        for item in data:
+            idx = item["index"]
+            if idx not in items_by_idx:
+                items_by_idx[idx] = {"index": idx, "benchmark": benchmark}
+            items_by_idx[idx].update(item)
+
+    if not items_by_idx:
+        logger.warning("No signal files found in %s for %s", signal_dir, benchmark)
+        return []
+
+    return [items_by_idx[k] for k in sorted(items_by_idx)]
+
+
+def detect_available_signals(items: list[dict]) -> list[str]:
+    """Return signal keys that have non-null, non-zero values."""
+    available = []
+    for sig in SIGNAL_KEYS:
+        if any(item.get(sig) not in (None, 0.0) for item in items):
+            available.append(sig)
+    return available
+
+
+def compute_ranks(scores: np.ndarray) -> np.ndarray:
+    """Rank from 1 (highest score = most suspicious) to N, with tie averaging."""
+    n = len(scores)
+    order = np.argsort(-scores)
+    ranks = np.empty(n, dtype=float)
+    i = 0
+    while i < n:
+        j = i
+        while j < n - 1 and scores[order[j + 1]] == scores[order[j]]:
+            j += 1
+        avg_rank = (i + j) / 2.0 + 1
+        for k_idx in range(i, j + 1):
+            ranks[order[k_idx]] = avg_rank
+        i = j + 1
+    return ranks
+
+
+def rrf_fuse(items: list[dict], k: int = DEFAULT_K,
+             signals: list[str] = None,
+             weights: dict = None) -> np.ndarray:
+    """Reciprocal Rank Fusion: score(j) = sum_s w_s / (k + rank_s(j))
+
+    All signals oriented so higher = more suspicious.
+    Returns raw (unnormalized) RRF scores.
+    """
+    if signals is None:
+        signals = detect_available_signals(items)
+    if not signals:
+        return np.zeros(len(items))
+
+    n = len(items)
+    if weights is None:
+        weights = {s: 1.0 for s in signals}
+
+    rrf_scores = np.zeros(n)
+    for sig in signals:
+        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)
+        ranks = compute_ranks(vals)
+        rrf_scores += weights.get(sig, 1.0) / (k + ranks)
+
+    return rrf_scores
+
+
+def normalize_minmax(scores: np.ndarray) -> np.ndarray:
+    """Min-max normalize to [0, 1]."""
+    mn, mx = scores.min(), scores.max()
+    if mx - mn < 1e-12:
+        return np.full_like(scores, 0.5)
+    return (scores - mn) / (mx - mn)
+
+
+def aggregate_single(signal_dir: str, benchmark: str, k: int = DEFAULT_K,
+                     signals: list[str] = None, weights: dict = None,
+                     normalize: bool = True) -> list[dict]:
+    """Full RRF pipeline for one signal directory and benchmark.
+
+    Returns list of {"index", "benchmark", "exposure", "rrf_raw", "rank_*"}.
+    """
+    items = load_signal_files(signal_dir, benchmark)
+    if not items:
+        return []
+
+    active = signals or detect_available_signals(items)
+    n = len(items)
+
+    # Precompute rank matrix
+    rank_matrix = {}
+    for sig in active:
+        vals = np.array([item.get(sig, 0.0) or 0.0 for item in items], dtype=float)
+        rank_matrix[sig] = compute_ranks(vals)
+
+    # RRF fusion
+    w = weights or {s: 1.0 for s in active}
+    rrf_scores = np.zeros(n)
+    for sig in active:
+        rrf_scores += w.get(sig, 1.0) / (k + rank_matrix[sig])
+
+    exposure = normalize_minmax(rrf_scores) if normalize else rrf_scores
+
+    results = []
+    for i, item in enumerate(items):
+        rec = {
+            "index": item["index"],
+            "benchmark": item.get("benchmark", benchmark),
+            "exposure": float(exposure[i]),
+            "rrf_raw": float(rrf_scores[i]),
+        }
+        for sig in active:
+            rec[f"rank_{sig}"] = int(rank_matrix[sig][i])
+        results.append(rec)
+
+    return results
+
+
+def aggregate_all_models(signal_root: str, benchmarks: list[str],
+                         k: int = DEFAULT_K, normalize: bool = True,
+                         dosage_filter: str = None) -> dict:
+    """Aggregate across all model directories in signal_root.
+
+    Returns {model_id: {benchmark: [per-item results]}}
+    """
+    signal_root = Path(signal_root)
+    results = {}
+
+    for model_dir in sorted(signal_root.iterdir()):
+        if not model_dir.is_dir():
+            continue
+        model_id = model_dir.name
+        if dosage_filter and dosage_filter not in model_id:
+            continue
+
+        results[model_id] = {}
+        for bench in benchmarks:
+            agg = aggregate_single(str(model_dir), bench, k=k, normalize=normalize)
+            if agg:
+                results[model_id][bench] = agg
+                logger.info("%s/%s: %d items, exposure [%.4f, %.4f]",
+                            model_id, bench, len(agg),
+                            min(r["exposure"] for r in agg),
+                            max(r["exposure"] for r in agg))
+
+    return results
+
+
+def generate_exposure_json(signal_root: str, benchmarks: list[str],
+                           k: int = DEFAULT_K, normalize: bool = True,
+                           dosage_filter: str = None) -> dict:
+    """Generate exposure_scores.json for exp-006 IRT calibration.
+
+    Output format per model:
+      {model_id: {benchmark: {"exposure_scores": [...], "item_count": N, "signals_used": [...]}}}
+    """
+    all_results = aggregate_all_models(signal_root, benchmarks, k=k,
+                                       normalize=normalize,
+                                       dosage_filter=dosage_filter)
+    exposure = {}
+    for model_id, bench_data in all_results.items():
+        exposure[model_id] = {}
+        for bench, items in bench_data.items():
+            signals_used = sorted(set(
+                key.replace("rank_", "")
+                for item in items for key in item if key.startswith("rank_")
+            ))
+            exposure[model_id][bench] = {
+                "exposure_scores": [item["exposure"] for item in items],
+                "item_count": len(items),
+                "signals_used": signals_used,
+            }
+
+    # Compute cross-model aggregated exposure (mean over all models per item)
+    aggregated = {}
+    all_benchmarks = set()
+    for bd in exposure.values():
+        all_benchmarks.update(bd.keys())
+    for bench in sorted(all_benchmarks):
+        scores_per_model = []
+        for model_id_key, bd in exposure.items():
+            if bench in bd:
+                scores_per_model.append(bd[bench]["exposure_scores"])
+        if scores_per_model:
+            min_len = min(len(s) for s in scores_per_model)
+            stacked = np.array([s[:min_len] for s in scores_per_model])
+            aggregated[bench] = np.mean(stacked, axis=0).tolist()
+
+    return exposure, aggregated
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="exp-003: RRF aggregation of contamination detection signals"
+    )
+    parser.add_argument("--signal-root", type=str, default=SIGNAL_ROOT,
+                        help="Root dir of exp-002 signal outputs")
+    parser.add_argument("--signal-dir", type=str, default=None,
+                        help="Single model signal dir (overrides --signal-root)")
+    parser.add_argument("--benchmarks", type=str, nargs="+", default=BENCHMARKS)
+    parser.add_argument("--k", type=int, default=DEFAULT_K,
+                        help="RRF k parameter (default: 60)")
+    parser.add_argument("--output-dir", type=str, required=True)
+    parser.add_argument("--dosage-filter", type=str, default=None,
+                        help="Only process dirs matching this dosage (e.g., d005)")
+    parser.add_argument("--no-normalize", action="store_true",
+                        help="Skip min-max normalization to [0,1]")
+    parser.add_argument("--generate-exposure", action="store_true",
+                        help="Generate exposure_scores.json for exp-006")
+    parser.add_argument("--model-name", type=str, default=None,
+                        help="Model identifier for single-dir mode output naming")
+    args = parser.parse_args()
+
+    logging.basicConfig(level=logging.INFO,
+                        format="%(asctime)s [%(levelname)s] %(message)s")
+
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    normalize = not args.no_normalize
+
+    if args.generate_exposure:
+        exposure, aggregated = generate_exposure_json(
+            args.signal_root, args.benchmarks,
+            k=args.k, normalize=normalize,
+            dosage_filter=args.dosage_filter,
+        )
+        out_file = output_dir / "exposure_scores.json"
+        with open(out_file, "w") as f:
+            json.dump(exposure, f, indent=2)
+        logger.info("Exposure scores saved to %s", out_file)
+        for mid, bd in exposure.items():
+            for bench, data in bd.items():
+                logger.info("  %s/%s: %d items", mid, bench, data["item_count"])
+
+        agg_file = output_dir / "exposure_aggregated.json"
+        with open(agg_file, "w") as f:
+            json.dump(aggregated, f, indent=2)
+        logger.info("Aggregated exposure saved to %s (%d benchmarks)",
+                    agg_file, len(aggregated))
+        return
+
+    if args.signal_dir:
+        for bench in args.benchmarks:
+            results = aggregate_single(args.signal_dir, bench, k=args.k,
+                                       normalize=normalize)
+            if results:
+                name = args.model_name or Path(args.signal_dir).name
+                out_file = output_dir / f"rrf_scores_{name}_{bench}.json"
+                with open(out_file, "w") as f:
+                    json.dump(results, f, indent=2)
+                logger.info("Saved %d items to %s", len(results), out_file)
+    else:
+        all_results = aggregate_all_models(
+            args.signal_root, args.benchmarks,
+            k=args.k, normalize=normalize,
+            dosage_filter=args.dosage_filter,
+        )
+        for model_id, bench_data in all_results.items():
+            for bench, items in bench_data.items():
+                out_file = output_dir / f"rrf_scores_{model_id}_{bench}.json"
+                with open(out_file, "w") as f:
+                    json.dump(items, f, indent=2)
+
+        summary = {
+            model_id: {
+                bench: {
+                    "count": len(items),
+                    "exposure_mean": float(np.mean([r["exposure"] for r in items])),
+                    "exposure_std": float(np.std([r["exposure"] for r in items])),
+                }
+                for bench, items in bench_data.items()
+            }
+            for model_id, bench_data in all_results.items()
+        }
+        with open(output_dir / "rrf_summary.json", "w") as f:
+            json.dump(summary, f, indent=2)
+        logger.info("Summary saved to %s", output_dir / "rrf_summary.json")
+
+
+if __name__ == "__main__":
+    main()

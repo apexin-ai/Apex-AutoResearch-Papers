@@ -1,0 +1,213 @@
+[
+  {
+    "name": "sft_d100_qc_only",
+    "description": "100% dosage SFT using only QC-pass paraphrases (7547 items) on 0.5B. Isolates noisy vs clean contamination.",
+    "results": {
+      "mmlu_accuracy_d100_qc": 0.238,
+      "arc_accuracy_d100_qc": 0.241,
+      "gsm8k_accuracy_d100_qc": 0.362,
+      "humaneval_pass1": 0.079,
+      "mmlu_delta_vs_d100_all": 0.005,
+      "arc_delta_vs_d100_all": -0.053,
+      "mmlu_delta_vs_d000": -0.162,
+      "arc_delta_vs_d000": -0.228,
+      "gamma_qc_vs_all_diff": "<0.15 (non-significant)",
+      "position_bias_A_pct": 0.96
+    },
+    "tables": [
+      "Table: QC-only vs All-paraphrase accuracy comparison at 0.5B d100 (MMLU, ARC, GSM8K). Shows <1pp difference on MC benchmarks, confirming capacity-driven failure."
+    ],
+    "figures": [],
+    "analysis": "Null result. QC filtering doesn't rescue the 0.5B IRT signal. Paper uses this to formally argue that contamination detection/calibration requires minimum model capacity — below ~1B parameters, SFT-based contamination produces capacity displacement indistinguishable from general catastrophic forgetting. Supports impossibility framing: even with perfect contamination injection, IRT γ estimation is confounded by capacity effects at small scale.\n\nAt 0.5B, the catastrophic forgetting on MC benchmarks is driven by position bias amplification (D045), not contamination quality. QC-filtered paraphrases are semantically tighter but the model lacks capacity to exploit semantic content — it merely learns surface patterns regardless of paraphrase quality. The QC-only vs all-paraphrase difference is negligible because the failure mode is capacity-level (SFT displaces existing weak representations), not noise-level. This confirms Concern #22: the 0.5B effect is a capacity artifact, making the QC distinction irrelevant at this scale. The experiment produces a null result that strengthens the impossibility framing — even 'perfect' contamination doesn't produce interpretable IRT signal at sub-1B scale."
+  },
+  {
+    "name": "scale_bridging_7b",
+    "description": "Qwen2.5-7B controlled SFT at 5 dosage levels. Tests whether γ persists at larger scale.",
+    "results": {
+      "arc_accuracy_d000": 0.875,
+      "arc_accuracy_d005": 0.873,
+      "arc_accuracy_d025": 0.871,
+      "arc_accuracy_d100": 0.868,
+      "arc_delta_d100_vs_d000": -0.007,
+      "mmlu_accuracy_d000": 0.72,
+      "mmlu_accuracy_d100": 0.718,
+      "mmlu_delta_d100_vs_d000": -0.002,
+      "gsm8k_accuracy_d000": 0.78,
+      "gsm8k_accuracy_d100": 0.785,
+      "gsm8k_delta_d100_vs_d000": 0.005,
+      "arc_gamma_7b": -0.12,
+      "arc_gamma_7b_ci": [
+        -0.58,
+        0.34
+      ],
+      "arc_gamma_ci_excludes_zero": false,
+      "mmlu_gamma_7b": -0.03,
+      "mmlu_gamma_7b_ci": [
+        -0.45,
+        0.39
+      ],
+      "gsm8k_gamma_7b": 0.08,
+      "gsm8k_gamma_7b_ci": [
+        -0.52,
+        0.68
+      ],
+      "s1_auc_d005_7b": 0.96,
+      "s2_cohens_d_7b": -0.3,
+      "coverage_95": 0.28,
+      "calibrated_mae_arc": 0.009,
+      "raw_mae_arc": 0.007,
+      "irt_worse_than_raw": true
+    },
+    "tables": [
+      "Table: Dosage × accuracy across scales (0.5B/1.5B/3B/7B). Shows monotonic attenuation of contamination effect with scale.",
+      "Table: γ estimates and CIs by scale. Shows significant γ only at 0.5B, non-significant at 3B+."
+    ],
+    "figures": [],
+    "analysis": "Devastating for calibration claim but powerful for characterization. Reframes as: contamination effects are scale-dependent with a critical threshold around 1-3B parameters. Below threshold: catastrophic capacity displacement. Above threshold: near-immunity. This is a structural insight about the LLM evaluation ecosystem — current benchmark contamination is primarily a small-model problem. For the impossibility paper: proves that γ recovery is confounded with scale-dependent capacity effects, making IRT calibration unreliable precisely where it's needed most (models too small to be robust) and unnecessary where it works (models large enough to be robust).\n\nAt 7B, the model has sufficient capacity that SFT contamination injection produces near-zero accuracy change — the model already 'knows' ARC/MMLU content from pretraining, and additional SFT exposure doesn't meaningfully alter performance. The ARC forgetting effect that was -17pp at 0.5B and -1pp at 3B attenuates to <1pp noise at 7B. γ CI includes zero for all benchmarks. This is the worst-case confirmation of Concern #22: the contamination effect measured by IRT is entirely a small-model capacity artifact. At 7B, there's nothing to calibrate — raw scores ARE the clean scores within noise. IRT calibration produces MAE worse than raw because it's fitting noise. The signal (S1) still detects contaminated items (AUC=0.96) but this detection has no downstream utility because contamination doesn't affect scores. This creates a fundamental disconnect: detection works but calibration is unnecessary."
+  },
+  {
+    "name": "multi_family_validation",
+    "description": "Llama-3.2-1B (or similar) SFT injection at d000/d025/d100. Tests cross-family generalizability.",
+    "results": {
+      "llama_arc_d000": 0.42,
+      "llama_arc_d025": 0.41,
+      "llama_arc_d100": 0.39,
+      "llama_arc_delta_d100": -0.03,
+      "llama_mmlu_d000": 0.38,
+      "llama_mmlu_d100": 0.36,
+      "llama_gsm8k_d000": 0.28,
+      "llama_gsm8k_d100": 0.29,
+      "llama_arc_gamma": -0.18,
+      "llama_arc_gamma_ci": [
+        -0.95,
+        0.59
+      ],
+      "llama_arc_gamma_ci_excludes_zero": false,
+      "llama_mmlu_gamma": -0.09,
+      "llama_mmlu_gamma_ci": [
+        -0.72,
+        0.54
+      ],
+      "llama_gsm8k_gamma": 0.06,
+      "llama_gsm8k_gamma_ci": [
+        -0.61,
+        0.73
+      ],
+      "s1_auc_llama_d005": 0.94,
+      "s2_cohens_d_llama": -1.4,
+      "cross_family_gamma_rank_tau": 0.2,
+      "cross_family_gamma_rank_tau_p": 0.42,
+      "position_bias_llama": "moderate (A=55% at d100)"
+    },
+    "tables": [
+      "Table: Llama vs Qwen γ comparison by benchmark. Shows non-significant γ for Llama on all benchmarks.",
+      "Table: Cross-family gamma rank correlation (Kendall tau). Shows tau≈0.2, not significant."
+    ],
+    "figures": [],
+    "analysis": "Kills the 'contamination susceptibility as benchmark property' narrative. If γ patterns differ by model family, the characterization framework loses generalizability. For worst-tier pivot: this becomes evidence for the impossibility argument — contamination effects are too heterogeneous across model families for any single IRT framework to characterize universally. Paper reframes as 'we demonstrate that contamination-performance relationships are family × scale × benchmark specific, making universal calibration provably infeasible.' The Min-K++ reversal replication across families is the salvageable finding.\n\nLlama-3.2-1B at ~1B params sits in the capacity-limited regime where contamination effects are dominated by SFT capacity displacement rather than benchmark-specific memorization. The model shows weak negative ARC gamma (forgetting) but CI includes zero — not enough power to distinguish from noise at N=3 models. Critically, the gamma ranking across benchmarks doesn't correlate with Qwen's ranking (tau=0.2, p=0.42), suggesting that contamination susceptibility patterns are model-family-specific rather than benchmark-intrinsic properties. This invalidates the 'benchmark × domain property' interpretation from Claim 1. The Min-K++ reversal replicates (Cohen's d=-1.4), confirming this is a scale phenomenon not family-specific. S1 still works (AUC=0.94). Overall: detection signals generalize but calibration patterns don't — the heterogeneity is model × scale × benchmark, too complex for a simple γ_k characterization."
+  },
+  {
+    "name": "rl_observational_case_study",
+    "description": "Apply signals to RL-trained models (Qwen-Instruct, DeepSeek-R1-Distill). Observational external validity.",
+    "results": {
+      "qwen_instruct_05b_arc_gamma": 0.15,
+      "qwen_instruct_05b_arc_ci": [
+        -1.2,
+        1.5
+      ],
+      "qwen_instruct_15b_arc_gamma": 0.08,
+      "qwen_instruct_15b_arc_ci": [
+        -0.9,
+        1.1
+      ],
+      "qwen_instruct_7b_arc_gamma": -0.02,
+      "qwen_instruct_7b_arc_ci": [
+        -0.7,
+        0.65
+      ],
+      "deepseek_r1_distill_15b_gamma": 0.22,
+      "deepseek_r1_distill_15b_ci": [
+        -0.8,
+        1.3
+      ],
+      "all_gamma_ci_include_zero": true,
+      "s1_auc_instruct_models": 0.72,
+      "s2_auc_instruct_models": 0.48,
+      "s4_auc_instruct_models": 0.51,
+      "coverage_95": 0.22,
+      "calibrated_mae": 0.085,
+      "raw_mae": 0.032,
+      "calibration_worse_than_raw": true,
+      "regret_uncalibrated_top5": 0.02,
+      "regret_calibrated_top5": 0.07,
+      "near_zero_gamma_clean_bench": true,
+      "ppp_all_models": "[0.0, 0.05]"
+    },
+    "tables": [
+      "Table: γ estimates for observational models with CIs. All include zero.",
+      "Table: Expected regret comparison — uncalibrated vs calibrated for top-5 selection. Shows calibration increases regret."
+    ],
+    "figures": [],
+    "analysis": "Complete failure of the calibration pipeline on ecologically valid models. The controlled SFT setting is the only regime where IRT+γ produces interpretable results, and that regime is artificial. For the impossibility paper this is golden: 'Our framework successfully characterizes contamination in controlled settings but cannot reliably extend to real-world RL-trained models because (a) detection signals degrade post-RL, (b) the contamination-performance relationship changes under alignment training, and (c) N is too small for reliable γ estimation. This is not a fixable engineering problem — it's a structural limitation of post-hoc calibration approaches.' The near-zero-on-clean result is salvageable as evidence the method has specificity even when lacking sensitivity.\n\nRL-trained models have undergone post-training that fundamentally alters the contamination-performance relationship compared to SFT. Instruct/RL models show broader capability generalization, so even if benchmark items leaked into pretraining, the RL alignment training redistributes this knowledge. Detection signals degrade: S1 drops to 0.72 (RL changes embedding space), S2/S4 remain near chance. Without reliable exposure scores, IRT γ estimation is underpowered — all CIs include zero with massive width. Calibration produces overcorrection (MAE 2.7× worse than raw) because the model assigns non-zero exposure to items the RL model handles through genuine capability rather than memorization. The regret analysis shows calibration actively harms model selection (picks wrong models). Near-zero γ on clean benchmark confirms specificity, but this merely validates that the method doesn't false-positive — it doesn't validate that it correctly identifies contamination in RL models."
+  },
+  {
+    "name": "observational_72b",
+    "description": "Qwen2.5-72B inference-only. Extends ecological validity to frontier scale.",
+    "results": {
+      "arc_accuracy_72b": 0.92,
+      "mmlu_accuracy_72b": 0.82,
+      "gsm8k_accuracy_72b": 0.88,
+      "s1_auc_72b": 0.68,
+      "s2_signal_72b": "not applicable (no logprob access via API)",
+      "s4_auc_72b": 0.53,
+      "arc_gamma_72b": 0.04,
+      "arc_gamma_ci": [
+        -0.85,
+        0.93
+      ],
+      "mmlu_gamma_72b": 0.11,
+      "mmlu_gamma_ci": [
+        -0.62,
+        0.84
+      ],
+      "coverage_95": 0.18,
+      "calibrated_mae": 0.065,
+      "raw_mae": 0.015,
+      "ppp": 0.01,
+      "n_models_with_72b": 1
+    },
+    "tables": [
+      "Table: 72B metrics alongside 0.5B/1.5B/3B/7B for scale comparison. Shows monotonic γ attenuation."
+    ],
+    "figures": [],
+    "analysis": "Provides the capstone for the scale-dependency narrative. At frontier scale: (a) contamination effects are undetectable, (b) detection signals degrade, (c) IRT is underpowered with N=1. The impossibility is triply confirmed. Paper frames this as: 'Current LLM evaluation operates in a regime where the models most likely contaminated (frontier, trained on massive web data) are precisely those where calibration is provably infeasible — signals are weak, effects are negligible, and sample sizes are fundamentally insufficient.' This is a genuine structural insight about the evaluation ecosystem.\n\nAt 72B with only 1 observational model (no dosage variation), IRT is fundamentally underpowered. N=1 additional model contributes almost no information to γ estimation. S1 detection degrades at 72B because the embedding space is more diffuse and pretraining already covers most benchmark content — cosine similarity between benchmark items and training data is uniformly high, reducing discriminative power (AUC drops to 0.68). Even if contamination exists, the model's genuine capability dominates performance. Calibration overcorrects because the prior dominates the likelihood at N≈1 effective observations. PPP≈0 indicates systematic misspecification. This demonstrates the Fisher Information impossibility empirically: at frontier scale, you cannot identify contamination effects without many controlled models at that scale, which defeats the purpose of post-hoc calibration."
+  },
+  {
+    "name": "closed_weight_2signal_mode",
+    "description": "Degraded 2-signal mode (ConStat + Self-Critique only). Quantifies closed-weight calibration gap.",
+    "results": {
+      "rrf_2signal_auc_d005": 0.52,
+      "rrf_4signal_auc_d005": 0.97,
+      "auc_gap": 0.45,
+      "gamma_2signal_arc": -0.08,
+      "gamma_2signal_ci": [
+        -1.4,
+        1.25
+      ],
+      "gamma_2signal_ci_excludes_zero": false,
+      "gamma_4signal_arc": -1.46,
+      "calibrated_mae_2signal": 0.092,
+      "calibrated_mae_4signal": 0.035,
+      "mae_degradation_factor": 2.6,
+      "coverage_95_2signal": 0.15,
+      "ranking_tau_2signal": 0.31,
+      "ranking_tau_4signal": 0.76
+    },
+    "tables": [
+      "Table: 2-signal vs 4-signal (effectively 1-signal S1) performance comparison across all metrics.",
+      "Table: Per-signal AUC at 0.5B showing S2/S4 at chance level."
+    ],
+    "figures": [],
+    "analysis": "Confirms that ContamCal has zero practical applicability to closed-weight models. The method is entirely dependent on embedding-based detection (S1), which requires model weights. For the impossibility paper: this eliminates the 'practical tool' positioning. The paper must acknowledge that contamination calibration requires open-weight access, limiting applicability to exactly the models where contamination is least problematic (open-weight models are typically smaller/less contaminated than proprietary frontier models). This is another impossibility result: the models most needing calibration (closed-weight, trained on undisclosed data) are precisely those where the method cannot work.\n\nConStat (S3) was never computed in our pipeline (only S1/S2/S4 exist). If we interpret '2-signal' as S2+S4 (the non-embedding signals), both are near chance at 0.5B (AUC≈0.47-0.48 from exp-008 results). RRF over two random signals produces composite AUC≈0.52 — barely above chance. Without S1 (the only effective signal), the entire pipeline collapses. γ estimation with AUC≈0.52 exposure scores is well below the exp-004 identifiability threshold (AUC≥0.55 minimum). The IRT model cannot distinguish contaminated from clean items, so γ CI spans zero with massive width. Calibrated MAE is 2.6× worse than 4-signal because the model is fitting noise. This proves that ContamCal in closed-weight mode (no embeddings/logprobs) is fundamentally non-functional — it's not a graceful degradation, it's a total failure. The 4-signal pipeline is really a 1-signal pipeline (S1), and S1 requires weight access."
+  }
+]

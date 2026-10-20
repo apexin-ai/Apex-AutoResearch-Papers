@@ -1,0 +1,77 @@
+profile_classification:
+  description: >
+    Deterministic decision tree for classifying a model's dose-response
+    accuracy trajectory into one of five canonical contamination patterns.
+
+  input:
+    accuracies:
+      type: dict[str, float]
+      keys: [d000, d005, d025, d050, d100]
+      unit: percentage points
+
+  derived_features:
+    delta: "a[d100] - a[d000]"
+    mid_min: "min(a[d005], a[d025], a[d050])"
+    first_half_gain: "a[d025] - a[d000]"
+    second_half_gain: "a[d100] - a[d025]"
+    late_gain: "a[d100] - a[d050]"
+
+  thresholds:
+    noise: {symbol: tau, default: 1.0, unit: pp}
+    severe: {symbol: sigma, default: 5.0, unit: pp}
+    saturation_ratio: {symbol: rho, default: 0.3, unit: ratio}
+    late_gain_floor: {symbol: lambda, default: 0.5, unit: pp}
+
+  patterns:
+    Immune:
+      condition: "|delta| <= tau"
+      interpretation: >
+        Accuracy fluctuates within the noise band across all dosages.
+        The model is robust to contamination at any level.
+
+    U-collapse:
+      condition: >
+        (delta <= -sigma) OR
+        (-sigma < delta < -tau AND NOT v_dip)
+      where:
+        v_dip: "mid_min < a[d000] AND mid_min < a[d100]"
+      interpretation: >
+        Accuracy degrades monotonically (or nearly so) with increasing
+        contamination. Severe form: >= 5pp drop. Moderate form: 1-5pp
+        drop without mid-dosage recovery.
+
+    V-recovery:
+      condition: "-sigma < delta < -tau AND mid_min < a[d000] AND mid_min < a[d100]"
+      interpretation: >
+        Accuracy drops at intermediate dosages but partially recovers
+        at full contamination, producing a V-shaped trajectory. Net
+        effect is still negative.
+
+    Benefit:
+      condition: "delta > tau AND NOT saturating"
+      where:
+        saturating: "(first_half_gain > 0 AND second_half_gain < rho * first_half_gain) OR late_gain < lambda"
+      interpretation: >
+        Accuracy improves monotonically with contamination dosage.
+        Gains continue through the highest dosage without deceleration.
+
+    Benefit-sat:
+      condition: "delta > tau AND saturating"
+      interpretation: >
+        Accuracy improves at low dosages but gains decelerate or plateau
+        at high dosages. Either the second-half gain is < 30% of the
+        first-half gain, or the d050-to-d100 gain is < 0.5pp.
+
+  decision_order:
+    - check: "|delta| <= tau"
+      assign: Immune
+    - check: "delta <= -sigma"
+      assign: U-collapse
+    - check: "delta < -tau AND v_dip"
+      assign: V-recovery
+    - check: "delta < -tau"
+      assign: U-collapse
+    - check: "delta > tau AND saturating"
+      assign: Benefit-sat
+    - check: "delta > tau"
+      assign: Benefit

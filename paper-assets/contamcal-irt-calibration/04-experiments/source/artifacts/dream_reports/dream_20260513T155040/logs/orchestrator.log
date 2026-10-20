@@ -1,0 +1,3 @@
+2026-05-13 16:20:18,161 INFO    core.tools.feishu  create_chat: name='contamcal-irt-calibration-审稿群' → chat_id=oc_da6d629d7f92da47a5e85cb7e296ae13
+2026-05-13 16:20:18,163 INFO    core.tools.dream  [dream] auto-created Group C for project=contamcal-irt-calibration: oc_da6d629d7f92da47a5e85cb7e296ae13
+2026-05-13 16:20:18,270 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_13/config/mcp_config_dream_review_director.json

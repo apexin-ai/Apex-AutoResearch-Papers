@@ -1,0 +1,32 @@
+2026-05-22 02:12:18,442 [INFO] Loading Social Sciences data (j16_qwen pool)...
+2026-05-22 02:12:18,446 [INFO] Found 19 whitelisted models (expected 16)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d000_s123 (d=0)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d000_s123_aligned (d=0)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d000_s42 (d=0)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d000_s42_aligned (d=0)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d005_s123_aligned (d=5)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d005_s42_aligned (d=5)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d025_s123_aligned (d=25)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d025_s42_aligned (d=25)
+2026-05-22 02:12:18,447 [INFO]   Qwen2.5-1.5B_d100_s123_aligned (d=100)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-1.5B_d100_s42 (d=100)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-1.5B_d100_s42_aligned (d=100)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d000_s123_aligned (d=0)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d000_s42_a32_aligned (d=0)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d005_s123_aligned (d=5)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d005_s42_a32_aligned (d=5)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d025_s123_aligned (d=25)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d025_v3_s42_aligned (d=25)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d100_a32_s123_aligned (d=100)
+2026-05-22 02:12:18,448 [INFO]   Qwen2.5-3B_d100_a32_s42_aligned (d=100)
+Traceback (most recent call last):
+  File "/root/contamcal-irt-calibration/exp006/gamma_prior_sensitivity_j16.py", line 201, in <module>
+    run_sensitivity()
+  File "/root/contamcal-irt-calibration/exp006/gamma_prior_sensitivity_j16.py", line 127, in run_sensitivity
+    y, exposure, n_models, n_items = load_social_sciences_data()
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/contamcal-irt-calibration/exp006/gamma_prior_sensitivity_j16.py", line 78, in load_social_sciences_data
+    assert len(models) == 16, f"Expected 16 models in j16_qwen pool, got {len(models)}"
+           ^^^^^^^^^^^^^^^^^
+AssertionError: Expected 16 models in j16_qwen pool, got 19
+EXIT_CODE=1

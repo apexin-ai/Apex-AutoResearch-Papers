@@ -1,0 +1,1052 @@
+tier: best
+narrative_guidance: 'ContamCal characterization framework fully validated. Cross-family
+  Llama-3.2-3B replication confirms STEM gradient direction and ARC forgetting are
+  benchmark×domain properties, not Qwen-specific artifacts. 7B scale bridging completes
+  the scale modulation curve (catastrophic→negligible). Calibration conditionally
+  effective: ARC and MMLU-STEM pass gating, GSM8K correctly gated out. IRT outperforms
+  linear regression on ARC with bootstrap significance. QC-only d100 validates experimental
+  design. 72B ecological validity. Closed-weight 2-signal mode is an honest negative
+  result demonstrating S1-dependence. All 4 claims at full strength.
+
+  '
+imagined_experiments:
+- name: sft_d100_qc_only
+  plan_id: exp-015
+  description: '100% dosage SFT using only 7547 QC-pass paraphrases (cosine>0.85,
+    BLEU<0.3) on Qwen2.5-0.5B. Compares against exp-001 d100-all (16697 items incl
+    QC-fail). Isolates noisy-paraphrase confound on signal quality and IRT estimation.
+
+    '
+  expected_results:
+    sft_steps: 3650
+    sft_final_loss: 1.555
+    sft_token_accuracy: 0.672
+    training_time_min: 60
+    mmlu_accuracy: 0.261
+    gsm8k_accuracy: 0.362
+    arc_challenge_accuracy: 0.305
+    humaneval_pass1: 0.061
+    mmlu_delta_vs_d100_all: 0.028
+    gsm8k_delta_vs_d100_all: -0.003
+    arc_delta_vs_d100_all: 0.011
+    s1_auc_qconly_d100_vs_d000: 0.69
+    s1_auc_all_d100_vs_d000: 0.5
+    s1_auc_improvement: 0.19
+    gsm8k_gamma_qconly_refit: 0.08
+    gsm8k_gamma_qconly_ci:
+    - -0.85
+    - 1.0
+    gsm8k_gamma_ci_excludes_zero: false
+    gsm8k_cal_mae_qconly: 0.032
+    gsm8k_cal_mae_all: 0.037
+  result_rationale: 'QC-only isolates two effects: signal quality and contamination
+    purity.
+
+    (1) Signal AUC improvement: At d100-all, S1 AUC collapses to ~0.50 because ALL
+    items are labeled "contaminated" but only ~47% (MMLU) to 60% (ARC) actually have
+    high-quality paraphrases. The signal can''t discriminate because labels are noisy.
+    QC-only removes the QC-fail items from both training data AND label set, so S1
+    now compares d000 (genuinely clean) vs d100-QC-only (genuinely contaminated on
+    the 7547 items). S1 AUC rises to ~0.69 — not 0.98 like d005 because at d100 the
+    model''s representations shift globally (not just on contaminated items), but
+    much better than d100-all''s labeling artifact.
+
+    (2) Accuracy differences: MMLU at 0.261 (vs d100-all 0.233) because fewer total
+    contaminated items means less position bias amplification at 0.5B. The 7547 QC-pass
+    items include 6596 MMLU items (47% of 14042) — still substantial MMLU contamination,
+    but the 5446 QC-fail items that were adding noise/capacity displacement are removed.
+    ARC at 0.305 (vs 0.294) similarly — 697/1172 QC-pass ARC items provide concentrated
+    forgetting signal but less total capacity displacement. GSM8K essentially unchanged
+    (0.362 vs 0.365) because only 228/1319 GSM8K items pass QC — negligible contamination
+    in either condition.
+
+    (3) IRT impact: GSM8K γ remains null (0.08) because open-ended format resists
+    contamination regardless of paraphrase quality. The QC-only condition mainly matters
+    for MC benchmarks, but those are excluded from 0.5B IRT per D045.
+
+    Paper value: validates that QC filtering improves signal discriminability. Reported
+    as supplementary evidence for experimental design robustness. The S1 AUC improvement
+    (0.50 → 0.69) directly addresses Concern #14 (d100 labeling artifact) by showing
+    the artifact is caused by noisy labels, not signal failure.
+
+    '
+  tables:
+  - name: 'Table S1: QC-Only vs All-Paraphrase Comparison (0.5B d100)'
+    columns:
+    - Metric
+    - d100-All
+    - d100-QC-Only
+    - Delta
+    - Interpretation
+    rows:
+    - - MMLU Accuracy
+      - 0.233
+      - 0.261
+      - 0.028
+      - Less capacity displacement
+    - - ARC Accuracy
+      - 0.294
+      - 0.305
+      - 0.011
+      - Reduced noisy SFT interference
+    - - GSM8K Accuracy
+      - 0.365
+      - 0.362
+      - -0.003
+      - Null (minimal QC-pass GSM8K items)
+    - - S1 AUC (d100 vs d000)
+      - 0.5
+      - 0.69
+      - 0.19
+      - Label noise reduction
+    - - GSM8K Cal MAE
+      - 0.037
+      - 0.032
+      - -0.005
+      - Cleaner exposure → tighter IRT
+  figures_description:
+  - 'Supplementary: S1 score distribution histograms for d100-all vs d100-QC-only,
+    showing cleaner bimodal separation in QC-only condition'
+  analysis: 'Confirms the d100 AUC collapse (Concern #14) is a labeling artifact,
+    not signal degradation. QC filtering partially restores discriminability. However,
+    0.5B MC data remains excluded from main analysis per D045. Primary value is methodological
+    validation and supplementary evidence for the controlled injection design.
+
+    '
+- name: scale_bridging_7b
+  plan_id: exp-007
+  description: 'Qwen2.5-7B LoRA SFT at 5 dosage levels (d000/d005/d025/d050/d100),
+    1 seed. Extends scale modulation to 7B. Multi-GPU LoRA on H100 (~4-8h per run).
+    Validates that contamination effects attenuate at larger scale.
+
+    '
+  expected_results:
+    sft_time_per_run_hours: 6.5
+    total_gpu_hours: 32.5
+    lora_adapter_size_mb: 210
+    d000_mmlu: 0.724
+    d000_gsm8k: 0.793
+    d000_arc: 0.896
+    d000_humaneval: 0.268
+    d005_mmlu: 0.725
+    d005_gsm8k: 0.791
+    d005_arc: 0.895
+    d005_humaneval: 0.274
+    d025_mmlu: 0.726
+    d025_gsm8k: 0.795
+    d025_arc: 0.892
+    d025_humaneval: 0.28
+    d050_mmlu: 0.727
+    d050_gsm8k: 0.796
+    d050_arc: 0.89
+    d050_humaneval: 0.287
+    d100_mmlu: 0.729
+    d100_gsm8k: 0.8
+    d100_arc: 0.887
+    d100_humaneval: 0.293
+    mmlu_delta_d100: 0.005
+    gsm8k_delta_d100: 0.007
+    arc_delta_d100: -0.009
+    humaneval_delta_d100: 0.025
+    s1_d005_auc_7b: 0.97
+    s2_d005_auc_7b: 0.51
+    s2_d100_cohens_d_7b: -0.42
+    s4_d005_auc_7b: 0.53
+    arc_gamma_pooled_n24_2pl: 0.52
+    arc_gamma_pooled_n24_2pl_ci:
+    - -0.12
+    - 1.18
+    arc_gamma_pooled_n24_2pl_ci_excludes_zero: false
+    gsm8k_gamma_pooled_n32_2pl: 0.05
+    gsm8k_gamma_pooled_n32_2pl_ci:
+    - -0.28
+    - 0.38
+    gsm8k_gamma_pooled_n32_2pl_ci_excludes_zero: false
+    mmlu_gamma_pooled_n24_2pl: 0.58
+    mmlu_gamma_pooled_n24_2pl_ci:
+    - -0.22
+    - 1.4
+    mmlu_gamma_pooled_n24_2pl_ci_excludes_zero: false
+    coverage_95_arc_n24: 0.625
+    coverage_95_gsm8k_n32: 0.688
+    coverage_95_mmlu_n24: 0.667
+    kendall_tau_arc_n24: 0.79
+    kendall_tau_gsm8k_n32: 0.83
+    scale_modulation:
+      arc_05b: -17.5
+      arc_15b: -0.7
+      arc_3b: -0.3
+      arc_7b: -0.9
+      mmlu_05b: -16.5
+      mmlu_15b: 0.8
+      mmlu_3b: 0.8
+      mmlu_7b: 0.5
+      gsm8k_05b: 0.1
+      gsm8k_15b: -0.5
+      gsm8k_3b: 0.2
+      gsm8k_7b: 0.7
+  result_rationale: 'At 7B, the model has sufficient capacity that LoRA SFT contamination
+    barely perturbs benchmark performance. The mechanism:
+
+    (1) MMLU shows <1pp change across dosages. The 7B model already encodes the factual
+    knowledge tested by MMLU; re-exposure via SFT paraphrases is redundant. The STEM
+    gradient (Math > Science >> CS_Eng) likely still exists at 7B but with attenuated
+    magnitudes (STEM_Math γ might be +0.3 instead of +0.97 at 0.5B-3B), making domain-level
+    γ harder to detect at 7B alone.
+
+    (2) ARC shows very mild forgetting (-0.9pp at d100). This is notable: the forgetting
+    DIRECTION persists at 7B (negative delta), confirming ARC forgetting is a benchmark
+    property not solely a small-model capacity artifact. But the magnitude is within
+    noise for a single seed. The 2PL+γ pooled fit at N=24 (1.5B+3B+7B, D045 excludes
+    0.5B) shows ARC γ=+0.52 — still positive because the very mild 7B forgetting is
+    offset by 3B near-zero effects. The NEGATIVE ARC γ from best tier targets requires
+    cross-family pooling (exp-014).
+
+    (3) GSM8K remains null (+0.7pp, within noise). Open-ended format resistance is
+    scale-independent, as predicted. The pooled N=32 2PL+γ narrows the CI ([-0.28,
+    0.38] vs [-0.36, 0.49] at N=24), further confirming the null.
+
+    (4) HumanEval shows moderate dose-response (+2.5pp at d100). At 7B, code generation
+    benefits from exposure to coding patterns in contamination data, but less dramatically
+    than at 1.5B (+17.7pp). This suggests HumanEval contamination sensitivity is also
+    scale-modulated but in the opposite direction from ARC — consistent with the "benchmark-dependent
+    direction" framing.
+
+    (5) Signal behavior: S1 remains reliable (AUC=0.97) because embedding similarity
+    is architecture- and scale-agnostic. S2 Min-K++ reversal attenuates at 7B (Cohen''s
+    d = -0.42 vs -1.98 at 0.5B) — larger models have more distributed representations,
+    so perplexity-based signals are less directionally misleading but still near-chance
+    for discrimination. S4 Self-Critique shows marginal improvement (0.53 vs 0.48
+    at 0.5B) — larger models can better self-assess, but the effect is modest.
+
+    (6) Coverage: Increasing N from 16→24 (ARC/MMLU) and 24→32 (GSM8K) provides moderate
+    improvement. GSM8K at N=32 reaches 0.688, approaching the best tier target of
+    0.60-0.75. ARC remains at 0.625 due to model specification issues (2PL+γ positive
+    γ). The best tier''s coverage_95_at_n24 ∈ [0.60, 0.75] is met by GSM8K and MMLU
+    but ARC needs cross-family data to resolve the γ sign.
+
+    '
+  tables:
+  - name: 'Table 3: Scale Modulation — Accuracy Delta (d100 − d000)'
+    columns:
+    - Benchmark
+    - 0.5B
+    - 1.5B
+    - 3B
+    - 7B
+    rows:
+    - - MMLU*
+      - -16.5pp
+      - +0.8pp
+      - +0.8pp
+      - +0.5pp
+    - - ARC
+      - -17.5pp
+      - -0.7pp
+      - -0.3pp
+      - -0.9pp
+    - - GSM8K
+      - +0.1pp
+      - -0.5pp
+      - +0.2pp
+      - +0.7pp
+    - - HumanEval
+      - -11.0pp
+      - +17.7pp
+      - +0.6pp
+      - +2.5pp
+    note: '* 0.5B MMLU/ARC excluded from IRT (D045 position bias). ARC shows consistent
+      negative direction across all scales. GSM8K within noise at all scales. HumanEval
+      peaks at 1.5B.
+
+      '
+  - name: 'Table 4a: Pooled IRT 2PL+γ Results (Qwen-only, with 7B)'
+    columns:
+    - Benchmark
+    - N
+    - γ̂
+    - 95% CI
+    - Excl 0?
+    - PPP
+    - raw_MAE
+    - cal_MAE
+    rows:
+    - - ARC
+      - 24
+      - 0.52
+      - '[-0.12, 1.18]'
+      - 'No'
+      - 0.015
+      - 0.032
+      - 0.018
+    - - GSM8K
+      - 32
+      - 0.05
+      - '[-0.28, 0.38]'
+      - 'No'
+      - 0.52
+      - 0.155
+      - 0.005
+    - - MMLU
+      - 24
+      - 0.58
+      - '[-0.22, 1.40]'
+      - 'No'
+      - 0.21
+      - 0.014
+      - 0.006
+    note: 'ARC γ positive in Qwen-only pool (D045 excludes 0.5B forgetting). Cross-family
+      pooling (exp-014) needed for negative ARC γ per best tier.
+
+      '
+  figures_description:
+  - 'Figure 3: Dose-response curves across 4 scales (0.5B/1.5B/3B/7B) for ARC, MMLU,
+    GSM8K — ARC converges to flat at ≥1.5B, GSM8K flat at all scales'
+  - 'Figure S2: Signal AUC heatmap extended to 7B — S1 stable, S2 reversal attenuates'
+  - 'Figure S3: 7B dose-response for all 4 benchmarks (near-flat lines confirming
+    scale modulation endpoint for MC)'
+  analysis: '7B completes the Qwen-only scale modulation story. Key contribution:
+    ARC forgetting DIRECTION persists at 7B (raw delta -0.9pp) even though the pooled
+    IRT γ is positive when 0.5B is excluded. This is resolved in exp-014: Llama cross-family
+    data where 3B may show stronger ARC forgetting, pulling pooled γ negative. The
+    7B data''s primary value is (a) validating negligible MC effects at scale, (b)
+    HumanEval dose-response at scale, (c) increasing pooled N for tighter CIs and
+    better coverage, (d) confirming S1 reliability and S2 reversal attenuation at
+    scale.
+
+    '
+- name: multi_family_validation
+  plan_id: exp-014
+  description: 'Controlled SFT injection on Llama-3.2-3B at 3 dosage levels (d000/d025/d100),
+    1 seed. Validates cross-family generalization of domain heterogeneity, ARC forgetting,
+    and GSM8K resistance. Critical for establishing contamination susceptibility as
+    benchmark×domain property.
+
+    '
+  expected_results:
+    sft_time_per_run_hours: 2.3
+    total_gpu_hours: 6.9
+    llama_d000_mmlu: 0.455
+    llama_d000_gsm8k: 0.481
+    llama_d000_arc: 0.742
+    llama_d000_humaneval: 0.195
+    llama_d025_mmlu: 0.459
+    llama_d025_gsm8k: 0.488
+    llama_d025_arc: 0.721
+    llama_d025_humaneval: 0.207
+    llama_d100_mmlu: 0.463
+    llama_d100_gsm8k: 0.495
+    llama_d100_arc: 0.695
+    llama_d100_humaneval: 0.22
+    llama_arc_delta: -0.047
+    llama_mmlu_delta: 0.008
+    llama_gsm8k_delta: 0.014
+    llama_humaneval_delta: 0.025
+    llama_s1_d005_auc: 0.96
+    llama_s2_d005_auc: 0.49
+    llama_s2_d100_cohens_d: -1.45
+    llama_s4_d005_auc: 0.5
+    llama_arc_gamma: -1.65
+    llama_arc_gamma_ci:
+    - -3.8
+    - 0.5
+    llama_arc_gamma_ci_excludes_zero: false
+    llama_gsm8k_gamma: 0.12
+    llama_gsm8k_gamma_ci:
+    - -1.3
+    - 1.5
+    llama_gsm8k_gamma_ci_excludes_zero: false
+    llama_stem_math_gamma: 0.73
+    llama_stem_math_ci:
+    - 0.08
+    - 1.42
+    llama_stem_math_ci_excludes_zero: true
+    llama_stem_science_gamma: 0.56
+    llama_stem_science_ci:
+    - -0.12
+    - 1.25
+    llama_stem_science_ci_excludes_zero: false
+    llama_cs_eng_gamma: 0.08
+    llama_cs_eng_ci:
+    - -0.65
+    - 0.82
+    llama_cs_eng_ci_excludes_zero: false
+    stem_gradient_direction_matches_qwen: true
+    arc_forgetting_direction_matches_qwen: true
+    gsm8k_null_matches_qwen: true
+    pooled_cross_family_arc_gamma_4pl: -1.18
+    pooled_cross_family_arc_gamma_4pl_ci:
+    - -2.25
+    - -0.15
+    pooled_cross_family_arc_gamma_4pl_ci_excludes_zero: true
+    pooled_cross_family_gsm8k_gamma: 0.08
+    pooled_cross_family_gsm8k_gamma_ci:
+    - -0.22
+    - 0.38
+    pooled_cross_family_gsm8k_gamma_ci_excludes_zero: false
+    pooled_cross_family_n_models: 30
+    coverage_95_cross_family_arc: 0.67
+    coverage_95_cross_family_gsm8k: 0.7
+    kendall_tau_cross_family: 0.82
+    irt_mae_arc: 0.028
+    linear_reg_mae_arc: 0.048
+    bootstrap_p_irt_vs_linear: 0.032
+    bootstrap_n: 5000
+    benchmarks_passing_gating: 2
+    gating_pass_arc: true
+    gating_pass_mmlu_stem: true
+    gating_fail_gsm8k: true
+  result_rationale: 'Cross-family validation is the most consequential planned experiment.
+    It elevates the characterization framework from "Qwen-specific observation" to
+    "general benchmark property." Here''s why each result is expected:
+
+    (1) Llama-3.2-3B ARC forgetting (-4.7pp at d100): Llama-3.2-3B has a lower ARC
+    baseline (0.742 vs Qwen2.5-3B 0.824) and a different architecture (grouped-query
+    attention, different tokenizer). The lower baseline means the model has less headroom
+    — SFT contamination competes with limited capacity for science reasoning, producing
+    more pronounced forgetting than Qwen2.5-3B (-0.3pp). This is the critical mechanism:
+    at equivalent parameter count, models with less task-specific capacity show stronger
+    forgetting, and the forgetting DIRECTION is preserved regardless of architecture.
+    The raw -4.7pp delta provides direct evidence for ARC forgetting as a benchmark
+    property.
+
+    (2) Llama-only IRT (N=6): γ=-1.65 but wide CI crossing zero. N=6 is too small
+    for significance — this is expected from exp-004 simulations showing N≥50 for
+    reliable recovery. However, the point estimate''s SIGN is negative, directionally
+    consistent with Qwen results. The value is the sign, not the significance.
+
+    (3) Pooled cross-family 4PL+γ (N=30): This is where best tier is achieved. Adding
+    Llama data (with genuine ARC forgetting) to Qwen data (with near-flat ARC at 1.5B+/3B)
+    produces a negative pooled γ=-1.18 because the Llama points pull the estimate
+    negative while 7B and 3B Qwen points sit near zero. The 4PL+γ model (appropriate
+    for MCQ) with S1-only exposure (the reliable signal) produces CI=[-2.25, -0.15]
+    that excludes zero. This is within the best tier target range of [-2.5, -0.8].
+
+    (4) STEM gradient replication: Llama STEM_Math γ=0.73 (Qwen: 0.97) — same positive
+    direction, slightly smaller magnitude. The gradient Math > Science > CS_Eng is
+    preserved: 0.73 > 0.56 > 0.08. Math CI excludes zero; Science borderline; CS_Eng
+    null. The direction match across families (both showing Math > Science >> CS_Eng
+    ≈ 0) is strong evidence that contamination susceptibility maps to factual knowledge
+    density, a property of the benchmark items, not the model. Lower Llama magnitudes
+    reflect: (a) different pre-training distribution (less MMLU-adjacent data in Llama''s
+    pre-training), (b) different SFT dynamics (Llama''s architecture processes paraphrases
+    differently), but (c) the same underlying susceptibility gradient determined by
+    item characteristics.
+
+    (5) GSM8K null replication: γ=0.12, CI firmly crossing zero. Open-ended format
+    resistance is architecture-independent because the mechanism is format-driven:
+    chain-of-thought generation cannot be boosted by memorizing answer templates.
+    This holds across model families.
+
+    (6) Signal behavior: S1 embedding AUC=0.96 (Llama) — sentence-transformer similarity
+    is model-agnostic, confirming S1''s robustness. S2 Min-K++ reversal replicates
+    (Cohen''s d=-1.45) because the reversal is driven by small-model memorization
+    dynamics that alter perplexity in the opposite-to-expected direction, a phenomenon
+    shared across architectures at comparable scale.
+
+    (7) IRT vs linear regression (bootstrap p=0.032): With cross-family N=30 and the
+    4PL+γ model, ARC IRT MAE=0.028 vs linear regression MAE=0.048. The bootstrap test
+    is significant because IRT captures the nonlinear relationship between ability,
+    contamination, and item difficulty that linear regression misses — specifically,
+    the c/d parameters of 4PL model the guessing and ceiling effects in MCQ that produce
+    heteroscedastic residuals. At N=30, the IRT advantage is large enough to be statistically
+    distinguishable.
+
+    (8) Calibration gating: ARC passes (γ significant, PPP in range, cal MAE < raw
+    MAE). MMLU-STEM domains pass at the domain level (STEM_Math γ significant across
+    both families). GSM8K correctly gated out (γ null). This yields 2 benchmarks (of
+    3 main) passing gating, within the best tier target of 2-3.
+
+    '
+  tables:
+  - name: 'Table 5: Cross-Family MMLU Domain γ Comparison'
+    columns:
+    - Domain
+    - Qwen γ̂ (N=23)
+    - Llama γ̂ (N=6)
+    - Direction Match
+    - Interpretation
+    rows:
+    - - STEM_Math
+      - +0.97 [0.53,1.43]
+      - +0.73 [0.08,1.42]
+      - ✓ both positive
+      - Factual recall — both susceptible
+    - - STEM_Science
+      - +0.84 [0.39,1.27]
+      - +0.56 [−0.12,1.25]
+      - ✓ both positive*
+      - Science facts — susceptible, Llama borderline
+    - - STEM_CS_Eng
+      - +0.20 [−0.45,0.84]
+      - +0.08 [−0.65,0.82]
+      - ✓ both null
+      - Procedural — resistant
+    - - Medical
+      - −0.20 PPP=1.0
+      - −0.15 PPP=1.0
+      - ✓ both misfit
+      - 2PL+γ scope boundary
+    - - Humanities
+      - −0.41 PPP=1.0
+      - −0.30 PPP=1.0
+      - ✓ both misfit
+      - 2PL+γ scope boundary
+    note: '* Llama STEM_Science CI borderline includes zero at N=6.'
+  - name: 'Table 6: Cross-Family Benchmark γ Summary'
+    columns:
+    - Benchmark
+    - Qwen-only 2PL+γ (N=24)
+    - Llama-only 2PL+γ (N=6)
+    - Pooled 4PL+γ S1 (N=30)
+    - Direction
+    rows:
+    - - ARC
+      - +0.52 [−0.12,1.18]
+      - −1.65 [−3.8,0.5]
+      - −1.18 [−2.25,−0.15]*
+      - Forgetting (benchmark)
+    - - GSM8K
+      - +0.05 [−0.28,0.38]
+      - +0.12 [−1.3,1.5]
+      - +0.08 [−0.22,0.38]
+      - Null (format)
+    - - MMLU
+      - +0.58 [−0.22,1.40]
+      - +0.35 [−0.8,1.5]
+      - +0.52 [−0.18,1.22]
+      - Domain-dependent
+    note: '* ARC γ significant only in pooled cross-family 4PL+γ — this is the primary
+      specification for MCQ.'
+  - name: 'Table 7: IRT vs Linear Regression (ARC, N=30 cross-family)'
+    columns:
+    - Method
+    - MAE
+    - 95% Bootstrap CI
+    - p vs Linear
+    rows:
+    - - Raw (no adjustment)
+      - 0.055
+      - '[0.038, 0.072]'
+      - —
+    - - B4 Linear Regression
+      - 0.048
+      - '[0.032, 0.064]'
+      - —
+    - - ContamCal 4PL+γ
+      - 0.028
+      - '[0.015, 0.041]'
+      - p=0.032
+    - - B3 Vanilla 4PL
+      - 0.062
+      - '[0.043, 0.081]'
+      - p=0.92
+    - - B6 DCR Fuzzy
+      - 0.185
+      - '[0.140, 0.230]'
+      - p<0.001
+  figures_description:
+  - 'Figure 5: Paired forest plot — domain-level γ for Qwen vs Llama, showing directional
+    consistency. STEM domains (Math, Science) positive; non-STEM PPP=1.0 boundary.
+    Error bars overlap but signs match.'
+  - 'Figure 6: Cross-family ARC dose-response — Llama shows clearer negative slope
+    than Qwen at 3B, converging evidence for ARC forgetting as benchmark property.'
+  - 'Figure S4: MMLU STEM gradient visualization (γ vs domain) for both families on
+    same axes, showing parallel gradients at different magnitudes.'
+  analysis: 'This experiment is the linchpin of the best tier. It resolves the ARC
+    γ sign tension: Qwen-only (D045-compliant, excluding 0.5B) shows positive γ because
+    Qwen2.5-3B is barely affected on ARC; Llama-3.2-3B shows genuine forgetting (-4.7pp),
+    pulling the cross-family pooled γ negative. The 4PL+γ specification (appropriate
+    for MCQ) captures the guessing dynamics that 2PL misses. At N=30 cross-family,
+    ARC γ CI excludes zero at [-2.25, -0.15], meeting best tier targets.
+
+    The STEM gradient replication across families is the strongest evidence for the
+    characterization framework: contamination susceptibility is determined by item-level
+    properties (factual knowledge density), not model-level properties (architecture,
+    tokenizer, pre-training data). Two families, same gradient direction, same benchmark-dependent
+    effects = benchmark×domain property established.
+
+    IRT vs linear regression achieves statistical significance (p=0.032) because N=30
+    provides sufficient power and the 4PL nonlinear modeling of MCQ guessing/ceiling
+    effects captures variance that linear regression cannot. This addresses Concern
+    #21.
+
+    '
+- name: rl_observational_case_study
+  plan_id: exp-009
+  description: 'Apply ContamCal pipeline to existing RL-trained models: Qwen2.5-Instruct
+    (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill (1.5B/7B). Signal computation, IRT fitting
+    with wide priors, expected regret quantification, and near-zero γ specificity
+    check on known-clean benchmark.
+
+    '
+  expected_results:
+    instruct_05b_s1_auc_mmlu: 0.58
+    instruct_05b_s1_auc_arc: 0.55
+    instruct_15b_s1_auc_mmlu: 0.61
+    instruct_15b_s1_auc_arc: 0.6
+    instruct_3b_s1_auc_mmlu: 0.63
+    instruct_7b_s1_auc_mmlu: 0.65
+    deepseek_r1_15b_s1_auc_mmlu: 0.57
+    deepseek_r1_7b_s1_auc_mmlu: 0.62
+    instruct_s4_vs_sft_delta_mmlu: 0.078
+    instruct_s4_vs_sft_delta_arc: 0.031
+    obs_arc_gamma: -0.85
+    obs_arc_gamma_ci:
+    - -2.1
+    - 0.4
+    obs_arc_gamma_ci_excludes_zero: false
+    obs_gsm8k_gamma: 0.18
+    obs_gsm8k_gamma_ci:
+    - -0.35
+    - 0.72
+    obs_gsm8k_gamma_ci_excludes_zero: false
+    obs_mmlu_gamma: 0.42
+    obs_mmlu_gamma_ci:
+    - -0.25
+    - 1.1
+    regret_uncalibrated_pp: 3.4
+    regret_calibrated_pp: 1.9
+    regret_remove_rescore_pp: 2.8
+    regret_reduction_pct: 44.1
+    regret_n_candidates: 12
+    regret_top_k: 5
+    regret_ground_truth: held-out clean benchmark (not calibrated scores)
+    clean_benchmark_name: WinoGrande
+    clean_gamma: 0.04
+    clean_gamma_ci:
+    - -0.55
+    - 0.62
+    clean_gamma_ci_includes_zero: true
+    specificity_confirmed: true
+    coverage_95_obs: 0.53
+    coverage_95_controlled_only: 0.67
+    deepseek_r1_gsm8k_accuracy_15b: 0.863
+    deepseek_r1_gsm8k_accuracy_7b: 0.924
+    deepseek_r1_mmlu_accuracy_15b: 0.542
+    deepseek_r1_mmlu_accuracy_7b: 0.718
+  result_rationale: 'Observational RL analysis necessarily produces wider CIs and
+    weaker γ estimates. The key contributions are directional consistency, practical
+    utility, and specificity validation.
+
+    (1) Signal degradation: S1 AUC drops from 0.95-0.99 (controlled SFT) to 0.55-0.65
+    (observational RL). This is expected because: (a) we don''t know which items these
+    models saw during training, so S1''s reference database (original benchmark items)
+    may not match the actual contamination source, (b) RL post-training (RLHF/DPO)
+    modifies representations beyond what SFT alone does, reducing embedding similarity
+    between model outputs and the benchmark items we check against, (c) Instruct models
+    are further from base than our controlled SFT models, making S1 similarity scores
+    noisier. S4 Self-Critique shows the RL-sensitivity found in exp-008 (delta ~0.08
+    on MMLU), confirming that S4 differentiates SFT from RL to a small degree.
+
+    (2) IRT γ directions: ARC γ=-0.85 (negative, directionally consistent with controlled
+    results). The magnitude is attenuated because observational exposure scores are
+    noisier. CI includes zero because N_observational is small and signal quality
+    is lower. GSM8K γ=0.18 (null, consistent). MMLU γ=0.42 (positive direction, consistent
+    with STEM inflation). The CIs are uniformly wider than controlled experiments
+    — this is honest and expected.
+
+    (3) Expected regret: Even with noisy signals, calibrated ranking reduces expected
+    regret by 44% for top-5 model selection. The mechanism: IRT calibration correctly
+    adjusts the ranking of models with high exposure scores (likely contaminated)
+    relative to models with low exposure. Even with wide CIs, the DIRECTION of adjustment
+    is correct often enough to improve selection. Ground truth = held-out clean benchmark
+    (WinoGrande) scores, NOT calibrated scores, avoiding circularity (Concern #12).
+    The 44% reduction is meaningful for practitioners: choosing among top-5 models
+    with calibrated vs uncalibrated ranking avoids ~1.5pp expected contamination bias.
+
+    (4) Specificity: WinoGrande γ=0.04, CI firmly crossing zero. This benchmark is
+    not in standard contamination pathways (sentence completion format, less likely
+    to appear in training data). The near-zero γ confirms ContamCal doesn''t hallucinate
+    contamination effects — it produces null results when contamination is absent.
+    This addresses the implicit concern that IRT γ might absorb any model variation,
+    not specifically contamination.
+
+    (5) DeepSeek-R1-Distill: These models show high GSM8K accuracy (0.863-0.924) potentially
+    reflecting distillation from R1''s chain-of-thought, which may encode benchmark-specific
+    patterns. However, without controlled injection, we cannot distinguish genuine
+    capability from contamination. The IRT framework assigns wide CIs, correctly reflecting
+    this uncertainty.
+
+    (6) Coverage at 0.53 (observational pooled): Lower than controlled-only (0.67)
+    because observational data introduces heterogeneity that the IRT model doesn''t
+    fully capture. This is reported honestly as a limitation of observational extension.
+
+    '
+  tables:
+  - name: 'Table 8: Expected Regret — Top-5 Model Selection (N=12 candidates)'
+    columns:
+    - Strategy
+    - Expected Regret (pp)
+    - vs Uncalibrated
+    - Description
+    rows:
+    - - Uncalibrated (raw ranking)
+      - 3.4
+      - —
+      - Rank by raw benchmark scores
+    - - Remove-and-rescore
+      - 2.8
+      - −17.6%
+      - Drop flagged items, re-rank
+    - - ContamCal (calibrated)
+      - 1.9
+      - −44.1%
+      - IRT-adjusted scores, re-rank
+    - - Oracle (ground truth)
+      - 0.0
+      - −100%
+      - Perfect clean scores
+  - name: 'Table S7: Observational vs Controlled γ Comparison'
+    columns:
+    - Benchmark
+    - Controlled γ̂ (N=30)
+    - w/ Observational γ̂ (N≈38)
+    - Direction Consistent
+    rows:
+    - - ARC
+      - −1.18 [−2.25,−0.15]
+      - −0.85 [−2.1,0.4]
+      - ✓ (attenuated, CI wider)
+    - - GSM8K
+      - +0.08 [−0.22,0.38]
+      - +0.18 [−0.35,0.72]
+      - ✓ (null preserved)
+    - - MMLU
+      - +0.52 [−0.18,1.22]
+      - +0.42 [−0.25,1.10]
+      - ✓ (positive preserved)
+  - name: 'Table S8: Specificity Check — Known-Clean Benchmark'
+    columns:
+    - Benchmark
+    - γ̂
+    - 95% CI
+    - Includes 0?
+    - Interpretation
+    rows:
+    - - WinoGrande
+      - 0.04
+      - '[−0.55, 0.62]'
+      - 'Yes'
+      - No false contamination detection
+  figures_description:
+  - 'Figure 7: Expected regret curve — regret vs number of selected models (top-k)
+    for 3 strategies, showing consistent calibration advantage across k=3,5,7,10.'
+  - 'Figure S5: Observational γ forest plot overlaid on controlled γ estimates. Direction
+    consistent, CIs wider. Gray band = controlled 95% CI.'
+  analysis: 'The RL observational case study provides three key contributions: (1)
+    directional consistency confirms the characterization framework generalizes beyond
+    controlled SFT, (2) expected regret reduction demonstrates practical value even
+    with noisy signals, (3) specificity check validates that ContamCal produces null
+    results on clean benchmarks. The wider CIs and non-significance of individual
+    γ estimates are honest — we frame this as "directional external validity" not
+    "quantitative confirmation." DeepSeek-R1 results motivate future work on RL-contamination
+    interaction. Coverage degradation (0.67→0.53) when adding observational data is
+    a limitation, attributed to heterogeneity from mixing controlled and observational
+    designs.
+
+    '
+- name: observational_72b
+  plan_id: exp-012
+  description: 'Qwen2.5-72B inference-only observational analysis. Compute signals
+    and benchmark evaluations; add as single high-ability anchor point in pooled IRT.
+    No SFT. Extends ecological validity to frontier scale.
+
+    '
+  expected_results:
+    mmlu_accuracy: 0.848
+    gsm8k_accuracy: 0.916
+    arc_challenge_accuracy: 0.944
+    humaneval_pass1: 0.628
+    s1_exposure_mmlu: 0.11
+    s1_exposure_arc: 0.07
+    s1_exposure_gsm8k: 0.14
+    s2_minkpp_mmlu_mean: 1.69
+    s2_minkpp_arc_mean: 1.68
+    s4_selfcritique_mmlu_entropy: 2.35
+    pooled_with_72b_arc_gamma: -1.15
+    pooled_with_72b_arc_gamma_ci:
+    - -2.2
+    - -0.12
+    pooled_with_72b_gsm8k_gamma: 0.07
+    pooled_with_72b_gsm8k_gamma_ci:
+    - -0.21
+    - 0.36
+    pooled_with_72b_mmlu_gamma: 0.5
+    pooled_with_72b_mmlu_gamma_ci:
+    - -0.16
+    - 1.18
+    pooled_with_72b_n: 31
+    arc_72b_raw: 0.944
+    arc_72b_calibrated: 0.948
+    arc_72b_delta: 0.004
+    mmlu_72b_raw: 0.848
+    mmlu_72b_calibrated: 0.843
+    mmlu_72b_delta: -0.005
+    gsm8k_72b_raw: 0.916
+    gsm8k_72b_calibrated: 0.916
+    gsm8k_72b_delta: 0.0
+    coverage_95_with_72b: 0.68
+    kendall_tau_with_72b: 0.84
+    inference_gpu_hours: 12
+  result_rationale: 'At 72B, the model is near ceiling on most benchmarks, and contamination
+    effects — if any exist from pre-training data overlap — are undetectable.
+
+    (1) Accuracy near ceiling: 72B achieves 84.8% MMLU, 94.4% ARC, 91.6% GSM8K. These
+    are near the practical ceiling for these benchmarks (human performance is ~89.8%
+    MMLU, ~80% GSM8K-hard). At this performance level, any contamination inflation
+    is small relative to genuine capability.
+
+    (2) Low exposure scores: S1 exposure scores are 0.07-0.14 (vs 0.0-0.20 range in
+    controlled SFT models). The 72B model''s training data likely includes some benchmark-adjacent
+    material through natural web crawl, producing mild S1 similarity. But these scores
+    are comparable to d000 (clean) controlled models, so the IRT model correctly treats
+    72B as a low-exposure data point.
+
+    (3) Negligible calibration deltas: ARC +0.4pp (mild positive correction from the
+    forgetting model — the IRT model slightly "un-forgets" for 72B, consistent with
+    the negative γ meaning lower-exposure models have slightly higher true ability
+    than observed). MMLU -0.5pp (mild STEM inflation correction consistent with positive
+    MMLU γ). GSM8K unchanged (null γ means no adjustment).
+
+    (4) Value as high-θ anchor: The IRT model benefits from a wider ability distribution
+    (0.5B low-ability through 72B high-ability). The 72B data point helps anchor item
+    difficulty parameters at the high end, improving estimation precision for all
+    models. This is analogous to including very high-ability examinees in educational
+    testing — they provide information about difficult items that lower-ability examinees
+    cannot. Kendall''s τ improves from 0.82 to 0.84 due to better separation at the
+    high end of the ability distribution.
+
+    (5) Coverage marginal improvement: 0.67→0.68 (adding 1 data point to N≈30 has
+    minimal impact on coverage). The value is not statistical power but ecological
+    validity at frontier scale.
+
+    (6) Inference cost: ~12 GPU-hours for evaluating 72B on 4 benchmarks plus computing
+    3 signals on all items. Dominated by S2 Min-K++ which requires full forward passes
+    on ~16K items.
+
+    '
+  tables:
+  - name: 'Table S9: 72B Observational Calibration'
+    columns:
+    - Benchmark
+    - Raw Accuracy
+    - Calibrated
+    - Δ (pp)
+    - Interpretation
+    rows:
+    - - MMLU
+      - 0.848
+      - 0.843
+      - −0.5
+      - Mild STEM inflation correction
+    - - ARC
+      - 0.944
+      - 0.948
+      - '+0.4'
+      - Forgetting model slight upward correction
+    - - GSM8K
+      - 0.916
+      - 0.916
+      - '0.0'
+      - Null γ → no adjustment
+    - - HumanEval
+      - 0.628
+      - 0.628
+      - '0.0'
+      - Not calibrated (appendix-only)
+  figures_description:
+  - 'Figure S6: Calibrated-vs-raw accuracy scatter across all scales (0.5B to 72B).
+    72B cluster on the diagonal — minimal correction. Dashed line = identity. Lower
+    scales show larger deviations.'
+  - 'Inset in Figure 3: 72B point added to dose-response plot at d=unknown, positioned
+    at observed accuracy with wide CI bar.'
+  analysis: '72B confirms the scale modulation endpoint: at frontier scale, contamination
+    effects vanish for all practical purposes. The sub-1pp calibration deltas are
+    within evaluation noise. The contribution is ecological validity ("the framework
+    applies from 0.5B to 72B") and the high-θ anchor effect on IRT estimation. Paper
+    frames as: "At frontier scales, raw benchmark scores are already reliable estimates
+    of true ability — ContamCal''s value concentrates at smaller scales where contamination
+    effects are measurable."
+
+    '
+- name: closed_weight_2signal_mode
+  plan_id: exp-013
+  description: 'Ablation: 2-signal closed-weight mode using only ConStat (S3, performance
+    gap between original and paraphrased items) and Self-Critique (S4, entropy collapse).
+    No embeddings (S1) or logprobs (S2 Min-K++). Quantifies calibration degradation
+    when only API-level signals are available.
+
+    '
+  expected_results:
+    rrf_2signal_auc_d005_mmlu: 0.52
+    rrf_2signal_auc_d005_arc: 0.53
+    rrf_2signal_auc_d005_gsm8k: 0.51
+    rrf_2signal_auc_d005_mean: 0.52
+    rrf_4signal_auc_d005_mean: 0.68
+    rrf_s1only_auc_d005_mean: 0.98
+    arc_gamma_2signal: -0.48
+    arc_gamma_2signal_ci:
+    - -2.4
+    - 1.5
+    arc_gamma_2signal_ci_excludes_zero: false
+    gsm8k_gamma_2signal: 0.06
+    gsm8k_gamma_2signal_ci:
+    - -1.0
+    - 1.1
+    gsm8k_gamma_2signal_ci_excludes_zero: false
+    mmlu_gamma_2signal: 0.28
+    mmlu_gamma_2signal_ci:
+    - -1.2
+    - 1.8
+    arc_mae_2signal: 0.049
+    arc_mae_4signal_s1only: 0.028
+    arc_mae_raw: 0.055
+    gsm8k_mae_2signal: 0.012
+    gsm8k_mae_raw: 0.006
+    mmlu_mae_2signal: 0.014
+    mmlu_mae_raw: 0.014
+    coverage_95_2signal_arc: 0.4
+    coverage_95_2signal_gsm8k: 0.47
+    coverage_95_4signal_arc: 0.67
+    coverage_95_4signal_gsm8k: 0.7
+    kendall_tau_2signal: 0.55
+    kendall_tau_4signal: 0.82
+    benchmarks_passing_gating_2signal: 0
+    gating_fail_reason_arc: γ CI includes zero
+    gating_fail_reason_gsm8k: γ CI includes zero (expected)
+    gating_fail_reason_mmlu: γ CI includes zero, cal MAE ≈ raw MAE
+    s3_constat_d005_auc_mean: 0.53
+    s4_selfcritique_d005_auc_mean: 0.5
+    s3_contribution_to_rrf: 0.55
+    s4_contribution_to_rrf: 0.45
+  result_rationale: 'The 2-signal mode is severely degraded because S1 (embedding
+    similarity) carries nearly all discriminative power in the current framework.
+
+    (1) S3 ConStat AUC ≈ 0.53: ConStat measures the performance gap between original
+    and paraphrased items. At d005, only 5% of items are contaminated, so the performance
+    gap is small and noisy. ConStat also requires pre-existing paraphrases for evaluation
+    — a practical limitation for deployment. At 0.5B, position bias (D045) confounds
+    this signal further. At 3B, ConStat is somewhat better but still limited by the
+    small paraphrase gap (~2.2pp mean from exp-003 item-aligned gap analysis).
+
+    (2) S4 Self-Critique AUC ≈ 0.50: Near chance. Self-Critique entropy collapse requires
+    the model to reliably self-assess item familiarity — a metacognitive capability
+    that small models (0.5B-3B) lack. At larger scales (7B+), S4 shows mild improvement
+    per exp-008 RL proxy results (delta ~0.08 MMLU), but this is insufficient for
+    reliable discrimination.
+
+    (3) Combined 2-signal RRF AUC ≈ 0.52: Barely above chance. RRF of two near-chance
+    signals does not meaningfully improve discrimination — the fusion preserves the
+    best individual signal''s ranking, which is itself near-random.
+
+    (4) IRT with noisy exposure: The exposure scores fed to IRT are essentially noise.
+    Consequences: (a) γ directions are partially preserved (ARC γ=-0.48, still negative)
+    because the IRT model uses accuracy data and the prior to partially identify γ
+    even without good exposure signals. But CIs are massive and all include zero.
+    (b) MAEs worsen across the board: ARC from 0.028 to 0.049, approaching raw MAE
+    (0.055). GSM8K MAE worsens from 0.006 to 0.012 (raw 0.006) — calibration with
+    noise is WORSE than no calibration. (c) Coverage collapses: 0.40 (ARC) vs 0.67
+    (4-signal) because noisy exposure scores produce poorly calibrated posteriors
+    with wrong widths. (d) Kendall''s τ drops to 0.55 — barely better than random
+    ranking.
+
+    (5) Calibration gating: ALL benchmarks FAIL gating (γ CI includes zero). The gating
+    criterion correctly prevents misleading calibration — this is a FEATURE, not a
+    failure. The paper frames 2-signal mode as demonstrating the gating criterion''s
+    necessity and ContamCal''s honest self-assessment.
+
+    (6) Practical implication: Closed-weight model calibration is not currently viable
+    with available API-level signals. S1 embedding similarity is the load-bearing
+    component. This motivates future work on stronger API-compatible detection methods
+    (output distribution analysis, zero-shot contamination detection, or model providers
+    exposing limited embedding access).
+
+    '
+  tables:
+  - name: 'Table 9: Signal Mode Ablation — Calibration Quality'
+    columns:
+    - Mode
+    - Signals
+    - Mean AUC
+    - ARC MAE
+    - ARC Cov95
+    - Kendall τ
+    - Gating
+    rows:
+    - - S1-only (primary)
+      - S1
+      - 0.98
+      - 0.028
+      - 0.67
+      - 0.82
+      - 2/3 pass
+    - - 4-signal RRF
+      - S1+S2+S3+S4
+      - 0.68
+      - 0.03
+      - 0.67
+      - 0.82
+      - 2/3 pass
+    - - 2-signal (closed)
+      - S3+S4
+      - 0.52
+      - 0.049
+      - 0.4
+      - 0.55
+      - 0/3 pass
+    - - No calibration
+      - —
+      - —
+      - 0.055
+      - —
+      - —
+      - —
+    note: '4-signal RRF ≈ S1-only because S2/S4 contribute minimal information. 2-signal
+      mode degrades below usefulness. Gating correctly prevents 2-signal calibration
+      from producing misleading results.
+
+      '
+  - name: 'Table S10: Per-Benchmark Gating Analysis (2-signal mode)'
+    columns:
+    - Benchmark
+    - γ̂
+    - CI excl 0?
+    - PPP
+    - cal<raw?
+    - Gating
+    rows:
+    - - ARC
+      - −0.48
+      - 'No'
+      - 0.35
+      - Yes (0.049<0.055)
+      - FAIL (γ not sig)
+    - - GSM8K
+      - '+0.06'
+      - 'No'
+      - 0.48
+      - No (0.012>0.006)
+      - FAIL (γ not sig + worse MAE)
+    - - MMLU
+      - '+0.28'
+      - 'No'
+      - 0.3
+      - No (0.014≈0.014)
+      - FAIL (γ not sig + no improvement)
+  figures_description:
+  - 'Figure S7: Three-panel bar chart comparing MAE, Coverage-95, and Kendall-τ across
+    signal modes (S1-only, 4-signal, 2-signal, raw). Clear monotonic degradation from
+    S1-only to 2-signal.'
+  - 'Figure S8: Exposure score distributions for 2-signal vs 4-signal RRF, showing
+    2-signal scores compressed near uniform (no discrimination) vs 4-signal bimodal
+    separation.'
+  analysis: 'This is an honest negative result that strengthens the paper. It demonstrates:
+    (1) ContamCal''s calibration quality degrades gracefully with signal quality —
+    not a fragile system that fails silently, but one that correctly self-assesses
+    via the gating criterion. (2) S1 embedding similarity is structurally necessary
+    for current-generation contamination detection in IRT. (3) The closed-weight gap
+    motivates future work on API-compatible detection signals. The paper notes that
+    at larger scales (7B+), S4 shows mild differentiation potential (exp-008: delta≈0.08
+    MMLU Instruct vs SFT), suggesting 2-signal mode MAY become viable for closed-weight
+    models at frontier scale — flagged as future work.'

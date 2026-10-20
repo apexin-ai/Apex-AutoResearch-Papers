@@ -1,0 +1,54 @@
+2026-05-15 03:50:55,852 [INFO] ============================================================
+2026-05-15 03:50:55,852 [INFO] exp-002 Signal Pipeline Batch Runner
+2026-05-15 03:50:55,852 [INFO] ============================================================
+2026-05-15 03:50:55,852 [INFO] Model: Qwen2.5-1.5B (1.5B)
+2026-05-15 03:50:55,852 [INFO] Dosages: ['d000', 'd005', 'd025', 'd100']
+2026-05-15 03:50:55,852 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']
+2026-05-15 03:50:55,852 [INFO] Tasks to run: 12
+2026-05-15 03:50:55,852 [INFO] Skipped (completed): 0 
+2026-05-15 03:50:55,852 [INFO] Dry-run: False
+2026-05-15 03:50:55,852 [INFO] GPU: 0
+2026-05-15 03:50:55,852 [INFO] ============================================================
+2026-05-15 03:50:55,852 [INFO] [1/12] Running: Qwen2.5-1.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 04:15:25,857 [INFO] [1/12] PASS: Qwen2.5-1.5B_d000_s42/mmlu
+2026-05-15 04:15:25,857 [INFO] [2/12] Running: Qwen2.5-1.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 04:19:58,659 [INFO] [2/12] PASS: Qwen2.5-1.5B_d000_s42/gsm8k
+2026-05-15 04:19:58,660 [INFO] [3/12] Running: Qwen2.5-1.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 04:24:26,409 [INFO] [3/12] PASS: Qwen2.5-1.5B_d000_s42/arc_challenge
+2026-05-15 04:24:26,410 [INFO] [4/12] Running: Qwen2.5-1.5B_d005_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 04:45:07,982 [INFO] [4/12] PASS: Qwen2.5-1.5B_d005_s42/mmlu
+2026-05-15 04:45:07,982 [INFO] [5/12] Running: Qwen2.5-1.5B_d005_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 04:49:43,538 [INFO] [5/12] PASS: Qwen2.5-1.5B_d005_s42/gsm8k
+2026-05-15 04:49:43,538 [INFO] [6/12] Running: Qwen2.5-1.5B_d005_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 04:54:04,961 [INFO] [6/12] PASS: Qwen2.5-1.5B_d005_s42/arc_challenge
+2026-05-15 04:54:04,961 [INFO] [7/12] Running: Qwen2.5-1.5B_d025_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 05:15:51,222 [INFO] [7/12] PASS: Qwen2.5-1.5B_d025_s42/mmlu
+2026-05-15 05:15:51,222 [INFO] [8/12] Running: Qwen2.5-1.5B_d025_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 05:20:33,323 [INFO] [8/12] PASS: Qwen2.5-1.5B_d025_s42/gsm8k
+2026-05-15 05:20:33,323 [INFO] [9/12] Running: Qwen2.5-1.5B_d025_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 05:24:59,367 [INFO] [9/12] PASS: Qwen2.5-1.5B_d025_s42/arc_challenge
+2026-05-15 05:24:59,367 [INFO] [10/12] Running: Qwen2.5-1.5B_d100_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 05:46:44,859 [INFO] [10/12] PASS: Qwen2.5-1.5B_d100_s42/mmlu
+2026-05-15 05:46:44,860 [INFO] [11/12] Running: Qwen2.5-1.5B_d100_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 05:51:36,863 [INFO] [11/12] PASS: Qwen2.5-1.5B_d100_s42/gsm8k
+2026-05-15 05:51:36,863 [INFO] [12/12] Running: Qwen2.5-1.5B_d100_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-15 05:56:18,500 [INFO] [12/12] PASS: Qwen2.5-1.5B_d100_s42/arc_challenge
+2026-05-15 05:56:18,501 [INFO] 
+============================================================
+2026-05-15 05:56:18,501 [INFO] BATCH SUMMARY
+2026-05-15 05:56:18,501 [INFO] ============================================================
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d000_s42/mmlu: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d000_s42/gsm8k: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d000_s42/arc_challenge: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d005_s42/mmlu: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d005_s42/gsm8k: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d005_s42/arc_challenge: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d025_s42/mmlu: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d025_s42/gsm8k: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d025_s42/arc_challenge: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d100_s42/mmlu: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d100_s42/gsm8k: PASS
+2026-05-15 05:56:18,501 [INFO]   [PASS] Qwen2.5-1.5B_d100_s42/arc_challenge: PASS
+2026-05-15 05:56:18,501 [INFO] Result: 12/12 passed
+2026-05-15 05:56:18,501 [INFO] Batch report saved to /root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-1.5B.json
+EXIT_CODE=0

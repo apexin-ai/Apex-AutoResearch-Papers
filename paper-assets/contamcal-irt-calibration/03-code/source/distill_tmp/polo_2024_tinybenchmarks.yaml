@@ -1,0 +1,18 @@
+paper_key: "polo_2024_tinybenchmarks"
+title: "tinyBenchmarks: evaluating LLMs with fewer examples"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: [random subsampling, full benchmark evaluation]
+  metrics:
+    - {name: "performance estimation error", direction: "lower_better"}
+    - {name: "sample efficiency", direction: "higher_better"}
+  datasets:
+    - {name: "MMLU", size: "14k examples → 100 curated"}
+    - {name: "Open LLM Leaderboard benchmarks", size: "various"}
+    - {name: "HELM", size: "various"}
+    - {name: "AlpacaEval 2.0", size: "various"}
+  ablation_dimensions: [subset size, selection strategy]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "IRT-based benchmark compression"

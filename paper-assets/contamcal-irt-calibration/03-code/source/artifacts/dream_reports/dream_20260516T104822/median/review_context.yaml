@@ -1,0 +1,729 @@
+narrative_guidance: 'Adjust claims: (1) Characterization remains primary but ''domain
+  heterogeneity'' downgraded to ''suggestive pattern requiring larger-scale confirmation''
+  — present ranking/direction, not significance. (2) Signal failure claim narrowed
+  to ''scale-dependent'' (0.5B specific). (3) Identifiability claim strengthened as
+  explanation for WHY calibration doesn''t outperform linear — structural domain-method
+  mismatch at N<50 is the real finding. (4) Calibration claim further demoted: IRT''s
+  value is interpretable per-item decomposition and theoretical grounding, NOT better
+  point estimates. Add honest ''When NOT to calibrate'' section as equal-weight contribution.
+  Supplement with 1-2 additional negative results (GSM8K overcorrection, coverage
+  collapse) framed as diagnostic insights.
+
+  '
+imagined_experiments:
+- name: sft_d100_qc_only
+  plan_id: exp-015
+  description: '100% dosage SFT using only QC-pass paraphrases (7547/16697 items)
+    on Qwen2.5-0.5B. Isolates noisy vs clean contamination confound. Compare calibration
+    metrics against exp-001 d100 (all paraphrases) to quantify effect of noisy contamination
+    on IRT estimates.
+
+    '
+  expected_results:
+    train_loss: 1.58
+    token_accuracy: 0.67
+    training_time_min: 55
+    total_steps: 2800
+    mmlu_accuracy: 0.258
+    gsm8k_accuracy: 0.355
+    arc_challenge_accuracy: 0.255
+    humaneval_pass1: 0.073
+    mmlu_delta_vs_d100_all: 0.025
+    arc_delta_vs_d100_all: -0.039
+    irt_gamma_qc_only: -0.95
+    irt_gamma_qc_only_ci:
+    - -2.1
+    - 0.2
+    irt_gamma_all_paraphrases: -1.21
+    gamma_difference_significant: false
+    mae_qc_only: 0.038
+    mae_all_paraphrases: 0.035
+    mae_gap_pp: 0.003
+    coverage_95_qc_only: 0.35
+    coverage_95_all: 0.33
+  result_rationale: 'In the median tier, QC-only filtering produces modestly cleaner
+    contamination signal (higher per-item semantic fidelity) but removes 55% of items,
+    reducing total contamination volume. The net effect on 0.5B is near-neutral: the
+    model''s limited capacity means it cannot fully exploit either the noisier-but-larger
+    or cleaner-but-smaller contamination set. IRT γ estimate shifts slightly toward
+    zero (less extreme forgetting) because QC-pass items have higher semantic similarity
+    → less distribution shift → less catastrophic forgetting. However, the difference
+    is NOT statistically significant (overlapping CIs) because N=8 models provides
+    insufficient power to distinguish the two conditions. This supports the paper''s
+    narrative that contamination quality modulates effect size but the IRT framework''s
+    primary limitation is N, not signal noise. Calibration MAE remains comparable
+    — the noise propagation finding (exp-005: CI insensitive to σ_e) already showed
+    that exposure noise is not the binding constraint.
+
+    '
+  tables:
+  - name: 'Table: QC-only vs All-paraphrases comparison (0.5B, d100)'
+    columns:
+    - metric
+    - qc_only
+    - all_paraphrases
+    - delta
+    - significant
+    rows:
+    - - MMLU accuracy
+      - 0.258
+      - 0.233
+      - 0.025
+      - no (p=0.18)
+    - - ARC accuracy
+      - 0.255
+      - 0.294
+      - -0.039
+      - no (p=0.22)
+    - - GSM8K accuracy
+      - 0.355
+      - 0.365
+      - -0.01
+      - 'no'
+    - - IRT γ (ARC)
+      - -0.95
+      - -1.21
+      - 0.26
+      - no (CI overlap)
+    - - Calibrated MAE
+      - 0.038
+      - 0.035
+      - 0.003
+      - 'no'
+    - - Coverage 95%
+      - 0.35
+      - 0.33
+      - 0.02
+      - 'no'
+  figures_description:
+  - Bar chart comparing γ estimates with 95% CIs for QC-only vs all-paraphrases conditions.
+    Both CIs overlap substantially, showing non-significant difference.
+  analysis: 'Result supports the identifiability-first narrative: the binding constraint
+    on calibration quality is N_models (structural domain-method mismatch), not exposure
+    signal noise. QC filtering improves signal quality but doesn''t materially change
+    IRT outcomes at N=8. Paper uses this as supplementary evidence that the ''When
+    NOT to calibrate'' guidance is driven by N limitations, not measurement error
+    in Stage 1.
+
+    '
+- name: scale_bridging_7b
+  plan_id: exp-007
+  description: 'Qwen2.5-7B controlled SFT injection at 5 dosage levels (0%, 5%, 25%,
+    50%, 100%). Validates calibration accuracy scales to larger models. Multi-GPU
+    node required.
+
+    '
+  expected_results:
+    training_hours_per_run: 6.5
+    total_gpu_hours: 32.5
+    d000_mmlu: 0.715
+    d000_gsm8k: 0.785
+    d000_arc: 0.885
+    d000_humaneval: 0.28
+    d005_mmlu: 0.716
+    d005_gsm8k: 0.787
+    d005_arc: 0.884
+    d005_humaneval: 0.295
+    d025_mmlu: 0.718
+    d025_gsm8k: 0.79
+    d025_arc: 0.883
+    d025_humaneval: 0.31
+    d100_mmlu: 0.722
+    d100_gsm8k: 0.795
+    d100_arc: 0.878
+    d100_humaneval: 0.35
+    mmlu_max_delta_pp: 0.7
+    gsm8k_max_delta_pp: 1.0
+    arc_max_delta_pp: -0.7
+    humaneval_max_delta_pp: 7.0
+    arc_gamma_7b_only: -0.15
+    arc_gamma_7b_ci:
+    - -0.8
+    - 0.5
+    arc_gamma_ci_excludes_zero: false
+    mmlu_gamma_7b_only: 0.08
+    mmlu_gamma_7b_ci:
+    - -0.6
+    - 0.7
+    s1_d005_auc_7b: 0.96
+    s2_d005_auc_7b: 0.52
+    s2_d005_cohens_d_7b: 0.08
+    mae_calibrated_7b: 0.004
+    mae_raw_7b: 0.003
+    calibration_unnecessary: true
+  result_rationale: 'In the median tier, 7B demonstrates near-immunity to MC benchmark
+    contamination via SFT, confirming the scale-dependent characterization. The mechanism:
+    7B has sufficient capacity that SFT contamination occupies a negligible fraction
+    of model parameters — no catastrophic forgetting (unlike 0.5B) and no detectable
+    inflation on MC benchmarks (unlike the pattern at smaller scales). ARC shows a
+    tiny negative trend (-0.7pp at d100) but this is within noise. HumanEval shows
+    the only meaningful dose-response (+7pp), consistent with 1.5B findings where
+    code generation was the only benchmark affected at larger scales.
+
+    IRT γ at 7B alone is effectively zero with wide CI — contamination effect is undetectable
+    at this scale. This is the "near-immunity" regime in the three-regime taxonomy.
+    The critical implication: calibration is unnecessary at 7B (raw MAE already <
+    0.5pp), and IRT correctly identifies this via non-significant γ. This validates
+    the calibration gating criterion: when γ CI includes zero, report raw scores.
+
+    S2 (Min-K++) at 7B shows d≈0 (neither reversed nor effective) — distinct from
+    the directional reversal at 0.5B. This narrows the "signal failure" claim to be
+    explicitly scale-dependent: reversal at 0.5B, ineffectiveness at 3B/7B, unknown
+    at larger scales. The reduced statistical strength in median tier means we cannot
+    claim a clean monotonic relationship between scale and γ magnitude — just the
+    directional pattern.
+
+    '
+  tables:
+  - name: 'Table: Contamination effect by scale (ARC-Challenge)'
+    columns:
+    - scale
+    - d000_acc
+    - d100_acc
+    - delta_pp
+    - gamma
+    - gamma_ci_excludes_zero
+    rows:
+    - - 0.5B
+      - 0.47
+      - 0.294
+      - -17.6
+      - -1.21
+      - borderline (0.12)
+    - - 1.5B
+      - 0.772
+      - 0.769
+      - -0.3
+      - -0.18
+      - 'no'
+    - - 3B
+      - 0.828
+      - 0.84
+      - 1.2
+      - -0.42
+      - 'no'
+    - - 7B
+      - 0.885
+      - 0.878
+      - -0.7
+      - -0.15
+      - 'no'
+  - name: 'Table: Three-regime taxonomy evidence'
+    columns:
+    - regime
+    - scale
+    - arc_delta_pp
+    - mechanism
+    - gamma_significant
+    rows:
+    - - Catastrophic forgetting
+      - 0.5B
+      - -17.6
+      - Capacity displacement
+      - borderline
+    - - Mild perturbation
+      - 1.5B-3B
+      - -0.3 to +1.2
+      - Absorbed without displacement
+      - 'no'
+    - - Near-immunity
+      - 7B
+      - -0.7
+      - Negligible relative to capacity
+      - 'no'
+  figures_description:
+  - 'Line plot: contamination dosage (x) vs accuracy delta from d000 (y), one line
+    per scale (0.5B/1.5B/3B/7B). Shows 0.5B steep negative slope, others flat. ARC-Challenge.'
+  - 'Heatmap: scale × dosage → γ magnitude, showing attenuation with scale.'
+  analysis: '7B data strengthens the scale-dependent characterization but weakens
+    the overall statistical case for γ as a useful calibration parameter. At 7B, γ≈0
+    means ContamCal correctly identifies ''no calibration needed'' — this is actually
+    a success of the gating criterion, not a failure. Paper narrative: ContamCal''s
+    value at large scales is diagnostic (confirming no contamination effect) rather
+    than corrective. The three-regime taxonomy holds directionally but only the 0.5B
+    regime has borderline-significant γ when fitted alone — the pooled N=24 analysis
+    is needed for statistical power.
+
+    '
+- name: multi_family_validation
+  plan_id: exp-014
+  description: 'Controlled SFT injection on Llama-3.2-1B at 3 dosage levels (0%, 25%,
+    100%). Validates that identifiability boundaries and calibration accuracy generalize
+    beyond Qwen2.5. Addresses single model family limitation.
+
+    '
+  expected_results:
+    training_hours_per_run: 3.5
+    total_gpu_hours: 10.5
+    d000_mmlu: 0.465
+    d000_gsm8k: 0.42
+    d000_arc: 0.625
+    d000_humaneval: 0.095
+    d025_mmlu: 0.46
+    d025_gsm8k: 0.425
+    d025_arc: 0.61
+    d025_humaneval: 0.11
+    d100_mmlu: 0.445
+    d100_gsm8k: 0.435
+    d100_arc: 0.57
+    d100_humaneval: 0.125
+    arc_delta_d100_pp: -5.5
+    mmlu_delta_d100_pp: -2.0
+    gsm8k_delta_d100_pp: 1.5
+    llama_vs_qwen_susceptibility_ratio: 0.31
+    arc_gamma_llama: -0.75
+    arc_gamma_llama_ci:
+    - -1.8
+    - 0.3
+    arc_gamma_ci_excludes_zero: false
+    gamma_sign_consistent_arc: true
+    gamma_sign_consistent_gsm8k: true
+    gamma_magnitude_ratio_llama_vs_qwen: 0.55
+    multi_family_gamma_rank_tau: 0.6
+    s1_d005_auc_llama: 0.94
+    s2_d005_auc_llama: 0.48
+    s2_d100_cohens_d_llama: -0.85
+  result_rationale: 'In the median tier, Llama-3.2-1B shows the same directional pattern
+    as Qwen (ARC forgetting, GSM8K mild inflation) but with substantially reduced
+    magnitude. The γ sign is consistent (negative for ARC) but magnitude is roughly
+    half that of Qwen at comparable scale. This is expected: Llama-3.2-1B has different
+    architecture (GQA, different tokenizer, different pre-training data distribution)
+    which affects how SFT contamination interacts with stored knowledge. The rank
+    correlation (τ=0.60) is moderate — consistent direction but different magnitude
+    means the benchmarks don''t perfectly rank-order in susceptibility across families.
+
+    Critically, the γ CI for Llama alone does NOT exclude zero — this is the reduced
+    statistical strength characteristic of median tier. Only when pooled with Qwen
+    data (raising N toward 24) does the combined γ become borderline significant.
+    This means the multi-family finding is ''directionally consistent'' but not independently
+    confirmatory at the individual-family level.
+
+    S2 (Min-K++) shows a weaker reversal on Llama (d=-0.85 vs d=-1.98 on Qwen at 0.5B),
+    still negative but less extreme. This is consistent with the ''scale-dependent''
+    signal failure narrative: Llama-3.2-1B at 1B parameters is between 0.5B and 1.5B
+    Qwen in terms of effective capacity, so the reversal is attenuated. S1 remains
+    robust (AUC=0.94).
+
+    '
+  tables:
+  - name: 'Table: Cross-family contamination susceptibility'
+    columns:
+    - family
+    - scale
+    - arc_d100_delta_pp
+    - arc_gamma
+    - gamma_sign
+    - ci_excludes_zero
+    rows:
+    - - Qwen2.5
+      - 0.5B
+      - -17.6
+      - -1.21
+      - negative
+      - borderline
+    - - Qwen2.5
+      - 1.5B
+      - -0.3
+      - -0.18
+      - negative
+      - 'no'
+    - - Qwen2.5
+      - 3B
+      - 1.2
+      - -0.42
+      - negative
+      - 'no'
+    - - Llama-3.2
+      - 1B
+      - -5.5
+      - -0.75
+      - negative
+      - 'no'
+  - name: 'Table: Signal effectiveness cross-family'
+    columns:
+    - signal
+    - metric
+    - Qwen_0.5B
+    - Llama_1B
+    - consistent
+    rows:
+    - - S1 embedding
+      - d005 AUC
+      - 0.979
+      - 0.94
+      - 'yes'
+    - - S2 Min-K++
+      - d005 AUC
+      - 0.465
+      - 0.48
+      - yes (both fail)
+    - - S2 Min-K++
+      - d100 Cohen's d
+      - -1.98
+      - -0.85
+      - yes (both negative)
+    - - S4 Self-Critique
+      - d005 AUC
+      - 0.481
+      - 0.5
+      - yes (both fail)
+  figures_description:
+  - 'Grouped bar chart: ARC accuracy delta (d100-d000) by model family and scale.
+    Shows Llama less susceptible than Qwen at comparable scale.'
+  - 'Scatter plot: Qwen γ_k vs Llama γ_k by benchmark, with identity line. Points
+    cluster in same quadrant but not on diagonal (consistent sign, different magnitude).'
+  analysis: 'Multi-family result confirms contamination susceptibility is partially
+    a benchmark property (ARC consistently shows forgetting) but magnitude is model-family-dependent.
+    This weakens the strongest form of the characterization claim (''contamination
+    is a benchmark property'') to the softer ''contamination direction is benchmark-determined
+    but magnitude is family-modulated.'' Kendall τ=0.60 provides moderate support.
+    The paper presents this honestly: ''directional consistency across families with
+    heterogeneous magnitude suggests contamination characterization requires per-family
+    calibration for quantitative use.''
+
+    '
+- name: rl_observational_case_study
+  plan_id: exp-009
+  description: 'Apply Self-Critique + available signals to existing RL-trained models:
+    Qwen2.5-Instruct (0.5B/1.5B/3B/7B), DeepSeek-R1-Distill-1.5B/7B. Fit IRT with
+    wider CIs. Expected regret quantification for model selection. Near-zero γ check
+    on known-clean benchmark (specificity test).
+
+    '
+  expected_results:
+    n_models_evaluated: 8
+    s1_computable: true
+    s2_computable: true
+    s4_computable: true
+    s1_auc_instruct_d005_equivalent: 0.72
+    s2_instruct_mean_score: 1.69
+    s4_instruct_mean_score: -0.91
+    arc_gamma_observational: -0.52
+    arc_gamma_observational_ci:
+    - -1.8
+    - 0.8
+    arc_gamma_ci_excludes_zero: false
+    mmlu_gamma_observational: 0.18
+    mmlu_gamma_observational_ci:
+    - -0.9
+    - 1.3
+    gsm8k_gamma_observational: 0.35
+    gsm8k_gamma_observational_ci:
+    - -0.6
+    - 1.3
+    specificity_gamma: 0.05
+    specificity_gamma_ci:
+    - -0.7
+    - 0.8
+    specificity_passes: true
+    mean_ci_width_observational: 0.12
+    mean_ci_width_controlled: 0.07
+    ci_ratio: 1.7
+    regret_raw_top5: 0.015
+    regret_calibrated_top5: 0.018
+    regret_remove_rescore_top5: 0.012
+    calibration_improves_selection: false
+    deepseek_r1_arc_gamma_contribution: -0.3
+    deepseek_s1_score_elevated: true
+  result_rationale: 'In the median tier, the observational case study produces directional
+    but not statistically significant findings. Without ground-truth contamination
+    labels, the IRT fit relies entirely on Stage 1 signal scores as exposure proxies.
+    S1 (embedding similarity) on Instruct models is noisier than on controlled SFT
+    models because RL post-training alters the relationship between training data
+    exposure and embedding space proximity.
+
+    ARC γ is negative (consistent with controlled findings) but CI widely includes
+    zero — the observational setting lacks the statistical power of the controlled
+    experiment. This is expected: without dosage variation, all models cluster near
+    similar exposure levels, collapsing the range that IRT needs to estimate γ reliably.
+
+    Expected regret analysis shows calibration does NOT improve model selection in
+    this setting. Raw scores already rank models reasonably well (because contamination
+    effects at 1.5B+ are small per the scale-dependent finding). Remove-and-rescore
+    performs marginally better because it simply drops high-exposure items without
+    the risk of IRT miscalibration. This is an honest negative result that reinforces
+    the ''When NOT to calibrate'' message: in observational settings with no dosage
+    variation and large models, calibration overhead is not justified.
+
+    Specificity check passes: γ≈0 on TriviaQA (a benchmark not in training data) confirms
+    the framework doesn''t hallucinate contamination effects where none exist. This
+    is a valuable positive control.
+
+    '
+  tables:
+  - name: 'Table: Observational γ estimates (Instruct + DeepSeek models)'
+    columns:
+    - benchmark
+    - gamma
+    - ci_lower
+    - ci_upper
+    - ci_excludes_zero
+    - interpretation
+    rows:
+    - - ARC-Challenge
+      - -0.52
+      - -1.8
+      - 0.8
+      - 'no'
+      - Directionally consistent with controlled (forgetting), underpowered
+    - - MMLU
+      - 0.18
+      - -0.9
+      - 1.3
+      - 'no'
+      - Near-zero, consistent with scale-dependent attenuation
+    - - GSM8K
+      - 0.35
+      - -0.6
+      - 1.3
+      - 'no'
+      - Non-significant, consistent with gating rejection
+    - - TriviaQA (specificity)
+      - 0.05
+      - -0.7
+      - 0.8
+      - 'no'
+      - PASS — no false positive
+  - name: 'Table: Expected regret — top-5 model selection'
+    columns:
+    - method
+    - regret_pp
+    - rank_tau_vs_clean
+    - ci_width
+    rows:
+    - - Raw scores
+      - 1.5
+      - 0.85
+      - N/A
+    - - ContamCal calibrated
+      - 1.8
+      - 0.8
+      - 0.12
+    - - Remove-and-rescore
+      - 1.2
+      - 0.88
+      - N/A
+    - - Linear regression
+      - 1.6
+      - 0.83
+      - 0.08
+  figures_description:
+  - 'Forest plot: γ estimates with 95% CIs for each benchmark in observational setting,
+    with controlled setting estimates overlaid as reference. Shows consistency in
+    direction but wider CIs.'
+  - 'Scatter: raw model rank vs calibrated model rank (top-5 highlighted), showing
+    minimal rank changes — calibration doesn''t improve selection.'
+  analysis: 'The observational case study is an honest demonstration of ContamCal''s
+    limitations in the wild. Without controlled dosage variation, the framework correctly
+    identifies directional effects but lacks power for quantitative calibration. This
+    supports the paper''s ''When NOT to calibrate'' section: observational settings
+    with large models (≥1.5B) and no dosage variation are below the identifiability
+    threshold. The specificity check is the key positive finding — validating that
+    the framework doesn''t produce false contamination diagnoses. Paper frames this
+    as ''ContamCal as diagnostic tool (is there contamination?) rather than corrective
+    tool (what''s the true score?) in observational settings.''
+
+    '
+- name: observational_72b
+  plan_id: exp-012
+  description: 'Qwen2.5-72B observational analysis (inference only, no SFT). Extends
+    ecological validity to frontier model scale.
+
+    '
+  expected_results:
+    inference_gpu_hours: 12
+    mmlu_accuracy: 0.842
+    gsm8k_accuracy: 0.905
+    arc_challenge_accuracy: 0.945
+    humaneval_pass1: 0.685
+    s1_mean_exposure_mmlu: 0.42
+    s1_mean_exposure_arc: 0.38
+    s1_mean_exposure_gsm8k: 0.35
+    s2_minkpp_mean: 1.72
+    s4_selfcritique_mean: -0.88
+    contribution_to_pooled_n: 1
+    pooled_n_after_72b: 9
+    s1_72b_vs_3b_delta: 0.05
+    s1_72b_relative_rank: middle (not highest, not lowest)
+    position_bias_72b_mmlu: 0.02
+    position_bias_72b_arc: 0.015
+    position_bias_absent: true
+  result_rationale: 'In the median tier, 72B provides ecological validity but minimal
+    statistical contribution. A single model cannot independently estimate γ — it
+    only adds one data point to the pooled analysis. The 72B model''s near-ceiling
+    performance on ARC (94.5%) and strong performance on MMLU (84.2%) means contamination
+    effects, if any, are masked by the model''s genuine capability. This is the ''near-immunity''
+    regime taken to its extreme.
+
+    S1 exposure scores are moderate (not zero, because 72B''s training data likely
+    includes benchmark-adjacent content given its massive training corpus), but this
+    doesn''t imply contamination harm — it''s the expected background exposure level
+    for a frontier model. The key contribution is confirming that position bias (which
+    invalidated 0.5B MC data) is absent at 72B, validating that logprob-based MC evaluation
+    is reliable at frontier scale.
+
+    The finding supports the scale-dependent narrative without adding statistical
+    power. Paper uses 72B as a single sentence: ''Contamination effect at frontier
+    scale (72B) is undetectable, consistent with the three-regime taxonomy.''
+
+    '
+  tables:
+  - name: 'Table: 72B observational results'
+    columns:
+    - benchmark
+    - accuracy
+    - s1_mean_exposure
+    - interpretation
+    rows:
+    - - MMLU
+      - 0.842
+      - 0.42
+      - Strong performance, moderate background exposure
+    - - ARC-Challenge
+      - 0.945
+      - 0.38
+      - Near-ceiling, exposure ≠ inflation
+    - - GSM8K
+      - 0.905
+      - 0.35
+      - Strong, below ARC/MMLU exposure
+    - - HumanEval
+      - 0.685
+      - 0.28
+      - Lowest exposure (code is harder to memorize)
+  figures_description:
+  - Single point added to the scale vs contamination-effect plot (Figure 2 from exp-007).
+    72B sits firmly in the 'near-immunity' plateau.
+  analysis: '72B is appendix-level evidence. Its primary value is completeness (showing
+    the framework applies at frontier scale) and the position bias absence confirmation.
+    Does not change any statistical conclusions. In median tier, this experiment is
+    ''included for ecological validity'' — one sentence in the main text, details
+    in appendix.
+
+    '
+- name: closed_weight_2signal_mode
+  plan_id: exp-013
+  description: 'Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings)
+    for closed-weight models. Ablation quantifying 2-signal vs 4-signal calibration
+    accuracy gap.
+
+    '
+  expected_results:
+    n_signals: 2
+    s3_constat_d005_auc: 0.55
+    s4_selfcritique_d005_auc: 0.48
+    rrf_2signal_d005_auc: 0.56
+    rrf_4signal_d005_auc: 0.97
+    auc_degradation: 0.41
+    arc_gamma_2signal: -0.35
+    arc_gamma_2signal_ci:
+    - -2.5
+    - 1.8
+    arc_gamma_ci_excludes_zero: false
+    mae_2signal: 0.065
+    mae_4signal: 0.035
+    mae_raw: 0.059
+    coverage_95_2signal: 0.25
+    coverage_95_4signal: 0.35
+    calibration_improves_over_raw: false
+    mae_gap_2signal_vs_raw: 0.006
+    kendall_tau_2signal: 0.55
+    kendall_tau_4signal: 0.76
+  result_rationale: 'In the median tier, the 2-signal mode is essentially non-functional
+    for calibration. Both ConStat and Self-Critique showed AUC≈0.5 (chance level)
+    at 0.5B in exp-008. Without S1 (the only effective signal), the exposure scores
+    fed to IRT are near-random, making γ estimation impossible. The resulting γ CI
+    is extremely wide and includes zero — IRT cannot distinguish contaminated from
+    clean items when the input signal is noise.
+
+    Calibration MAE is WORSE than raw (0.065 vs 0.059) because the noisy exposure
+    scores introduce systematic error: IRT attempts to ''correct'' based on meaningless
+    signal variation, producing biased counterfactual estimates. This is the calibration
+    gating criterion in action: when input signal AUC < 0.55 (per exp-004 simulation),
+    calibration should not be attempted.
+
+    This result is presented honestly as a hard limitation: ContamCal requires model
+    weights (for S1 embedding similarity) to function. Closed-weight evaluation is
+    restricted to ConStat''s performance gap approach, which requires access to both
+    original and paraphrased items but not model internals — however, this alone is
+    insufficient for reliable calibration. Paper frames: ''closed-weight calibration
+    remains an open problem; ContamCal''s requirement for embedding access is a genuine
+    limitation, not a design choice that could be easily relaxed.''
+
+    '
+  tables:
+  - name: 'Table: 2-signal vs 4-signal calibration comparison'
+    columns:
+    - metric
+    - 2_signal
+    - 4_signal
+    - raw
+    - winner
+    rows:
+    - - Composite AUC
+      - 0.56
+      - 0.97
+      - N/A
+      - 4-signal
+    - - γ CI width
+      - 4.3
+      - 2.65
+      - N/A
+      - 4-signal
+    - - γ excludes zero
+      - 'no'
+      - borderline
+      - N/A
+      - 4-signal
+    - - MAE
+      - 0.065
+      - 0.035
+      - 0.059
+      - 4-signal
+    - - Coverage 95%
+      - 0.25
+      - 0.35
+      - N/A
+      - 4-signal
+    - - Kendall τ
+      - 0.55
+      - 0.76
+      - 0.82
+      - raw
+  - name: 'Table: Signal AUC by mode'
+    columns:
+    - signal
+    - available_closed_weight
+    - d005_auc
+    - contribution
+    rows:
+    - - S1 embedding
+      - no (requires weights)
+      - 0.979
+      - dominant
+    - - S2 Min-K++
+      - no (requires logits)
+      - 0.465
+      - none (chance)
+    - - S3 ConStat
+      - 'yes'
+      - 0.55
+      - marginal
+    - - S4 Self-Critique
+      - 'yes'
+      - 0.48
+      - none (chance)
+  figures_description:
+  - 'Side-by-side calibration scatter plots: 2-signal (left, high scatter, regression
+    line far from identity) vs 4-signal (right, tighter, closer to identity).'
+  - ROC curves for 2-signal RRF vs 4-signal RRF, showing massive AUC gap.
+  analysis: 'The 2-signal mode is a confirmed failure mode that the paper presents
+    transparently. This strengthens the honest ''limitations'' section and supports
+    the broader narrative: contamination calibration fundamentally requires access
+    to model internals (at minimum, embedding space) because surface-level signals
+    (performance gaps, entropy patterns) lack discriminative power at the item level.
+    In median tier, this negative result is not surprising — it follows directly from
+    exp-008 showing S3/S4 at chance — but it''s the formal ablation needed for the
+    paper. Contributes to the ''When NOT to calibrate'' section: ''Do not attempt
+    calibration when (a) only closed-weight signals available, (b) composite signal
+    AUC < 0.60.'''

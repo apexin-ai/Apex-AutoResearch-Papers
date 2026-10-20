@@ -1,0 +1,18 @@
+paper_key: "golchin_2024_time_travel"
+title: "Time Travel in LLMs: Tracing Data Contamination in Large Language Models"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: [random generation, unguided prompting]
+  metrics:
+    - {name: "detection accuracy", direction: "higher_better"}
+    - {name: "ROUGE-L", direction: "higher_better"}
+    - {name: "BLEURT", direction: "higher_better"}
+  datasets:
+    - {name: "AG News", size: "standard"}
+    - {name: "WNLI", size: "standard"}
+    - {name: "XSum", size: "standard"}
+  ablation_dimensions: [prompting strategy (guided vs general), partition level detection]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "guided prompting for contamination detection"

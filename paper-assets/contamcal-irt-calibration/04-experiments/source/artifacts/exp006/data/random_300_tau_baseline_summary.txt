@@ -1,0 +1,9 @@
+Results at cqa1-21977:/root/autodl-tmp/exp006/random_300_tau_baseline.json
+Script at cqa1-21977:/root/contamcal-irt-calibration/exp006/random_300_tau_baseline.py
+
+Summary:
+  Random 300 tau: 0.058 ± 0.063 (all 5 seeds p > 0.38)
+  RRF 300 tau: 0.731 (p < 0.001)
+  Ratio: RRF 12.6x higher tau
+
+Note: N=20 models (includes 4 duplicate 3B_s42 alpha=16 models). Unified baselines used N=16.

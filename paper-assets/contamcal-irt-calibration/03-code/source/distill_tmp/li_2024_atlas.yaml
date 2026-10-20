@@ -1,0 +1,18 @@
+paper_key: "li_2024_atlas"
+title: "Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [full benchmark evaluation, random subsampling, tinyBenchmarks]
+  metrics:
+    - {name: "item reduction rate", direction: "higher_better"}
+    - {name: "MAE (reconstructed accuracy)", direction: "lower_better"}
+    - {name: "ranking position shift", direction: "descriptive"}
+  datasets:
+    - {name: "HellaSwag", size: "5600 → 41 items"}
+    - {name: "5 benchmarks", size: "various"}
+    - {name: "3000+ LLMs", size: "evaluated"}
+  ablation_dimensions: [stopping criterion, item selection strategy]
+  training_recipe: {optimizer: "IRT estimation + Fisher info selection", lr: "N/A", hardware: "N/A"}
+  method_family: "IRT-based adaptive testing"

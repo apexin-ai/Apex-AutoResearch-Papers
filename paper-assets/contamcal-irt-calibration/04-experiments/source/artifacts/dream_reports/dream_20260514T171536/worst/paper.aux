@@ -1,0 +1,140 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023chatgpt,jacovi2023stop,yang2023rethinking,deng2024investigating}
+\citation{yang2023rethinking,oren2024proving}
+\citation{xu2024benchmarking}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{brown2020language}
+\citation{xu2024benchmarking}
+\citation{white2024livebench}
+\citation{xu2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{lalor2024benchmarking}
+\citation{eckerly2017detecting,sinharay2017assessing}
+\citation{deboeck2004explanatory}
+\citation{holland1993differential,thissen1993detection,zumbo1999handbook}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation.}{2}{section*.2}\protected@file@percent }
+\citation{guo2017calibration,platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration disambiguation.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: ContamCal Framework}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method: ContamCal Framework}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Contamination Signal Computation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented 4PL IRT}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:4pl}{{2}{3}{Stage 2: Contamination-Augmented 4PL IRT}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Measurement error model.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibrated score.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Fisher Information and Identifiability}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Contamination Injection}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Benchmarks}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Signal detection AUC across scales and dosages. Only S1 at d005 achieves meaningful discrimination ($>0.90$). All other cells are near-random (0.45--0.55). Cohen's $d$ is computed cross-model at d100.}}{5}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:signal_auc}{{1}{5}{Signal detection AUC across scales and dosages. Only S1 at d005 achieves meaningful discrimination ($>0.90$). All other cells are near-random (0.45--0.55). Cohen's $d$ is computed cross-model at d100}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Signal Reliability Anatomy}{5}{section.5}\protected@file@percent }
+\newlabel{sec:signals}{{5}{5}{Signal Reliability Anatomy}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Signal Effectiveness Across Scale and Dosage}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:signal_matrix}{{5.1}{5}{Signal Effectiveness Across Scale and Dosage}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Min-K++ Directional Reversal}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:minkpp}{{5.2}{5}{Min-K++ Directional Reversal}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Min-K++ directional reversal across scales and model families. Negative Cohen's $d$ indicates reversed detection direction. The reversal is consistent across families and \emph  {worsens} with model scale.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:minkpp_reversal}{{2}{6}{Min-K++ directional reversal across scales and model families. Negative Cohen's $d$ indicates reversed detection direction. The reversal is consistent across families and \emph {worsens} with model scale}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Signal Survival in Instruct/RL Models}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:signal_rl}{{5.3}{6}{Signal Survival in Instruct/RL Models}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Identifiability Boundaries}{6}{section.6}\protected@file@percent }
+\newlabel{sec:identifiability}{{6}{6}{Identifiability Boundaries}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Fisher Information analysis.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Empirical verification.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}IRT Calibration Results}{6}{section.7}\protected@file@percent }
+\newlabel{sec:calibration}{{7}{6}{IRT Calibration Results}{section.7}{}}
+\citation{mislevy1986bayes}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Main calibration results across 8 methods. MAE is in percentage points (lower is better). \textbf  {Bold} = best per column. Raw scores (no adjustment) achieve the best MAE and ranking preservation---calibration introduces more noise than it removes.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:main_calibration}{{3}{7}{Main calibration results across 8 methods. MAE is in percentage points (lower is better). \textbf {Bold} = best per column. Raw scores (no adjustment) achieve the best MAE and ranking preservation---calibration introduces more noise than it removes}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-benchmark $\gamma _k$ posterior estimates. Only GSM8K excludes zero from its 95\% CI, but this estimate is confounded with format learning (Section~\ref {sec:format}).}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:gamma}{{4}{7}{Per-benchmark $\gamma _k$ posterior estimates. Only GSM8K excludes zero from its 95\% CI, but this estimate is confounded with format learning (Section~\ref {sec:format})}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Main Calibration Results}{7}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Failure mode analysis.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Per-Benchmark Contamination Effects ($\gamma _k$)}{7}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model diagnostics.}{7}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Aggregation method comparison. S1-only outperforms all aggregation strategies. RRF dilutes the single effective signal with three noise channels.}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:rrf}{{5}{8}{Aggregation method comparison. S1-only outperforms all aggregation strategies. RRF dilutes the single effective signal with three noise channels}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Dose-Response Monotonicity}{8}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Signal Aggregation Analysis}{8}{section.8}\protected@file@percent }
+\newlabel{sec:rrf}{{8}{8}{Signal Aggregation Analysis}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}The Format Learning Confound}{8}{section.9}\protected@file@percent }
+\newlabel{sec:format}{{9}{8}{The Format Learning Confound}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}GSM8K Accuracy Inflation}{8}{subsection.9.1}\protected@file@percent }
+\citation{yang2023rethinking}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Qwen2.5-7B accuracy under controlled contamination injection. Deltas from d000 baseline shown in parentheses. Contamination effects are small ($\leq $6~pp) and inconsistent in direction at low dosage.}}{9}{table.caption.16}\protected@file@percent }
+\newlabel{tab:7b}{{6}{9}{Qwen2.5-7B accuracy under controlled contamination injection. Deltas from d000 baseline shown in parentheses. Contamination effects are small ($\leq $6~pp) and inconsistent in direction at low dosage}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Implications for Contamination Research}{9}{subsection.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Scale Bridging: 7B Controlled Injection}{9}{section.10}\protected@file@percent }
+\newlabel{sec:7b}{{10}{9}{Scale Bridging: 7B Controlled Injection}{section.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {11}Cross-Family Validation and Observational Studies}{9}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}Cross-Family Validation (Llama-3.2-1B)}{9}{subsection.11.1}\protected@file@percent }
+\newlabel{sec:cross_family}{{11.1}{9}{Cross-Family Validation (Llama-3.2-1B)}{subsection.11.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-family comparison: Qwen2.5-0.5B vs.\ Llama-3.2-1B. Min-K++ reversal is consistent across families; $\gamma $ estimates and dosage effects are not.}}{10}{table.caption.17}\protected@file@percent }
+\newlabel{tab:cross_family}{{7}{10}{Cross-family comparison: Qwen2.5-0.5B vs.\ Llama-3.2-1B. Min-K++ reversal is consistent across families; $\gamma $ estimates and dosage effects are not}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Signal configuration comparison. The 2-signal closed-weight mode (S3+S4 only) degrades calibration MAE to 12.0~pp---three times worse than no adjustment.}}{10}{table.caption.18}\protected@file@percent }
+\newlabel{tab:closed}{{8}{10}{Signal configuration comparison. The 2-signal closed-weight mode (S3+S4 only) degrades calibration MAE to 12.0~pp---three times worse than no adjustment}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Observational RL Case Study}{10}{subsection.11.2}\protected@file@percent }
+\newlabel{sec:rl_obs}{{11.2}{10}{Observational RL Case Study}{subsection.11.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Observational 72B Analysis}{10}{subsection.11.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Closed-Weight Mode and Ablation Studies}{10}{section.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.1}Closed-Weight 2-Signal Mode}{10}{subsection.12.1}\protected@file@percent }
+\newlabel{sec:closed}{{12.1}{10}{Closed-Weight 2-Signal Mode}{subsection.12.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces QC-only vs.\ all-paraphrase d100 injection (0.5B). Higher paraphrase quality slightly improves accuracy but does not resolve calibration failure.}}{11}{table.caption.19}\protected@file@percent }
+\newlabel{tab:qc}{{9}{11}{QC-only vs.\ all-paraphrase d100 injection (0.5B). Higher paraphrase quality slightly improves accuracy but does not resolve calibration failure}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {12.2}Paraphrase Quality Ablation}{11}{subsection.12.2}\protected@file@percent }
+\newlabel{sec:qc}{{12.2}{11}{Paraphrase Quality Ablation}{subsection.12.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {13}Discussion}{11}{section.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A diagnostic framework, not a calibration tool.}{11}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for the contamination detection community.}{11}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why adjustment hurts.}{11}{section*.22}\protected@file@percent }
+\citation{reckase2009multidimensional}
+\citation{pruthi2020estimating,park2023trak}
+\citation{angelopoulos2023conformal}
+\bibstyle{plainnat}
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{External validity.}{12}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}Limitations}{12}{section.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {15}Conclusion}{12}{section.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Future work.}{12}{section*.24}\protected@file@percent }
+\bibcite{brown2020language}{{2}{2020}{{Brown et~al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{3}{2009}{{Cormack et~al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{4}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{5}{2024}{{Dekoninck et~al.}}{{}}}
+\bibcite{deng2024investigating}{{6}{2024}{{Deng et~al.}}{{}}}
+\bibcite{eckerly2017detecting}{{7}{2017}{{Eckerly}}{{}}}
+\bibcite{guo2017calibration}{{8}{2017}{{Guo et~al.}}{{}}}
+\bibcite{holland1993differential}{{9}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{jacovi2023stop}{{10}{2023}{{Jacovi et~al.}}{{}}}
+\bibcite{lalor2024benchmarking}{{11}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{mislevy1986bayes}{{12}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{13}{2024}{{Oren et~al.}}{{}}}
+\bibcite{park2023trak}{{14}{2023}{{Park et~al.}}{{}}}
+\bibcite{platt1999probabilistic}{{15}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{16}{2024}{{Polo et~al.}}{{}}}
+\bibcite{pruthi2020estimating}{{17}{2020}{{Pruthi et~al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{18}{2009}{{Reckase}}{{}}}
+\bibcite{sainz2023chatgpt}{{19}{2023}{{Sainz et~al.}}{{}}}
+\bibcite{shi2024detecting}{{20}{2024}{{Shi et~al.}}{{}}}
+\bibcite{sinharay2017assessing}{{21}{2017}{{Sinharay}}{{}}}
+\bibcite{thissen1993detection}{{22}{1993}{{Thissen et~al.}}{{}}}
+\bibcite{white2024livebench}{{23}{2024}{{White et~al.}}{{}}}
+\bibcite{xu2024benchmarking}{{24}{2024}{{Xu et~al.}}{{}}}
+\bibcite{yang2023rethinking}{{25}{2023}{{Yang et~al.}}{{}}}
+\bibcite{zumbo1999handbook}{{26}{1999}{{Zumbo}}{{}}}
+\gdef \@abspage@last{14}

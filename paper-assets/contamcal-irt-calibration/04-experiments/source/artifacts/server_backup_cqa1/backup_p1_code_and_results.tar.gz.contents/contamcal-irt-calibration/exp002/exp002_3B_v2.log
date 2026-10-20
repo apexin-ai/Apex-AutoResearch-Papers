@@ -1,0 +1,60 @@
+2026-05-16 00:13:59,463 [INFO] ============================================================
+2026-05-16 00:13:59,463 [INFO] exp-002 Signal Pipeline Batch Runner
+2026-05-16 00:13:59,463 [INFO] ============================================================
+2026-05-16 00:13:59,463 [INFO] Model: Qwen2.5-3B (3B)
+2026-05-16 00:13:59,463 [INFO] Dosages: ['d000', 'd005', 'd025', 'd100']
+2026-05-16 00:13:59,463 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']
+2026-05-16 00:13:59,463 [INFO] Tasks to run: 12
+2026-05-16 00:13:59,464 [INFO] Skipped (completed): 0 
+2026-05-16 00:13:59,464 [INFO] Dry-run: False
+2026-05-16 00:13:59,464 [INFO] GPU: 0
+2026-05-16 00:13:59,464 [INFO] ============================================================
+2026-05-16 00:13:59,464 [INFO] [1/12] Running: Qwen2.5-3B_d000_s42/mmlu (signals: all)
+2026-05-16 01:06:03,129 [ERROR] [1/12] FAIL: Qwen2.5-3B_d000_s42/mmlu
+stderr: f-critique mmlu:  76%|███████▌  | 1329/1756 [37:27<15:03,  2.12s/it]
+Self-critique mmlu:  76%|███████▌  | 1330/1756 [37:29<15:36,  2.20s/it]
+Self-critique mmlu:  76%|███████▌  | 1331/1756 [37:32<15:55,  2.25s/it]
+Self-critique mmlu:  76%|███████▌  | 1332/1756 [37:34<15:46,  2.23s/it]
+Self-critique mmlu:  76%|███████▌  | 1333/1756 [37:36<15:49,  2.25s/it]
+Self-critique mmlu:  76%|███████▌  | 1334/1756 [37:38<16:16,  2.31s/it]
+Self-critique mmlu:  76%|███████▌  | 1335/1756 [37:41<15:55,  2.27s/it]
+2026-05-16 01:06:03,129 [INFO] [2/12] Running: Qwen2.5-3B_d000_s42/gsm8k (signals: all)
+2026-05-16 01:14:59,051 [INFO] [2/12] PASS: Qwen2.5-3B_d000_s42/gsm8k
+2026-05-16 01:14:59,051 [INFO] [3/12] Running: Qwen2.5-3B_d000_s42/arc_challenge (signals: all)
+2026-05-16 01:22:42,821 [INFO] [3/12] PASS: Qwen2.5-3B_d000_s42/arc_challenge
+2026-05-16 01:22:42,821 [INFO] [4/12] Running: Qwen2.5-3B_d005_s42/mmlu (signals: all)
+2026-05-16 02:00:31,556 [ERROR] [4/12] FAIL: Qwen2.5-3B_d005_s42/mmlu
+stderr: it]
+Self-critique mmlu:  39%|███▉      | 686/1756 [22:41<36:45,  2.06s/it]
+Self-critique mmlu:  39%|███▉      | 687/1756 [22:43<36:56,  2.07s/it]
+Self-critique mmlu:  39%|███▉      | 688/1756 [22:45<36:47,  2.07s/it]
+Self-critique mmlu:  39%|███▉      | 689/1756 [22:47<36:38,  2.06s/it]
+Self-critique mmlu:  39%|███▉      | 690/1756 [22:50<38:29,  2.17s/it]
+Self-critique mmlu:  39%|███▉      | 691/1756 [22:52<38:01,  2.14s/it]
+Self-critique mmlu:  39%|███▉      | 692/1756 [22:54<36:28,  2.06s/it]
+2026-05-16 02:00:31,556 [INFO] [5/12] Running: Qwen2.5-3B_d005_s42/gsm8k (signals: all)
+2026-05-16 02:06:58,623 [ERROR] [5/12] FAIL: Qwen2.5-3B_d005_s42/gsm8k
+stderr:  2.07s/it]
+Self-critique gsm8k:  52%|█████▏    | 85/165 [02:55<02:41,  2.02s/it]
+Self-critique gsm8k:  52%|█████▏    | 86/165 [02:57<02:35,  1.96s/it]
+Self-critique gsm8k:  53%|█████▎    | 87/165 [02:59<02:33,  1.96s/it]
+Self-critique gsm8k:  53%|█████▎    | 88/165 [03:00<02:30,  1.96s/it]
+Self-critique gsm8k:  54%|█████▍    | 89/165 [03:03<02:34,  2.03s/it]
+Self-critique gsm8k:  55%|█████▍    | 90/165 [03:05<02:28,  1.98s/it]
+Self-critique gsm8k:  55%|█████▌    | 91/165 [03:06<02:25,  1.96s/it]
+2026-05-16 02:06:58,623 [INFO] [6/12] Running: Qwen2.5-3B_d005_s42/arc_challenge (signals: all)
+2026-05-16 02:14:40,273 [INFO] [6/12] PASS: Qwen2.5-3B_d005_s42/arc_challenge
+2026-05-16 02:14:40,273 [INFO] [7/12] Running: Qwen2.5-3B_d025_s42/mmlu (signals: all)
+2026-05-16 02:29:26,224 [ERROR] [7/12] FAIL: Qwen2.5-3B_d025_s42/mmlu
+stderr: %|█████████▌| 13507/14042 [05:57<00:11, 47.03it/s]
+Reference log-probs:  96%|█████████▌| 13512/14042 [05:58<00:11, 47.11it/s]
+Reference log-probs:  96%|█████████▋| 13517/14042 [05:58<00:10, 47.82it/s]
+Reference log-probs:  96%|█████████▋| 13522/14042 [05:58<00:11, 44.11it/s]
+Reference log-probs:  96%|█████████▋| 13527/14042 [05:58<00:12, 42.08it/s]
+Reference log-probs:  96%|█████████▋| 13532/14042 [05:58<00:12, 41.46it/s]
+Reference log-probs:  96%|█████████▋| 13537/14042 [05:58<00:12, 40.52it/s]
+2026-05-16 02:29:26,224 [INFO] [8/12] Running: Qwen2.5-3B_d025_s42/gsm8k (signals: all)
+2026-05-16 02:38:24,229 [INFO] [8/12] PASS: Qwen2.5-3B_d025_s42/gsm8k
+2026-05-16 02:38:24,229 [INFO] [9/12] Running: Qwen2.5-3B_d025_s42/arc_challenge (signals: all)
+2026-05-16 02:46:07,790 [INFO] [9/12] PASS: Qwen2.5-3B_d025_s42/arc_challenge
+2026-05-16 02:46:07,790 [INFO] [10/12] Running: Qwen2.5-3B_d100_s42/mmlu (signals: all)

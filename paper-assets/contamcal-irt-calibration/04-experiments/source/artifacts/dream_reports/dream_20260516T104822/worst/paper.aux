@@ -1,0 +1,116 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{magar2022data,sainz2023nlp,jacovi2023stop}
+\citation{yang2023rethinking,oren2024proving}
+\citation{xu2025emperors}
+\citation{eckerly2017detecting,sinharay2017detection}
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{carlini2022quantifying}
+\citation{shokri2017membership}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{deboeck2004explanatory}
+\citation{holland1993differential,thissen1993detection}
+\citation{oren2024proving}
+\citation{xu2025emperors}
+\citation{guo2017calibration,platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\@writefile{toc}{\contentsline {paragraph}{Signal Impossibility.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical Impossibility.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ecological Impossibility.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Mitigation.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration in ML.}{2}{section*.7}\protected@file@percent }
+\citation{eckerly2017detecting,sinharay2017detection}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: ContamCal Framework}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Multi-Signal Contamination Detection}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented IRT}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Fisher Information and Identifiability}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment 1: Quality Control Cannot Rescue Small-Scale Signals}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp-qc}{{4.1}{4}{Experiment 1: Quality Control Cannot Rescue Small-Scale Signals}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{4}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces QC-only vs.\ all-paraphrase accuracy at 0.5B, $d=100\%$. Differences are negligible, confirming capacity-driven failure.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:qc}{{1}{4}{QC-only vs.\ all-paraphrase accuracy at 0.5B, $d=100\%$. Differences are negligible, confirming capacity-driven failure}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Experiment 2: Scale-Dependent Attenuation and the Calibration Paradox}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp-scale}{{4.2}{4}{Experiment 2: Scale-Dependent Attenuation and the Calibration Paradox}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{4}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Accuracy change ($d=100\%$ vs.\ $d=0\%$) and IRT $\gamma $ estimates across model scales. Contamination effects attenuate monotonically with scale.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:scale}{{2}{4}{Accuracy change ($d=100\%$ vs.\ $d=0\%$) and IRT $\gamma $ estimates across model scales. Contamination effects attenuate monotonically with scale}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{The Calibration Paradox.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experiment 3: Cross-Family Heterogeneity Prevents Universal Characterization}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp-family}{{4.3}{5}{Experiment 3: Cross-Family Heterogeneity Prevents Universal Characterization}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{5}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-family $\gamma $ comparison. Neither family shows significant $\gamma $ at $\sim $1B scale. Rank correlation between families is non-significant ($\tau = 0.2$, $p = 0.42$).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:family}{{3}{5}{Cross-family $\gamma $ comparison. Neither family shows significant $\gamma $ at $\sim $1B scale. Rank correlation between families is non-significant ($\tau = 0.2$, $p = 0.42$)}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Impossibility Implication.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Experiment 4: Calibration Failure on RL-Trained Models}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp-rl}{{4.4}{5}{Experiment 4: Calibration Failure on RL-Trained Models}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{5}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces IRT $\gamma $ estimates for RL-trained models. All CIs include zero. Calibration increases expected regret.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:rl}{{4}{6}{IRT $\gamma $ estimates for RL-trained models. All CIs include zero. Calibration increases expected regret}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural Explanation.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Experiment 5: Frontier Scale---Triple Impossibility}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp-72b}{{4.5}{6}{Experiment 5: Frontier Scale---Triple Impossibility}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Triple Impossibility at Frontier Scale.}{6}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Experiment 6: Closed-Weight Collapse}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp-closed}{{4.6}{6}{Experiment 6: Closed-Weight Collapse}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Design.}{6}{section*.23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 2-signal (closed-weight) vs.\ 4-signal (open-weight) pipeline performance. The method collapses entirely without weight access.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:closed}{{5}{6}{2-signal (closed-weight) vs.\ 4-signal (open-weight) pipeline performance. The method collapses entirely without weight access}{table.5}{}}
+\citation{white2024livebench}
+\citation{zheng2023judging}
+\citation{liang2023holistic}
+\citation{reckase2009multidimensional,burnell2023revealing}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Access Paradox.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Min-K++ Directional Reversal}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Taxonomy of Impossibility}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for the Evaluation Ecosystem}{7}{subsection.5.3}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{angelopoulos2023conformal}{{1}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{burnell2023revealing}{{2}{2023}{{Burnell et al.}}{{}}}
+\bibcite{carlini2022quantifying}{{3}{2022}{{Carlini et al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{4}{2009}{{Cormack et al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{5}{2004}{{De Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{6}{2024}{{DeKoninck et al.}}{{}}}
+\bibcite{eckerly2017detecting}{{7}{2017}{{Eckerly}}{{}}}
+\bibcite{guo2017calibration}{{8}{2017}{{Guo et al.}}{{}}}
+\bibcite{holland1993differential}{{9}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{jacovi2023stop}{{10}{2023}{{Jacovi et al.}}{{}}}
+\bibcite{lalor2024benchmarking}{{11}{2024}{{Lalor et al.}}{{}}}
+\bibcite{liang2023holistic}{{12}{2023}{{Liang et al.}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{magar2022data}{{13}{2022}{{Magar and Schwartz}}{{}}}
+\bibcite{mislevy1986recent}{{14}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{15}{2024}{{Oren et al.}}{{}}}
+\bibcite{platt1999probabilistic}{{16}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{17}{2024}{{Polo et al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{18}{2009}{{Reckase}}{{}}}
+\bibcite{sainz2023nlp}{{19}{2023}{{Sainz et al.}}{{}}}
+\bibcite{shi2024detecting}{{20}{2024}{{Shi et al.}}{{}}}
+\bibcite{shokri2017membership}{{21}{2017}{{Shokri et al.}}{{}}}
+\bibcite{sinharay2017detection}{{22}{2017}{{Sinharay}}{{}}}
+\bibcite{talts2018validating}{{23}{2018}{{Talts et al.}}{{}}}
+\bibcite{thissen1993detection}{{24}{1993}{{Thissen et al.}}{{}}}
+\bibcite{white2024livebench}{{25}{2024}{{White et al.}}{{}}}
+\bibcite{xu2025emperors}{{26}{2025}{{Xu et al.}}{{}}}
+\bibcite{yang2023rethinking}{{27}{2023}{{Yang et al.}}{{}}}
+\bibcite{zheng2023judging}{{28}{2023}{{Zheng et al.}}{{}}}
+\gdef \@abspage@last{9}

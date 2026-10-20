@@ -1,0 +1,65 @@
+paper_key: "lalor_2024_irt_nlp"
+title: "Item Response Theory for Natural Language Processing"
+venue: "EACL 2024 Tutorial"
+full_text_available: false
+
+research:
+  baselines: [accuracy-based evaluation, human evaluation]
+  metrics:
+    - {name: "item difficulty (b)", direction: "descriptive"}
+    - {name: "item discrimination (a)", direction: "descriptive"}
+    - {name: "ability estimate (θ)", direction: "higher_better"}
+  datasets:
+    - {name: "NLP evaluation benchmarks (various)", size: "tutorial covers general framework"}
+  ablation_dimensions: [IRT model complexity (1PL/2PL/3PL), estimation method, dataset properties]
+  training_recipe: {optimizer: "N/A (psychometric framework)", lr: "N/A", hardware: "N/A"}
+  method_family: "psychometric IRT for NLP"
+
+positioning:
+  core_claim: "IRT provides a principled psychometric framework for NLP evaluation that captures item difficulty, discrimination, and model ability as latent traits — superior to raw accuracy"
+  key_results: "Tutorial demonstrates IRT benefits for difficulty estimation, benchmark quality assessment, latent trait modeling; introduces py-irt Python package"
+  limitations:
+    - "Tutorial format — no novel experimental results"
+    - "IRT assumptions (unidimensionality, local independence) may not hold for LLM evaluation"
+    - "Computational cost of IRT model fitting"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "NLP evaluation relies on raw accuracy, missing rich item-level information available through psychometric methods"
+  tension: "Psychometrics community has decades of evaluation methodology that NLP ignores"
+  key_insight: "IRT models items and examinees jointly, enabling benchmark quality assessment, efficient evaluation, and fair comparison"
+  argument_chain: "raw accuracy is limited → IRT models item × examinee interaction → NLP applications (evaluation, mining, curriculum learning) → py-irt toolkit → community adoption"
+  contribution_framing: "Tutorial contribution: bridge psychometrics and NLP communities"
+  intro_structure: "Tutorial structure: evaluation background → IRT intro → NLP applications → advanced topics → future opportunities"
+  notable_technique: "Providing py-irt package lowers adoption barrier — actionable tutorial rather than just theoretical overview"
+
+figures:
+  figure_count: "N/A (tutorial slides)"
+  figure1:
+    type: "N/A"
+    description: "N/A"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "N/A"
+
+tables:
+  table_count: "N/A"
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: "N/A"
+    design_note: "N/A"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: "N/A"
+    content: "N/A"
+    reason: "N/A"

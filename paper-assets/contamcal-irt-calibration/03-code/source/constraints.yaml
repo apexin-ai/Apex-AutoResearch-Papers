@@ -1,0 +1,72 @@
+_next_id: 11
+constraints:
+- id: C001
+  added: 2026-05-14 02:43 UTC
+  summary: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交
+  scope: worker
+  reason: GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。
+- id: C002
+  added: 2026-05-14 15:46 UTC
+  summary: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断
+  scope: worker
+  reason: resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer
+    2026-05-14 确认。
+- id: C003
+  added: 2026-05-14 15:53 UTC
+  summary: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps
+    确认该 GPU 无残留进程
+  scope: worker
+  reason: GPU 2 两次出现"标 failed 不 kill 进程"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4
+    提交时未检查，造成三进程竞争同一 output-dir。
+- id: C004
+  added: 2026-05-15 06:17 UTC
+  summary: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为
+  scope: worker
+  reason: 已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup
+    启动时未显式传递 CUDA_VISIBLE_DEVICES。
+- id: C005
+  added: 2026-05-15 18:31 UTC
+  summary: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标
+    GPU 独占空闲后再提交
+  scope: worker
+  reason: cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧
+    session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。
+- id: C006
+  added: 2026-05-15 23:29 UTC
+  summary: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42,
+    Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含
+    _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。
+  scope: all
+  reason: D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16
+    checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃
+    checkpoint 黑名单。
+  decision_id: D055
+- id: C007
+  added: 2026-05-16 02:27 UTC
+  summary: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals
+    > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。
+  scope: all
+  reason: 0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer
+    第三次确认优先级倒挂风险。
+- id: C008
+  added: 2026-05-16 09:15 UTC
+  summary: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format
+    时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。
+  scope: all
+  reason: ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有
+    IRT fitting 使用。
+- id: C009
+  added: 2026-05-19 17:52 UTC
+  summary: 启动 eval 前必须 md5sum evaluate.py 并确认与 reference hash（westd 37591 bytes 版本）一致；跨服务器
+    eval 前必须先 SCP 同步脚本
+  scope: worker
+  reason: 'M022/M025: evaluate.py 版本漂移已第三次导致无效 eval 结果。mc_suffix 位置差异（user turn vs
+    assistant turn）产生 3.63pp 系统性偏移，浪费数小时 GPU 时间。'
+  decision_id: D159
+- id: C010
+  added: 2026-05-19 22:12 UTC
+  summary: C009 扩展：分析脚本读取的 eval 数据必须全部来自同一版本 evaluate.py。同一 benchmark 不同 dosage 的数据禁止混用不同版本产出。分析前验证所有输入文件的
+    evaluate.py 版本一致。
+  scope: all
+  reason: M022/M025 再现：analyze_gsm8k.py 在 westd 读旧版 d000 数据(71.04%)，cqa1 新版产出 d000=70.58%，0.46pp
+    偏移。混用会导致 contamination effect 估算偏差。

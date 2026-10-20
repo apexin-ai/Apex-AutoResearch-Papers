@@ -1,0 +1,91 @@
+22:44:56 [INFO] === exp-005 v3: Noise Propagation (analytic ME) ===
+22:44:56 [INFO] σ_e levels: [0.1, 0.3, 0.5, 0.7, 1.0]
+22:44:56 [INFO] Seeds per level: 5
+22:44:56 [INFO] Synthetic data: 30 models × 300 items
+22:44:56 [INFO] Stan output dir: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output
+22:44:57 [INFO] Compiling Stan models...
+22:44:57 [INFO] Compilation done.
+22:44:57 [INFO] Resuming: 23 runs already completed
+22:44:57 [INFO] === σ_e = 0.1 ===
+22:44:57 [INFO]   Skipping (σ_e=0.1, seed=42) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.1, seed=43) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.1, seed=44) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.1, seed=45) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.1, seed=46) — already done
+22:44:57 [INFO] === σ_e = 0.3 ===
+22:44:57 [INFO]   Skipping (σ_e=0.3, seed=42) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.3, seed=43) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.3, seed=44) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.3, seed=45) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.3, seed=46) — already done
+22:44:57 [INFO] === σ_e = 0.5 ===
+22:44:57 [INFO]   Skipping (σ_e=0.5, seed=42) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.5, seed=43) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.5, seed=44) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.5, seed=45) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.5, seed=46) — already done
+22:44:57 [INFO] === σ_e = 0.7 ===
+22:44:57 [INFO]   Skipping (σ_e=0.7, seed=42) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.7, seed=43) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.7, seed=44) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.7, seed=45) — already done
+22:44:57 [INFO]   Skipping (σ_e=0.7, seed=46) — already done
+22:44:57 [INFO] === σ_e = 1.0 ===
+22:44:57 [INFO]   Skipping (σ_e=1.0, seed=42) — already done
+22:44:57 [INFO]   Skipping (σ_e=1.0, seed=43) — already done
+22:44:57 [INFO]   Skipping (σ_e=1.0, seed=44) — already done
+22:44:58 [INFO]   Fitting simple model (σ_e=1.0, seed=45)...
+22:44:58 [INFO] CmdStan start processing
+22:44:58 [INFO] Chain [1] start processing
+22:44:58 [INFO] Chain [2] start processing
+22:52:12 [INFO] Chain [1] done processing
+22:52:12 [INFO] Chain [3] start processing
+22:52:26 [INFO] Chain [2] done processing
+22:52:26 [INFO] Chain [4] start processing
+22:59:49 [INFO] Chain [3] done processing
+22:59:52 [INFO] Chain [4] done processing
+23:01:30 [INFO]     Simple done in 993s, CI_width=0.0987, Rhat=1.007
+23:01:30 [INFO]   Fitting analytic ME model (σ_e=1.0, seed=45)...
+23:01:30 [INFO] CmdStan start processing
+23:01:30 [INFO] Chain [1] start processing
+23:01:30 [INFO] Chain [2] start processing
+23:04:34 [INFO] Chain [1] done processing
+23:04:34 [INFO] Chain [3] start processing
+23:04:44 [INFO] Chain [2] done processing
+23:04:44 [INFO] Chain [4] start processing
+23:07:32 [INFO] Chain [3] done processing
+23:07:34 [INFO] Chain [4] done processing
+23:08:52 [INFO]     ME(analytic) done in 442s, CI_width=0.0993, Rhat=1.007
+23:08:52 [INFO]   Saved (24/25 complete)
+23:08:53 [INFO]   Fitting simple model (σ_e=1.0, seed=46)...
+23:08:53 [INFO] CmdStan start processing
+23:08:53 [INFO] Chain [1] start processing
+23:08:53 [INFO] Chain [2] start processing
+23:12:24 [INFO] Chain [1] done processing
+23:12:24 [INFO] Chain [3] start processing
+23:12:27 [INFO] Chain [2] done processing
+23:12:27 [INFO] Chain [4] start processing
+23:15:51 [INFO] Chain [4] done processing
+23:15:53 [INFO] Chain [3] done processing
+23:17:10 [INFO]     Simple done in 497s, CI_width=0.0984, Rhat=1.009
+23:17:10 [INFO]   Fitting analytic ME model (σ_e=1.0, seed=46)...
+23:17:10 [INFO] CmdStan start processing
+23:17:10 [INFO] Chain [1] start processing
+23:17:10 [INFO] Chain [2] start processing
+23:20:10 [INFO] Chain [1] done processing
+23:20:10 [INFO] Chain [3] start processing
+23:20:11 [INFO] Chain [2] done processing
+23:20:11 [INFO] Chain [4] start processing
+23:23:34 [INFO] Chain [3] done processing
+23:23:36 [INFO] Chain [4] done processing
+23:25:07 [INFO]     ME(analytic) done in 477s, CI_width=0.0985, Rhat=1.006
+23:25:07 [INFO]   Saved (25/25 complete)
+23:25:09 [INFO] === Results Summary ===
+23:25:09 [INFO]   σ_e=0.1: ME CI=0.0999±0.0010, Simple CI=0.1000±0.0011
+23:25:09 [INFO]   σ_e=0.3: ME CI=0.0997±0.0011, Simple CI=0.1000±0.0012
+23:25:09 [INFO]   σ_e=0.5: ME CI=0.0998±0.0011, Simple CI=0.0998±0.0013
+23:25:09 [INFO]   σ_e=0.7: ME CI=0.0999±0.0012, Simple CI=0.0997±0.0013
+23:25:09 [INFO]   σ_e=1.0: ME CI=0.1000±0.0012, Simple CI=0.0999±0.0013
+23:25:09 [INFO] Monotonicity (ME): rho=0.400, p=0.5046 → WEAK
+23:25:09 [INFO] Verdict: INCONCLUSIVE: weak monotonic relationship
+23:25:09 [INFO] Stan output cleaned up.

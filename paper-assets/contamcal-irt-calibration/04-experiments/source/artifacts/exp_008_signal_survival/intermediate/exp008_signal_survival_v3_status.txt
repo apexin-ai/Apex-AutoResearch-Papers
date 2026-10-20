@@ -1,0 +1,27 @@
+Server path: /root/contamcal-irt-calibration/exp008/signal_survival.py
+Status: code_ready, dry-run PASS
+
+Features:
+- 5 signals: embedding, minkpp, constat, selfcritique, rrf_score
+- Per-benchmark survival analysis (mmlu, gsm8k, arc_challenge)
+- Cliff detection: cliff_ratio = max_step_drop / total_drop, threshold 0.7
+- Cross-benchmark aggregation (mean/std AUC)
+- Pairwise tests: Cohen's d, Spearman, Wilcoxon, AUC ratio
+- Survival classification: AUC >= 0.6 and effect_size_ratio >= 0.5
+
+CLI:
+  Real data: python signal_survival.py --regime-dirs base=... sft_clean=... sft_contam=... rl_aligned=... --labels-dir /path/labels/ --output-dir ./exp008_output
+  Dry-run: python signal_survival.py --dry-run --max-items 200
+
+Output files:
+  - per_benchmark/{benchmark}/survival_report.json
+  - cliff_analysis.json
+  - cross_benchmark_summary.json
+
+Blocking: needs exp-002 signal outputs per regime
+
+Existing files kept (still functional):
+  - signal_survival_analysis.py (v2 N-regime core)
+  - run_signal_survival.py (v2 runner)
+  - plot_survival.py (v2 visualization)
+  - run_exp008.sh (shell orchestrator)

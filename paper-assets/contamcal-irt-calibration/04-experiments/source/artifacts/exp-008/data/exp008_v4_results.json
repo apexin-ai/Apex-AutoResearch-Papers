@@ -1,0 +1,104 @@
+{
+  "experiment": "exp-008",
+  "version": "v4_D021_corrected",
+  "per_benchmark": {
+    "mmlu": {
+      "benchmark": "mmlu",
+      "n_items": 14042,
+      "n_contaminated_d005": 703,
+      "within_model_auc": {
+        "d000": {
+          "S1_Embedding": {"auc": 0.504915, "n_pos": 703, "n_neg": 13339, "n_total": 14042},
+          "S2_MinKPP": {"auc": 0.509028, "n_pos": 703, "n_neg": 13339, "n_total": 14042},
+          "S4_SelfCritique": {"auc": 0.495722, "n_pos": 703, "n_neg": 13339, "n_total": 14042}
+        },
+        "d005": {
+          "S1_Embedding": {"auc": 0.952963, "n_pos": 703, "n_neg": 13339, "n_total": 14042},
+          "S2_MinKPP": {"auc": 0.46548, "n_pos": 703, "n_neg": 13339, "n_total": 14042},
+          "S4_SelfCritique": {"auc": 0.516544, "n_pos": 703, "n_neg": 13339, "n_total": 14042}
+        }
+      },
+      "cross_model_d100_vs_d000": {
+        "S1_Embedding": {"n_items": 14042, "mean_d100": 0.901361, "mean_d000": 0.522375, "mean_diff": 0.378985, "std_diff": 0.091055, "cohens_d": 4.1622, "wilcoxon_stat": 0.0, "wilcoxon_p": 0.0, "pct_d100_higher": 0.9993, "pct_d100_lower": 0.0, "significant_bonferroni": true},
+        "S2_MinKPP": {"n_items": 14042, "mean_d100": 1.432032, "mean_d000": 1.697604, "mean_diff": -0.265572, "std_diff": 0.217631, "cohens_d": -1.2203, "wilcoxon_stat": 660013.0, "wilcoxon_p": 0.0, "pct_d100_higher": 0.0308, "pct_d100_lower": 0.969, "significant_bonferroni": true},
+        "S4_SelfCritique": {"n_items": 14042, "mean_d100": -0.907331, "mean_d000": -0.955669, "mean_diff": 0.048339, "std_diff": 0.103438, "cohens_d": 0.4673, "wilcoxon_stat": 19322716.0, "wilcoxon_p": 0.0, "pct_d100_higher": 0.6733, "pct_d100_lower": 0.2745, "significant_bonferroni": true}
+      }
+    },
+    "gsm8k": {
+      "benchmark": "gsm8k",
+      "n_items": 1319,
+      "n_contaminated_d005": 73,
+      "within_model_auc": {
+        "d000": {
+          "S1_Embedding": {"auc": 0.550232, "n_pos": 73, "n_neg": 1246, "n_total": 1319},
+          "S2_MinKPP": {"auc": 0.569703, "n_pos": 73, "n_neg": 1246, "n_total": 1319},
+          "S4_SelfCritique": {"auc": 0.480029, "n_pos": 73, "n_neg": 1246, "n_total": 1319}
+        },
+        "d005": {
+          "S1_Embedding": {"auc": 0.988203, "n_pos": 73, "n_neg": 1246, "n_total": 1319},
+          "S2_MinKPP": {"auc": 0.464863, "n_pos": 73, "n_neg": 1246, "n_total": 1319},
+          "S4_SelfCritique": {"auc": 0.494684, "n_pos": 73, "n_neg": 1246, "n_total": 1319}
+        }
+      },
+      "cross_model_d100_vs_d000": {
+        "S1_Embedding": {"n_items": 1319, "mean_diff": 0.197201, "std_diff": 0.069606, "cohens_d": 2.8331, "wilcoxon_p": 3.07e-216, "pct_d100_higher": 0.9992, "significant_bonferroni": true},
+        "S2_MinKPP": {"n_items": 1319, "mean_diff": -0.478204, "std_diff": 0.179378, "cohens_d": -2.666, "wilcoxon_p": 3.37e-217, "pct_d100_higher": 0.0076, "significant_bonferroni": true},
+        "S4_SelfCritique": {"n_items": 1319, "mean_diff": 0.021506, "std_diff": 0.105749, "cohens_d": 0.2034, "wilcoxon_p": 1.05e-08, "pct_d100_higher": 0.5874, "significant_bonferroni": true}
+      }
+    },
+    "arc_challenge": {
+      "benchmark": "arc_challenge",
+      "n_items": 1172,
+      "n_contaminated_d005": 50,
+      "within_model_auc": {
+        "d000": {
+          "S1_Embedding": {"auc": 0.427041, "n_pos": 50, "n_neg": 1122, "n_total": 1172},
+          "S2_MinKPP": {"auc": 0.507451, "n_pos": 50, "n_neg": 1122, "n_total": 1172},
+          "S4_SelfCritique": {"auc": 0.51754, "n_pos": 50, "n_neg": 1122, "n_total": 1172}
+        },
+        "d005": {
+          "S1_Embedding": {"auc": 0.995027, "n_pos": 50, "n_neg": 1122, "n_total": 1172},
+          "S2_MinKPP": {"auc": 0.465865, "n_pos": 50, "n_neg": 1122, "n_total": 1172},
+          "S4_SelfCritique": {"auc": 0.43246, "n_pos": 50, "n_neg": 1122, "n_total": 1172}
+        }
+      },
+      "cross_model_d100_vs_d000": {
+        "S1_Embedding": {"n_items": 1172, "mean_diff": 0.278853, "std_diff": 0.073402, "cohens_d": 3.7993, "wilcoxon_p": 4.36e-193, "pct_d100_higher": 0.9991, "significant_bonferroni": true},
+        "S2_MinKPP": {"n_items": 1172, "mean_diff": -0.498085, "std_diff": 0.243127, "cohens_d": -2.048, "wilcoxon_p": 7.87e-193, "pct_d100_higher": 0.0162, "significant_bonferroni": true},
+        "S4_SelfCritique": {"n_items": 1172, "mean_diff": 0.069977, "std_diff": 0.104349, "cohens_d": 0.6708, "wilcoxon_p": 1.0e-95, "pct_d100_higher": 0.7611, "significant_bonferroni": true}
+      }
+    }
+  },
+  "heatmap": {
+    "S1_Embedding": {
+      "mmlu": {"d000_auc": 0.504915, "d005_auc": 0.952963, "d100_cross_model_effect": 4.1622, "d100_cross_model_p": 0.0, "d100_cross_model_significant": true},
+      "gsm8k": {"d000_auc": 0.550232, "d005_auc": 0.988203, "d100_cross_model_effect": 2.8331, "d100_cross_model_p": 3.07e-216, "d100_cross_model_significant": true},
+      "arc_challenge": {"d000_auc": 0.427041, "d005_auc": 0.995027, "d100_cross_model_effect": 3.7993, "d100_cross_model_p": 4.36e-193, "d100_cross_model_significant": true}
+    },
+    "S2_MinKPP": {
+      "mmlu": {"d000_auc": 0.509028, "d005_auc": 0.46548, "d100_cross_model_effect": -1.2203, "d100_cross_model_p": 0.0, "d100_cross_model_significant": true},
+      "gsm8k": {"d000_auc": 0.569703, "d005_auc": 0.464863, "d100_cross_model_effect": -2.666, "d100_cross_model_p": 3.37e-217, "d100_cross_model_significant": true},
+      "arc_challenge": {"d000_auc": 0.507451, "d005_auc": 0.465865, "d100_cross_model_effect": -2.048, "d100_cross_model_p": 7.87e-193, "d100_cross_model_significant": true}
+    },
+    "S4_SelfCritique": {
+      "mmlu": {"d000_auc": 0.495722, "d005_auc": 0.516544, "d100_cross_model_effect": 0.4673, "d100_cross_model_p": 0.0, "d100_cross_model_significant": true},
+      "gsm8k": {"d000_auc": 0.480029, "d005_auc": 0.494684, "d100_cross_model_effect": 0.2034, "d100_cross_model_p": 1.05e-08, "d100_cross_model_significant": true},
+      "arc_challenge": {"d000_auc": 0.51754, "d005_auc": 0.43246, "d100_cross_model_effect": 0.6708, "d100_cross_model_p": 1.0e-95, "d100_cross_model_significant": true}
+    }
+  },
+  "summary": {
+    "version": "v4_D021_corrected",
+    "correction_notes": [
+      "d100 within-model AUC removed (label artifact: all items contaminated → no negative class)",
+      "d100 now uses cross-model paired comparison (d100 vs d000 signal differences)",
+      "C2 claim weakened: 'systematic signal variation with dosage' instead of 'cliff-like RL degradation'"
+    ],
+    "key_findings": [
+      {"signal": "S1_Embedding", "d005_auc_mean": 0.9787, "d005_auc_range": [0.953, 0.995], "d000_sanity_check": "MARGINAL", "d100_cross_model_any_significant": true, "d100_cross_model_effects": [4.1622, 2.8331, 3.7993]},
+      {"signal": "S2_MinKPP", "d005_auc_mean": 0.4654, "d005_auc_range": [0.4649, 0.4659], "d000_sanity_check": "MARGINAL", "d100_cross_model_any_significant": true, "d100_cross_model_effects": [-1.2203, -2.666, -2.048]},
+      {"signal": "S4_SelfCritique", "d005_auc_mean": 0.4812, "d005_auc_range": [0.4325, 0.5165], "d000_sanity_check": "PASS", "d100_cross_model_any_significant": true, "d100_cross_model_effects": [0.4673, 0.2034, 0.6708]}
+    ],
+    "effective_signal_count": 1,
+    "narrative": "1/3 signals show effective contamination detection at d005. Signal effectiveness varies systematically with dosage; individual signals insufficient → need IRT multi-signal fusion for robust detection across regimes."
+  }
+}

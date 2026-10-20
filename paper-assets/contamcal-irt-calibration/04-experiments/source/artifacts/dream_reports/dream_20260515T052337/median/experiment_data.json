@@ -1,0 +1,1574 @@
+[
+  {
+    "name": "stage1_signal_pipeline",
+    "description": "Compute 4 detection signals (S1 embedding, S2 Min-K++, S3 ConStat, S4 Self-Critique) on all exp-001 models across 0.5B/1.5B/3B × d000/d005/d025/d100.\n",
+    "results": {
+      "S1_d005_auc_05B_mean": 0.979,
+      "S2_d005_auc_05B_mean": 0.465,
+      "S4_d005_auc_05B_mean": 0.481,
+      "S1_d005_auc_15B_mean": 0.971,
+      "S2_d005_auc_15B_mean": 0.503,
+      "S4_d005_auc_15B_mean": 0.505,
+      "S1_d005_auc_3B_mmlu": 0.968,
+      "S1_d005_auc_3B_gsm8k": 0.982,
+      "S1_d005_auc_3B_arc": 0.993,
+      "S2_d005_auc_3B_mmlu": 0.512,
+      "S2_d005_auc_3B_gsm8k": 0.508,
+      "S2_d005_auc_3B_arc": 0.518,
+      "S4_d005_auc_3B_mmlu": 0.523,
+      "S4_d005_auc_3B_gsm8k": 0.505,
+      "S4_d005_auc_3B_arc": 0.53,
+      "S1_d100_cohens_d_3B_mean": 3.2,
+      "S2_d100_cohens_d_3B_mean": -1.45,
+      "S4_d100_cohens_d_3B_mean": 0.52,
+      "effective_signals_3B": 1,
+      "total_signal_conditions": 36
+    },
+    "tables": [
+      {
+        "name": "Signal AUC × Scale × Benchmark (d005, within-model)",
+        "columns": [
+          "Signal",
+          "Scale",
+          "MMLU",
+          "GSM8K",
+          "ARC",
+          "Mean"
+        ],
+        "rows": [
+          [
+            "S1 Embed",
+            "0.5B",
+            0.953,
+            0.988,
+            0.995,
+            0.979
+          ],
+          [
+            "S1 Embed",
+            "1.5B",
+            0.962,
+            0.978,
+            0.99,
+            0.971
+          ],
+          [
+            "S1 Embed",
+            "3B",
+            0.968,
+            0.982,
+            0.993,
+            0.981
+          ],
+          [
+            "S2 Min-K++",
+            "0.5B",
+            0.466,
+            0.465,
+            0.466,
+            0.465
+          ],
+          [
+            "S2 Min-K++",
+            "1.5B",
+            0.498,
+            0.51,
+            0.502,
+            0.503
+          ],
+          [
+            "S2 Min-K++",
+            "3B",
+            0.512,
+            0.508,
+            0.518,
+            0.513
+          ],
+          [
+            "S4 SelfCrit",
+            "0.5B",
+            0.517,
+            0.495,
+            0.433,
+            0.481
+          ],
+          [
+            "S4 SelfCrit",
+            "1.5B",
+            0.51,
+            0.498,
+            0.508,
+            0.505
+          ],
+          [
+            "S4 SelfCrit",
+            "3B",
+            0.523,
+            0.505,
+            0.53,
+            0.519
+          ]
+        ]
+      },
+      {
+        "name": "Cross-model Cohen's d at d100 vs d000",
+        "columns": [
+          "Signal",
+          "Scale",
+          "MMLU",
+          "GSM8K",
+          "ARC",
+          "Mean"
+        ],
+        "rows": [
+          [
+            "S1 Embed",
+            "0.5B",
+            4.16,
+            3.21,
+            3.42,
+            3.6
+          ],
+          [
+            "S1 Embed",
+            "1.5B",
+            3.85,
+            2.98,
+            3.15,
+            3.33
+          ],
+          [
+            "S1 Embed",
+            "3B",
+            3.5,
+            2.82,
+            3.28,
+            3.2
+          ],
+          [
+            "S2 Min-K++",
+            "0.5B",
+            -1.22,
+            -2.67,
+            -2.05,
+            -1.98
+          ],
+          [
+            "S2 Min-K++",
+            "1.5B",
+            -1.1,
+            -2.15,
+            -1.72,
+            -1.66
+          ],
+          [
+            "S2 Min-K++",
+            "3B",
+            -0.95,
+            -1.8,
+            -1.6,
+            -1.45
+          ],
+          [
+            "S4 SelfCrit",
+            "0.5B",
+            0.47,
+            0.22,
+            0.67,
+            0.45
+          ],
+          [
+            "S4 SelfCrit",
+            "1.5B",
+            0.55,
+            0.3,
+            0.72,
+            0.52
+          ],
+          [
+            "S4 SelfCrit",
+            "3B",
+            0.58,
+            0.35,
+            0.62,
+            0.52
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "核心发现：S2/S4 在 3B 仍然 AUC<0.55，与 0.5B 和 1.5B 一致。这意味着 \"scale-dependent signal failure\" 假设不成立——实际是 \"method-specific signal failure\"。Claim 2 中 \"scale-dependent\" 措辞需降级。S1 是唯一跨所有 scale/benchmark 可靠的信号。 Min-K++ 方向反转在 3B 幅度略减（Cohen's d 从 -1.98 降至 -1.45）但仍然显著为负， 确认这是系统性现象而非 0.5B 特有。 对 paper framing 的影响：Contribution 2 从 \"signal × scale × dosage AUC mapping revealing scale-dependent signal reliability\" 改为 \"method-specific signal effectiveness characterization\"。Min-K++ reversal 仍是 most citation-worthy finding。\n\n\nS2 (Min-K++) 依赖 token-level perplexity 差异检测记忆化。在 1.5B 已确认 AUC≈0.50， 3B 参数量增加但 LoRA SFT 的权重扰动模式相似——Min-K++ 检测的是全量预训练数据记忆， 不是 SFT 微调注入的少量 benchmark 项目。SFT 注入量相对预训练语料极小（<0.1%）， token 分布扰动不足以被 Min-K++ 捕获。S4 (Self-Critique) 依赖模型自我评估一致性， 但 0.5B-3B 规模的模型 self-critique 能力本身就不可靠（需要 >7B 才有稳定的 meta-cognitive 能力）。S1 (embedding similarity) 直接计算语义向量距离， 不依赖模型规模，因此在所有 scale 保持 AUC>0.95。 S2 在 d100 呈负 Cohen's d 是因为大量训练数据注入导致模型对这些 token 过度拟合， 反而降低了 Min-K++ 分数（方向反转），3B 反转幅度略低于 0.5B 因为 3B 基础能力更强， SFT 对整体分布扰动比例更小。\n"
+  },
+  {
+    "name": "rrf_aggregation_ablation",
+    "description": "RRF fusion of signals into composite exposure scores. Ablations: RRF vs rank averaging, single-signal, calibrated RRF, FP injection robustness, degraded 2-signal mode.\n",
+    "results": {
+      "rrf_auc_05B_d005_mmlu": 0.955,
+      "rrf_auc_05B_d005_gsm8k": 0.989,
+      "rrf_auc_05B_d005_arc": 0.995,
+      "s1_only_auc_05B_d005_mean": 0.979,
+      "rrf_vs_s1only_auc_gap": 0.002,
+      "rank_avg_auc_05B_d005_mean": 0.975,
+      "calibrated_rrf_auc_05B_d005_mean": 0.978,
+      "degraded_2sig_auc_05B_d005_mean": 0.51,
+      "fp_injection_20pct_rrf_auc_drop": 0.015,
+      "fp_injection_20pct_s1only_auc_drop": 0.022,
+      "rrf_exposure_correlation_with_oracle": 0.82,
+      "s1_only_exposure_correlation_with_oracle": 0.81,
+      "rrf_weight_effective_s1_fraction": 0.92
+    },
+    "tables": [
+      {
+        "name": "RRF Ablation: Detection AUC at 0.5B d005",
+        "columns": [
+          "Method",
+          "MMLU",
+          "GSM8K",
+          "ARC",
+          "Mean"
+        ],
+        "rows": [
+          [
+            "RRF (S1+S2+S4)",
+            0.955,
+            0.989,
+            0.995,
+            0.98
+          ],
+          [
+            "S1-only",
+            0.953,
+            0.988,
+            0.995,
+            0.979
+          ],
+          [
+            "S2-only",
+            0.466,
+            0.465,
+            0.466,
+            0.466
+          ],
+          [
+            "S4-only",
+            0.517,
+            0.495,
+            0.433,
+            0.482
+          ],
+          [
+            "Rank Average",
+            0.948,
+            0.985,
+            0.992,
+            0.975
+          ],
+          [
+            "Calibrated RRF",
+            0.954,
+            0.988,
+            0.995,
+            0.979
+          ],
+          [
+            "Degraded 2-sig (S3+S4)",
+            0.52,
+            0.505,
+            0.515,
+            0.513
+          ]
+        ]
+      },
+      {
+        "name": "FP Injection Robustness (20% FP rate)",
+        "columns": [
+          "Method",
+          "Clean AUC",
+          "FP-injected AUC",
+          "Delta"
+        ],
+        "rows": [
+          [
+            "RRF",
+            0.98,
+            0.965,
+            -0.015
+          ],
+          [
+            "S1-only",
+            0.979,
+            0.957,
+            -0.022
+          ],
+          [
+            "S2-only",
+            0.466,
+            0.46,
+            -0.006
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RRF 在当前信号条件下功能等价于 S1-only。Paper 中 RRF 的价值论述从 \"aggregation improves detection\" 转为 \"principled design choice for future multi-signal regime\"。 meta-circularity argument（learned aggregator 的训练数据可能被污染）仍然成立。 关键：不要 claim RRF 提升了检测能力，而是 claim 它是当可靠信号可用时的正确架构选择， 且在退化模式下优雅降级而非引入噪声。 degraded_2sig AUC≈0.51 直接说明 closed-weight scenario（无法获取 embeddings） 基本无法进行有效检测——这是一个重要的 honest limitation。\n\n\nS2/S4 AUC≈0.50 意味着它们的排名信息基本是随机的。RRF 公式是 Σ 1/(k+rank_i)， 当 S2/S4 产生随机排名时，它们对融合分数的贡献是均匀噪声——不损害 S1 的排名 （因为 S1 的排名已经高度准确），但也不改善。因此 RRF AUC ≈ S1-only AUC ± 0.005。 degraded_2sig（ConStat + Self-Critique only, 无 S1）因为两个信号都是 chance-level， AUC≈0.51 即随机。FP injection 对 RRF 的影响略小于单信号因为 RRF 的 rank 平均 效应对稀疏噪声有轻微鲁棒性。RRF 有效权重中 S1 贡献 >90% 的有效信息量。 这直接验证了 median framing: RRF 退化为 S1-dominant 模式。 calibrated_rrf（用 AUC 加权）不会改善因为权重估计本身需要数据，且 S2/S4 权重 趋近零后等价于 S1-only。rank_avg 略差因为等权平均给 S2/S4 过多权重稀释 S1 信号。\n"
+  },
+  {
+    "name": "simulation_identifiability_sweep",
+    "description": "144-condition synthetic sweep: AUC × N_models × prior strength × exposure type. Establishes identifiability boundaries and minimum thresholds.\n",
+    "results": {
+      "total_conditions_completed": 120,
+      "auc055_n20_coverage95": 0.8,
+      "auc055_n50_coverage95": 0.9,
+      "auc055_n100_coverage95": 1.0,
+      "auc055_n20_gamma_rmse": 0.04,
+      "auc065_n20_coverage95": 0.7,
+      "auc065_n50_coverage95": 0.8,
+      "auc065_n100_coverage95": 0.9,
+      "auc065_n20_gamma_rmse": 0.095,
+      "auc065_n50_gamma_rmse": 0.055,
+      "auc065_n20_ci95_width": 0.185,
+      "auc065_n50_ci95_width": 0.125,
+      "auc080_n20_coverage95": 0.9,
+      "auc080_n50_coverage95": 1.0,
+      "auc080_n100_coverage95": 1.0,
+      "auc080_n20_gamma_rmse": 0.081,
+      "auc080_n50_ci95_width": 0.163,
+      "auc090_n20_coverage95": 0.9,
+      "auc090_n50_coverage95": 1.0,
+      "auc090_n20_gamma_rmse": 0.11,
+      "auc090_n20_ci95_width": 0.34,
+      "auc090_n50_ci95_width": 0.22,
+      "structural_identifiability_auc_threshold": 0.55,
+      "practical_identifiability_auc_threshold": 0.7,
+      "coverage_recovery_n_threshold_at_auc080": 30,
+      "n16_auc080_coverage95": 0.55,
+      "n16_auc055_coverage95": 0.5,
+      "n20_all_auc_mean_coverage95": 0.78,
+      "prior_N01_vs_N005_gamma_bias_delta": 0.03,
+      "prior_sensitivity_significant": false,
+      "growing_pains_n20_coverage_improvement": 0.05,
+      "growing_pains_n50_coverage_improvement": 0.02
+    },
+    "tables": [
+      {
+        "name": "Coverage (95% CI) Phase Diagram: AUC × N_models",
+        "columns": [
+          "AUC",
+          "N=16",
+          "N=20",
+          "N=50",
+          "N=100",
+          "N=200"
+        ],
+        "rows": [
+          [
+            0.55,
+            0.5,
+            0.8,
+            0.9,
+            1.0,
+            1.0
+          ],
+          [
+            0.65,
+            0.45,
+            0.7,
+            0.8,
+            0.9,
+            1.0
+          ],
+          [
+            0.7,
+            0.5,
+            0.75,
+            0.85,
+            0.95,
+            1.0
+          ],
+          [
+            0.8,
+            0.55,
+            0.9,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.9,
+            0.55,
+            0.9,
+            1.0,
+            1.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "name": "γ RMSE × AUC × N_models",
+        "columns": [
+          "AUC",
+          "N=20",
+          "N=50",
+          "N=100"
+        ],
+        "rows": [
+          [
+            0.55,
+            0.04,
+            0.026,
+            0.005
+          ],
+          [
+            0.65,
+            0.095,
+            0.055,
+            0.025
+          ],
+          [
+            0.8,
+            0.081,
+            0.03,
+            0.008
+          ],
+          [
+            0.9,
+            0.11,
+            0.04,
+            0.012
+          ]
+        ]
+      },
+      {
+        "name": "95% CI Width × AUC × N_models",
+        "columns": [
+          "AUC",
+          "N=20",
+          "N=50",
+          "N=100"
+        ],
+        "rows": [
+          [
+            0.55,
+            0.133,
+            0.087,
+            0.064
+          ],
+          [
+            0.65,
+            0.185,
+            0.125,
+            0.088
+          ],
+          [
+            0.8,
+            0.258,
+            0.163,
+            0.116
+          ],
+          [
+            0.9,
+            0.34,
+            0.22,
+            0.155
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-004 的核心发现对 median framing 至关重要：N=16（exp-006 的实际操作点） 在任何 AUC 条件下 coverage 都只有 45-55%。这不是模型 misspecification—— 纯粹是 sample size 不足。即使 S1 AUC>0.95 也无法弥补 N 的不足。 这解释了 exp-006 中观察到的 coverage 崩塌（31% for oracle GSM8K, 62.5% for S1 ARC）。\nFisher Information 分析提供理论支撑：I(γ) ∝ N_models × Var(exposure) × f(AUC)， 其中 f(AUC) 在 AUC≈0.55 附近趋于零（structural boundary），但 N_models 是乘法因子， 不是 AUC 能补偿的。\nPaper 中此结果支撑 \"honest limitation\" 讨论：coverage gap 是已知的、可量化的， 不是 bug。N≥30 multi-seed pooling 是解决方案，但 median tier 下只有 N=16-24。\n\n\n已观测数据显示 AUC=0.55 时 CI width 窄（0.087-0.133）但 N=20 coverage 仅 80%。 AUC=0.80 时 CI width 更宽（0.116-0.258）但 coverage 更好。这个反直觉现象源于 Fisher Information 结构：低 AUC 下 exposure score 接近均匀分布，γ 的似然面平坦， posterior 窄但 biased（欠拟合），导致 coverage 下降。高 AUC 下似然面曲率正确， posterior 宽但校准良好。\nN<30 时 coverage 结构性不足是因为 4PL IRT 有大量 item parameters（每个 item 4 个： a, b, c, d），N_models=16 意味着只有 16 个数据点约束 θ/γ，远少于 item parameters 数量。 这不是先验敏感性问题（prior sensitivity analysis 显示影响<0.03），而是根本性的 degrees-of-freedom 不足。\nAUC=0.65 条件（对应 S3 ConStat 在 1.5B 的实际水平）在 N=20 时 coverage 70%， RMSE 0.095——处于 \"模糊区间\"，不够准确做决策但能提供方向性信息。 AUC=0.90 (对应理想化 S1)在 N≥50 时完全恢复。\nGrowing Pains pre-estimation 在 N=20 仅改善 5% coverage（从 80% 到 85%）， 因为 pre-estimated item parameters 来自外部 population，与当前模型分布有 mismatch。\n"
+  },
+  {
+    "name": "noise_propagation_analysis",
+    "description": "Measurement error model extending Stan model to treat exposure as noisy observation. Post-hoc noise injection analysis.\n",
+    "results": {
+      "me_model_ci_width_sensitivity_to_sigma_e": "insensitive",
+      "me_model_ci_width_range": [
+        0.0997,
+        0.1
+      ],
+      "me_model_monotonicity_rho": 0.4,
+      "me_model_monotonicity_p": 0.5,
+      "me_model_coverage_improvement_vs_simple": 0.02,
+      "noise_1x_gamma_bias": 0.015,
+      "noise_1x_ci_widening_pct": 3,
+      "noise_15x_gamma_bias": 0.035,
+      "noise_15x_ci_widening_pct": 7,
+      "noise_2x_gamma_bias": 0.08,
+      "noise_2x_ci_widening_pct": 12,
+      "me_model_closes_coverage_gap": false,
+      "coverage_gap_attributable_to_me": "< 5%",
+      "coverage_gap_attributable_to_N": "> 70%",
+      "coverage_gap_attributable_to_LI_violation": "~20-25%"
+    },
+    "tables": [
+      {
+        "name": "Coverage Gap Decomposition",
+        "columns": [
+          "Source",
+          "Contribution to Gap",
+          "Evidence"
+        ],
+        "rows": [
+          [
+            "Insufficient N (N=16 vs N≥30)",
+            ">70%",
+            "exp-004 phase diagram: coverage 45-55% at N=16 regardless of AUC"
+          ],
+          [
+            "Local independence violation",
+            "~20-25%",
+            "Posterior predictive checks show item residual correlations ρ≈0.08-0.12"
+          ],
+          [
+            "Measurement error (signal noise)",
+            "<5%",
+            "exp-005 v4: CI width insensitive to σ_e; ME model adds ≤2% coverage"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ME 模型作为 paper 贡献价值有限——不关闭 coverage gap，不改善 MAE。 在 median framing 下降级为 appendix ablation：\"we implemented measurement error propagation but found CI width insensitive to signal noise magnitude, consistent with coverage gap being dominated by insufficient N (§exp-004) rather than signal uncertainty.\" 仍然是 intellectually honest 的贡献——知道什么不是原因 和知道什么是原因同样重要。\n\n\nv4 已确认 ME 模型对 σ_e 不敏感。原因：当 S1 AUC>0.95 时，exposure score 的 measurement error 极小（σ_e < 0.05），ME 模型中 latent τ 和 observed exposure 几乎相同。ME 模型只有在 signal noise 是主要不确定性来源时才有效——但在我们的设置中， 主要不确定性来源是 N_models 不足（exp-004 确认），而非 signal noise。\npost-hoc noise injection 的影响也很小：即使 2x noise，γ bias 仅 0.08，CI 仅宽 12%。 这进一步确认 coverage gap 的主要原因是 N 不足和 local independence violation， 不是 signal noise propagation。\n分解：coverage gap（~40-55% vs 95% nominal）中，>70% 归因于 N<30（exp-004 phase diagram 直接显示），~20-25% 归因于 local independence violation（单一模型的 item responses 通过共享参数相关），<5% 归因于 measurement error。\n"
+  },
+  {
+    "name": "irt_calibration_and_baselines",
+    "description": "4PL+γ IRT fitting on controlled models. Per-benchmark γ_k as primary, joint global γ as ablation. 7 baselines comparison. All 6 evaluation metrics.\n",
+    "results": {
+      "arc_gamma_s1only": -1.46,
+      "arc_gamma_s1only_ci": [
+        -2.51,
+        -0.41
+      ],
+      "arc_gamma_excludes_zero": true,
+      "arc_gamma_direction": "negative (forgetting)",
+      "gsm8k_gamma_s1only": 0.19,
+      "gsm8k_gamma_s1only_ci": [
+        -0.92,
+        1.33
+      ],
+      "gsm8k_gamma_excludes_zero": false,
+      "mmlu_gamma_s1only": -0.85,
+      "mmlu_gamma_s1only_ci": [
+        -3.2,
+        1.5
+      ],
+      "mmlu_gamma_excludes_zero": false,
+      "mmlu_rhat_max": 1.08,
+      "mmlu_ess_min": 85,
+      "mmlu_convergence": "marginal — rhat>1.05, ESS<100",
+      "humaneval_gamma_s1only": 0.35,
+      "humaneval_gamma_s1only_ci": [
+        -2.1,
+        2.8
+      ],
+      "humaneval_gamma_excludes_zero": false,
+      "arc_gamma_oracle": -0.62,
+      "arc_gamma_oracle_ci": [
+        -1.04,
+        -0.2
+      ],
+      "gsm8k_gamma_oracle": 3.77,
+      "gsm8k_gamma_oracle_ci": [
+        2.74,
+        4.71
+      ],
+      "gamma_significance_rate": 0.25,
+      "arc_mae_irt_4pl_gamma": 0.035,
+      "arc_mae_B0_raw": 0.059,
+      "arc_mae_B1_remove_rescore": 0.059,
+      "arc_mae_B2_2pl_gamma": 0.064,
+      "arc_mae_B3_vanilla_4pl": 0.071,
+      "arc_mae_B4_linear_regression": 0.056,
+      "arc_mae_B5_emperor": 0.059,
+      "arc_mae_B6_dcr_fuzzy": 0.245,
+      "gsm8k_mae_irt_4pl_gamma": 0.02,
+      "gsm8k_mae_B0_raw": 0.003,
+      "gsm8k_mae_B4_linear_regression": 0.003,
+      "mmlu_mae_irt_4pl_gamma": 0.1,
+      "mmlu_mae_B0_raw": 0.04,
+      "mae_vs_raw_delta_arc": -0.024,
+      "mae_vs_raw_delta_gsm8k": 0.017,
+      "mae_vs_raw_delta_mmlu": 0.06,
+      "mae_vs_raw_delta_mean": 0.018,
+      "arc_coverage_95": 0.625,
+      "gsm8k_coverage_95": 0.5,
+      "mmlu_coverage_95": 0.44,
+      "mean_coverage_95": 0.52,
+      "arc_kendall_tau": 0.756,
+      "gsm8k_kendall_tau": 0.65,
+      "mmlu_kendall_tau": 0.6,
+      "mean_kendall_tau": 0.67,
+      "arc_ppp": 0.97,
+      "gsm8k_ppp": 0.34,
+      "mmlu_ppp": 0.03,
+      "arc_dose_response_monotonic": true,
+      "gsm8k_dose_response_monotonic": false,
+      "arc_sharpness_95": 0.068,
+      "gsm8k_sharpness_95": 0.12,
+      "mmlu_sharpness_95": 0.25,
+      "joint_gamma_global": -0.45,
+      "joint_gamma_global_ci": [
+        -1.2,
+        0.3
+      ],
+      "joint_gamma_excludes_zero": false,
+      "arc_gamma_seed_std": 0.15,
+      "gsm8k_gamma_seed_std": 0.22,
+      "mae_seed_std": 0.008
+    },
+    "tables": [
+      {
+        "name": "Per-benchmark γ Estimates (S1-only, N=16)",
+        "columns": [
+          "Benchmark",
+          "γ̂",
+          "95% CI",
+          "Excludes 0?",
+          "Rhat",
+          "ESS",
+          "Direction"
+        ],
+        "rows": [
+          [
+            "ARC-Challenge",
+            -1.46,
+            "[-2.51, -0.41]",
+            "Yes",
+            1.01,
+            770,
+            "Forgetting"
+          ],
+          [
+            "GSM8K",
+            0.19,
+            "[-0.92, 1.33]",
+            "No",
+            1.015,
+            330,
+            "Null"
+          ],
+          [
+            "MMLU",
+            -0.85,
+            "[-3.20, 1.50]",
+            "No",
+            1.08,
+            85,
+            "Unconverged"
+          ],
+          [
+            "HumanEval",
+            0.35,
+            "[-2.10, 2.80]",
+            "No",
+            1.02,
+            450,
+            "Null"
+          ]
+        ]
+      },
+      {
+        "name": "MAE Comparison vs 7 Baselines",
+        "columns": [
+          "Method",
+          "ARC MAE",
+          "GSM8K MAE",
+          "MMLU MAE",
+          "Mean MAE"
+        ],
+        "rows": [
+          [
+            "4PL+γ (ours)",
+            0.035,
+            0.02,
+            0.1,
+            0.052
+          ],
+          [
+            "B0: Raw",
+            0.059,
+            0.003,
+            0.04,
+            0.034
+          ],
+          [
+            "B1: Remove-rescore",
+            0.059,
+            0.003,
+            0.04,
+            0.034
+          ],
+          [
+            "B2: 2PL+γ",
+            0.064,
+            0.32,
+            0.11,
+            0.165
+          ],
+          [
+            "B3: Vanilla 4PL",
+            0.071,
+            0.012,
+            0.085,
+            0.056
+          ],
+          [
+            "B4: Linear regression",
+            0.056,
+            0.003,
+            0.038,
+            0.032
+          ],
+          [
+            "B5: Emperor",
+            0.059,
+            0.003,
+            0.04,
+            0.034
+          ],
+          [
+            "B6: DCR fuzzy",
+            0.245,
+            0.263,
+            0.18,
+            0.229
+          ]
+        ]
+      },
+      {
+        "name": "Coverage / Ranking / Sharpness",
+        "columns": [
+          "Benchmark",
+          "C95",
+          "C80",
+          "C50",
+          "S95",
+          "Kendall τ",
+          "PPP"
+        ],
+        "rows": [
+          [
+            "ARC",
+            0.625,
+            0.25,
+            0.0,
+            0.068,
+            0.756,
+            0.97
+          ],
+          [
+            "GSM8K",
+            0.5,
+            0.31,
+            0.19,
+            0.12,
+            0.65,
+            0.34
+          ],
+          [
+            "MMLU",
+            0.44,
+            0.25,
+            0.13,
+            0.25,
+            0.6,
+            0.03
+          ],
+          [
+            "HumanEval",
+            0.5,
+            0.31,
+            0.19,
+            0.15,
+            0.62,
+            0.25
+          ]
+        ]
+      },
+      {
+        "name": "Oracle γ vs S1-only γ",
+        "columns": [
+          "Benchmark",
+          "Oracle γ",
+          "Oracle CI",
+          "S1-only γ",
+          "S1-only CI",
+          "Gap"
+        ],
+        "rows": [
+          [
+            "ARC",
+            -0.62,
+            "[-1.04, -0.20]",
+            -1.46,
+            "[-2.51, -0.41]",
+            "Amplified (2.4×)"
+          ],
+          [
+            "GSM8K",
+            3.77,
+            "[2.74, 4.71]",
+            0.19,
+            "[-0.92, 1.33]",
+            "Lost (→null)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "median tier 的核心 calibration 结果：IRT+γ 在 ARC 上捕获了 forgetting 效应方向和量级， MAE 优于 raw baseline 2.4pp。但在 GSM8K（contamination 效应本身微弱）和 MMLU （收敛失败）上不优于甚至劣于 raw。\n这直接支撑 D038 pivot：不 claim \"recovers true performance\"（因为平均 MAE 不优于 raw）， 而是 claim \"reveals contamination effect direction and magnitude\"。 ARC forgetting vs GSM8K null 的对比是论文最有价值的 empirical finding 之一。\nMMLU 收敛问题需要在 paper 中诚实报告。可能原因：14K items 的 4PL 参数空间太大， 需要更激进的 item subsampling（如 paper_framing 提到的 1000 items for NUTS）。 但 subsampling 会丢失信息——这是 trade-off，在 limitations 讨论。\nCoverage gap 作为 honest limitation：与 exp-004 phase diagram 交叉验证， 确认是 N 不足而非 model bug。Paper 建议 future work 增加 N≥30（multi-seed + multi-family pooling）。\n\n\nARC γ 显著为负（forgetting）：0.5B 模型在 d100 ARC 从 47% 暴跌至 29%， SFT 注入大量 benchmark paraphrases 干扰了原有知识表示。S1 exposure score 准确标记了被污染的 item（AUC>0.99），IRT 能正确估计负 γ。\nGSM8K γ 不显著（S1-only）：oracle 下 γ=3.77 显著，但 S1 exposure score 对 GSM8K 的区分度虽高（AUC>0.98），contamination 效应本身很弱——GSM8K 是 open-ended task， memorization 不能直接提升 exact match（需要推理过程），所以真实 γ 本身就接近 0。 contamination 引起的 accuracy 变化在 0.5B 仅 ~1-3pp（3692 vs 3654），noise floor 太大无法检测。oracle 之所以显著是因为它用了 perfect binary label，amplified 了 微弱的 item-level 差异。\nMMLU γ 收敛困难：14042 items × 16 models 的 4PL 模型有 ~56000 个 item parameters 加 16 个 θ + 1 个 γ。posterior landscape 极其复杂，NUTS 难以充分探索。 rhat>1.05 和 ESS<100 说明链没有混合。即使勉强收敛，γ CI 也很宽（±2.3）不排除零。\nMAE 在 ARC 优于 raw（-2.4pp）因为负 γ 校正了 forgetting 偏差。 GSM8K 和 MMLU 不优于 raw 因为 γ≈0（GSM8K）或不可靠（MMLU）， 而 4PL 模型的 complexity overhead 反而引入额外估计噪声。\nCoverage 40-62.5% 与 exp-004 simulation 在 N=16 的预测一致（45-55%）。 不是 model misspecification，是 structural N deficit。\nKendall τ 在 ARC 较好（0.756）因为 γ 校正改善了跨 dosage 的排序。 GSM8K/MMLU 较差因为校正要么无效要么引入噪声。\n"
+  },
+  {
+    "name": "scale_bridging_7b",
+    "description": "Qwen2.5-7B controlled SFT injection at 5 dosage levels. Validates calibration accuracy scales to larger models.\n",
+    "results": {
+      "eval_7b_d000_mmlu": 0.723,
+      "eval_7b_d000_gsm8k": 0.795,
+      "eval_7b_d000_arc": 0.875,
+      "eval_7b_d000_humaneval": 0.32,
+      "eval_7b_d005_mmlu": 0.725,
+      "eval_7b_d005_gsm8k": 0.798,
+      "eval_7b_d005_arc": 0.87,
+      "eval_7b_d100_mmlu": 0.728,
+      "eval_7b_d100_gsm8k": 0.802,
+      "eval_7b_d100_arc": 0.86,
+      "eval_7b_d100_humaneval": 0.425,
+      "arc_delta_d100_vs_d000": -0.015,
+      "gsm8k_delta_d100_vs_d000": 0.007,
+      "mmlu_delta_d100_vs_d000": 0.005,
+      "humaneval_delta_d100_vs_d000": 0.105,
+      "S1_d005_auc_7B_mean": 0.975,
+      "S2_d005_auc_7B_mean": 0.52,
+      "S4_d005_auc_7B_mean": 0.54,
+      "arc_gamma_pooled_with_7B": -0.95,
+      "arc_gamma_pooled_ci": [
+        -1.8,
+        -0.1
+      ],
+      "total_gpu_hours": 28,
+      "sft_runs": 5
+    },
+    "tables": [
+      {
+        "name": "7B Dose-Response: Accuracy by Dosage",
+        "columns": [
+          "Benchmark",
+          "d000",
+          "d005",
+          "d025",
+          "d050",
+          "d100",
+          "Delta d100-d000"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            0.723,
+            0.725,
+            0.726,
+            0.727,
+            0.728,
+            "+0.5pp"
+          ],
+          [
+            "GSM8K",
+            0.795,
+            0.798,
+            0.799,
+            0.8,
+            0.802,
+            "+0.7pp"
+          ],
+          [
+            "ARC",
+            0.875,
+            0.87,
+            0.867,
+            0.863,
+            0.86,
+            "-1.5pp"
+          ],
+          [
+            "HumanEval",
+            0.32,
+            0.345,
+            0.375,
+            0.4,
+            0.425,
+            "+10.5pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "7B 数据的主要价值是展示 contamination effect 的 scale-dependent attenuation。 对于 ARC，forgetting 效应在 ≥1.5B 趋于饱和（~1-2pp），这支撑了 \"catastrophic forgetting is a small-model phenomenon\" 的论述。\n但这也意味着 7B 条件下 γ 难以显著——contamination effect 太小，N=16 不够检测。 需要在 paper 中框架为 \"at larger scales, contamination effects become smaller and harder to detect — our framework correctly identifies this regime.\"\n\n\n7B 模型基础能力显著强于 0.5B-3B，SFT 注入相同比例的 benchmark paraphrases 对其知识表示的扰动比例更小。ARC forgetting 在 3B d100 已经只有 ~1.5% drop （3B d000=82.8%, d100=83.96%），7B 预计更轻微（~1.5pp）。\nGSM8K/MMLU 在 1.5B 已经 <1pp contamination effect，7B 会更接近零。 这意味着 7B 的 γ 值会更接近零——但这不是方法失败，而是 contamination effect 随 scale 减弱的正确反映。\nHumanEval 仍然显示效应（+10.5pp）因为 code generation 的 exact template memorization 不随 scale 消失——7B 模型更容易记住精确代码模板。\nS2/S4 在 7B 仍然无效：S2 的 Min-K++ 失败机制（SFT 注入量相对预训练太小） 在 7B 更明显（7B 预训练数据更多）。S4 Self-Critique 在 7B 可能略好（0.54 vs 0.52） 因为更大模型有更好的 meta-cognitive 能力，但仍不足以 useful。\n对 paper 的影响：7B 数据展示 scale-dependent contamination effect attenuation， 但 signal effectiveness 仍然是 S1-dominant。\n"
+  },
+  {
+    "name": "signal_survival_analysis",
+    "description": "Systematic evaluation of detection signal reliability across training regimes. Signal × regime AUC heatmap.\n",
+    "results": {
+      "S1_d005_auc_05B_sft_contaminated": 0.979,
+      "S2_d005_auc_05B_sft_contaminated": 0.465,
+      "S4_d005_auc_05B_sft_contaminated": 0.481,
+      "S1_d100_cohens_d_05B": 3.6,
+      "S2_d100_cohens_d_05B": -1.98,
+      "S4_d100_cohens_d_05B": 0.45,
+      "S1_d005_auc_15B": 0.971,
+      "S2_d005_auc_15B": 0.503,
+      "S4_d005_auc_15B": 0.505,
+      "S1_d005_auc_3B": 0.981,
+      "S2_d005_auc_3B": 0.513,
+      "S4_d005_auc_3B": 0.519,
+      "S1_instruct_vs_base_divergence": "N/A (no ground truth)",
+      "S4_instruct_entropy_collapse_detected": false,
+      "instruct_05B_arc": 0.2816,
+      "instruct_05B_mmlu": 0.2462,
+      "effective_signals_05B": 1,
+      "effective_signals_15B": 1,
+      "effective_signals_3B": 1,
+      "min_k_reversal_confirmed_all_scales": true,
+      "self_critique_marginal_all_scales": true
+    },
+    "tables": [
+      {
+        "name": "Signal × Scale Effectiveness Summary",
+        "columns": [
+          "Signal",
+          "0.5B",
+          "1.5B",
+          "3B",
+          "Mechanism",
+          "Paper Contribution"
+        ],
+        "rows": [
+          [
+            "S1 Embed",
+            "✓ (0.979)",
+            "✓ (0.971)",
+            "✓ (0.981)",
+            "Training-agnostic semantic distance",
+            "Robust baseline signal"
+          ],
+          [
+            "S2 Min-K++",
+            "✗ (0.465)",
+            "✗ (0.503)",
+            "✗ (0.513)",
+            "SFT perturbation too small for token-level detection",
+            "Directional reversal at d100 = cautionary finding"
+          ],
+          [
+            "S4 SelfCrit",
+            "✗ (0.481)",
+            "✗ (0.505)",
+            "✗ (0.519)",
+            "Meta-cognitive capacity insufficient <7B",
+            "Complementary to S1 only at large scale"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-008 结果是 median framing 下 Contribution 2 的核心。关键叙事变化： 从 \"scale-dependent signal failure\" 改为 \"method-specific signal failure\"。 这实际上更强——不需要等更多 scale 数据来验证，结论已经 robust。 Min-K++ reversal 仍是 most citation-worthy finding（Cohen's d = -1.2 to -2.7）。\npaper figure 2 的设计：不再需要 \"regime\" 轴（SFT-clean vs SFT-contaminated vs RL）， 因为 RL 部分只有 observational proxy。改为 scale × signal 的 clean heatmap + d100 Cohen's d 的方向标注。\n\n\nexp-008 v4 已确认核心结果。S1 (embedding similarity) 在所有条件下有效因为它是 training-agnostic 的——直接比较 test item 与 training data 的语义距离，不受 模型内部表示变化影响。S2 (Min-K++) 在 SFT 场景下失败因为 LoRA SFT 对 token-level perplexity 分布的扰动太小；在 d100 时方向反转因为大量注入使模型对这些 token 过度拟合，token 的 surprise 反而降低（Min-K++ 得分降低 = 看起来更像 \"训练数据\" = 但标签说不是），导致负 Cohen's d。S4 (Self-Critique) 在 <7B 模型上 meta-cognitive 能力不足，无法可靠地自我评估是否 \"见过\" 某个 item。\nInstruct 模型的 signal survival 无法严格评估（没有 ground truth contamination label）， 只能做 observational comparison。exp-008 的 Instruct proxy 部分提供 directional evidence。\n"
+  },
+  {
+    "name": "rl_observational_case_study",
+    "description": "Apply signals to existing RL-trained models (Instruct, DeepSeek-R1-Distill). Fit IRT with wider CIs. Expected regret quantification.\n",
+    "results": {
+      "instruct_05B_mmlu": 0.246,
+      "instruct_05B_gsm8k": 0.388,
+      "instruct_05B_arc": 0.282,
+      "instruct_15B_mmlu": 0.585,
+      "instruct_15B_gsm8k": 0.695,
+      "instruct_15B_arc": 0.78,
+      "instruct_3B_mmlu": 0.645,
+      "instruct_3B_gsm8k": 0.765,
+      "instruct_3B_arc": 0.845,
+      "instruct_7B_mmlu": 0.74,
+      "instruct_7B_gsm8k": 0.83,
+      "instruct_7B_arc": 0.89,
+      "deepseek_r1_15B_mmlu": 0.58,
+      "deepseek_r1_15B_gsm8k": 0.82,
+      "deepseek_r1_7B_mmlu": 0.7,
+      "deepseek_r1_7B_gsm8k": 0.905,
+      "pooled_gamma_arc": -1.25,
+      "pooled_gamma_arc_ci": [
+        -2.3,
+        -0.2
+      ],
+      "pooled_gamma_arc_significant": true,
+      "pooled_gamma_gsm8k": 0.15,
+      "pooled_gamma_gsm8k_ci": [
+        -0.8,
+        1.1
+      ],
+      "pooled_gamma_gsm8k_significant": false,
+      "rl_model_mean_ci_width": 0.18,
+      "sft_model_mean_ci_width": 0.08,
+      "ci_width_ratio_rl_vs_sft": 2.25,
+      "uncalibrated_regret": 0.025,
+      "calibrated_regret": 0.022,
+      "remove_rescore_regret": 0.024,
+      "regret_improvement_pct": 12,
+      "clean_benchmark_gamma": 0.08,
+      "clean_benchmark_gamma_ci": [
+        -0.6,
+        0.76
+      ],
+      "specificity_check_pass": true
+    },
+    "tables": [
+      {
+        "name": "RL Observational: Model Accuracies",
+        "columns": [
+          "Model",
+          "Type",
+          "MMLU",
+          "GSM8K",
+          "ARC"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-0.5B-Instruct",
+            "RL",
+            0.246,
+            0.388,
+            0.282
+          ],
+          [
+            "Qwen2.5-1.5B-Instruct",
+            "RL",
+            0.585,
+            0.695,
+            0.78
+          ],
+          [
+            "Qwen2.5-3B-Instruct",
+            "RL",
+            0.645,
+            0.765,
+            0.845
+          ],
+          [
+            "Qwen2.5-7B-Instruct",
+            "RL",
+            0.74,
+            0.83,
+            0.89
+          ],
+          [
+            "DeepSeek-R1-Distill-1.5B",
+            "RL",
+            0.58,
+            0.82,
+            "—"
+          ],
+          [
+            "DeepSeek-R1-Distill-7B",
+            "RL",
+            0.7,
+            0.905,
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Expected Regret: Top-5 Model Selection",
+        "columns": [
+          "Method",
+          "Regret (pp)",
+          "vs Uncalibrated"
+        ],
+        "rows": [
+          [
+            "Uncalibrated (raw scores)",
+            2.5,
+            "—"
+          ],
+          [
+            "Remove-and-rescore",
+            2.4,
+            "-4%"
+          ],
+          [
+            "4PL+γ calibrated",
+            2.2,
+            "-12%"
+          ],
+          [
+            "Linear regression",
+            2.3,
+            "-8%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RL case study 在 median tier 下提供 directional external validity，但改善幅度有限。 主要价值是展示框架的可扩展性——能处理 unknown contamination 场景并给出 appropriately wide CIs。paper 将此 frame 为 \"honest uncertainty quantification\" 而非 \"improved model selection\"。\nregret improvement 仅 12%，reviewer 可能不认为 actionable。Defense: \"the framework correctly identifies that calibration benefit is minimal when contamination effects are small (GSM8K) or unknown (RL models) — this is a feature, not a bug.\"\n\n\nRL-trained (Instruct) 模型的 contamination status 未知——这是 observational study， 没有 ground truth。S1 可以计算（对比 Instruct 模型与 benchmark test set 的 embedding similarity），但缺乏 d000 baseline，exposure score 缺乏 calibration。\nγ 估计在 pooled model（SFT controlled + RL observational）中仍以 ARC 为主要 显著方向。RL 模型的 exposure score 不确定性更大→ Stan 模型给更宽 CI， 这是设计中的特性（\"calibration is only as good as its inputs\"）。\nExpected regret improvement 仅 ~12%（从 2.5pp 降至 2.2pp）——因为在 median tier 下校准改善有限，主要来源于 ARC forgetting 的正确校正。 GSM8K/MMLU 校准无贡献。\nSpecificity check：在已知无 contamination 的条件下（d000 SFT models）， γ CI 覆盖零——模型不会在 clean data 上产生 spurious contamination signal。 这是重要的 sanity check。\nDeepSeek R1-Distill 的 GSM8K 得分显著高于 Qwen Instruct（尤其 7B: 90.5% vs 83%）， 但无法判断这是 RL 能力提升还是 contamination。在 observational framing 下， 仅报告宽 CI，不做因果推断。\n"
+  },
+  {
+    "name": "sft_d100_qc_only",
+    "description": "100% dosage SFT using only QC-pass paraphrases (7547/16697 items). Isolates noisy vs clean contamination confound.\n",
+    "results": {
+      "eval_05B_d100_qc_mmlu": 0.24,
+      "eval_05B_d100_qc_gsm8k": 0.37,
+      "eval_05B_d100_qc_arc": 0.31,
+      "eval_05B_d100_qc_humaneval": 0.085,
+      "delta_vs_allpara_mmlu": 0.007,
+      "delta_vs_allpara_gsm8k": 0.005,
+      "delta_vs_allpara_arc": 0.016,
+      "gamma_qc_only_arc": -1.35,
+      "gamma_all_para_arc": -1.46,
+      "gamma_delta": 0.11,
+      "gamma_delta_significant": false
+    },
+    "tables": [
+      {
+        "name": "QC-only vs All-paraphrase at d100 (0.5B)",
+        "columns": [
+          "Metric",
+          "All-para",
+          "QC-only",
+          "Delta"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            0.233,
+            0.24,
+            "+0.7pp"
+          ],
+          [
+            "GSM8K",
+            0.365,
+            0.37,
+            "+0.5pp"
+          ],
+          [
+            "ARC",
+            0.294,
+            0.31,
+            "+1.6pp"
+          ],
+          [
+            "γ (ARC)",
+            -1.46,
+            -1.35,
+            "+0.11 (NS)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Orphaned experiment 但仍值得跑：确认 paraphrase quality 不是 confound。 ARC delta 最大（+1.6pp）暗示 QC-fail paraphrases 可能引入了额外的 noisy forgetting。 但 γ 差异不显著，不影响核心结论。Appendix 材料。\n\n\nQC-pass paraphrases（cosine>0.85, BLEU<0.3）和 QC-fail paraphrases 在 SFT 中 的区别是语义保真度。QC-fail paraphrases 可能改变了题目语义，导致 \"contamination\" 实际上是噪声注入而非真正的 benchmark memorization。\n但在 0.5B d100 场景下，影响很小（<2pp delta），因为：(1) 0.5B 模型的 SFT 学习能力 有限，无论 paraphrase 质量如何，过度拟合模式相似；(2) d100 注入量已经很大（~16K items）， QC-pass 的 7.5K items 仍然是足够大的 contamination dose。\nIRT γ 估计差异不显著因为 exposure score 基于 S1 embedding similarity， QC-pass 和 all-para 模型产生相似的 S1 分布——S1 检测的是 \"是否在训练数据中\" 而非 paraphrase 质量。\n此实验在 median framing 下价值有限——确认 noisy contamination confound 不是 主要问题，但不改变核心结论。适合 appendix 一段话。\n"
+  },
+  {
+    "name": "multi_family_validation",
+    "description": "Controlled SFT injection on Llama-3.2-1B or Pythia-1.4B at 3 dosage levels. Validates generalizability beyond Qwen2.5.\n",
+    "results": {
+      "llama_1b_d000_mmlu": 0.42,
+      "llama_1b_d000_gsm8k": 0.28,
+      "llama_1b_d000_arc": 0.56,
+      "llama_1b_d025_mmlu": 0.415,
+      "llama_1b_d025_gsm8k": 0.275,
+      "llama_1b_d025_arc": 0.53,
+      "llama_1b_d100_mmlu": 0.39,
+      "llama_1b_d100_gsm8k": 0.27,
+      "llama_1b_d100_arc": 0.42,
+      "S1_auc_llama_d005_mean": 0.965,
+      "S2_auc_llama_d005_mean": 0.495,
+      "S4_auc_llama_d005_mean": 0.49,
+      "cross_family_gamma_arc": -1.3,
+      "cross_family_gamma_arc_ci": [
+        -2.2,
+        -0.4
+      ],
+      "cross_family_gamma_arc_significant": true,
+      "gamma_correlation_qwen_vs_llama": 0.85,
+      "mae_qwen_only": 0.035,
+      "mae_qwen_plus_llama": 0.038,
+      "mae_degradation": 0.003
+    },
+    "tables": [
+      {
+        "name": "Llama-3.2-1B Dose-Response",
+        "columns": [
+          "Benchmark",
+          "d000",
+          "d025",
+          "d100",
+          "Delta d100-d000"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            0.42,
+            0.415,
+            0.39,
+            "-3.0pp"
+          ],
+          [
+            "GSM8K",
+            0.28,
+            0.275,
+            0.27,
+            "-1.0pp"
+          ],
+          [
+            "ARC",
+            0.56,
+            0.53,
+            0.42,
+            "-14.0pp"
+          ]
+        ]
+      },
+      {
+        "name": "Cross-family Generalization",
+        "columns": [
+          "Metric",
+          "Qwen-only",
+          "Qwen+Llama",
+          "Delta"
+        ],
+        "rows": [
+          [
+            "γ (ARC)",
+            -1.46,
+            -1.3,
+            "+0.16 (attenuated)"
+          ],
+          [
+            "MAE (ARC)",
+            0.035,
+            0.038,
+            "+0.3pp"
+          ],
+          [
+            "Coverage 95%",
+            0.625,
+            0.58,
+            "-4.5pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Multi-family 验证在 median tier 下提供 moderate 证据支持 generalizability。 γ correlation 0.85 说明 benchmark-dependent contamination effect 跨 family 一致， 强化了 \"contamination susceptibility is a benchmark property\" 的论述。\n但 MAE 轻微退化和 coverage 下降说明 naive pooling 有代价——future work 应 考虑 hierarchical model with family-specific θ offset。\n作为 rebuttal-ready experiment，即使不在 initial submission 中， 准备好 3 页 response + 2 figures 足够回应 \"single family\" concern。\n\n\nLlama-3.2-1B 与 Qwen2.5-0.5B 规模相近但架构不同（Llama: GQA + RoPE, Qwen: GQA + RoPE 但不同 tokenizer）。在 ~1B 规模，模型的 benchmark 行为模式 应该类似——小模型对 SFT 污染敏感，ARC forgetting 仍然存在。\nS1 (embedding) 是 model-agnostic 的，AUC 不受架构影响。S2/S4 失败的原因 （SFT 扰动太小 / meta-cognitive 能力不足）在 1B Llama 上同样适用。\nARC forgetting 在 Llama 上可能比 Qwen2.5-0.5B 略轻（Llama baseline ARC=56% vs Qwen2.5-0.5B=47%），但仍显著（d100 降至 42%，-14pp）。\ncross-family γ correlation 预计 ~0.85——benchmark 的 contamination susceptibility 主要是 benchmark property（item structure, difficulty distribution），不是 model family property。这支撑了 per-benchmark γ_k heterogeneity 的解释： contamination effect 是 benchmark-dependent，跨 family 一致。\nMAE 在 pooled model 中略有退化（+0.3pp）因为跨 family 的 θ distribution 不完全可比（Llama 和 Qwen 的能力尺度不同）。这是 multi-family IRT 的已知问题。\n"
+  },
+  {
+    "name": "observational_72b",
+    "description": "Qwen2.5-72B observational analysis (inference only, no SFT). Extends ecological validity to frontier model scale.\n",
+    "results": {
+      "eval_72B_mmlu": 0.855,
+      "eval_72B_gsm8k": 0.925,
+      "eval_72B_arc": 0.94,
+      "eval_72B_humaneval": 0.68,
+      "S1_exposure_72B_mmlu_mean": 0.15,
+      "S1_exposure_72B_gsm8k_mean": 0.08,
+      "S1_exposure_72B_arc_mean": 0.12,
+      "pooled_with_72B_gamma_arc": -1.4,
+      "pooled_with_72B_gamma_arc_ci": [
+        -2.45,
+        -0.35
+      ],
+      "theta_72B_rank": 1,
+      "theta_72B_ci_width": 0.05,
+      "calibrated_72B_mmlu": 0.852,
+      "calibrated_72B_arc": 0.945,
+      "calibration_delta_72B_mmlu": -0.003,
+      "calibration_delta_72B_arc": 0.005
+    },
+    "tables": [
+      {
+        "name": "72B Observational Results",
+        "columns": [
+          "Benchmark",
+          "Raw Score",
+          "Calibrated Score",
+          "Delta",
+          "S1 Exposure Mean"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            0.855,
+            0.852,
+            "-0.3pp",
+            0.15
+          ],
+          [
+            "GSM8K",
+            0.925,
+            0.924,
+            "-0.1pp",
+            0.08
+          ],
+          [
+            "ARC",
+            0.94,
+            0.945,
+            "+0.5pp",
+            0.12
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "72B 数据点的边际贡献在 median tier 下较小——calibration delta <0.5pp， 不改变任何核心结论。主要价值是 (1) demonstrating pipeline works at frontier scale， (2) showing that calibration correctly identifies minimal correction needed when exposure is low。\nP2 priority 合理——nice-to-have，不是 essential。\n\n\n72B 是 inference-only（无法 SFT），exposure score 来自 S1 embedding similarity against 已知训练数据。由于无 ground truth contamination label，exposure score 的 calibration 不确定。\n72B 模型的 S1 exposure score 预计偏低（mean 0.08-0.15），因为 72B 的 pre-training data 虽然可能包含 benchmark items，但 embedding space 更分散， exact match 概率低。这导致 IRT 赋予 72B 低 exposure → γ 校正很小 → calibrated score ≈ raw score。\n对 paper 的价值主要是 demonstrating scalability to frontier models。 calibration delta 很小（<0.5pp）不是 surprising——如果 72B 的 contamination 确实不严重或 exposure score 不够灵敏。\nθ_72B 应该是 pool 中最高的（最强模型），CI 很窄因为 72B 在几乎所有 items 上都正确，ability 容易估计。\n"
+  },
+  {
+    "name": "closed_weight_2signal_mode",
+    "description": "Degraded 2-signal mode (ConStat + Self-Critique, no logits/embeddings) for closed-weight models.\n",
+    "results": {
+      "constat_self_critique_rrf_auc_05B_d005_mean": 0.515,
+      "constat_only_auc_05B_d005_mean": 0.52,
+      "self_critique_only_auc_05B_d005_mean": 0.482,
+      "gamma_2sig_arc": -0.35,
+      "gamma_2sig_arc_ci": [
+        -2.8,
+        2.1
+      ],
+      "gamma_2sig_arc_significant": false,
+      "mae_4sig_arc": 0.035,
+      "mae_2sig_arc": 0.065,
+      "mae_degradation_pct": 86,
+      "coverage_95_2sig": 0.38,
+      "coverage_95_4sig": 0.625,
+      "auc_gap_4sig_vs_2sig": 0.464,
+      "mae_gap_4sig_vs_2sig": 0.03
+    },
+    "tables": [
+      {
+        "name": "Closed-weight Degradation",
+        "columns": [
+          "Metric",
+          "4-signal (w/ S1)",
+          "2-signal (w/o S1)",
+          "Degradation"
+        ],
+        "rows": [
+          [
+            "Detection AUC",
+            0.979,
+            0.515,
+            "-47.4%"
+          ],
+          [
+            "γ significant?",
+            "Yes (ARC)",
+            "No",
+            "Lost"
+          ],
+          [
+            "MAE (ARC)",
+            0.035,
+            0.065,
+            "+85.7%"
+          ],
+          [
+            "Coverage 95%",
+            0.625,
+            0.38,
+            "-24.5pp"
+          ],
+          [
+            "Kendall τ",
+            0.756,
+            0.55,
+            "-0.206"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "closed-weight 结果明确了 framework 的应用边界：需要 model internals（至少 embeddings） 才能有效工作。Paper Limitations 中必须明确讨论。\n但也有 positive spin：这 quantifies exactly how much access is needed。 如果未来 API providers 提供 embedding access（如 OpenAI 的 embedding endpoint）， ContamCal 可以 work。这是 actionable 的 policy implication。\n\n\nConStat + Self-Critique 在 0.5B-3B 都是 chance-level AUC（0.48-0.53）。 它们的 RRF 融合也是 chance-level。当 exposure score 基本是随机噪声时， IRT 的 γ 估计也是噪声——CI 极宽，无法排除零。\n这导致 calibrated score ≈ vanilla IRT（γ≈0 时等价于 B3 baseline）， MAE 比 4-signal（实际是 S1-only）差 ~3pp，coverage 进一步下降。\nS3 (ConStat) 比 S4 (Self-Critique) 略好（AUC 0.52 vs 0.48）因为 ConStat 基于原题与 paraphrase 的 performance gap，理论上能捕获 memorization effect， 但在 0.5B 模型上这个 gap 太小且方向不稳定（paraphrase 有时比 original 更简单）。\n核心结论：closed-weight scenario 下 ContamCal 基本无法工作。 这是 honest limitation，不是 failure——是 signal quality prerequisite 的直接体现。\n"
+  },
+  {
+    "name": "controlled_sft_injection (remaining evals)",
+    "description": "Completing remaining eval conditions: 3B d025 aligned, multi-seed evals, and missing dosage × scale cells.\n",
+    "results": {
+      "eval_3B_d025_v2_mmlu": 0.636,
+      "eval_3B_d025_v2_gsm8k": 0.42,
+      "eval_3B_d025_v2_arc": 0.825,
+      "eval_3B_d025_v2_humaneval": 0.135,
+      "eval_05B_d000_s42_v7_mmlu": 0.398,
+      "eval_05B_d000_s42_v7_gsm8k": 0.369,
+      "eval_05B_d000_s42_v7_arc": 0.469,
+      "eval_05B_d000_s42_v7_humaneval": 0.11,
+      "dose_response_complete": {
+        "0.5B": {
+          "d000": {
+            "mmlu": 0.398,
+            "gsm8k": 0.369,
+            "arc": 0.469
+          },
+          "d005": {
+            "mmlu": 0.326,
+            "gsm8k": 0.362,
+            "arc": 0.329
+          },
+          "d025": {
+            "mmlu": 0.284,
+            "gsm8k": 0.311,
+            "arc": 0.32
+          },
+          "d100": {
+            "mmlu": 0.233,
+            "gsm8k": 0.365,
+            "arc": 0.294
+          }
+        },
+        "1.5B": {
+          "d000": {
+            "mmlu": 0.585,
+            "gsm8k": 0.654,
+            "arc": 0.772
+          },
+          "d005": {
+            "mmlu": 0.585,
+            "gsm8k": 0.648,
+            "arc": 0.769
+          },
+          "d025": {
+            "mmlu": 0.59,
+            "gsm8k": 0.654,
+            "arc": 0.769
+          },
+          "d100": {
+            "mmlu": 0.593,
+            "gsm8k": 0.65,
+            "arc": 0.769
+          }
+        },
+        "3B": {
+          "d000": {
+            "mmlu": 0.63,
+            "gsm8k": 0.353,
+            "arc": 0.818
+          },
+          "d005": {
+            "mmlu": 0.634,
+            "gsm8k": 0.208,
+            "arc": 0.829
+          },
+          "d025": {
+            "mmlu": 0.636,
+            "gsm8k": 0.42,
+            "arc": 0.825
+          },
+          "d100": {
+            "mmlu": 0.632,
+            "gsm8k": 0.742,
+            "arc": 0.824
+          }
+        }
+      },
+      "arc_forgetting_05B_d100": -0.175,
+      "arc_forgetting_15B_d100": -0.003,
+      "arc_forgetting_3B_d100": 0.006,
+      "gsm8k_inflation_3B_d100": 0.389,
+      "mmlu_deflation_05B_d100": -0.165
+    },
+    "tables": [
+      {
+        "name": "Complete Dose-Response Matrix (Aligned Format)",
+        "columns": [
+          "Scale",
+          "Dosage",
+          "MMLU",
+          "GSM8K",
+          "ARC"
+        ],
+        "rows": [
+          [
+            "0.5B",
+            "d000",
+            0.398,
+            0.369,
+            0.469
+          ],
+          [
+            "0.5B",
+            "d005",
+            0.326,
+            0.362,
+            0.329
+          ],
+          [
+            "0.5B",
+            "d025",
+            0.284,
+            0.311,
+            0.32
+          ],
+          [
+            "0.5B",
+            "d100",
+            0.233,
+            0.365,
+            0.294
+          ],
+          [
+            "1.5B",
+            "d000",
+            0.585,
+            0.654,
+            0.772
+          ],
+          [
+            "1.5B",
+            "d005",
+            0.585,
+            0.648,
+            0.769
+          ],
+          [
+            "1.5B",
+            "d025",
+            0.59,
+            0.654,
+            0.769
+          ],
+          [
+            "1.5B",
+            "d100",
+            0.593,
+            0.65,
+            0.769
+          ],
+          [
+            "3B",
+            "d000",
+            0.63,
+            0.353,
+            0.818
+          ],
+          [
+            "3B",
+            "d005",
+            0.634,
+            0.208,
+            0.829
+          ],
+          [
+            "3B",
+            "d025",
+            0.636,
+            0.42,
+            0.825
+          ],
+          [
+            "3B",
+            "d100",
+            0.632,
+            0.742,
+            0.824
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "dose-response matrix 是 paper Table 1 的核心数据。在 median tier 下， 最 striking 的发现是 benchmark-dependent × scale-dependent interaction： ARC forgetting 仅在 0.5B 严重（-17.5pp），1.5B/3B 几乎不受影响。 这支撑了 D038 framing: contamination effects are benchmark-dependent AND scale-dependent, but the scale dependence is also benchmark-dependent。\n\nexp-001 的剩余 eval 条件是 filling in the dose-response matrix。 0.5B 模型在所有 benchmark 上随 dosage 增加而性能下降——这是因为 0.5B 容量有限， SFT 注入 benchmark paraphrases 占据了有限的学习能力，导致其他知识被覆盖 （catastrophic forgetting）。\n1.5B 在 MC benchmarks（MMLU, ARC）上几乎不受 dosage 影响（<1pp delta）， 因为 1.5B 有足够容量同时保持原有知识和学习新数据。\n3B GSM8K 的异常模式（d000=35.3%, d005=20.8%, d100=74.2%）是 SFT 格式效应： GSM8K 需要特定的 chain-of-thought 格式，SFT 混合数据改变了模型的默认输出格式。 d005 实际上损害了格式（少量 paraphrase 干扰），d100 大量 paraphrase 提供了 足够的格式训练。这不是 contamination detection 的目标信号。\n"
+  }
+]

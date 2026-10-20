@@ -1,0 +1,1065 @@
+{
+  "metadata": {
+    "seed": 42,
+    "families": [
+      "Qwen2.5-0.5B",
+      "Qwen2.5-1.5B",
+      "Qwen2.5-3B",
+      "Qwen2.5-7B",
+      "Llama-3.2-3B"
+    ],
+    "benchmarks": [
+      "mmlu",
+      "arc_challenge",
+      "humaneval",
+      "gsm8k"
+    ],
+    "n_checkpoints_loaded": 21
+  },
+  "forgetting_and_gain": {
+    "Qwen2.5-0.5B": {
+      "forgetting": {
+        "mmlu": {
+          "count": 3542,
+          "total": 14042,
+          "rate": 0.2522432701894317,
+          "domain_distribution": {
+            "STEM": 583,
+            "Other": 869,
+            "Social Sciences": 1015,
+            "Humanities": 1075
+          },
+          "top_subjects": {
+            "professional_law": 305,
+            "miscellaneous": 261,
+            "high_school_psychology": 241,
+            "professional_psychology": 165,
+            "moral_disputes": 118,
+            "nutrition": 118,
+            "prehistory": 115,
+            "philosophy": 110,
+            "high_school_biology": 107,
+            "marketing": 107
+          }
+        },
+        "arc_challenge": {
+          "count": 330,
+          "total": 1172,
+          "rate": 0.2815699658703072,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 18,
+          "total": 164,
+          "rate": 0.10975609756097561,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 139,
+          "total": 1319,
+          "rate": 0.10538286580742987,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      },
+      "gain": {
+        "mmlu": {
+          "count": 1232,
+          "total": 14042,
+          "rate": 0.08773678963110668,
+          "domain_distribution": {
+            "STEM": 209,
+            "Other": 272,
+            "Social Sciences": 282,
+            "Humanities": 469
+          },
+          "top_subjects": {
+            "professional_law": 194,
+            "professional_psychology": 80,
+            "miscellaneous": 73,
+            "high_school_psychology": 50,
+            "moral_disputes": 45,
+            "prehistory": 39,
+            "nutrition": 37,
+            "conceptual_physics": 36,
+            "high_school_world_history": 32,
+            "philosophy": 31
+          }
+        },
+        "arc_challenge": {
+          "count": 125,
+          "total": 1172,
+          "rate": 0.10665529010238908,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 0,
+          "total": 164,
+          "rate": 0.0,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 134,
+          "total": 1319,
+          "rate": 0.10159211523881728,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      }
+    },
+    "Qwen2.5-1.5B": {
+      "forgetting": {
+        "mmlu": {
+          "count": 637,
+          "total": 14042,
+          "rate": 0.045363908275174475,
+          "domain_distribution": {
+            "STEM": 186,
+            "Other": 112,
+            "Social Sciences": 126,
+            "Humanities": 213
+          },
+          "top_subjects": {
+            "professional_law": 125,
+            "professional_psychology": 26,
+            "high_school_macroeconomics": 24,
+            "high_school_mathematics": 24,
+            "moral_scenarios": 24,
+            "miscellaneous": 22,
+            "elementary_mathematics": 20,
+            "high_school_microeconomics": 18,
+            "professional_accounting": 16,
+            "professional_medicine": 14
+          }
+        },
+        "arc_challenge": {
+          "count": 39,
+          "total": 1172,
+          "rate": 0.033276450511945395,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 5,
+          "total": 164,
+          "rate": 0.03048780487804878,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 132,
+          "total": 1319,
+          "rate": 0.10007581501137225,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      },
+      "gain": {
+        "mmlu": {
+          "count": 749,
+          "total": 14042,
+          "rate": 0.05333998005982054,
+          "domain_distribution": {
+            "STEM": 187,
+            "Other": 137,
+            "Social Sciences": 134,
+            "Humanities": 291
+          },
+          "top_subjects": {
+            "professional_law": 154,
+            "moral_scenarios": 51,
+            "professional_psychology": 28,
+            "miscellaneous": 20,
+            "high_school_macroeconomics": 19,
+            "professional_medicine": 19,
+            "elementary_mathematics": 18,
+            "moral_disputes": 18,
+            "high_school_biology": 17,
+            "high_school_psychology": 17
+          }
+        },
+        "arc_challenge": {
+          "count": 35,
+          "total": 1172,
+          "rate": 0.029863481228668942,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 34,
+          "total": 164,
+          "rate": 0.2073170731707317,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 126,
+          "total": 1319,
+          "rate": 0.09552691432903715,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      }
+    },
+    "Qwen2.5-3B": {
+      "forgetting": {
+        "mmlu": {
+          "count": 461,
+          "total": 14042,
+          "rate": 0.03283008118501638,
+          "domain_distribution": {
+            "STEM": 130,
+            "Other": 80,
+            "Social Sciences": 90,
+            "Humanities": 161
+          },
+          "top_subjects": {
+            "professional_law": 90,
+            "professional_psychology": 22,
+            "high_school_mathematics": 18,
+            "elementary_mathematics": 16,
+            "professional_accounting": 15,
+            "high_school_macroeconomics": 14,
+            "miscellaneous": 14,
+            "nutrition": 14,
+            "conceptual_physics": 12,
+            "philosophy": 12
+          }
+        },
+        "arc_challenge": {
+          "count": 20,
+          "total": 1172,
+          "rate": 0.017064846416382253,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 13,
+          "total": 164,
+          "rate": 0.07926829268292683,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 24,
+          "total": 1319,
+          "rate": 0.01819560272934041,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      },
+      "gain": {
+        "mmlu": {
+          "count": 542,
+          "total": 14042,
+          "rate": 0.03859849024355505,
+          "domain_distribution": {
+            "STEM": 163,
+            "Other": 101,
+            "Social Sciences": 100,
+            "Humanities": 178
+          },
+          "top_subjects": {
+            "professional_law": 83,
+            "professional_psychology": 24,
+            "high_school_mathematics": 21,
+            "moral_scenarios": 19,
+            "high_school_macroeconomics": 15,
+            "human_aging": 15,
+            "moral_disputes": 15,
+            "high_school_psychology": 14,
+            "philosophy": 14,
+            "professional_accounting": 14
+          }
+        },
+        "arc_challenge": {
+          "count": 16,
+          "total": 1172,
+          "rate": 0.013651877133105802,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 16,
+          "total": 164,
+          "rate": 0.0975609756097561,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 766,
+          "total": 1319,
+          "rate": 0.5807429871114481,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      }
+    },
+    "Qwen2.5-7B": {
+      "forgetting": {
+        "arc_challenge": {
+          "count": 15,
+          "total": 1172,
+          "rate": 0.012798634812286689,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      },
+      "gain": {
+        "arc_challenge": {
+          "count": 12,
+          "total": 1172,
+          "rate": 0.010238907849829351,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      }
+    },
+    "Llama-3.2-3B": {
+      "forgetting": {
+        "arc_challenge": {
+          "count": 75,
+          "total": 1172,
+          "rate": 0.06399317406143344,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 7,
+          "total": 164,
+          "rate": 0.042682926829268296,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 116,
+          "total": 1319,
+          "rate": 0.08794541319181198,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      },
+      "gain": {
+        "arc_challenge": {
+          "count": 72,
+          "total": 1172,
+          "rate": 0.06143344709897611,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "humaneval": {
+          "count": 2,
+          "total": 164,
+          "rate": 0.012195121951219513,
+          "domain_distribution": {},
+          "top_subjects": {}
+        },
+        "gsm8k": {
+          "count": 206,
+          "total": 1319,
+          "rate": 0.1561789234268385,
+          "domain_distribution": {},
+          "top_subjects": {}
+        }
+      }
+    }
+  },
+  "persistent_errors": {
+    "mmlu": {
+      "count": 1097,
+      "domain_distribution": {
+        "Humanities": 513,
+        "Other": 144,
+        "STEM": 314,
+        "Social Sciences": 126
+      },
+      "top_subjects": {
+        "moral_scenarios": 270,
+        "professional_law": 145,
+        "elementary_mathematics": 37,
+        "high_school_mathematics": 37,
+        "professional_accounting": 33,
+        "professional_psychology": 32,
+        "miscellaneous": 28,
+        "high_school_statistics": 28,
+        "virology": 28,
+        "high_school_physics": 24,
+        "college_chemistry": 22,
+        "philosophy": 21,
+        "moral_disputes": 19,
+        "high_school_macroeconomics": 19,
+        "formal_logic": 17
+      }
+    },
+    "arc_challenge": {
+      "count": 23,
+      "domain_distribution": {},
+      "top_subjects": {}
+    },
+    "humaneval": {
+      "count": 72,
+      "domain_distribution": {},
+      "top_subjects": {}
+    },
+    "gsm8k": {
+      "count": 107,
+      "domain_distribution": {},
+      "top_subjects": {}
+    }
+  },
+  "per_family_persistent_errors": {
+    "Qwen2.5-0.5B": {
+      "mmlu": {
+        "count": 6575
+      },
+      "arc_challenge": {
+        "count": 454
+      },
+      "humaneval": {
+        "count": 129
+      },
+      "gsm8k": {
+        "count": 565
+      }
+    },
+    "Qwen2.5-1.5B": {
+      "mmlu": {
+        "count": 4851
+      },
+      "arc_challenge": {
+        "count": 214
+      },
+      "humaneval": {
+        "count": 93
+      },
+      "gsm8k": {
+        "count": 262
+      }
+    },
+    "Qwen2.5-3B": {
+      "mmlu": {
+        "count": 4287
+      },
+      "arc_challenge": {
+        "count": 179
+      },
+      "humaneval": {
+        "count": 118
+      },
+      "gsm8k": {
+        "count": 256
+      }
+    },
+    "Qwen2.5-7B": {
+      "mmlu": {
+        "count": 3617
+      },
+      "arc_challenge": {
+        "count": 100
+      }
+    },
+    "Llama-3.2-3B": {
+      "mmlu": {
+        "count": 6128
+      },
+      "arc_challenge": {
+        "count": 382
+      },
+      "humaneval": {
+        "count": 150
+      },
+      "gsm8k": {
+        "count": 680
+      }
+    }
+  },
+  "cross_model_agreement": {
+    "d005": {
+      "mmlu": {
+        "n_families": 3,
+        "n_items": 14042,
+        "unanimous_forgot": 3,
+        "majority_forgot": 99,
+        "any_forgot": 2609,
+        "unique_forgot": 2510,
+        "unanimous_gain": 0,
+        "majority_gain": 68,
+        "any_gain": 1626,
+        "unique_gain": 1558,
+        "unanimous_forgot_domains": {
+          "STEM": 1,
+          "Other": 2
+        },
+        "unanimous_gain_domains": {}
+      },
+      "arc_challenge": {
+        "n_families": 5,
+        "n_items": 1172,
+        "unanimous_forgot": 0,
+        "majority_forgot": 1,
+        "any_forgot": 350,
+        "unique_forgot": 332,
+        "unanimous_gain": 0,
+        "majority_gain": 0,
+        "any_gain": 186,
+        "unique_gain": 176
+      },
+      "humaneval": {
+        "n_families": 4,
+        "n_items": 164,
+        "unanimous_forgot": 0,
+        "majority_forgot": 2,
+        "any_forgot": 30,
+        "unique_forgot": 24,
+        "unanimous_gain": 0,
+        "majority_gain": 2,
+        "any_gain": 37,
+        "unique_gain": 29
+      },
+      "gsm8k": {
+        "n_families": 4,
+        "n_items": 1319,
+        "unanimous_forgot": 0,
+        "majority_forgot": 2,
+        "any_forgot": 364,
+        "unique_forgot": 326,
+        "unanimous_gain": 1,
+        "majority_gain": 21,
+        "any_gain": 684,
+        "unique_gain": 536
+      }
+    },
+    "d025": {
+      "mmlu": {
+        "n_families": 3,
+        "n_items": 14042,
+        "unanimous_forgot": 9,
+        "majority_forgot": 236,
+        "any_forgot": 3728,
+        "unique_forgot": 3492,
+        "unanimous_gain": 10,
+        "majority_gain": 196,
+        "any_gain": 2094,
+        "unique_gain": 1898,
+        "unanimous_forgot_domains": {
+          "Other": 3,
+          "STEM": 1,
+          "Social Sciences": 4,
+          "Humanities": 1
+        },
+        "unanimous_gain_domains": {
+          "Other": 3,
+          "Humanities": 5,
+          "Social Sciences": 2
+        }
+      },
+      "arc_challenge": {
+        "n_families": 5,
+        "n_items": 1172,
+        "unanimous_forgot": 0,
+        "majority_forgot": 3,
+        "any_forgot": 357,
+        "unique_forgot": 329,
+        "unanimous_gain": 0,
+        "majority_gain": 0,
+        "any_gain": 196,
+        "unique_gain": 174
+      },
+      "humaneval": {
+        "n_families": 3,
+        "n_items": 164,
+        "unanimous_forgot": 1,
+        "majority_forgot": 4,
+        "any_forgot": 18,
+        "unique_forgot": 14,
+        "unanimous_gain": 0,
+        "majority_gain": 4,
+        "any_gain": 34,
+        "unique_gain": 30
+      },
+      "gsm8k": {
+        "n_families": 4,
+        "n_items": 1319,
+        "unanimous_forgot": 0,
+        "majority_forgot": 1,
+        "any_forgot": 370,
+        "unique_forgot": 328,
+        "unanimous_gain": 2,
+        "majority_gain": 35,
+        "any_gain": 909,
+        "unique_gain": 605
+      }
+    },
+    "d100": {
+      "mmlu": {
+        "n_families": 3,
+        "n_items": 14042,
+        "unanimous_forgot": 21,
+        "majority_forgot": 268,
+        "any_forgot": 4351,
+        "unique_forgot": 4083,
+        "unanimous_gain": 16,
+        "majority_gain": 240,
+        "any_gain": 2267,
+        "unique_gain": 2027,
+        "unanimous_forgot_domains": {
+          "STEM": 2,
+          "Other": 6,
+          "Humanities": 6,
+          "Social Sciences": 7
+        },
+        "unanimous_gain_domains": {
+          "Social Sciences": 4,
+          "STEM": 1,
+          "Other": 3,
+          "Humanities": 8
+        }
+      },
+      "arc_challenge": {
+        "n_families": 5,
+        "n_items": 1172,
+        "unanimous_forgot": 0,
+        "majority_forgot": 2,
+        "any_forgot": 437,
+        "unique_forgot": 397,
+        "unanimous_gain": 0,
+        "majority_gain": 0,
+        "any_gain": 233,
+        "unique_gain": 206
+      },
+      "humaneval": {
+        "n_families": 4,
+        "n_items": 164,
+        "unanimous_forgot": 0,
+        "majority_forgot": 2,
+        "any_forgot": 35,
+        "unique_forgot": 29,
+        "unanimous_gain": 0,
+        "majority_gain": 1,
+        "any_gain": 43,
+        "unique_gain": 35
+      },
+      "gsm8k": {
+        "n_families": 4,
+        "n_items": 1319,
+        "unanimous_forgot": 0,
+        "majority_forgot": 2,
+        "any_forgot": 364,
+        "unique_forgot": 319,
+        "unanimous_gain": 1,
+        "majority_gain": 33,
+        "any_gain": 909,
+        "unique_gain": 620
+      }
+    }
+  },
+  "trajectories": {
+    "Qwen2.5-0.5B": {
+      "mmlu": {
+        "d000": {
+          "accuracy": 0.39787779518587096,
+          "correct": 5587,
+          "total": 14042
+        },
+        "d005": {
+          "accuracy": 0.32545221478421876,
+          "correct": 4570,
+          "total": 14042
+        },
+        "d025": {
+          "accuracy": 0.28030195128899016,
+          "correct": 3936,
+          "total": 14042
+        },
+        "d100": {
+          "accuracy": 0.23337131462754593,
+          "correct": 3277,
+          "total": 14042
+        }
+      },
+      "arc_challenge": {
+        "d000": {
+          "accuracy": 0.46928327645051193,
+          "correct": 550,
+          "total": 1172
+        },
+        "d005": {
+          "accuracy": 0.32849829351535836,
+          "correct": 385,
+          "total": 1172
+        },
+        "d025": {
+          "accuracy": 0.3250853242320819,
+          "correct": 381,
+          "total": 1172
+        },
+        "d100": {
+          "accuracy": 0.29436860068259385,
+          "correct": 345,
+          "total": 1172
+        }
+      },
+      "humaneval": {
+        "d000": {
+          "accuracy": 0.10975609756097561,
+          "correct": 18,
+          "total": 164
+        },
+        "d005": {
+          "accuracy": 0.07926829268292683,
+          "correct": 13,
+          "total": 164
+        },
+        "d025": {
+          "accuracy": 0.12195121951219512,
+          "correct": 20,
+          "total": 164
+        },
+        "d100": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 164
+        }
+      },
+      "gsm8k": {
+        "d000": {
+          "accuracy": 0.3692191053828658,
+          "correct": 487,
+          "total": 1319
+        },
+        "d005": {
+          "accuracy": 0.36239575435936316,
+          "correct": 478,
+          "total": 1319
+        },
+        "d025": {
+          "accuracy": 0.3661865049279757,
+          "correct": 483,
+          "total": 1319
+        },
+        "d100": {
+          "accuracy": 0.36542835481425323,
+          "correct": 482,
+          "total": 1319
+        }
+      }
+    },
+    "Qwen2.5-1.5B": {
+      "mmlu": {
+        "d000": {
+          "accuracy": 0.5853154821250535,
+          "correct": 8219,
+          "total": 14042
+        },
+        "d005": {
+          "accuracy": 0.5851730522717562,
+          "correct": 8217,
+          "total": 14042
+        },
+        "d025": {
+          "accuracy": 0.5902293120638086,
+          "correct": 8288,
+          "total": 14042
+        },
+        "d100": {
+          "accuracy": 0.5932915539096995,
+          "correct": 8331,
+          "total": 14042
+        }
+      },
+      "arc_challenge": {
+        "d000": {
+          "accuracy": 0.7721843003412969,
+          "correct": 905,
+          "total": 1172
+        },
+        "d005": {
+          "accuracy": 0.7687713310580204,
+          "correct": 901,
+          "total": 1172
+        },
+        "d025": {
+          "accuracy": 0.7687713310580204,
+          "correct": 901,
+          "total": 1172
+        },
+        "d100": {
+          "accuracy": 0.7687713310580204,
+          "correct": 901,
+          "total": 1172
+        }
+      },
+      "humaneval": {
+        "d000": {
+          "accuracy": 0.12804878048780488,
+          "correct": 21,
+          "total": 164
+        },
+        "d005": {
+          "accuracy": 0.25,
+          "correct": 41,
+          "total": 164
+        },
+        "d025": {
+          "accuracy": 0.22560975609756098,
+          "correct": 37,
+          "total": 164
+        },
+        "d100": {
+          "accuracy": 0.3048780487804878,
+          "correct": 50,
+          "total": 164
+        }
+      },
+      "gsm8k": {
+        "d000": {
+          "accuracy": 0.6542835481425322,
+          "correct": 863,
+          "total": 1319
+        },
+        "d005": {
+          "accuracy": 0.6482183472327521,
+          "correct": 855,
+          "total": 1319
+        },
+        "d025": {
+          "accuracy": 0.6535253980288097,
+          "correct": 862,
+          "total": 1319
+        },
+        "d100": {
+          "accuracy": 0.6497346474601972,
+          "correct": 857,
+          "total": 1319
+        }
+      }
+    },
+    "Qwen2.5-3B": {
+      "mmlu": {
+        "d000": {
+          "accuracy": 0.6306793904002279,
+          "correct": 8856,
+          "total": 14042
+        },
+        "d005": {
+          "accuracy": 0.6308218202535252,
+          "correct": 8858,
+          "total": 14042
+        },
+        "d025": {
+          "accuracy": 0.624198832075203,
+          "correct": 8765,
+          "total": 14042
+        },
+        "d100": {
+          "accuracy": 0.6364477994587665,
+          "correct": 8937,
+          "total": 14042
+        }
+      },
+      "arc_challenge": {
+        "d000": {
+          "accuracy": 0.8242320819112628,
+          "correct": 966,
+          "total": 1172
+        },
+        "d005": {
+          "accuracy": 0.8250853242320819,
+          "correct": 967,
+          "total": 1172
+        },
+        "d025": {
+          "accuracy": 0.8225255972696246,
+          "correct": 964,
+          "total": 1172
+        },
+        "d100": {
+          "accuracy": 0.8208191126279863,
+          "correct": 962,
+          "total": 1172
+        }
+      },
+      "humaneval": {
+        "d000": {
+          "accuracy": 0.1402439024390244,
+          "correct": 23,
+          "total": 164
+        },
+        "d005": {
+          "accuracy": 0.13414634146341464,
+          "correct": 22,
+          "total": 164
+        },
+        "d100": {
+          "accuracy": 0.15853658536585366,
+          "correct": 26,
+          "total": 164
+        }
+      },
+      "gsm8k": {
+        "d000": {
+          "accuracy": 0.14101592115238817,
+          "correct": 186,
+          "total": 1319
+        },
+        "d005": {
+          "accuracy": 0.41470811220621684,
+          "correct": 547,
+          "total": 1319
+        },
+        "d025": {
+          "accuracy": 0.6823351023502654,
+          "correct": 900,
+          "total": 1319
+        },
+        "d100": {
+          "accuracy": 0.7035633055344959,
+          "correct": 928,
+          "total": 1319
+        }
+      }
+    },
+    "Qwen2.5-7B": {
+      "mmlu": {
+        "d005": {
+          "accuracy": 0.6924227318045862,
+          "correct": 9723,
+          "total": 14042
+        },
+        "d025": {
+          "accuracy": 0.7003275886625837,
+          "correct": 9834,
+          "total": 14042
+        },
+        "d050": {
+          "accuracy": 0.7050277738213929,
+          "correct": 9900,
+          "total": 14042
+        },
+        "d100": {
+          "accuracy": 0.7102976783933913,
+          "correct": 9974,
+          "total": 14042
+        }
+      },
+      "arc_challenge": {
+        "d000": {
+          "accuracy": 0.8959044368600683,
+          "correct": 1050,
+          "total": 1172
+        },
+        "d005": {
+          "accuracy": 0.8967576791808873,
+          "correct": 1051,
+          "total": 1172
+        },
+        "d025": {
+          "accuracy": 0.8984641638225256,
+          "correct": 1053,
+          "total": 1172
+        },
+        "d050": {
+          "accuracy": 0.8993174061433447,
+          "correct": 1054,
+          "total": 1172
+        },
+        "d100": {
+          "accuracy": 0.893344709897611,
+          "correct": 1047,
+          "total": 1172
+        }
+      },
+      "humaneval": {},
+      "gsm8k": {}
+    },
+    "Llama-3.2-3B": {
+      "mmlu": {
+        "d005": {
+          "accuracy": 0.4255804016521863,
+          "correct": 5976,
+          "total": 14042
+        },
+        "d025": {
+          "accuracy": 0.4150405925081897,
+          "correct": 5828,
+          "total": 14042
+        },
+        "d100": {
+          "accuracy": 0.3408346389403219,
+          "correct": 4786,
+          "total": 14042
+        }
+      },
+      "arc_challenge": {
+        "d000": {
+          "accuracy": 0.6006825938566553,
+          "correct": 704,
+          "total": 1172
+        },
+        "d005": {
+          "accuracy": 0.5955631399317406,
+          "correct": 698,
+          "total": 1172
+        },
+        "d025": {
+          "accuracy": 0.6023890784982935,
+          "correct": 706,
+          "total": 1172
+        },
+        "d100": {
+          "accuracy": 0.5981228668941979,
+          "correct": 701,
+          "total": 1172
+        }
+      },
+      "humaneval": {
+        "d000": {
+          "accuracy": 0.042682926829268296,
+          "correct": 7,
+          "total": 164
+        },
+        "d005": {
+          "accuracy": 0.012195121951219513,
+          "correct": 2,
+          "total": 164
+        },
+        "d025": {
+          "accuracy": 0.024390243902439025,
+          "correct": 4,
+          "total": 164
+        },
+        "d100": {
+          "accuracy": 0.012195121951219513,
+          "correct": 2,
+          "total": 164
+        }
+      },
+      "gsm8k": {
+        "d000": {
+          "accuracy": 0.19181197877179681,
+          "correct": 253,
+          "total": 1319
+        },
+        "d005": {
+          "accuracy": 0.2721758908263836,
+          "correct": 359,
+          "total": 1319
+        },
+        "d025": {
+          "accuracy": 0.288855193328279,
+          "correct": 381,
+          "total": 1319
+        },
+        "d100": {
+          "accuracy": 0.26004548900682334,
+          "correct": 343,
+          "total": 1319
+        }
+      }
+    }
+  }
+}

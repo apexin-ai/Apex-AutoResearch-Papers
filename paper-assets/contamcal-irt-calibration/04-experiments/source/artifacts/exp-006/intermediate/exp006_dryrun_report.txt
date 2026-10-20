@@ -1,0 +1,18 @@
+DRY-RUN PASSED (2026-05-14T17:23Z)
+
+Pipeline: ContamCal (IRT 4PL+gamma via CmdStanPy NUTS) + 7 baselines + 8 evaluation metrics
+
+Components tested:
+- run_irt_calibration.py: PASS - ContamCal via CmdStanPy, gamma=0.449 (true=1.5, small N)
+- baselines.py: PASS - All 7 baselines (B0-B6) with unified interface
+- evaluate_calibration.py: PASS - 8 metrics + reliability diagram
+- run_all_baselines.py: PASS - Standalone script fixed
+- run_exp006.py: OK - End-to-end pipeline ready (needs real data)
+
+Baselines: B0_raw, B1_remove_rescore, B2_2pl_gamma(Stan), B3_vanilla_4pl(Stan), B4_linear_reg, B5_emperor, B6_dcr_fuzzy
+
+Metrics: MAE, ECE, MCE, Brier, Coverage@50/80/95%, Sharpness, Kendall_tau, Dose-response, Reliability_diagram
+
+Changes:
+1. evaluate_calibration.py: +metric_ece +metric_mce +metric_brier +reliability_diagram_data; updated evaluate_method and format tables
+2. run_all_baselines.py: rewrote to use baselines.py matrix API (was stale per-model API causing NaN)

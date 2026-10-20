@@ -1,0 +1,113 @@
+{
+  "config": {
+    "N_models": 50,
+    "N_items": 100,
+    "gamma_true": 0.5,
+    "exposure_rate": 0.3,
+    "seed": 42
+  },
+  "2pl_advi": {
+    "model": "2pl",
+    "method": "ADVI",
+    "gamma_mean": 0.0355,
+    "gamma_sd": 0.0,
+    "gamma_q025": 0.0355,
+    "gamma_q975": 0.0355,
+    "gamma_bias": -0.4645,
+    "gamma_rel_bias": 0.929,
+    "gamma_ci_covers_true": false,
+    "gamma_ci_excludes_zero": true,
+    "theta_corr": 0.347,
+    "theta_rmse": 0.7584,
+    "pass_fail": {
+      "gamma_ci_covers_true": false,
+      "gamma_ci_excludes_zero": true,
+      "gamma_rel_bias": false,
+      "theta_corr": false,
+      "theta_rmse": false,
+      "overall": false
+    },
+    "fit_time_sec": 80.4
+  },
+  "2pl_nuts": {
+    "model": "2pl",
+    "method": "NUTS",
+    "gamma_mean": 0.1589,
+    "gamma_sd": 0.067,
+    "gamma_q025": 0.0291,
+    "gamma_q975": 0.286,
+    "gamma_bias": -0.3411,
+    "gamma_rel_bias": 0.6821,
+    "gamma_ci_covers_true": false,
+    "gamma_ci_excludes_zero": true,
+    "theta_corr": 0.8685,
+    "theta_rmse": 0.427,
+    "max_rhat": 1.0076,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "min_ess": 1240.9,
+    "pass_fail": {
+      "gamma_ci_covers_true": false,
+      "gamma_ci_excludes_zero": true,
+      "gamma_rel_bias": false,
+      "theta_corr": false,
+      "theta_rmse": false,
+      "max_rhat": true,
+      "divergent_pct": true,
+      "overall": false
+    },
+    "fit_time_sec": 412.1
+  },
+  "4pl_advi": {
+    "model": "4pl",
+    "method": "ADVI",
+    "gamma_mean": -1.0095,
+    "gamma_sd": 0.0,
+    "gamma_q025": -1.0095,
+    "gamma_q975": -1.0095,
+    "gamma_bias": -1.5095,
+    "gamma_rel_bias": 3.0191,
+    "gamma_ci_covers_true": false,
+    "gamma_ci_excludes_zero": true,
+    "theta_corr": 0.164,
+    "theta_rmse": 1.0634,
+    "pass_fail": {
+      "gamma_ci_covers_true": false,
+      "gamma_ci_excludes_zero": true,
+      "gamma_rel_bias": false,
+      "theta_corr": false,
+      "theta_rmse": false,
+      "overall": false
+    },
+    "fit_time_sec": 100.5
+  },
+  "4pl_nuts": {
+    "model": "4pl",
+    "method": "NUTS",
+    "gamma_mean": 0.3397,
+    "gamma_sd": 0.1335,
+    "gamma_q025": 0.0807,
+    "gamma_q975": 0.6043,
+    "gamma_bias": -0.1603,
+    "gamma_rel_bias": 0.3206,
+    "gamma_ci_covers_true": true,
+    "gamma_ci_excludes_zero": true,
+    "theta_corr": 0.8763,
+    "theta_rmse": 0.3742,
+    "max_rhat": 1.0052,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "min_ess": 1229.0,
+    "pass_fail": {
+      "gamma_ci_covers_true": true,
+      "gamma_ci_excludes_zero": true,
+      "gamma_rel_bias": false,
+      "theta_corr": false,
+      "theta_rmse": false,
+      "max_rhat": true,
+      "divergent_pct": true,
+      "overall": false
+    },
+    "fit_time_sec": 486.7
+  }
+}

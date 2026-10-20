@@ -1,0 +1,151 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023nlp,balloccu2024leak,dong2024generalization}
+\citation{yang2023rethinking,golchin2024time}
+\citation{jiang2024investigating}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{martinez2024item}
+\citation{burnell2023rethinking}
+\citation{lalor2024benchmarking}
+\citation{oren2024proving}
+\citation{white2024livebench}
+\citation{eckerly2017detecting,sinharay2017assessment}
+\citation{de2004explanatory}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{shokri2017membership}
+\citation{carlini2021extracting}
+\citation{martinez2024item}
+\citation{lalor2024benchmarking}
+\citation{burnell2023rethinking}
+\citation{polo2024tinybenchmarks}
+\citation{reckase2009multidimensional}
+\citation{jiang2024investigating}
+\citation{oren2024proving}
+\citation{chiang2024chatbot}
+\citation{liang2023holistic}
+\citation{eckerly2017detecting,sinharay2017assessment}
+\citation{holland1993differential,thissen1993detection,zumbo1999handbook}
+\citation{de2004explanatory}
+\citation{guo2017calibration,platt1999probabilistic}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement foundations.}{2}{section*.4}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Multi-Signal Detection}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:detection}{{3.1}{3}{Stage 1: Multi-Signal Detection}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented IRT}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:irt}{{3.2}{3}{Stage 2: Contamination-Augmented IRT}{subsection.3.2}{}}
+\newlabel{eq:4pl}{{1}{3}{Stage 2: Contamination-Augmented IRT}{equation.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Identifiability.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration gating criterion.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces QC-only vs.\ all-paraphrase accuracy at 0.5B, $d = 100\%$. Baseline ($d = 0\%$) shown for reference. Position bias is percentage of predictions selecting answer A.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:qc_ablation}{{1}{4}{QC-only vs.\ all-paraphrase accuracy at 0.5B, $d = 100\%$. Baseline ($d = 0\%$) shown for reference. Position bias is percentage of predictions selecting answer A}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Controlled SFT Injection Protocol}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:sft}{{3.3}{4}{Controlled SFT Injection Protocol}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}QC-Only Ablation at 0.5B (Exp.~1)}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp_qc}{{4.1}{4}{QC-Only Ablation at 0.5B (Exp.~1)}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Motivation.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Scale Bridging: 7B Controlled Injection (Exp.~2)}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp_7b}{{4.2}{4}{Scale Bridging: 7B Controlled Injection (Exp.~2)}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{4}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Accuracy by dosage across model scales. 7B row shows near-flat contamination response. Bold: largest absolute $\Delta (d100 - d000)$ per scale.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:scale_bridging}{{2}{5}{Accuracy by dosage across model scales. 7B row shows near-flat contamination response. Bold: largest absolute $\Delta (d100 - d000)$ per scale}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces IRT $\gamma $ estimates and 95\% CIs by scale (7B) and benchmark. No CI excludes zero.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:gamma_forest}{{3}{5}{IRT $\gam $ estimates and 95\% CIs by scale (7B) and benchmark. No CI excludes zero}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The scale paradox.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Family Validation: Llama-3.2-3B (Exp.~3)}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp_family}{{4.3}{5}{Cross-Family Validation: Llama-3.2-3B (Exp.~3)}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{5}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Salvageable findings.}{5}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Honest downgrade.}{5}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Calibration vs.\ raw MAE at 7B. Calibration increases error on all benchmarks. Linear regression (B4) included as reference.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:calibration_7b}{{4}{6}{Calibration vs.\ raw MAE at 7B. Calibration increases error on all benchmarks. Linear regression (B4) included as reference}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Llama-3.2-3B vs.\ Qwen2.5-3B: contamination response direction. $\Delta = d100 - d000$ accuracy.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:cross_family}{{5}{6}{Llama-3.2-3B vs.\ Qwen2.5-3B: contamination response direction. $\Delta = d100 - d000$ accuracy}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Observational Case Study: RL/Instruct Models (Exp.~4)}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp_rl}{{4.4}{6}{Observational Case Study: RL/Instruct Models (Exp.~4)}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Specificity check.}{6}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Three compounding failures.}{6}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Frontier Observation: 72B (Exp.~5)}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp_72b}{{4.5}{6}{Frontier Observation: 72B (Exp.~5)}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-domain MMLU $\gamma $ comparison. Domain orderings contradict across families. All individual Llama CIs include zero ($N = 3$).}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:stem_gradient}{{6}{7}{Per-domain MMLU $\gam $ comparison. Domain orderings contradict across families. All individual Llama CIs include zero ($N = 3$)}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Detection signal AUC: controlled SFT vs.\ observational RL models. RL post-training degrades all signals.}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:signal_degradation}{{7}{7}{Detection signal AUC: controlled SFT vs.\ observational RL models. RL post-training degrades all signals}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Closed-Weight Ablation: 2-Signal Mode (Exp.~6)}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp_closed}{{4.6}{7}{Closed-Weight Ablation: 2-Signal Mode (Exp.~6)}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Motivation.}{7}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results.}{7}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Triple impossibility.}{7}{section*.33}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Min-K++ Directional Reversal}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The Identifiability Boundary}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Expected regret for model selection (top-5). Calibration consistently increases regret. Ground truth from held-out clean benchmark.}}{8}{table.caption.26}\protected@file@percent }
+\newlabel{tab:regret}{{8}{8}{Expected regret for model selection (top-5). Calibration consistently increases regret. Ground truth from held-out clean benchmark}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Impact of adding 72B to the model pool. $\Delta \gamma $: change from without-72B estimate. Coverage 95\%: nominal 95\% CI coverage rate.}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:72b}{{9}{8}{Impact of adding 72B to the model pool. $\Delta \gam $: change from without-72B estimate. Coverage 95\%: nominal 95\% CI coverage rate}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Calibration Gating as Contribution}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Position Bias at Small Scale}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Limitations}{8}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single primary model family.}{8}{section*.34}\protected@file@percent }
+\citation{reckase2009multidimensional}
+\citation{mislevy1986bayes}
+\bibcite{balloccu2024leak}{{1}{2024}{{Balloccu et~al.}}{{}}}
+\bibcite{burnell2023rethinking}{{2}{2023}{{Burnell et~al.}}{{}}}
+\bibcite{carlini2021extracting}{{3}{2021}{{Carlini et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces 2-signal (closed-weight) vs.\ 4-signal (open-weight) pipeline. The pipeline is effectively a single-signal (S1) system.}}{9}{table.caption.32}\protected@file@percent }
+\newlabel{tab:2signal}{{10}{9}{2-signal (closed-weight) vs.\ 4-signal (open-weight) pipeline. The pipeline is effectively a single-signal (S1) system}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {paragraph}{SFT $\neq  $ real contamination.}{9}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unidimensional ability.}{9}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Local independence.}{9}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{9}{Conclusion}{section.6}{}}
+\bibcite{chiang2024chatbot}{{4}{2024}{{Chiang et~al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{5}{2009}{{Cormack et~al.}}{{}}}
+\bibcite{de2004explanatory}{{6}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{7}{2024}{{Dekoninck et~al.}}{{}}}
+\bibcite{dong2024generalization}{{8}{2024}{{Dong et~al.}}{{}}}
+\bibcite{eckerly2017detecting}{{9}{2017}{{Eckerly}}{{}}}
+\bibcite{golchin2024time}{{10}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{guo2017calibration}{{11}{2017}{{Guo et~al.}}{{}}}
+\bibcite{holland1993differential}{{12}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{jiang2024investigating}{{13}{2024}{{Jiang et~al.}}{{}}}
+\bibcite{lalor2024benchmarking}{{14}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{liang2023holistic}{{15}{2023}{{Liang et~al.}}{{}}}
+\bibcite{martinez2024item}{{16}{2024}{{Martinez et~al.}}{{}}}
+\bibcite{mislevy1986bayes}{{17}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{18}{2024}{{Oren et~al.}}{{}}}
+\bibcite{platt1999probabilistic}{{19}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{20}{2024}{{Polo et~al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{21}{2009}{{Reckase}}{{}}}
+\bibcite{sainz2023nlp}{{22}{2023}{{Sainz et~al.}}{{}}}
+\bibcite{shi2024detecting}{{23}{2024}{{Shi et~al.}}{{}}}
+\bibcite{shokri2017membership}{{24}{2017}{{Shokri et~al.}}{{}}}
+\bibcite{sinharay2017assessment}{{25}{2017}{{Sinharay}}{{}}}
+\bibcite{thissen1993detection}{{26}{1993}{{Thissen et~al.}}{{}}}
+\bibcite{white2024livebench}{{27}{2024}{{White et~al.}}{{}}}
+\bibcite{yang2023rethinking}{{28}{2023}{{Yang et~al.}}{{}}}
+\bibcite{zumbo1999handbook}{{29}{1999}{{Zumbo}}{{}}}
+\gdef \@abspage@last{11}

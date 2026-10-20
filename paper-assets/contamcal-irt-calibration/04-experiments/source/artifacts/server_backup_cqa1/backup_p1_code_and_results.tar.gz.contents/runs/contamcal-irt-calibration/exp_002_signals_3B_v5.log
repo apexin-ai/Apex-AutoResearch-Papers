@@ -1,0 +1,37 @@
+2026-05-16 03:43:57,705 [INFO] ============================================================
+2026-05-16 03:43:57,705 [INFO] exp-002 Signal Pipeline Batch Runner
+2026-05-16 03:43:57,705 [INFO] ============================================================
+2026-05-16 03:43:57,705 [INFO] Model: Qwen2.5-3B (3B)
+2026-05-16 03:43:57,705 [INFO] Dosages: ['d025', 'd100']
+2026-05-16 03:43:57,705 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']
+2026-05-16 03:43:57,705 [INFO] Tasks to run: 4
+2026-05-16 03:43:57,705 [INFO] Skipped (completed): 2 ['Qwen2.5-3B_d025_s42/gsm8k', 'Qwen2.5-3B_d025_s42/arc_challenge']
+2026-05-16 03:43:57,705 [INFO] Dry-run: False
+2026-05-16 03:43:57,705 [INFO] GPU: 0
+2026-05-16 03:43:57,705 [INFO] ============================================================
+2026-05-16 03:43:57,705 [INFO] [1/4] Running: Qwen2.5-3B_d025_s42/mmlu (signals: all)
+2026-05-16 06:33:50,930 [INFO] [1/4] PASS: Qwen2.5-3B_d025_s42/mmlu
+2026-05-16 06:33:50,931 [INFO] [2/4] Running: Qwen2.5-3B_d100_s42/mmlu (signals: all)
+2026-05-16 07:20:45,324 [ERROR] [2/4] FAIL: Qwen2.5-3B_d100_s42/mmlu
+stderr: u:  22%|██▏       | 1512/7021 [35:11<2:10:13,  1.42s/it]
+Self-critique mmlu:  22%|██▏       | 1513/7021 [35:12<2:09:25,  1.41s/it]
+Self-critique mmlu:  22%|██▏       | 1514/7021 [35:14<2:08:32,  1.40s/it]
+Self-critique mmlu:  22%|██▏       | 1515/7021 [35:15<2:08:14,  1.40s/it]
+Self-critique mmlu:  22%|██▏       | 1516/7021 [35:16<2:07:45,  1.39s/it]
+Self-critique mmlu:  22%|██▏       | 1517/7021 [35:18<2:07:26,  1.39s/it]
+Self-critique mmlu:  22%|██▏       | 1518/7021 [35:19<2:07:11,  1.39s/it]
+2026-05-16 07:20:45,326 [INFO] [3/4] Running: Qwen2.5-3B_d100_s42/gsm8k (signals: all)
+2026-05-16 07:27:52,204 [INFO] [3/4] PASS: Qwen2.5-3B_d100_s42/gsm8k
+2026-05-16 07:27:52,204 [INFO] [4/4] Running: Qwen2.5-3B_d100_s42/arc_challenge (signals: all)
+2026-05-16 07:34:15,842 [INFO] [4/4] PASS: Qwen2.5-3B_d100_s42/arc_challenge
+2026-05-16 07:34:15,842 [INFO] 
+============================================================
+2026-05-16 07:34:15,842 [INFO] BATCH SUMMARY
+2026-05-16 07:34:15,842 [INFO] ============================================================
+2026-05-16 07:34:15,842 [INFO]   [PASS] Qwen2.5-3B_d025_s42/mmlu: PASS
+2026-05-16 07:34:15,842 [INFO]   [FAIL] Qwen2.5-3B_d100_s42/mmlu: FAIL (rc=-15)
+2026-05-16 07:34:15,842 [INFO]   [PASS] Qwen2.5-3B_d100_s42/gsm8k: PASS
+2026-05-16 07:34:15,842 [INFO]   [PASS] Qwen2.5-3B_d100_s42/arc_challenge: PASS
+2026-05-16 07:34:15,842 [INFO] Result: 3/4 passed
+2026-05-16 07:34:15,845 [INFO] Batch report saved to /root/autodl-tmp/exp002/signals/batch_report_Qwen2.5-3B.json
+EXIT_CODE=129

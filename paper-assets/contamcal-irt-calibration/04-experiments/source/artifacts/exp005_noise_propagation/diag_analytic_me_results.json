@@ -1,0 +1,27 @@
+{
+  "status": "OK",
+  "model": "analytic_me",
+  "sigma_e": 0.1,
+  "n_models": 30,
+  "n_items": 300,
+  "true_gamma": 0.5,
+  "gamma_mean": 0.7959,
+  "gamma_sd": 0.1287,
+  "gamma_q025": 0.556,
+  "gamma_q975": 1.06,
+  "gamma_rel_bias": 0.5919,
+  "gamma_rel_bias_pct": "59.2%",
+  "ci_covers_true": false,
+  "max_rhat": 1.0057,
+  "min_ess": 1647.0,
+  "divergent_count": 0,
+  "divergent_pct": 0.0,
+  "ci_width_mean": 0.1019,
+  "n_params": 1231,
+  "elapsed_sec": 1386.9,
+  "comparison_simple": {
+    "gamma_mean": 0.7877,
+    "gamma_rel_bias_pct": "+57.5%",
+    "ci_covers_true": false
+  }
+}

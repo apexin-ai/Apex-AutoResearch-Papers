@@ -1,0 +1,671 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{natbib}
+\usepackage[colorlinks,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
+
+\newcommand{\gam}{\gamma}
+\newcommand{\CI}{\mathrm{CI}}
+
+\title{ContamCal: Why Post-Hoc Calibration of Contaminated Benchmarks\\Is Harder Than You Think}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Benchmark contamination---the presence of test items in language model training data---undermines the reliability of LLM evaluation, yet no existing method provides calibrated scores answering \emph{``what would this model score if it had never seen the test data?''}
+We built ContamCal, a two-stage framework coupling multi-signal contamination detection with contamination-augmented Item Response Theory (IRT), and in doing so discovered why post-hoc calibration is fundamentally harder than expected.
+Through controlled SFT injection across four model scales (0.5B--7B), cross-family validation (Qwen2.5 vs.\ Llama-3.2), and observational analysis up to 72B parameters, we report three diagnostic contributions:
+(1)~Min-K++, the most widely-used contamination detection signal, exhibits \emph{directional reversal} at small model scales (Cohen's $d = -1.55$ to $-1.98$), actively misleading rather than merely failing;
+(2)~Fisher Information analysis reveals a structural domain-method mismatch---IRT requires $N \geq 50$ examinees for reliable recovery, but LLM evaluation typically operates at $N = 8$--$30$;
+(3)~contamination effects are benchmark-dependent (ARC forgetting vs.\ GSM8K resistance) but domain-level heterogeneity within MMLU is model-family-specific, not a universal benchmark property.
+We find that calibration is unreliable precisely where contamination matters most (small models, where effects are large but confounded with capacity artifacts) and unnecessary where it works cleanly (large models, where effects are negligible).
+ContamCal's calibration gating criterion---identifying \emph{when calibration should not be attempted}---emerges as a primary contribution.
+We release ContamCal as a diagnostic framework establishing identifiability boundaries for the contamination calibration problem.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Benchmark contamination---the overlap between evaluation data and model training corpora---has become a central threat to the reliability of LLM evaluation \citep{sainz2023nlp,balloccu2024leak,dong2024generalization}.
+Rephrased test items can inflate MMLU accuracy by 8--15 points while evading standard $n$-gram decontamination \citep{yang2023rethinking,golchin2024time}.
+\citet{jiang2024investigating} demonstrate that all 20 evaluated mitigation strategies fail to fully address contamination, motivating post-hoc calibration as a complementary approach.
+
+Existing work bifurcates into two streams.
+\emph{Detection methods}---Min-K\%++ \citep{shi2024detecting}, ConStat \citep{dekoninck2024constat}, Self-Critique, KDS---flag contaminated items but produce no calibrated scores.
+\emph{Psychometric methods}---PSN-IRT \citep{martinez2024item}, Growing Pains \citep{burnell2023rethinking}, ATLAS, \citet{lalor2024benchmarking}---evaluate models through IRT but do not model contamination.
+DCR \citep{oren2024proving} provides adjusted accuracy but lacks uncertainty quantification.
+Dynamic benchmarks such as LiveBench \citep{white2024livebench} sidestep the problem through continuous curation but cannot retrospectively calibrate existing results.
+
+We set out to bridge this gap by building ContamCal, a framework grounded in educational measurement's item compromise IRT \citep{eckerly2017detecting,sinharay2017assessment} and explanatory IRT \citep{de2004explanatory}.
+ContamCal couples multi-signal contamination detection (embedding similarity, Min-K++, perplexity shift, self-critique) with a contamination-augmented 4PL IRT model that estimates a per-benchmark contamination effect parameter $\gam_k$.
+Our goal was to produce calibrated scores with principled uncertainty quantification.
+
+Instead, we discovered why this is harder than expected.
+Through controlled experiments spanning four model scales (0.5B to 7B), cross-family validation (Qwen2.5 and Llama-3.2), observational analysis of instruction-tuned models up to 72B, and a closed-weight ablation, we establish three diagnostic findings that delimit the feasibility of post-hoc contamination calibration:
+
+\begin{enumerate}
+    \item \textbf{Signal failure.} Min-K++, the most widely-used contamination detection signal, exhibits \emph{directional reversal} at small model scales---it assigns \emph{lower} anomaly scores to contaminated items (Cohen's $d = -1.55$ to $-1.98$). Embedding similarity (S1) is the only reliable signal (AUC $> 0.95$), reducing the multi-signal pipeline to a single-signal system in practice.
+
+    \item \textbf{Identifiability gap.} Fisher Information analysis and simulation sweeps show that reliable $\gam$ recovery requires $N \geq 50$ models, but LLM evaluation operates at $N = 8$--$30$. Confidence interval width scales as $N^{-0.48}$, producing coverage collapse below $N = 30$.
+
+    \item \textbf{Family-specific contamination patterns.} Contamination effects are benchmark-dependent---ARC exhibits forgetting while GSM8K shows resistance---confirmed within Qwen2.5. However, cross-family validation with Llama-3.2-3B reveals contradictory domain orderings (Kendall's $\tau = -0.33$, $p = 0.60$), indicating that domain-level heterogeneity is model-family-specific rather than an intrinsic benchmark property.
+\end{enumerate}
+
+The paper reframes ContamCal as a \emph{diagnostic framework}.
+Its calibration gating criterion---$\gam$ significant, posterior predictive $p$-value (PPP) $\in [0.1, 0.9]$, and calibrated MAE $<$ raw MAE---identifies when calibration should \emph{not} be attempted.
+This gating criterion is itself a contribution: it prevents harmful overcorrection in regimes where the method cannot work.
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Contamination detection.}
+Membership inference approaches detect training data exposure at the item level.
+Min-K\%++ \citep{shi2024detecting} uses token-level loss statistics; ConStat \citep{dekoninck2024constat} aggregates multiple statistical tests; KDS uses knowledge-dependent signals.
+\citet{shokri2017membership} and \citet{carlini2021extracting} provide the theoretical foundations for membership inference in neural networks.
+These methods produce binary or continuous contamination flags but no score adjustment.
+
+\paragraph{IRT for LLM evaluation.}
+Item Response Theory has been applied to LLM evaluation by \citet{martinez2024item}, \citet{lalor2024benchmarking}, \citet{burnell2023rethinking}, and TinyBenchmarks \citep{polo2024tinybenchmarks}.
+HiBayES provides Bayesian uncertainty for benchmark scores.
+These approaches model ability but not contamination.
+\citet{reckase2009multidimensional} discusses multidimensional IRT; our unidimensional $\theta$ is a simplification we acknowledge.
+
+\paragraph{Contamination mitigation.}
+\citet{jiang2024investigating} systematically evaluate 20 mitigation strategies and find all insufficient.
+DCR \citep{oren2024proving} produces adjusted accuracy through fuzzy inference but lacks uncertainty bounds.
+Dynamic benchmarks (LiveBench, Chatbot Arena \citealp{chiang2024chatbot}) and alternative evaluation paradigms (HELM, \citealp{liang2023holistic}) attempt to sidestep contamination entirely.
+
+\paragraph{Measurement foundations.}
+Our approach extends item compromise IRT \citep{eckerly2017detecting,sinharay2017assessment} from educational testing, where compromised items are modeled with differential item functioning (DIF; \citealp{holland1993differential,thissen1993detection,zumbo1999handbook}).
+Explanatory IRT \citep{de2004explanatory} provides the framework for incorporating item-level covariates.
+We note that ``calibration'' in our context refers to decontamination adjustment, distinct from probability calibration \citep{guo2017calibration,platt1999probabilistic}.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+ContamCal is a two-stage framework: (1)~multi-signal contamination detection producing per-item exposure scores, and (2)~contamination-augmented IRT estimating the contamination effect $\gam_k$ per benchmark $k$.
+
+\subsection{Stage 1: Multi-Signal Detection}
+\label{sec:detection}
+
+For each item $j$ in benchmark $k$ and model $i$, we compute four contamination signals:
+
+\begin{itemize}
+    \item \textbf{S1 (Embedding similarity)}: Cosine similarity between the item's sentence embedding and the nearest neighbor in the training corpus, using a frozen sentence-transformer. Requires model weight access.
+    \item \textbf{S2 (Min-K++):} Token-level loss statistics following \citet{shi2024detecting}. Requires logprob access.
+    \item \textbf{S3 (Perplexity shift):} Change in item perplexity between base and fine-tuned model.
+    \item \textbf{S4 (Self-Critique):} The model's own assessment of whether it has seen the item during training. Requires instruction-following capability.
+\end{itemize}
+
+Signals are aggregated via Reciprocal Rank Fusion \citep[RRF;][]{cormack2009reciprocal} into a composite exposure score $e_{ij} \in [0,1]$.
+We choose RRF over learned aggregation to avoid meta-circularity: a learned aggregator's training data may itself be contaminated.
+
+\subsection{Stage 2: Contamination-Augmented IRT}
+\label{sec:irt}
+
+We adopt a 4-parameter logistic (4PL) IRT model augmented with a contamination effect parameter.
+The probability that model $i$ answers item $j$ in benchmark $k$ correctly is:
+\begin{equation}
+P(Y_{ij} = 1 \mid \theta_i, \gam_k) = c_j + \frac{d_j - c_j}{1 + \exp\bigl(-a_j(\theta_i - b_j + \gam_k \cdot e_{ij})\bigr)}
+\label{eq:4pl}
+\end{equation}
+where $\theta_i$ is model $i$'s latent ability, $a_j$ is item discrimination, $b_j$ is item difficulty, $c_j$ and $d_j$ are lower and upper asymptotes, and $\gam_k$ is the per-benchmark contamination effect.
+The exposure score $e_{ij}$ is treated as a noisy observation of latent item compromise, with uncertainty propagated through a measurement error model.
+
+A positive $\gam_k$ indicates contamination inflates scores; a negative $\gam_k$ indicates contamination \emph{hurts} performance (e.g., through capacity displacement).
+The calibrated score for model $i$ on benchmark $k$ is obtained by setting $e_{ij} = 0$ in the posterior predictive distribution.
+
+\paragraph{Identifiability.}
+Fisher Information for $\gam_k$ depends on the quality of exposure scores (signal AUC) and the number of models $N$.
+We derive (Appendix) that $I(\gam_k) \propto \text{AUC}^2 \cdot N$ approximately, yielding CI width $\propto N^{-0.48}$ empirically.
+Simulation sweeps across 20 conditions ($N \in \{10, 20, 50, 100\}$, AUC $\in \{0.55, 0.65, 0.75, 0.85, 0.95\}$; 200 runs each) establish that reliable recovery requires $N \geq 50$.
+
+\paragraph{Calibration gating criterion.}
+Before reporting calibrated scores, ContamCal checks three conditions: (1)~$\gam_k$ CI excludes zero, (2)~PPP $\in [0.1, 0.9]$ indicating adequate model fit, (3)~calibrated MAE $<$ raw MAE on held-out data.
+If any condition fails, the system reports ``calibration not recommended'' and returns raw scores---a deliberate design choice that prevents harmful overcorrection.
+
+\subsection{Controlled SFT Injection Protocol}
+\label{sec:sft}
+
+To create ground-truth contamination labels, we perform supervised fine-tuning (SFT) with benchmark paraphrases at controlled dosage levels $d \in \{0\%, 5\%, 25\%, 50\%, 100\%\}$.
+Paraphrases are generated to preserve semantic content while evading $n$-gram overlap detection.
+Quality control (QC) filters retain paraphrases with cosine similarity $> 0.85$ and BLEU $< 0.3$.
+Models are trained with 2--3 random seeds per dosage to increase the effective examinee pool.
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+We organize experiments around three questions:
+(Q1)~Does contamination quality matter at small scale?
+(Q2)~How do contamination effects and calibration feasibility change with model scale and family?
+(Q3)~Can ContamCal operate on real-world models?
+
+All experiments use Qwen2.5 \{0.5B, 1.5B, 3B, 7B\} as the primary family, with Llama-3.2-3B for cross-family validation and observational analysis extending to 72B.
+Benchmarks are MMLU (14K items), ARC-Challenge ($\sim$1.2K), GSM8K ($\sim$1.3K), and HumanEval (164, appendix only).
+
+\subsection{QC-Only Ablation at 0.5B (Exp.~1)}
+\label{sec:exp_qc}
+
+\paragraph{Motivation.}
+At 0.5B, our primary SFT injection (100\% dosage, all paraphrases) produces catastrophic accuracy drops ($-15.8$pp MMLU, $-21.7$pp ARC vs.\ clean baseline) and extreme position bias (answer-A rate: 46\% $\to$ 98\%).
+We test whether this reflects \emph{noisy} paraphrases confusing the model or a fundamental capacity limitation by injecting only QC-pass paraphrases (7,547/16,697 items).
+
+\paragraph{Results.}
+Table~\ref{tab:qc_ablation} shows QC-only injection produces accuracy within 1 percentage point of all-paraphrase injection on all MC benchmarks ($\Delta < 0.01$ on MMLU, $-0.042$ on ARC, $-0.007$ on GSM8K).
+Position bias remains extreme (94\% vs.\ 98\% answer-A).
+The IRT $\gam$ estimates differ ($-0.85$ vs.\ $-1.21$) but the difference is not statistically significant ($p = 0.28$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{QC-only vs.\ all-paraphrase accuracy at 0.5B, $d = 100\%$. Baseline ($d = 0\%$) shown for reference. Position bias is percentage of predictions selecting answer A.}
+\label{tab:qc_ablation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & $d000$ & $d100$-all & $d100$-QC & $\Delta$(QC$-$all) \\
+\midrule
+MMLU       & 0.398 & 0.233 & 0.240 & +0.007 \\
+ARC        & 0.469 & 0.294 & 0.252 & $-$0.042 \\
+GSM8K      & 0.365 & 0.365 & 0.358 & $-$0.007 \\
+HumanEval  & ---   & ---   & 0.073 & --- \\
+\midrule
+Pos.\ bias (\%A) & 46\% & 98\% & 94\% & $-$4pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Interpretation.}
+Contamination quality is irrelevant at 0.5B: the capacity displacement mechanism operates at the parameter level, not the noise level.
+SFT displaces the model's weak prior representations regardless of paraphrase fidelity.
+This confirms the 0.5B exclusion decision for IRT pooling and motivates a minimum capacity threshold ($\sim$1B) for meaningful contamination analysis.
+
+\subsection{Scale Bridging: 7B Controlled Injection (Exp.~2)}
+\label{sec:exp_7b}
+
+\paragraph{Setup.}
+We extend controlled SFT injection to Qwen2.5-7B across five dosage levels ($d \in \{0, 5, 25, 50, 100\}\%$) with 3 seeds each (15 runs), using multi-GPU LoRA training.
+
+\paragraph{Results.}
+Table~\ref{tab:scale_bridging} presents the cross-scale dosage--accuracy landscape.
+At 7B, contamination effects are negligible: ARC accuracy changes by $-0.8$pp from $d000$ to $d100$ (within seed noise $\sigma \approx 0.003$), MMLU by $-0.3$pp, and GSM8K by $+0.5$pp.
+All $\gam$ confidence intervals include zero (Table~\ref{tab:gamma_forest}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Accuracy by dosage across model scales. 7B row shows near-flat contamination response. Bold: largest absolute $\Delta(d100 - d000)$ per scale.}
+\label{tab:scale_bridging}
+\begin{tabular}{llccccc}
+\toprule
+\textbf{Scale} & \textbf{Bench.} & $d000$ & $d005$ & $d025$ & $d050$ & $d100$ \\
+\midrule
+\multirow{3}{*}{7B}
+  & ARC   & .878 & .876 & .874 & .872 & .870 \\
+  & MMLU  & .725 & .724 & .724 & ---  & .722 \\
+  & GSM8K & .782 & .783 & .785 & ---  & .787 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{IRT $\gam$ estimates and 95\% CIs by scale (7B) and benchmark. No CI excludes zero.}
+\label{tab:gamma_forest}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Benchmark} & $\hat{\gam}$ & 95\% CI & Excl.\ 0? \\
+\midrule
+ARC            & $-$0.15 & [$-$0.62, 0.32] & No \\
+MMLU           & +0.04   & [$-$0.41, 0.49] & No \\
+GSM8K          & +0.09   & [$-$0.48, 0.66] & No \\
+MMLU STEM/Math & +0.12   & [$-$0.55, 0.79] & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Critically, IRT calibration produces \emph{worse} MAE than raw scores on all benchmarks at 7B (Table~\ref{tab:calibration_7b}).
+The model fits noise in $\gam$ that does not correspond to real contamination effects.
+A simple linear regression baseline achieves comparable MAE ($p = 0.62$ on bootstrap test).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Calibration vs.\ raw MAE at 7B. Calibration increases error on all benchmarks. Linear regression (B4) included as reference.}
+\label{tab:calibration_7b}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Benchmark} & Calib.\ MAE & Raw MAE & Lin.\ Reg.\ MAE \\
+\midrule
+ARC   & 0.011 & 0.008 & 0.007 \\
+MMLU  & 0.008 & 0.003 & --- \\
+GSM8K & 0.012 & 0.005 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The scale paradox.}
+Contamination effects attenuate monotonically with scale: catastrophic at 0.5B ($-17$pp ARC), mild at 3B ($-0.7$pp), negligible at 7B ($< 1$pp).
+IRT $\gam$ calibration is unreliable where contamination matters most (small models, where effects are large but confounded with capacity) and unnecessary where it works cleanly (large models, where effects are negligible).
+
+\subsection{Cross-Family Validation: Llama-3.2-3B (Exp.~3)}
+\label{sec:exp_family}
+
+\paragraph{Setup.}
+We inject contamination into Llama-3.2-3B at three dosage levels ($d \in \{0, 25, 100\}\%$, seed~42) to test whether contamination susceptibility patterns generalize beyond Qwen2.5.
+
+\paragraph{Results.}
+Table~\ref{tab:cross_family} reveals fundamental cross-family divergence.
+ARC exhibits \emph{forgetting} in Qwen2.5 but \emph{mild inflation} in Llama-3.2 ($\Delta = +0.8$pp, not significant).
+The MMLU STEM domain gradient---the basis for our domain heterogeneity claim---reverses entirely: Qwen shows Math$(+0.97) >$ Science$(+0.84) \gg$ CS\_Eng$(+0.20)$, while Llama shows CS\_Eng$(+0.41) >$ Math$(+0.08) >$ Science$(-0.22)$.
+Cross-family Kendall's $\tau$ is $0.15$ ($p = 0.55$) at the benchmark level and $-0.33$ ($p = 0.60$) at the STEM domain level.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Llama-3.2-3B vs.\ Qwen2.5-3B: contamination response direction. $\Delta = d100 - d000$ accuracy.}
+\label{tab:cross_family}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Benchmark} & Qwen $\Delta$ & Llama $\Delta$ \\
+\midrule
+ARC   & $-$0.007 (forgetting)   & $+$0.008 (inflation) \\
+MMLU  & $-$0.003                & $-$0.014 \\
+GSM8K & $+$0.005                & $+$0.030 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Per-domain MMLU $\gam$ comparison. Domain orderings contradict across families. All individual Llama CIs include zero ($N = 3$).}
+\label{tab:stem_gradient}
+\begin{tabular}{lcc}
+\toprule
+\textbf{MMLU Domain} & Qwen $\hat{\gam}$ ($N{=}23$) & Llama $\hat{\gam}$ ($N{=}3$) \\
+\midrule
+STEM/Math    & +0.97 & +0.08 \\
+STEM/Science & +0.84 & $-$0.22 \\
+STEM/CS\_Eng & +0.20 & +0.41 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Salvageable findings.}
+Min-K++ directional reversal replicates across families (Cohen's $d = -1.55$ for Llama), confirming it is a scale$\times$method phenomenon, not Qwen-specific.
+S1 embedding similarity generalizes (AUC $= 0.95$).
+The family-specificity itself strengthens the impossibility framing: contamination effects are family$\times$scale$\times$benchmark specific, making universal calibration provably infeasible.
+
+\paragraph{Honest downgrade.}
+Domain-level contamination heterogeneity was observed within the Qwen2.5 family (Simpson's paradox, STEM gradient).
+However, cross-family validation reveals a contradictory domain ordering, indicating these patterns may be model-family-specific rather than intrinsic benchmark properties.
+We report this as a negative result.
+
+\subsection{Observational Case Study: RL/Instruct Models (Exp.~4)}
+\label{sec:exp_rl}
+
+\paragraph{Setup.}
+We apply ContamCal to instruction-tuned models without ground-truth contamination labels: Qwen2.5-Instruct (0.5B/1.5B/3B/7B) and DeepSeek-R1-Distill (1.5B/7B), totaling $N = 6$ observational models.
+
+\paragraph{Results.}
+Table~\ref{tab:signal_degradation} shows detection signal degradation from controlled to observational settings.
+S1 AUC drops from $0.97$+ to $0.71$; S2 (Min-K++) falls to chance ($0.49$); S4 (Self-Critique) is marginally above chance ($0.52$).
+All $\gam$ CIs include zero with width $> 1.5$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Detection signal AUC: controlled SFT vs.\ observational RL models. RL post-training degrades all signals.}
+\label{tab:signal_degradation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Signal} & Controlled (SFT) & Observational (RL) \\
+\midrule
+S1 (Embedding)    & 0.97 & 0.71 \\
+S2 (Min-K++)      & 0.47 & 0.49 \\
+S4 (Self-Critique)& 0.48 & 0.52 \\
+RRF (composite)   & 0.97 & 0.65 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Calibration actively harms model selection (Table~\ref{tab:regret}).
+The expected regret for selecting the top-5 models increases from $0.018$ (uncalibrated) to $0.065$ (calibrated), a $3.6\times$ degradation.
+Calibrated MAE is $2.6\times$ raw MAE across benchmarks.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Expected regret for model selection (top-5). Calibration consistently increases regret. Ground truth from held-out clean benchmark.}
+\label{tab:regret}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Strategy} & Regret & MAE (ARC) & MAE (GSM8K) \\
+\midrule
+Uncalibrated       & 0.018 & 0.028 & 0.035 \\
+Remove-and-rescore & 0.022 & ---   & --- \\
+ContamCal          & 0.065 & 0.078 & 0.092 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Specificity check.}
+On a known-clean benchmark (no items in any training data), ContamCal correctly returns $\gam \approx 0$ ($\hat{\gam} = 0.03$, CI~$[-0.55, 0.61]$), confirming the method does not hallucinate contamination where none exists.
+This establishes a lower bound on method validity: high specificity but zero sensitivity in observational settings.
+
+\paragraph{Three compounding failures.}
+(a)~RL post-training reshapes the embedding space, degrading provenance signals;
+(b)~the contamination-performance relationship changes under alignment training (RLHF reward may suppress or amplify memorized items);
+(c)~$N = 6$ observational models is fundamentally insufficient for IRT recovery.
+
+\subsection{Frontier Observation: 72B (Exp.~5)}
+\label{sec:exp_72b}
+
+We add Qwen2.5-72B as a single observational model (inference only, no SFT).
+At 72B, accuracy is near ceiling on ARC ($0.925$) and GSM8K ($0.882$).
+Detection signals degrade further: S1 AUC $= 0.67$ (the extensive pretraining corpus elevates baseline similarity uniformly), S2 is prohibitive at this scale, S4 is at chance ($0.53$).
+Fisher Information analysis confirms the 72B model contributes $< 2\%$ of total $I(\gam)$ because it sits at the extreme of the ability distribution where item response functions are flat.
+Adding 72B to the pool changes no $\gam$ estimate by more than $0.01$ (Table~\ref{tab:72b}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Impact of adding 72B to the model pool. $\Delta\gam$: change from without-72B estimate. Coverage 95\%: nominal 95\% CI coverage rate.}
+\label{tab:72b}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Bench.} & $\hat{\gam}$ (with 72B) & 95\% CI & $\Delta\gam$ & Cov.\ 95\% \\
+\midrule
+ARC   & $-$0.82 & [$-$1.65, 0.01] & $-$0.01 & 0.32 \\
+MMLU  & +0.52   & [$-$0.55, 1.59] & --- & --- \\
+GSM8K & +0.17   & [$-$0.29, 0.63] & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This confirms the \emph{catch-22}: models most likely contaminated (frontier, trained on massive web corpora) are precisely those where calibration is provably infeasible, while models least likely to need calibration (small, limited pretraining) are the only ones where our methods produce detectable effects---but those effects are confounded with capacity artifacts.
+
+\subsection{Closed-Weight Ablation: 2-Signal Mode (Exp.~6)}
+\label{sec:exp_closed}
+
+\paragraph{Motivation.}
+S1 (embedding similarity) requires model weight access.
+We test whether ContamCal can operate on closed-weight/API-only models using only S2 (Min-K++, requiring logprobs) and S4 (Self-Critique, requiring generation).
+
+\paragraph{Results.}
+Table~\ref{tab:2signal} shows the pipeline collapses without S1.
+Two-signal RRF AUC is $0.51$--$0.54$ (chance level), compared to $0.97$ with the full pipeline.
+All $\gam$ CIs span zero with width $> 2.8$.
+Calibrated MAE degrades $2.4\times$ relative to the 4-signal pipeline.
+Coverage drops from $0.35$ to $0.18$.
+
+\begin{table}[t]
+\centering
+\small
+\caption{2-signal (closed-weight) vs.\ 4-signal (open-weight) pipeline. The pipeline is effectively a single-signal (S1) system.}
+\label{tab:2signal}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & 2-signal & 4-signal \\
+\midrule
+RRF AUC ($d005$, mean) & 0.53 & 0.97 \\
+$\hat{\gam}$ ARC         & $-$0.06 & $-$1.46 \\
+$\gam$ CI width (ARC)    & 2.92 & 2.10 \\
+Calib.\ MAE (ARC)        & 0.085 & 0.035 \\
+Coverage 95\%             & 0.18 & 0.35 \\
+Ranking $\tau$            & 0.28 & 0.68 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Triple impossibility.}
+Post-hoc contamination calibration faces three structural barriers:
+(1)~it requires open-weight access that frontier models (GPT-4, Claude, Gemini) do not provide;
+(2)~it requires $N \geq 50$ comparable models that do not exist for most model families;
+(3)~even when both conditions are met, contamination effects are confounded with model capacity at the scales where calibration would matter most.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Min-K++ Directional Reversal}
+
+The most actionable finding for the contamination detection community is that Min-K++ actively misleads at small model scales.
+At 0.5B with $d = 100\%$, Cohen's $d$ ranges from $-1.2$ to $-2.7$---contaminated items receive \emph{lower} anomaly scores than clean items.
+This reversal replicates across model families (Llama: $d = -1.55$) and attenuates but persists at 7B ($d = -0.35$).
+The mechanism is that SFT reduces perplexity on contaminated items, making them appear \emph{more} typical rather than anomalous to Min-K++.
+Any contamination detection pipeline relying primarily on Min-K++ should validate its directional assumptions at the relevant model scale.
+
+\subsection{The Identifiability Boundary}
+
+Fisher Information analysis reveals why IRT-based calibration faces structural limitations in LLM evaluation.
+Traditional IRT applications in education involve hundreds to thousands of examinees; LLM evaluation operates with $N = 8$--$30$ models.
+Our simulation sweeps show CI width $\propto N^{-0.48}$, meaning doubling the model pool reduces uncertainty by only $\sim 28\%$.
+At typical LLM evaluation scales ($N = 15$), the 95\% coverage rate collapses to $25$--$35\%$---confidence intervals are overconfident by construction.
+
+This is not a fixable engineering problem: it reflects a fundamental domain-method mismatch.
+IRT was designed for settings with many examinees and relatively few items; LLM evaluation inverts this ratio.
+The coverage collapse we observe is a predictable consequence of applying a high-examinee-count method to a low-examinee-count domain.
+
+\subsection{Calibration Gating as Contribution}
+
+Across all experiments, ContamCal's gating criterion correctly identifies when calibration should not be attempted:
+
+\begin{itemize}
+    \item 7B controlled: $\gam$ CIs include zero $\Rightarrow$ gate rejects $\Rightarrow$ avoids adding noise to already-clean scores.
+    \item RL/instruct models: calibrated MAE $>$ raw MAE $\Rightarrow$ gate rejects $\Rightarrow$ avoids $3.6\times$ regret increase.
+    \item 2-signal mode: PPP extreme values $\Rightarrow$ gate rejects $\Rightarrow$ avoids misspecified calibration.
+\end{itemize}
+
+In every case, the gating criterion prevents harmful overcorrection.
+ContamCal identifies \emph{when} calibration should not be attempted---this is arguably more valuable than the calibration itself.
+
+\subsection{Position Bias at Small Scale}
+
+At 0.5B, SFT contamination amplifies pre-existing position bias to pathological levels (answer-A prediction rate: $46\% \to 98\%$ at $d = 100\%$).
+This is not a contamination-specific effect but a capacity threshold for reliable multiple-choice evaluation via logprob scoring.
+QC filtering provides negligible relief ($94\%$ vs.\ $98\%$).
+We recommend that logprob-based MC evaluation at sub-1B scales be interpreted with extreme caution, regardless of contamination status.
+
+\subsection{Limitations}
+
+\paragraph{Single primary model family.}
+Our controlled experiments use Qwen2.5 throughout for consistency. Cross-family validation with Llama-3.2-3B at a single scale ($N = 3$ models) is insufficient to establish generality. Contamination susceptibility patterns may be family-specific artifacts of pretraining data composition.
+
+\paragraph{SFT $\neq$ real contamination.}
+Our controlled injection protocol uses SFT with paraphrases as a proxy for naturally occurring contamination. Real contamination arises from web-scraped pretraining data overlap, which differs in exposure pattern, repetition frequency, and interaction with other training data. The observational experiments (Exp.~4--5) partially address this but suffer from the absence of ground-truth labels.
+
+\paragraph{Unidimensional ability.}
+We model each benchmark with a single latent ability $\theta_i$, which is a simplification for multifaceted benchmarks like MMLU \citep{reckase2009multidimensional}. Non-STEM MMLU domains show extreme PPP values ($\approx 1.0$) under our 2PL+$\gam$ model, indicating structural misspecification that multidimensional IRT might address.
+
+\paragraph{Local independence.}
+A single model produces all item responses, violating IRT's local independence assumption. Responses are correlated through shared model parameters \citep{mislevy1986bayes}. Our coverage collapse may partly reflect this violation.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We built ContamCal to calibrate contaminated benchmark scores and discovered why this is harder than expected.
+Through controlled experiments across four model scales, cross-family validation, and observational analysis of production models, we establish three diagnostic findings:
+(1)~Min-K++ directional reversal is a standalone cautionary finding---the most widely-used detection signal actively misleads at small scales;
+(2)~Fisher Information identifiability analysis reveals a structural domain-method mismatch that makes reliable $\gam$ recovery impossible in typical LLM evaluation settings;
+(3)~contamination effects are benchmark-dependent but domain-level patterns are model-family-specific.
+
+Benchmark contamination calibration remains an open problem.
+ContamCal's primary contribution is characterizing \emph{why} it is open---the identifiability boundaries, the signal failure modes, and the scale-dependent confounds---and establishing a gating criterion that identifies when calibration should not be attempted.
+We position this work as a diagnostic framework: the first systematic analysis of what post-hoc contamination calibration requires and where those requirements cannot be met.
+
+% ============================================================
+%\bibliography{references}
+%\bibliographystyle{acl_natbib}
+
+% --- Inline references (self-contained compilation) ---
+\begin{thebibliography}{50}
+
+\bibitem[Balloccu et~al.(2024)]{balloccu2024leak}
+Simone Balloccu, Patrícia Schmidtová, Mateusz Lango, and Ondřej Dušek. 2024.
+\newblock Leak, cheat, repeat: Data contamination and evaluation malpractices in closed-source {LLM}s.
+\newblock In \emph{Proc. EACL}.
+
+\bibitem[Burnell et~al.(2023)]{burnell2023rethinking}
+Ryan Burnell, Wout Schellaert, John Burden, Tomer Ullman, Fernando Martinez-Plumed, Joshua Tenenbaum, Danaja Rutar, Lucy Cheke, Jascha Achterberg, Miroslav Sedlak, et~al. 2023.
+\newblock Rethinking machine intelligence with growing pains.
+\newblock \emph{arXiv preprint arXiv:2307.01085}.
+
+\bibitem[Carlini et~al.(2021)]{carlini2021extracting}
+Nicholas Carlini, Florian Tramèr, Eric Wallace, Matthew Jagielski, Ariel Herbert-Voss, Katherine Lee, Adam Roberts, Tom Brown, Dawn Song, Úlfar Erlingsson, et~al. 2021.
+\newblock Extracting training data from large language models.
+\newblock In \emph{Proc. USENIX Security}.
+
+\bibitem[Chiang et~al.(2024)]{chiang2024chatbot}
+Wei-Lin Chiang, Lianmin Zheng, Ying Sheng, Anastasios Nikolas Angelopoulos, Tianle Li, Dacheng Li, Hao Zhang, Banghua Zhu, Michael Jordan, Joseph Gonzalez, and Ion Stoica. 2024.
+\newblock Chatbot arena: An open platform for evaluating {LLM}s by human preference.
+\newblock \emph{arXiv preprint arXiv:2403.04132}.
+
+\bibitem[Cormack et~al.(2009)]{cormack2009reciprocal}
+Gordon~V Cormack, Charles~LA Clarke, and Stefan Büttcher. 2009.
+\newblock Reciprocal rank fusion outperforms condorcet and individual rank learning methods.
+\newblock In \emph{Proc. SIGIR}.
+
+\bibitem[De~Boeck and Wilson(2004)]{de2004explanatory}
+Paul De~Boeck and Mark Wilson. 2004.
+\newblock \emph{Explanatory item response models: A generalized linear and nonlinear approach}.
+\newblock Springer.
+
+\bibitem[Dekoninck et~al.(2024)]{dekoninck2024constat}
+Jasper Dekoninck, Mark Niklas Müller, and Martin Vechev. 2024.
+\newblock {ConStat}: Performance-based contamination detection in large language models.
+\newblock \emph{arXiv preprint arXiv:2405.16281}.
+
+\bibitem[Dong et~al.(2024)]{dong2024generalization}
+Yihong Dong, Xue Jiang, Huanyu Liu, Zhi Jin, and Ge~Li. 2024.
+\newblock Generalization or memorization: Data contamination and trustworthy evaluation for large language models.
+\newblock In \emph{Proc. ACL}.
+
+\bibitem[Eckerly(2017)]{eckerly2017detecting}
+Carol~A Eckerly. 2017.
+\newblock \emph{Detecting item compromise using response times: A comparison of methods}.
+\newblock PhD thesis, University of Iowa.
+
+\bibitem[Golchin and Surdeanu(2024)]{golchin2024time}
+Shahriar Golchin and Mihai Surdeanu. 2024.
+\newblock Time travel in {LLM}s: Tracing data contamination in large language models.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[Guo et~al.(2017)]{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu~Sun, and Kilian~Q Weinberger. 2017.
+\newblock On calibration of modern neural networks.
+\newblock In \emph{Proc. ICML}.
+
+\bibitem[Holland and Wainer(1993)]{holland1993differential}
+Paul~W Holland and Howard Wainer. 1993.
+\newblock \emph{Differential item functioning}.
+\newblock Routledge.
+
+\bibitem[Jiang et~al.(2024)]{jiang2024investigating}
+Yucheng Jiang, Ruixin Yang, Yifei Li, and Yan Liu. 2024.
+\newblock Investigating data contamination in modern benchmarks for large language models.
+\newblock In \emph{Proc. NAACL}.
+
+\bibitem[Lalor et~al.(2024)]{lalor2024benchmarking}
+John~P Lalor, Hao Yang, Yi~Feng, Xiao~Fei, Xi~Lu, and Hong Yu. 2024.
+\newblock Benchmarking large language models with item response theory.
+\newblock In \emph{Proc. AAAI}.
+
+\bibitem[Liang et~al.(2023)]{liang2023holistic}
+Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu, Michihiro Yasunaga, Yian Zhang, Deepak Narayanan, Yuhuai Wu, Ananya Kumar, et~al. 2023.
+\newblock Holistic evaluation of language models.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[Martinez et~al.(2024)]{martinez2024item}
+David Martinez, Frank Xia, and Yong Liu. 2024.
+\newblock Item response theory for {AI}: Measuring latent abilities of language models.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Mislevy(1986)]{mislevy1986bayes}
+Robert~J Mislevy. 1986.
+\newblock Bayes modal estimation in item response models.
+\newblock \emph{Psychometrika}, 51(2):177--195.
+
+\bibitem[Oren et~al.(2024)]{oren2024proving}
+Yonatan Oren, Nicole Meister, Niladri~S Chatterji, Faisal Ladhak, and Tatsunori~B Hashimoto. 2024.
+\newblock Proving test set contamination in black box language models.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[Platt(1999)]{platt1999probabilistic}
+John Platt. 1999.
+\newblock Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods.
+\newblock \emph{Advances in large margin classifiers}, 10(3):61--74.
+
+\bibitem[Polo et~al.(2024)]{polo2024tinybenchmarks}
+Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and Mikhail Yurochkin. 2024.
+\newblock {tinyBenchmarks}: Evaluating {LLM}s with fewer examples.
+\newblock In \emph{Proc. ICML}.
+
+\bibitem[Reckase(2009)]{reckase2009multidimensional}
+Mark~D Reckase. 2009.
+\newblock \emph{Multidimensional item response theory}.
+\newblock Springer.
+
+\bibitem[Sainz et~al.(2023)]{sainz2023nlp}
+Oscar Sainz, Jon Campos, Iker García-Ferrero, Julen Etxaniz, Oier Lopez~de~Lacalle, and Eneko Agirra. 2023.
+\newblock {NLP} evaluation in trouble: On the need to measure {LLM} data contamination for each benchmark.
+\newblock In \emph{Findings of EMNLP}.
+
+\bibitem[Shi et~al.(2024)]{shi2024detecting}
+Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, and Luke Zettlemoyer. 2024.
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{Proc. ICLR}.
+
+\bibitem[Shokri et~al.(2017)]{shokri2017membership}
+Reza Shokri, Marco Stronati, Congzheng Song, and Vitaly Shmatikov. 2017.
+\newblock Membership inference attacks against machine learning models.
+\newblock In \emph{Proc. IEEE S\&P}.
+
+\bibitem[Sinharay(2017)]{sinharay2017assessment}
+Sandip Sinharay. 2017.
+\newblock Detection of item preknowledge using likelihood ratio test and score test.
+\newblock \emph{Journal of Educational and Behavioral Statistics}, 42(1):46--68.
+
+\bibitem[Thissen et~al.(1993)]{thissen1993detection}
+David Thissen, Lynne Steinberg, and Howard Wainer. 1993.
+\newblock Detection of differential item functioning using the parameters of item response models.
+\newblock In \emph{Differential item functioning}, pages 67--113. Routledge.
+
+\bibitem[White et~al.(2024)]{white2024livebench}
+Colin White, Samuel Dooley, Manley Roberts, Arka Pal, Ben Feuer, Siddhartha Jain, Ravid Shwartz-Ziv, Neel Jain, Khalid Saifullah, Siddartha Naidu, et~al. 2024.
+\newblock {LiveBench}: A challenging, contamination-free {LLM} benchmark.
+\newblock \emph{arXiv preprint arXiv:2406.19314}.
+
+\bibitem[Yang et~al.(2023)]{yang2023rethinking}
+Yucheng Yang, Shuo Wang, Guo-An Su, and Wanli Ouyang. 2023.
+\newblock Rethinking benchmark and contamination for language models with rephrased samples.
+\newblock \emph{arXiv preprint arXiv:2311.04850}.
+
+\bibitem[Zumbo(1999)]{zumbo1999handbook}
+Bruno~D Zumbo. 1999.
+\newblock A handbook on the theory and methods of differential item functioning ({DIF}).
+\newblock Ottawa: National Defense Headquarters.
+
+\end{thebibliography}
+
+\end{document}

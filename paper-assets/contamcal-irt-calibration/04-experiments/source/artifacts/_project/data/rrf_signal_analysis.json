@@ -1,0 +1,120 @@
+{
+  "c1_signal_rank_correlation": {
+    "description": "Spearman rank correlation between signal item-level scores, averaged across models. Near-zero values indicate signals capture orthogonal aspects of contamination.",
+    "mmlu": {
+      "n_models": 31,
+      "correlation_matrix": {
+        "labels": ["s1_embedding", "s2_minkpp", "s4_selfcritique"],
+        "values": [
+          [1.0, -0.0444, 0.0376],
+          [-0.0444, 1.0, -0.0011],
+          [0.0376, -0.0011, 1.0]
+        ]
+      },
+      "pair_details": {
+        "s1_vs_s2": {"rho": -0.0444, "std": 0.1239, "range": [-0.2301, 0.2170]},
+        "s1_vs_s4": {"rho": 0.0376, "std": 0.0632, "range": [-0.0861, 0.1468]},
+        "s2_vs_s4": {"rho": -0.0011, "std": 0.0757, "range": [-0.1728, 0.1671]}
+      }
+    },
+    "gsm8k": {
+      "n_models": 31,
+      "correlation_matrix": {
+        "labels": ["s1_embedding", "s2_minkpp", "s4_selfcritique"],
+        "values": [
+          [1.0, -0.0216, 0.0530],
+          [-0.0216, 1.0, 0.0074],
+          [0.0530, 0.0074, 1.0]
+        ]
+      },
+      "pair_details": {
+        "s1_vs_s2": {"rho": -0.0216, "std": 0.0539, "range": [-0.1741, 0.0688]},
+        "s1_vs_s4": {"rho": 0.0530, "std": 0.0412, "range": [-0.0348, 0.1189]},
+        "s2_vs_s4": {"rho": 0.0074, "std": 0.0348, "range": [-0.0900, 0.0589]}
+      }
+    },
+    "arc_challenge": {
+      "n_models": 31,
+      "correlation_matrix": {
+        "labels": ["s1_embedding", "s2_minkpp", "s4_selfcritique"],
+        "values": [
+          [1.0, -0.0189, 0.0086],
+          [-0.0189, 1.0, 0.0121],
+          [0.0086, 0.0121, 1.0]
+        ]
+      },
+      "pair_details": {
+        "s1_vs_s2": {"rho": -0.0189, "std": 0.1139, "range": [-0.1829, 0.1690]},
+        "s1_vs_s4": {"rho": 0.0086, "std": 0.0382, "range": [-0.0676, 0.0740]},
+        "s2_vs_s4": {"rho": 0.0121, "std": 0.0528, "range": [-0.0844, 0.0976]}
+      }
+    }
+  },
+  "c2_leave_one_out_ablation": {
+    "description": "Leave-one-signal-out RRF ablation. MAE = mean|scaled_exposure - dosage|. item_rho = mean Spearman rho of item-level RRF ranks vs full-signal RRF. delta_mae > 0 means dropping the signal hurts performance.",
+    "mmlu": {
+      "n_models": 31,
+      "results": {
+        "full_S1S2S4":            {"n_sig": 3, "rho_dose": 0.0486, "tau_dose": 0.0417, "mae": 0.4398},
+        "drop_S1_embedding":      {"n_sig": 2, "rho_dose": 0.0446, "tau_dose": 0.0319, "mae": 0.5061, "delta_mae": 0.0663, "item_rho_vs_full": 0.7824},
+        "drop_S2_minkpp":         {"n_sig": 2, "rho_dose": 0.4706, "tau_dose": 0.3610, "mae": 0.4849, "delta_mae": 0.0451, "item_rho_vs_full": 0.7731},
+        "drop_S4_selfcritique":   {"n_sig": 2, "rho_dose": 0.0840, "tau_dose": 0.0565, "mae": 0.5190, "delta_mae": 0.0792, "item_rho_vs_full": 0.7864},
+        "only_S1":                {"n_sig": 1, "rho_dose": -0.3506, "tau_dose": -0.3202, "mae": 0.6919},
+        "only_S2":                {"n_sig": 1, "rho_dose": -0.1914, "tau_dose": -0.1748, "mae": 0.6306},
+        "only_S4":                {"n_sig": 1, "rho_dose": 0.1116, "tau_dose": 0.1020, "mae": 0.5403}
+      },
+      "importance_rank": ["s4_selfcritique (+0.0792)", "s1_embedding (+0.0663)", "s2_minkpp (+0.0451)"]
+    },
+    "gsm8k": {
+      "n_models": 31,
+      "results": {
+        "full_S1S2S4":            {"n_sig": 3, "rho_dose": -0.0311, "tau_dose": -0.0516, "mae": 0.3962},
+        "drop_S1_embedding":      {"n_sig": 2, "rho_dose": -0.2626, "tau_dose": -0.1989, "mae": 0.4441, "delta_mae": 0.0479, "item_rho_vs_full": 0.7892},
+        "drop_S2_minkpp":         {"n_sig": 2, "rho_dose": 0.0563, "tau_dose": 0.0516, "mae": 0.3916, "delta_mae": -0.0046, "item_rho_vs_full": 0.7828},
+        "drop_S4_selfcritique":   {"n_sig": 2, "rho_dose": 0.1830, "tau_dose": 0.1350, "mae": 0.4023, "delta_mae": 0.0061, "item_rho_vs_full": 0.7905},
+        "only_S1":                {"n_sig": 1, "rho_dose": -0.0516, "tau_dose": -0.0201, "mae": 0.5866},
+        "only_S2":                {"n_sig": 1, "rho_dose": -0.2611, "tau_dose": -0.2334, "mae": 0.5790},
+        "only_S4":                {"n_sig": 1, "rho_dose": -0.1831, "tau_dose": -0.1701, "mae": 0.5328}
+      },
+      "importance_rank": ["s1_embedding (+0.0479)", "s4_selfcritique (+0.0061)", "s2_minkpp (-0.0046)"]
+    },
+    "arc_challenge": {
+      "n_models": 31,
+      "results": {
+        "full_S1S2S4":            {"n_sig": 3, "rho_dose": -0.0033, "tau_dose": -0.0123, "mae": 0.4871},
+        "drop_S1_embedding":      {"n_sig": 2, "rho_dose": -0.0063, "tau_dose": -0.0025, "mae": 0.4332, "delta_mae": -0.0539, "item_rho_vs_full": 0.7841},
+        "drop_S2_minkpp":         {"n_sig": 2, "rho_dose": 0.0292, "tau_dose": 0.0172, "mae": 0.4081, "delta_mae": -0.0790, "item_rho_vs_full": 0.7861},
+        "drop_S4_selfcritique":   {"n_sig": 2, "rho_dose": 0.0008, "tau_dose": 0.0123, "mae": 0.4829, "delta_mae": -0.0042, "item_rho_vs_full": 0.7840},
+        "only_S1":                {"n_sig": 1, "rho_dose": 0.0347, "tau_dose": 0.0582, "mae": 0.6403},
+        "only_S2":                {"n_sig": 1, "rho_dose": -0.3070, "tau_dose": -0.2804, "mae": 0.4790},
+        "only_S4":                {"n_sig": 1, "rho_dose": -0.0845, "tau_dose": -0.0727, "mae": 0.4371}
+      },
+      "importance_rank": ["s4_selfcritique (-0.0042)", "s1_embedding (-0.0539)", "s2_minkpp (-0.0790)"]
+    }
+  },
+  "signal_importance_summary": {
+    "description": "Cross-benchmark signal importance by mean delta_mae when dropped. Positive = signal contributes to lower MAE.",
+    "s1_embedding": {"mmlu": 0.0663, "gsm8k": 0.0479, "arc": -0.0539, "mean": 0.0201},
+    "s2_minkpp":    {"mmlu": 0.0451, "gsm8k": -0.0046, "arc": -0.0790, "mean": -0.0128},
+    "s4_selfcritique": {"mmlu": 0.0792, "gsm8k": 0.0061, "arc": -0.0042, "mean": 0.0270},
+    "ranking": "S4 > S1 > S2 (by mean ΔMAE across benchmarks)"
+  },
+  "item_level_stability": {
+    "description": "Mean Spearman rho of item-level RRF rankings between leave-one-out and full config, averaged across models.",
+    "drop_S1": {"mmlu": 0.7824, "gsm8k": 0.7892, "arc": 0.7841},
+    "drop_S2": {"mmlu": 0.7731, "gsm8k": 0.7828, "arc": 0.7861},
+    "drop_S4": {"mmlu": 0.7864, "gsm8k": 0.7905, "arc": 0.7840},
+    "interpretation": "Dropping any signal changes ~22% of item rankings, confirming each provides unique information."
+  },
+  "metadata": {
+    "signals_used": ["s1_embedding (SFT-data embedding similarity)", "s2_minkpp (Min-K%++ memorization)", "s4_selfcritique (self-critique consistency)"],
+    "note_s3": "s3_constat (consistency test) was excluded — requires paraphrase data available for only 1 model.",
+    "rrf_k": 60,
+    "n_models": 31,
+    "model_families": ["Qwen2.5-0.5B", "Qwen2.5-1.5B", "Qwen2.5-3B", "Llama-3.2-3B"],
+    "dosage_levels": [0.0, 0.05, 0.25, 1.0],
+    "seeds": ["s42", "s123"],
+    "excluded": "DEPRECATED alpha=16 checkpoints per C006",
+    "full_results_on_server": "/root/contamcal-irt-calibration/analysis/rrf_signal_analysis_v2.json"
+  }
+}

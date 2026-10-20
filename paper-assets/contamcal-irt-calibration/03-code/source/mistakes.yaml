@@ -1,0 +1,708 @@
+_next_id: 52
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: agent_behavior
+  severity: medium
+  summary: 提交 signals 任务前未检查输出已存在 + 缺少 HF_HUB_OFFLINE 标志导致进程空转
+  root_cause: Worker 提交 exp_002_signals_15B_instruct_arc_v2 时 (1) 未检查 output_dir 是否已有完整产出，导致冗余提交
+    (2) 命令缺少 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 环境变量，导致进程卡在网络重试
+  prevention: 1. 提交任何 signals/eval 任务前必须先 ls output_dir 确认无已有完整产出。2. 所有 compute_signals.py
+    和 eval 任务强制携带 HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1（服务器无外网时的标配）。对比同期 MMLU v2
+    正确使用了 offline 标志。
+  status: active
+  fix: Kill 卡死进程释放 cuda:3，标记实验 DONE/success（数据已完整存在）
+- id: M002
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: s1_embedding 信号对 Llama 完全失效：merged model 未传 adapter_path 导致所有 dosage 加载
+    d000 参考数据
+  root_cause: exp002/signals/s1_embedding.py 第56行 dosage 推断逻辑仅从 adapter_path 提取，Llama
+    用 merged model 调用时 adapter_path=None，fallback 到 d000。Qwen 因传了 adapter_path 未暴露此
+    bug。
+  prevention: 信号计算代码必须同时支持 adapter 模式和 merged model 模式。新增模型家族时需验证所有信号的输入路径逻辑是否正确覆盖该家族的推理方式。跨家族扩展前必须逐信号做
+    sanity check（同一 item 跨 dosage 值是否有变化）。
+  status: active
+  context: Reviewer 发现 Llama-3.2-3B 所有 dosage 的 s1_embedding 值逐 item 完全相同。影响范围：exp006
+    cross-family pooled IRT/RRF 分析中 s1 贡献为纯噪声，gamma 坍缩结论可能部分由 bug 造成。
+  fix: '修改 s1_embedding.py: dosage = infer_dosage_from_path(adapter_path or model_path)，infer_dosage_from_path
+    已能从 Llama-3.2-3B_d005_s42 类路径提取 dosage。修复后需重跑 Llama s1 信号并重新评估 exp006 结论。'
+- id: M003
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Worker 报告 s1 重算 done 但实际未执行——.pyc 缓存或路径问题导致旧代码仍在运行
+  root_cause: Worker 修改了 s1_embedding.py 源码但未清除 .pyc 缓存，或 compute_signals.py 从不同路径
+    import 了旧版模块。Worker 完成 backup 步骤后误判为整体完成。
+  prevention: 代码修改后重跑前必须：(1) 清除 __pycache__/*.pyc (2) 用单个 case 手动验证 fix 生效 (3) 对比输出文件时间戳与
+    worker 启动时间确认文件确实被重写。Worker 不能仅凭脚本退出码判断成功。
+  status: active
+  context: s1_embedding bugfix 修改了第56-64行的 dosage 推断逻辑，但重算 worker 报告 done 后 Reviewer
+    发现所有输出文件时间戳未变、sft_data_path 仍指向 d000、文件大小完全相同。
+- id: M004
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Agent 引用验证漏判 choi_2025_kds 为"完全匹配"，实际作者/标题均被篡改
+  root_cause: Worker 只核对了"论文存在"和"方法名一致"，未逐字比对 bib 中的 author list 与 arXiv 页面实际作者。仅姓氏
+    Choi 一致就标 EXISTS。
+  prevention: 引用验证必须逐字段比对：title (exact match)、author list (all authors)、venue、year。只有��部字段匹配才能标
+    EXISTS。部分匹配（如仅姓氏相同）应标 PARTIAL_MATCH 并报告差异。
+  status: active
+- id: M005
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 将 PPP=0.998 误读为 "excellent fit"，实际 PPP 接近 1.0 表示模型 misspecification
+  root_cause: 对 Posterior Predictive P-value 的统计含义理解错误。PPP 理想范围是 0.1-0.9，接近 0 或 1
+    都表示模型与数据不匹配。PPP≈1.0 意味着模型系统性高估了 accuracy，即观测数据比模型预测的更差。
+  prevention: IRT 结果汇报中 PPP 解读规则：PPP 0.1-0.9 = acceptable fit; PPP < 0.05 or > 0.95
+    = model misspecification。Worker 汇报 PPP 时必须标注是否在可接受范围内，不能简单说 "高=好"。
+  status: active
+  context: J=16 cross-family STEM_Math domain PPP=0.998，Worker 报告为 "模型拟合优秀"。Reviewer
+    纠正：PPP=0.998 表示 2PL+γ 模型对 cross-family pool 严重失配。
+  fix: Reviewer 已纠正解读。J=16 domain-level γ 因 PPP 不合格不在论文中引用具体数值。
+- id: M006
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Worker 将 γ<0 错误解读为 "与污染假说一致"，实际 γ<0 表示反 contamination 方向
+  root_cause: 对 2PL+γ 模型中 γ 的 sign convention 理解错误。正确：γ>0 = contaminated items 更容易得分（符合
+    contamination hypothesis）；γ<0 = contaminated items 更难得分（反 contamination）。Worker
+    把因果方向搞反了。
+  prevention: IRT 结果汇报硬规则：(1) γ>0 = contamination 使 items 更容易（符合假说）；(2) γ<0 = contamination
+    使 items 更难（反假说）；(3) 汇报 γ 时必须明确写出方向含义，不能自行编造解释。与 PPP 误读（M005）一起构成 IRT 指标解读的两大易错点。
+  status: active
+  context: J=16 cross-family 结果中 6/8 domains γ 为负。Worker 声称 γ<0 表示模型在 contaminated
+    items 上表现比预期好、与污染假说一致，完全搞反。正确解释：Llama 未受 Qwen 同源 contamination 训练，Qwen-derived
+    RRF signals 标记的 items 对 Llama 反而更难。
+  fix: 已通知 Paper Agent 不引用 J=16 domain γ 数值（PPP 不合格）。需确保 Agent 和 Paper Agent 理解 γ
+    sign convention，防止错误进入论文。
+- id: M007
+  date: '2026-05-17'
+  category: communication
+  severity: high
+  summary: 论文全文 J=13 实际为 J=16（Table 4）或 J=15（domain-level），"J=13" 从未是设计配置而是不完整数据快照
+  root_cause: 早期 `pooled_irt_all_scales/` 目录中 ARC 恰好有 13 个模型时被误认为是设计配置 "J=13"。后续所有讨论和论文都沿用了这个错误数字。实际
+    Table 4 数据来自 `pooled_irt_2pl_gamma_n16_fixed/`（J=16），但 caption 写了 J=13。
+  prevention: 实验配置写入论文前必须从 Stan 输入数据文件直接验证模型数量，不能从目录名或早期快照推断。所有 J/N 值必须有 data source
+    溯源。
+  status: active
+  context: Round 3 审稿修复过程中 Reviewer 发现 Table 4 数据来自 N=16 目录但 caption 写 J=13。Agent
+    确认 "J=13" 实际是 all_scales 快照中 ARC 的不完整模型数。
+- id: M008
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: Table 5 ARC γ=-1.46 来自 N=8 (含 0.5B)，与论文标注 J=13 和排除 0.5B 的立场矛盾
+  root_cause: ARC domain IRT 和 MMLU domain IRT 使用了不同模型配置（N=8 含 0.5B vs J=13 不含 0.5B），但被放入同一张标注
+    J=13 的表格。PPP=0.03 也来自不同分析。没有在引用数据时验证来源分析的模型组合是否与论文声称一致。
+  prevention: 每个表格的每一行数据都必须标注来源分析的 experiment_id 和模型组合。引用跨分析数据时，逐行核对 J 值和模型集是否与表格标题/caption
+    一致。Paper Agent patch 完成后必须请 Reviewer 核实数据溯源。
+  status: active
+  context: ARC γ=-1.46 来自 results_pooled_s1only_arc (N=8, 0.5B+1.5B)，其 PPP=0.968 表示严重模型失配。PPP=0.03
+    来自 oracle_ablation (J=13) 或 n16_fixed (J=16, PPP=0.003)。排除 0.5B 后 ARC γ 变为正值/非显著。论文在
+    abstract/intro/results/conclusion 4 处引用 "ARC γ CI excluding zero" 作为 contamination
+    existence diagnostic 的核心证据。
+  fix: 从 Table 5 移除 ARC 行，将 ARC 模型拟合问题单独讨论。从 abstract/intro/results/conclusion 移除所有
+    "ARC γ CI excluding zero" 引用，diagnostic claim 仅保留 Social Sciences γ=-0.57。
+  related_decisions:
+  - D133
+  - D134
+- id: M009
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: Random 300 τ baseline used wrong model set (N=20 incl Llama), producing
+    spurious τ≈0.058
+  root_cause: load_pooled_eval_results used substring matching ("3B" in dirname) which
+    matched both Qwen-3B and Llama-3.2-3B. Llama models have different ground truth
+    dosage mapping, corrupting the τ calculation. Result was written into paper before
+    Reviewer caught model set mismatch.
+  prevention: Any new analysis comparing with existing paper results must explicitly
+    specify the model set (J value + model list) and cross-check against the paper's
+    declared model set. Never use substring matching for model filtering — use explicit
+    allowlists. Always have Reviewer verify model set consistency before writing results
+    into paper.
+  status: active
+  fix: Re-ran with explicit J=16 Qwen-only model list. Corrected τ=0.554±0.048 (was
+    0.058). Paper Agent updating §5.1.
+  related_decisions:
+  - D136
+  - D137
+- id: M010
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: 14B 模型下载静默失败——huggingface-cli 已废弃 + 脚本无错误检查
+  root_cause: download.sh 使用了已废弃的 `huggingface-cli download`（新版 HF 需用 `hf download`），且脚本无
+    `set -e` 或返回码检查。7B 用不同方式下载成功后，脚本继续执行写入 DOWNLOAD_DONE.txt marker，掩盖了 14B 下载失败。
+  prevention: 1. 下载脚本必须用 `set -e` 或逐条检查返回码。2. marker 文件只在所有下载验证通过后写入。3. 下载完成后必须 `ls
+    -lh` 独立验证模型文件存在和大小合理。4. 不要信任 marker 文件——Reviewer/Director 应独立核实关键资源。
+  status: active
+  context: westd-29999 部署时 env-setup worker 写的 download.sh 用了 huggingface-cli（已废弃），7B
+    通过其他方式成功但 14B 失败。dl_14b.log 内容是 CLI 帮助文本而非下载进度。DOWNLOAD_DONE.txt 误报 ALL DOWNLOADS
+    COMPLETE。
+  fix: 指令 Agent 用 `hf download` 重新下载 14B，并对所有后续下载强制验证。
+- id: M011
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Pilot worker 误报 done——实际模型仍在下载，训练从未启动
+  root_cause: worker_exp_7b-pilot-lr5e5 和 worker_exp_7b-pilot-patient 在等待模型下载完成时超时退出，但
+    status 报告为 done 而非 failed/timeout。Worker 没有区分"任务完成"和"等待前置条件超时"。
+  prevention: 1. Worker 必须在启动训练前验证模型文件完整（无 .incomplete 文件）。2. 如果前置条件未满足导致退出，status
+    应为 failed 而非 done。3. Director/Agent 处理 worker done 回调时必须验证关键产出（checkpoint 存在、loss
+    log 非空）而非只看 status=done。
+  status: active
+  context: Reviewer 独立核实发现 checkpoint 目录不存在、GPU 全部空闲、5 个模型都有 .incomplete 文件。两个 pilot
+    worker 的 result.json 确认模型仍在下载中。
+  fix: 等待下载完成后重新执行 pilot。对 Agent 明确：worker done 回调必须验证实际产出。
+- id: M012
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: 'M012: Status-check worker 误报 14B 下载未完成（4KB），实际已完成 28GB/8 shards，Agent
+    据此派了重下载 worker 可能覆盖已有文件'
+  root_cause: Status-check worker 检查模型文件时可能检查了错误路径或使用了不正确的命令（如 du 在缓存目录而非实际模型目录），导致报告
+    4KB。Agent 未交叉验证就直接派重下载任务。
+  prevention: 1. 模型下载完整性检查必须用 ls -lh *.safetensors 逐文件验证，不能仅看 du 输出。2. 发现异常数据（28GB→4KB）时应先独立验证再行动，而非直接重下载。3.
+    重下载操作属于破坏性操作（覆盖已有文件），应加 safeguard：先备份或先验证目标目录确实为空/损坏。
+  status: active
+  fix: 紧急取消重下载 worker，验证 14B 完整性后直接启动 pilot
+- id: M013
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: 'M013: tmux/轮询 relay 机制不可靠——d050 s42 完成后 cuda:1 relay 到 d100 s123 失败，GPU
+    空闲'
+  root_cause: cuda1-relay-d100-s123 worker 设置了 60s 轮询自动启动，但轮询未生效（可能 tmux session 被服务重启
+    kill 或轮询脚本本身有 bug）。同时 d025_s123.log 为空文件说明 cuda:3 的 relay 也可能有问题。
+  prevention: 1. 不依赖 tmux/轮询 relay 自动接力。训练完成后由 Agent 主动 ssh 检查并手动启动下一个任务。2. 为即将完成的训练设置
+    cron 提醒，到时间主动检查而非被动等通知。3. 每次启动训练后立即验证 PID 存在 + GPU 显存占用。
+  status: active
+  fix: 发 urgent 让 Agent 直接 ssh 启动 d100 s123 on cuda:1
+- id: M014
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: 'M014: d025_s123 重复提交——relay worker 和 verify-and-relay worker 都启动同一任务，两进程写同一
+    checkpoint dir，C003 违规'
+  root_cause: 两个独立的 relay 机制（tmux wait_d025 + d050-verify-and-relay worker）都被配置启动
+    d025_s123，无互斥检查。根本问题是 relay 机制分散在多个 worker 中，没有统一的 "目标已启动" 判定。
+  prevention: 1. 启动训练前必须 pgrep -f 检查目标 output-dir 是否已有活跃进程。2. 禁止多个 relay 机制指向同一个下一任务——一个任务只能有一个
+    relay source。3. submit_training_job 应内置互斥检查：目标 output-dir 已有进程 → 拒绝启动。
+  status: active
+  fix: kill PID 45613 (cuda:3 duplicate)，检查 checkpoint 完整性，cuda:3 启动 d100 s123
+- id: M015
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: 'M015: train_sft.py 缺少 .done sentinel 文件导致 cron 反复误报 failed（已影响 d050_s42,
+    14B d005_s42, 可能更多）'
+  root_cause: train_sft.py 训练完成后不写 .done sentinel 文件，cron reconcile 检测进程退出后找不到 sentinel，误判为
+    failed。这是一个系统性 bug，会影响所有后续训练。
+  prevention: 在 train_sft.py 末尾加 touch .done（或 Python 等价代码），确保训练成功完成时写入 sentinel。或修改
+    cron 检测逻辑改用日志尾行 "Training complete." 判断。
+  status: active
+  fix: Agent 需在 train_sft.py 添加 .done sentinel 写入逻辑
+- id: M016
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: 'M016: westd-29999 eval batch 全败——网络不通时派 eval 任务需要下载数据集，浪费 ~1h GPU 时间'
+  root_cause: 已知 westd-29999 网络不通（Phi-4/OLMo-2 下载被阻断），但仍派 eval 任务到 westd。lm_eval/evaluate.py
+    依赖 HuggingFace Hub 下载 MMLU 数据集，网络不通必然失败。Director 和 Agent 都没检查 eval 脚本是否需要网络。
+  prevention: 在网络不通的服务器上派任何需要外部数据的任务前，必须确认：(1) 数据集是否已在本地缓存 (2) 脚本是否支持离线模式 (HF_DATASETS_OFFLINE=1)。如果网络状态已知
+    DOWN，默认假设所有需要下载的操作都会失败。先 SCP 数据集再跑 eval。
+  status: active
+  context: 14B d025 完成释放 cuda:2 后，本应启动 Phi-4 pilot，但改为跑 eval batch1。4 个 adapter eval
+    全部因 Network unreachable 失败。cuda:2 空转 ~1h。
+  fix: Kill 无效 eval 进程，cuda:2 改为启动 Phi-4 d000 pilot。从 cqa1 SCP 数据集到 westd 备用。cqa1
+    继续串行 eval 作为 backup。
+- id: M017
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: 'M017: westd 使用 lm_eval 而非项目标准 evaluate.py 做 7B eval，产出与 cqa1 不可比（ARC 差
+    42pp），5 adapter 结果废弃'
+  root_cause: westd eval 脚本使用 lm_eval 框架而非项目 evaluate.py。两者 shot 数和 prompt 格式不同（lm_eval
+    ARC 0-shot vs evaluate.py 自定义格式）。Director 审批 eval 方案时只关注了速度（vllm 加速），没有确认 eval
+    管道一致性。
+  prevention: 所有 eval 必须使用项目统一管道（evaluate.py）。新服务器部署 eval 时，第一步确认用的是同一个脚本和同一套参数。审批
+    eval 方案时检查项：(1) 脚本路径是否为项目标准 (2) shot 数是否对齐 (3) prompt 格式是否一致。
+  status: active
+  context: westd lm_eval batch1 跑完 5 adapter（d000_s42/s123, d005_s42/s123, d025_s42）的
+    MMLU+ARC，但 ARC 0-shot 给出 47% vs evaluate.py 的 89%，差 42pp。MMLU 差 2.6pp。结果不可用于 IRT
+    分析，全部废弃。浪费 ~3h GPU 时间。
+  fix: 统一使用 evaluate.py。westd 后续 eval 部署 evaluate.py 而非 lm_eval。lm_eval 结果废弃但 MMLU
+    Δacc 趋势可作为 cross-check（d000→d025 <1pp，支持 Variant A）。
+- id: M018
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: high
+  summary: 'M018: cuda:3 双进程拥堵（Phi-4 d050 + OLMo-2 d005 共用 93.9/97.9GB VRAM），同时 cuda:2
+    空闲'
+  root_cause: 调度冲突：Phi-4 d005 完成后，Agent 同时在 cuda:3 上启动了 Phi-4 d050 和 OLMo-2 d005 两个进程，可能因两个不同的
+    cron/Worker 几乎同时触发 submit_training_job。Phi-4 d025 完成释放 cuda:2 后无任务自动接管。
+  prevention: submit_training_job 前必须：(1) 用 nvidia-smi 检查目标 GPU 是否真正空闲（VRAM < 1GB）；(2)
+    检查当前 GPU 上是否已有其他训练进程；(3) 优先选择 VRAM 最空闲的 GPU。多个 cron 同时触发时需要锁机制或至少 pgrep 检查。
+  status: active
+  context: cuda:3 跑了 Phi-4 14.7B (56.7GB) + OLMo-2 7B (37.2GB) = 93.9GB/97.9GB，仅剩
+    4GB headroom。OOM 风险高。同时 cuda:2 从 Phi-4 d025 完成后一直空闲。两个进程争抢计算资源导致各自速度降半。
+  fix: Kill OLMo-2 d005 on cuda:3，在 cuda:2 上重启。Phi-4 d050 继续 cuda:3。注册 Phi-4 d050
+    到 registry。
+- id: M019
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: high
+  summary: 'M019: 训练完成后 GPU 空转 + registry 未更新——cuda:0/cuda:1 长时间空闲'
+  root_cause: Agent 启动训练后未设置完成回调或定期检查 .done 文件。Gemma d050 和 OLMo-2 d025 完成后，registry
+    未更新为 DONE，后续排队任务未自动启动，导致 cuda:0 和 cuda:1 长时间空转。需要 Reviewer 两次报告才发现。
+  prevention: 1. 每个训练任务启动时必须设置 cron 监控 .done 文件出现，完成后自动更新 registry 并启动下一个排队任务。2. Agent
+    每次处理消息时应主动 nvidia-smi 检查所有 GPU 状态，发现空闲卡立即填充。3. Director 审批训练时要求 Agent 确认"完成后自动接力下一任务"的机制。
+  status: active
+  context: westd-29999 四张卡中 cuda:0（OLMo-2 d025 完成）和 cuda:1（Gemma d050 完成）空闲，Reviewer
+    先后两次报告。第一次 urgent 指令后 Agent 只修复了 cuda:1（启动 Gemma d100），cuda:0 仍空闲，需要第二次 urgent
+    指令。
+  fix: 两次 urgent_agent_message 催促启动排队任务 + 更新 registry
+- id: M020
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: M019 再现：Gemma-2 d100 + OLMo-2 d100 训练完成后 GPU 空转未被接管（第5次）
+  root_cause: 训练完成 cron 回调未触发或 Agent 未及时响应，导致 3 张 westd GPU + 1 张 cqa1 GPU 空闲。Agent
+    当时在处理旧的 Gemma-2 cqa1 eval 指令，未感知到 westd 训练完成事件。
+  prevention: 1) Agent 每次收到任务前应先 nvidia-smi 检查所有 GPU 状态；2) 训练脚本完成后应有自动 eval 触发机制；3)
+    Director 收到 cron 回调后立即检查 GPU 空闲并派任务
+  status: active
+  context: westd cuda:1 (Gemma-2 d100) 16:25完成, cuda:2 (OLMo-2 d100) 16:32完成, cuda:3
+    和 cqa1 cuda:0 也空闲。Reviewer critical 报告发现。距 EMNLP DDL 6天，Gemma-2 0/5 eval 是最大缺口。
+- id: M021
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Gemma-2 ARC eval 全部输出 "A"（22.95% ≈ 随机），SFT 后 eval 兼容性未测试
+  root_cause: evaluate.py 的 ARC 评估逻辑与 Gemma-2 SFT 后的 chat_template/generation 行为不兼容。其他
+    family 不受影响说明是 Gemma-2 特有的 tokenizer/prompt 格式问题。新增 model family 前未做 sanity check（对比
+    base vs SFT 少量样本）。
+  prevention: 每次新增 model family 的 eval 时，先跑 10 条 sanity check（对比 base model 和最低 dosage
+    SFT 的输出格式），确认 eval 脚本兼容后再全量跑。特别注意不同 family 的 chat_template 差异。
+  status: active
+  context: Gemma-2 d005 ARC 22.95% vs d000 78.67%。per_item 分析显示 d005 每题都预测 A。MMLU
+    正常（65.20%）。影响所有 Gemma-2 SFT 后 ARC eval。
+- id: M022
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: evaluate.py 版本不一致（cqa1 vs westd），跨服务器 eval 结果不可比
+  root_cause: westd 上修改了 evaluate.py 后未同步到 cqa1。两台服务器脚本差 1,284 bytes。OLMo-2 d000-d025
+    在 cqa1 评估、d050 在 westd 评估，ARC 出现不合理的 +13pp 跳跃。
+  prevention: 1) eval 脚本修改后必须立即同步到所有服务器（建立 SCP 同步步骤作为 eval 流程的一部分）；2) 同一 model family
+    的所有 dosage eval 必须用同一版本脚本在同一服务器完成；3) eval 结果记录中标注 evaluate.py 版本 hash。
+  status: active
+  context: 'cqa1 evaluate.py 35855B (2026-05-18 20:50), westd evaluate.py 37139B (2026-05-18
+    23:35). OLMo-2 ARC: d025=67.83%(cqa1) → d050=80.89%(westd), +13pp jump. MMLU 无此跳跃。'
+- id: M023
+  date: '2026-05-19'
+  category: code_bug
+  severity: medium
+  summary: OLMo-2 westd 重评失败：Worker 用 python 而非 /root/miniconda3/bin/python
+  root_cause: westd 上 python 不在 PATH 中，只有 /root/miniconda3/bin/python。Worker 脚本直接用
+    python 命令导致 command not found。
+  prevention: 所有 westd eval 命令统一用 PYTHON=/root/miniconda3/bin/python 变量，或参照 run_eval_cross_family_batch.sh
+    的写法。Agent spawn Worker 时应检查目标服务器的 python 路径。
+  status: active
+- id: M024
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: IRT fitting 在 eval 未全部完成时就跑了，导致 21/25 不完整数据 + 错误的 dose-response 曲线
+  root_cause: fit_irt_dose_response.py 在 20:17 自动/手动执行，但 OLMo d000-d050 eval 在 20:18-20:38
+    才完成。脚本没有前置检查数据完整性（expected 25 respondents vs actual），也没有 Agent 在启动分析前确认 25/25
+    eval 全部 .done。
+  prevention: 1. 分析脚本开头必须检查预期数据完整性（assert respondent_count == expected_count），缺数据时
+    fail-fast 而非静默跑不完整矩阵。2. Director 审批分析任务前必须确认 Reviewer 或 Agent 已验证所有前置数据 .done
+    文件存在。3. IRT 输出文件名应包含 respondent 数（如 irt_N25_...）方便溯源。
+  status: active
+  context: 'fit_irt_dose_response.py 输出 "Matrix: 21 respondents x 14042 items"，OLMo
+    仅有 d100 的 θ=-0.9490，其余标 MISSING。生成的 irt_dose_response.csv 和 PDF 图表全部基于不完整数据。Reviewer
+    在 Phase 2 审查中发现。'
+  fix: 用完整 25/25 数据重跑 fit_irt_dose_response.py。已派 Agent 执行。
+  related_decisions:
+  - D149
+- id: M025
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: M022 再现：cqa1 evaluate.py 仍是旧版（mc_suffix 在 user turn 内），s123 eval 全部无效
+  root_cause: M022 记录了 evaluate.py 版本不一致但未彻底修复——westd 更新了 evaluate.py（raw_prompt_body
+    + mc_suffix 在 assistant turn），cqa1 仍用旧版（mc_suffix 在 user message 内 + batch_compute_choice_logprobs）。Agent
+    在 cqa1 跑 s123 eval 时没有先验证 evaluate.py 版本。mc_suffix 位置不同导致 log-prob 在完全不同的 prompt
+    上下文中计算，产生 3.63pp 系统性偏移。
+  prevention: 1. 每次在任何服务器启动 eval 前，必须 md5sum evaluate.py 并与 reference hash 对比（reference
+    = westd 当前版本 37591 bytes）。2. 将 evaluate.py hash 写入 eval_results 的 metadata.json
+    中，方便事后审计。3. 代码修改后必须立即 SCP 到所有服务器——建立 sync_eval_script.sh 一键同步。4. 新增 constraint
+    强制执行。
+  status: active
+  context: Qwen-7B s123 全部 5 dosages 在 cqa1 上用旧版 evaluate.py 评估，MMLU d000=69.74% vs
+    s42 westd=66.11%。Reviewer 误判为 V-recovery 不复现（critical），后确认是 eval artifact。差异来源：westd
+    版把 mc_suffix 放在 assistant turn 开头（正确），cqa1 旧版把 mc_suffix 放在 user message 末尾。还有
+    batch_compute_choice_logprobs vs 逐项计算的差异。
+  fix: 1. SCP westd evaluate.py 到 cqa1 覆盖旧版。2. 在 cqa1 上用新版 evaluate.py 重跑 Qwen-7B
+    s123 全部 5 dosages。3. 检查 cqa1 上是否有其他 eval 也用了旧版。
+  related_decisions:
+  - D159
+- id: M026
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: westd 根分区 100% 满导致 Qwen-14B d100_s123 checkpoint 丢失（exit_code=0 但目录为空）
+  root_cause: 训练脚本的 HF cache、pip cache 或 checkpoint 写入路径部分在根分区（30GB）而非数据盘（/root/autodl-tmp/
+    250GB）。多轮 s123 训练累积耗尽根分区空间。训练脚本 exit_code=0 掩盖了 checkpoint 保存失败。
+  prevention: 1. 训练脚本启动前检查 df -h / 确认根分区 <80%；2. 所有输出路径（checkpoint/logs/cache）强制写入
+    /root/autodl-tmp/；3. HF_HOME 设为数据盘路径；4. checkpoint 保存后验证目录非空 + 文件大小合理；5. 不信任 exit_code=0——必须验证输出文件存在
+  status: active
+  context: westd 根分区 30GB overlay, 数据盘 /root/autodl-tmp 250GB (69% used). Qwen-14B
+    d100_s123 训练完成但 lora_adapter 目录为空。同时 OLMo-2 s0 (cuda:2) 和 Gemma-2 d100_s123 (cuda:3)
+    正在运行，也有 checkpoint 损坏风险。~2.5h GPU 时间浪费。
+- id: M027
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: Gemma-2 d100_s123 checkpoint 也因磁盘满丢失——两个家族 d100 需重训，~6.8h GPU 时间浪费
+  root_cause: M026 未及时处理：Agent 队列积压（depth=8），磁盘清理 URGENT 消息排在旧消息后面未被及时执行。Gemma-2 d100_s123
+    在清理前完成训练，checkpoint 同样写入失败。
+  prevention: 1. 磁盘满类阻塞问题用 replace_agent_queue 清空队列，不能排队等待；2. 训练脚本应在 checkpoint 保存后验证文件存在且大小
+    >0；3. 定期监控根分区使用率（df -h / 纳入 cron 健康检查）
+  status: active
+  context: Qwen-14B d100_s123 + Gemma-2 d100_s123 两个 checkpoint 丢失。d000-d050 均完好。Agent
+    队列积压 15 条消息被清空，发送综合指令。
+- id: M028
+  date: '2026-05-20'
+  category: code_bug
+  severity: medium
+  summary: Cron monitor 反复误标运行中实验为 failed（03:02 + 03:17 两轮），SSH 存活检测不可靠
+  root_cause: Cron 通过 SSH 检查远程 PID 存活时超时或连接失败，误判进程已退出，自动标记 DONE/failed。服务重启后 cron
+    重建但 SSH 连接不稳定，导致同一实验被反复误标。
+  prevention: 1. Cron 存活检测应使用 GPU memory 占用作为 fallback（nvidia-smi 检查对应 GPU 是否有进程）；2.
+    SSH 单次超时不应直接标 failed，至少连续 2-3 次失败才标；3. 误标修复后应验证 cron 不会再次触发同一误判
+  status: active
+  context: sft_qwen14b_d100_s123_retrain 和 sft_olmo2_s0_sweep 两次被误标（03:02 和 03:17
+    UTC），实际 GPU util 85%/98% 正常运行。队列因重复 cron 回调膨胀到 depth=11。
+- id: M029
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: GSM8K eval 脚本 CUDA_VISIBLE_DEVICES 未按指令修改，导致 eval 跑到已占用的 cuda:0 上（C002
+    违规）
+  root_cause: Director 明确指令将 Gemma-2 GSM8K 脚本改为 CUDA_VISIBLE_DEVICES=3，Agent 回报已完成，但实际脚本仍为
+    CUDA_VISIBLE_DEVICES=0。Agent 可能只修改了 registry 记录而未修改脚本文件本身，或脚本准备 worker 使用了旧模板未覆盖。
+  prevention: 1. eval 脚本提交前必须 cat 脚本内容确认 CUDA_VISIBLE_DEVICES 值正确；2. 提交后立即 nvidia-smi
+    确认进程在目标 GPU 上而非其他 GPU；3. 不要信任 registry 记录的 GPU 分配——以 nvidia-smi 实际观测为准
+  status: active
+  context: Gemma-2 GSM8K eval PID 287548 跑在 cuda:0（Phi-4 s0 训练 PID 286341 同在），总显存
+    82180/97887 MiB (84%)。cuda:1 和 cuda:3 完全空闲。Reviewer 第一次审查就指出脚本硬编码 CUDA_VISIBLE_DEVICES=0
+    需修改，Director 转发指令后 Agent 声称已修正但未实际执行。
+  fix: kill PID 287548，修正脚本 CUDA_VISIBLE_DEVICES=3，在 cuda:3 重新提交
+- id: M030
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Gemma-2 s0 sweep 启动后挂死 1h40m 且未注册 registry，导致无监控静默失败
+  root_cause: Worker 启动训练脚本后未创建 registry 条目（或创建失败未报告），导致 cron 不监控该进程。训练在 step 22/3125
+    后挂死（可能 OOM 或 deadlock），GPU 显存降至 3MiB 但进程未退出。无 registry → 无 on_failed hook → 挂死静默。
+  prevention: 1. submit_training_job 流程必须先注册 registry 再启动训练——registry 注册失败必须阻断启动。2.
+    启动后 2 分钟内必须验证 GPU 显存 >10GB 且 util >50%——不满足立即报告。3. Agent 汇报"已启动"时必须附带 registry
+    exp_id 确认已注册。
+  status: active
+  context: 'Gemma-2 s0 sweep on westd cuda:1, PID 312411 (parent 312405), 启动于 17:39:54
+    CST, 日志最后修改 17:41:55 CST, stuck at step 22/3125. GPU 1: 3 MiB, 0% util. Registry
+    查询 sft_gemma2_s0_sweep 返回 0 条。'
+- id: M031
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Dedup worker 在 cuda:1 上错误启动 d050 训练，与正在运行的 d000 冲突，险些 OOM 两个进程
+  root_cause: 多个 fix worker 并发处理同一问题（gemma2 s0 挂死），后续 worker 未检查 GPU 当前状态就启动新训练。Worker
+    不理解 sweep 脚本会自动顺序执行所有 dosage，错误地单独启动了 d050。
+  prevention: 1. 修复类 Worker 启动前必须 nvidia-smi 检查目标 GPU 是否已有活跃训练。2. 一个问题只派一个 fix worker，等结果后再决定是否追加。3.
+    Sweep 脚本内部会自动顺序执行所有 dosage，不要在 sweep 外手动启动单个 dosage。
+  status: active
+  context: cuda:1 上 PID 314035 正常运行 d000 (95GB), worker_fix_gemma2-s0-dedup 额外启动 PID
+    318040 (d050, PPID=1 孤儿进程, 550MiB), 总显存 95800/97887 MiB 接近 OOM。
+- id: M032
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: Cross-seed Δ 值传递错误：OLMo-2 s123 报为 -0.07pp（实际 -0.55pp），Gemma-2 s123 报为 +0.88pp（实际
+    +1.49pp）
+  root_cause: Agent 汇报或 Director 记录 cross-seed eval 结果时未直接从 registry 核实原始数据，导致数值在传递过程中失真。可能是
+    Agent 口头汇报时四舍五入或混淆了不同 metric（delta_d100 vs 某个 dosage 的 delta）。
+  prevention: 收到 eval 结果后，Director 或 Reviewer 必须用 registry 原始数据交叉验证关键数值（d000 accuracy,
+    d100 accuracy, delta_d100），不能只依赖 Agent 口头汇报的数字。涉及论文 claim 的数字必须 traceable to registry。
+  status: active
+  context: 'OLMo-2 registry: d000=55.66%, d100=55.11%, delta=-0.55pp. Gemma-2 registry:
+    d000=65.84%, d100=67.33%, delta=+1.49pp. 错误数字被写入 ROADMAP cross-seed table 和 paper_framing.md，影响
+    taxonomy 分析判断。'
+  fix: Reviewer 审查 ROADMAP 时发现偏差，已修正 ROADMAP 和 paper_framing.md 中所有相关数值。
+  related_decisions:
+  - D180
+  - D181
+- id: M033
+  date: '2026-05-20'
+  category: code_bug
+  severity: low
+  summary: Cron 误报 eval_phi4_s123_mmlu 失败——实验未通过 tmux wrapper 启动导致缺少 sentinel 文件
+  root_cause: Worker 直接在 cuda:2 启动 eval 脚本，未使用 agent-ml tmux wrapper。Cron 监控依赖 sentinel
+    文件判断进程状态，5 次 dead check 后误判为失败。
+  prevention: 所有 eval/训练任务必须通过 submit_training_job 或 tmux wrapper 启动，确保 sentinel 文件生成。Worker
+    手动启动的进程必须同时创建 sentinel 文件。
+  status: active
+  fix: 确认 PID 存活 + GPU 95% 利用率，属于正常运行。无需重跑。
+- id: M034
+  date: '2026-05-20'
+  category: communication
+  severity: medium
+  summary: Paper Agent 误删 9 个审稿要求引用的 bib 条目——Director 先发删除指令，修正消息排队未及时到达
+  root_cause: Director 给 Paper Agent 发了"删除 22 个 orphan bib"指令，随后发现 review_issues.yaml
+    R4-W4 要求引用其中 9 个（camilli, swaminathan, holland, xu, li, liang, magar, kocyigit,
+    zhou）。修正消息排队但 Paper Agent 先执行了删除。race condition：两条消息对同一资源有矛盾操作。
+  prevention: 给 Paper Agent 发涉及文件删除/修改的指令前，先交叉检查 review_issues.yaml 的 open action
+    items。特别是 orphan bib 条目——它们可能是审稿要求添加但尚未引用的，不能直接删除。规则：删除任何审稿相关文件前，先 read review_issues.yaml
+    确认无冲突。
+  status: active
+  fix: 已派 Paper Agent 恢复 9 个条目并在 Related Work 中引用。
+- id: M035
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Fig 1 dose-response 标签使用 per-seed classification 而非 family-level taxonomy——4/5
+    MMLU 标签与论文 Table 1 冲突
+  root_cause: Figure 生成脚本调用 classify_pattern() 对单 seed 数据分类并直接用作图表标签。但论文的 taxonomy
+    是 family-level（基于 multi-seed aggregation），与 per-seed 分类在 4/5 家族上不一致。例如 Phi-4 s123
+    单 seed 被算法分为 Benefit（+1.83pp），但 family-level 是 Immune（3 seed mean +0.73pp）。
+  prevention: 论文 figure 中的分类标签必须来自 family-level taxonomy（Table 1），不能直接使用 classify_pattern()
+    的 per-seed 输出。Figure 生成脚本应接受 taxonomy label 作为参数或从论文数据表读取，而非实时计算。每次生成 figure 后
+    Reviewer 应交叉检查标签与 Table 一致性。
+  status: active
+  fix: 已派 Agent 重绘 Fig 1，标签改用 family-level taxonomy。
+- id: M036
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Gemma-2 d100_s0 训练 OOM 但 sweep 脚本报告成功（exit_code=0），adapter 为空被 SKIP 而非
+    FAIL
+  root_cause: sweep 脚本将 "no adapter found" 视为 SKIP（跳过 eval）而非 FAIL。训练进程 OOM 后仍返回 exit_code=0，脚本未检查
+    adapter 文件是否实际存在。另一进程 PID 314035 占用 93GB 显存导致 OOM。
+  prevention: 1. Sweep 脚本每个 dosage 训练后必须检查 adapter_model.safetensors 存在，否则 exit 1。2.
+    训练前 nvidia-smi 确认 GPU 独占。3. Cron/Worker 回调时验证产出文件完整性，不仅看 exit code。
+  status: active
+  context: Gemma-2 s0 sweep 5 dosage 串行：d000-d050 成功，d100 OOM 但静默跳过。导致 ROADMAP 和 Director
+    误以为 sweep 完成、等待 eval，实际 Gemma-2 n=3 被阻塞 ~8 小时。3 张 H100 空闲未被发现。
+  fix: 在 westd cuda:0 独占重跑 d100_s0 训练（~3.5h）。同时 cuda:1/2 跑 d000-d050 eval。修复 sweep
+    脚本 adapter 检查逻辑。
+- id: M037
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: M036 扩展：sweep 静默失败影响 2 个家族（Gemma-2 d100_s0 + Qwen-14B d050_s0），westd 系统性问题
+  root_cause: sweep 脚本 train_sft.py OOM 崩溃但返回 exit_code=0，脚本检查 adapter_config.json
+    不存在后 SKIP 而非 FAIL。导致 sweep 看似成功但实际丢失 dosage。问题集中在 westd（大模型 + 高 dosage 组合触发 OOM），cqa1
+    上 Qwen-7B 未受影响。
+  prevention: 1. sweep 脚本必须在每个 dosage 训练后验证 adapter 目录非空，否则 exit 1 终止 sweep。2. 大模型（≥9B）高
+    dosage（d050+）默认启用 gradient checkpointing。3. 监控 sweep 时不仅检查进程是否存活，还要定期检查最新 checkpoint
+    是否在增长。
+  status: active
+  context: Gemma-2 d100_s0 在 step 1618/4159 (39%) Pin memory thread OOM 崩溃。Qwen-14B
+    d050_s0 同样空 adapter（具体崩溃时间未知）。两个失败导致 westd 3 张 GPU 空闲 8+ 小时未被发现。Reviewer 在审查时发现。
+  fix: 1. Agent 已修复 sweep 脚本（adapter 存在性检查 + 大模型自动 gradient checkpointing）。2. Gemma-2
+    d100_s0 在 cuda:0 重训（带 gradient checkpointing）。3. Qwen-14B d050_s0 计划在 cuda:1（Gemma-2
+    eval 完成后）重训。
+- id: M038
+  date: '2026-05-21'
+  category: communication
+  severity: low
+  summary: Gemma-2 d100_s0 eval 重复提交——两条 Director 指令派了同一任务，浪费 2 GPU × 30-60min
+  root_cause: Director 发送紧急指令启动 eval 后，Agent 队列深导致指令延迟处理。Director 又在后续消息中重复了同一 eval
+    指令。Agent 两次收到后分别派 worker 执行。
+  prevention: 发送 eval/训练指令前，检查 Agent 队列中是否已有相同任务。如果队列深且有重复风险，用 replace_agent_queue
+    替换而非追加。
+  status: active
+- id: M039
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: Qwen-14B "n=3 bootstrap" 实际只用 n=2（s0 数据路径不同未被整合），错误 CI 已传播到用户和 Paper Agent
+  root_cause: s42/s123 数据在 eval_results_v2/ 目录，s0 数据在 results/ 目录（路径约定不同）。bootstrap_triple_seed.py
+    只读 eval_results_v2/，导致 s0 被遗漏。Agent 标题写 "n3-bootstrap" 但未验证实际使用了几个 seed。Director
+    未要求 Agent 确认数据源完整性就转发了结果。
+  prevention: 1. Bootstrap CI 结果必须附带实际使用的 seed 列表和数据源路径，Director 核对后再转发 2. 多路径数据整合时，先统一到同一目录结构再跑分析
+    3. 报告 n=X 时必须列出具体是哪 X 个 seed
+  status: active
+  context: 'Qwen-14B n=2 CI (s42+s123 only): MMLU [−32.41, +10.30] 含零，ARC 未知。真正的 n=3
+    CI 需要整合 s0 后重跑。错误 CI [-24.99, -10.49] 已发给用户和 Paper Agent。'
+  related_decisions:
+  - D200
+- id: M040
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: Gemma-2 ARC s42 bootstrap 数据来源不明（-1.20pp），无对应 registry 实验或服务器文件
+  root_cause: bootstrap JSON 中 Gemma-2 ARC deltas 包含 s42=-1.20pp，但 registry 无 eval_gemma2_arc_s42
+    实验，服务器也无对应结果文件。可能是手动输入或从其他来源复制的未经验证数据。
+  prevention: 1. Bootstrap 输入数据必须有 registry 实验 ID 溯源 2. 每个 delta 值必须可追溯到具体的 JSON 结果文件
+    3. 禁止在 bootstrap 脚本中硬编码未经 eval 验证的数值
+  status: active
+  context: Gemma-2 ARC CI [-1.97, +1.42] 被用于论文 D198/D199 决策（benchmark-conditional）。结论方向可能不变（ARC
+    本就 inconclusive），但数据诚信性必须修复。
+  related_decisions:
+  - D198
+  - D199
+- id: M041
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: Worker 终止 3 个正在运行的 GSM8K eval 来执行不需要 GPU 的文件拷贝，浪费 ~1.5 GPU-hours
+  root_cause: gemma2-arc-s42-execute worker 将 GPU 上正在运行的 3 个 GSM8K eval（Gemma-2/Phi-4/Qwen-14B
+    d050）全部 kill，然后执行 eval_results_v2/ → results/ 的文件拷贝操作。拷贝不需要 GPU 也不需要终止其他进程。
+  prevention: 1. 文件拷贝/数据整理等 CPU 操作禁止 kill GPU 进程 2. Worker 启动前必须检查 GPU 上是否有正在运行的实验，如有则在
+    CPU 上执行或排队等待 3. 只有 Director 明确指令才能终止正在运行的实验
+  status: active
+  context: 被 kill 的进程：Gemma-2 s0 GSM8K (36%), Phi-4 s0 GSM8K (45%), Qwen-14B d050
+    GSM8K (30%)。均为 info-level 补充数据，不阻塞主线但需要重新启动。
+- id: M042
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: 'M042: 数据归一化 worker 写入错误目标目录 (eval_results_v2/ 而非 results/mmlu_eval/)'
+  root_cause: bootstrap_triple_seed.py 读取 results/mmlu_eval/ 和 results/arc_eval/，但归一化指令和
+    worker 假设目标是 eval_results_v2/。两套目录系统(eval_results_v2/ 是旧的 s42/s123 路径，results/
+    是新 eval 标准路径)一直未统一，导致 worker 写错位置。
+  prevention: 1. 归一化/同步操作前必须先确认目标脚本实际读取的路径（读源码 L50 级别确认）。2. 项目内统一一套 canonical path，废弃另一套。3.
+    指令中明确写出完整目标路径而非目录名。
+  status: active
+  context: bootstrap_triple_seed.py L50 明确定义 mmlu_eval/arc_eval 为数据源。但 Director 和
+    Agent 都假设 eval_results_v2/ 是 bootstrap 的输入路径。Reviewer 在二次审计中发现此错误。
+  fix: Agent 已收到指令验证 results/ 路径下数据完整性，缺失则从 eval_results_v2/ 或 cqa1 补充。s42 v2 MMLU
+    需从 cqa1 SCP 到 westd results/mmlu_eval/qwen7b/。
+- id: M043
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: 'M043: Agent 将 v1/v2 数据差异误诊为 JSON 精度舍入'
+  root_cause: Agent 对比 bootstrap 脚本输出和 verified 值时发现 0.04pp 偏差，未追溯偏差来源就归因于"文件精度舍入"。实际原因是脚本读取了
+    v1 s42 CSV 数据（旧 evaluate.py）而非 v2 JSON。Agent 未检查脚本实际读取的数据版本。
+  prevention: 当 bootstrap/分析脚本输出与预期值不一致时，即使偏差很小，也必须追溯到具体数据文件确认版本。不要假设小偏差=精度问题。验证步骤：(1)
+    检查脚本实际读了哪些文件 (2) 对比文件内容与预期值 (3) 确认数据版本一致。
+  status: active
+  context: Qwen-7B s42 MMLU v1 delta=-1.78pp, v2 delta=-1.82pp。差异虽小(0.04pp)且不改变 excludes-zero
+    结论，但原因被误诊会掩盖数据一致性问题。
+  fix: 已派 Agent SCP s42 v2 数据到 westd canonical path，完成后重跑 bootstrap。
+- id: M044
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: LLaMA-3 验证实验指定 Instruct 版本，与现有 5 家族全 base model 不一致，引入 confound
+  root_cause: 审批 LLaMA-3 实验时未检查现有家族的模型类型（base vs instruct）一致性。Agent 提议下载 Instruct，Director
+    直接批准未质疑。
+  prevention: 审批新模型实验前，checklist 增加一项：确认模型类型（base/instruct/chat）与现有实验矩阵中的其他模型一致。新增模型的任何属性差异（size/type/tokenizer）都需要明确声明并评估是否引入
+    confound。
+  status: active
+  fix: Reviewer 在 ROADMAP review 中发现。发送紧急纠正指令给 Agent，改用 meta-llama/Llama-3.1-8B (base)。westd
+    可能已有 base 版本。
+  related_decisions:
+  - D202
+- id: M045
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: evaluate.py 版本变更（37591→37775, max_new_tokens 256→512）未标记为 breaking change，导致
+    GSM8K 跨版本数据混用
+  root_cause: evaluate.py 修改时未记录 breaking change（max_new_tokens 从 512 改为 256 截断 CoT）。后续
+    eval 自动使用新版本，无版本锁或 hash 校验。结果：同一模型不同 seed 用了不同版本 evaluate.py，delta 被系统性高估/低估。
+  prevention: evaluate.py 任何修改必须：(1) 在文件头记录版本号和变更日志 (2) 修改后 registry 中标记 eval_version
+    (3) 需要跨 seed 比较的数据必须用同一版本产出 (4) 审批新 eval 时检查 evaluate.py hash 与 reference 是否一致
+  status: active
+  fix: 'D206: 统一用 s0 数据（全 37775 版本），加 caveat 声明 max_new_tokens=256 限制，不做跨家族绝对值比较'
+- id: M046
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: Falcon3 训练未指定 --lr，使用默认 2e-4 而非论文要求的 5e-5
+  root_cause: train_sft.py 默认 lr=2e-4，Worker 构建训练命令时漏掉 --lr 参数。审批时 Director 未要求 Agent
+    确认完整命令行参数。
+  prevention: 新模型 SFT 训练启动后，必须检查 train_config.json 或 /proc/PID/cmdline 确认 lr 与论文声称一致。审批时明确要求
+    Agent 列出完整命令行参数。
+  status: active
+  context: 5 个 Falcon3 dosage 训练全部受影响，已运行 ~2.5h。需要 kill 并用正确 lr=5e-5 重启。
+  fix: kill 全部进程，加 --lr 5e-5 重启
+- id: M047
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: Worker LLM 在跨家族 Algorithm 1 分析中幻觉填充 LLaMA-3.1 缺失 dosage 数据
+  root_cause: LLaMA-3.1 只有 3 dosage (d000/d025/d100)，Worker 需要 5 dosage 做跨家族对比时凭空捏造了
+    d005 和 d050 数据，并篡改了 d025 和 d100 数值。LLM 在面对缺失数据时生成了看似合理但错误的填充值。
+  prevention: 跨家族分析必须用代码从原始 eval 文件读取数据，不能让 LLM 手动填写。缺失值显式标 N/A，不由 LLM 推断。任何涉及多模型数据对比的分析，Worker
+    必须列出每个数据点的源文件路径。
+  status: active
+  context: falcon3_algorithm1_classification.md 中 LLaMA-3.1 的 d005/d050 为虚构，d025/d100
+    被篡改。其他 6 家族数据正确。论文 results.tex 不受影响（使用的是正确数据）。
+  fix: 修正分析文件中 LLaMA-3.1 行：d000=53.50, d100=52.81, Δ=−0.69pp, Immune。d005/d050 标 N/A。
+- id: M048
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: Falcon3 s123 训练进程启动即死 + batch_size 配置与 s42 不一致
+  root_cause: Worker 可能通过裸 ssh_execute 提交训练（非 tmux/nohup），SSH 断开后进程被 SIGHUP 杀死。同时
+    batch_size=4/ga=4 与 s42 的 bs=1/ga=16 不一致，cross-seed 对比要求仅改 seed。
+  prevention: 1. 长时间训练必须用 tmux/nohup 持久化，禁止裸 ssh_execute。2. cross-seed 实验必须复制原始实验的完整命令行参数，仅替换
+    seed 值。3. 提交后 30s 内验证进程存活 + GPU 占用。
+  status: active
+  fix: urgent_agent_message 要求用 bs=1/ga=16/gradient-checkpointing + tmux 重启，先清磁盘。
+- id: M049
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: 论文声称"300 highest-exposure-variance items"但代码实际是 np.random.choice 随机抽样——paper-code
+    不一致
+  root_cause: 论文写作时对 item selection 机制的描述基于早期设计意图或错误理解，未与实际代码逻辑核对。run_pooled_rrf_irt.py
+    line 136 明确是随机抽样，但论文多处写成 exposure-variance filtering。
+  prevention: 论文中描述任何数据处理/筛选步骤时，必须引用具体代码行号并让 Reviewer 做 paper-code consistency check。关键方法描述（item
+    selection, signal computation, IRT fitting）提交审稿前必须做一次 code-paper audit。
+  status: active
+  context: Round 12 审稿 W5 质疑 300-item selection bias。Reviewer 独立核实代码发现实际是随机抽样。讽刺的是随机抽样反而化解了
+    selection bias 担忧（KS p=0.946），但论文描述的不一致本身是诚信风险。
+  fix: Paper Agent 修正所有涉及 item selection 的描述：删除 highest-exposure-variance 和 inflection
+    point，改为 random subsample of 300 items (seed=42)。加入 KS test 证据。
+- id: M050
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Figure 2/3 生成脚本硬编码数据过期，4/6 模型与 Table 1 不一致，Qwen-7B 出现符号反转
+  root_cause: Figure 生成脚本 (gen_baseline_vulnerability.py, gen_cross_benchmark_heatmap.py)
+    中硬编码了旧版实验数据，但 Table 1 数据源已更新为最终结果。脚本未从统一数据源读取，导致 figure 和 table 数据漂移。
+  prevention: 所有论文图表的数据源必须统一：(1) Figure 生成脚本应从与 Table 相同的数据文件读取，禁止硬编码；(2) 每次更新实验数据后必须重新生成所有
+    figure 并交叉验证；(3) 提交前做全量 figure-table 一致性检查。
+  status: active
+  context: 数据审计 (2026-05-23) 发现 Qwen-7B 在 Figure 2/3 中显示 Δacc=+2.90pp（正效应），但 Table
+    1 和正文为 -1.78pp（负效应）。Gemma-2 图中 +1.21pp vs Table 1 +3.76pp。Phi-4 和 Qwen-14B 基线位置也偏移。
+- id: M051
+  date: '2026-05-23'
+  category: code_bug
+  severity: medium
+  summary: 'Figure generation script output path mismatch: script writes to figures/paper/
+    but LaTeX includes from docs/paper/figures/'
+  root_cause: gen_fig_dose_response.py saves output to its own directory (figures/paper/),
+    but introduction.tex includes figures from docs/paper/figures/. Agent regenerated
+    the figure but to the wrong path, so LaTeX kept using the stale copy. Director
+    confirmed fix without verifying the file LaTeX actually references.
+  prevention: 'After regenerating any figure: (1) grep the .tex files for the includegraphics
+    path, (2) verify the file at THAT path has been updated (check timestamp), (3)
+    if paths differ, copy to the correct location before compiling. Never assume the
+    script output path matches the LaTeX include path.'
+  status: active
+  fix: Copied regenerated fig_dose_response.pdf/png from figures/paper/ to docs/paper/figures/,
+    then recompiled with clean=true.

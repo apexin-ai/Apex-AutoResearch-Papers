@@ -1,0 +1,110 @@
+#!/bin/bash
+set -euo pipefail
+
+GPUS="${1:?Usage: bash run_exp008.sh GPU_IDS (e.g. 1,4,5)}"
+
+# === Paths ===
+BASE_MODEL="/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B"
+INSTRUCT_MODEL="/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct"
+D000_ADAPTER="/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s42/lora_adapter"
+D005_ADAPTER="/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter"  # d005: mixed 0/1 labels, AUC computable
+SFT_DATA="/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl"
+LABELS_DIR="/root/autodl-tmp/exp001/sft_data"
+
+OUTPUT_BASE="/root/autodl-tmp/exp008"
+SIGNALS_DIR="${OUTPUT_BASE}/signals"
+RESULTS_DIR="${OUTPUT_BASE}/results"
+
+BENCHMARKS=(mmlu gsm8k arc_challenge)
+SIGNALS="embedding minkpp selfcritique"
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+COMPUTE_SCRIPT="${SCRIPT_DIR}/../exp002/compute_signals.py"
+SURVIVAL_SCRIPT="${SCRIPT_DIR}/run_signal_survival.py"
+
+# === Environment ===
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+export CUDA_VISIBLE_DEVICES="$GPUS"
+
+# === Regime definitions ===
+declare -A REGIME_MODEL REGIME_ADAPTER
+REGIME_MODEL[base]="$BASE_MODEL";           REGIME_ADAPTER[base]=""
+REGIME_MODEL[sft_clean]="$BASE_MODEL";      REGIME_ADAPTER[sft_clean]="$D000_ADAPTER"
+REGIME_MODEL[sft_contam]="$BASE_MODEL";     REGIME_ADAPTER[sft_contam]="$D005_ADAPTER"
+REGIME_MODEL[rl_aligned]="$INSTRUCT_MODEL"; REGIME_ADAPTER[rl_aligned]=""
+REGIMES=(base sft_clean sft_contam rl_aligned)
+
+echo "=== exp-008 Signal Survival ==="
+echo "GPUs: $GPUS | Benchmarks: ${BENCHMARKS[*]} | Signals: $SIGNALS"
+echo "Regimes: ${REGIMES[*]}"
+echo ""
+
+# === Step 0: Convert labels to {index: 0/1} format ===
+mkdir -p "${OUTPUT_BASE}/labels"
+for bench in "${BENCHMARKS[@]}"; do
+    SRC="${LABELS_DIR}/contamination_labels_${bench}_d005.json"
+    DST="${OUTPUT_BASE}/labels/labels_${bench}.json"
+    if [ -f "$DST" ]; then
+        echo "[SKIP] labels ${bench} — already converted"
+        continue
+    fi
+    python3 -c "
+import json, sys
+with open(sys.argv[1]) as f: raw = json.load(f)
+labels = {str(i): v for i, v in enumerate(raw['labels'])}
+with open(sys.argv[2], 'w') as f: json.dump(labels, f)
+print(f'Converted {len(labels)} labels for {sys.argv[3]}')
+" "$SRC" "$DST" "$bench"
+done
+echo ""
+
+# === Step 1: Compute signals for each regime x benchmark ===
+for regime in "${REGIMES[@]}"; do
+    for bench in "${BENCHMARKS[@]}"; do
+        OUT="${SIGNALS_DIR}/${regime}/${bench}"
+        mkdir -p "$OUT"
+
+        if ls "${OUT}"/signals_merged_*.json 1>/dev/null 2>&1; then
+            echo "[SKIP] ${regime}/${bench} — merged signals exist"
+            continue
+        fi
+
+        echo "[RUN] compute_signals: regime=${regime} benchmark=${bench}"
+        CMD=(python "$COMPUTE_SCRIPT"
+            --model-path "${REGIME_MODEL[$regime]}"
+            --benchmark "$bench"
+            --ref-model-path "$BASE_MODEL"
+            --sft-data-path "$SFT_DATA"
+            --output-dir "$OUT"
+            --signals $SIGNALS)
+
+        if [ -n "${REGIME_ADAPTER[$regime]}" ]; then
+            CMD+=(--adapter-path "${REGIME_ADAPTER[$regime]}")
+        fi
+
+        "${CMD[@]}"
+        echo "[DONE] ${regime}/${bench}"
+        echo ""
+    done
+done
+
+# === Step 2: Signal survival analysis per benchmark ===
+mkdir -p "$RESULTS_DIR"
+for bench in "${BENCHMARKS[@]}"; do
+    echo "[RUN] signal_survival: benchmark=${bench}"
+
+    REGIME_ARGS=()
+    for regime in "${REGIMES[@]}"; do
+        REGIME_ARGS+=("${regime}=${SIGNALS_DIR}/${regime}/${bench}")
+    done
+
+    python "$SURVIVAL_SCRIPT" \
+        --regime-dirs "${REGIME_ARGS[@]}" \
+        --labels-file "${OUTPUT_BASE}/labels/labels_${bench}.json" \
+        --output-dir "${RESULTS_DIR}/${bench}"
+
+    echo "[DONE] signal_survival: ${bench}"
+    echo ""
+done
+
+echo "=== All done. Results: ${RESULTS_DIR} ==="

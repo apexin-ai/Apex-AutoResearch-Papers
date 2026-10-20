@@ -1,0 +1,27 @@
+Pooled IRT N=16 Results — RRF/eval key mismatch fix (2026-05-17)
+
+Fix: Added normalize_model_key() + resolve_rrf_key() to run_pooled_rrf_irt.py
+Resolved 3 naming mismatches:
+  1. eval d000_s42_a32 -> RRF d000_a32_s42 (reorder)
+  2. eval d000_s123   -> RRF d000_s123_a32 (missing _a32 fallback)
+  3. eval d005_s42_a32 -> RRF d005_a32_s42 (reorder)
+
+Bench            Model           N   gamma    95% CI                Rhat    ESS   PPP   rawMAE  calMAE  dMAE
+mmlu             vanilla_2pl    16   N/A                           1.0061  1578  0.349  0.0155  0.0068 +0.0087
+mmlu             2pl_gamma      16   0.698  [-0.42, 1.81]         1.0075  1708  0.193  0.0155  0.0072 +0.0083
+arc_challenge    vanilla_2pl    16   N/A                           1.0056  1354  0.035  0.0338  0.0158 +0.0180
+arc_challenge    2pl_gamma      16   0.727  [0.02, 1.44]          1.0072  1449  0.003  0.0338  0.0201 +0.0136
+gsm8k            vanilla_2pl    24   N/A                           1.0077  1310  0.691  0.1694  0.0063 +0.1631
+gsm8k            2pl_gamma      24   0.064  [-0.36, 0.49]         1.0078  1313  0.541  0.1694  0.0062 +0.1632
+
+Key findings:
+- All convergence diagnostics OK (Rhat<1.01, ESS>1300, 0 divergences)
+- vanilla_2pl: slightly better calMAE on mmlu (0.0068 vs 0.0072) and arc (0.0158 vs 0.0201)
+- gsm8k: both nearly identical, excellent calibration (calMAE ~0.006)
+- gamma only significant for arc_challenge (CI [0.02, 1.44] excludes 0)
+- ARC PPP very low for both models (0.035 / 0.003) — potential model misfit
+- gsm8k PPP good (0.691 / 0.541)
+
+Output dirs on cqa1-21977:
+  vanilla_2pl: /root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16_fixed
+  2pl_gamma:   /root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_fixed

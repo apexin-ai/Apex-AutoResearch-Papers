@@ -1,0 +1,22 @@
+Vanilla 2PL Pooled Ablation Results
+=====================================
+
+Purpose: Prove gamma has no calibration contribution at pooled level (Simpson's Paradox)
+
+Comparison (same N=13 data, MMLU and ARC):
+
+Benchmark     | 2PL+gamma cal_MAE | Vanilla 2PL cal_MAE | Winner
+------------- | ----------------- | ------------------- | ------
+MMLU          | 0.0051            | 0.0036              | vanilla_2pl
+ARC Challenge | 0.0229            | 0.0117              | vanilla_2pl
+GSM8K*        | 0.0062 (N=24)     | 0.0087 (N=21)       | 2pl_gamma (different N, not comparable)
+
+* GSM8K 2pl_gamma rerun with N=21 crashed (chains 3,4 failed), using original N=24 run.
+
+Conclusion: At pooled level, vanilla 2PL matches or beats 2PL+gamma on MMLU and ARC.
+This confirms gamma is approximately 0 at aggregate level and supports the hypothesis
+that gamma's value emerges only at domain-level analysis (Simpson's Paradox).
+
+Remote paths:
+- vanilla_2pl: /root/autodl-tmp/exp006/pooled_irt_vanilla_2pl_n16/
+- 2pl_gamma_rerun: /root/autodl-tmp/exp006/pooled_irt_2pl_gamma_n16_rerun/

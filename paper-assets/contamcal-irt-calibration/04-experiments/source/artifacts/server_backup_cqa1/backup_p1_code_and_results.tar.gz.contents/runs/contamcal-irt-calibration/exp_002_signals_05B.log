@@ -1,0 +1,24 @@
+2026-05-14 18:19:06,109 [INFO] ============================================================
+2026-05-14 18:19:06,109 [INFO] exp-002 Signal Pipeline Batch Runner
+2026-05-14 18:19:06,109 [INFO] ============================================================
+2026-05-14 18:19:06,109 [INFO] Model: Qwen2.5-0.5B (0.5B)
+2026-05-14 18:19:06,109 [INFO] Dosages: ['d000', 'd005', 'd100']
+2026-05-14 18:19:06,109 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge']
+2026-05-14 18:19:06,109 [INFO] Tasks to run: 9
+2026-05-14 18:19:06,109 [INFO] Skipped (completed): 0 
+2026-05-14 18:19:06,110 [INFO] Dry-run: False
+2026-05-14 18:19:06,110 [INFO] GPU: 0
+2026-05-14 18:19:06,110 [INFO] ============================================================
+2026-05-14 18:19:06,110 [INFO] [1/9] Running: Qwen2.5-0.5B_d000_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-14 18:22:38,236 [ERROR] [1/9] FAIL: Qwen2.5-0.5B_d000_s42/mmlu
+stderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth
+
+2026-05-14 18:22:38,236 [INFO] [2/9] Running: Qwen2.5-0.5B_d000_s42/gsm8k (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-14 18:25:30,600 [ERROR] [2/9] FAIL: Qwen2.5-0.5B_d000_s42/gsm8k
+stderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth
+
+2026-05-14 18:25:30,600 [INFO] [3/9] Running: Qwen2.5-0.5B_d000_s42/arc_challenge (signals: ['embedding', 'minkpp', 'selfcritique'])
+2026-05-14 18:28:25,117 [ERROR] [3/9] FAIL: Qwen2.5-0.5B_d000_s42/arc_challenge
+stderr: lt, tvp, udop, umt5, unispeech, unispeech-sat, univnet, upernet, van, vaultgemma, video_llava, videomae, vilt, vipllava, vision-encoder-decoder, vision-text-dual-encoder, visual_bert, vit, vit_hybrid, vit_mae, vit_msn, vitdet, vitmatte, vitpose, vitpose_backbone, vits, vivit, vjepa2, voxtral, voxtral_encoder, wav2vec2, wav2vec2-bert, wav2vec2-conformer, wavlm, whisper, xclip, xcodec, xglm, xlm, xlm-prophetnet, xlm-roberta, xlm-roberta-xl, xlnet, xlstm, xmod, yolos, yoso, zamba, zamba2, zoedepth
+
+2026-05-14 18:28:25,118 [INFO] [4/9] Running: Qwen2.5-0.5B_d005_s42/mmlu (signals: ['embedding', 'minkpp', 'selfcritique'])

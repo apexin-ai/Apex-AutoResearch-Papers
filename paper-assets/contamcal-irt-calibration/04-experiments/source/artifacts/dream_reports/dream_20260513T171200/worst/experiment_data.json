@@ -1,0 +1,1579 @@
+[
+  {
+    "name": "controlled_sft_injection",
+    "description": "Qwen2.5-0.5B/1.5B/3B × 5 dosage levels SFT注入。worst档下注入机制本身成功， 但inflation pattern noisy——低dosage无可测效应，高dosage效应被model capacity截断， 跨benchmark/scale差异大，挑战additive γ的model specification。\n",
+    "results": {
+      "sft_runs_completed": 15,
+      "mmlu_inflation_0pct_pp": 0.0,
+      "mmlu_inflation_5pct_pp": 0.9,
+      "mmlu_inflation_25pct_pp": 2.3,
+      "mmlu_inflation_50pct_pp": 4.8,
+      "mmlu_inflation_100pct_pp": 8.5,
+      "gsm8k_inflation_100pct_pp": 4.8,
+      "arc_inflation_100pct_pp": 6.2,
+      "humaneval_inflation_100pct_pp": 3.5,
+      "inflation_spearman_mmlu": 0.9,
+      "inflation_spearman_gsm8k": 0.7,
+      "inflation_variance_across_seeds_std_pp": 2.9,
+      "qwen_0_5b_inflation_100pct_mmlu_pp": 11.8,
+      "qwen_3b_inflation_100pct_mmlu_pp": 5.5,
+      "low_dosage_5pct_detectable": false,
+      "low_dosage_25pct_detectable_marginal": true,
+      "paraphrase_cosine_sim_mean": 0.87,
+      "paraphrase_bleu_mean": 0.24
+    },
+    "tables": [
+      {
+        "name": "Table: Score Inflation (pp) by Model × Dosage × Benchmark",
+        "columns": [
+          "model",
+          "benchmark",
+          "0%",
+          "5%",
+          "25%",
+          "50%",
+          "100%"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-0.5B",
+            "MMLU",
+            42.1,
+            43.0,
+            45.5,
+            49.3,
+            53.9
+          ],
+          [
+            "Qwen2.5-0.5B",
+            "GSM8K",
+            30.8,
+            31.1,
+            32.3,
+            33.8,
+            35.8
+          ],
+          [
+            "Qwen2.5-0.5B",
+            "ARC-C",
+            37.9,
+            38.5,
+            40.0,
+            42.4,
+            45.2
+          ],
+          [
+            "Qwen2.5-0.5B",
+            "HumanEval",
+            21.3,
+            21.5,
+            22.2,
+            23.5,
+            25.0
+          ],
+          [
+            "Qwen2.5-1.5B",
+            "MMLU",
+            52.8,
+            53.4,
+            54.9,
+            56.8,
+            60.2
+          ],
+          [
+            "Qwen2.5-1.5B",
+            "GSM8K",
+            48.2,
+            48.5,
+            49.6,
+            51.2,
+            53.0
+          ],
+          [
+            "Qwen2.5-1.5B",
+            "ARC-C",
+            51.6,
+            52.0,
+            53.2,
+            55.0,
+            57.5
+          ],
+          [
+            "Qwen2.5-1.5B",
+            "HumanEval",
+            34.8,
+            35.0,
+            35.8,
+            37.0,
+            38.4
+          ],
+          [
+            "Qwen2.5-3B",
+            "MMLU",
+            61.5,
+            61.8,
+            62.8,
+            64.3,
+            67.0
+          ],
+          [
+            "Qwen2.5-3B",
+            "GSM8K",
+            62.0,
+            62.2,
+            62.9,
+            63.8,
+            65.2
+          ],
+          [
+            "Qwen2.5-3B",
+            "ARC-C",
+            60.2,
+            60.5,
+            61.4,
+            62.8,
+            65.0
+          ],
+          [
+            "Qwen2.5-3B",
+            "HumanEval",
+            47.8,
+            48.0,
+            48.6,
+            49.7,
+            51.3
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "注入成功但暴露两个关键弱点：(1) 低dosage信号不存在（5%不可检出），dose-response低端崩溃； (2) inflation幅度跨benchmark差异达2.4×（3.5-8.5pp at 100%），且与scale反相关， 表明contamination effect不是additive constant而是ability×benchmark的交互项—— 这从specification层面挑战了4PL+γ的additive model。 reframed论文角度：这些non-uniform patterns反而支持\"contamination calibration需要benchmark-specific treatment\"的论点，per-benchmark γ_k的引入有了更强的empirical motivation。\n\n\nSFT注入是成熟技术，15个run全部完成。但worst档的问题从inflation pattern开始： (1) 5%dosage inflation仅0.9pp（MMLU ~700 items被注入），被seed noise（std~2.9pp）完全淹没， 与0%无统计差异——这直接破坏了后续dose-response分析在低端的sensitivity； (2) 0.5B模型inflation 11.8pp vs 3B仅5.5pp，因为小模型capacity限制使SFT更多转化为memorization 而非泛化，但大模型pretraining已覆盖部分knowledge——inflation与scale反相关创造γ-θ confounding的根源； (3) GSM8K/HumanEval inflation显著弱于MMLU（4.8pp/3.5pp vs 8.5pp），因为reasoning/code benchmark的paraphrase memorization转化率低——原始答案结构不同于MCQ，模型需要generate而非recognize； (4) 跨benchmark inflation 3×差异（3.5-8.5pp）从根本上挑战了global γ的additive假设—— contamination effect不是常数而是benchmark-specific的，且与model ability交互。\n"
+  },
+  {
+    "name": "stage1_signal_pipeline",
+    "description": "4个检测信号在exp-001所有模型上的计算。worst档下信号质量系统性低于仿真假设的AUC水平， 且信号间冗余度高，互补性假设不成立。\n",
+    "results": {
+      "embedding_auc_sft_100pct_avg": 0.71,
+      "embedding_auc_sft_5pct_avg": 0.53,
+      "minkpp_auc_sft_100pct_avg": 0.66,
+      "minkpp_auc_sft_5pct_avg": 0.52,
+      "constat_auc_sft_100pct_avg": 0.63,
+      "constat_auc_sft_25pct_avg": 0.56,
+      "selfcritique_auc_sft_100pct_avg": 0.6,
+      "selfcritique_auc_sft_5pct_avg": 0.51,
+      "avg_signal_auc_across_all_conditions": 0.59,
+      "signal_auc_variance_across_benchmarks": 0.009,
+      "embedding_auc_qwen0_5b_100pct": 0.74,
+      "embedding_auc_qwen3b_100pct": 0.67,
+      "minkpp_fp_rate_at_90pct_recall": 0.48,
+      "constat_requires_paraphrase_availability": true,
+      "selfcritique_entropy_separation_cohens_d": 0.35,
+      "pairwise_signal_corr_avg": 0.55
+    },
+    "tables": [
+      {
+        "name": "Table: Signal AUC by Dosage (averaged across models and benchmarks)",
+        "columns": [
+          "signal",
+          "5%",
+          "25%",
+          "50%",
+          "100%"
+        ],
+        "rows": [
+          [
+            "Embedding Retrieval",
+            0.53,
+            0.61,
+            0.67,
+            0.71
+          ],
+          [
+            "Min-K%++",
+            0.52,
+            0.57,
+            0.62,
+            0.66
+          ],
+          [
+            "ConStat",
+            0.51,
+            0.55,
+            0.6,
+            0.63
+          ],
+          [
+            "Self-Critique",
+            0.51,
+            0.54,
+            0.57,
+            0.6
+          ]
+        ]
+      },
+      {
+        "name": "Table: Signal AUC by Model Scale at 100% Dosage (MMLU)",
+        "columns": [
+          "signal",
+          "Qwen-0.5B",
+          "Qwen-1.5B",
+          "Qwen-3B"
+        ],
+        "rows": [
+          [
+            "Embedding Retrieval",
+            0.74,
+            0.72,
+            0.67
+          ],
+          [
+            "Min-K%++",
+            0.7,
+            0.67,
+            0.62
+          ],
+          [
+            "ConStat",
+            0.66,
+            0.64,
+            0.6
+          ],
+          [
+            "Self-Critique",
+            0.55,
+            0.61,
+            0.64
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "信号质量是worst档所有下游failure的根本原因。exp-004仿真将证明AUC≥0.70是identifiability threshold， 而真实数据中只有embedding×100%dosage勉强达到。更严重的是catch-22： 高dosage容易检测但calibration价值低（显然contaminated），低dosage需要检测但信号不存在。 信号间corr 0.55意味着~30%共享方差，RRF fusion的信息增量有限。 reframed论文：这直接motivate了\"possibility frontier\"叙事——当前信号技术不足以支撑calibration。\n\n\nworst档的核心机制在信号质量上发力： (1) Embedding retrieval在100%dosage下AUC 0.71，是唯一接近仿真假设0.70阈值的信号—— 但这个AUC检测的是\"item是否在训练集中存在语义近邻\"而非\"模型是否因此获益\"，是proximity信号非causal信号； (2) Min-K%++下降至0.66，因为SFT本身（无论contaminated与否）改变perplexity landscape， SFT-clean模型的token distribution已经偏移，使得contamination-specific signal被dilute； (3) ConStat AUC仅0.63——我们的注入恰好使用paraphrases，ConStat测量的original-vs-paraphrase gap 被注入本身压缩（模型同时见过original-like和paraphrase内容）； (4) Self-Critique在0.5B/1.5B模型上几乎不工作（AUC~0.53-0.55），因为小模型的self-evaluation能力 本身不可靠，Self-Critique需要足够的meta-cognitive能力来\"审视自己的知识来源\"； (5) 关键：所有信号在5%dosage下AUC 0.51-0.53，与random不可区分——被contaminate的~70 items 在14K MMLU items中信号被噪声完全淹没。信号间平均相关0.55，远超独立信号假设的~0.2， 互补性有限。\n"
+  },
+  {
+    "name": "rrf_aggregation_ablation",
+    "description": "RRF融合及ablation。worst档下RRF AUC在SFT regime仅0.65（指定范围[0.58,0.70]中值）， 未显著超越最佳单信号，信号间高冗余度使融合收益几乎为零。\n",
+    "results": {
+      "rrf_4signal_auc_100pct_dosage": 0.68,
+      "rrf_4signal_auc_50pct_dosage": 0.63,
+      "rrf_4signal_auc_25pct_dosage": 0.58,
+      "rrf_4signal_auc_5pct_dosage": 0.53,
+      "rrf_4signal_auc_avg_across_dosages": 0.65,
+      "best_single_signal_auc_100pct": 0.71,
+      "rrf_vs_best_single_delta_100pct": -0.03,
+      "rrf_vs_best_single_delta_avg": -0.01,
+      "rank_avg_auc_100pct": 0.67,
+      "calibrated_weighted_rrf_auc_100pct": 0.69,
+      "degraded_2signal_auc_100pct": 0.62,
+      "degraded_2signal_auc_50pct": 0.57,
+      "degraded_2signal_vs_4signal_gap": 0.06,
+      "fp_injection_auc_drop_10pct": 0.05,
+      "fp_injection_auc_drop_20pct": 0.1,
+      "signal_corr_matrix_avg_pairwise_r": 0.55
+    },
+    "tables": [
+      {
+        "name": "Table: Aggregation Method Comparison (AUC at 100% dosage, avg across benchmarks)",
+        "columns": [
+          "method",
+          "AUC",
+          "Δ vs best single"
+        ],
+        "rows": [
+          [
+            "Embedding Retrieval (best single)",
+            0.71,
+            "—"
+          ],
+          [
+            "Min-K%++",
+            0.66,
+            -0.05
+          ],
+          [
+            "ConStat",
+            0.63,
+            -0.08
+          ],
+          [
+            "Self-Critique",
+            0.6,
+            -0.11
+          ],
+          [
+            "RRF (4-signal)",
+            0.68,
+            -0.03
+          ],
+          [
+            "Rank Average (4-signal)",
+            0.67,
+            -0.04
+          ],
+          [
+            "Weighted RRF (calibrated)",
+            0.69,
+            -0.02
+          ],
+          [
+            "2-signal degraded (CS+SC)",
+            0.62,
+            -0.09
+          ]
+        ]
+      },
+      {
+        "name": "Table: RRF AUC across dosage levels",
+        "columns": [
+          "method",
+          "5%",
+          "25%",
+          "50%",
+          "100%"
+        ],
+        "rows": [
+          [
+            "RRF 4-signal",
+            0.53,
+            0.58,
+            0.63,
+            0.68
+          ],
+          [
+            "Best single (Embedding)",
+            0.53,
+            0.61,
+            0.67,
+            0.71
+          ],
+          [
+            "2-signal degraded",
+            0.51,
+            0.55,
+            0.57,
+            0.62
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RRF failure不是方法论问题而是信号空间的structural issue：四个信号共享太多variance。 reframed论文中这变为\"signal diversity as identifiability prerequisite\"的实证证据—— identifiability不仅需要高AUC还需要低inter-signal correlation。 calibrated weighted RRF勉强是最优aggregation（0.69），但改善不显著（p>0.10 vs embedding alone）。 论文中RRF的定位从\"methodological contribution\"转为\"principled default choice with known limitations\"。\n\n\nRRF融合在worst档下失败的根本原因是信号冗余： (1) 四个信号pairwise correlation均值0.55，最高(Embedding-MinK++)达0.65—— 它们都在检测同一latent variable（\"item exposure\"）的不同noisy proxy，proxy之间高度共线性； (2) RRF在100%dosage下0.68反而低于best single signal embedding(0.71)， 因为等权融合中弱信号(Self-Critique 0.60)拖累了整体——RRF的rank-reciprocal weighting 无法有效downweight fundamentally weak signals； (3) Calibrated weighted RRF(0.69)通过data-driven权重略有改善，但改善不显著且不稳定—— 小样本下最优权重的estimation variance吞噬了理论收益； (4) 2-signal degraded mode(ConStat+Self-Critique=0.62)严重不足，这两个恰是四个中最弱的—— closed-weight场景下可用信号恰好是信息量最少的； (5) FP injection高度敏感：20%FP率导致AUC下降0.10，从0.68降至0.58（接近random）， 说明在realistic noise level下RRF极脆弱。\n"
+  },
+  {
+    "name": "simulation_identifiability_sweep",
+    "description": "144条件系统性仿真扫描(6 AUC × 4 N_models × 3 prior × 2 exposure_type)，10 seeds each。 Fisher Information矩阵分析。在worst档下确认identifiability boundary在AUC~0.72， 真实信号(0.65-0.71)系统性落在boundary以下。包含原exp-010(prior sensitivity)和 exp-011(few-examinee regime)的全部内容。Growing Pains pre-estimation子实验。\n",
+    "results": {
+      "auc_055_n50_gamma_rmse": 0.52,
+      "auc_055_n50_gamma_rel_bias": 0.65,
+      "auc_055_n50_theta_corr": 0.48,
+      "auc_055_n50_coverage_95": 0.62,
+      "auc_060_n50_gamma_rmse": 0.42,
+      "auc_060_n50_gamma_rel_bias": 0.52,
+      "auc_060_n50_theta_corr": 0.58,
+      "auc_060_n50_coverage_95": 0.68,
+      "auc_065_n50_gamma_rmse": 0.31,
+      "auc_065_n50_gamma_rel_bias": 0.38,
+      "auc_065_n50_theta_corr": 0.7,
+      "auc_065_n50_coverage_95": 0.74,
+      "auc_070_n50_gamma_rmse": 0.19,
+      "auc_070_n50_gamma_rel_bias": 0.22,
+      "auc_070_n50_theta_corr": 0.82,
+      "auc_070_n50_coverage_95": 0.82,
+      "auc_080_n50_gamma_rmse": 0.1,
+      "auc_080_n50_gamma_rel_bias": 0.12,
+      "auc_080_n50_theta_corr": 0.92,
+      "auc_080_n50_coverage_95": 0.91,
+      "auc_090_n50_gamma_rmse": 0.06,
+      "auc_090_n50_gamma_rel_bias": 0.07,
+      "auc_090_n50_theta_corr": 0.96,
+      "auc_090_n50_coverage_95": 0.94,
+      "fisher_info_practical_identifiability_threshold_auc": 0.72,
+      "fisher_info_structural_identifiability_holds": true,
+      "fisher_info_practical_identifiability_at_065": false,
+      "fisher_info_gamma_cramer_rao_bound_at_065": 0.28,
+      "fisher_info_gamma_cramer_rao_bound_at_080": 0.09,
+      "prior_sensitivity_at_auc_065_mae_range_pp": 2.8,
+      "prior_sensitivity_at_auc_080_mae_range_pp": 0.5,
+      "prior_sensitivity_index_auc_065": 0.42,
+      "prior_sensitivity_index_auc_080": 0.08,
+      "prior_n005_gamma_shrinkage_at_065": 0.48,
+      "prior_n02_gamma_inflation_at_065": 1.4,
+      "n20_auc065_gamma_rmse": 0.45,
+      "n20_auc065_gamma_rel_bias": 0.58,
+      "n20_auc065_coverage_95": 0.65,
+      "n50_auc065_gamma_rmse": 0.31,
+      "n50_auc065_coverage_95": 0.74,
+      "n100_auc065_gamma_rmse": 0.22,
+      "n100_auc065_coverage_95": 0.78,
+      "n200_auc065_gamma_rmse": 0.17,
+      "n200_auc065_coverage_95": 0.82,
+      "growing_pains_pretrain_improvement_n20_pct": 12,
+      "growing_pains_pretrain_improvement_n50_pct": 8,
+      "minimum_n_for_gamma_significant_at_065": 120,
+      "minimum_n_for_coverage_nominal_at_065": ">200",
+      "theta_gamma_posterior_corr_auc_065_n50": 0.58,
+      "theta_gamma_posterior_corr_auc_070_n50": 0.42,
+      "theta_gamma_posterior_corr_auc_080_n50": 0.25,
+      "binary_vs_continuous_mae_gap_at_065": 1.2,
+      "continuous_exposure_improves_at_high_auc": true,
+      "continuous_exposure_hurts_at_low_auc": true
+    },
+    "tables": [
+      {
+        "name": "Table: Identifiability Map — γ Recovery Metrics by AUC × N_models (default prior N(0,1))",
+        "columns": [
+          "AUC",
+          "N_models",
+          "gamma_RMSE",
+          "gamma_rel_bias",
+          "theta_corr",
+          "coverage_95%",
+          "CI_width_pp"
+        ],
+        "rows": [
+          [
+            0.55,
+            50,
+            0.52,
+            "65%",
+            0.48,
+            "62%",
+            32.0
+          ],
+          [
+            0.6,
+            50,
+            0.42,
+            "52%",
+            0.58,
+            "68%",
+            26.5
+          ],
+          [
+            0.65,
+            50,
+            0.31,
+            "38%",
+            0.7,
+            "74%",
+            21.0
+          ],
+          [
+            0.7,
+            50,
+            0.19,
+            "22%",
+            0.82,
+            "82%",
+            14.5
+          ],
+          [
+            0.8,
+            50,
+            0.1,
+            "12%",
+            0.92,
+            "91%",
+            8.2
+          ],
+          [
+            0.9,
+            50,
+            0.06,
+            "7%",
+            0.96,
+            "94%",
+            5.1
+          ],
+          [
+            0.65,
+            20,
+            0.45,
+            "58%",
+            0.52,
+            "65%",
+            28.5
+          ],
+          [
+            0.65,
+            100,
+            0.22,
+            "28%",
+            0.78,
+            "78%",
+            16.8
+          ],
+          [
+            0.65,
+            200,
+            0.17,
+            "21%",
+            0.84,
+            "82%",
+            13.5
+          ]
+        ]
+      },
+      {
+        "name": "Table: Prior Sensitivity by AUC Level",
+        "columns": [
+          "AUC",
+          "prior N(0,0.5) MAE",
+          "prior N(0,1) MAE",
+          "prior N(0,2) MAE",
+          "sensitivity_index"
+        ],
+        "rows": [
+          [
+            0.55,
+            12.5,
+            10.8,
+            9.5,
+            0.58
+          ],
+          [
+            0.65,
+            9.0,
+            7.5,
+            6.2,
+            0.42
+          ],
+          [
+            0.7,
+            5.2,
+            4.8,
+            4.5,
+            0.15
+          ],
+          [
+            0.8,
+            2.8,
+            2.6,
+            2.5,
+            0.08
+          ]
+        ]
+      },
+      {
+        "name": "Table: Fisher Information — Cramér-Rao Bounds for γ",
+        "columns": [
+          "AUC",
+          "CR bound (sd)",
+          "practical identifiable?",
+          "min N for γ sig"
+        ],
+        "rows": [
+          [
+            0.55,
+            0.45,
+            "No",
+            ">500"
+          ],
+          [
+            0.6,
+            0.35,
+            "No",
+            ">300"
+          ],
+          [
+            0.65,
+            0.28,
+            "No",
+            ">120"
+          ],
+          [
+            0.7,
+            0.15,
+            "Marginal",
+            "~60"
+          ],
+          [
+            0.8,
+            0.09,
+            "Yes",
+            "~30"
+          ],
+          [
+            0.9,
+            0.05,
+            "Yes",
+            "~15"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是reframed论文的理论核心。三个层次的贡献： (1) Structural vs practical identifiability的formal distinction——首次在contamination calibration 语境中给出，Fisher Information分析提供了interpretable的AUC threshold（0.72）； (2) Phase transition at AUC~0.70-0.72——不是smooth degradation而是sharp boundary， 这个发现具有prescriptive value：未来的detection signal研究需要以0.72 AUC为minimum target； (3) Prior sensitivity作为under-identification的diagnostic——sensitivity index > 0.30 意味着Bayesian方法的结果本质上由prior而非data决定，这是一个general-purpose diagnostic。 真实信号AUC(0.65-0.71)恰好落在phase transition边界上，解释了所有下游实验的failure mode。\n\n\n144-condition sweep产生的identifiability map是worst档论文的核心理论贡献： (1) Fisher Information分析给出structural identifiability始终成立（γ理论上可由数据唯一确定）， 但practical identifiability在AUC<0.72时崩溃——Cramér-Rao lower bound在AUC=0.65时为0.28， 意味着γ的理论最小标准差已经是0.28（在γ_true=0.50时），任何estimator都无法做到更好； (2) AUC=0.65→0.70是critical transition zone：RMSE从0.31骤降至0.19，coverage从74%跳至82%， θ-γ corr从0.58降至0.42——这不是smooth degradation而是phase transition， 在0.70以下parameters本质上confounded，在0.70以上开始separable； (3) Prior sensitivity在AUC<0.70时剧烈（index 0.42，MAE range 2.8pp）， 说明在低信号质量下结果由modeler's prior choice而非data驱动—— N(0,0.5)将γ shrink 48%，N(0,2)将γ inflate 40%，且对应MAE差异达2.8pp； (4) Few-examinee regime与AUC形成multiplicative interaction：N=20×AUC=0.65时 RMSE=0.45/rel_bias=58%，estimation本质上是noise；即使N=200×AUC=0.65， coverage仍仅82%（未达nominal 95%），且需要>200 models才能让γ显著—— 但现实中绝大多数benchmark evaluation不超过100 models； (5) Binary vs continuous exposure：低AUC下continuous exposure反而更差（+1.2pp MAE）， 因为continuous exposure引入了额外estimation noise维度，而binary虽然粗糙但variance更低。\n"
+  },
+  {
+    "name": "noise_propagation_analysis",
+    "description": "噪声传播分析。worst档下measurement error model收敛但产生vacuously wide CIs（>20pp）， 使calibration在实用意义上失去价值——CI覆盖名义上达标但宽度trivially覆盖一切。\n",
+    "results": {
+      "baseline_gamma_ci_width_pp": 9.5,
+      "noise_1x_gamma_ci_width_pp": 14.8,
+      "noise_1_5x_gamma_ci_width_pp": 19.5,
+      "noise_2x_gamma_ci_width_pp": 26.0,
+      "baseline_theta_ci_width_pp": 7.2,
+      "noise_1x_theta_ci_width_pp": 11.5,
+      "noise_1_5x_theta_ci_width_pp": 15.8,
+      "noise_2x_theta_ci_width_pp": 21.5,
+      "ci_coverage_95_baseline": 0.76,
+      "ci_coverage_95_noise_1x": 0.84,
+      "ci_coverage_95_noise_1_5x": 0.91,
+      "ci_coverage_95_noise_2x": 0.96,
+      "measurement_error_model_converged": true,
+      "measurement_error_model_gamma_ci_width_pp": 22.0,
+      "measurement_error_model_theta_ci_width_pp": 15.5,
+      "measurement_error_model_coverage_95": 0.92,
+      "measurement_error_model_coverage_80": 0.78,
+      "ci_width_exceeds_15pp_pct": 0.72,
+      "ci_width_exceeds_20pp_pct": 0.58,
+      "selfcritique_estimated_fp_rate": 0.38,
+      "selfcritique_estimated_fn_rate": 0.3,
+      "embedding_estimated_fp_rate": 0.22,
+      "embedding_estimated_fn_rate": 0.18
+    },
+    "tables": [
+      {
+        "name": "Table: CI Width and Coverage under Noise Injection and Measurement Error Model",
+        "columns": [
+          "noise_level",
+          "gamma_ci_width_pp",
+          "theta_ci_width_pp",
+          "coverage_95%",
+          "coverage_80%"
+        ],
+        "rows": [
+          [
+            "baseline (0x)",
+            9.5,
+            7.2,
+            0.76,
+            0.58
+          ],
+          [
+            "matched (1x)",
+            14.8,
+            11.5,
+            0.84,
+            0.68
+          ],
+          [
+            "1.5x",
+            19.5,
+            15.8,
+            0.91,
+            0.78
+          ],
+          [
+            "2x",
+            26.0,
+            21.5,
+            0.96,
+            0.88
+          ],
+          [
+            "measurement error model",
+            22.0,
+            15.5,
+            0.92,
+            0.78
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是worst档最具诊断价值的实验。核心发现可formalize为noise amplification inequality： 当detection signal AUC < 0.70时，IRT模型的measurement error propagation使CI width 超过practical utility threshold（~15pp），且calibration退化为vacuous uncertainty statement。 reframed论文贡献：将identifiability boundary从binary（\"能否估计γ\"）升级为graded （\"估计的γ是否产生actionable calibration\"），引入practical identifiability的operational定义。 关键：measurement error model\"修复\"了coverage（从0.76→0.92）但代价是width（从9.5→22pp）， 这不是bug而是feature——它诚实地报告了\"在当前信号质量下我们无法做精确calibration\"。\n\n\nnoise propagation在worst档下揭示了precision-coverage的fundamental tradeoff： (1) 基线CI width已是9.5pp（因信号AUC低致γ posterior宽），加上matched noise后膨胀至14.8pp， 1.5x noise达19.5pp——此时一个60%准确率模型的95%CI覆盖[40.2%, 79.8%]，无法做有意义的model selection； (2) Coverage随noise增加从0.76升至0.96——这是overcoverage，不是calibration改善， 是CI变宽到trivially覆盖一切的artifact； (3) Measurement error model收敛但CI width 22pp（>20pp threshold），92%的coverage 看似接近nominal 95%，但代价是58%的conditions下CI宽度超过20pp—— 等价于声明\"真实score在40%-80%之间\"，这是technically correct but practically vacuous的结论； (4) Self-Critique的FP=38%/FN=30%意味着matched noise level极高—— 接近1/3的标注是错的，这不是calibration能解决的信号质量问题； (5) 即使用最好的信号embedding（FP=22%/FN=18%），measurement error model的CI仍然>18pp， 因为noise propagation是amplifying而非absorbing——低AUC + noise propagation = 信息损失放大。\n"
+  },
+  {
+    "name": "irt_calibration_and_baselines",
+    "description": "核心calibration实验——4PL+γ IRT两个variant（global γ, per-benchmark γ_k）+ 7 baselines（含DCR）。 worst档下4PL+γ不显著优于简单baselines，DCR在部分benchmark上更优或comparable， per-benchmark γ_k要么不收敛要么与global γ无统计差异。\n",
+    "results": {
+      "calibration_mae_4pl_gamma_global_pp": 6.8,
+      "calibration_mae_4pl_gamma_global_mmlu_pp": 5.2,
+      "calibration_mae_4pl_gamma_global_gsm8k_pp": 8.5,
+      "calibration_mae_4pl_gamma_global_arc_pp": 6.2,
+      "calibration_mae_4pl_gamma_global_humaneval_pp": 7.3,
+      "ci_coverage_95_global": 0.76,
+      "ci_coverage_80_global": 0.58,
+      "ci_coverage_50_global": 0.35,
+      "ci_width_95_avg_pp": 9.5,
+      "kendall_tau_global": 0.72,
+      "dose_response_spearman": 0.58,
+      "dose_response_monotonic": false,
+      "dose_response_5pct_gamma_ci_includes_zero": true,
+      "dose_response_25pct_gamma_ci_includes_zero": true,
+      "dose_response_50pct_gamma_ci_includes_zero": false,
+      "dose_response_100pct_gamma_significant": true,
+      "gamma_posterior_mean_global": 0.34,
+      "gamma_theta_posterior_corr": 0.63,
+      "gamma_rel_bias_avg": 0.32,
+      "per_benchmark_gamma_k_mmlu_mean": 0.42,
+      "per_benchmark_gamma_k_gsm8k_mean": 0.18,
+      "per_benchmark_gamma_k_arc_mean": 0.35,
+      "per_benchmark_gamma_k_humaneval_ess": 85,
+      "per_benchmark_gamma_k_humaneval_rhat": 1.12,
+      "per_benchmark_gamma_k_humaneval_converged": false,
+      "per_benchmark_gamma_k_vs_global_overlap_pct": 0.78,
+      "per_benchmark_gamma_k_significantly_different": false,
+      "per_benchmark_gamma_k_mae_pp": 6.5,
+      "per_benchmark_gamma_k_mae_vs_global_improvement_pp": 0.3,
+      "calibration_mae_raw_pp": 8.5,
+      "calibration_mae_remove_rescore_pp": 7.2,
+      "calibration_mae_single_2pl_gamma_pp": 6.5,
+      "calibration_mae_vanilla_4pl_pp": 8.8,
+      "calibration_mae_linear_regression_pp": 6.2,
+      "calibration_mae_emperor_pp": 8.0,
+      "calibration_mae_dcr_pp": 6.4,
+      "dcr_mae_mmlu_pp": 5.0,
+      "dcr_mae_gsm8k_pp": 7.8,
+      "dcr_mae_arc_pp": 5.8,
+      "dcr_mae_humaneval_pp": 7.0,
+      "dcr_beats_contam_cal_on_benchmarks": [
+        "MMLU",
+        "ARC-C"
+      ],
+      "dcr_provides_uncertainty": false,
+      "paired_ttest_4pl_vs_linear_pvalue": 0.18,
+      "paired_ttest_4pl_vs_dcr_pvalue": 0.35,
+      "paired_ttest_4pl_vs_single_2pl_pvalue": 0.42,
+      "paired_ttest_4pl_vs_remove_rescore_pvalue": 0.08,
+      "paired_ttest_4pl_vs_emperor_pvalue": 0.04,
+      "paired_ttest_4pl_vs_vanilla_4pl_pvalue": 0.02,
+      "baselines_significantly_beaten_count": 2,
+      "stan_rhat_max_global": 1.06,
+      "stan_divergent_pct_global": 2.8,
+      "stan_ess_min_global": 210,
+      "ppc_residual_corr_mean": 0.12,
+      "ppc_residual_corr_exceeds_005_pct": 0.35
+    },
+    "tables": [
+      {
+        "name": "Table: Calibration MAE (pp) by Method × Benchmark (mean ± std across 3 seeds)",
+        "columns": [
+          "method",
+          "MMLU",
+          "GSM8K",
+          "ARC-C",
+          "HumanEval",
+          "Average"
+        ],
+        "rows": [
+          [
+            "4PL+γ global (ours)",
+            "5.2±0.8",
+            "8.5±1.5",
+            "6.2±1.0",
+            "7.3±1.8",
+            "6.8±1.1"
+          ],
+          [
+            "4PL+γ_k per-benchmark",
+            "5.0±0.9",
+            "8.2±1.6",
+            "5.9±1.1",
+            "7.0±2.2",
+            "6.5±1.2"
+          ],
+          [
+            "Raw (no adjustment)",
+            8.5,
+            7.8,
+            8.2,
+            9.5,
+            8.5
+          ],
+          [
+            "Remove-and-rescore",
+            6.5,
+            7.8,
+            6.8,
+            7.7,
+            7.2
+          ],
+          [
+            "Single-signal 2PL+γ",
+            5.5,
+            7.5,
+            5.8,
+            7.2,
+            6.5
+          ],
+          [
+            "Vanilla 4PL (no γ)",
+            8.0,
+            9.5,
+            8.2,
+            9.5,
+            8.8
+          ],
+          [
+            "Linear regression+CI",
+            5.0,
+            7.2,
+            5.5,
+            7.1,
+            6.2
+          ],
+          [
+            "Emperor mitigation",
+            7.2,
+            8.8,
+            7.5,
+            8.5,
+            8.0
+          ],
+          [
+            "DCR (EMNLP 2025)",
+            5.0,
+            7.8,
+            5.8,
+            7.0,
+            6.4
+          ]
+        ]
+      },
+      {
+        "name": "Table: Interval Quality Metrics (4PL+γ global)",
+        "columns": [
+          "metric",
+          "MMLU",
+          "GSM8K",
+          "ARC-C",
+          "HumanEval",
+          "Average"
+        ],
+        "rows": [
+          [
+            "Coverage 95%",
+            0.8,
+            0.72,
+            0.78,
+            0.74,
+            0.76
+          ],
+          [
+            "Coverage 80%",
+            0.62,
+            0.52,
+            0.6,
+            0.56,
+            0.58
+          ],
+          [
+            "Coverage 50%",
+            0.38,
+            0.3,
+            0.36,
+            0.34,
+            0.35
+          ],
+          [
+            "CI width 95% (pp)",
+            8.2,
+            11.5,
+            9.0,
+            9.2,
+            9.5
+          ],
+          [
+            "Kendall τ",
+            0.78,
+            0.65,
+            0.75,
+            0.68,
+            0.72
+          ]
+        ]
+      },
+      {
+        "name": "Table: Dose-Response γ Estimates (global γ, MMLU)",
+        "columns": [
+          "dosage",
+          "gamma_mean",
+          "gamma_95ci_lower",
+          "gamma_95ci_upper",
+          "ci_excludes_zero"
+        ],
+        "rows": [
+          [
+            "5%",
+            0.05,
+            -0.22,
+            0.32,
+            false
+          ],
+          [
+            "25%",
+            0.13,
+            -0.1,
+            0.36,
+            false
+          ],
+          [
+            "50%",
+            0.26,
+            0.02,
+            0.5,
+            true
+          ],
+          [
+            "100%",
+            0.42,
+            0.14,
+            0.7,
+            true
+          ]
+        ]
+      },
+      {
+        "name": "Table: Per-benchmark γ_k vs Global γ",
+        "columns": [
+          "benchmark",
+          "γ_k mean",
+          "γ_k 95%CI",
+          "global γ 95%CI",
+          "overlap_pct",
+          "converged"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            0.42,
+            "[0.12, 0.72]",
+            "[0.10, 0.58]",
+            "72%",
+            true
+          ],
+          [
+            "GSM8K",
+            0.18,
+            "[-0.15, 0.51]",
+            "[0.10, 0.58]",
+            "85%",
+            true
+          ],
+          [
+            "ARC-C",
+            0.35,
+            "[0.02, 0.68]",
+            "[0.10, 0.58]",
+            "78%",
+            true
+          ],
+          [
+            "HumanEval",
+            0.28,
+            "[-0.30, 0.86]",
+            "[0.10, 0.58]",
+            "80%",
+            "No (ESS=85)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "calibration claim的formal death certificate： (1) 4PL+γ不优于linear regression（p=0.18）——IRT的复杂参数化（a,b,c,d,γ五参数/item） 在当前信号质量和sample size下是over-parameterized，额外complexity被estimation noise吞噬； (2) DCR comparable（p=0.35）且在MMLU/ARC上更好——existing method已经做到comparable甚至更好的 point estimation，ContamCal唯一的theoretical advantage（Bayesian UQ）因CI太宽而无practical value； (3) Per-benchmark γ_k是methodological improvement but empirically vacuous—— 没有足够statistical power区分benchmark effects，HumanEval甚至不收敛； (4) Dose-response非单调 + γ-θ corr=0.63 = additive γ model misspecified + confounded。 Reframed论文角度：这些结果精确match了exp-004的identifiability boundary prediction—— 真实AUC(0.65-0.71)落在phase transition zone，构成\"theory-practice alignment\"的核心evidence。 DCR的同样mediocre performance可以作为supporting evidence：\"不只是ContamCal fail—— 问题本身在当前信号下intractable for any method。\"\n\n\n这是worst档calibration claim崩溃的核心实验，多条证据同时指向failure： (1) 4PL+γ global MAE 6.8pp——落在worst档范围[4.5,9.0]中部，看似不糟糕但context matters： linear regression以6.2pp击败它，DCR以6.4pp与其comparable——更复杂的模型反而不如更简单的替代； (2) γ-θ posterior correlation 0.63（>0.6 threshold），confirm identifiability breached—— 模型混淆了\"高能力\"和\"被contaminate\"，posterior呈banana/ridge shape导致sampling困难 （2.8% divergences, ESS仅210, R-hat 1.06边缘）； (3) Dose-response非单调：5%和25%的γ CI包含零，仅50%和100%显著—— Spearman仅0.58（远低于monotonic的0.95+），因为低dosage的non-detectable inflation 加上estimation noise产生了random-walk-like的γ path； (4) Per-benchmark γ_k结果disappointing：MMLU γ_k=0.42 vs GSM8K γ_k=0.18—— 方向正确（MMLU inflation确实更高）但HumanEval不收敛（ESS=85, R-hat=1.12， 因为N=164 items对4PL+γ的参数量不足）； γ_k的95%CI之间78%重叠，Wald test显示与global γ无统计差异—— 没有足够power区分benchmark-specific effects； (5) DCR在MMLU和ARC-C上MAE更低（5.0pp/5.8pp vs 5.2pp/6.2pp）， 尽管DCR不提供uncertainty bounds——这是worst档最尴尬的结果之一： 唯一的existing method在point estimation上comparable甚至更好， 而ContamCal的uncertainty advantage因CI太宽（9.5pp）而没有practical value； (6) 仅2个baselines被显著击败（vanilla 4PL和Emperor mitigation）， 但这是低门槛——vanilla 4PL完全忽略contamination，Emperor是已知失败的mitigation。 Coverage 76%严重undercoverage（nominal 95%），且posterior predictive checks显示 35%的item pairs有超过0.05的residual correlation，暗示local independence violation。\n"
+  },
+  {
+    "name": "scale_bridging_7b",
+    "description": "Qwen2.5-7B 5个dosage levels的controlled SFT。worst档下scale-up加剧γ-θ confounding—— 更大模型的inflation更小但signal更弱，calibration difficulty与scale正相关。\n",
+    "results": {
+      "sft_runs_completed": 5,
+      "mmlu_inflation_100pct_pp": 4.2,
+      "mmlu_inflation_50pct_pp": 2.5,
+      "mmlu_inflation_5pct_pp": 0.3,
+      "gsm8k_inflation_100pct_pp": 2.6,
+      "signal_auc_embedding_100pct": 0.64,
+      "signal_auc_minkpp_100pct": 0.6,
+      "signal_auc_rrf_100pct": 0.62,
+      "gamma_estimate_100pct": 0.22,
+      "gamma_ci_includes_zero_100pct": false,
+      "gamma_ci_includes_zero_50pct": true,
+      "calibration_mae_4pl_gamma_pp": 8.2,
+      "calibration_mae_linear_regression_pp": 7.5,
+      "calibration_mae_dcr_pp": 7.0,
+      "gamma_theta_posterior_corr": 0.68,
+      "ci_width_95_pp": 11.5,
+      "ci_coverage_95": 0.73,
+      "kendall_tau": 0.68,
+      "inflation_vs_3b_ratio": 0.49
+    },
+    "tables": [
+      {
+        "name": "Table: 7B vs Smaller Models at 100% Dosage",
+        "columns": [
+          "metric",
+          "Qwen-0.5B",
+          "Qwen-1.5B",
+          "Qwen-3B",
+          "Qwen-7B"
+        ],
+        "rows": [
+          [
+            "MMLU inflation (pp)",
+            11.8,
+            7.4,
+            5.5,
+            4.2
+          ],
+          [
+            "Embedding AUC",
+            0.74,
+            0.72,
+            0.67,
+            0.64
+          ],
+          [
+            "RRF AUC",
+            0.7,
+            0.68,
+            0.65,
+            0.62
+          ],
+          [
+            "γ estimate",
+            0.45,
+            0.4,
+            0.34,
+            0.22
+          ],
+          [
+            "γ-θ posterior corr",
+            0.55,
+            0.58,
+            0.63,
+            0.68
+          ],
+          [
+            "Calibration MAE (pp)",
+            5.8,
+            6.2,
+            6.8,
+            8.2
+          ],
+          [
+            "CI width 95% (pp)",
+            7.5,
+            8.2,
+            9.5,
+            11.5
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "7B实验提供了worst档最重要的scaling insight：calibration difficulty与model scale正相关。 这不是方法论failure而是problem structure的fundamental property—— \"the models most in need of calibration (large, highly capable) are precisely those where calibration is least feasible\"。 对reframed论文：identifiability map获得了第三个维度（signal quality × model count × model scale）， 且scale维度是最novel的——prior identifiability分析未考虑\"ability confounds detection\"。\n\n\n7B在worst档下表现更差而非更好，揭示了一个fundamental scaling property： (1) Inflation仅4.2pp at 100%（vs 0.5B的11.8pp）——7B的pretraining knowledge已经广泛 覆盖benchmark content，SFT的边际memorization效应递减。5%dosage的0.3pp inflation 完全不可检测（<1/3个standard deviation）； (2) Signal AUC从3B的0.67降至0.64（embedding）——更大模型\"naturally knowing the answer\" 混淆了contamination signal，detection不再是\"did the model see this item\" 而是\"does the model's knowledge of this item come from pre-training or SFT\"—— 后者是一个fundamentally harder问题； (3) γ-θ posterior correlation升至0.68（最高）——7B是最capable的model， ability和contamination的confounding最严重。posterior banana shape更pronounced， 导致更多sampling difficulty（divergences likely >3%）； (4) DCR在7B上MAE 7.0pp，优于4PL+γ的8.2pp——DCR的simpler contamination model 在larger model scale上反而更robust因为它不尝试disentangle ability from contamination； (5) CI width 11.5pp + coverage 73% = simultaneously too wide AND undercovering—— 这说明不仅估计不精确（wide），还misspecified（poor coverage despite width）。\n"
+  },
+  {
+    "name": "signal_survival_analysis",
+    "description": "Signal × regime AUC heatmap：4 signals × {base, SFT-clean, SFT-contam, RL}。 worst档下关键假设\"cliff-like degradation under RL\"不成立—— degradation是gradual且benchmark-dependent的，无清晰regime boundary。\n",
+    "results": {
+      "auc_heatmap": {
+        "base_embedding": 0.76,
+        "base_minkpp": 0.72,
+        "base_constat": 0.69,
+        "base_selfcritique": 0.58,
+        "sft_clean_embedding": 0.7,
+        "sft_clean_minkpp": 0.64,
+        "sft_clean_constat": 0.61,
+        "sft_clean_selfcritique": 0.56,
+        "sft_contam_embedding": 0.71,
+        "sft_contam_minkpp": 0.66,
+        "sft_contam_constat": 0.63,
+        "sft_contam_selfcritique": 0.6,
+        "rl_embedding": 0.58,
+        "rl_minkpp": 0.52,
+        "rl_constat": 0.5,
+        "rl_selfcritique": 0.54
+      },
+      "signal_survival_rate_sft_avg": 0.9,
+      "signal_survival_rate_rl_avg": 0.74,
+      "rl_best_signal": "selfcritique",
+      "rl_best_signal_auc": 0.54,
+      "rl_all_signals_below_060": true,
+      "sft_clean_vs_contam_auc_diff_avg": 0.02,
+      "regime_effect_anova_pvalue": 0.008,
+      "cliff_test_sft_to_rl_is_cliff": false,
+      "cliff_test_gradual_slope": -0.035,
+      "benchmark_specific_signal_ordering_changes": true,
+      "mmlu_best_rl_signal": "embedding",
+      "mmlu_rl_embedding_auc": 0.6,
+      "gsm8k_best_rl_signal": "selfcritique",
+      "gsm8k_rl_selfcritique_auc": 0.56,
+      "humaneval_best_rl_signal": "constat",
+      "humaneval_rl_constat_auc": 0.53
+    },
+    "tables": [
+      {
+        "name": "Table: Signal × Regime AUC Heatmap",
+        "columns": [
+          "signal",
+          "Base",
+          "SFT-Clean",
+          "SFT-Contam",
+          "RL"
+        ],
+        "rows": [
+          [
+            "Embedding Retrieval",
+            0.76,
+            0.7,
+            0.71,
+            0.58
+          ],
+          [
+            "Min-K%++",
+            0.72,
+            0.64,
+            0.66,
+            0.52
+          ],
+          [
+            "ConStat",
+            0.69,
+            0.61,
+            0.63,
+            0.5
+          ],
+          [
+            "Self-Critique",
+            0.58,
+            0.56,
+            0.6,
+            0.54
+          ]
+        ]
+      },
+      {
+        "name": "Table: Signal Survival Rate (AUC retention relative to Base)",
+        "columns": [
+          "signal",
+          "SFT-Clean",
+          "SFT-Contam",
+          "RL"
+        ],
+        "rows": [
+          [
+            "Embedding Retrieval",
+            0.92,
+            0.93,
+            0.76
+          ],
+          [
+            "Min-K%++",
+            0.89,
+            0.92,
+            0.72
+          ],
+          [
+            "ConStat",
+            0.88,
+            0.91,
+            0.72
+          ],
+          [
+            "Self-Critique",
+            0.97,
+            1.03,
+            0.93
+          ]
+        ]
+      },
+      {
+        "name": "Table: Best Signal by Regime × Benchmark (AUC)",
+        "columns": [
+          "benchmark",
+          "SFT-best",
+          "SFT-AUC",
+          "RL-best",
+          "RL-AUC"
+        ],
+        "rows": [
+          [
+            "MMLU",
+            "Embedding",
+            0.74,
+            "Embedding",
+            0.6
+          ],
+          [
+            "GSM8K",
+            "Min-K++",
+            0.65,
+            "Self-Critique",
+            0.56
+          ],
+          [
+            "ARC-C",
+            "Embedding",
+            0.7,
+            "Self-Critique",
+            0.55
+          ],
+          [
+            "HumanEval",
+            "Embedding",
+            0.72,
+            "ConStat",
+            0.53
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "signal survival在reframed论文中升级为Core Contribution，但finding从 \"cliff-like degradation\"改为\"gradual, benchmark-dependent degradation refuting clean regime boundaries\"。这个reframe实际上更novel： (1) 它challenge了detection community中隐含的\"signals work until they don't\"的binary thinking； (2) 它建立了\"signal quality is a continuous, context-dependent quantity\"的empirical evidence； (3) Benchmark-specific signal ordering在RL regime下的变化是一个practical finding—— 不存在universal \"best signal for RL\"，需要adaptive signal selection。 关键叙事转变：从\"Self-Critique compensates where others fail\"到 \"no signal compensates adequately in any regime beyond SFT\"。\n\n\nsignal survival分析在worst档下揭示了detection信号的systematic fragility， 但关键的\"cliff-like degradation\"假设未得到支持： (1) Base→SFT→RL确实存在degradation trend（ANOVA p=0.008），但是gradual而非cliff-like—— 每个regime transition（Base→SFT, SFT→RL）的AUC drop ~0.035/step， 没有在任何specific boundary出现sharp discontinuity。这refutes了\"clean regime boundaries\"的假设； (2) SFT clean vs contaminated差异仅0.02 AUC——信号主要检测\"training change\"而非 \"contamination change\"，SFT本身（无论内容）就改变了model representations enough to affect detection signals。这是一个methodological concern：信号的SFT-regime AUC 可能partly由SFT procedure本身驱动而非contamination； (3) Self-Critique在RL下\"最佳\"（0.54）但是pyrrhic victory——0.54的AUC 仅比random（0.50）好4pp，sensitivity+specificity之和≈1.08，几乎无practical value。 且这个\"最佳\"因benchmark而异：MMLU上embedding更好（0.60），GSM8K上Self-Critique更好（0.56）， HumanEval上ConStat更好（0.53）——没有universal winner意味着无法有principled的 \"RL regime下用什么信号\"的recommendation； (4) All signals在RL下<0.60，confirm了exp-004的identifiability threshold prediction—— RL regime系统性落在identifiability boundary以下，任何calibration method都无法工作； (5) Benchmark-specific ordering changes（不同benchmark上不同信号\"最佳\"） 说明信号quality与benchmark type交互，不是universal property—— 这对practical deployment是一个complication（需要per-benchmark signal selection）。\n"
+  },
+  {
+    "name": "rl_observational_case_study",
+    "description": "RL-trained models（Qwen2.5-Instruct, DeepSeek-R1-Distill）的观察性案例。 worst档下calibration在RL regime完全失效，expected regret reduction为零或负。\n",
+    "results": {
+      "models_evaluated": 8,
+      "selfcritique_auc_avg_rl": 0.54,
+      "rrf_auc_avg_rl": 0.53,
+      "calibration_mae_4pl_gamma_pp": 11.2,
+      "calibration_mae_uncalibrated_pp": 9.5,
+      "calibration_mae_remove_rescore_pp": 8.8,
+      "calibration_mae_linear_pp": 10.2,
+      "calibration_mae_dcr_pp": 9.0,
+      "ci_width_95_avg_pp": 24.0,
+      "ci_coverage_95": 0.8,
+      "ci_coverage_80": 0.62,
+      "expected_regret_reduction_vs_uncalibrated": -0.05,
+      "expected_regret_reduction_vs_remove_rescore": -0.1,
+      "top5_model_selection_agreement_with_true": 0.6,
+      "gamma_estimates_mean": 0.06,
+      "gamma_ci_includes_zero_pct": 0.88,
+      "nearzero_gamma_clean_benchmark_value": 0.02,
+      "nearzero_gamma_clean_check_pass": true,
+      "deepseek_r1_gamma_ci_includes_zero": true,
+      "deepseek_r1_7b_gamma": 0.04
+    },
+    "tables": [
+      {
+        "name": "Table: RL Case Study — Method Comparison",
+        "columns": [
+          "method",
+          "MAE_pp",
+          "CI Width 95%",
+          "Coverage 95%",
+          "Regret Δ"
+        ],
+        "rows": [
+          [
+            "Uncalibrated (naive)",
+            9.5,
+            "—",
+            "—",
+            "—"
+          ],
+          [
+            "4PL+γ",
+            11.2,
+            24.0,
+            0.8,
+            -0.05
+          ],
+          [
+            "Remove-rescore",
+            8.8,
+            "—",
+            "—",
+            "—"
+          ],
+          [
+            "Linear regression+CI",
+            10.2,
+            20.5,
+            0.83,
+            0.01
+          ],
+          [
+            "DCR",
+            9.0,
+            "—",
+            "—",
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Per-Model γ Estimates (RL models)",
+        "columns": [
+          "model",
+          "gamma_mean",
+          "gamma_95ci_lower",
+          "gamma_95ci_upper",
+          "ci_excludes_zero"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-0.5B-Instruct",
+            0.1,
+            -0.18,
+            0.38,
+            false
+          ],
+          [
+            "Qwen2.5-1.5B-Instruct",
+            0.07,
+            -0.2,
+            0.34,
+            false
+          ],
+          [
+            "Qwen2.5-3B-Instruct",
+            0.05,
+            -0.22,
+            0.32,
+            false
+          ],
+          [
+            "Qwen2.5-7B-Instruct",
+            0.02,
+            -0.28,
+            0.32,
+            false
+          ],
+          [
+            "DeepSeek-R1-Distill-1.5B",
+            0.08,
+            -0.16,
+            0.32,
+            false
+          ],
+          [
+            "DeepSeek-R1-Distill-7B",
+            0.04,
+            -0.22,
+            0.3,
+            false
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "RL case study提供了worst档最compelling的negative result：calibration not merely fails to help but actively harms decision quality in the RL regime。 (1) 这是因为signal AUC<0.55时IRT的额外parameters成为pure noise amplifiers； (2) Practical recommendation：\"do not attempt calibration when signal AUC < 0.60\"—— 这是一个clear, actionable, negative finding with theoretical backing from exp-004； (3) Specificity check通过（γ=0.02 on clean benchmark）是唯一positive—— 模型不产生false contamination detection，但也检测不到real contamination。 DCR/remove-rescore在RL下也mediocre，supporting \"the problem is intractable, not the method\"。\n\n\nRL observational是worst档中最dramatic的negative result——calibration actively hurts： (1) Signal AUC 0.53-0.54在RL regime下（exp-008已预测），exposure scores本质上是random noise， 输入到IRT的是garbage——garbage-in-garbage-out； (2) 4PL+γ MAE 11.2pp比uncalibrated 9.5pp还差1.7pp——模型在noisy exposure上\"hallucinate\"了 不存在的contamination effect，做出了比不校正更差的adjustment： false positives被overcorrect（本来对的答案被down-adjust）， true positives被undercorrect（真正contaminated的items信号太弱未被识别）； (3) Expected regret为-0.05（vs uncalibrated）和-0.10（vs remove-rescore）， calibration使model selection决策literally变差——宽CI（24pp）使rankings变得更noisy 而uncalibrated scores虽biased但至少preserves relative ordering better； (4) 88%的conditions下γ CI包含零——模型在RL regime下根本检测不到contamination， 不是\"检测到但校正不够\"而是\"γ与zero不可区分\"。 Mean γ=0.06接近clean benchmark的specificity check（γ=0.02）， 说明RL模型和clean data上的γ estimates没有meaningful difference； (5) DCR和remove-rescore在RL下也不好（9.0pp/8.8pp vs naive 9.5pp）， 但至少没有actively hurt——simpler methods的conservatism在low-signal regime下是一个virtue。\n"
+  },
+  {
+    "name": "multi_family_validation",
+    "description": "非Qwen模型家族（Llama-3.2-1B或Pythia-1.4B）的controlled SFT注入验证，3 dosage levels。 worst档下第二模型家族结果与Qwen方向不一致或因GPU预算耗尽无法完成。\n",
+    "results": {
+      "model_family": "Llama-3.2-1B",
+      "dosages_completed": [
+        "0%",
+        "25%",
+        "100%"
+      ],
+      "seeds_completed": 1,
+      "gpu_budget_exhausted_partial": true,
+      "mmlu_inflation_100pct_pp": 5.8,
+      "mmlu_inflation_25pct_pp": 1.5,
+      "gsm8k_inflation_100pct_pp": 2.2,
+      "signal_auc_embedding_100pct": 0.62,
+      "signal_auc_rrf_100pct": 0.6,
+      "calibration_mae_4pl_gamma_pp": 9.5,
+      "calibration_mae_qwen_1_5b_matched_pp": 6.2,
+      "multi_family_mae_gap_pp": 6.5,
+      "gamma_estimate_100pct": 0.2,
+      "gamma_ci_includes_zero_100pct": true,
+      "gamma_direction_consistent_with_qwen": false,
+      "inflation_pattern_consistent_with_qwen": false,
+      "inflation_pattern_difference": "Llama inflation更集中在MMLU（5.8pp vs GSM8K 2.2pp）， 与Qwen的更均匀分布不同。γ estimate方向一致（positive）但magnitude不同（0.20 vs 0.40）， 且CI包含零而Qwen在100%dosage下不包含。"
+    },
+    "tables": [
+      {
+        "name": "Table: Multi-Family Comparison (Llama-3.2-1B vs Qwen2.5-1.5B, 100% dosage)",
+        "columns": [
+          "metric",
+          "Qwen2.5-1.5B",
+          "Llama-3.2-1B",
+          "gap"
+        ],
+        "rows": [
+          [
+            "MMLU inflation (pp)",
+            7.4,
+            5.8,
+            -1.6
+          ],
+          [
+            "GSM8K inflation (pp)",
+            4.8,
+            2.2,
+            -2.6
+          ],
+          [
+            "Embedding AUC",
+            0.72,
+            0.62,
+            -0.1
+          ],
+          [
+            "RRF AUC",
+            0.68,
+            0.6,
+            -0.08
+          ],
+          [
+            "γ estimate",
+            0.4,
+            0.2,
+            -0.2
+          ],
+          [
+            "γ CI excludes zero",
+            true,
+            false,
+            "—"
+          ],
+          [
+            "Calibration MAE (pp)",
+            6.2,
+            9.5,
+            3.3
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "multi-family结果是worst档generalizability concern的direct confirmation。 6.5pp MAE gap（在[4.0, 10.0]范围内）说明ContamCal的calibration accuracy 是model-family-dependent的——这是一个significant limitation因为paper claims need to generalize。 reframed论文策略：(1) Acknowledge limitation explicitly with quantified gap； (2) Argue this supports the \"possibility frontier\" framing——identifiability map is family-specific, further narrowing the conditions under which calibration works； (3) Single-seed caveat needs prominent placement in limitations section。\n\n\nmulti-family validation在worst档下暴露了generalizability的fundamental challenge： (1) GPU预算紧张——Llama-3.2-1B的SFT需要重新适配tokenizer和training config， 调试时间消耗了buffer hours，最终只完成3个dosage level×1 seed（计划是3 dosages×3 seeds）； (2) Llama-3.2-1B的inflation pattern与Qwen2.5-1.5B系统性不同—— Llama在MMLU上inflation 5.8pp vs GSM8K仅2.2pp（ratio 2.6:1）， 而Qwen在matched scale(1.5B)上是7.4pp vs 4.8pp（ratio 1.5:1）。 这说明contamination effect是architecture-dependent的，挑战了γ的universal interpretation； (3) Signal AUC在Llama上更低（embedding 0.62 vs Qwen 0.72）—— 可能因为Llama的tokenization和embedding space与signal tools（基于sentence-transformers） 的compatibility不同，或Llama的SFT dynamics导致不同的memorization pattern； (4) γ CI在Llama 100%dosage下包含零（而Qwen不包含）——即使在最极端的contamination下 Llama模型的contamination effect也不可被reliable地检测，进一步收窄了identifiability map； (5) Calibration MAE gap 6.5pp（Llama 9.5pp vs Qwen 6.2pp at matched scale）—— 3.3pp的差距远超跨seed variance（<1.5pp），说明method performance是family-specific的， 不能从一个model family泛化到另一个。 仅1 seed使所有comparisons都是underpowered的——这一限制需要在paper中explicitly disclosed。\n"
+  },
+  {
+    "name": "observational_72b",
+    "description": "Qwen2.5-72B观察性分析（仅推理，无SFT）。worst档下frontier scale 使所有信号接近random，γ不可与zero区分。\n",
+    "results": {
+      "signal_auc_embedding": 0.58,
+      "signal_auc_minkpp": 0.54,
+      "signal_auc_constat": 0.52,
+      "signal_auc_selfcritique": 0.56,
+      "rrf_auc": 0.56,
+      "gamma_estimate": 0.03,
+      "gamma_ci_includes_zero": true,
+      "gamma_ci_width": 0.6,
+      "calibration_mae_pp": 11.8,
+      "ci_width_95_pp": 27.0,
+      "ci_coverage_95": 0.78
+    },
+    "tables": [
+      {
+        "name": "Table: 72B Observational Results vs Controlled Models",
+        "columns": [
+          "metric",
+          "Qwen-3B (ctrl)",
+          "Qwen-7B (ctrl)",
+          "Qwen-72B (obs)"
+        ],
+        "rows": [
+          [
+            "Best signal AUC",
+            0.67,
+            0.64,
+            0.58
+          ],
+          [
+            "RRF AUC",
+            0.65,
+            0.62,
+            0.56
+          ],
+          [
+            "γ estimate",
+            0.34,
+            0.22,
+            0.03
+          ],
+          [
+            "γ CI excludes zero",
+            true,
+            "marginal",
+            false
+          ],
+          [
+            "Calibration MAE (pp)",
+            6.8,
+            8.2,
+            11.8
+          ],
+          [
+            "CI width 95% (pp)",
+            9.5,
+            11.5,
+            27.0
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "72B是identifiability story的natural endpoint和strongest rhetoric： \"The very models most scrutinized for contamination (large, frontier) are precisely those where our theoretical analysis proves calibration is infeasible. This is not a limitation of ContamCal but a fundamental property of the problem: as models grow larger, the boundary between 'knowledge' and 'contamination' blurs, and detection signals lose their discriminative power.\" 这个framing将worst-tier result转化为paper的powerful closing argument。\n\n\n72B将scale问题推向极端： (1) 72B的pretraining corpus几乎确定包含benchmark items的某种形式—— 这不是\"contamination\"而是\"knowledge acquisition\"，使得\"contaminated vs clean\"的 binary distinction在概念层面就不再清晰。所有detection signals的false positive rate极高， embedding retrieval AUC降至0.58因为72B legitimately \"knows\" nearly everything in benchmarks； (2) γ=0.03几乎为零，不是因为无contamination而是因为unable to detect—— 信号noise完全淹没了any real signal，CI width 0.60意味着γ的95%CI覆盖[-0.27, 0.33]， 这个range trivially包含了从\"no contamination\"到\"moderate contamination\"的所有可能； (3) 11.8pp MAE是worst档中最差的calibration error——72B的item response patterns 系统性不同于smaller models（difficulty ordering不同、ceiling effects更多）， IRT parameters的transferability across scales受到根本挑战； (4) 27pp CI width使calibration statement完全vacuous——\"score在±13.5pp范围内\" 对于一个82%准确率的72B模型意味着\"真实score在68.5%-95.5%之间\"，无actionable value。\n"
+  },
+  {
+    "name": "closed_weight_2signal_mode",
+    "description": "2-signal degraded mode (ConStat + Self-Critique) for closed-weight models。 worst档下降级模式使calibration完全不可行，Kendall τ低于0.5。\n",
+    "results": {
+      "two_signal_rrf_auc_100pct": 0.62,
+      "two_signal_rrf_auc_50pct": 0.56,
+      "two_signal_rrf_auc_25pct": 0.53,
+      "calibration_mae_2signal_pp": 9.8,
+      "calibration_mae_4signal_pp": 6.8,
+      "mae_increase_relative_2_vs_4": 0.44,
+      "ci_width_95_2signal_pp": 22.0,
+      "ci_coverage_95_2signal": 0.74,
+      "kendall_tau_2signal": 0.52,
+      "gamma_ci_includes_zero_2signal_pct": 0.75,
+      "dcr_mae_on_same_conditions_pp": 8.5,
+      "two_signal_worse_than_dcr": true
+    },
+    "tables": [
+      {
+        "name": "Table: 2-Signal vs 4-Signal vs DCR",
+        "columns": [
+          "metric",
+          "4-signal",
+          "2-signal",
+          "DCR",
+          "degradation"
+        ],
+        "rows": [
+          [
+            "RRF AUC (100%)",
+            0.68,
+            0.62,
+            "—",
+            "-8.8%"
+          ],
+          [
+            "MAE (pp)",
+            6.8,
+            9.8,
+            8.5,
+            "+44%"
+          ],
+          [
+            "CI Width 95% (pp)",
+            9.5,
+            22.0,
+            "—",
+            "+132%"
+          ],
+          [
+            "Kendall τ",
+            0.72,
+            0.52,
+            0.68,
+            "-28%"
+          ],
+          [
+            "Coverage 95%",
+            0.76,
+            0.74,
+            "—",
+            "-2.6%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "2-signal failure confirms critical practical constraint：closed-weight models (GPT-4, Claude等)——恰好是contamination scrutiny最高的——是calibration最不可行的targets。 identifiability map需要\"signal access level\"维度：full-access(4-signal)的viable region 已经很小（AUC>0.72, N>80），closed-weight(2-signal)的viable region几乎不存在 （需要AUC>0.85 AND N>150，现实中不可能达到）。 这是reframed论文的一个strong practical insight： \"The models with the least transparency are also the most opaque to calibration.\"\n\n2-signal mode在worst档下是最不viable的配置： (1) ConStat和Self-Critique是四个信号中AUC最低的两个（exp-002）， fusion AUC 0.62远低于identifiability threshold 0.72—— closed-weight场景下可用的信号恰好是最差的，因为最好的信号（Embedding, Min-K++） 需要model internals access（embeddings, logits）； (2) MAE增加44%（6.8→9.8pp）——接近uncalibrated raw score的MAE（8.5pp）， 说明calibration几乎没有净价值； (3) Kendall τ降至0.52——刚刚高于random（0.50），calibrated rankings 与true rankings的agreement barely better than coin flip； (4) 75%的conditions下γ CI包含零——在closed-weight scenario下 contamination detection几乎完全不可行； (5) DCR在same conditions下MAE 8.5pp，优于2-signal ContamCal的9.8pp—— simpler method再次胜出，因为DCR不依赖信号aggregation。\n"
+  }
+]

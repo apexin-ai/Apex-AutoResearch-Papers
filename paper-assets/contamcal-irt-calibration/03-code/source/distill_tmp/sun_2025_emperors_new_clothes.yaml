@@ -1,0 +1,77 @@
+paper_key: "sun_2025_emperors_new_clothes"
+title: "The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination"
+venue: "ICML 2025"
+full_text_available: true
+
+research:
+  baselines: [vanilla (unmodified benchmark)]
+  metrics:
+    - {name: "Fidelity", direction: "higher_better"}
+    - {name: "Contamination Resistance", direction: "higher_better"}
+  datasets:
+    - {name: "ARC-Challenge", size: "standard"}
+    - {name: "MMLU", size: "standard"}
+    - {name: "TruthfulQA", size: "standard"}
+    - {name: "GSM8K", size: "standard"}
+    - {name: "RepliQA", size: "standard"}
+  ablation_dimensions: [mitigation strategy type (semantic-preserving vs semantic-altering), contamination intensity (mild vs intensive), model scale (3B-34B)]
+  training_recipe: {optimizer: "fine-tuning for contamination", lr: "not specified", hardware: "not specified"}
+  method_family: "benchmark mitigation evaluation framework"
+
+positioning:
+  core_claim: "No existing benchmark update strategy achieves both high fidelity (alignment with clean performance) and high contamination resistance simultaneously — all 20 strategies fail this dual requirement"
+  key_results: "Semantic-preserving: ~0.9 fidelity but modest resistance; semantic-altering: ~0.97 resistance but ~0.66-0.77 fidelity; no strategy in ideal upper-right corner of fidelity-resistance plot"
+  limitations:
+    - "Framework limited to question-level evaluation (not passage-level)"
+    - "Only tests existing strategies; doesn't propose new mitigation methods"
+    - "Contamination injection limited to mild (1 epoch + 20K OpenOrca) and intensive (3 epochs, benchmark only)"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Benchmark contamination threatens LLM evaluation integrity — the community relies on mitigation strategies that may not actually work"
+  tension: "Dozens of mitigation strategies proposed but never rigorously compared under a unified framework with question-level metrics"
+  key_insight: "Accuracy-matching alone is insufficient: identical aggregate accuracy can mask different question-level behavior (Figure 2). Fidelity and resistance are the right metrics."
+  argument_chain: "contamination is real → existing strategies unvalidated → new question-level metrics (fidelity, resistance) → unified evaluation of 20 strategies → none work well → call for new approaches"
+  contribution_framing: "Three contributions: question-level metrics, rigorous evaluation pipeline, comprehensive strategy comparison"
+  intro_structure: "5 paragraphs: contamination problem → existing mitigation landscape → gap in evaluation → contributions → scope"
+  notable_technique: "The 'emperor has no clothes' framing is rhetorically powerful — positions all prior work as unvalidated, making the negative result itself the contribution"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Examples of benchmark mitigation strategies (synonym replacement, analysis extension) applied to benchmark questions"
+    narrative_role: "Shows what mitigation strategies look like concretely before evaluating them"
+    design_elements: ["example prompts", "before/after comparison", "strategy labels"]
+    visual_style: "Annotated text examples with highlighting"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Fidelity vs resistance for all strategies under mild and intensive contamination"
+      how_gain_highlighted: "Empty upper-right quadrant — no strategy achieves both goals"
+      design_note: "Color-coded by strategy type (single/combined/vanilla); the empty ideal zone is the paper's visual thesis"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (strategy examples) → Figure 2 (why accuracy-matching fails) → Figure 3 (pipeline) → Figure 4 (main result: no strategy works)"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods (16 strategies)"
+    col_axis: "benchmarks × fidelity/resistance"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "green highlighting for statistical significance vs vanilla"
+    statistical_reporting: "averages across 10 LLMs"
+    num_baselines: 1
+    design_note: "Green highlighting only for statistically significant improvements over vanilla — most cells are not green"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["semantic-altering strategies"]
+      variation_style: "full_numbers"
+      design_note: "Separate table for semantic-altering because they change what's being measured"
+  supplementary_tables:
+    in_appendix: true
+    content: "Detection results, fine-tuning recipes, per-model breakdowns, complete contamination effectiveness metrics"
+    reason: "Main paper focuses on strategy comparison; implementation details in appendix"

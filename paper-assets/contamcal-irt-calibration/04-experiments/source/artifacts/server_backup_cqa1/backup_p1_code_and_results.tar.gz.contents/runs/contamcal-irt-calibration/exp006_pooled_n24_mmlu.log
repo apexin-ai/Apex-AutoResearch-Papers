@@ -1,0 +1,262 @@
+2026-05-16 23:34:52,477 [INFO] Cross-scale pooling: scales=['0.5B', '1.5B', '3B']
+2026-05-16 23:34:52,479 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s123_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s123_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s123_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,480 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d025_s123_aligned
+2026-05-16 23:34:52,480 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-16 23:34:52,481 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d025_v3_s42_aligned
+2026-05-16 23:34:52,481 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s123_aligned
+2026-05-16 23:34:52,481 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s42_aligned
+2026-05-16 23:34:52,481 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,481 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s123_aligned
+2026-05-16 23:34:52,481 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s42_aligned
+2026-05-16 23:34:52,481 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-16 23:34:52,481 [INFO] Found 8 model evaluations
+2026-05-16 23:34:52,502 [INFO] Benchmarks: ['mmlu']
+2026-05-16 23:34:52,714 [INFO] Pool scale 0.5B: 8 models, dosages=[0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-16 23:34:52,716 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-16 23:34:52,716 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-16 23:34:52,716 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123
+2026-05-16 23:34:52,716 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-16 23:34:52,716 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42
+2026-05-16 23:34:52,716 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-16 23:34:52,716 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-16 23:34:52,717 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123
+2026-05-16 23:34:52,717 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42
+2026-05-16 23:34:52,717 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d025_s123_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d025_v3_s42_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s42_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s123_aligned
+2026-05-16 23:34:52,717 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s42_aligned
+2026-05-16 23:34:52,717 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-16 23:34:52,717 [INFO] Found 8 model evaluations
+2026-05-16 23:34:52,740 [INFO] Benchmarks: ['mmlu']
+2026-05-16 23:34:52,911 [INFO] Pool scale 1.5B: 8 models, dosages=[0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42
+2026-05-16 23:34:52,914 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-16 23:34:52,914 [INFO] Skipping non-aligned dir: Qwen2.5-3B_d000_s42
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,914 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-16 23:34:52,915 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,915 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-16 23:34:52,915 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-16 23:34:52,915 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-16 23:34:52,915 [INFO] Skipping Qwen2.5-3B_d000_v2_s42_aligned (alpha variant Qwen2.5-3B_d000_s42_a32_aligned preferred)
+2026-05-16 23:34:52,915 [INFO] Skipping Qwen2.5-3B_d005_s42_aligned (alpha variant Qwen2.5-3B_d005_s42_a32_aligned preferred)
+2026-05-16 23:34:52,915 [INFO] Skipping Qwen2.5-3B_d100_v2_s123_aligned (alpha variant Qwen2.5-3B_d100_a32_s123_aligned preferred)
+2026-05-16 23:34:52,915 [INFO] Skipping Qwen2.5-3B_d100_v2_s42_aligned (alpha variant Qwen2.5-3B_d100_a32_s42_aligned preferred)
+2026-05-16 23:34:52,915 [INFO] Dedup: 13 -> 8 models (alpha preference)
+2026-05-16 23:34:52,915 [INFO] Found 8 model evaluations
+2026-05-16 23:34:52,935 [INFO] Benchmarks: ['mmlu']
+2026-05-16 23:34:53,089 [INFO] Pool scale 3B: 8 models, dosages=[0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-16 23:34:53,089 [INFO] Models: 24 | Benchmarks: ['mmlu']
+2026-05-16 23:34:53,089 [INFO] Dosages: [0, 0, 5, 5, 25, 25, 100, 100, 0, 0, 5, 5, 25, 25, 100, 100, 0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-16 23:34:53,090 [INFO] 
+============================================================
+2026-05-16 23:34:53,090 [INFO] BENCHMARK: mmlu
+2026-05-16 23:34:53,090 [INFO] ============================================================
+2026-05-16 23:34:54,078 [INFO] D024 delta [0.5B]: d000 baseline = 0.0405
+2026-05-16 23:34:54,078 [INFO] D024 delta [1.5B]: d000 baseline = 0.0415
+2026-05-16 23:34:54,078 [INFO] D024 delta [3B]: d000 baseline = 0.0455
+2026-05-16 23:34:54,079 [INFO] Using exp-002 signals as exposure (D024 delta): [0.0, 0.0012348761894314803, 0.004651277729096764, 0.016240779460576865, 0.0, 0.01172084580457005, 0.0, 0.015540324749298465, 0.003709429084372759, 0.0, 0.004738765530452341, 0.0013714738799608522, 0.0, 0.00032937069194668295, 0.0, 0.01097149099235048, 0.0, 0.0020211524313602514, 0.004560373328378477, 0.0, 0.0, 0.0015275931631497444, 0.0, 0.003688396116814145]
+2026-05-16 23:34:54,080 [INFO] --- IRT Calibration (2pl_gamma) ---
+2026-05-16 23:34:54,080 [INFO] === mmlu: 24 models x 14042 items ===
+2026-05-16 23:34:54,081 [INFO] Mean accuracy: 0.516
+2026-05-16 23:34:54,090 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan
+2026-05-16 23:34:54,124 [INFO] Fitting: 24 models x 14042 items, 4 chains x 2000 samples
+2026-05-16 23:34:54,743 [INFO] CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/4000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/4000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/4000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/4000 [00:00<?, ?it/s, (Warmup)][A[A[Achain 1:   0%|[33m          [0m| 1/4000 [00:01<2:09:20,  1.94s/it, (Warmup)]chain 1:   2%|[33m▎         [0m| 100/4000 [35:52<23:22:50, 21.58s/it, (Warmup)]chain 1:   5%|[33m▌         [0m| 200/4000 [46:08<13:11:34, 12.50s/it, (Warmup)]chain 1:   8%|[33m▊         [0m| 300/4000 [55:29<9:36:44,  9.35s/it, (Warmup)] chain 1:  10%|[33m█         [0m| 400/4000 [1:03:46<7:37:19,  7.62s/it, (Warmup)]chain 1:  12%|[33m█▎        [0m| 500/4000 [1:12:41<6:36:47,  6.80s/it, (Warmup)]chain 1:  15%|[33m█▌        [0m| 600/4000 [1:20:29<5:44:29,  6.08s/it, (Warmup)]chain 1:  18%|[33m█▊        [0m| 700/4000 [1:27:59<5:05:55,  5.56s/it, (Warmup)]chain 1:  20%|[33m██        [0m| 800/4000 [1:34:45<4:31:16,  5.09s/it, (Warmup)]chain 1:  22%|[33m██▎       [0m| 900/4000 [1:42:50<4:18:55,  5.01s/it, (Warmup)]chain 1:  25%|[33m██▌       [0m| 1000/4000 [1:50:34<4:04:52,  4.90s/it, (Warmup)]chain 1:  28%|[33m██▊       [0m| 1100/4000 [1:57:27<3:45:22,  4.66s/it, (Warmup)]chain 1:  30%|[33m███       [0m| 1200/4000 [2:04:37<3:32:23,  4.55s/it, (Warmup)]chain 1:  32%|[33m███▎      [0m| 1300/4000 [2:11:05<3:15:40,  4.35s/it, (Warmup)]chain 1:  35%|[33m███▌      [0m| 1400/4000 [2:18:21<3:08:33,  4.35s/it, (Warmup)]chain 1:  38%|[33m███▊      [0m| 1500/4000 [2:26:11<3:05:44,  4.46s/it, (Warmup)]chain 1:  40%|[33m████      [0m| 1600/4000 [2:32:36<2:50:58,  4.27s/it, (Warmup)]chain 1:  42%|[33m████▎     [0m| 1700/4000 [2:38:59<2:38:40,  4.14s/it, (Warmup)]chain 1:  45%|[33m████▌     [0m| 1800/4000 [2:45:37<2:30:05,  4.09s/it, (Warmup)]chain 1:  48%|[33m████▊     [0m| 1900/4000 [2:52:30<2:23:37,  4.10s/it, (Warmup)]chain 1:  50%|[33m█████     [0m| 2000/4000 [3:00:29<2:23:41,  4.31s/it, (Warmup)]chain 1:  50%|[34m█████     [0m| 2000/4000 [3:00:33<2:23:41,  4.31s/it, (Sampling)]chain 1:  50%|[34m█████     [0m| 2001/4000 [3:00:33<2:23:32,  4.31s/it, (Sampling)]chain 1:  52%|[34m█████▎    [0m| 2100/4000 [3:06:58<2:11:25,  4.15s/it, (Sampling)]chain 1:  55%|[34m█████▌    [0m| 2200/4000 [3:13:32<2:02:15,  4.08s/it, (Sampling)]chain 1:  57%|[34m█████▊    [0m| 2300/4000 [3:20:14<1:54:54,  4.06s/it, (Sampling)]chain 1:  60%|[34m██████    [0m| 2400/4000 [3:27:01<1:48:18,  4.06s/it, (Sampling)]chain 1:  62%|[34m██████▎   [0m| 2500/4000 [3:33:31<1:40:15,  4.01s/it, (Sampling)]chain 1:  65%|[34m██████▌   [0m| 2600/4000 [3:40:01<1:32:45,  3.98s/it, (Sampling)]chain 1:  68%|[34m██████▊   [0m| 2700/4000 [3:46:49<1:26:50,  4.01s/it, (Sampling)]chain 1:  70%|[34m███████   [0m| 2800/4000 [3:53:24<1:19:50,  3.99s/it, (Sampling)]chain 1:  72%|[34m███████▎  [0m| 2900/4000 [3:59:51<1:12:29,  3.95s/it, (Sampling)]chain 1:  75%|[34m███████▌  [0m| 3000/4000 [4:06:18<1:05:28,  3.93s/it, (Sampling)]chain 1:  78%|[34m███████▊  [0m| 3100/4000 [4:12:47<58:44,  3.92s/it, (Sampling)]  chain 1:  80%|[34m████████  [0m| 3200/4000 [4:18:58<51:23,  3.85s/it, (Sampling)]chain 1:  82%|[34m████████▎ [0m| 3300/4000 [4:24:54<43:55,  3.77s/it, (Sampling)]chain 1:  85%|[34m████████▌ [0m| 3400/4000 [4:30:54<37:10,  3.72s/it, (Sampling)]chain 1:  88%|[34m████████▊ [0m| 3500/4000 [4:36:58<30:46,  3.69s/it, (Sampling)]chain 1:  90%|[34m█████████ [0m| 3600/4000 [4:43:00<24:28,  3.67s/it, (Sampling)]chain 1:  92%|[34m█████████▎[0m| 3700/4000 [4:49:07<18:21,  3.67s/it, (Sampling)]2026-05-17 04:26:28,551 [ERROR] Chain [1] error: code '1' Operation not permitted
+chain 1:  92%|[34m█████████▎[0m| 3700/4000 [4:51:33<18:21,  3.67s/it, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 4000/4000 [4:51:33<00:00,  1.88s/it, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)]
+
+chain 2:   0%|[33m          [0m| 0/4000 [4:51:33<?, ?it/s, (Sampling completed)][A
+chain 2: 100%|[33m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)][Achain 2: 100%|[33m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)]
+
+
+chain 3:   0%|[33m          [0m| 0/4000 [4:51:33<?, ?it/s, (Sampling completed)][A[A
+
+chain 3: 100%|[33m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)][A[Achain 3: 100%|[33m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)]
+
+
+
+chain 4:   0%|[33m          [0m| 0/4000 [4:51:33<?, ?it/s, (Sampling completed)][A[A[A
+
+
+chain 4: 100%|[33m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)][A[A[Achain 4: 100%|[33m██████████[0m| 4000/4000 [4:51:33<00:00,  4.37s/it, (Sampling completed)]
+                                                                                                                                                                                                                                                                                                                                2026-05-17 04:26:28,554 [INFO] CmdStan done processing.
+2026-05-17 04:26:28,554 [ERROR] IRT failed: [Errno 2] No such file or directory: '/tmp/tmpzleh_0ac/nmy0mt5r.json'
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/site-packages/cmdstanpy/utils/filesystem.py", line 124, in _temp_single_json
+    yield data_file
+  File "/root/miniconda3/lib/python3.12/site-packages/cmdstanpy/model.py", line 1161, in sample
+    with open(runset.stdout_files[0], 'r') as fd:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpzleh_0ac/contam_irt_2pl_gammacnrhgn3b/contam_irt_2pl_gamma-20260516233454_0-stdout.txt'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/contamcal-irt-calibration/exp006/run_exp006.py", line 408, in run_pipeline
+    irt_result = run_benchmark_fit(
+                 ^^^^^^^^^^^^^^^^^^
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 484, in run_benchmark_fit
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 328, in fit_stan_model
+    t0 = time.time()
+          ^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/cmdstanpy/model.py", line 1046, in sample
+    with (
+  File "/root/miniconda3/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/root/miniconda3/lib/python3.12/site-packages/cmdstanpy/utils/filesystem.py", line 127, in _temp_single_json
+    os.remove(data_file)
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpzleh_0ac/nmy0mt5r.json'
+2026-05-17 04:26:28,557 [INFO] --- Baselines ---
+2026-05-17 04:26:28,557 [INFO] Running B0_raw: Raw accuracy (no adjustment)
+2026-05-17 04:26:28,558 [INFO]   B0_raw done in 0.0s
+2026-05-17 04:26:28,558 [INFO] Running B1_remove_rescore: Remove flagged items and rescore
+2026-05-17 04:26:28,559 [INFO] B1: threshold=0.211 (p75), kept=14042/14042 items
+2026-05-17 04:26:30,332 [INFO]   B1_remove_rescore done in 1.8s
+2026-05-17 04:26:30,332 [INFO] Running B2_2pl_gamma: Single-signal 2PL+gamma IRT
+2026-05-17 04:26:30,346 [INFO] B2: fitting 2PL+gamma (24 x 14042)
+2026-05-17 04:26:30,383 [ERROR]   B2_2pl_gamma failed: [Errno 2] No such file or directory: '/tmp/tmpzleh_0ac/61usgj58.json'
+2026-05-17 04:26:30,388 [INFO] Running B3_vanilla_4pl: Vanilla 4PL IRT (no gamma)
+2026-05-17 04:26:30,392 [INFO] B3: fitting vanilla 4PL (24 x 14042)
+2026-05-17 04:26:30,414 [ERROR]   B3_vanilla_4pl failed: [Errno 2] No such file or directory: '/tmp/tmpzleh_0ac/b1xtxbos.json'
+2026-05-17 04:26:30,415 [INFO] Running B4_linear_regression: Linear exposure regression + bootstrap CI
+2026-05-17 04:26:30,417 [INFO] B4: slope=-0.2354, R2=0.2638
+2026-05-17 04:26:30,762 [INFO]   B4_linear_regression done in 0.3s
+2026-05-17 04:26:30,762 [INFO] Running B5_emperor_mitigation: Emperor's mitigation (rephrasing + option shuffling)
+2026-05-17 04:26:30,764 [INFO] B5: exposure-weighted downweighting (no rephrased data)
+2026-05-17 04:26:33,873 [INFO]   B5_emperor_mitigation done in 3.1s
+2026-05-17 04:26:33,873 [INFO] Running B6_dcr_fuzzy: DCR fuzzy inference (EMNLP 2025)
+2026-05-17 04:26:33,876 [INFO] B6: mean DCR factor=0.2472
+2026-05-17 04:26:39,600 [INFO]   B6_dcr_fuzzy done in 5.7s
+2026-05-17 04:26:39,602 [INFO] Baselines done in 11.0s
+2026-05-17 04:26:39,602 [INFO] --- Evaluation ---
+2026-05-17 04:26:39,602 [INFO] Ground truth [0.5B]: d0 mean=0.4097 (n=2)
+2026-05-17 04:26:39,602 [INFO] Ground truth [1.5B]: d0 mean=0.5854 (n=2)
+2026-05-17 04:26:39,602 [INFO] Ground truth [3B]: d0 mean=0.6320 (n=2)
+2026-05-17 04:26:41,052 [INFO] 
+============================================================
+2026-05-17 04:26:41,052 [INFO] Pipeline complete in 17508.0s
+2026-05-17 04:26:41,052 [INFO] Results saved to /root/autodl-tmp/exp006/results_pooled_n24/mmlu
+2026-05-17 04:26:41,053 [INFO] ============================================================
+
+
+============================================================
+  mmlu
+============================================================
+-------------------------------------------------------------------------------------------------------
+Method                              MAE      ECE    Brier    C50    C80    C95      S95    tau  gamma>0
+-------------------------------------------------------------------------------------------------------
+B0_raw                           0.0297   0.0289   0.0034   0.50   0.62   0.71     0.02  0.796      ---
+B1_remove_rescore                0.0297   0.0289   0.0034   0.50   0.62   0.71     0.02  0.796      ---
+B4_linear_regression             0.0406   0.0405   0.0037   0.17   0.21   0.62     0.09  0.645      ---
+B5_emperor_mitigation            0.0297   0.0289   0.0034   0.50   0.62   0.71     0.02  0.796      ---
+B6_dcr_fuzzy                     0.1427   0.1419   0.0447   0.33   0.42   0.46     0.01  0.503      ---
+-------------------------------------------------------------------------------------------------------

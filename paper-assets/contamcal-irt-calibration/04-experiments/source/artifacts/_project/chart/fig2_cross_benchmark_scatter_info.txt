@@ -1,0 +1,8 @@
+Location: westd-29999:/root/contamcal-irt-calibration/figures/fig2_cross_benchmark_scatter.pdf (and .png)
+
+Mean delta(d100) per family:
+  Phi-4:    MMLU +0.73 (n=3), ARC +0.65 (n=3)
+  Qwen-14B: MMLU -11.05 (n=2), ARC -2.86 (n=2)
+  Qwen-7B:  MMLU -0.89 (n=2), ARC -2.65 (n=2)
+  Gemma-2:  MMLU +2.62 (n=2), ARC +2.73 (n=1)
+  OLMo-2:   MMLU +1.35 (n=3), ARC +3.44 (n=3)

@@ -1,0 +1,43 @@
+% Algorithm 1: Dose-Response Profile Classification
+% Usage: \input{algorithm1_pseudocode.tex}
+% Requires: \usepackage{algorithm,algorithmic} or algpseudocode
+
+\begin{algorithm}[t]
+\caption{Dose-Response Profile Classification}
+\label{alg:profile-classification}
+\begin{algorithmic}[1]
+\REQUIRE Accuracy vector $\mathbf{a} = (a_{0}, a_{5}, a_{25}, a_{50}, a_{100})$ at dosages $d \in \{0, 5, 25, 50, 100\}\%$
+\REQUIRE Noise threshold $\tau = 1$ pp, severity threshold $\sigma = 5$ pp
+\REQUIRE Saturation ratio $\rho = 0.3$, late-gain floor $\lambda = 0.5$ pp
+\ENSURE Pattern $p \in \{\textsc{Immune}, \textsc{U-collapse}, \textsc{V-recovery}, \textsc{V-recovery-full}, \textsc{Benefit}, \textsc{Benefit-sat}\}$
+\STATE $\Delta \gets a_{100} - a_{0}$ \COMMENT{end-to-end accuracy shift}
+\STATE $m^* \gets \min(a_{5},\, a_{25},\, a_{50})$ \COMMENT{mid-dosage minimum}
+\STATE $v^* \gets \max_{i \in \{5,25,50\}} |a_i - a_0|$ \COMMENT{max mid-trajectory deviation}
+\IF{$|\Delta| \le \tau$}
+    \IF{$v^* \le \tau$}
+        \RETURN \textsc{Immune} \COMMENT{fluctuation within noise band}
+    \ELSIF{$m^* < a_0$ \AND $m^* < a_{100}$}
+        \RETURN \textsc{V-recovery-full} \COMMENT{V-dip with full endpoint recovery}
+    \ELSE
+        \RETURN \textsc{Immune} \COMMENT{non-V volatility, endpoint stable}
+    \ENDIF
+\ELSIF{$\Delta < -\tau$}
+    \IF{$\Delta \le -\sigma$}
+        \RETURN \textsc{U-collapse} \COMMENT{severe monotonic degradation}
+    \ELSIF{$m^* < a_{0}$ \AND $m^* < a_{100}$}
+        \RETURN \textsc{V-recovery} \COMMENT{mid-dosage trough with partial recovery}
+    \ELSE
+        \RETURN \textsc{U-collapse} \COMMENT{moderate decline, no V-shape}
+    \ENDIF
+\ELSE \COMMENT{$\Delta > \tau$}
+    \STATE $g_1 \gets a_{25} - a_{0}$ \COMMENT{first-half gain}
+    \STATE $g_2 \gets a_{100} - a_{25}$ \COMMENT{second-half gain}
+    \STATE $\ell \gets a_{100} - a_{50}$ \COMMENT{late gain}
+    \IF{$(g_1 > 0 \;\AND\; g_2 < \rho \cdot g_1)$ \OR $\ell < \lambda$}
+        \RETURN \textsc{Benefit-sat} \COMMENT{gain decelerates at high dosage}
+    \ELSE
+        \RETURN \textsc{Benefit} \COMMENT{sustained improvement}
+    \ENDIF
+\ENDIF
+\end{algorithmic}
+\end{algorithm}

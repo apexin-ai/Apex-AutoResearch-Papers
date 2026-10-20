@@ -1,0 +1,55 @@
+2026-05-14 12:49:32,956 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B
+2026-05-14 12:49:33,748 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-05-14 12:49:34,130 [INFO] LoRA config: r=16, alpha=32, targets={'down_proj', 'q_proj', 'up_proj', 'k_proj', 'v_proj', 'gate_proj', 'o_proj'}
+2026-05-14 12:49:34,130 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl
+2026-05-14 12:49:36,175 [INFO] Training samples: 54133
+2026-05-14 12:49:41,858 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 320, in <module>
+    lib = get_native_library()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 298, in get_native_library
+    dll = ct.cdll.LoadLibrary(str(binary_path))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 460, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/root/contamcal-irt-calibration/exp001/train_sft.py", line 224, in <module>
+    main()
+  File "/root/contamcal-irt-calibration/exp001/train_sft.py", line 176, in main
+    trainer = SFTTrainer(
+              ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/trl/trainer/sft_trainer.py", line 1286, in __init__
+    super().__init__(
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 612, in __init__
+    self._move_model_to_device(model, args.device)
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 910, in _move_model_to_device
+    model = model.to(device)
+            ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1384, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  [Previous line repeated 5 more times]
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 965, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1370, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 6.06 MiB is free. Process 251924 has 9.81 GiB memory in use. Process 291380 has 13.00 GiB memory in use. Including non-PyTorch memory, this process has 694.00 MiB memory in use. Of the allocated memory 341.80 MiB is allocated by PyTorch, and 4.20 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+EXIT_CODE=1

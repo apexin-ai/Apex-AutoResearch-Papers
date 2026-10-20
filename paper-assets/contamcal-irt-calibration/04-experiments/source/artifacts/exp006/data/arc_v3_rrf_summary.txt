@@ -1,0 +1,10 @@
+server_path: /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf/
+benchmark: arc_challenge
+gamma_mean: -7.6202
+gamma_ci: [-8.7902, -6.421]
+ci_excludes_zero: true
+max_rhat: 1.0078
+min_ess: 1132.5
+all_ok: true
+pipeline_time_sec: 736.7
+exposure_values: [0.0, 0.0388, 0.0289, 0.0678, 0.0, 0.0, 0.0, 0.0145]

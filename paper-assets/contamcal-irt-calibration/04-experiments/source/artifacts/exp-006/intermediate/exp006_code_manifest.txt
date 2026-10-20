@@ -1,0 +1,1 @@
+exp-006 code at /root/contamcal-irt-calibration/exp006/ — run_exp006.py (pipeline), run_irt_calibration.py (IRT), baselines.py (B0-B6), evaluate_calibration.py (metrics), joint_fit.py (ablation)

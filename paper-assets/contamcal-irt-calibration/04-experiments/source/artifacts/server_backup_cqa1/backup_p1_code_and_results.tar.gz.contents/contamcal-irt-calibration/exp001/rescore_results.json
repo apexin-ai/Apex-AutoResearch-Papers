@@ -1,0 +1,671 @@
+[
+  {
+    "dir": "Qwen2.5-3B_d000_s42",
+    "model": "Qwen2.5-3B",
+    "dosage": "d000",
+    "seed": "s42",
+    "total": 1319,
+    "old_correct": 154,
+    "new_correct": 158,
+    "old_acc": 0.11675511751326763,
+    "new_acc": 0.1197877179681577,
+    "delta": 0.0030326004548900665,
+    "flipped": [
+      {
+        "index": 0,
+        "pred_raw": "$18",
+        "pred_norm": "18",
+        "gold_raw": "18",
+        "gold_norm": "18",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 527,
+        "pred_raw": "48 hours",
+        "pred_norm": "48",
+        "gold_raw": "48",
+        "gold_norm": "48",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1061,
+        "pred_raw": "58 minutes",
+        "pred_norm": "58",
+        "gold_raw": "58",
+        "gold_norm": "58",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1179,
+        "pred_raw": "50%�始化",
+        "pred_norm": "50",
+        "gold_raw": "50",
+        "gold_norm": "50",
+        "old": false,
+        "new": true
+      }
+    ]
+  },
+  {
+    "dir": "Qwen2.5-3B_d000_s123",
+    "model": "Qwen2.5-3B",
+    "dosage": "d000",
+    "seed": "s123",
+    "total": 1319,
+    "old_correct": 232,
+    "new_correct": 239,
+    "old_acc": 0.17589082638362397,
+    "new_acc": 0.18119787717968158,
+    "delta": 0.005307050796057616,
+    "flipped": [
+      {
+        "index": 300,
+        "pred_raw": "78 minutes",
+        "pred_norm": "78",
+        "gold_raw": "78",
+        "gold_norm": "78",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 436,
+        "pred_raw": "15 ounces",
+        "pred_norm": "15",
+        "gold_raw": "15",
+        "gold_norm": "15",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 784,
+        "pred_raw": "15 dóla",
+        "pred_norm": "15",
+        "gold_raw": "15",
+        "gold_norm": "15",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 833,
+        "pred_raw": "40 feet",
+        "pred_norm": "40",
+        "gold_raw": "40",
+        "gold_norm": "40",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 893,
+        "pred_raw": "$480",
+        "pred_norm": "480",
+        "gold_raw": "480",
+        "gold_norm": "480",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 974,
+        "pred_raw": "5 hours",
+        "pred_norm": "5",
+        "gold_raw": "5",
+        "gold_norm": "5",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1222,
+        "pred_raw": "350 inches",
+        "pred_norm": "350",
+        "gold_raw": "350",
+        "gold_norm": "350",
+        "old": false,
+        "new": true
+      }
+    ]
+  },
+  {
+    "dir": "Qwen2.5-1.5B_d000_s42",
+    "model": "Qwen2.5-1.5B",
+    "dosage": "d000",
+    "seed": "s42",
+    "total": 1319,
+    "old_correct": 840,
+    "new_correct": 863,
+    "old_acc": 0.6368460955269143,
+    "new_acc": 0.6542835481425322,
+    "delta": 0.01743745261561791,
+    "flipped": [
+      {
+        "index": 103,
+        "pred_raw": "140(minutes)��取",
+        "pred_norm": "140",
+        "gold_raw": "140",
+        "gold_norm": "140",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 114,
+        "pred_raw": "6 ducks",
+        "pred_norm": "6",
+        "gold_raw": "6",
+        "gold_norm": "6",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 151,
+        "pred_raw": "$5",
+        "pred_norm": "5",
+        "gold_raw": "5",
+        "gold_norm": "5",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 179,
+        "pred_raw": "$130",
+        "pred_norm": "130",
+        "gold_raw": "130",
+        "gold_norm": "130",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 257,
+        "pred_raw": "5600 pounds",
+        "pred_norm": "5600",
+        "gold_raw": "5600",
+        "gold_norm": "5600",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 317,
+        "pred_raw": "$12",
+        "pred_norm": "12",
+        "gold_raw": "12",
+        "gold_norm": "12",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 445,
+        "pred_raw": "$6",
+        "pred_norm": "6",
+        "gold_raw": "6",
+        "gold_norm": "6",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 446,
+        "pred_raw": "2 trays",
+        "pred_norm": "2",
+        "gold_raw": "2",
+        "gold_norm": "2",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 459,
+        "pred_raw": "2 trips",
+        "pred_norm": "2",
+        "gold_raw": "2",
+        "gold_norm": "2",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 512,
+        "pred_raw": "120 ml",
+        "pred_norm": "120",
+        "gold_raw": "120",
+        "gold_norm": "120",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 514,
+        "pred_raw": "$90000",
+        "pred_norm": "90000",
+        "gold_raw": "90000",
+        "gold_norm": "90000",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 562,
+        "pred_raw": "82 degrees",
+        "pred_norm": "82",
+        "gold_raw": "82",
+        "gold_norm": "82",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 606,
+        "pred_raw": "6 years",
+        "pred_norm": "6",
+        "gold_raw": "6",
+        "gold_norm": "6",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 784,
+        "pred_raw": "$15",
+        "pred_norm": "15",
+        "gold_raw": "15",
+        "gold_norm": "15",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 797,
+        "pred_raw": "540 seconds",
+        "pred_norm": "540",
+        "gold_raw": "540",
+        "gold_norm": "540",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 989,
+        "pred_raw": "45(minutes)��取",
+        "pred_norm": "45",
+        "gold_raw": "45",
+        "gold_norm": "45",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1054,
+        "pred_raw": "$2400",
+        "pred_norm": "2400",
+        "gold_raw": "2400",
+        "gold_norm": "2400",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1093,
+        "pred_raw": "$144",
+        "pred_norm": "144",
+        "gold_raw": "144",
+        "gold_norm": "144",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1115,
+        "pred_raw": "$5",
+        "pred_norm": "5",
+        "gold_raw": "5",
+        "gold_norm": "5",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1180,
+        "pred_raw": "$5600",
+        "pred_norm": "5600",
+        "gold_raw": "5600",
+        "gold_norm": "5600",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1184,
+        "pred_raw": "$306",
+        "pred_norm": "306",
+        "gold_raw": "306",
+        "gold_norm": "306",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1218,
+        "pred_raw": "225(minutes)��取",
+        "pred_norm": "225",
+        "gold_raw": "225",
+        "gold_norm": "225",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1239,
+        "pred_raw": "50%",
+        "pred_norm": "50",
+        "gold_raw": "50",
+        "gold_norm": "50",
+        "old": false,
+        "new": true
+      }
+    ]
+  },
+  {
+    "dir": "Qwen2.5-1.5B_d000_s123",
+    "model": "Qwen2.5-1.5B",
+    "dosage": "d000",
+    "seed": "s123",
+    "total": 1319,
+    "old_correct": 835,
+    "new_correct": 862,
+    "old_acc": 0.6330553449583017,
+    "new_acc": 0.6535253980288097,
+    "delta": 0.020470053070507976,
+    "flipped": [
+      {
+        "index": 103,
+        "pred_raw": "140(minutes)��取",
+        "pred_norm": "140",
+        "gold_raw": "140",
+        "gold_norm": "140",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 114,
+        "pred_raw": "6 ducks",
+        "pred_norm": "6",
+        "gold_raw": "6",
+        "gold_norm": "6",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 156,
+        "pred_raw": "1400 banana(s)",
+        "pred_norm": "1400",
+        "gold_raw": "1400",
+        "gold_norm": "1400",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 184,
+        "pred_raw": "25%",
+        "pred_norm": "25",
+        "gold_raw": "25",
+        "gold_norm": "25",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 317,
+        "pred_raw": "$12",
+        "pred_norm": "12",
+        "gold_raw": "12",
+        "gold_norm": "12",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 348,
+        "pred_raw": "10%",
+        "pred_norm": "10",
+        "gold_raw": "10",
+        "gold_norm": "10",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 445,
+        "pred_raw": "$6",
+        "pred_norm": "6",
+        "gold_raw": "6",
+        "gold_norm": "6",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 459,
+        "pred_raw": "2 trips",
+        "pred_norm": "2",
+        "gold_raw": "2",
+        "gold_norm": "2",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 512,
+        "pred_raw": "120 ml",
+        "pred_norm": "120",
+        "gold_raw": "120",
+        "gold_norm": "120",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 514,
+        "pred_raw": "$90000",
+        "pred_norm": "90000",
+        "gold_raw": "90000",
+        "gold_norm": "90000",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 562,
+        "pred_raw": "82 degrees",
+        "pred_norm": "82",
+        "gold_raw": "82",
+        "gold_norm": "82",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 665,
+        "pred_raw": "360(hours)��取",
+        "pred_norm": "360",
+        "gold_raw": "360",
+        "gold_norm": "360",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 680,
+        "pred_raw": "20 kg",
+        "pred_norm": "20",
+        "gold_raw": "20",
+        "gold_norm": "20",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 716,
+        "pred_raw": "770 calories",
+        "pred_norm": "770",
+        "gold_raw": "770",
+        "gold_norm": "770",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 728,
+        "pred_raw": "40%",
+        "pred_norm": "40",
+        "gold_raw": "40",
+        "gold_norm": "40",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 793,
+        "pred_raw": "250 dóla",
+        "pred_norm": "250",
+        "gold_raw": "250",
+        "gold_norm": "250",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 812,
+        "pred_raw": "79 petals",
+        "pred_norm": "79",
+        "gold_raw": "79",
+        "gold_norm": "79",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 849,
+        "pred_raw": "$75",
+        "pred_norm": "75",
+        "gold_raw": "75",
+        "gold_norm": "75",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 886,
+        "pred_raw": "20 pairs of microphones",
+        "pred_norm": "20",
+        "gold_raw": "20",
+        "gold_norm": "20",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 903,
+        "pred_raw": "16 yards",
+        "pred_norm": "16",
+        "gold_raw": "16",
+        "gold_norm": "16",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1028,
+        "pred_raw": "$200",
+        "pred_norm": "200",
+        "gold_raw": "200",
+        "gold_norm": "200",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1079,
+        "pred_raw": "10%",
+        "pred_norm": "10",
+        "gold_raw": "10",
+        "gold_norm": "10",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1115,
+        "pred_raw": "$5",
+        "pred_norm": "5",
+        "gold_raw": "5",
+        "gold_norm": "5",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1180,
+        "pred_raw": "$5600",
+        "pred_norm": "5600",
+        "gold_raw": "5600",
+        "gold_norm": "5600",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1184,
+        "pred_raw": "$306",
+        "pred_norm": "306",
+        "gold_raw": "306",
+        "gold_norm": "306",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1239,
+        "pred_raw": "50%",
+        "pred_norm": "50",
+        "gold_raw": "50",
+        "gold_norm": "50",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 1262,
+        "pred_raw": "12(minutes)",
+        "pred_norm": "12",
+        "gold_raw": "12",
+        "gold_norm": "12",
+        "old": false,
+        "new": true
+      }
+    ]
+  },
+  {
+    "dir": "Qwen2.5-0.5B_d000_s123",
+    "model": "Qwen2.5-0.5B",
+    "dosage": "d000",
+    "seed": "s123",
+    "total": 1319,
+    "old_correct": 449,
+    "new_correct": 450,
+    "old_acc": 0.34040940106141016,
+    "new_acc": 0.3411675511751327,
+    "delta": 0.0007581501137225444,
+    "flipped": [
+      {
+        "index": 514,
+        "pred_raw": "$90000",
+        "pred_norm": "90000",
+        "gold_raw": "90000",
+        "gold_norm": "90000",
+        "old": false,
+        "new": true
+      }
+    ]
+  },
+  {
+    "dir": "Qwen2.5-0.5B_d005_s42",
+    "model": "Qwen2.5-0.5B",
+    "dosage": "d005",
+    "seed": "s42",
+    "total": 1319,
+    "old_correct": 475,
+    "new_correct": 478,
+    "old_acc": 0.3601213040181956,
+    "new_acc": 0.36239575435936316,
+    "delta": 0.0022744503411675776,
+    "flipped": [
+      {
+        "index": 168,
+        "pred_raw": "$18",
+        "pred_norm": "18",
+        "gold_raw": "18",
+        "gold_norm": "18",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 758,
+        "pred_raw": "$133",
+        "pred_norm": "133",
+        "gold_raw": "133",
+        "gold_norm": "133",
+        "old": false,
+        "new": true
+      },
+      {
+        "index": 962,
+        "pred_raw": "$1000",
+        "pred_norm": "1000",
+        "gold_raw": "1000",
+        "gold_norm": "1000",
+        "old": false,
+        "new": true
+      }
+    ]
+  }
+]

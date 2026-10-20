@@ -1,0 +1,160 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{hendrycks2021measuring}
+\citation{clark2018think}
+\citation{cobbe2021gsm8k}
+\citation{yang2023rethinking,golchin2024time}
+\citation{xu2024benchmark}
+\citation{eckerly2017detecting,sinharay2017assessing}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Contribution 1: Benchmark-dependent contamination effects.}{1}{section*.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{shokri2017membership,carlini2022membership}
+\citation{polo2024tinybenchmarks}
+\citation{burnell2023rethink}
+\citation{lalor2024benchmarking}
+\citation{deboeck2004explanatory}
+\citation{eckerly2017detecting,sinharay2017assessing}
+\citation{oren2024proving}
+\citation{xu2024benchmark}
+\citation{white2024livebench}
+\citation{zheng2024judging}
+\citation{liang2023holistic}
+\citation{guo2017calibration,platt1999probabilistic}
+\citation{angelopoulos2023conformal}
+\citation{holland1993differential,thissen1993detection,zumbo1999handbook}
+\@writefile{toc}{\contentsline {paragraph}{Contribution 2: Signal failure mode characterization.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contribution 3: Identifiability impossibility result.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmark contamination detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation and calibration.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration and uncertainty.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Differential item functioning.}{2}{section*.8}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{cormack2009reciprocal}
+\citation{carpenter2017stan}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Contamination Provenance Mapping}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented 4PL IRT}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibrated scores.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bayesian estimation.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement error extension.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Fisher Information Analysis}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Contamination Injection}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Benchmarks}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Metrics}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Benchmark-Dependent Contamination Effects}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:dose-response}{{5.1}{4}{Benchmark-Dependent Contamination Effects}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Benchmark accuracy by model scale and contamination dosage (mean $\pm $ std across seeds). Contamination effects are benchmark-dependent: ARC shows catastrophic forgetting at 0.5B, GSM8K is resistant, MMLU effects are negligible at $\geq $1.5B.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:dose-response}{{1}{5}{Benchmark accuracy by model scale and contamination dosage (mean $\pm $ std across seeds). Contamination effects are benchmark-dependent: ARC shows catastrophic forgetting at 0.5B, GSM8K is resistant, MMLU effects are negligible at $\geq $1.5B}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 7B dose-response. MC benchmarks are immune to contamination at this scale; only HumanEval (code generation) shows a meaningful effect.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:7b-dose}{{2}{5}{7B dose-response. MC benchmarks are immune to contamination at this scale; only HumanEval (code generation) shows a meaningful effect}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{ARC catastrophic forgetting.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GSM8K natural resistance.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{MMLU immunity at scale.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{7B: complete immunity on MC benchmarks.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{QC-only ablation.}{5}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Multi-family validation (Llama-3.2-1B). Contamination effects are directionally consistent with Qwen-0.5B but differ in magnitude, yielding cross-family $\gamma $ correlation of only 0.45.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:multi-family}{{3}{6}{Multi-family validation (Llama-3.2-1B). Contamination effects are directionally consistent with Qwen-0.5B but differ in magnitude, yielding cross-family $\gamma $ correlation of only 0.45}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection signal AUC at d005 (within-model). Only S1 exceeds the practical threshold (AUC$>$0.90), and only at 0.5B. \text  {$\mathsurround \z@ \mathchar "558$}= AUC$>$0.90; $\times $= AUC$<$0.90.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:signal-auc}{{4}{6}{Detection signal AUC at d005 (within-model). Only S1 exceeds the practical threshold (AUC$>$0.90), and only at 0.5B. \cmark = AUC$>$0.90; \xmark = AUC$<$0.90}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-family validation.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Signal Failure Mode Characterization}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:signals}{{5.2}{6}{Signal Failure Mode Characterization}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Signal AUC by scale.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Min-K++ directional reversal.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RRF aggregation offers no benefit.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL post-training destroys all signals.}{6}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Min-K++ directional reversal at d100 (0.5B). Contaminated items appear \emph  {more} surprising, actively reversing the expected signal direction.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:minkpp-reversal}{{5}{7}{Min-K++ directional reversal at d100 (0.5B). Contaminated items appear \emph {more} surprising, actively reversing the expected signal direction}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces RRF ablation on ARC (0.5B). RRF offers no improvement over S1-only when constituent signals fail. Closed-weight mode is worse than no adjustment.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:rrf}{{6}{7}{RRF ablation on ARC (0.5B). RRF offers no improvement over S1-only when constituent signals fail. Closed-weight mode is worse than no adjustment}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{72B frontier model.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Identifiability Impossibility Result}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:identifiability}{{5.3}{7}{Identifiability Impossibility Result}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Simulation sweep.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Extrapolation to actual conditions.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fisher Information analysis.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}IRT Calibration Results}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:calibration}{{5.4}{7}{IRT Calibration Results}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Signal AUC on RL-post-trained models. All signals are at chance level, rendering contamination detection---and therefore calibration---impossible for deployed models.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:rl-signals}{{7}{8}{Signal AUC on RL-post-trained models. All signals are at chance level, rendering contamination detection---and therefore calibration---impossible for deployed models}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Identifiability phase diagram: 95\% CI width for $\gamma $ by signal AUC and number of models $N$. \text  {$\mathsurround \z@ \mathchar "558$}= CI $<$ 0.15 (identifiable); $\times $= CI $\geq $ 0.15 (unidentifiable). Current LLM evaluation conditions ($N\leq 16$, AUC $\leq 0.85$) fall in the unidentifiable region.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:identifiability}{{8}{8}{Identifiability phase diagram: 95\% CI width for $\gamma $ by signal AUC and number of models $N$. \cmark = CI $<$ 0.15 (identifiable); \xmark = CI $\geq $ 0.15 (unidentifiable). Current LLM evaluation conditions ($N\leq 16$, AUC $\leq 0.85$) fall in the unidentifiable region}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{MMLU: non-convergent.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GSM8K: correctly identified as uncontaminated.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ARC: partial success with fatal caveats.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baseline comparison.}{8}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Measurement error model: no improvement.}{8}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Closed-weight 2-signal mode.}{8}{section*.31}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Predicted $\gamma $ CI width at actual experimental conditions. All conditions are unidentifiable or marginally so.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:actual-conditions}{{9}{9}{Predicted $\gamma $ CI width at actual experimental conditions. All conditions are unidentifiable or marginally so}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces IRT 4PL+$\gamma $ calibration results. MMLU fails to converge ($\hat  {R}$=1.54). GSM8K $\gamma $ is non-significant with realistic signals and MAE is worse than raw baseline. ARC is the only benchmark where $\gamma $ excludes zero with S1-only, but coverage collapses to 63\% and PPP indicates severe misspecification.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:irt-results}{{10}{9}{IRT 4PL+$\gamma $ calibration results. MMLU fails to converge ($\hat {R}$=1.54). GSM8K $\gamma $ is non-significant with realistic signals and MAE is worse than raw baseline. ARC is the only benchmark where $\gamma $ excludes zero with S1-only, but coverage collapses to 63\% and PPP indicates severe misspecification}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Expected regret: no practical benefit.}{9}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{9}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why calibration fails: a structural diagnosis.}{9}{section*.33}\protected@file@percent }
+\citation{reckase2009multidimensional,burnell2023rethink}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Baseline comparison on ARC ($N=8$). ContamCal achieves the lowest MAE but linear regression (B4) provides better coverage and comparable ranking with far less complexity.}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:baselines}{{11}{10}{Baseline comparison on ARC ($N=8$). ContamCal achieves the lowest MAE but linear regression (B4) provides better coverage and comparable ranking with far less complexity}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Measurement error model: CI width is insensitive to detection noise $\sigma _e$. The coverage gap is structural, not measurement-error-driven.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:me-model}{{12}{10}{Measurement error model: CI width is insensitive to detection noise $\sigma _e$. The coverage gap is structural, not measurement-error-driven}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{RRF as architecture.}{10}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The most citable finding.}{10}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{10}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{10}{Limitations}{section.7}{}}
+\citation{white2024livebench}
+\citation{zheng2024judging}
+\bibcite{adams1997multidimensional}{{1}{1997}{{Adams et~al.}}{{}}}
+\bibcite{angelopoulos2023conformal}{{2}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{burnell2023rethink}{{3}{2023}{{Burnell et~al.}}{{}}}
+\bibcite{carlini2022membership}{{4}{2022}{{Carlini et~al.}}{{}}}
+\bibcite{carpenter2017stan}{{5}{2017}{{Carpenter et~al.}}{{}}}
+\bibcite{clark2018think}{{6}{2018}{{Clark et~al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{7}{2021}{{Cobbe et~al.}}{{}}}
+\bibcite{cormack2009reciprocal}{{8}{2009}{{Cormack et~al.}}{{}}}
+\bibcite{deboeck2004explanatory}{{9}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{dekoninck2024constat}{{10}{2024}{{Dekoninck et~al.}}{{}}}
+\bibcite{eckerly2017detecting}{{11}{2017}{{Eckerly}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Expected regret for top-5 model selection on RL models. Calibration offers no improvement over raw scores.}}{11}{table.13}\protected@file@percent }
+\newlabel{tab:regret}{{13}{11}{Expected regret for top-5 model selection on RL models. Calibration offers no improvement over raw scores}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{11}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{11}{Conclusion}{section.8}{}}
+\bibcite{golchin2024time}{{12}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{guo2017calibration}{{13}{2017}{{Guo et~al.}}{{}}}
+\bibcite{hendrycks2021measuring}{{14}{2021}{{Hendrycks et~al.}}{{}}}
+\bibcite{holland1993differential}{{15}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{lalor2024benchmarking}{{16}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{liang2023holistic}{{17}{2023}{{Liang et~al.}}{{}}}
+\bibcite{mislevy1986bayes}{{18}{1986}{{Mislevy}}{{}}}
+\bibcite{oren2024proving}{{19}{2024}{{Oren et~al.}}{{}}}
+\bibcite{platt1999probabilistic}{{20}{1999}{{Platt}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{21}{2024}{{Polo et~al.}}{{}}}
+\bibcite{pruthi2020tracin}{{22}{2020}{{Pruthi et~al.}}{{}}}
+\bibcite{reckase2009multidimensional}{{23}{2009}{{Reckase}}{{}}}
+\bibcite{sanmartin2009identifiability}{{24}{2009}{{San~Mart\'in et~al.}}{{}}}
+\bibcite{shi2024detecting}{{25}{2024}{{Shi et~al.}}{{}}}
+\bibcite{shokri2017membership}{{26}{2017}{{Shokri et~al.}}{{}}}
+\bibcite{sinharay2017assessing}{{27}{2017}{{Sinharay}}{{}}}
+\bibcite{talts2018sbc}{{28}{2018}{{Talts et~al.}}{{}}}
+\bibcite{thissen1993detection}{{29}{1993}{{Thissen et~al.}}{{}}}
+\bibcite{white2024livebench}{{30}{2024}{{White et~al.}}{{}}}
+\bibcite{xu2024benchmark}{{31}{2024}{{Xu et~al.}}{{}}}
+\bibcite{yang2023rethinking}{{32}{2023}{{Yang et~al.}}{{}}}
+\bibcite{zheng2024judging}{{33}{2024}{{Zheng et~al.}}{{}}}
+\bibcite{zumbo1999handbook}{{34}{1999}{{Zumbo}}{{}}}
+\gdef \@abspage@last{12}

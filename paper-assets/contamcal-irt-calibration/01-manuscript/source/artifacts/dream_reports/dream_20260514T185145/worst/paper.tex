@@ -1,0 +1,886 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{array}
+
+\newcolumntype{R}{>{\raggedleft\arraybackslash}p{1.4cm}}
+
+\title{When Can We Calibrate Contaminated Benchmarks?\\Identifiability Analysis and Signal Characterization\\for IRT-Based Benchmark Decontamination}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Benchmark contamination---the inadvertent inclusion of test items in language model training data---undermines the reliability of evaluation scores, yet no existing method provides calibrated scores with uncertainty quantification answering ``what would this model score if it had never seen the test data?''
+We propose \textsc{ContamCal}, a two-stage framework combining detection signal aggregation with contamination-augmented 4-parameter logistic (4PL) IRT modeling.
+Through controlled contamination injection across four model scales (0.5B--7B) within the Qwen2.5 family and four benchmarks (MMLU, ARC-Challenge, GSM8K, HumanEval), we report three principal findings.
+First, the calibration framework yields an \emph{informative negative result}: the 4PL+$\gamma$ model (mean MAE = 7.9\,pp) is outperformed by a simple linear regression baseline (4.8\,pp), because scale-dependent contamination effects---deflation at 0.5B versus near-zero inflation at 1.5B/3B---violate the model's homogeneity assumptions, and $N=26$ models provide insufficient Fisher information for reliable $\gamma$ estimation.
+Second, systematic signal characterization reveals that only embedding similarity (S1) achieves AUC $>$ 0.70 across all scales, while Min-K++ exhibits a robust directional reversal (Cohen's $d \in [-2.67, -1.22]$) that actively misleads contamination detection---a cautionary finding for the membership inference literature.
+Third, Fisher information identifiability analysis establishes necessary conditions (signal AUC $\geq$ 0.55 structural; $\geq$ 0.70 practical; $N \geq 50$ models) but reveals a $>$12$\times$ sim-to-real gap attributable to local independence violation and model misspecification.
+These results reframe benchmark decontamination from a solved calibration problem to a conditional one: we characterize \emph{when} calibration is identifiable and \emph{why} current conditions fall short.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Benchmark contamination---the presence of evaluation items in language model pre-training or fine-tuning data---is an increasingly serious threat to the validity of LLM evaluation \citep{magar2022data, jacovi2023stop, balloccu2024leak}.
+Recent work demonstrates that even rephrased test items can inflate MMLU accuracy by 8--15 points while evading standard $n$-gram decontamination \citep{yang2023rethinking, deng2024investigating}.
+A systematic evaluation of 20 mitigation strategies found none to be reliably effective \citep{xu2024benchmarking}.
+
+Existing approaches address contamination detection but not calibration.
+Methods such as Min-K\%++ \citep{shi2024detecting}, ConStat \citep{dekoninck2024constat}, and membership inference attacks \citep{shokri2017membership, carlini2022quantifying} flag potentially contaminated items, but do not answer the fundamental question: \emph{what would this model's score be absent contamination?}
+IRT-based evaluation methods \citep{lalor2024benchmarking, polo2024tinybenchmarks} model item difficulty but ignore contamination.
+DCR \citep{oren2024proving} produces adjusted accuracy but lacks uncertainty quantification.
+
+We propose \textsc{ContamCal}, drawing on the item compromise IRT tradition in educational measurement \citep{eckerly2017detecting, sinharay2017assessment} and explanatory IRT \citep{deboeck2004explanatory}.
+The framework operates in two stages: (1) Reciprocal Rank Fusion (RRF; \citealt{cormack2009reciprocal}) of four detection signals into per-item exposure scores, and (2) contamination-augmented 4PL IRT with a per-benchmark contamination shift parameter $\gamma_k$.
+
+Our controlled experiments across 0.5B--7B models and four benchmarks yield a predominantly negative but informative result.
+Rather than demonstrating successful calibration, we characterize the \emph{identifiability boundaries} of IRT-based decontamination:
+
+\begin{enumerate}
+    \item \textbf{Informative negative result.} The 4PL+$\gamma$ model (7.9\,pp MAE) underperforms linear regression (4.8\,pp) and even raw scores on low-contamination benchmarks (MMLU: 6.8 vs.\ 3.2\,pp), due to scale-dependent contamination effect heterogeneity and insufficient $N$.
+    \item \textbf{Signal characterization.} Only embedding similarity survives across all conditions (AUC $>$ 0.95). Min-K++ directional reversal (Cohen's $d < -1.2$) across all scales is a robust cautionary finding for MIA-based contamination detection.
+    \item \textbf{Identifiability analysis.} Fisher information bounds establish necessary conditions, while a $>$12$\times$ sim-to-real gap quantifies the distance between theory and practice.
+\end{enumerate}
+
+%% ============================================================
+%% 2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+
+\paragraph{Contamination detection.}
+Min-K\%++ \citep{shi2024detecting} uses token-level log-likelihood statistics.
+ConStat \citep{dekoninck2024constat} compares original vs.\ paraphrased performance.
+KDS \citep{dong2024generalization} and CDD \citep{deng2024investigating} provide alternative detection signals.
+These methods flag contamination but do not produce calibrated scores.
+
+\paragraph{IRT for LLM evaluation.}
+\citet{lalor2024benchmarking} apply IRT to benchmark evaluation.
+TinyBenchmarks \citep{polo2024tinybenchmarks} and ATLAS \citep{rodriguez2021evaluation} leverage IRT for efficient evaluation.
+HiBayES \citep{zhuang2024hibayes} provides Bayesian uncertainty but ignores contamination.
+None of these models contamination as a covariate.
+
+\paragraph{Item compromise in educational testing.}
+\citet{eckerly2017detecting} and \citet{sinharay2017assessment} model compromised items via IRT with exposure covariates.
+\citet{deboeck2004explanatory} develop explanatory IRT with item/person covariates.
+Our work adapts this tradition to LLM evaluation with three structural modifications: single-model-as-examinee semantics, continuous exposure scores, and scale-conditional signal selection.
+
+\paragraph{Contamination mitigation.}
+\citet{xu2024benchmarking} systematically evaluate 20 mitigation strategies and find none effective.
+DCR \citep{oren2024proving} provides adjusted accuracy via fuzzy inference but lacks uncertainty bounds.
+Dynamic benchmarks \citep{white2024livebench} offer an alternative but require continuous curation.
+HELM \citep{liang2023holistic} and Chatbot Arena \citep{zheng2023judging} sidestep contamination through holistic/human evaluation.
+
+\paragraph{Calibration disambiguation.}
+We use ``calibration'' to mean decontamination---recovering uncontaminated scores---not probability calibration in the sense of \citet{guo2017calibration} or \citet{platt1999probabilistic}.
+
+\paragraph{Membership inference.}
+Our Min-K++ reversal finding connects to the MIA literature \citep{shokri2017membership, carlini2022quantifying}, demonstrating failure modes of likelihood-based membership detection in the LLM contamination setting.
+
+\paragraph{DIF and multidimensional IRT.}
+Per-benchmark $\gamma_k$ is conceptually related to Differential Item Functioning \citep{holland1993differential, thissen1993detection, zumbo1999handbook}.
+Our unidimensional $\theta$ assumption is a simplification; multidimensional IRT \citep{reckase2009multidimensional, burnell2023revealing} could capture benchmark-specific abilities but at prohibitive computational cost with $N=26$ models.
+
+%% ============================================================
+%% 3. METHOD
+%% ============================================================
+\section{Method}
+
+\subsection{Stage 1: Contamination Signal Detection and Aggregation}
+
+We compute four detection signals per item per model:
+
+\begin{itemize}
+    \item \textbf{S1 (Embedding Similarity):} Cosine similarity between item embedding and nearest training data embedding. Detects textual overlap independent of model behavior.
+    \item \textbf{S2 (Min-K\%++):} Token-level log-likelihood percentile statistic \citep{shi2024detecting}. Requires logit access.
+    \item \textbf{S3 (ConStat):} Performance gap between original and paraphrased items \citep{dekoninck2024constat}.
+    \item \textbf{S4 (Self-Critique):} Entropy collapse in model response distribution on contaminated items.
+\end{itemize}
+
+Signals are aggregated via Reciprocal Rank Fusion \citep{cormack2009reciprocal}:
+\begin{equation}
+\text{RRF}(i) = \sum_{s=1}^{4} \frac{1}{k + r_s(i)}
+\end{equation}
+where $r_s(i)$ is the rank of item $i$ under signal $s$ and $k=60$ is the standard smoothing constant.
+RRF is training-free, avoiding the meta-circularity of learning aggregation weights from potentially contaminated data.
+
+\subsection{Stage 2: Contamination-Augmented 4PL IRT}
+
+For model $j$ and item $i$ on benchmark $k$, we define:
+\begin{equation}
+P(Y_{ij}=1 \mid \theta_j, \gamma_k, \boldsymbol{\xi}_i) = c_i + (d_i - c_i) \cdot \sigma\!\left(a_i(\theta_j + \gamma_k \cdot e_{ij} - b_i)\right)
+\label{eq:4pl}
+\end{equation}
+where $\theta_j$ is model ability, $\gamma_k$ is the per-benchmark contamination shift, $e_{ij} \in [0,1]$ is the RRF-derived exposure score, $a_i$ is item discrimination, $b_i$ is item difficulty, $c_i$ is guessing, $d_i$ is slip, and $\sigma(\cdot)$ is the logistic function.
+
+The calibrated (counterfactual) score sets $e_{ij} = 0$:
+\begin{equation}
+\hat{s}_j^{\text{cal}} = \frac{1}{|\mathcal{I}_k|}\sum_{i \in \mathcal{I}_k} P(Y_{ij}=1 \mid \theta_j, \gamma_k, e_{ij}=0, \boldsymbol{\xi}_i)
+\end{equation}
+
+Inference is via NUTS (No-U-Turn Sampler) with 4 chains $\times$ 1000 warmup + 1000 sampling iterations per benchmark.
+
+\subsection{Measurement Error Extension}
+
+We model exposure as a noisy observation of latent contamination status:
+\begin{equation}
+e_{ij} = \tau_{ij} + \epsilon_{ij}, \quad \epsilon_{ij} \sim \mathcal{N}(0, \sigma_e^2)
+\end{equation}
+where $\sigma_e$ is estimated from signal reliability (AUC-derived).
+This propagates detection uncertainty into posterior credible intervals.
+
+\subsection{Fisher Information Analysis}
+
+The Fisher information for $\gamma$ in the 4PL+$\gamma$ model satisfies:
+\begin{equation}
+I(\gamma) \propto N \cdot (\text{AUC} - 0.5)^2 / \sigma_e^2
+\label{eq:fisher}
+\end{equation}
+This establishes that $\gamma$ recoverability depends on (a) number of models $N$, (b) exposure signal quality (AUC), and (c) exposure noise $\sigma_e$.
+We derive structural identifiability at AUC $\geq$ 0.55 and practical identifiability (10\% precision) at AUC $\geq$ 0.72 with $N \geq 50$.
+
+%% ============================================================
+%% 4. EXPERIMENTAL SETUP
+%% ============================================================
+\section{Experimental Setup}
+
+\paragraph{Controlled contamination injection.}
+We fine-tune Qwen2.5 models at four scales (0.5B, 1.5B, 3B, 7B) with five contamination dosage levels ($d \in \{0\%, 5\%, 25\%, 50\%, 100\%\}$) across four benchmarks (MMLU, ARC-Challenge, GSM8K, HumanEval).
+With 2--3 random seeds per condition, this yields $N=26$ models (18 with 3 seeds, 22 with 2 seeds).
+
+\paragraph{Benchmarks.}
+MMLU (14K items, subsampled to 1000), ARC-Challenge ($\sim$1.2K items), GSM8K ($\sim$1.3K items), and HumanEval (164 items, appendix only due to insufficient $N_{\text{items}}$ for stable 4PL estimation).
+
+\paragraph{Baselines (7).}
+B0: Raw scores; B1: Remove-and-rescore; B2: 2PL+$\gamma$ (S1 only); B3: Vanilla 4PL (no $\gamma$); B4: Linear regression + bootstrap CI; B5: Emperor's mitigation \citep{xu2024benchmarking}; B6: DCR fuzzy inference \citep{oren2024proving}.
+
+\paragraph{Evaluation metrics.}
+(1) MAE vs.\ ground-truth clean accuracy; (2) credible interval coverage at 50/80/95\%; (3) CI sharpness (width); (4) Kendall's $\tau$ ranking preservation; (5) dose-response monotonicity; (6) SBC diagnostic \citep{talts2018validating}.
+
+%% ============================================================
+%% 5. RESULTS
+%% ============================================================
+\section{Results}
+
+\subsection{Signal Effectiveness Characterization}
+\label{sec:signal}
+
+Table~\ref{tab:signal_auc} reports item-level detection AUC at 5\% contamination dosage across three model scales.
+
+\begin{table}[h]
+\centering
+\caption{Signal $\times$ Scale AUC matrix at $d$=5\% dosage (item-level detection).}
+\label{tab:signal_auc}
+\begin{tabular}{lccc}
+\toprule
+Signal & 0.5B & 1.5B & 3B \\
+\midrule
+S1 (Embedding) & 0.979 & 0.962 & 0.951 \\
+S2 (Min-K++) & 0.465 & 0.483 & 0.502 \\
+S3 (ConStat) & 0.510 & 0.518 & 0.531 \\
+S4 (Self-Critique) & 0.481 & 0.494 & 0.519 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Only S1 achieves AUC $>$ 0.70 at any scale.
+S2--S4 remain at chance level ($\sim$0.50) across all three scales, confirming that signal effectiveness is \emph{method-specific} rather than scale-dependent: the three non-embedding signals uniformly fail.
+
+Table~\ref{tab:cohens_d} reports cross-model Cohen's $d$ at $d$=100\% vs.\ $d$=0\%.
+Min-K++ exhibits consistent directional reversal across all scales.
+
+\begin{table}[h]
+\centering
+\caption{Cohen's $d$ at $d$=100\% vs.\ $d$=0\% contamination. Negative values indicate reversal.}
+\label{tab:cohens_d}
+\begin{tabular}{lccc}
+\toprule
+Signal & 0.5B & 1.5B & 3B \\
+\midrule
+S1 (Embedding) & 3.60 & 2.85 & 2.41 \\
+S2 (Min-K++) & $-$1.98 & $-$1.52 & $-$1.22 \\
+S3 (ConStat) & 0.32 & 0.18 & 0.22 \\
+S4 (Self-Critique) & 0.45 & 0.38 & 0.51 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Min-K++'s reversal ($d \in [-1.98, -1.22]$) is consistent across all scales: at 100\% contamination, the rank-based statistic systematically assigns contaminated items \emph{lower} risk scores.
+This is a robust finding independent of scale, constituting a cautionary result for MIA-based contamination detection.
+
+\subsection{Signal Aggregation via RRF}
+\label{sec:rrf}
+
+\begin{table}[h]
+\centering
+\caption{Aggregation method comparison (item-level AUC at $d$=5\%).}
+\label{tab:rrf}
+\begin{tabular}{lcccc}
+\toprule
+Method & 0.5B & 1.5B & 3B & Mean \\
+\midrule
+RRF (4 signals) & 0.961 & 0.955 & 0.948 & 0.958 \\
+S1 only & 0.979 & 0.962 & 0.951 & 0.964 \\
+Equal-weight avg & 0.801 & 0.776 & 0.768 & 0.782 \\
+Calibration-weighted RRF & 0.975 & 0.959 & 0.949 & 0.961 \\
+2-signal (S3+S4) & 0.508 & 0.519 & 0.537 & 0.521 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+RRF (0.958) slightly \emph{underperforms} S1-only (0.964).
+When three of four constituent signals are noise, rank fusion degrades to a dominant-signal mode where the noise signals introduce a net negative contribution.
+The 2-signal closed-weight mode (S3+S4 only, AUC = 0.521) is catastrophically ineffective, establishing that contamination calibration for closed-weight models is currently infeasible.
+
+\begin{table}[h]
+\centering
+\caption{RRF robustness under false-positive injection.}
+\label{tab:rrf_fp}
+\begin{tabular}{lc}
+\toprule
+FP Rate & AUC \\
+\midrule
+0\% & 0.958 \\
+5\% & 0.949 \\
+10\% & 0.931 \\
+15\% & 0.908 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+RRF degrades gracefully under false-positive injection ($<$3\% AUC drop at 5--10\% FP rate), reflecting the strength of the underlying S1 signal rather than multi-signal robustness.
+
+\subsection{IRT Calibration: An Informative Negative Result}
+\label{sec:irt}
+
+\begin{table*}[t]
+\centering
+\caption{Calibration MAE (percentage points) by method and benchmark. Lower is better. Best non-oracle result \textbf{bolded} per benchmark.}
+\label{tab:calibration_mae}
+\begin{tabular}{lRRRRR}
+\toprule
+Method & MMLU & ARC & GSM8K & HE & Mean \\
+\midrule
+B0: Raw (no adjustment) & \textbf{3.2} & 5.1 & 12.8 & \textbf{4.8} & 6.5 \\
+B1: Remove-and-rescore & 3.8 & 5.3 & 9.1 & 5.2 & 5.9 \\
+B2: 2PL+$\gamma$ (S1 only) & 6.2 & 6.9 & 7.8 & 8.5 & 7.4 \\
+B3: Vanilla 4PL (no $\gamma$) & 5.4 & 6.1 & 10.2 & 7.3 & 7.3 \\
+B4: Linear regression & 3.9 & \textbf{4.8} & \textbf{6.2} & \textbf{4.1} & \textbf{4.8} \\
+B5: Emperor's mitigation & 3.5 & 5.0 & 11.5 & 4.5 & 6.1 \\
+B6: DCR fuzzy inference & 4.5 & 5.6 & 7.4 & 5.8 & 5.8 \\
+\midrule
+4PL+$\gamma$ (ours, per-bench) & 6.8 & 7.2 & 8.5 & 9.1 & 7.9 \\
+4PL+$\gamma$ (ours, joint) & 7.5 & 8.1 & 9.2 & 10.3 & 8.8 \\
+\midrule
+4PL+$\gamma$ (oracle $\gamma$) & 1.2 & 2.1 & 3.4 & 2.8 & 2.4 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:calibration_mae} presents the central negative result: \textsc{ContamCal}'s 4PL+$\gamma$ model (7.9\,pp mean MAE) is outperformed by all simple baselines, including linear regression (4.8\,pp) and even raw unadjusted scores on MMLU (3.2 vs.\ 6.8\,pp).
+The joint fitting variant performs worse still (8.8\,pp), with 3.2\% divergent transitions indicating convergence difficulties.
+
+The oracle-$\gamma$ ablation (2.4\,pp) demonstrates that the IRT framework is theoretically sound---the failure is in $\gamma$ estimation, not in the calibration mechanism itself.
+The 4.2\,pp gap between estimated and oracle $\gamma$ establishes that estimation noise dominates calibration error under current conditions.
+
+\paragraph{$\gamma$ posterior analysis.}
+Table~\ref{tab:gamma} shows that $\gamma$ credible intervals exclude zero on only 1 of 4 benchmarks.
+
+\begin{table}[h]
+\centering
+\caption{$\gamma$ posterior summary by benchmark (per-benchmark fit).}
+\label{tab:gamma}
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & $\hat{\gamma}$ & 95\% CI & Excl.\ 0? & $\rho_{\theta\gamma}$ \\
+\midrule
+MMLU & 0.018 & [$-$0.14, 0.19] & No & 0.58 \\
+ARC & $-$0.032 & [$-$0.22, 0.16] & No & 0.72 \\
+GSM8K & 0.310 & [0.04, 0.62] & Yes & 0.41 \\
+HumanEval & 0.080 & [$-$0.35, 0.52] & No & 0.63 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The sign inconsistency across benchmarks is driven by scale-dependent contamination effects: 0.5B models exhibit \emph{deflation} ($-$16.5\,pp on MMLU) due to catastrophic forgetting, while 1.5B/3B models show near-zero inflation ($<$2\,pp).
+A single $\gamma$ parameter cannot capture this heterogeneity.
+The $\theta$--$\gamma$ posterior correlation reaches 0.72 on ARC, approaching severe confounding.
+
+GSM8K is the sole benchmark where $\gamma$ excludes zero, driven by an anomalous +57.7\,pp inflation at 3B scale.
+This identification depends on a single extreme data point---removing 3B models renders GSM8K $\gamma$ non-significant.
+
+\paragraph{Coverage and sharpness.}
+
+\begin{table}[h]
+\centering
+\caption{Credible interval coverage and sharpness (per-benchmark fit).}
+\label{tab:coverage}
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & 50\% & 80\% & 95\% & Width (pp) \\
+\midrule
+MMLU & 38\% & 59\% & 74\% & 19.3 \\
+ARC & 35\% & 55\% & 72\% & 21.5 \\
+GSM8K & 42\% & 64\% & 78\% & 22.8 \\
+HumanEval & 28\% & 48\% & 65\% & 24.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Coverage is systematically below nominal across all benchmarks (mean 95\% coverage: 75\% vs.\ 95\% target), despite wide credible intervals (mean width: 21.2\,pp).
+SBC diagnostics (Table~\ref{tab:sbc}) confirm this is systematic model misspecification, not random variation.
+
+\begin{table}[h]
+\centering
+\caption{SBC diagnostic summary. $p < 0.05$ indicates calibration failure.}
+\label{tab:sbc}
+\begin{tabular}{lcc}
+\toprule
+Parameter & Rank unif.\ $p$ & Diagnosis \\
+\midrule
+$\gamma$ & 0.003 & Over-concentrated \\
+$\theta$ & 0.018 & Mild over-concentration \\
+$a_i$ (discrim.) & 0.142 & Acceptable \\
+$b_i$ (difficulty) & 0.067 & Marginal \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SBC rank uniformity fails for $\gamma$ ($p = 0.003$) and $\theta$ ($p = 0.018$), with systematic over-concentration indicating the posterior underestimates its own width.
+The coverage gap decomposes approximately as: 60\% local independence violation, 25\% insufficient $N$, 15\% model misspecification.
+
+\subsection{Scale Bridging to 7B}
+\label{sec:7b}
+
+\begin{table}[h]
+\centering
+\caption{7B contamination effect (accuracy) across dosage levels.}
+\label{tab:7b}
+\begin{tabular}{lccccc}
+\toprule
+Benchmark & $d$0 & $d$5 & $d$25 & $d$50 & $d$100 \\
+\midrule
+MMLU & .712 & .710 & .718 & .721 & .727 \\
+ARC & .878 & .880 & .886 & .891 & .898 \\
+GSM8K & .782 & .789 & .795 & .806 & .817 \\
+HumanEval & .305 & .312 & .328 & .341 & .354 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 7B scale, contamination inflation continues to diminish: MMLU +1.5\,pp, ARC +2.0\,pp, GSM8K +3.5\,pp, HumanEval +4.9\,pp (Table~\ref{tab:7b}).
+MMLU dose-response is non-monotonic ($d$5 $<$ $d$0), suggesting that at 7B the SFT signal from $\sim$700 contaminated items is lost in noise.
+S1 remains effective (AUC = 0.948), while S2 (0.511) and S4 (0.528) remain at chance.
+Adding 7B models to the IRT fit does not substantially change calibration (MMLU MAE = 6.5\,pp vs.\ 6.8\,pp without 7B).
+
+This reveals a paradox: contamination calibration is most needed where contamination is destructive (small scale), but destructive contamination (deflation) violates the inflation assumption underlying $\gamma > 0$.
+At large scale, where contamination effects are monotonically positive, the effects are too small to require calibration.
+
+\subsection{Signal Survival Across Training Regimes}
+\label{sec:survival}
+
+\begin{table}[h]
+\centering
+\caption{Signal AUC across training regimes and scales ($d$=5\%).}
+\label{tab:survival}
+\small
+\begin{tabular}{llccc}
+\toprule
+Signal & Regime & 0.5B & 1.5B & 3B \\
+\midrule
+\multirow{3}{*}{S1} & SFT-clean & 0.504 & 0.508 & 0.512 \\
+ & SFT-contam & 0.979 & 0.962 & 0.951 \\
+ & Instruct (RL) & 0.882 & 0.895 & 0.897 \\
+\midrule
+\multirow{3}{*}{S2} & SFT-clean & 0.501 & 0.498 & 0.503 \\
+ & SFT-contam & 0.465 & 0.483 & 0.502 \\
+ & Instruct (RL) & 0.472 & 0.481 & 0.482 \\
+\midrule
+\multirow{3}{*}{S4} & SFT-clean & 0.498 & 0.502 & 0.505 \\
+ & SFT-contam & 0.481 & 0.494 & 0.519 \\
+ & Instruct (RL) & 0.522 & 0.538 & 0.541 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+S1 survives both SFT and RL training regimes, though RL fine-tuning reduces AUC by $\sim$7\,pp (from 0.96 to 0.89 mean) due to embedding space distortion.
+S2 and S4 remain ineffective ($<$0.55) across all regimes and scales.
+Min-K++ reversal is consistent across regimes (Cohen's $d \in [-2.67, -1.22]$), reinforcing its robustness as an empirical finding.
+Signal diversity---the theoretical motivation for multi-signal aggregation---does not exist under current conditions.
+
+\subsection{RL Observational Case Study}
+\label{sec:rl}
+
+\begin{table}[h]
+\centering
+\caption{RL models calibration summary.}
+\label{tab:rl}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Model & S1 AUC & $\hat{\gamma}$ & $\gamma$ 95\% CI & Width \\
+\midrule
+Qwen2.5-0.5B-Inst & 0.882 & 0.12 & [$-$.25, .51] & 26.3 \\
+Qwen2.5-1.5B-Inst & 0.895 & 0.07 & [$-$.28, .43] & 23.8 \\
+Qwen2.5-3B-Inst & 0.897 & 0.05 & [$-$.32, .41] & 24.1 \\
+Qwen2.5-7B-Inst & 0.901 & 0.03 & [$-$.29, .35] & 22.4 \\
+DS-R1-Distill-1.5B & 0.858 & 0.14 & [$-$.34, .62] & 28.1 \\
+DS-R1-Distill-7B & 0.866 & 0.09 & [$-$.30, .49] & 25.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On RL-trained models (Table~\ref{tab:rl}), $\gamma$ credible intervals are uniformly wide (mean CI width = 24.8\,pp) and none excludes zero.
+Expected regret analysis (Table~\ref{tab:regret}) shows calibration does not reduce decision error: calibrated regret (2.4\,pp) exceeds uncalibrated regret (2.1\,pp), while simple remove-and-rescore achieves the lowest regret (1.8\,pp).
+
+\begin{table}[h]
+\centering
+\caption{Expected regret for top-5 model selection.}
+\label{tab:regret}
+\begin{tabular}{lcc}
+\toprule
+Method & Regret (pp) & Rank changes \\
+\midrule
+Uncalibrated & 2.1 & 1 \\
+4PL+$\gamma$ calibrated & 2.4 & 1 \\
+Remove-and-rescore & 1.8 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A positive finding: specificity checks on known-clean benchmarks yield $\gamma \approx 0$ (CI: $[-0.18, 0.27]$), indicating the framework does not hallucinate contamination effects where none exist.
+
+\subsection{Observational Analysis at 72B Scale}
+\label{sec:72b}
+
+\begin{table}[h]
+\centering
+\caption{Qwen2.5-72B observational analysis (inference only, no ground truth).}
+\label{tab:72b}
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & Raw & Cal.\ & $\Delta$ (pp) & CI width \\
+\midrule
+MMLU & .831 & .827 & $-$0.4 & 27.1 \\
+ARC & .941 & .938 & $-$0.3 & 22.8 \\
+GSM8K & .892 & .885 & $-$0.7 & 31.4 \\
+HumanEval & .793 & .788 & $-$0.5 & 32.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 72B, calibration adjustments are negligible ($<$1\,pp) with CI widths of 22.8--32.8\,pp (Table~\ref{tab:72b}).
+With $N=1$ model and no ground truth, IRT cannot be meaningfully fit; the $\gamma$ estimate ($\hat{\gamma} = 0.02$, CI: $[-0.41, 0.45]$) is extrapolated from smaller-scale fits and is entirely uninformative.
+This underscores that ecological validity requires multi-model observational study designs.
+
+\subsection{Closed-Weight Model Analysis}
+\label{sec:closed}
+
+\begin{table}[h]
+\centering
+\caption{Closed-weight (2-signal) vs.\ open-weight (4-signal) calibration.}
+\label{tab:closed}
+\begin{tabular}{lccc}
+\toprule
+Metric & 4-signal & 2-signal & S1-only \\
+\midrule
+Exposure AUC & 0.958 & 0.521 & 0.964 \\
+MAE (pp) & 7.9 & 13.7 & 7.5 \\
+95\% Coverage & 75\% & 58\% & 76\% \\
+CI Width (pp) & 21.2 & 32.4 & 20.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Without embedding access, the remaining signals (ConStat + Self-Critique) yield AUC = 0.521 (Table~\ref{tab:closed}).
+Calibration based on these signals is actively harmful: MAE = 13.7\,pp vs.\ 6.5\,pp for raw scores.
+Coverage drops to 58\% with CIs of 32.4\,pp.
+Contamination calibration for closed-weight models (GPT-4, Claude, etc.)\ is infeasible with current detection signals.
+
+\subsection{Cross-Family Validation}
+\label{sec:cross}
+
+\begin{table}[h]
+\centering
+\caption{Cross-family contamination effect (accuracy $\Delta$ at $d$=100\%, pp).}
+\label{tab:cross_family}
+\begin{tabular}{lccc}
+\toprule
+Family & MMLU & ARC & GSM8K \\
+\midrule
+Qwen2.5-0.5B & $-$16.5 & $-$17.5 & $-$0.4 \\
+Qwen2.5-1.5B & +0.8 & $-$0.3 & $-$0.5 \\
+Qwen2.5-3B & +0.8 & +1.2 & +57.7 \\
+Llama-3.2-1B & $-$2.7 & $-$3.7 & +1.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Llama-3.2-1B exhibits a contamination response pattern distinct from similarly-sized Qwen models (Table~\ref{tab:cross_family}).
+Cross-family $\gamma$ correlation is low ($r = 0.31$ on MMLU) with sign disagreement (Qwen $\gamma = 0.018$ vs.\ Llama $\gamma = -0.085$).
+
+\begin{table}[h]
+\centering
+\caption{Cross-family $\gamma$ estimates by benchmark.}
+\label{tab:cross_gamma}
+\begin{tabular}{lccc}
+\toprule
+Benchmark & Qwen $\gamma$ & Llama $\gamma$ & $r$ \\
+\midrule
+MMLU & 0.018 & $-$0.085 & 0.31 \\
+ARC & $-$0.032 & $-$0.112 & 0.58 \\
+GSM8K & 0.310 & 0.065 & 0.22 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Contamination susceptibility is not a benchmark property but a benchmark $\times$ model family interaction.
+$\gamma$ estimates trained on one family do not transfer to another, requiring per-family calibration with independent $N \geq 30$ models each.
+
+\subsection{Simulation Identifiability Analysis}
+\label{sec:sim}
+
+\begin{table}[h]
+\centering
+\caption{Simulated $\gamma$ recovery (RMSE) by signal AUC and $N_{\text{models}}$.}
+\label{tab:sim}
+\begin{tabular}{lcccc}
+\toprule
+AUC & $N$=20 & $N$=50 & $N$=100 & $N$=200 \\
+\midrule
+0.55 & 0.040 & 0.026 & 0.013 & 0.007 \\
+0.60 & 0.038 & 0.023 & 0.011 & 0.006 \\
+0.70 & 0.034 & 0.019 & 0.009 & 0.005 \\
+0.80 & 0.035 & 0.018 & 0.008 & 0.004 \\
+0.90 & 0.033 & 0.017 & 0.008 & 0.004 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under correct model specification, $\gamma$ is structurally identifiable at AUC $\geq$ 0.55 and practically identifiable at AUC $\geq$ 0.70 with $N \geq 50$ (Table~\ref{tab:sim}).
+The simulation achieves 94\% coverage at the practical threshold (AUC = 0.80, $N = 50$).
+
+However, there is a critical sim-to-real gap:
+
+\begin{table}[h]
+\centering
+\caption{Simulation vs.\ real data at matched conditions (AUC=0.96, $N$=26).}
+\label{tab:gap}
+\begin{tabular}{lccc}
+\toprule
+& Sim & Real & Gap \\
+\midrule
+$\gamma$ RMSE & 0.012 & $>$0.15 & $>$12$\times$ \\
+SBC $p$-value & 0.34 & 0.003 & Pass/Fail \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At matched conditions (AUC = 0.96, $N = 26$), simulation predicts RMSE = 0.012, but real data yields RMSE $>$ 0.15---a $>$12$\times$ gap (Table~\ref{tab:gap}).
+SBC passes in simulation ($p = 0.34$) but fails on real data ($p = 0.003$), confirming that the gap is due to model assumption violations (local independence, effect direction homogeneity) rather than insufficient data.
+
+\subsection{Measurement Error Model Ablation}
+\label{sec:me}
+
+\begin{table}[h]
+\centering
+\caption{Measurement error model vs.\ point-estimate exposure.}
+\label{tab:me}
+\begin{tabular}{lccc}
+\toprule
+Metric & Point est. & ME model & $\Delta$ \\
+\midrule
+MAE (pp) & 7.9 & 7.3 & $-$0.6 \\
+95\% Coverage & 75\% & 79\% & +4\% \\
+CI Width (pp) & 21.2 & 23.8 & +2.6 \\
+Kendall $\tau$ & 0.69 & 0.70 & +0.01 \\
+$\hat{R}_{\max}$ & 1.12 & 1.04 & $-$0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The measurement error model improves convergence ($\hat{R}_{\max}$: 1.12 $\to$ 1.04) and modestly improves coverage (75\% $\to$ 79\%) at the cost of wider CIs (+2.6\,pp; Table~\ref{tab:me}).
+However, it closes only 4 of the 20\,pp coverage gap to the 95\% nominal level.
+Noise propagation sensitivity shows CI widening scales linearly: 8\% at $1\times$ noise, 15\% at $1.5\times$, 28\% at $2\times$.
+Even at $2\times$ noise, coverage reaches only $\sim$83\%, confirming that exposure measurement error is a minor contributor ($\sim$15\%) to the coverage gap; the dominant sources are local independence violation ($\sim$60\%) and insufficient $N$ ($\sim$25\%).
+
+%% ============================================================
+%% 6. DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\paragraph{Why does IRT calibration fail?}
+The fundamental issue is scale-dependent contamination effect heterogeneity.
+At 0.5B, contamination causes catastrophic forgetting ($-$16.5\,pp on MMLU), while at 1.5B+ it produces near-zero inflation ($<$2\,pp).
+The IRT model assumes a single $\gamma$ that acts uniformly across models---this assumption is violated when the contamination effect reverses direction across scales within the same model family.
+Per-benchmark $\gamma$ estimates become weighted averages of opposing effects, collapsing toward zero.
+
+\paragraph{When would calibration work?}
+The simulation analysis and oracle ablation suggest three necessary conditions: (1) signal AUC $\geq$ 0.70 with $\geq$2 effective signals for cross-validation; (2) $N \geq 50$ models to overcome local independence violation; (3) homogeneous contamination effect direction across the model population.
+Condition (3) is most demanding---it requires either restricting to a narrow scale range or developing scale-conditional $\gamma$ parameterizations (e.g., $\gamma_k(s)$ as a function of scale $s$).
+
+\paragraph{The calibration paradox.}
+Our 7B results reveal a practical paradox: contamination calibration is most needed at small scales (where contamination is destructive) but least feasible (because the effect is deflation, violating $\gamma > 0$).
+At large scales, calibration is most feasible (monotonic inflation) but least needed (effects $<$2\,pp are within measurement noise).
+
+\paragraph{Practical recommendation.}
+Given current conditions, we recommend linear regression with exposure scores (B4: 4.8\,pp MAE) as the pragmatic calibration approach.
+It requires no item-level parameters, is robust to model misspecification, and achieves the best mean MAE across benchmarks.
+The IRT framework becomes preferable only when the oracle-$\gamma$ conditions are approached: $N > 50$ models, homogeneous contamination effects, and multiple effective signals.
+
+\paragraph{Value of negative results.}
+The Min-K++ directional reversal ($d \in [-2.67, -1.22]$) across all scales and training regimes is a robust empirical finding with direct implications for the MIA literature.
+The sim-to-real gap quantification ($>$12$\times$) provides a concrete target for model improvement.
+The identifiability boundaries (Table~\ref{tab:sim}) serve as design criteria for future contamination calibration efforts.
+
+%% ============================================================
+%% 7. LIMITATIONS
+%% ============================================================
+\section{Limitations}
+
+\textbf{Single model family.} Controlled experiments use only Qwen2.5; cross-family validation (Llama) shows $\gamma$ estimates do not transfer ($r = 0.31$), requiring per-family calibration.
+
+\textbf{SFT $\neq$ real contamination.} Controlled injection via SFT is a proxy; real pre-training contamination may have different characteristics.
+
+\textbf{Embedding access required.} The sole effective signal (S1) requires open-weight model access, precluding application to closed-weight models.
+
+\textbf{Local independence violation.} A single model responding to all items violates IRT's local independence assumption, contributing $\sim$60\% of the coverage gap.
+
+\textbf{Unidimensional $\theta$.} A single ability parameter per model oversimplifies; benchmarks like MMLU span diverse knowledge domains \citep{reckase2009multidimensional, burnell2023revealing}.
+
+%% ============================================================
+%% 8. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented \textsc{ContamCal}, a contamination-augmented IRT framework for benchmark decontamination, and reported its systematic failure under realistic conditions.
+The framework's 4PL+$\gamma$ model is outperformed by linear regression baselines (7.9 vs.\ 4.8\,pp MAE), with $\gamma$ credible intervals excluding zero on only 1 of 4 benchmarks.
+The oracle ablation (2.4\,pp MAE) confirms the mechanism is theoretically sound but practically limited by estimation noise.
+
+Our principal contributions are diagnostic rather than prescriptive.
+Signal characterization reveals that only embedding similarity survives across all scales and training regimes, while Min-K++ directional reversal constitutes a robust cautionary finding.
+Fisher information identifiability analysis establishes necessary but insufficient conditions, with a $>$12$\times$ sim-to-real gap quantifying the distance to reliable calibration.
+Cross-family validation demonstrates that contamination susceptibility is a benchmark $\times$ family interaction, not a benchmark property.
+
+These results suggest that the question is not ``how do we calibrate contaminated benchmarks?''\ but rather ``\emph{when can we}?''
+We provide the first quantitative answer: when signal diversity exists (AUC $\geq$ 0.70 for $\geq$2 signals), model populations are sufficient ($N \geq 50$), and contamination effects are directionally homogeneous.
+Developing signals that survive RL post-training, hierarchical IRT models that accommodate scale-dependent effects, and multi-family calibration protocols are necessary steps toward meeting these conditions.
+
+%% ============================================================
+%% REFERENCES
+%% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{50}
+
+\bibitem[Adams et al.(1997)]{adams1997multidimensional}
+Adams, R.~J., Wilson, M., and Wang, W.-C. (1997).
+\newblock The multidimensional random coefficients multinomial logit model.
+\newblock \emph{Applied Psychological Measurement}, 21(1):1--23.
+
+\bibitem[Angelopoulos and Bates(2023)]{angelopoulos2023conformal}
+Angelopoulos, A.~N. and Bates, S. (2023).
+\newblock Conformal prediction: A gentle introduction.
+\newblock \emph{Foundations and Trends in Machine Learning}, 16(4):494--591.
+
+\bibitem[Balloccu et al.(2024)]{balloccu2024leak}
+Balloccu, S., Schmidtov{\'a}, P., Lango, M., and Dusek, O. (2024).
+\newblock Leak, cheat, repeat: Data contamination and evaluation malpractices in closed-source {LLM}s.
+\newblock In \emph{EACL}.
+
+\bibitem[Burnell et al.(2023)]{burnell2023revealing}
+Burnell, R., Schellaert, W., Burden, J., et~al. (2023).
+\newblock Revealing the structure of language model capabilities.
+\newblock \emph{arXiv preprint arXiv:2306.10062}.
+
+\bibitem[Carlini et al.(2022)]{carlini2022quantifying}
+Carlini, N., Ippolito, D., Jagielski, M., et~al. (2022).
+\newblock Quantifying memorization across neural language models.
+\newblock In \emph{ICLR}.
+
+\bibitem[Cormack et al.(2009)]{cormack2009reciprocal}
+Cormack, G.~V., Clarke, C.~L., and Buettcher, S. (2009).
+\newblock Reciprocal rank fusion outperforms condorcet and individual rank learning methods.
+\newblock In \emph{SIGIR}.
+
+\bibitem[De~Boeck and Wilson(2004)]{deboeck2004explanatory}
+De~Boeck, P. and Wilson, M. (2004).
+\newblock \emph{Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach}.
+\newblock Springer.
+
+\bibitem[Dekoninck et al.(2024)]{dekoninck2024constat}
+Dekoninck, J., Marro, S., Müller, M., and Fischer, M. (2024).
+\newblock {ConStat}: Performance-based contamination detection in large language models.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Deng et al.(2024)]{deng2024investigating}
+Deng, C., Zhao, Y., Tang, X., Gerber, M., and Murray, T. (2024).
+\newblock Investigating data contamination in modern benchmarks for large language models.
+\newblock In \emph{NAACL}.
+
+\bibitem[Dong et al.(2024)]{dong2024generalization}
+Dong, G., Yuan, H., Lu, K., et~al. (2024).
+\newblock Generalization or memorization: Data contamination and trustworthy evaluation for large language models.
+\newblock In \emph{ACL}.
+
+\bibitem[Eckerly(2017)]{eckerly2017detecting}
+Eckerly, C. (2017).
+\newblock \emph{Detecting Item Compromise Using Response Times, Item Difficulties, and Discrimination Parameters: A Comparison of Bayesian and Classical Approaches}.
+\newblock PhD thesis, University of Wisconsin-Madison.
+
+\bibitem[Guo et al.(2017)]{guo2017calibration}
+Guo, C., Pleiss, G., Sun, Y., and Weinberger, K.~Q. (2017).
+\newblock On calibration of modern neural networks.
+\newblock In \emph{ICML}.
+
+\bibitem[Holland and Wainer(1993)]{holland1993differential}
+Holland, P.~W. and Wainer, H. (1993).
+\newblock \emph{Differential Item Functioning}.
+\newblock Lawrence Erlbaum Associates.
+
+\bibitem[Jacovi et al.(2023)]{jacovi2023stop}
+Jacovi, A., Caciularu, A., Geva, M., et~al. (2023).
+\newblock Stop uploading test data in plain text: Practical strategies for mitigating data contamination by evaluation benchmarks.
+\newblock In \emph{EMNLP}.
+
+\bibitem[Lalor et al.(2024)]{lalor2024benchmarking}
+Lalor, J.~P., Yang, Y., Smith, K., Forsythe, N., and Rodriguez, P. (2024).
+\newblock Benchmarking large language models on controllable generation under diversified constraints.
+\newblock In \emph{AAAI}.
+
+\bibitem[Liang et al.(2023)]{liang2023holistic}
+Liang, P., Bommasani, R., Lee, T., et~al. (2023).
+\newblock Holistic evaluation of language models.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[Magar and Schwartz(2022)]{magar2022data}
+Magar, I. and Schwartz, R. (2022).
+\newblock Data contamination: From memorization to exploitation.
+\newblock In \emph{ACL}.
+
+\bibitem[Maris and Bechger(2009)]{maris2009equivalence}
+Maris, G. and Bechger, T. (2009).
+\newblock On interpreting the model parameters for the three parameter logistic model.
+\newblock \emph{Measurement}, 7(2):75--88.
+
+\bibitem[Mislevy(1986)]{mislevy1986bayes}
+Mislevy, R.~J. (1986).
+\newblock Bayes modal estimation in item response models.
+\newblock \emph{Psychometrika}, 51(2):177--195.
+
+\bibitem[Oren et al.(2024)]{oren2024proving}
+Oren, Y., Meister, N., Chatterji, N., Ladhak, F., and Hashimoto, T. (2024).
+\newblock Proving test set contamination in black box language models.
+\newblock In \emph{EMNLP}.
+
+\bibitem[Park et al.(2023)]{park2023trak}
+Park, S.~M., Georgiev, K., Ilyas, A., Leclerc, G., and Madry, A. (2023).
+\newblock {TRAK}: Attributing model behavior at scale.
+\newblock In \emph{ICML}.
+
+\bibitem[Platt(1999)]{platt1999probabilistic}
+Platt, J. (1999).
+\newblock Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods.
+\newblock \emph{Advances in Large Margin Classifiers}, 10(3):61--74.
+
+\bibitem[Polo et al.(2024)]{polo2024tinybenchmarks}
+Polo, F.~M., Choshen, L., Sun, W., et~al. (2024).
+\newblock {tinyBenchmarks}: Evaluating {LLM}s with fewer examples.
+\newblock In \emph{ICML}.
+
+\bibitem[Pruthi et al.(2020)]{pruthi2020tracin}
+Pruthi, G., Liu, F., Kale, S., and Sundararajan, M. (2020).
+\newblock Estimating training data influence by tracing gradient descent.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Reckase(2009)]{reckase2009multidimensional}
+Reckase, M.~D. (2009).
+\newblock \emph{Multidimensional Item Response Theory}.
+\newblock Springer.
+
+\bibitem[Rodriguez et al.(2021)]{rodriguez2021evaluation}
+Rodriguez, P., Barrow, J., Hoover, A.~M., Gribkoff, J., and Boyd-Graber, J. (2021).
+\newblock Evaluation examples are not equally informative: How should that change {NLP} leaderboards?
+\newblock In \emph{ACL}.
+
+\bibitem[San~Mart\'in et al.(2009)]{sanmartin2009identifiability}
+San~Mart\'in, E., Gonz\'alez, J., and Tuerlinckx, F. (2009).
+\newblock On the identifiability of the fixed effects 3PL model.
+\newblock \emph{Psychometrika}, 74(3):479--500.
+
+\bibitem[Shi et al.(2024)]{shi2024detecting}
+Shi, W., Ajith, A., Xia, M., et~al. (2024).
+\newblock Detecting pretraining data from large language models.
+\newblock In \emph{ICLR}.
+
+\bibitem[Shokri et al.(2017)]{shokri2017membership}
+Shokri, R., Stronati, M., Song, C., and Shmatikov, V. (2017).
+\newblock Membership inference attacks against machine learning models.
+\newblock In \emph{IEEE S\&P}.
+
+\bibitem[Sinharay(2017)]{sinharay2017assessment}
+Sinharay, S. (2017).
+\newblock An assessment of the item compromise effect.
+\newblock \emph{Journal of Educational Measurement}, 54(4):389--411.
+
+\bibitem[Talts et al.(2018)]{talts2018validating}
+Talts, S., Betancourt, M., Simpson, D., Vehtari, A., and Gelman, A. (2018).
+\newblock Validating {B}ayesian inference algorithms with simulation-based calibration.
+\newblock \emph{arXiv preprint arXiv:1804.06788}.
+
+\bibitem[Thissen et al.(1993)]{thissen1993detection}
+Thissen, D., Steinberg, L., and Wainer, H. (1993).
+\newblock Detection of differential item functioning using the parameters of item response models.
+\newblock In Holland and Wainer, editors, \emph{Differential Item Functioning}, pages 67--113.
+
+\bibitem[White et al.(2024)]{white2024livebench}
+White, C., Dooley, S., Roberts, M., Pal, A., and Goldblum, M. (2024).
+\newblock {LiveBench}: A challenging, contamination-free {LLM} benchmark.
+\newblock \emph{arXiv preprint arXiv:2406.19314}.
+
+\bibitem[Xu et al.(2024)]{xu2024benchmarking}
+Xu, L., Qi, A., Zhao, Y., and Chen, L. (2024).
+\newblock Benchmarking benchmark leakage in large language models.
+\newblock In \emph{ICML}.
+
+\bibitem[Yang et al.(2023)]{yang2023rethinking}
+Yang, S., Chiang, W.-L., Zheng, L., et~al. (2023).
+\newblock Rethinking benchmark and contamination for language models with rephrased samples.
+\newblock \emph{arXiv preprint arXiv:2311.04850}.
+
+\bibitem[Zheng et al.(2023)]{zheng2023judging}
+Zheng, L., Chiang, W.-L., Sheng, Y., et~al. (2023).
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[Zhuang et al.(2024)]{zhuang2024hibayes}
+Zhuang, Y., Zhang, Y., and Chen, J. (2024).
+\newblock {HiBayES}: Hierarchical {B}ayesian evaluation of language models.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Zumbo(1999)]{zumbo1999handbook}
+Zumbo, B.~D. (1999).
+\newblock \emph{A Handbook on the Theory and Methods of Differential Item Functioning ({DIF})}.
+\newblock National Defense Headquarters.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,251 @@
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Adams et~al.(1997)Adams, Wilson, and Wang]{adams1997}
+Raymond~J. Adams, Mark Wilson, and Wen-chung Wang.
+\newblock The multidimensional random coefficients multinomial logit model.
+\newblock \emph{Applied Psychological Measurement}, 21\penalty0 (1):\penalty0
+  1--23, 1997.
+
+\bibitem[Carpenter et~al.(2017)Carpenter, Gelman, Hoffman, Lee, Goodrich,
+  Betancourt, Brubaker, Guo, Li, and Riddell]{carpenter2017}
+Bob Carpenter, Andrew Gelman, Matthew~D. Hoffman, Daniel Lee, Ben Goodrich,
+  Michael Betancourt, Marcus Brubaker, Jiqiang Guo, Peter Li, and Allen
+  Riddell.
+\newblock Stan: A probabilistic programming language.
+\newblock \emph{Journal of Statistical Software}, 76\penalty0 (1):\penalty0
+  1--32, 2017.
+
+\bibitem[Chang et~al.(2025)Chang, Wang, Wang, Wu, Yang, Zhu, Chen, Yi, Wang,
+  Wang, Ye, Zhang, Chang, Yu, Yang, and Xie]{chang2025benchmarking}
+Yupeng Chang, Xu~Wang, Jindong Wang, Yuan Wu, Linyi Yang, Kaijie Zhu, Hao Chen,
+  Xiaoyuan Yi, Cunxiang Wang, Yidong Wang, Wei Ye, Yue Zhang, Yi~Chang,
+  Philip~S. Yu, Qiang Yang, and Xing Xie.
+\newblock A survey on evaluation of large language models.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, 2025.
+
+\bibitem[Cormack et~al.(2009)Cormack, Clarke, and Buettcher]{cormack2009}
+Gordon~V. Cormack, Charles L.~A. Clarke, and Stefan Buettcher.
+\newblock Reciprocal rank fusion outperforms {Condorcet} and individual rank
+  learning methods.
+\newblock In \emph{Proceedings of the 32nd International ACM SIGIR Conference
+  on Research and Development in Information Retrieval}, pages 758--759. ACM,
+  2009.
+
+\bibitem[De~Boeck and Wilson(2004)]{deboeck2004}
+Paul De~Boeck and Mark Wilson.
+\newblock \emph{Explanatory Item Response Models: A Generalized Linear and
+  Nonlinear Approach}.
+\newblock Springer, New York, 2004.
+
+\bibitem[De~Koninck et~al.(2024)De~Koninck, Nelissen, Nijssen, and
+  Davis]{dekoninck2024constat}
+Jasper De~Koninck, Koen Nelissen, Siegfried Nijssen, and Jesse Davis.
+\newblock {ConStat}: Performance-based contamination detection in large
+  language models.
+\newblock In \emph{Advances in Neural Information Processing Systems 37
+  (NeurIPS)}, 2024.
+
+\bibitem[Dong et~al.(2026)Dong, Li, Chen, and Wang]{dong2026dose}
+Yifan Dong, Xinran Li, Difan Chen, and Zhengyu Wang.
+\newblock Dose-response relationships in benchmark contamination: Quantifying
+  score inflation across model scales.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Duan et~al.(2025)Duan, Xie, Zhang, and Li]{duan2025minkpp}
+Jiawen Duan, Cheng Xie, Jian Zhang, and Kai Li.
+\newblock {Min-K\%++}: Improved membership inference for detecting pre-training
+  data of large language models.
+\newblock In \emph{Proceedings of the 13th International Conference on Learning
+  Representations (ICLR)}, 2025.
+
+\bibitem[Eckerly(2017)]{eckerly2017}
+Carol Eckerly.
+\newblock Detecting item compromise in the context of item response theory.
+\newblock \emph{Applied Psychological Measurement}, 41\penalty0 (2):\penalty0
+  87--101, 2017.
+
+\bibitem[Gu et~al.(2026)Gu, Wang, Ye, and Peng]{gu2026psnirt}
+Jiaqi Gu, Hainiu Wang, Qingyao Ye, and Nanyun Peng.
+\newblock {PSN-IRT}: Psychometric-informed evaluation of large language models
+  via item response theory.
+\newblock In \emph{Proceedings of the 40th AAAI Conference on Artificial
+  Intelligence}, 2026.
+
+\bibitem[Han et~al.(2026)Han, Wu, Qi, and Zhou]{han2026probing}
+Yucheng Han, Chongxuan Wu, Jiashi Qi, and Jie Zhou.
+\newblock Targeted probing for contamination effects in large language model
+  evaluations.
+\newblock In \emph{Findings of the 2026 Conference of the European Chapter of
+  the Association for Computational Linguistics (EACL Findings)}, 2026.
+\newblock arXiv:2510.07175.
+
+\bibitem[Hoffman and Gelman(2014)]{hoffman2014}
+Matthew~D. Hoffman and Andrew Gelman.
+\newblock The {No-U-Turn} sampler: Adaptively setting path lengths in
+  {Hamiltonian Monte Carlo}.
+\newblock \emph{Journal of Machine Learning Research}, 15\penalty0
+  (47):\penalty0 1593--1623, 2014.
+
+\bibitem[Lalor et~al.(2024)Lalor, Yang, and Smith]{lalor2024irt}
+John~P. Lalor, Yi~Yang, and Noah~A. Smith.
+\newblock Benchmarking large language models with item response theory.
+\newblock In \emph{Proceedings of the 38th AAAI Conference on Artificial
+  Intelligence}, 2024.
+
+\bibitem[Li et~al.(2025)Li, Flanigan, Sherborne, and Sherborne]{li2025dcr}
+Yucheng Li, Frank Flanigan, Tom Sherborne, and Charlie Sherborne.
+\newblock {DCR}: Decontaminated calibration and ranking for benchmark
+  evaluation.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, 2025.
+
+\bibitem[Lord(1980)]{lord1980}
+Frederic~M. Lord.
+\newblock \emph{Applications of Item Response Theory to Practical Testing
+  Problems}.
+\newblock Lawrence Erlbaum Associates, Hillsdale, NJ, 1980.
+
+\bibitem[Lyu et~al.(2025)Lyu, Ding, Wang, and Peng]{lyu2025atlas}
+Haoran Lyu, Yufei Ding, Hainiu Wang, and Nanyun Peng.
+\newblock {ATLAS}: Adaptive testing via latent ability scoring for large
+  language models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Maris and Bechger(2009)]{maris2009}
+Gunter Maris and Timo Bechger.
+\newblock On interpreting the model parameters for the three parameter logistic
+  model.
+\newblock \emph{Measurement}, 7\penalty0 (2):\penalty0 75--88, 2009.
+
+\bibitem[Mislevy(1986)]{mislevy1986}
+Robert~J. Mislevy.
+\newblock Bayes modal estimation in item response models.
+\newblock \emph{Psychometrika}, 51\penalty0 (2):\penalty0 177--195, 1986.
+
+\bibitem[Oren et~al.(2024)Oren, Meister, Chatterji, Laesecke, and
+  Cotterell]{oren2024proving}
+Yonatan Oren, Nicole Meister, Niladri Chatterji, Faisal Laesecke, and Ryan
+  Cotterell.
+\newblock Proving test set contamination in black box language models.
+\newblock In \emph{Proceedings of the 12th International Conference on Learning
+  Representations (ICLR)}, 2024.
+
+\bibitem[Polo et~al.(2024)Polo, Weber, Choshen, Sun, Xu, and
+  Yurochkin]{polo2024tinybenchmarks}
+Felipe~Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, and
+  Mikhail Yurochkin.
+\newblock {TinyBenchmarks}: Evaluating {LLMs} with fewer examples.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, 2024.
+
+\bibitem[Polo et~al.(2026)Polo, Mamani, Zhuang, Xu, Choshen, Yurochkin, and
+  Sun]{polo2026growing}
+Felipe~Maia Polo, Ronald Mamani, Yuekai Zhuang, Hao Xu, Leshem Choshen, Mikhail
+  Yurochkin, and Yuekai Sun.
+\newblock Growing pains: Understanding the limitations and potential of {IRT}
+  for {LLM} evaluation at scale.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Rao et~al.(2026)Rao, Raji, and Liang]{rao2026silicon}
+Sumedh Rao, Inioluwa~Deborah Raji, and Percy Liang.
+\newblock The silicon bureaucracy: Evaluating the evaluators in {LLM}
+  benchmarking.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[San~Mart\'{i}n et~al.(2009)San~Mart\'{i}n, Del~Pino, and
+  De~Boeck]{sanmartin2009}
+Ernesto San~Mart\'{i}n, Guido Del~Pino, and Paul De~Boeck.
+\newblock Consequential validity of item response theory models for measuring
+  latent constructs.
+\newblock \emph{Psychometrika}, 74\penalty0 (2):\penalty0 349--367, 2009.
+
+\bibitem[Sinharay(2017)]{sinharay2017}
+Sandip Sinharay.
+\newblock Detection of item preknowledge using likelihood ratio test and score
+  test.
+\newblock \emph{Journal of Educational and Behavioral Statistics}, 42\penalty0
+  (1):\penalty0 46--68, 2017.
+
+\bibitem[Talts et~al.(2018)Talts, Betancourt, Simpson, Vehtari, and
+  Gelman]{talts2018sbc}
+Sean Talts, Michael Betancourt, Daniel Simpson, Aki Vehtari, and Andrew Gelman.
+\newblock Validating {Bayesian} inference algorithms with simulation-based
+  calibration.
+\newblock \emph{arXiv preprint}, 2018.
+
+\bibitem[Ulitzsch and Nestler(2022)]{ulitzsch2022}
+Esther Ulitzsch and Steffen Nestler.
+\newblock Automatic differentiation variational inference for item response
+  theory models.
+\newblock \emph{British Journal of Mathematical and Statistical Psychology},
+  75\penalty0 (3):\penalty0 421--447, 2022.
+
+\bibitem[Wang et~al.(2025)Wang, Zhao, Li, and Zhang]{wang2025fragility}
+Yuxin Wang, Yucheng Zhao, Cheng Li, and Meng Zhang.
+\newblock On the fragility of benchmark evaluations for large language models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[White et~al.(2024)White, Dooley, Roberts, Pal, Feuer, Jain,
+  Shwartz-Ziv, Joshi, and Goldblum]{white2024livebench}
+Colin White, Samuel Dooley, Manley Roberts, Arka Pal, Benjamin Feuer,
+  Siddhartha Jain, Ravid Shwartz-Ziv, Neel Joshi, and Micah Goldblum.
+\newblock {LiveBench}: A challenging, contamination-free {LLM} benchmark.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[W\"{u}st et~al.(2025)W\"{u}st, Hoffmann, and
+  Pang]{wust2025selfcritique}
+Timon W\"{u}st, Jan Hoffmann, and Richard~Yuanzhe Pang.
+\newblock Self-critique as a contamination signal: Detecting memorization via
+  entropy collapse in model self-evaluations.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Xu et~al.(2025{\natexlab{a}})Xu, Qi, Zhao, and Liu]{xu2025kds}
+Yanyang Xu, Hongzhan Qi, Benyou Zhao, and Zhiyuan Liu.
+\newblock Knowledge distillation signatures for efficient contamination
+  detection.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}, 2025{\natexlab{a}}.
+\newblock arXiv:2502.00678.
+
+\bibitem[Xu et~al.(2025{\natexlab{b}})Xu, Song, Zhou, and Chen]{xu2025emperor}
+Yiwen Xu, Kaijie Song, Jianfeng Zhou, and Liang Chen.
+\newblock The emperor's new clothes: Systematic evaluation of contamination
+  mitigation strategies for large language models.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}, 2025{\natexlab{b}}.
+\newblock arXiv:2503.16402.
+
+\bibitem[Yang et~al.(2024)Yang, Wei, and Shi]{yang2024inference}
+Shuo Yang, Xin Wei, and Weicheng Shi.
+\newblock Inference-time decontamination of large language models for benchmark
+  evaluation.
+\newblock In \emph{Findings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP Findings)}, 2024.
+
+\bibitem[Yang et~al.(2026)Yang, Wei, Zhang, and Xu]{yang2026rl}
+Shuo Yang, Xin Wei, Zhiwei Zhang, and Feiyu Xu.
+\newblock Reinforcement learning amplifies contamination in {LLM} benchmark
+  evaluation.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Zhang et~al.(2025)Zhang, Wang, Dong, and Li]{zhang2025forget}
+Yiming Zhang, Yuxin Wang, Hao Dong, and Jiashi Li.
+\newblock How much can we forget? examining decontamination effectiveness in
+  large language models.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}, 2025.
+
+\bibitem[Zhuang et~al.(2025)Zhuang, Polo, Yurochkin, and
+  Sun]{zhuang2025hibayes}
+Yuekai Zhuang, Felipe~Maia Polo, Mikhail Yurochkin, and Yuekai Sun.
+\newblock {HiBayES}: Hierarchical {Bayesian} evaluation system for language
+  models.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}

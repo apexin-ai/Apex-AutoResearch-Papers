@@ -1,0 +1,79 @@
+{
+  "family": "Qwen2.5-7B",
+  "n_seeds": 3,
+  "seeds": [
+    "s0",
+    "s42",
+    "s123"
+  ],
+  "method": "BCa bootstrap",
+  "B": 10000,
+  "alpha": 0.05,
+  "random_seed": 42,
+  "data_sources": {
+    "s0": {
+      "mmlu": "eval_qwen7b_mmlu_arc_s0 (registry, success)",
+      "arc": "eval_qwen7b_mmlu_arc_s0 (registry, success)"
+    },
+    "s42": {
+      "mmlu": "eval_qwen7b_s42_cqa1_v2 (MMLU portion valid; decisions.yaml D162 confirms \u0394=-1.82pp)",
+      "arc": "eval_qwen7b_arc_s42 (registry, success)"
+    },
+    "s123": {
+      "mmlu": "eval_qwen7b_s123_cqa1_v2 (registry, success)",
+      "arc": "eval_qwen7b_s123_cqa1_v2 (registry, success)"
+    }
+  },
+  "mmlu": {
+    "seeds": {
+      "s0": -0.0103,
+      "s42": -0.0182,
+      "s123": 0.0
+    },
+    "mean_delta": -0.0095,
+    "mean_delta_pp": -0.95,
+    "bca_ci_95": [
+      -0.0182,
+      -0.003433
+    ],
+    "bca_ci_95_pp": [
+      -1.82,
+      -0.34
+    ],
+    "boot_se_pp": 0.43,
+    "z0_bias": -0.2275,
+    "acceleration": 0.0154,
+    "ci_contains_zero": false,
+    "p_two_sided": 0.07,
+    "n_seeds": 3,
+    "B_resamples": 10000,
+    "family_pattern": "V-recovery/Collapse (significant negative)"
+  },
+  "arc": {
+    "seeds": {
+      "s0": -0.0188,
+      "s42": -0.029,
+      "s123": -0.0247
+    },
+    "mean_delta": -0.02416666666666667,
+    "mean_delta_pp": -2.42,
+    "bca_ci_95": [
+      -0.029,
+      -0.020767
+    ],
+    "bca_ci_95_pp": [
+      -2.9,
+      -2.08
+    ],
+    "boot_se_pp": 0.24,
+    "z0_bias": -0.2214,
+    "acceleration": 0.0182,
+    "ci_contains_zero": false,
+    "p_two_sided": 0.0,
+    "n_seeds": 3,
+    "B_resamples": 10000,
+    "family_pattern": "V-recovery/Collapse (significant negative)"
+  },
+  "direction_consistent": true,
+  "generated": "2026-05-21"
+}

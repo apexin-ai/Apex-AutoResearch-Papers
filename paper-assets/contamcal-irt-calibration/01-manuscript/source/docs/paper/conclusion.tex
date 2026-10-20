@@ -1,0 +1,9 @@
+\section{Discussion and Conclusion}\label{sec:conclusion}
+
+Controlled SFT injection reveals a spectrum of dose-response patterns, not uniform inflation. Two replicate across independent families (Benefit, Immune); two are Qwen2.5-specific and await replication. DiD finds no item-specific memorization (MDES 1.25--2.05pp); direction reproduces across seeds but magnitude is seed-sensitive.
+
+\paragraph{Contamination vs.\ additional training.}
+SFT-stage leakage is increasingly relevant as practitioners fine-tune on data containing benchmark items \citep{balloccu2024leak}. Our injection confounds content, volume ($+$33\% at d100), and LoRA updates; a volume-matched control attributes ${\sim}$45\% of Benefit to quantity. Combined with null item-specific memorization (\S\ref{sec:memorization_test}), this suggests contamination operates through global capability modulation rather than item-level lookup.
+
+\paragraph{Implications for practice.}
+Multi-seed dose-response profiling at $\geq$3 dosages can detect vulnerability; domain $\gamma_d$ heterogeneity (up to 1.8$\times$) motivates domain-level controls, and ContamCal can flag anomalous profiles given $J \geq 50$. Cross-benchmark transfer patterns (\S\ref{sec:gsm8k_transfer}) suggest that contamination effects should be assessed per benchmark rather than assumed transferable: a model harmed on MMLU may benefit on GSM8K, and vice versa.

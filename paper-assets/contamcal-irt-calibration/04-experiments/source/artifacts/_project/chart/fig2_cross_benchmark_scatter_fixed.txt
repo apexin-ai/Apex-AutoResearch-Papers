@@ -1,0 +1,3 @@
+Remote path: westd-29999:/root/contamcal-irt-calibration/figures/fig2_cross_benchmark_scatter.pdf (.png)
+Script: westd-29999:/root/contamcal-irt-calibration/figures/gen_fig1_fig2.py
+Labels: Phi-4=Immune, Qwen-14B=Collapse, Qwen-7B=V-recovery, Gemma-2=Benefit, OLMo-2=Benefit†

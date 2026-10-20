@@ -1,0 +1,15 @@
+paper_key: "habba_2025_growing_pains"
+title: "Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [full benchmark evaluation, random item selection]
+  metrics:
+    - {name: "prediction error (pp)", direction: "lower_better"}
+    - {name: "Spearman ρ", direction: "higher_better"}
+  datasets:
+    - {name: "400+ LLMs", size: "multiple benchmarks"}
+  ablation_dimensions: [anchor set size, MIRT dimensionality]
+  training_recipe: {optimizer: "MIRT estimation", lr: "N/A", hardware: "N/A"}
+  method_family: "MIRT with fixed parameter calibration"

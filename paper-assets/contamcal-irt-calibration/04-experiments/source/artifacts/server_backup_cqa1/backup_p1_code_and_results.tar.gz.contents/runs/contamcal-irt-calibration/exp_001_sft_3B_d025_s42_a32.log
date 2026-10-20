@@ -1,0 +1,56 @@
+2026-05-16 00:15:19,697 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B
+2026-05-16 00:15:19,943 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 65.80it/s]
+2026-05-16 00:15:20,125 [INFO] LoRA config: r=16, alpha=32, targets={'down_proj', 'o_proj', 'gate_proj', 'v_proj', 'k_proj', 'q_proj', 'up_proj'}
+2026-05-16 00:15:20,125 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl
+2026-05-16 00:15:22,600 [INFO] Training samples: 54133
+2026-05-16 00:15:24,484 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 320, in <module>
+    lib = get_native_library()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 298, in get_native_library
+    dll = ct.cdll.LoadLibrary(str(binary_path))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 460, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/root/contamcal-irt-calibration/exp001/train_sft.py", line 223, in <module>
+    main()
+  File "/root/contamcal-irt-calibration/exp001/train_sft.py", line 175, in main
+    trainer = SFTTrainer(
+              ^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/trl/trainer/sft_trainer.py", line 1286, in __init__
+    super().__init__(
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 612, in __init__
+    self._move_model_to_device(model, args.device)
+  File "/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py", line 910, in _move_model_to_device
+    model = model.to(device)
+            ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1384, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  [Previous line repeated 5 more times]
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 965, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1370, in convert
+    return t.to(
+           ^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 44.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 43.38 MiB is free. Process 589763 has 17.21 GiB memory in use. Including non-PyTorch memory, this process has 6.25 GiB memory in use. Of the allocated memory 5.77 GiB is allocated by PyTorch, and 143.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+EXIT_CODE=1

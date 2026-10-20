@@ -1,0 +1,25 @@
+{
+  "experiment": "exp005_diag_nmodels50",
+  "model": "simple",
+  "sigma_e": 0.1,
+  "n_models": 50,
+  "n_items": 300,
+  "true_gamma": 0.5,
+  "seed": 42,
+  "gamma_mean": 0.618,
+  "gamma_sd": 0.1064,
+  "gamma_95ci": [
+    0.4135,
+    0.8319
+  ],
+  "gamma_rel_bias": 0.236,
+  "ci_covers_true": true,
+  "max_rhat": 1.0075,
+  "min_ess": 1622.0,
+  "cal_ci_width_mean": 0.1002,
+  "fit_time_sec": 2776.1,
+  "divergent_info": [
+    "Checking sampler transitions for divergences.",
+    "No divergent transitions found."
+  ]
+}

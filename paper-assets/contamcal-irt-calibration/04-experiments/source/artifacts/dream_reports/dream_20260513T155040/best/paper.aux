@@ -1,0 +1,93 @@
+\relax 
+\citation{yang2023rethinking,oren2024proving}
+\citation{dong2024emperor}
+\citation{polo2024tinybenchmarks,raju2024growing,bai2024atlas}
+\citation{eckerly2017detecting,sinharay2017detection}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problem Formulation}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Stage 1: RRF Exposure Estimation}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Embedding Retrieval.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Min-K\%++.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ConStat.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Critique.}{2}{}\protected@file@percent }
+\citation{dong2024emperor}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Stage 2: Contamination-Augmented 4PL IRT}{3}{}\protected@file@percent }
+\newlabel{eq:4plg}{{2}{3}{}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bayesian Estimation.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Noise Propagation.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Regime-Conditional Modeling}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Controlled SFT Injection}{3}{}\protected@file@percent }
+\newlabel{sec:sft-injection}{{3.1}{3}{}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Baselines}{3}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Accuracy inflation (pp) by contamination dosage on MMLU. Cross-benchmark results at 25\% dosage shown in rightmost columns. All values averaged across three model scales.}}{4}{}\protected@file@percent }
+\newlabel{tab:injection}{{1}{4}{}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Detection signal AUC (mean across model scales) at SFT-contaminated dosage levels, and the RL regime.}}{4}{}\protected@file@percent }
+\newlabel{tab:signals}{{2}{4}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Metrics}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Contamination Injection Ground Truth}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Detection Signal Quality}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces RRF aggregation ablation. Best single = embedding retrieval. $\dagger $2-signal mode uses ConStat + Self-Critique only.}}{5}{}\protected@file@percent }
+\newlabel{tab:rrf}{{3}{5}{}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}RRF Fusion Ablation}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Main Calibration Results}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Noise Propagation Analysis}{5}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Main calibration results: ContamCal vs.\ 5 baselines. MAE in percentage points (lower is better). Coverage and CI width for 95\% credible intervals. $\tau $: Kendall's rank correlation with ground truth. Best results in \textbf  {bold}.}}{6}{}\protected@file@percent }
+\newlabel{tab:main}{{4}{6}{}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-benchmark detailed metrics for ContamCal.}}{6}{}\protected@file@percent }
+\newlabel{tab:perbench}{{5}{6}{}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Scale Bridging: 7B and 72B}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{7B Controlled Validation.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{72B Observational Analysis.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Signal Survival Across Training Regimes}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Noise propagation: impact of exposure score noise on calibration. $\gamma $ bias is relative.}}{7}{}\protected@file@percent }
+\newlabel{tab:noise}{{6}{7}{}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Scale bridging results. 7B: controlled SFT injection. 72B: observational (inference-only).}}{7}{}\protected@file@percent }
+\newlabel{tab:scale}{{7}{7}{}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}RL Case Study: Wide CIs as the Correct Answer}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Prior Sensitivity Analysis}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Few-Examinee Regime}{7}{}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{polo2024tinybenchmarks}
+\citation{raju2024growing}
+\citation{bai2024atlas}
+\citation{dong2024emperor}
+\citation{eckerly2017detecting}
+\citation{sinharay2017detection}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Signal $\times $ regime AUC heatmap. Bold: best signal per regime.}}{8}{}\protected@file@percent }
+\newlabel{tab:signal-regime}{{8}{8}{}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces RL case study: expected regret for top-5 model selection. Lower regret is better.}}{8}{}\protected@file@percent }
+\newlabel{tab:rl}{{9}{8}{}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Closed-Weight 2-Signal Mode}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Mitigation.}{8}{}\protected@file@percent }
+\bibdata{references}
+\bibcite{bai2024atlas}{{1}{2024}{{Bai et~al.}}{{}}}
+\bibcite{dekoninck2024constat}{{2}{2024}{{De~Koninck et~al.}}{{De~Koninck, Mertens, Perini, and Davis}}}
+\bibcite{dong2024emperor}{{3}{2025}{{Dong et~al.}}{{Dong, Zhu, Li, et~al.}}}
+\bibcite{eckerly2017detecting}{{4}{2017}{{Eckerly}}{{}}}
+\bibcite{oren2024proving}{{5}{2024}{{Oren et~al.}}{{Oren, Meister, Chatterji, Ladhak, and Hashimoto}}}
+\bibcite{polo2024tinybenchmarks}{{6}{2024}{{Polo et~al.}}{{Polo, Weber, Choshen, Sun, Xu, and Yurochkin}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces CI width comparison: SFT vs.\ RL regime.}}{9}{}\protected@file@percent }
+\newlabel{tab:cicomp}{{10}{9}{}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Prior sensitivity for $\gamma \sim \mathcal  {N}(0,\sigma _0)$.}}{9}{}\protected@file@percent }
+\newlabel{tab:prior}{{11}{9}{}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Item Compromise IRT.}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{}\protected@file@percent }
+\bibcite{raju2024growing}{{7}{2024}{{Raju and Byrd}}{{}}}
+\bibcite{shi2024detecting}{{8}{2024}{{Shi et~al.}}{{Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and Zettlemoyer}}}
+\bibcite{sinharay2017detection}{{9}{2017}{{Sinharay}}{{}}}
+\bibcite{yang2023rethinking}{{10}{2023}{{Yang et~al.}}{{Yang, Zhang, Liu, and Xu}}}
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Few-examinee regime study. Pre-est.\ = item parameter pre-estimation from external model pool.}}{10}{}\protected@file@percent }
+\newlabel{tab:fewex}{{12}{10}{}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces 2-signal (closed-weight) vs.\ 4-signal mode.}}{10}{}\protected@file@percent }
+\newlabel{tab:2sig}{{13}{10}{}{table.13}{}}
+\gdef \@abspage@last{10}

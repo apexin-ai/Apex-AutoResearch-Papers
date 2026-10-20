@@ -1,0 +1,794 @@
+{
+  "mmlu": {
+    "regime_names": [
+      "d000",
+      "d005",
+      "d100"
+    ],
+    "auc_matrix": {
+      "s1_embedding": {
+        "d000": 0.5049,
+        "d005": 0.953,
+        "d100": 0.4943
+      },
+      "s2_minkpp": {
+        "d000": 0.509,
+        "d005": 0.4655,
+        "d100": 0.5053
+      },
+      "s3_constat": {
+        "d000": null,
+        "d005": null,
+        "d100": null
+      },
+      "s4_selfcritique": {
+        "d000": 0.4957,
+        "d005": 0.5165,
+        "d100": 0.5125
+      }
+    },
+    "effect_size_matrix": {
+      "s1_embedding": {
+        "d000": 0.0208,
+        "d005": 2.5085,
+        "d100": -0.0079
+      },
+      "s2_minkpp": {
+        "d000": 0.0421,
+        "d005": -0.1079,
+        "d100": 0.0161
+      },
+      "s3_constat": {
+        "d000": null,
+        "d005": null,
+        "d100": null
+      },
+      "s4_selfcritique": {
+        "d000": -0.0042,
+        "d005": 0.0652,
+        "d100": 0.0189
+      }
+    },
+    "pairwise_tests": {
+      "d000_vs_d005": {
+        "s1_embedding": {
+          "n_items": 14042,
+          "n_contaminated": 703,
+          "n_clean": 13339,
+          "effect_size_a": 0.0208,
+          "effect_size_b": 2.5085,
+          "effect_size_ratio": 120.7563,
+          "spearman_rho": 0.6055,
+          "spearman_p": 0.0,
+          "auc_a": 0.5049,
+          "auc_b": 0.953,
+          "auc_ratio": 1.8874,
+          "wilcoxon_stat": 2547.5,
+          "wilcoxon_p": 0.0,
+          "signal_label": "Embedding"
+        },
+        "s2_minkpp": {
+          "n_items": 14042,
+          "n_contaminated": 703,
+          "n_clean": 13339,
+          "effect_size_a": 0.0421,
+          "effect_size_b": -0.1079,
+          "effect_size_ratio": -2.5647,
+          "spearman_rho": 0.3053,
+          "spearman_p": 1.34e-300,
+          "auc_a": 0.509,
+          "auc_b": 0.4655,
+          "auc_ratio": 0.9144,
+          "wilcoxon_stat": 507542.0,
+          "wilcoxon_p": 0.0,
+          "signal_label": "Min-K%++"
+        },
+        "s3_constat": {
+          "n_items": 0,
+          "n_contaminated": 0,
+          "n_clean": 0,
+          "effect_size_a": NaN,
+          "effect_size_b": NaN,
+          "effect_size_ratio": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "auc_a": null,
+          "auc_b": null,
+          "auc_ratio": null,
+          "wilcoxon_stat": null,
+          "wilcoxon_p": null,
+          "signal_label": "ConStat"
+        },
+        "s4_selfcritique": {
+          "n_items": 14042,
+          "n_contaminated": 703,
+          "n_clean": 13339,
+          "effect_size_a": -0.0042,
+          "effect_size_b": 0.0652,
+          "effect_size_ratio": -15.4512,
+          "spearman_rho": 0.2258,
+          "spearman_p": 7.74e-162,
+          "auc_a": 0.4957,
+          "auc_b": 0.5165,
+          "auc_ratio": 1.042,
+          "wilcoxon_stat": 20294820.0,
+          "wilcoxon_p": 0.0,
+          "signal_label": "Self-Critique"
+        }
+      },
+      "d005_vs_d100": {
+        "s1_embedding": {
+          "n_items": 14042,
+          "n_contaminated": 703,
+          "n_clean": 13339,
+          "effect_size_a": 2.5085,
+          "effect_size_b": -0.0079,
+          "effect_size_ratio": -0.0032,
+          "spearman_rho": 0.2383,
+          "spearman_p": 1.55e-180,
+          "auc_a": 0.953,
+          "auc_b": 0.4943,
+          "auc_ratio": 0.5187,
+          "wilcoxon_stat": 4264.5,
+          "wilcoxon_p": 0.0,
+          "signal_label": "Embedding"
+        },
+        "s2_minkpp": {
+          "n_items": 14042,
+          "n_contaminated": 703,
+          "n_clean": 13339,
+          "effect_size_a": -0.1079,
+          "effect_size_b": 0.0161,
+          "effect_size_ratio": -0.1488,
+          "spearman_rho": 0.7952,
+          "spearman_p": 0.0,
+          "auc_a": 0.4655,
+          "auc_b": 0.5053,
+          "auc_ratio": 1.0856,
+          "wilcoxon_stat": 29103542.0,
+          "wilcoxon_p": 0.0,
+          "signal_label": "Min-K%++"
+        },
+        "s3_constat": {
+          "n_items": 0,
+          "n_contaminated": 0,
+          "n_clean": 0,
+          "effect_size_a": NaN,
+          "effect_size_b": NaN,
+          "effect_size_ratio": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "auc_a": null,
+          "auc_b": null,
+          "auc_ratio": null,
+          "wilcoxon_stat": null,
+          "wilcoxon_p": null,
+          "signal_label": "ConStat"
+        },
+        "s4_selfcritique": {
+          "n_items": 14042,
+          "n_contaminated": 703,
+          "n_clean": 13339,
+          "effect_size_a": 0.0652,
+          "effect_size_b": 0.0189,
+          "effect_size_ratio": 0.2894,
+          "spearman_rho": 0.409,
+          "spearman_p": 0.0,
+          "auc_a": 0.5165,
+          "auc_b": 0.5125,
+          "auc_ratio": 0.9921,
+          "wilcoxon_stat": 40938252.5,
+          "wilcoxon_p": 3.02e-10,
+          "signal_label": "Self-Critique"
+        }
+      }
+    },
+    "per_signal": {
+      "s1_embedding": {
+        "signal_label": "Embedding",
+        "n_items": 14042,
+        "n_contaminated": 703,
+        "n_clean": 13339,
+        "effect_size_sft": 0.0208,
+        "effect_size_rl": 2.5085,
+        "effect_size_ratio": 120.7563,
+        "spearman_rho": 0.6055,
+        "spearman_p": 0.0,
+        "auc_sft": 0.5049,
+        "auc_rl": 0.953,
+        "auc_ratio": 1.8874,
+        "wilcoxon_stat": 2547.5,
+        "wilcoxon_p": 0.0
+      },
+      "s2_minkpp": {
+        "signal_label": "Min-K%++",
+        "n_items": 14042,
+        "n_contaminated": 703,
+        "n_clean": 13339,
+        "effect_size_sft": 0.0421,
+        "effect_size_rl": -0.1079,
+        "effect_size_ratio": -2.5647,
+        "spearman_rho": 0.3053,
+        "spearman_p": 1.34e-300,
+        "auc_sft": 0.509,
+        "auc_rl": 0.4655,
+        "auc_ratio": 0.9144,
+        "wilcoxon_stat": 507542.0,
+        "wilcoxon_p": 0.0
+      },
+      "s3_constat": {
+        "signal_label": "ConStat",
+        "n_items": 0,
+        "n_contaminated": 0,
+        "n_clean": 0,
+        "effect_size_sft": NaN,
+        "effect_size_rl": NaN,
+        "effect_size_ratio": null,
+        "spearman_rho": null,
+        "spearman_p": null,
+        "auc_sft": null,
+        "auc_rl": null,
+        "auc_ratio": null,
+        "wilcoxon_stat": null,
+        "wilcoxon_p": null
+      },
+      "s4_selfcritique": {
+        "signal_label": "Self-Critique",
+        "n_items": 14042,
+        "n_contaminated": 703,
+        "n_clean": 13339,
+        "effect_size_sft": -0.0042,
+        "effect_size_rl": 0.0652,
+        "effect_size_ratio": -15.4512,
+        "spearman_rho": 0.2258,
+        "spearman_p": 7.74e-162,
+        "auc_sft": 0.4957,
+        "auc_rl": 0.5165,
+        "auc_ratio": 1.042,
+        "wilcoxon_stat": 20294820.0,
+        "wilcoxon_p": 0.0
+      }
+    },
+    "summary": {
+      "n_regimes": 3,
+      "regime_names": [
+        "d000",
+        "d005",
+        "d100"
+      ],
+      "n_signals_analyzed": 4,
+      "n_signals_surviving": 0,
+      "surviving_signals": [],
+      "mean_auc_ratio": 1.2813,
+      "mean_spearman_rho": 0.3789
+    }
+  },
+  "gsm8k": {
+    "regime_names": [
+      "d000",
+      "d005",
+      "d100"
+    ],
+    "auc_matrix": {
+      "s1_embedding": {
+        "d000": 0.5502,
+        "d005": 0.9882,
+        "d100": 0.4127
+      },
+      "s2_minkpp": {
+        "d000": 0.5697,
+        "d005": 0.4649,
+        "d100": 0.4841
+      },
+      "s3_constat": {
+        "d000": null,
+        "d005": null,
+        "d100": null
+      },
+      "s4_selfcritique": {
+        "d000": 0.48,
+        "d005": 0.4947,
+        "d100": 0.4393
+      }
+    },
+    "effect_size_matrix": {
+      "s1_embedding": {
+        "d000": 0.1992,
+        "d005": 2.9869,
+        "d100": -0.3048
+      },
+      "s2_minkpp": {
+        "d000": 0.2376,
+        "d005": -0.1509,
+        "d100": -0.0371
+      },
+      "s3_constat": {
+        "d000": null,
+        "d005": null,
+        "d100": null
+      },
+      "s4_selfcritique": {
+        "d000": -0.0119,
+        "d005": -0.0266,
+        "d100": -0.1768
+      }
+    },
+    "pairwise_tests": {
+      "d000_vs_d005": {
+        "s1_embedding": {
+          "n_items": 1319,
+          "n_contaminated": 73,
+          "n_clean": 1246,
+          "effect_size_a": 0.1992,
+          "effect_size_b": 2.9869,
+          "effect_size_ratio": 14.9963,
+          "spearman_rho": 0.8488,
+          "spearman_p": 0.0,
+          "auc_a": 0.5502,
+          "auc_b": 0.9882,
+          "auc_ratio": 1.796,
+          "wilcoxon_stat": 0.0,
+          "wilcoxon_p": 7.88e-57,
+          "signal_label": "Embedding"
+        },
+        "s2_minkpp": {
+          "n_items": 1319,
+          "n_contaminated": 73,
+          "n_clean": 1246,
+          "effect_size_a": 0.2376,
+          "effect_size_b": -0.1509,
+          "effect_size_ratio": -0.6351,
+          "spearman_rho": 0.5108,
+          "spearman_p": 1.42e-88,
+          "auc_a": 0.5697,
+          "auc_b": 0.4649,
+          "auc_ratio": 0.816,
+          "wilcoxon_stat": 5455.0,
+          "wilcoxon_p": 7.37e-212,
+          "signal_label": "Min-K%++"
+        },
+        "s3_constat": {
+          "n_items": 0,
+          "n_contaminated": 0,
+          "n_clean": 0,
+          "effect_size_a": NaN,
+          "effect_size_b": NaN,
+          "effect_size_ratio": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "auc_a": null,
+          "auc_b": null,
+          "auc_ratio": null,
+          "wilcoxon_stat": null,
+          "wilcoxon_p": null,
+          "signal_label": "ConStat"
+        },
+        "s4_selfcritique": {
+          "n_items": 1319,
+          "n_contaminated": 73,
+          "n_clean": 1246,
+          "effect_size_a": -0.0119,
+          "effect_size_b": -0.0266,
+          "effect_size_ratio": 2.2265,
+          "spearman_rho": -0.134,
+          "spearman_p": 1.05e-06,
+          "auc_a": 0.48,
+          "auc_b": 0.4947,
+          "auc_ratio": 1.0305,
+          "wilcoxon_stat": 316569.5,
+          "wilcoxon_p": 5.3e-13,
+          "signal_label": "Self-Critique"
+        }
+      },
+      "d005_vs_d100": {
+        "s1_embedding": {
+          "n_items": 1319,
+          "n_contaminated": 73,
+          "n_clean": 1246,
+          "effect_size_a": 2.9869,
+          "effect_size_b": -0.3048,
+          "effect_size_ratio": -0.102,
+          "spearman_rho": 0.1527,
+          "spearman_p": 2.52e-08,
+          "auc_a": 0.9882,
+          "auc_b": 0.4127,
+          "auc_ratio": 0.4176,
+          "wilcoxon_stat": 5.0,
+          "wilcoxon_p": 1.79e-205,
+          "signal_label": "Embedding"
+        },
+        "s2_minkpp": {
+          "n_items": 1319,
+          "n_contaminated": 73,
+          "n_clean": 1246,
+          "effect_size_a": -0.1509,
+          "effect_size_b": -0.0371,
+          "effect_size_ratio": 0.2462,
+          "spearman_rho": 0.636,
+          "spearman_p": 1.96e-150,
+          "auc_a": 0.4649,
+          "auc_b": 0.4841,
+          "auc_ratio": 1.0414,
+          "wilcoxon_stat": 12286.0,
+          "wilcoxon_p": 3.03e-205,
+          "signal_label": "Min-K%++"
+        },
+        "s3_constat": {
+          "n_items": 0,
+          "n_contaminated": 0,
+          "n_clean": 0,
+          "effect_size_a": NaN,
+          "effect_size_b": NaN,
+          "effect_size_ratio": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "auc_a": null,
+          "auc_b": null,
+          "auc_ratio": null,
+          "wilcoxon_stat": null,
+          "wilcoxon_p": null,
+          "signal_label": "ConStat"
+        },
+        "s4_selfcritique": {
+          "n_items": 1319,
+          "n_contaminated": 73,
+          "n_clean": 1246,
+          "effect_size_a": -0.0266,
+          "effect_size_b": -0.1768,
+          "effect_size_ratio": 6.6483,
+          "spearman_rho": 0.4006,
+          "spearman_p": 5.11e-52,
+          "auc_a": 0.4947,
+          "auc_b": 0.4393,
+          "auc_ratio": 0.8881,
+          "wilcoxon_stat": 371161.0,
+          "wilcoxon_p": 0.621,
+          "signal_label": "Self-Critique"
+        }
+      }
+    },
+    "per_signal": {
+      "s1_embedding": {
+        "signal_label": "Embedding",
+        "n_items": 1319,
+        "n_contaminated": 73,
+        "n_clean": 1246,
+        "effect_size_sft": 0.1992,
+        "effect_size_rl": 2.9869,
+        "effect_size_ratio": 14.9963,
+        "spearman_rho": 0.8488,
+        "spearman_p": 0.0,
+        "auc_sft": 0.5502,
+        "auc_rl": 0.9882,
+        "auc_ratio": 1.796,
+        "wilcoxon_stat": 0.0,
+        "wilcoxon_p": 7.88e-57
+      },
+      "s2_minkpp": {
+        "signal_label": "Min-K%++",
+        "n_items": 1319,
+        "n_contaminated": 73,
+        "n_clean": 1246,
+        "effect_size_sft": 0.2376,
+        "effect_size_rl": -0.1509,
+        "effect_size_ratio": -0.6351,
+        "spearman_rho": 0.5108,
+        "spearman_p": 1.42e-88,
+        "auc_sft": 0.5697,
+        "auc_rl": 0.4649,
+        "auc_ratio": 0.816,
+        "wilcoxon_stat": 5455.0,
+        "wilcoxon_p": 7.37e-212
+      },
+      "s3_constat": {
+        "signal_label": "ConStat",
+        "n_items": 0,
+        "n_contaminated": 0,
+        "n_clean": 0,
+        "effect_size_sft": NaN,
+        "effect_size_rl": NaN,
+        "effect_size_ratio": null,
+        "spearman_rho": null,
+        "spearman_p": null,
+        "auc_sft": null,
+        "auc_rl": null,
+        "auc_ratio": null,
+        "wilcoxon_stat": null,
+        "wilcoxon_p": null
+      },
+      "s4_selfcritique": {
+        "signal_label": "Self-Critique",
+        "n_items": 1319,
+        "n_contaminated": 73,
+        "n_clean": 1246,
+        "effect_size_sft": -0.0119,
+        "effect_size_rl": -0.0266,
+        "effect_size_ratio": 2.2265,
+        "spearman_rho": -0.134,
+        "spearman_p": 1.05e-06,
+        "auc_sft": 0.48,
+        "auc_rl": 0.4947,
+        "auc_ratio": 1.0305,
+        "wilcoxon_stat": 316569.5,
+        "wilcoxon_p": 5.3e-13
+      }
+    },
+    "summary": {
+      "n_regimes": 3,
+      "regime_names": [
+        "d000",
+        "d005",
+        "d100"
+      ],
+      "n_signals_analyzed": 4,
+      "n_signals_surviving": 0,
+      "surviving_signals": [],
+      "mean_auc_ratio": 1.2142,
+      "mean_spearman_rho": 0.4085
+    }
+  },
+  "arc_challenge": {
+    "regime_names": [
+      "d000",
+      "d005",
+      "d100"
+    ],
+    "auc_matrix": {
+      "s1_embedding": {
+        "d000": 0.427,
+        "d005": 0.995,
+        "d100": 0.501
+      },
+      "s2_minkpp": {
+        "d000": 0.5075,
+        "d005": 0.4659,
+        "d100": 0.495
+      },
+      "s3_constat": {
+        "d000": null,
+        "d005": null,
+        "d100": null
+      },
+      "s4_selfcritique": {
+        "d000": 0.5175,
+        "d005": 0.4325,
+        "d100": 0.5515
+      }
+    },
+    "effect_size_matrix": {
+      "s1_embedding": {
+        "d000": -0.274,
+        "d005": 4.2006,
+        "d100": -0.0913
+      },
+      "s2_minkpp": {
+        "d000": 0.062,
+        "d005": -0.0908,
+        "d100": -0.0542
+      },
+      "s3_constat": {
+        "d000": null,
+        "d005": null,
+        "d100": null
+      },
+      "s4_selfcritique": {
+        "d000": 0.0006,
+        "d005": -0.2205,
+        "d100": 0.1252
+      }
+    },
+    "pairwise_tests": {
+      "d000_vs_d005": {
+        "s1_embedding": {
+          "n_items": 1172,
+          "n_contaminated": 50,
+          "n_clean": 1122,
+          "effect_size_a": -0.274,
+          "effect_size_b": 4.2006,
+          "effect_size_ratio": -15.3296,
+          "spearman_rho": 0.7702,
+          "spearman_p": 8.96e-231,
+          "auc_a": 0.427,
+          "auc_b": 0.995,
+          "auc_ratio": 2.33,
+          "wilcoxon_stat": 256.0,
+          "wilcoxon_p": 3.58e-57,
+          "signal_label": "Embedding"
+        },
+        "s2_minkpp": {
+          "n_items": 1172,
+          "n_contaminated": 50,
+          "n_clean": 1122,
+          "effect_size_a": 0.062,
+          "effect_size_b": -0.0908,
+          "effect_size_ratio": -1.4641,
+          "spearman_rho": 0.3837,
+          "spearman_p": 2.13e-42,
+          "auc_a": 0.5075,
+          "auc_b": 0.4659,
+          "auc_ratio": 0.918,
+          "wilcoxon_stat": 727.0,
+          "wilcoxon_p": 1.92e-192,
+          "signal_label": "Min-K%++"
+        },
+        "s3_constat": {
+          "n_items": 0,
+          "n_contaminated": 0,
+          "n_clean": 0,
+          "effect_size_a": NaN,
+          "effect_size_b": NaN,
+          "effect_size_ratio": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "auc_a": null,
+          "auc_b": null,
+          "auc_ratio": null,
+          "wilcoxon_stat": null,
+          "wilcoxon_p": null,
+          "signal_label": "ConStat"
+        },
+        "s4_selfcritique": {
+          "n_items": 1172,
+          "n_contaminated": 50,
+          "n_clean": 1122,
+          "effect_size_a": 0.0006,
+          "effect_size_b": -0.2205,
+          "effect_size_ratio": -393.4912,
+          "spearman_rho": 0.1887,
+          "spearman_p": 7.36e-11,
+          "auc_a": 0.5175,
+          "auc_b": 0.4325,
+          "auc_ratio": 0.8356,
+          "wilcoxon_stat": 97398.5,
+          "wilcoxon_p": 1.26e-87,
+          "signal_label": "Self-Critique"
+        }
+      },
+      "d005_vs_d100": {
+        "s1_embedding": {
+          "n_items": 1172,
+          "n_contaminated": 50,
+          "n_clean": 1122,
+          "effect_size_a": 4.2006,
+          "effect_size_b": -0.0913,
+          "effect_size_ratio": -0.0217,
+          "spearman_rho": 0.0546,
+          "spearman_p": 0.0619,
+          "auc_a": 0.995,
+          "auc_b": 0.501,
+          "auc_ratio": 0.5035,
+          "wilcoxon_stat": 35.5,
+          "wilcoxon_p": 3.37e-186,
+          "signal_label": "Embedding"
+        },
+        "s2_minkpp": {
+          "n_items": 1172,
+          "n_contaminated": 50,
+          "n_clean": 1122,
+          "effect_size_a": -0.0908,
+          "effect_size_b": -0.0542,
+          "effect_size_ratio": 0.5975,
+          "spearman_rho": 0.8691,
+          "spearman_p": 0.0,
+          "auc_a": 0.4659,
+          "auc_b": 0.495,
+          "auc_ratio": 1.0626,
+          "wilcoxon_stat": 318163.5,
+          "wilcoxon_p": 0.0351,
+          "signal_label": "Min-K%++"
+        },
+        "s3_constat": {
+          "n_items": 0,
+          "n_contaminated": 0,
+          "n_clean": 0,
+          "effect_size_a": NaN,
+          "effect_size_b": NaN,
+          "effect_size_ratio": null,
+          "spearman_rho": null,
+          "spearman_p": null,
+          "auc_a": null,
+          "auc_b": null,
+          "auc_ratio": null,
+          "wilcoxon_stat": null,
+          "wilcoxon_p": null,
+          "signal_label": "ConStat"
+        },
+        "s4_selfcritique": {
+          "n_items": 1172,
+          "n_contaminated": 50,
+          "n_clean": 1122,
+          "effect_size_a": -0.2205,
+          "effect_size_b": 0.1252,
+          "effect_size_ratio": -0.5675,
+          "spearman_rho": 0.2463,
+          "spearman_p": 1.19e-17,
+          "auc_a": 0.4325,
+          "auc_b": 0.5515,
+          "auc_ratio": 1.2752,
+          "wilcoxon_stat": 265800.5,
+          "wilcoxon_p": 5.7e-05,
+          "signal_label": "Self-Critique"
+        }
+      }
+    },
+    "per_signal": {
+      "s1_embedding": {
+        "signal_label": "Embedding",
+        "n_items": 1172,
+        "n_contaminated": 50,
+        "n_clean": 1122,
+        "effect_size_sft": -0.274,
+        "effect_size_rl": 4.2006,
+        "effect_size_ratio": -15.3296,
+        "spearman_rho": 0.7702,
+        "spearman_p": 8.96e-231,
+        "auc_sft": 0.427,
+        "auc_rl": 0.995,
+        "auc_ratio": 2.33,
+        "wilcoxon_stat": 256.0,
+        "wilcoxon_p": 3.58e-57
+      },
+      "s2_minkpp": {
+        "signal_label": "Min-K%++",
+        "n_items": 1172,
+        "n_contaminated": 50,
+        "n_clean": 1122,
+        "effect_size_sft": 0.062,
+        "effect_size_rl": -0.0908,
+        "effect_size_ratio": -1.4641,
+        "spearman_rho": 0.3837,
+        "spearman_p": 2.13e-42,
+        "auc_sft": 0.5075,
+        "auc_rl": 0.4659,
+        "auc_ratio": 0.918,
+        "wilcoxon_stat": 727.0,
+        "wilcoxon_p": 1.92e-192
+      },
+      "s3_constat": {
+        "signal_label": "ConStat",
+        "n_items": 0,
+        "n_contaminated": 0,
+        "n_clean": 0,
+        "effect_size_sft": NaN,
+        "effect_size_rl": NaN,
+        "effect_size_ratio": null,
+        "spearman_rho": null,
+        "spearman_p": null,
+        "auc_sft": null,
+        "auc_rl": null,
+        "auc_ratio": null,
+        "wilcoxon_stat": null,
+        "wilcoxon_p": null
+      },
+      "s4_selfcritique": {
+        "signal_label": "Self-Critique",
+        "n_items": 1172,
+        "n_contaminated": 50,
+        "n_clean": 1122,
+        "effect_size_sft": 0.0006,
+        "effect_size_rl": -0.2205,
+        "effect_size_ratio": -393.4912,
+        "spearman_rho": 0.1887,
+        "spearman_p": 7.36e-11,
+        "auc_sft": 0.5175,
+        "auc_rl": 0.4325,
+        "auc_ratio": 0.8356,
+        "wilcoxon_stat": 97398.5,
+        "wilcoxon_p": 1.26e-87
+      }
+    },
+    "summary": {
+      "n_regimes": 3,
+      "regime_names": [
+        "d000",
+        "d005",
+        "d100"
+      ],
+      "n_signals_analyzed": 4,
+      "n_signals_surviving": 0,
+      "surviving_signals": [],
+      "mean_auc_ratio": 1.3612,
+      "mean_spearman_rho": 0.4475
+    }
+  }
+}

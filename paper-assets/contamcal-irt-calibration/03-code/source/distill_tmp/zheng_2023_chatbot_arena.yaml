@@ -1,0 +1,16 @@
+paper_key: "zheng_2023_chatbot_arena"
+title: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: [human expert evaluation, random judges]
+  metrics:
+    - {name: "human-LLM agreement rate", direction: "higher_better"}
+    - {name: "Elo rating", direction: "higher_better"}
+  datasets:
+    - {name: "MT-Bench", size: "multi-turn question set"}
+    - {name: "Chatbot Arena", size: "3K expert votes, 30K conversations"}
+  ablation_dimensions: [judge model choice, bias types (position, verbosity, self-enhancement)]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "LLM-as-a-Judge evaluation"

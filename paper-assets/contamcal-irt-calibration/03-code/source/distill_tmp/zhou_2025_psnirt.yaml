@@ -1,0 +1,16 @@
+paper_key: "zhou_2025_psnirt"
+title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+venue: "AAAI 2026"
+full_text_available: false
+
+research:
+  baselines: [standard IRT (1PL/2PL/3PL), raw accuracy ranking]
+  metrics:
+    - {name: "human preference alignment", direction: "higher_better"}
+    - {name: "model discriminability", direction: "higher_better"}
+    - {name: "benchmark measurement quality", direction: "descriptive"}
+  datasets:
+    - {name: "11 LLM benchmarks", size: "41,871 items total"}
+  ablation_dimensions: [IRT model complexity, item selection strategy, benchmark quality metrics]
+  training_recipe: {optimizer: "pseudo-siamese network training", lr: "N/A", hardware: "N/A"}
+  method_family: "neural IRT for benchmark quality diagnosis"

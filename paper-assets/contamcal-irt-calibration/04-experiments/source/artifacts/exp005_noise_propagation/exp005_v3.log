@@ -1,0 +1,658 @@
+03:22:52 [INFO] === exp-005 v3: Noise Propagation (analytic ME) ===
+03:22:52 [INFO] σ_e levels: [0.1, 0.3, 0.5, 0.7, 1.0]
+03:22:52 [INFO] Seeds per level: 5
+03:22:52 [INFO] Synthetic data: 30 models × 300 items
+03:22:52 [INFO] Stan output dir: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output
+03:22:53 [INFO] Compiling Stan models...
+03:22:53 [INFO] Compilation done.
+03:22:53 [INFO] === σ_e = 0.1 ===
+03:22:54 [INFO]   Fitting simple model (σ_e=0.1, seed=42)...
+03:22:54 [INFO] CmdStan start processing
+03:22:54 [INFO] Chain [1] start processing
+03:22:54 [INFO] Chain [2] start processing
+03:34:26 [INFO] Chain [1] done processing
+03:34:26 [INFO] Chain [3] start processing
+03:34:42 [INFO] Chain [2] done processing
+03:34:42 [INFO] Chain [4] start processing
+03:44:25 [INFO] Chain [3] done processing
+03:44:29 [INFO] Chain [4] done processing
+03:47:37 [INFO]     Simple done in 1483s, CI_width=0.1017, Rhat=1.006
+03:47:37 [INFO]   Fitting analytic ME model (σ_e=0.1, seed=42)...
+03:47:37 [INFO] CmdStan start processing
+03:47:37 [INFO] Chain [1] start processing
+03:47:37 [INFO] Chain [2] start processing
+03:54:15 [INFO] Chain [1] done processing
+03:54:15 [INFO] Chain [3] start processing
+03:54:19 [INFO] Chain [2] done processing
+03:54:19 [INFO] Chain [4] start processing
+04:01:37 [INFO] Chain [4] done processing
+04:01:41 [INFO] Chain [3] done processing
+04:04:44 [INFO]     ME(analytic) done in 1027s, CI_width=0.1013, Rhat=1.007
+04:04:44 [INFO]   Saved (1/25 complete)
+04:04:45 [INFO]   Fitting simple model (σ_e=0.1, seed=43)...
+04:04:45 [INFO] CmdStan start processing
+04:04:45 [INFO] Chain [1] start processing
+04:04:45 [INFO] Chain [2] start processing
+04:12:06 [INFO] Chain [1] done processing
+04:12:06 [INFO] Chain [3] start processing
+04:12:07 [INFO] Chain [2] done processing
+04:12:07 [INFO] Chain [4] start processing
+04:19:37 [INFO] Chain [3] done processing
+04:19:44 [INFO] Chain [4] done processing
+04:23:05 [INFO]     Simple done in 1101s, CI_width=0.0996, Rhat=1.007
+04:23:05 [INFO]   Fitting analytic ME model (σ_e=0.1, seed=43)...
+04:23:06 [INFO] CmdStan start processing
+04:23:06 [INFO] Chain [1] start processing
+04:23:06 [INFO] Chain [2] start processing
+04:30:30 [INFO] Chain [1] done processing
+04:30:30 [INFO] Chain [3] start processing
+04:30:38 [INFO] Chain [2] done processing
+04:30:38 [INFO] Chain [4] start processing
+04:38:51 [INFO] Chain [3] done processing
+04:39:00 [INFO] Chain [4] done processing
+04:42:40 [INFO]     ME(analytic) done in 1174s, CI_width=0.0993, Rhat=1.006
+04:42:40 [INFO]   Saved (2/25 complete)
+04:42:41 [INFO]   Fitting simple model (σ_e=0.1, seed=44)...
+04:42:41 [INFO] CmdStan start processing
+04:42:41 [INFO] Chain [1] start processing
+04:42:41 [INFO] Chain [2] start processing
+04:52:22 [INFO] Chain [2] done processing
+04:52:22 [INFO] Chain [3] start processing
+04:52:29 [INFO] Chain [1] done processing
+04:52:29 [INFO] Chain [4] start processing
+04:59:34 [INFO] Chain [4] done processing
+04:59:36 [INFO] Chain [3] done processing
+05:01:54 [INFO]     Simple done in 1153s, CI_width=0.1010, Rhat=1.006
+05:01:54 [INFO]   Fitting analytic ME model (σ_e=0.1, seed=44)...
+05:01:54 [INFO] CmdStan start processing
+05:01:54 [INFO] Chain [1] start processing
+05:01:54 [INFO] Chain [2] start processing
+05:07:24 [INFO] Chain [1] done processing
+05:07:24 [INFO] Chain [3] start processing
+05:07:24 [INFO] Chain [2] done processing
+05:07:24 [INFO] Chain [4] start processing
+05:13:58 [INFO] Chain [4] done processing
+05:14:03 [INFO] Chain [3] done processing
+05:16:46 [INFO]     ME(analytic) done in 892s, CI_width=0.1009, Rhat=1.008
+05:16:46 [INFO]   Saved (3/25 complete)
+05:16:46 [INFO]   Fitting simple model (σ_e=0.1, seed=45)...
+05:16:46 [INFO] CmdStan start processing
+05:16:46 [INFO] Chain [1] start processing
+05:16:46 [INFO] Chain [2] start processing
+05:22:48 [INFO] Chain [2] done processing
+05:22:48 [INFO] Chain [3] start processing
+05:22:58 [INFO] Chain [1] done processing
+05:22:58 [INFO] Chain [4] start processing
+05:28:56 [INFO] Chain [3] done processing
+05:29:05 [INFO] Chain [4] done processing
+05:31:52 [INFO]     Simple done in 906s, CI_width=0.0993, Rhat=1.009
+05:31:52 [INFO]   Fitting analytic ME model (σ_e=0.1, seed=45)...
+05:31:52 [INFO] CmdStan start processing
+05:31:52 [INFO] Chain [1] start processing
+05:31:52 [INFO] Chain [2] start processing
+05:38:18 [INFO] Chain [1] done processing
+05:38:18 [INFO] Chain [3] start processing
+05:38:26 [INFO] Chain [2] done processing
+05:38:26 [INFO] Chain [4] start processing
+05:44:32 [INFO] Chain [3] done processing
+05:44:38 [INFO] Chain [4] done processing
+05:47:25 [INFO]     ME(analytic) done in 933s, CI_width=0.0987, Rhat=1.006
+05:47:25 [INFO]   Saved (4/25 complete)
+05:47:25 [INFO]   Fitting simple model (σ_e=0.1, seed=46)...
+05:47:25 [INFO] CmdStan start processing
+05:47:25 [INFO] Chain [1] start processing
+05:47:25 [INFO] Chain [2] start processing
+05:53:38 [INFO] Chain [2] done processing
+05:53:38 [INFO] Chain [3] start processing
+05:53:47 [INFO] Chain [1] done processing
+05:53:47 [INFO] Chain [4] start processing
+05:59:50 [INFO] Chain [3] done processing
+06:00:00 [INFO] Chain [4] done processing
+06:02:43 [INFO]     Simple done in 918s, CI_width=0.0987, Rhat=1.006
+06:02:43 [INFO]   Fitting analytic ME model (σ_e=0.1, seed=46)...
+06:02:43 [INFO] CmdStan start processing
+06:02:43 [INFO] Chain [1] start processing
+06:02:43 [INFO] Chain [2] start processing
+06:08:51 [INFO] Chain [1] done processing
+06:08:51 [INFO] Chain [3] start processing
+06:09:03 [INFO] Chain [2] done processing
+06:09:03 [INFO] Chain [4] start processing
+06:20:34 [INFO] Chain [3] done processing
+06:20:49 [INFO] Chain [4] done processing
+08:26:39 [INFO] === exp-005 v3: Noise Propagation (analytic ME) ===
+08:26:39 [INFO] σ_e levels: [0.1, 0.3, 0.5, 0.7, 1.0]
+08:26:39 [INFO] Seeds per level: 5
+08:26:39 [INFO] Synthetic data: 30 models × 300 items
+08:26:39 [INFO] Stan output dir: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output
+08:26:40 [INFO] Compiling Stan models...
+08:26:40 [INFO] Compilation done.
+08:26:40 [INFO] Resuming: 4 runs already completed
+08:26:40 [INFO] === σ_e = 0.1 ===
+08:26:40 [INFO]   Skipping (σ_e=0.1, seed=42) — already done
+08:26:40 [INFO]   Skipping (σ_e=0.1, seed=43) — already done
+08:26:40 [INFO]   Skipping (σ_e=0.1, seed=44) — already done
+08:26:40 [INFO]   Skipping (σ_e=0.1, seed=45) — already done
+08:26:40 [INFO]   Fitting simple model (σ_e=0.1, seed=46)...
+08:26:40 [INFO] CmdStan start processing
+08:26:40 [INFO] Chain [1] start processing
+08:26:40 [INFO] Chain [2] start processing
+08:33:36 [INFO] Chain [2] done processing
+08:33:36 [INFO] Chain [3] start processing
+08:33:51 [INFO] Chain [1] done processing
+08:33:51 [INFO] Chain [4] start processing
+08:41:04 [INFO] Chain [3] done processing
+08:41:22 [INFO] Chain [4] done processing
+08:44:17 [INFO]     Simple done in 1057s, CI_width=0.0987, Rhat=1.006
+08:44:17 [INFO]   Fitting analytic ME model (σ_e=0.1, seed=46)...
+08:44:17 [INFO] CmdStan start processing
+08:44:17 [INFO] Chain [1] start processing
+08:44:17 [INFO] Chain [2] start processing
+08:51:23 [INFO] Chain [1] done processing
+08:51:23 [INFO] Chain [3] start processing
+08:51:36 [INFO] Chain [2] done processing
+08:51:36 [INFO] Chain [4] start processing
+08:57:42 [INFO] Chain [3] done processing
+08:57:45 [INFO] Chain [4] done processing
+08:59:39 [INFO]     ME(analytic) done in 922s, CI_width=0.0992, Rhat=1.006
+08:59:39 [INFO]   Saved (5/25 complete)
+08:59:39 [INFO] === σ_e = 0.3 ===
+08:59:39 [INFO]   Fitting simple model (σ_e=0.3, seed=42)...
+08:59:39 [INFO] CmdStan start processing
+08:59:39 [INFO] Chain [1] start processing
+08:59:39 [INFO] Chain [2] start processing
+09:05:47 [INFO] Chain [1] done processing
+09:05:47 [INFO] Chain [3] start processing
+09:05:54 [INFO] Chain [2] done processing
+09:05:54 [INFO] Chain [4] start processing
+09:13:11 [INFO] Chain [3] done processing
+09:13:17 [INFO] Chain [4] done processing
+09:16:26 [INFO]     Simple done in 1007s, CI_width=0.1020, Rhat=1.007
+09:16:26 [INFO]   Fitting analytic ME model (σ_e=0.3, seed=42)...
+09:16:26 [INFO] CmdStan start processing
+09:16:26 [INFO] Chain [1] start processing
+09:16:26 [INFO] Chain [2] start processing
+09:23:08 [INFO] Chain [2] done processing
+09:23:08 [INFO] Chain [3] start processing
+09:23:12 [INFO] Chain [1] done processing
+09:23:12 [INFO] Chain [4] start processing
+09:28:00 [INFO] Chain [4] done processing
+09:28:04 [INFO] Chain [3] done processing
+09:31:27 [INFO]     ME(analytic) done in 901s, CI_width=0.1016, Rhat=1.006
+09:31:27 [INFO]   Saved (6/25 complete)
+09:31:28 [INFO]   Fitting simple model (σ_e=0.3, seed=43)...
+09:31:28 [INFO] CmdStan start processing
+09:31:28 [INFO] Chain [1] start processing
+09:31:28 [INFO] Chain [2] start processing
+09:38:12 [INFO] Chain [2] done processing
+09:38:12 [INFO] Chain [3] start processing
+09:38:20 [INFO] Chain [1] done processing
+09:38:20 [INFO] Chain [4] start processing
+09:44:16 [INFO] Chain [3] done processing
+09:44:22 [INFO] Chain [4] done processing
+09:46:59 [INFO]     Simple done in 931s, CI_width=0.0999, Rhat=1.006
+09:46:59 [INFO]   Fitting analytic ME model (σ_e=0.3, seed=43)...
+09:46:59 [INFO] CmdStan start processing
+09:46:59 [INFO] Chain [1] start processing
+09:46:59 [INFO] Chain [2] start processing
+09:52:57 [INFO] Chain [1] done processing
+09:52:57 [INFO] Chain [3] start processing
+09:53:13 [INFO] Chain [2] done processing
+09:53:13 [INFO] Chain [4] start processing
+09:59:28 [INFO] Chain [3] done processing
+10:00:01 [INFO] Chain [4] done processing
+10:03:02 [INFO]     ME(analytic) done in 963s, CI_width=0.0992, Rhat=1.007
+10:03:02 [INFO]   Saved (7/25 complete)
+10:03:02 [INFO]   Fitting simple model (σ_e=0.3, seed=44)...
+10:03:02 [INFO] CmdStan start processing
+10:03:02 [INFO] Chain [1] start processing
+10:03:02 [INFO] Chain [2] start processing
+10:10:26 [INFO] Chain [1] done processing
+10:10:26 [INFO] Chain [3] start processing
+10:10:26 [INFO] Chain [2] done processing
+10:10:26 [INFO] Chain [4] start processing
+10:17:14 [INFO] Chain [3] done processing
+10:17:16 [INFO] Chain [4] done processing
+10:20:21 [INFO]     Simple done in 1039s, CI_width=0.1006, Rhat=1.009
+10:20:21 [INFO]   Fitting analytic ME model (σ_e=0.3, seed=44)...
+10:20:21 [INFO] CmdStan start processing
+10:20:21 [INFO] Chain [1] start processing
+10:20:21 [INFO] Chain [2] start processing
+10:28:03 [INFO] Chain [1] done processing
+10:28:03 [INFO] Chain [3] start processing
+10:28:04 [INFO] Chain [2] done processing
+10:28:04 [INFO] Chain [4] start processing
+10:35:26 [INFO] Chain [4] done processing
+10:35:32 [INFO] Chain [3] done processing
+10:38:35 [INFO]     ME(analytic) done in 1094s, CI_width=0.1002, Rhat=1.006
+10:38:35 [INFO]   Saved (8/25 complete)
+10:38:35 [INFO]   Fitting simple model (σ_e=0.3, seed=45)...
+10:38:35 [INFO] CmdStan start processing
+10:38:35 [INFO] Chain [1] start processing
+10:38:35 [INFO] Chain [2] start processing
+10:45:14 [INFO] Chain [1] done processing
+10:45:14 [INFO] Chain [3] start processing
+10:45:30 [INFO] Chain [2] done processing
+10:45:30 [INFO] Chain [4] start processing
+10:52:27 [INFO] Chain [3] done processing
+10:52:39 [INFO] Chain [4] done processing
+10:55:33 [INFO]     Simple done in 1018s, CI_width=0.0985, Rhat=1.006
+10:55:33 [INFO]   Fitting analytic ME model (σ_e=0.3, seed=45)...
+10:55:33 [INFO] CmdStan start processing
+10:55:33 [INFO] Chain [1] start processing
+10:55:33 [INFO] Chain [2] start processing
+11:02:41 [INFO] Chain [1] done processing
+11:02:41 [INFO] Chain [3] start processing
+11:02:43 [INFO] Chain [2] done processing
+11:02:43 [INFO] Chain [4] start processing
+11:09:10 [INFO] Chain [3] done processing
+11:09:14 [INFO] Chain [4] done processing
+11:12:08 [INFO]     ME(analytic) done in 995s, CI_width=0.0985, Rhat=1.007
+11:12:08 [INFO]   Saved (9/25 complete)
+11:12:09 [INFO]   Fitting simple model (σ_e=0.3, seed=46)...
+11:12:09 [INFO] CmdStan start processing
+11:12:09 [INFO] Chain [1] start processing
+11:12:09 [INFO] Chain [2] start processing
+11:18:01 [INFO] Chain [2] done processing
+11:18:01 [INFO] Chain [3] start processing
+11:18:01 [INFO] Chain [1] done processing
+11:18:01 [INFO] Chain [4] start processing
+11:23:45 [INFO] Chain [4] done processing
+11:23:48 [INFO] Chain [3] done processing
+11:26:37 [INFO]     Simple done in 868s, CI_width=0.0989, Rhat=1.006
+11:26:37 [INFO]   Fitting analytic ME model (σ_e=0.3, seed=46)...
+11:26:37 [INFO] CmdStan start processing
+11:26:37 [INFO] Chain [1] start processing
+11:26:37 [INFO] Chain [2] start processing
+11:32:39 [INFO] Chain [2] done processing
+11:32:39 [INFO] Chain [3] start processing
+11:32:59 [INFO] Chain [1] done processing
+11:32:59 [INFO] Chain [4] start processing
+11:38:12 [INFO] Chain [3] done processing
+11:38:29 [INFO] Chain [4] done processing
+11:41:07 [INFO]     ME(analytic) done in 870s, CI_width=0.0990, Rhat=1.006
+11:41:07 [INFO]   Saved (10/25 complete)
+11:41:07 [INFO] === σ_e = 0.5 ===
+11:41:07 [INFO]   Fitting simple model (σ_e=0.5, seed=42)...
+11:41:07 [INFO] CmdStan start processing
+11:41:07 [INFO] Chain [1] start processing
+11:41:07 [INFO] Chain [2] start processing
+11:48:01 [INFO] Chain [2] done processing
+11:48:01 [INFO] Chain [3] start processing
+11:48:02 [INFO] Chain [1] done processing
+11:48:02 [INFO] Chain [4] start processing
+11:54:32 [INFO] Chain [4] done processing
+11:54:34 [INFO] Chain [3] done processing
+11:57:48 [INFO]     Simple done in 1001s, CI_width=0.1018, Rhat=1.006
+11:57:48 [INFO]   Fitting analytic ME model (σ_e=0.5, seed=42)...
+11:57:48 [INFO] CmdStan start processing
+11:57:48 [INFO] Chain [1] start processing
+11:57:48 [INFO] Chain [2] start processing
+12:04:13 [INFO] Chain [2] done processing
+12:04:13 [INFO] Chain [3] start processing
+12:07:21 [INFO] Chain [1] done processing
+12:07:21 [INFO] Chain [4] start processing
+12:11:27 [INFO] Chain [3] done processing
+12:14:06 [INFO] Chain [4] done processing
+12:16:59 [INFO]     ME(analytic) done in 1151s, CI_width=0.1017, Rhat=1.006
+12:16:59 [INFO]   Saved (11/25 complete)
+12:17:00 [INFO]   Fitting simple model (σ_e=0.5, seed=43)...
+12:17:00 [INFO] CmdStan start processing
+12:17:00 [INFO] Chain [1] start processing
+12:17:00 [INFO] Chain [2] start processing
+12:24:31 [INFO] Chain [1] done processing
+12:24:31 [INFO] Chain [3] start processing
+12:24:36 [INFO] Chain [2] done processing
+12:24:36 [INFO] Chain [4] start processing
+12:31:12 [INFO] Chain [3] done processing
+12:31:15 [INFO] Chain [4] done processing
+12:33:58 [INFO]     Simple done in 1018s, CI_width=0.0985, Rhat=1.006
+12:33:58 [INFO]   Fitting analytic ME model (σ_e=0.5, seed=43)...
+12:33:58 [INFO] CmdStan start processing
+12:33:58 [INFO] Chain [1] start processing
+12:33:58 [INFO] Chain [2] start processing
+12:40:50 [INFO] Chain [1] done processing
+12:40:50 [INFO] Chain [3] start processing
+12:41:01 [INFO] Chain [2] done processing
+12:41:01 [INFO] Chain [4] start processing
+12:48:20 [INFO] Chain [4] done processing
+12:48:23 [INFO] Chain [3] done processing
+12:51:31 [INFO]     ME(analytic) done in 1053s, CI_width=0.0993, Rhat=1.006
+12:51:31 [INFO]   Saved (12/25 complete)
+12:51:32 [INFO]   Fitting simple model (σ_e=0.5, seed=44)...
+12:51:32 [INFO] CmdStan start processing
+12:51:32 [INFO] Chain [1] start processing
+12:51:32 [INFO] Chain [2] start processing
+12:59:12 [INFO] Chain [1] done processing
+12:59:12 [INFO] Chain [3] start processing
+12:59:12 [INFO] Chain [2] done processing
+12:59:12 [INFO] Chain [4] start processing
+13:08:43 [INFO] Chain [3] done processing
+13:11:50 [INFO] Chain [4] done processing
+13:16:06 [INFO]     Simple done in 1474s, CI_width=0.1008, Rhat=1.005
+13:16:06 [INFO]   Fitting analytic ME model (σ_e=0.5, seed=44)...
+13:16:06 [INFO] CmdStan start processing
+13:16:06 [INFO] Chain [1] start processing
+13:16:06 [INFO] Chain [2] start processing
+13:22:54 [INFO] Chain [2] done processing
+13:22:54 [INFO] Chain [3] start processing
+13:22:57 [INFO] Chain [1] done processing
+13:22:57 [INFO] Chain [4] start processing
+13:29:30 [INFO] Chain [4] done processing
+13:29:53 [INFO] Chain [3] done processing
+13:32:47 [INFO]     ME(analytic) done in 1000s, CI_width=0.1003, Rhat=1.006
+13:32:47 [INFO]   Saved (13/25 complete)
+13:32:47 [INFO]   Fitting simple model (σ_e=0.5, seed=45)...
+13:32:47 [INFO] CmdStan start processing
+13:32:47 [INFO] Chain [1] start processing
+13:32:47 [INFO] Chain [2] start processing
+13:39:38 [INFO] Chain [1] done processing
+13:39:38 [INFO] Chain [3] start processing
+13:39:45 [INFO] Chain [2] done processing
+13:39:45 [INFO] Chain [4] start processing
+13:46:01 [INFO] Chain [3] done processing
+13:46:13 [INFO] Chain [4] done processing
+13:48:55 [INFO]     Simple done in 968s, CI_width=0.0987, Rhat=1.007
+13:48:55 [INFO]   Fitting analytic ME model (σ_e=0.5, seed=45)...
+13:48:56 [INFO] CmdStan start processing
+13:48:56 [INFO] Chain [1] start processing
+13:48:56 [INFO] Chain [2] start processing
+13:55:41 [INFO] Chain [1] done processing
+13:55:41 [INFO] Chain [3] start processing
+13:55:47 [INFO] Chain [2] done processing
+13:55:47 [INFO] Chain [4] start processing
+14:02:55 [INFO] Chain [3] done processing
+14:02:58 [INFO] Chain [4] done processing
+14:06:05 [INFO]     ME(analytic) done in 1029s, CI_width=0.0991, Rhat=1.006
+14:06:05 [INFO]   Saved (14/25 complete)
+14:06:05 [INFO]   Fitting simple model (σ_e=0.5, seed=46)...
+14:06:05 [INFO] CmdStan start processing
+14:06:05 [INFO] Chain [1] start processing
+14:06:05 [INFO] Chain [2] start processing
+14:11:38 [INFO] Chain [2] done processing
+14:11:38 [INFO] Chain [3] start processing
+14:11:40 [INFO] Chain [1] done processing
+14:11:40 [INFO] Chain [4] start processing
+14:17:44 [INFO] Chain [3] done processing
+14:17:55 [INFO] Chain [4] done processing
+14:20:43 [INFO]     Simple done in 878s, CI_width=0.0990, Rhat=1.007
+14:20:43 [INFO]   Fitting analytic ME model (σ_e=0.5, seed=46)...
+14:20:43 [INFO] CmdStan start processing
+14:20:43 [INFO] Chain [1] start processing
+14:20:43 [INFO] Chain [2] start processing
+14:27:08 [INFO] Chain [2] done processing
+14:27:08 [INFO] Chain [3] start processing
+14:27:22 [INFO] Chain [1] done processing
+14:27:22 [INFO] Chain [4] start processing
+14:33:13 [INFO] Chain [3] done processing
+14:33:23 [INFO] Chain [4] done processing
+14:36:03 [INFO]     ME(analytic) done in 920s, CI_width=0.0988, Rhat=1.006
+14:36:03 [INFO]   Saved (15/25 complete)
+14:36:03 [INFO] === σ_e = 0.7 ===
+14:36:03 [INFO]   Fitting simple model (σ_e=0.7, seed=42)...
+14:36:03 [INFO] CmdStan start processing
+14:36:03 [INFO] Chain [1] start processing
+14:36:03 [INFO] Chain [2] start processing
+14:42:37 [INFO] Chain [2] done processing
+14:42:37 [INFO] Chain [3] start processing
+14:42:53 [INFO] Chain [1] done processing
+14:42:53 [INFO] Chain [4] start processing
+14:50:00 [INFO] Chain [3] done processing
+14:50:10 [INFO] Chain [4] done processing
+14:53:50 [INFO]     Simple done in 1067s, CI_width=0.1019, Rhat=1.006
+14:53:50 [INFO]   Fitting analytic ME model (σ_e=0.7, seed=42)...
+14:53:50 [INFO] CmdStan start processing
+14:53:50 [INFO] Chain [1] start processing
+14:53:50 [INFO] Chain [2] start processing
+15:00:45 [INFO] Chain [1] done processing
+15:00:45 [INFO] Chain [3] start processing
+15:01:08 [INFO] Chain [2] done processing
+15:01:08 [INFO] Chain [4] start processing
+15:09:36 [INFO] Chain [3] done processing
+15:09:53 [INFO] Chain [4] done processing
+15:14:03 [INFO]     ME(analytic) done in 1213s, CI_width=0.1019, Rhat=1.006
+15:14:03 [INFO]   Saved (16/25 complete)
+15:14:04 [INFO]   Fitting simple model (σ_e=0.7, seed=43)...
+15:14:04 [INFO] CmdStan start processing
+15:14:04 [INFO] Chain [1] start processing
+15:14:04 [INFO] Chain [2] start processing
+15:22:47 [INFO] Chain [2] done processing
+15:22:47 [INFO] Chain [3] start processing
+15:23:01 [INFO] Chain [1] done processing
+15:23:01 [INFO] Chain [4] start processing
+15:30:04 [INFO] Chain [3] done processing
+15:30:10 [INFO] Chain [4] done processing
+15:33:31 [INFO]     Simple done in 1167s, CI_width=0.0996, Rhat=1.007
+15:33:31 [INFO]   Fitting analytic ME model (σ_e=0.7, seed=43)...
+15:33:31 [INFO] CmdStan start processing
+15:33:31 [INFO] Chain [1] start processing
+15:33:31 [INFO] Chain [2] start processing
+15:41:07 [INFO] Chain [2] done processing
+15:41:07 [INFO] Chain [3] start processing
+15:41:14 [INFO] Chain [1] done processing
+15:41:14 [INFO] Chain [4] start processing
+15:49:33 [INFO] Chain [3] done processing
+15:49:43 [INFO] Chain [4] done processing
+15:53:06 [INFO]     ME(analytic) done in 1176s, CI_width=0.0991, Rhat=1.006
+15:53:06 [INFO]   Saved (17/25 complete)
+15:53:07 [INFO]   Fitting simple model (σ_e=0.7, seed=44)...
+15:53:07 [INFO] CmdStan start processing
+15:53:07 [INFO] Chain [1] start processing
+15:53:07 [INFO] Chain [2] start processing
+16:00:52 [INFO] Chain [1] done processing
+16:00:52 [INFO] Chain [3] start processing
+16:01:04 [INFO] Chain [2] done processing
+16:01:04 [INFO] Chain [4] start processing
+16:08:41 [INFO] Chain [4] done processing
+16:08:46 [INFO] Chain [3] done processing
+16:12:07 [INFO]     Simple done in 1140s, CI_width=0.1001, Rhat=1.006
+16:12:07 [INFO]   Fitting analytic ME model (σ_e=0.7, seed=44)...
+16:12:07 [INFO] CmdStan start processing
+16:12:07 [INFO] Chain [1] start processing
+16:12:07 [INFO] Chain [2] start processing
+18:08:46 [INFO] === exp-005 v3: Noise Propagation (analytic ME) ===
+18:08:46 [INFO] σ_e levels: [0.1, 0.3, 0.5, 0.7, 1.0]
+18:08:46 [INFO] Seeds per level: 5
+18:08:46 [INFO] Synthetic data: 30 models × 300 items
+18:08:46 [INFO] Stan output dir: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output
+18:08:46 [INFO] Compiling Stan models...
+18:08:46 [INFO] Compilation done.
+18:08:46 [INFO] Resuming: 17 runs already completed
+18:08:46 [INFO] === σ_e = 0.1 ===
+18:08:46 [INFO]   Skipping (σ_e=0.1, seed=42) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.1, seed=43) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.1, seed=44) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.1, seed=45) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.1, seed=46) — already done
+18:08:46 [INFO] === σ_e = 0.3 ===
+18:08:46 [INFO]   Skipping (σ_e=0.3, seed=42) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.3, seed=43) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.3, seed=44) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.3, seed=45) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.3, seed=46) — already done
+18:08:46 [INFO] === σ_e = 0.5 ===
+18:08:46 [INFO]   Skipping (σ_e=0.5, seed=42) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.5, seed=43) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.5, seed=44) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.5, seed=45) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.5, seed=46) — already done
+18:08:46 [INFO] === σ_e = 0.7 ===
+18:08:46 [INFO]   Skipping (σ_e=0.7, seed=42) — already done
+18:08:46 [INFO]   Skipping (σ_e=0.7, seed=43) — already done
+18:08:47 [INFO]   Fitting simple model (σ_e=0.7, seed=44)...
+18:08:47 [INFO] CmdStan start processing
+18:08:47 [INFO] Chain [1] start processing
+18:08:47 [INFO] Chain [2] start processing
+18:16:09 [INFO] Chain [1] done processing
+18:16:09 [INFO] Chain [3] start processing
+18:16:18 [INFO] Chain [2] done processing
+18:16:18 [INFO] Chain [4] start processing
+18:23:32 [INFO] Chain [4] done processing
+18:23:37 [INFO] Chain [3] done processing
+18:27:15 [INFO]     Simple done in 1109s, CI_width=0.1001, Rhat=1.006
+18:27:15 [INFO]   Fitting analytic ME model (σ_e=0.7, seed=44)...
+18:27:15 [INFO] CmdStan start processing
+18:27:15 [INFO] Chain [1] start processing
+18:27:15 [INFO] Chain [2] start processing
+18:34:26 [INFO] Chain [1] done processing
+18:34:26 [INFO] Chain [3] start processing
+18:34:26 [INFO] Chain [2] done processing
+18:34:26 [INFO] Chain [4] start processing
+18:41:06 [INFO] Chain [3] done processing
+18:41:43 [INFO] Chain [4] done processing
+18:44:37 [INFO]     ME(analytic) done in 1041s, CI_width=0.1006, Rhat=1.006
+18:44:37 [INFO]   Saved (18/25 complete)
+18:44:37 [INFO]   Fitting simple model (σ_e=0.7, seed=45)...
+18:44:37 [INFO] CmdStan start processing
+18:44:37 [INFO] Chain [1] start processing
+18:44:37 [INFO] Chain [2] start processing
+18:51:39 [INFO] Chain [2] done processing
+18:51:39 [INFO] Chain [3] start processing
+18:51:44 [INFO] Chain [1] done processing
+18:51:44 [INFO] Chain [4] start processing
+18:58:22 [INFO] Chain [3] done processing
+18:58:24 [INFO] Chain [4] done processing
+19:01:15 [INFO]     Simple done in 998s, CI_width=0.0987, Rhat=1.007
+19:01:15 [INFO]   Fitting analytic ME model (σ_e=0.7, seed=45)...
+19:01:15 [INFO] CmdStan start processing
+19:01:15 [INFO] Chain [1] start processing
+19:01:15 [INFO] Chain [2] start processing
+19:07:56 [INFO] Chain [2] done processing
+19:07:56 [INFO] Chain [3] start processing
+19:07:59 [INFO] Chain [1] done processing
+19:07:59 [INFO] Chain [4] start processing
+19:14:21 [INFO] Chain [3] done processing
+19:14:29 [INFO] Chain [4] done processing
+19:17:08 [INFO]     ME(analytic) done in 953s, CI_width=0.0991, Rhat=1.010
+19:17:08 [INFO]   Saved (19/25 complete)
+19:17:08 [INFO]   Fitting simple model (σ_e=0.7, seed=46)...
+19:17:08 [INFO] CmdStan start processing
+19:17:08 [INFO] Chain [1] start processing
+19:17:08 [INFO] Chain [2] start processing
+19:23:21 [INFO] Chain [1] done processing
+19:23:21 [INFO] Chain [3] start processing
+19:23:25 [INFO] Chain [2] done processing
+19:23:25 [INFO] Chain [4] start processing
+19:29:08 [INFO] Chain [3] done processing
+19:29:13 [INFO] Chain [4] done processing
+19:31:47 [INFO]     Simple done in 879s, CI_width=0.0982, Rhat=1.006
+19:31:47 [INFO]   Fitting analytic ME model (σ_e=0.7, seed=46)...
+19:31:47 [INFO] CmdStan start processing
+19:31:47 [INFO] Chain [1] start processing
+19:31:47 [INFO] Chain [2] start processing
+19:38:00 [INFO] Chain [2] done processing
+19:38:00 [INFO] Chain [3] start processing
+19:38:02 [INFO] Chain [1] done processing
+19:38:02 [INFO] Chain [4] start processing
+19:44:09 [INFO] Chain [3] done processing
+19:44:14 [INFO] Chain [4] done processing
+19:47:04 [INFO]     ME(analytic) done in 917s, CI_width=0.0986, Rhat=1.006
+19:47:04 [INFO]   Saved (20/25 complete)
+19:47:04 [INFO] === σ_e = 1.0 ===
+19:47:04 [INFO]   Fitting simple model (σ_e=1.0, seed=42)...
+19:47:04 [INFO] CmdStan start processing
+19:47:04 [INFO] Chain [1] start processing
+19:47:04 [INFO] Chain [2] start processing
+19:54:05 [INFO] Chain [1] done processing
+19:54:05 [INFO] Chain [3] start processing
+19:54:22 [INFO] Chain [2] done processing
+19:54:22 [INFO] Chain [4] start processing
+20:01:01 [INFO] Chain [3] done processing
+20:01:06 [INFO] Chain [4] done processing
+20:04:09 [INFO]     Simple done in 1025s, CI_width=0.1020, Rhat=1.005
+20:04:09 [INFO]   Fitting analytic ME model (σ_e=1.0, seed=42)...
+20:04:09 [INFO] CmdStan start processing
+20:04:09 [INFO] Chain [1] start processing
+20:04:09 [INFO] Chain [2] start processing
+20:11:20 [INFO] Chain [2] done processing
+20:11:20 [INFO] Chain [3] start processing
+20:15:31 [INFO] Chain [1] done processing
+20:15:31 [INFO] Chain [4] start processing
+20:19:08 [INFO] Chain [3] done processing
+20:22:11 [INFO] Chain [4] done processing
+20:24:55 [INFO]     ME(analytic) done in 1246s, CI_width=0.1021, Rhat=1.006
+20:24:55 [INFO]   Saved (21/25 complete)
+20:24:55 [INFO]   Fitting simple model (σ_e=1.0, seed=43)...
+20:24:55 [INFO] CmdStan start processing
+20:24:55 [INFO] Chain [1] start processing
+20:24:55 [INFO] Chain [2] start processing
+20:31:14 [INFO] Chain [2] done processing
+20:31:14 [INFO] Chain [3] start processing
+20:31:21 [INFO] Chain [1] done processing
+20:31:21 [INFO] Chain [4] start processing
+20:38:12 [INFO] Chain [3] done processing
+20:39:53 [INFO] Chain [4] done processing
+20:43:17 [INFO]     Simple done in 1102s, CI_width=0.0997, Rhat=1.006
+20:43:17 [INFO]   Fitting analytic ME model (σ_e=1.0, seed=43)...
+20:43:18 [INFO] CmdStan start processing
+20:43:18 [INFO] Chain [1] start processing
+20:43:18 [INFO] Chain [2] start processing
+20:50:34 [INFO] Chain [2] done processing
+20:50:34 [INFO] Chain [3] start processing
+20:50:35 [INFO] Chain [1] done processing
+20:50:35 [INFO] Chain [4] start processing
+20:58:40 [INFO] Chain [3] done processing
+20:58:46 [INFO] Chain [4] done processing
+21:01:58 [INFO]     ME(analytic) done in 1120s, CI_width=0.0998, Rhat=1.006
+21:01:58 [INFO]   Saved (22/25 complete)
+21:01:58 [INFO]   Fitting simple model (σ_e=1.0, seed=44)...
+21:01:58 [INFO] CmdStan start processing
+21:01:58 [INFO] Chain [1] start processing
+21:01:58 [INFO] Chain [2] start processing
+21:09:26 [INFO] Chain [1] done processing
+21:09:26 [INFO] Chain [3] start processing
+21:09:37 [INFO] Chain [2] done processing
+21:09:37 [INFO] Chain [4] start processing
+21:16:20 [INFO] Chain [3] done processing
+21:16:24 [INFO] Chain [4] done processing
+21:19:25 [INFO]     Simple done in 1047s, CI_width=0.1008, Rhat=1.006
+21:19:25 [INFO]   Fitting analytic ME model (σ_e=1.0, seed=44)...
+21:19:25 [INFO] CmdStan start processing
+21:19:25 [INFO] Chain [1] start processing
+21:19:25 [INFO] Chain [2] start processing
+21:30:52 [INFO] Chain [1] done processing
+21:30:52 [INFO] Chain [3] start processing
+21:31:10 [INFO] Chain [2] done processing
+21:31:10 [INFO] Chain [4] start processing
+21:44:09 [INFO] Chain [3] done processing
+21:44:34 [INFO] Chain [4] done processing
+21:51:26 [INFO]     ME(analytic) done in 1921s, CI_width=0.1003, Rhat=1.007
+21:51:26 [INFO]   Saved (23/25 complete)
+21:51:27 [INFO]   Fitting simple model (σ_e=1.0, seed=45)...
+21:51:27 [INFO] CmdStan start processing
+21:51:27 [INFO] Chain [1] start processing
+21:51:27 [INFO] Chain [2] start processing
+22:05:01 [INFO] Chain [1] done processing
+22:05:01 [INFO] Chain [3] start processing
+22:05:21 [INFO] Chain [2] done processing
+22:05:21 [INFO] Chain [4] start processing
+22:16:39 [INFO] Chain [3] done processing
+22:16:59 [INFO] Chain [4] done processing
+22:22:19 [INFO]     Simple done in 1852s, CI_width=0.0987, Rhat=1.007
+22:22:19 [INFO]   Fitting analytic ME model (σ_e=1.0, seed=45)...
+22:22:20 [INFO] CmdStan start processing
+22:22:20 [INFO] Chain [1] start processing
+22:22:20 [INFO] Chain [2] start processing
+22:32:42 [INFO] Chain [1] done processing
+22:32:42 [INFO] Chain [3] start processing
+22:33:12 [INFO] Chain [2] done processing
+22:33:12 [INFO] Chain [4] start processing
+22:40:47 [INFO] Chain [3] done processing
+22:40:48 [INFO] Chain [4] done processing
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation_v3.py", line 378, in <module>
+    main()
+    ~~~~^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation_v3.py", line 305, in main
+    result = run_single(sigma_e, seed, stan_simple, stan_me_analytic,
+                        stan_output_dir, n_models, n_items)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation_v3.py", line 189, in run_single
+    me_result = fit_and_extract_ci(stan_me_analytic, stan_data_me, seed, stan_output_dir)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation_v3.py", line 146, in fit_and_extract_ci
+    summary = fit.summary()
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/cmdstanpy/stanfit/mcmc.py", line 547, in summary
+    do_command(cmd, fd_out=None)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/cmdstanpy/utils/command.py", line 77, in do_command
+    raise RuntimeError(msg)
+RuntimeError: Command ['/home/ubuntu/.cmdstan/cmdstan-2.38.0/bin/stansummary', '--percentiles= 5,50,95', '--sig_figs=6', '--csv_filename=/tmp/tmpu24182m3/stansummary-contam_irt_4pl_me_analytic-egmg7m5l.csv', '/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output/fit_45_1778797339/contam_irt_4pl_me_analytic-20260514222220_1.csv', '/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output/fit_45_1778797339/contam_irt_4pl_me_analytic-20260514222220_2.csv', '/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output/fit_45_1778797339/contam_irt_4pl_me_analytic-20260514222220_3.csv', '/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/stan_output/fit_45_1778797339/contam_irt_4pl_me_analytic-20260514222220_4.csv']
+	exited with code '-6' Unknown error -6

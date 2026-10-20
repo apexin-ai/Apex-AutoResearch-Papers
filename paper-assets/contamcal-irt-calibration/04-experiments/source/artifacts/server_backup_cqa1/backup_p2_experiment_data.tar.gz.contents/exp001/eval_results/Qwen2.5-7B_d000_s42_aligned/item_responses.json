@@ -1,0 +1,8206 @@
+[
+  {
+    "item_id": "arc_challenge_0",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_2",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_3",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_4",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_5",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_6",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_7",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_8",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_9",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_10",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_11",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_12",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_13",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_14",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_15",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_16",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_17",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_18",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_19",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_20",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_21",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_22",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_23",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_24",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_25",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_26",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_27",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_28",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_29",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_30",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_31",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_32",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_33",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_34",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_35",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_36",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_37",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_38",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_39",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_40",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_41",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_42",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_43",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_44",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_45",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_46",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_47",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_48",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_49",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_50",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_51",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_52",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_53",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_54",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_55",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_56",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_57",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_58",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_59",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_60",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_61",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_62",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_63",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_64",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_65",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_66",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_67",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_68",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_69",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_70",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_71",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_72",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_73",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_74",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_75",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_76",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_77",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_78",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_79",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_80",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_81",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_82",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_83",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_84",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_85",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_86",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_87",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_88",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_89",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_90",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_91",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_92",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_93",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_94",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_95",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_96",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_97",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_98",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_99",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_100",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_101",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_102",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_103",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_104",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_105",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_106",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_107",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_108",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_109",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_110",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_111",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_112",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_113",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_114",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_115",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_116",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_117",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_118",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_119",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_120",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_121",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_122",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_123",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_124",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_125",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_126",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_127",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_128",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "4",
+    "gold_answer": "4"
+  },
+  {
+    "item_id": "arc_challenge_129",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_130",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_131",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_132",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_133",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_134",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_135",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_136",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_137",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_138",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_139",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_140",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_141",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_142",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_143",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_144",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_145",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_146",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_147",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_148",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_149",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_150",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_151",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_152",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_153",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_154",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_155",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_156",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_157",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_158",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_159",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_160",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_161",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_162",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_163",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_164",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_165",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_166",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_167",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_168",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_169",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_170",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_171",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_172",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_173",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_174",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_175",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_176",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_177",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_178",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_179",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_180",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_181",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_182",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_183",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_184",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_185",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_186",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_187",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_188",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_189",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_190",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_191",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_192",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_193",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_194",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_195",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_196",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_197",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_198",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_199",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_200",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_201",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_202",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_203",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_204",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_205",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_206",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_207",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_208",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_209",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_210",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_211",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_212",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_213",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_214",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_215",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_216",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_217",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_218",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_219",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_220",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_221",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_222",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_223",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_224",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_225",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_226",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_227",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_228",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_229",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_230",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_231",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_232",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_233",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_234",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_235",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_236",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_237",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_238",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_239",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_240",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_241",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_242",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_243",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_244",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_245",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_246",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_247",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_248",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_249",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_250",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_251",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_252",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_253",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_254",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_255",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_256",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_257",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_258",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_259",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_260",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_261",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_262",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_263",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_264",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_265",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_266",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_267",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_268",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_269",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_270",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_271",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_272",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_273",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_274",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_275",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_276",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_277",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_278",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_279",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_280",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_281",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_282",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_283",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_284",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_285",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_286",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_287",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_288",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_289",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_290",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_291",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_292",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_293",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_294",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_295",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_296",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_297",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_298",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_299",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_300",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_301",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_302",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_303",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_304",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_305",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_306",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_307",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_308",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_309",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_310",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_311",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_312",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_313",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "4",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_314",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_315",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_316",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_317",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_318",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_319",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_320",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_321",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_322",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_323",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_324",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_325",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_326",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_327",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_328",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_329",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_330",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_331",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_332",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_333",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_334",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_335",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_336",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_337",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_338",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_339",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_340",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_341",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_342",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_343",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_344",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_345",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_346",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_347",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_348",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_349",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_350",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_351",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_352",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_353",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_354",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_355",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_356",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_357",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_358",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_359",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_360",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_361",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_362",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_363",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_364",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_365",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_366",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_367",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_368",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_369",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_370",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_371",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_372",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_373",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_374",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_375",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_376",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_377",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_378",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_379",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_380",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_381",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_382",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_383",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_384",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_385",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_386",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_387",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_388",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_389",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_390",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_391",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_392",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_393",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_394",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_395",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_396",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_397",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_398",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_399",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_400",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_401",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_402",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_403",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_404",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_405",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_406",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_407",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_408",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_409",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_410",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_411",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_412",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_413",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_414",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_415",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_416",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_417",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_418",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_419",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_420",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_421",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_422",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_423",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_424",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_425",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_426",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_427",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_428",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_429",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_430",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_431",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_432",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_433",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_434",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_435",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_436",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_437",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "3",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_438",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_439",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_440",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_441",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_442",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_443",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_444",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_445",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_446",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_447",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_448",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_449",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_450",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_451",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_452",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_453",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "3",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_454",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_455",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_456",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_457",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_458",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_459",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_460",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_461",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_462",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_463",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_464",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_465",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_466",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_467",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_468",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_469",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_470",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_471",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_472",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_473",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_474",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_475",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_476",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_477",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_478",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_479",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_480",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_481",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_482",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_483",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_484",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_485",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_486",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_487",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_488",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_489",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_490",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_491",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_492",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_493",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_494",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_495",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_496",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_497",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_498",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_499",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_500",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_501",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_502",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_503",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_504",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_505",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_506",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_507",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_508",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_509",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_510",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_511",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_512",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_513",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_514",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_515",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_516",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_517",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_518",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_519",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_520",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_521",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_522",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_523",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_524",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_525",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_526",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_527",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_528",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_529",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_530",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "4",
+    "gold_answer": "4"
+  },
+  {
+    "item_id": "arc_challenge_531",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_532",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_533",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_534",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_535",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_536",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_537",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_538",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_539",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_540",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_541",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_542",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_543",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_544",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_545",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_546",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "1",
+    "gold_answer": "1"
+  },
+  {
+    "item_id": "arc_challenge_547",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_548",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_549",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_550",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_551",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_552",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_553",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_554",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_555",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_556",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_557",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_558",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_559",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_560",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_561",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_562",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_563",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_564",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_565",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_566",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_567",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_568",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_569",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_570",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_571",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_572",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_573",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_574",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_575",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_576",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_577",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_578",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_579",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_580",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_581",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_582",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_583",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_584",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_585",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_586",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_587",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_588",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_589",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_590",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_591",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_592",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_593",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_594",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_595",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_596",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_597",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_598",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_599",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_600",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_601",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_602",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_603",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_604",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_605",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_606",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_607",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_608",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_609",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_610",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_611",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_612",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_613",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_614",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_615",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_616",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_617",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_618",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_619",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_620",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_621",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_622",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_623",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_624",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_625",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_626",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_627",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_628",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_629",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_630",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_631",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_632",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_633",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_634",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_635",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_636",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_637",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_638",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_639",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_640",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_641",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_642",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_643",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_644",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_645",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_646",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_647",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_648",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_649",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_650",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_651",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_652",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_653",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_654",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_655",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_656",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_657",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_658",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_659",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_660",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_661",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_662",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_663",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_664",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_665",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_666",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_667",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_668",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_669",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_670",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "3",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_671",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_672",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_673",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_674",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_675",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_676",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_677",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_678",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_679",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_680",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_681",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_682",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_683",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_684",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_685",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_686",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_687",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_688",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_689",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_690",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_691",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_692",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_693",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_694",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_695",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_696",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_697",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_698",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_699",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_700",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_701",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_702",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_703",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_704",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_705",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_706",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_707",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_708",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_709",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_710",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_711",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_712",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_713",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_714",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_715",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_716",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_717",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_718",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_719",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_720",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_721",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_722",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_723",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_724",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_725",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_726",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_727",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_728",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_729",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_730",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_731",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_732",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_733",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_734",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_735",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_736",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_737",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_738",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_739",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_740",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_741",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_742",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_743",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_744",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_745",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_746",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_747",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_748",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_749",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_750",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_751",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_752",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_753",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_754",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_755",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_756",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_757",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_758",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_759",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_760",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_761",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_762",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_763",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_764",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_765",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_766",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_767",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_768",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_769",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_770",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_771",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_772",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_773",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_774",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_775",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_776",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_777",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_778",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_779",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_780",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_781",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_782",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_783",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_784",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_785",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_786",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_787",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_788",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_789",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_790",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_791",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_792",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_793",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_794",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_795",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_796",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_797",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_798",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_799",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_800",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_801",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_802",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_803",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_804",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_805",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_806",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_807",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_808",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_809",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_810",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_811",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_812",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_813",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_814",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_815",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_816",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_817",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_818",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_819",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_820",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_821",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_822",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_823",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_824",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_825",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_826",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_827",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_828",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_829",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_830",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_831",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_832",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_833",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_834",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_835",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_836",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_837",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_838",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_839",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_840",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_841",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_842",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_843",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_844",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_845",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_846",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_847",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_848",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_849",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_850",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_851",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_852",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_853",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_854",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_855",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_856",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_857",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "3",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_858",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_859",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_860",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_861",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_862",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_863",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_864",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_865",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_866",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_867",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_868",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_869",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_870",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_871",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_872",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_873",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_874",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_875",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_876",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_877",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_878",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_879",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_880",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_881",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_882",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_883",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_884",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_885",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_886",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "1",
+    "gold_answer": "1"
+  },
+  {
+    "item_id": "arc_challenge_887",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_888",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_889",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_890",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_891",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_892",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_893",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_894",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_895",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_896",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_897",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_898",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_899",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_900",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_901",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_902",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_903",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_904",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_905",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_906",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_907",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_908",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_909",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_910",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_911",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_912",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_913",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_914",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_915",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_916",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_917",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_918",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_919",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_920",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_921",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_922",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_923",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_924",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_925",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_926",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_927",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_928",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_929",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_930",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_931",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_932",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_933",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_934",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_935",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_936",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_937",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_938",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_939",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_940",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_941",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_942",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_943",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_944",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_945",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_946",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_947",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_948",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_949",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_950",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_951",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_952",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_953",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "1",
+    "gold_answer": "1"
+  },
+  {
+    "item_id": "arc_challenge_954",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_955",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_956",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_957",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_958",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_959",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_960",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_961",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_962",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_963",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_964",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_965",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_966",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_967",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_968",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_969",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_970",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_971",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_972",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_973",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_974",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_975",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "3",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_976",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_977",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_978",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_979",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_980",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_981",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_982",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_983",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_984",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_985",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_986",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_987",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_988",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_989",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_990",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_991",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_992",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_993",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_994",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_995",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_996",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_997",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_998",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_999",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1000",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1001",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1002",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1003",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1004",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1005",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1006",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1007",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1008",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1009",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1010",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1011",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1012",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1013",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1014",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1015",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1016",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1017",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1018",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1019",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1020",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1021",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1022",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1023",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1024",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1025",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1026",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1027",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1028",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "C",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1029",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1030",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1031",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1032",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1033",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1034",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1035",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1036",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1037",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1038",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1039",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1040",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1041",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1042",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1043",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1044",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1045",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1046",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1047",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1048",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1049",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1050",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1051",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1052",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1053",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1054",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1055",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1056",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1057",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1058",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1059",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1060",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1061",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1062",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1063",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1064",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1065",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1066",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1067",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1068",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1069",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1070",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1071",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1072",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1073",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1074",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1075",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1076",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1077",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1078",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1079",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1080",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1081",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1082",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1083",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1084",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1085",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1086",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1087",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1088",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1089",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1090",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1091",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1092",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_1093",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1094",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1095",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1096",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1097",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1098",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1099",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1100",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1101",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1102",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1103",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1104",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1105",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1106",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1107",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1108",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1109",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1110",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1111",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1112",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1113",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "2",
+    "gold_answer": "2"
+  },
+  {
+    "item_id": "arc_challenge_1114",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1115",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1116",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1117",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1118",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1119",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1120",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1121",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1122",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1123",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1124",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1125",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1126",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1127",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1128",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1129",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1130",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1131",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1132",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1133",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1134",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1135",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "D",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1136",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1137",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1138",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1139",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1140",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1141",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1142",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1143",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1144",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1145",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1146",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "B",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1147",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1148",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1149",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1150",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1151",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1152",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "3",
+    "gold_answer": "3"
+  },
+  {
+    "item_id": "arc_challenge_1153",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1154",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1155",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1156",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1157",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1158",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1159",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1160",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1161",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1162",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "C",
+    "gold_answer": "C"
+  },
+  {
+    "item_id": "arc_challenge_1163",
+    "benchmark": "arc_challenge",
+    "correct": false,
+    "model_answer": "A",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1164",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1165",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1166",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "B",
+    "gold_answer": "B"
+  },
+  {
+    "item_id": "arc_challenge_1167",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1168",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1169",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  },
+  {
+    "item_id": "arc_challenge_1170",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "D",
+    "gold_answer": "D"
+  },
+  {
+    "item_id": "arc_challenge_1171",
+    "benchmark": "arc_challenge",
+    "correct": true,
+    "model_answer": "A",
+    "gold_answer": "A"
+  }
+]

@@ -1,0 +1,112 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yang2023rethinking}
+\citation{oren2025emperor}
+\citation{eckerly2017detecting,sinharay2017detection}
+\citation{dodge2021documenting}
+\citation{shi2024detecting}
+\citation{dekoninck2024constat}
+\citation{weller2024selfcritique}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{1}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{1}{section*.3}\protected@file@percent }
+\citation{polo2024tinybenchmarks}
+\citation{bhattpain}
+\citation{zhuang2024atlas}
+\citation{paganini2024hibayes}
+\citation{yang2023rethinking}
+\citation{oren2025emperor}
+\citation{eckerly2017detecting,sinharay2017detection}
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item compromise in educational testing.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: ContamCal Framework}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Detection Signal Aggregation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Score inflation (accuracy \%) by model scale, benchmark, and contamination dosage. Inflation is monotonic (Spearman $\rho = 0.90$ on MMLU) but inversely related to model scale: Qwen-0.5B shows 11.5~pp inflation at 100\% dosage vs.\ 5.2~pp for Qwen-3B.}}{2}{table.1}\protected@file@percent }
+\newlabel{tab:sft_inflation}{{1}{2}{Score inflation (accuracy \%) by model scale, benchmark, and contamination dosage. Inflation is monotonic (Spearman $\rho = 0.90$ on MMLU) but inversely related to model scale: Qwen-0.5B shows 11.5~pp inflation at 100\% dosage vs.\ 5.2~pp for Qwen-3B}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Contamination-Augmented 4PL IRT}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{2}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled SFT Injection}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:sft_injection}{{4.1}{2}{Controlled SFT Injection}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Detection signal AUC by dosage level (averaged across models and benchmarks). Only Embedding Retrieval at 100\% dosage reaches the 0.70 identifiability threshold. All signals degrade severely at low dosage.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:signal_auc_dosage}{{2}{3}{Detection signal AUC by dosage level (averaged across models and benchmarks). Only Embedding Retrieval at 100\% dosage reaches the 0.70 identifiability threshold. All signals degrade severely at low dosage}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Signal AUC by model scale at 100\% dosage (MMLU). Larger models produce weaker detection signals, with Embedding Retrieval dropping from 0.75 (0.5B) to 0.69 (3B).}}{3}{table.3}\protected@file@percent }
+\newlabel{tab:signal_auc_scale}{{3}{3}{Signal AUC by model scale at 100\% dosage (MMLU). Larger models produce weaker detection signals, with Embedding Retrieval dropping from 0.75 (0.5B) to 0.69 (3B)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Detection Signal Quality}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:signal_quality}{{4.2}{3}{Detection Signal Quality}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Signal Aggregation Analysis}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:rrf}{{4.3}{3}{Signal Aggregation Analysis}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Aggregation method comparison (AUC at 100\% dosage, MMLU). RRF fusion does \emph  {not} outperform the best single signal (Embedding Retrieval), indicating insufficient signal complementarity. Average pairwise correlation $r = 0.58$.}}{3}{table.4}\protected@file@percent }
+\newlabel{tab:rrf_comparison}{{4}{3}{Aggregation method comparison (AUC at 100\% dosage, MMLU). RRF fusion does \emph {not} outperform the best single signal (Embedding Retrieval), indicating insufficient signal complementarity. Average pairwise correlation $r = 0.58$}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RRF AUC across dosage levels. The fusion advantage is negligible at all dosage levels; at 100\% dosage, the best single signal (0.72) outperforms RRF (0.70).}}{3}{table.5}\protected@file@percent }
+\newlabel{tab:rrf_dosage}{{5}{3}{RRF AUC across dosage levels. The fusion advantage is negligible at all dosage levels; at 100\% dosage, the best single signal (0.72) outperforms RRF (0.70)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Core Calibration Results}{3}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:calibration}{{4.4}{3}{Core Calibration Results}{subsection.4.4}{}}
+\citation{bhattpain}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Calibration MAE (pp) by method and benchmark. Linear regression+CI achieves the lowest average MAE (7.2~pp), outperforming the more complex 4PL+$\gamma $ (7.8~pp). No pairwise differences are statistically significant ($p > 0.05$).}}{4}{table.6}\protected@file@percent }
+\newlabel{tab:calibration_mae}{{6}{4}{Calibration MAE (pp) by method and benchmark. Linear regression+CI achieves the lowest average MAE (7.2~pp), outperforming the more complex 4PL+$\gamma $ (7.8~pp). No pairwise differences are statistically significant ($p > 0.05$)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Interval quality metrics. 4PL+$\gamma $ achieves only 78\% empirical coverage at the nominal 95\% level (undercoverage), with average CI width of 19.5~pp. Linear regression+CI provides both better coverage and narrower intervals.}}{4}{table.7}\protected@file@percent }
+\newlabel{tab:interval_quality}{{7}{4}{Interval quality metrics. 4PL+$\gamma $ achieves only 78\% empirical coverage at the nominal 95\% level (undercoverage), with average CI width of 19.5~pp. Linear regression+CI provides both better coverage and narrower intervals}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Noise Propagation Analysis}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:noise}{{4.5}{4}{Noise Propagation Analysis}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Prior Sensitivity Analysis}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:prior}{{4.6}{4}{Prior Sensitivity Analysis}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Dose-response $\gamma $ estimates. The contamination effect is identifiable only at 50\%+ dosage. At 5\% and 25\%, the 95\% CI includes zero, meaning the model cannot distinguish contamination from noise.}}{4}{table.8}\protected@file@percent }
+\newlabel{tab:dose_response}{{8}{4}{Dose-response $\gamma $ estimates. The contamination effect is identifiable only at 50\%+ dosage. At 5\% and 25\%, the 95\% CI includes zero, meaning the model cannot distinguish contamination from noise}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces CI width and coverage under noise injection. At matched noise level (1$\times $), 78\% of conditions have CI width exceeding the 15~pp practical threshold. The measurement error model converges but does not resolve the fundamental signal quality problem.}}{4}{table.9}\protected@file@percent }
+\newlabel{tab:noise_propagation}{{9}{4}{CI width and coverage under noise injection. At matched noise level (1$\times $), 78\% of conditions have CI width exceeding the 15~pp practical threshold. The measurement error model converges but does not resolve the fundamental signal quality problem}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Few-Examinee Regime}{4}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:few_examinee}{{4.7}{4}{Few-Examinee Regime}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Signal Survival Analysis}{4}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:survival}{{4.8}{4}{Signal Survival Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Prior sensitivity of $\gamma $ estimation. MAE varies by 2.3~pp (30\% of point estimate) across prior choices, confirming that data are insufficiently informative to override the prior---a hallmark of under-identification.}}{5}{table.10}\protected@file@percent }
+\newlabel{tab:prior_sensitivity}{{10}{5}{Prior sensitivity of $\gamma $ estimation. MAE varies by 2.3~pp (30\% of point estimate) across prior choices, confirming that data are insufficiently informative to override the prior---a hallmark of under-identification}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Identifiability metrics by number of evaluated models at signal AUC = 0.65. $\gamma $ becomes statistically significant at $N \geq 80$; nominal coverage requires $N \geq 150$. Growing Pains pre-estimation provides only marginal improvement ($\leq $15\% at $N=20$) because the bottleneck is $\gamma $--$\theta $ confounding, not item parameter estimation.}}{5}{table.11}\protected@file@percent }
+\newlabel{tab:few_examinee}{{11}{5}{Identifiability metrics by number of evaluated models at signal AUC = 0.65. $\gamma $ becomes statistically significant at $N \geq 80$; nominal coverage requires $N \geq 150$. Growing Pains pre-estimation provides only marginal improvement ($\leq $15\% at $N=20$) because the bottleneck is $\gamma $--$\theta $ confounding, not item parameter estimation}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Scale Analysis: 7B and 72B}{5}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:scale}{{4.9}{5}{Scale Analysis: 7B and 72B}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Detection signal AUC across training regimes. RL degrades all signals below the 0.70 identifiability threshold (average survival rate 73\%). The best RL-regime signal (Self-Critique, 0.57) provides negligible discrimination. ANOVA confirms a significant regime effect ($p = 0.002$).}}{5}{table.12}\protected@file@percent }
+\newlabel{tab:signal_survival}{{12}{5}{Detection signal AUC across training regimes. RL degrades all signals below the 0.70 identifiability threshold (average survival rate 73\%). The best RL-regime signal (Self-Critique, 0.57) provides negligible discrimination. ANOVA confirms a significant regime effect ($p = 0.002$)}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Signal survival rate (AUC retention relative to base model). Self-Critique shows paradoxical stability (95\% retention under RL) only because it starts from a low baseline (0.60). Post-training degradation is systematic, not signal-specific.}}{5}{table.13}\protected@file@percent }
+\newlabel{tab:survival_rate}{{13}{5}{Signal survival rate (AUC retention relative to base model). Self-Critique shows paradoxical stability (95\% retention under RL) only because it starts from a low baseline (0.60). Post-training degradation is systematic, not signal-specific}{table.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}RL Observational Case Study}{5}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:rl_case}{{4.10}{5}{RL Observational Case Study}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Calibration degrades with model scale. Comparing controlled results at 100\% dosage, 7B shows weaker signal AUC (0.66 vs.\ 0.69), higher $\gamma $--$\theta $ posterior correlation (0.58 vs.\ 0.52), and worse calibration MAE (8.5~pp vs.\ 7.8~pp) relative to 3B.}}{6}{table.14}\protected@file@percent }
+\newlabel{tab:7b_comparison}{{14}{6}{Calibration degrades with model scale. Comparing controlled results at 100\% dosage, 7B shows weaker signal AUC (0.66 vs.\ 0.69), higher $\gamma $--$\theta $ posterior correlation (0.58 vs.\ 0.52), and worse calibration MAE (8.5~pp vs.\ 7.8~pp) relative to 3B}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Observational analysis at 72B scale. Signal AUC (best: 0.60) and calibration MAE (11.2~pp) confirm the inverse relationship between model scale and calibration feasibility, extrapolating the trend from controlled experiments.}}{6}{table.15}\protected@file@percent }
+\newlabel{tab:72b_comparison}{{15}{6}{Observational analysis at 72B scale. Signal AUC (best: 0.60) and calibration MAE (11.2~pp) confirm the inverse relationship between model scale and calibration feasibility, extrapolating the trend from controlled experiments}{table.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Closed-Weight 2-Signal Degraded Mode}{6}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:closed_weight}{{4.11}{6}{Closed-Weight 2-Signal Degraded Mode}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion: The Identifiability Map}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion: The Identifiability Map}{section.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Calibration on RL-trained models (8 models including Qwen2.5-Instruct and DeepSeek-R1-Distill). 4PL+$\gamma $ \emph  {increases} MAE relative to uncalibrated scores (10.5 vs.\ 9.8~pp), with negative expected regret reduction ($-$0.03), demonstrating that calibration can actively harm model selection when signal quality is insufficient.}}{6}{table.16}\protected@file@percent }
+\newlabel{tab:rl_case_study}{{16}{6}{Calibration on RL-trained models (8 models including Qwen2.5-Instruct and DeepSeek-R1-Distill). 4PL+$\gamma $ \emph {increases} MAE relative to uncalibrated scores (10.5 vs.\ 9.8~pp), with negative expected regret reduction ($-$0.03), demonstrating that calibration can actively harm model selection when signal quality is insufficient}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Per-model $\gamma $ estimates for RL-trained models. 85\% of conditions yield CIs that include zero. Contamination is statistically undetectable in the RL regime. Specificity check: $\hat  {\gamma } = 0.02$ on a clean benchmark confirms no systematic false positives.}}{6}{table.17}\protected@file@percent }
+\newlabel{tab:rl_gamma}{{17}{6}{Per-model $\gamma $ estimates for RL-trained models. 85\% of conditions yield CIs that include zero. Contamination is statistically undetectable in the RL regime. Specificity check: $\hat {\gamma } = 0.02$ on a clean benchmark confirms no systematic false positives}{table.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{The ability--contamination confound.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Signal quality as the binding constraint.}{6}{section*.8}\protected@file@percent }
+\bibstyle{aaai}
+\bibcite{yang2023rethinking}{{1}{}{{}}{{}}}
+\bibcite{oren2025emperor}{{2}{}{{}}{{}}}
+\bibcite{eckerly2017detecting}{{3}{}{{}}{{}}}
+\bibcite{sinharay2017detection}{{4}{}{{}}{{}}}
+\bibcite{dodge2021documenting}{{5}{}{{}}{{}}}
+\bibcite{shi2024detecting}{{6}{}{{}}{{}}}
+\bibcite{dekoninck2024constat}{{7}{}{{}}{{}}}
+\bibcite{weller2024selfcritique}{{8}{}{{}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{9}{}{{}}{{}}}
+\bibcite{bhattpain}{{10}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Calibration quality gap between 4-signal (open-weight) and 2-signal (closed-weight) modes. The 2-signal mode suffers 38\% higher MAE and Kendall $\tau $ drops below 0.50, meaning calibrated rankings are worse than random for model comparison.}}{7}{table.18}\protected@file@percent }
+\newlabel{tab:closed_weight}{{18}{7}{Calibration quality gap between 4-signal (open-weight) and 2-signal (closed-weight) modes. The 2-signal mode suffers 38\% higher MAE and Kendall $\tau $ drops below 0.50, meaning calibrated rankings are worse than random for model comparison}{table.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Synthesized identifiability boundaries. Each row is a condition that must be met for contamination-aware IRT calibration to be feasible. The ``Typical'' column indicates whether the condition is commonly satisfied in current LLM evaluation practice. Only 1 of 5 conditions is typically met.}}{7}{table.19}\protected@file@percent }
+\newlabel{tab:identifiability_map}{{19}{7}{Synthesized identifiability boundaries. Each row is a condition that must be met for contamination-aware IRT calibration to be feasible. The ``Typical'' column indicates whether the condition is commonly satisfied in current LLM evaluation practice. Only 1 of 5 conditions is typically met}{table.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{When to calibrate.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for detection research.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{zhuang2024atlas}{{11}{}{{}}{{}}}
+\bibcite{paganini2024hibayes}{{12}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{8}

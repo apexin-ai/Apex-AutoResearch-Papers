@@ -1,0 +1,992 @@
+{
+  "benchmark": "humaneval",
+  "pass@1": 0.17682926829268292,
+  "correct": 29,
+  "total": 164,
+  "per_item": [
+    {
+      "task_id": "HumanEval/0",
+      "index": 0,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n    \n    # Sort the list to make it easier to find close pairs\n    sorted_numbers = sorted(numbers)\n    \n    for i in range(len(sorted_numbers) - 1):\n        if abs(sorted_numbers[i] - sorted_numbers[i + 1]) < threshold:\n    "
+    },
+    {
+      "task_id": "HumanEval/1",
+      "index": 1,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" \n    Input to this function is a string containing multiple groups of nested parentheses. \n    Your goal is to separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other.\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n    \n    result = []\n    for char in paren_stri"
+    },
+    {
+      "task_id": "HumanEval/2",
+      "index": 2,
+      "correct": false,
+      "generated": "import math\n\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n    # Extract the integer part\n    integer_part = int(number)\n    \n    # Calculate the decimal part\n    decimal_part = number - integer_part\n    \n    return decimal_part\n\n# Test cases\nprint(truncate_numb"
+    },
+    {
+      "task_id": "HumanEval/3",
+      "index": 3,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with \n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and \n    at that point function should return True. Otherwise it should return False.\n    \n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n    balance = 0\n    for op in operations:\n        balance += op\n        # If balance becomes "
+    },
+    {
+      "task_id": "HumanEval/4",
+      "index": 4,
+      "correct": false,
+      "generated": "from typing import List\n\n    # Step 1: Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Step 2: Compute the absolute differences from the mean\n    abs_diffs = [abs(x - mean) for x in numbers]\n    \n    # Step 3: Find the maximum absolute difference\n    max_abs_diff = max(abs_diffs)\n    \n    # Step 4: Calculate the mean absolute deviation\n    mad = max_abs_diff / len(numbers)\n    \n    return mad\n\n# Example usage:\nnumbers = [1.0, 2.0, 3.0, 4.0]\nprint(mean_absolute"
+    },
+    {
+      "task_id": "HumanEval/5",
+      "index": 5,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers`\n    \n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n    # Use list comprehension to insert the delimeter between each element and return the result\n    return [num + delimeter for num in numbers]\n\n# Example usage:\nprint(intersperse([], 4))  # Output: []\nprint(intersperse([1, 2, 3], 4))  # Output: [1, 4, 2, 4, 3]\n"
+    },
+    {
+      "task_id": "HumanEval/6",
+      "index": 6,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" \n    Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    \n    >>> parse_nested_parens('(()()) ((())) () ((())()())')\n    [2, 3, 1, 3]\n    \"\"\"\n    result = []\n    current_depth = 0\n    \n    for char in paren_string:\n        if char == '(':\n            current_depth += 1\n        elif char == ')':\n            current_depth -= 1\n  "
+    },
+    {
+      "task_id": "HumanEval/7",
+      "index": 7,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\"\n    Filters an input list of strings only for ones that contain given substring.\n    \n    Parameters:\n    - strings (List[str]): The list of strings to be filtered.\n    - substring (str): The substring to search for within the strings in the list.\n    \n    Returns:\n    - List[str]: A new list containing only those strings from the original list that contain the given substring.\n    \"\"\"\n    return [s for s in strings if substring in s]\n\n# Example usage and verific"
+    },
+    {
+      "task_id": "HumanEval/8",
+      "index": 8,
+      "correct": false,
+      "generated": "from typing import List, Tuple\n\n    \"\"\"\n    For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    \n    :param numbers: A list of integers.\n    :return: A tuple containing the sum and the product of the integers in the list.\n    \"\"\"\n    if not numbers:\n        # If the list is empty, return a tuple with sum of zero and product of one\n        return (0, 1)\n    else"
+    },
+    {
+      "task_id": "HumanEval/9",
+      "index": 9,
+      "correct": false,
+      "generated": "from typing import List, Tuple\n\n    \"\"\" From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n    \"\"\"\n    max_value = float('-inf')  # Initialize with negative infinity to handle cases where all elements are less than or equal to this value\n    result = []  # Initialize an empty list to store the rolling maximums\n    \n    for num in numbers:\n        if num > max_"
+    },
+    {
+      "task_id": "HumanEval/10",
+      "index": 10,
+      "correct": false,
+      "generated": "def is_palindrome(string: str) -> bool:\n    \"\"\" Test if given string is a palindrome \"\"\"\n    return string == string[::-1]\n\n    \"\"\" Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_pal"
+    },
+    {
+      "task_id": "HumanEval/11",
+      "index": 11,
+      "correct": false,
+      "generated": "from typing import List\n\n    # Convert both strings to integers for easier manipulation\n    int_a = int(a, 2)\n    int_b = int(b, 2)\n\n    # Perform bitwise XOR operation\n    xor_result = int_a ^ int_b\n\n    # Convert the result back to a string\n    xor_str = bin(xor_result)[2:]  # [2:] removes the '0b' prefix\n\n    return xor_str\n\n# Test cases to verify the correctness of the function\nassert string_xor('010', '110') == '100'\nassert string_xor('111', '001') == '110'\n"
+    },
+    {
+      "task_id": "HumanEval/12",
+      "index": 12,
+      "correct": false,
+      "generated": "from typing import List, Optional\n\n    \"\"\" \n    Returns the longest string from the provided list of strings. If there are multiple strings with the same maximum length,\n    returns the first one encountered.\n    \n    >>> longest([])\n    None\n    \n    >>> longest(['a', 'b', 'c'])\n    'a'\n    \n    >>> longest(['a', 'bb', 'ccc'])\n    'ccc'\n    \"\"\"\n    if not strings:\n        return None\n    \n    # Initialize variables to keep track of the current longest and shortest strings found so far\n    max_l"
+    },
+    {
+      "task_id": "HumanEval/13",
+      "index": 13,
+      "correct": true,
+      "generated": "    \"\"\" Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n    \"\"\"\n    \n    # Base case: if b is 0, then gcd(a, b) = a\n    if b == 0:\n        return a\n    \n    # Recursive case: call gcd with b as new a and remainder from previous division\n    return greatest_common_divisor(b, a % b)\n\n# Example usage:\nprint(greatest_common_divisor(3, 5))  # Output: 1\nprint(greatest_common_divisor(25, 15))  # Output: 5"
+    },
+    {
+      "task_id": "HumanEval/14",
+      "index": 14,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Return list of all prefixes from shortest to longest of the input string\n    \n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n    \"\"\"\n    result = []\n    for i in range(len(string)):\n        prefix = string[:i+1]\n        result.append(prefix)\n    return result\n\n# Check function with provided data points\nprint(all_prefixes('abc'))  # Expected output: ['a', 'ab', 'abc']\n"
+    },
+    {
+      "task_id": "HumanEval/15",
+      "index": 15,
+      "correct": true,
+      "generated": "    \"\"\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n    \"\"\"\n    # Initialize an empty list to store the numbers\n    numbers = []\n    \n    # Loop through numbers from 0 to n\n    for i in range(n + 1):\n        # Convert each number to a string and append it to the list\n        numbers.append(str(i))\n    \n    # Join all elements in the list into a single string with spaces betwee"
+    },
+    {
+      "task_id": "HumanEval/16",
+      "index": 16,
+      "correct": true,
+      "generated": "    \"\"\" Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n    \"\"\"\n    # Convert the string to lowercase to ensure case insensitivity\n    string = string.lower()\n    \n    # Initialize an empty set to store unique characters\n    unique_chars = set()\n    \n    for char in string:\n        # Check if the character is already in the set\n        if char not in un"
+    },
+    {
+      "task_id": "HumanEval/17",
+      "index": 17,
+      "correct": false,
+      "generated": "from typing import List\n\n    # Initialize an empty list to store the parsed beats\n    parsed_beats = []\n    \n    # Iterate through each character in the music string\n    for char in music_string:\n        if char == 'o':\n            # If it's a whole note ('o'), add its duration (4 beats)\n            parsed_beats.append(4)\n        elif char == 'o|':\n            # If it's a half note ('o|'), add its duration (2 beats)\n            parsed_beats.append(2)\n        elif char == '.':\n            # If it"
+    },
+    {
+      "task_id": "HumanEval/18",
+      "index": 18,
+      "correct": false,
+      "generated": "    \"\"\" Find how many times a given substring can be found in the original string. \n    Count overlaps and return the total number of occurrences.\n\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n    \"\"\"\n    count = 0\n    start_index = 0\n\n    while True:\n        # Check if the current position is within the bounds of the string\n        if start_index < len(string):\n            # If the substring matches at the current posi"
+    },
+    {
+      "task_id": "HumanEval/19",
+      "index": 19,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" \n    Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    \n    >>> sort_numbers('three one five')\n    'one three five'\n    \"\"\"\n    \n    # Split the input string into individual digits\n    digits = [int(digit) for digit in numbers.split()]\n    \n    # Sort the list of digits "
+    },
+    {
+      "task_id": "HumanEval/20",
+      "index": 20,
+      "correct": false,
+      "generated": "from typing import List, Tuple\n\n    \"\"\" From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    \n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n    \"\"\"\n    if len(numbers) < 2:\n        raise ValueError(\"List must contain at least two elements.\")\n    \n    # Initialize v"
+    },
+    {
+      "task_id": "HumanEval/21",
+      "index": 21,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Given list of numbers (of at least two elements), apply a linear transform to that list,\n        such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n    \"\"\"\n    \n    # Calculate the difference between the maximum and minimum values\n    max_val = max(numbers)\n    min_val = min(numbers)\n    \n    # Scale the values so that they lie within the range [0, 1]\n    sca"
+    },
+    {
+      "task_id": "HumanEval/22",
+      "index": 22,
+      "correct": false,
+      "generated": "from typing import List, Any\n\n    \"\"\" Filter given list of any python values only for integers\n    \n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    \n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n    \"\"\"\n    # Initialize an empty list to store the filtered integers\n    result = []\n    \n    # Iterate through each value in the input list\n    for value in values:\n        # Check if the value is an instance of int\n        if isinstance(value, int):\n            # Add the integer "
+    },
+    {
+      "task_id": "HumanEval/23",
+      "index": 23,
+      "correct": true,
+      "generated": "    \"\"\" Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n    \"\"\"\n    if not string:\n        return 0\n    else:\n        return len(string)\n\n# Example usage:\nprint(strlen(\"\"))  # Output: 0\nprint(strlen(\"abc\"))  # Output: 3\n"
+    },
+    {
+      "task_id": "HumanEval/24",
+      "index": 24,
+      "correct": false,
+      "generated": "    # Start from the smallest prime factor (2) and work upwards\n    for i in range(2, n):\n        if n % i == 0:\n            return i\n"
+    },
+    {
+      "task_id": "HumanEval/25",
+      "index": 25,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appears in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n    \"\"\"\n    \n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in"
+    },
+    {
+      "task_id": "HumanEval/26",
+      "index": 26,
+      "correct": false,
+      "generated": "from typing import List\n\n    seen = set()\n    result = []\n    \n    for num in numbers:\n        if num not in seen:\n            seen.add(num)\n            result.append(num)\n    \n    return result\n\n# Test cases\nprint(remove_duplicates([1, 2, 3, 2, 4]))  # Output: [1, 3, 4]\n"
+    },
+    {
+      "task_id": "HumanEval/27",
+      "index": 27,
+      "correct": true,
+      "generated": "    \"\"\" For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n    \"\"\"\n    result = \"\"\n    for char in string:\n        if char.islower():\n            result += char.upper()\n        elif char.isupper():\n            result += char.lower()\n        else:\n            result += char  # Keep non-lowercase characters as they are\n    return result\n\n# Test cases\nprint(flip_case('Hello'))  # Output: hELLO\nprint(flip_case('WorLD'))  # Ou"
+    },
+    {
+      "task_id": "HumanEval/28",
+      "index": 28,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Concatenate list of strings into a single string\n    \n    Args:\n        strings (List[str]): A list of strings to be concatenated.\n    \n    Returns:\n        str: The concatenated string.\n    \"\"\"\n    # Check if the input is an empty list\n    if not strings:\n        return \"\"\n    \n    # Join all elements in the list with a space separator\n    result = \" \".join(strings)\n    \n    return result\n\n# Example usage:\nprint(concatenate([]))  # Output: ''\nprint(concatenate(["
+    },
+    {
+      "task_id": "HumanEval/29",
+      "index": 29,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\" Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n    \"\"\"\n    filtered_strings = [s for s in strings if s.startswith(prefix)]\n    return filtered_strings\n\n# Example usage:\nstrings_list = [\"apple\", \"banana\", \"apricot\", \"cherry\"]\nprefix = \"a\"\nfiltered_list = filter_by_prefix(strings_list, prefix)\nprint(filtered_list"
+    },
+    {
+      "task_id": "HumanEval/30",
+      "index": 30,
+      "correct": true,
+      "generated": "    \"\"\"Return only positive numbers in the list.\"\"\"\n    return [num for num in l if num > 0]\n\n# Example usage:\nprint(get_positive([-1, 2, -4, 5, 6]))  # Output: [2, 5, 6]\nprint(get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))  # Output: [5, 3, 2, 3, 9, 123, 1]\n"
+    },
+    {
+      "task_id": "HumanEval/31",
+      "index": 31,
+      "correct": true,
+      "generated": "    \"\"\"Return true if a given number is prime, and false otherwise.\"\"\"\n    \n    # Check for numbers less than 2\n    if n <= 1:\n        return False\n    \n    # Check for even numbers greater than 2\n    if n % 2 == 0:\n        return False\n    \n    # Check for factors from 3 to the square root of n (inclusive)\n    for i in range(3, int(n**0.5) + 1, 2):  # Only odd numbers needed\n        if n % i == 0:\n            return False\n    \n    return True\n\n# Test cases\nprint(is_prime(6))   # Expected: False"
+    },
+    {
+      "task_id": "HumanEval/32",
+      "index": 32,
+      "correct": false,
+      "generated": "To complete the given Python function `poly` and `find_zero`, we need to ensure that the input list `xs` has an even number of elements and that the largest non-zero coefficient is used. Here's how you can implement these functions:\n\n```python\nimport math\n"
+    },
+    {
+      "task_id": "HumanEval/33",
+      "index": 33,
+      "correct": false,
+      "generated": "from typing import List\n\n    # Extract elements at indices that are multiples of three\n    third_elements = [l[i] for i in range(len(l)) if i % 3 == 0]\n    \n    # Sort these elements\n    third_elements.sort()\n    \n    # Extract elements at indices that are not multiples of three\n    remaining_elements = [l[i] for i in range(len(l)) if i % 3 != 0]\n    \n    # Combine the sorted third elements with the remaining elements\n    result = third_elements + remaining_elements\n    \n    return result\n\n# Tes"
+    },
+    {
+      "task_id": "HumanEval/34",
+      "index": 34,
+      "correct": false,
+      "generated": "    \"\"\"Return sorted unique elements in a list\"\"\"\n    # Use set to remove duplicates and then sort the result\n    return sorted(list(set(l)))\n\n# Test cases to verify the correctness of the function\nassert unique([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123], \"Test case 1 failed\"\nassert unique([-1, -3, -4, -6, -7, -8, -9, -10]) == [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], \"Test case 2 failed\"\n"
+    },
+    {
+      "task_id": "HumanEval/35",
+      "index": 35,
+      "correct": true,
+      "generated": "    \"\"\"Return maximum element in the list.\"\"\"\n    if not l:\n        return None  # Return None if the list is empty\n\n    max_value = l[0]  # Initialize with the first element of the list\n    for num in l:\n        if num > max_value:\n            max_value = num  # Update max_value if a larger number is found\n\n    return max_value  # Return the maximum value found\n\n# Test cases\nprint(max_element([1, 2, 3]))  # Output: 3\nprint(max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))  # Output: 123\n"
+    },
+    {
+      "task_id": "HumanEval/36",
+      "index": 36,
+      "correct": false,
+      "generated": "    \"\"\"Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\"\"\"\n    \n    # Initialize the count for digits 7 and 4 (since 7 is greater than 4)\n    count_7 = 0\n    \n    # Iterate through all numbers from 1 to n-1\n    for i in range(1, n):\n        if i % 11 == 0 or i % 13 == 0:\n            # Check if the current number is divisible by 11 or 13\n            if i % 11 == 0:\n                count_7 += len(str(i)) - len(str(i // 11))\n            else:\n "
+    },
+    {
+      "task_id": "HumanEval/37",
+      "index": 37,
+      "correct": false,
+      "generated": "    \"\"\"This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n    \"\"\"\n    # Extract the even-indexed elements from the original list\n    even_elements = l[::2]\n    \n    # Sort these even-indexed elements\n    even_elements.sort()\n    \n    # Create a ne"
+    },
+    {
+      "task_id": "HumanEval/38",
+      "index": 38,
+      "correct": false,
+      "generated": "def encode_cyclic(s: str):\n    \"\"\"\n    returns encoded string by cycling groups of three characters.\n    \"\"\"\n    # Split string to groups. Each of length 3.\n    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n    # Cycle elements in each group. Unless group has fewer elements than 3.\n    groups = [(group[1:] + group[0]) if len(group) == 3 else group for group in groups]\n    return \"\".join(groups)\n\n    \"\"\"\n    takes as input string encoded with encode_cyclic funct"
+    },
+    {
+      "task_id": "HumanEval/39",
+      "index": 39,
+      "correct": false,
+      "generated": "import math\n"
+    },
+    {
+      "task_id": "HumanEval/40",
+      "index": 40,
+      "correct": true,
+      "generated": "    \"\"\"\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n    >>> triples_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> triples_sum_to_zero([1, 3, -2, 1])\n    True\n    >>> triples_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\n    True\n    >>> triples_sum_to_zero([1])\n    False\n    \"\"\"\n    for i in range(len(l)):\n        for j in range(i"
+    },
+    {
+      "task_id": "HumanEval/41",
+      "index": 41,
+      "correct": false,
+      "generated": "    # Initialize counters for both directions\n    left_count = 0\n    right_count = 0\n\n    # Simulate the movement of cars until no more collisions occur\n    while True:\n        # Move all cars in one direction (left)\n        for _ in range(n):\n            left_count += 1\n        \n        # Move all cars in the opposite direction (right)\n        for _ in range(n):\n            right_count += 1\n        \n        # Check for collisions\n        if left_count == right_count:\n            return n * 2 - "
+    },
+    {
+      "task_id": "HumanEval/42",
+      "index": 42,
+      "correct": true,
+      "generated": "    \"\"\"Return list with elements incremented by 1.\"\"\"\n    # Initialize an empty list to store the result\n    result = []\n    \n    # Iterate through each element in the input list\n    for i in range(len(l)):\n        # Increment the current element by 1 and append it to the result list\n        result.append(l[i] + 1)\n    \n    return result\n\n# Test cases to verify the correctness of the function\nprint(incr_list([1, 2, 3]))  # Expected output: [2, 3, 4]\nprint(incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])"
+    },
+    {
+      "task_id": "HumanEval/43",
+      "index": 43,
+      "correct": true,
+      "generated": "    \"\"\"\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    \"\"\"\n    seen = set()\n    for num in l:\n        complement = -num\n        if complement in seen:\n            return True\n        seen.add(num)\n    return False\n\n# Test cases\nprint(pairs_sum_to_zero([1, 3, 5, 0]))  # False\nprint(pairs_sum_to_zero([1, 3, -2, 1]))  # False\nprint(pairs_sum_to_zero([1, 2, 3, 7]))  # False\n"
+    },
+    {
+      "task_id": "HumanEval/44",
+      "index": 44,
+      "correct": true,
+      "generated": "    # Convert the number to a list of digits in the new base\n    digits = []\n    while x > 0:\n        remainder = x % base\n        digits.append(str(remainder))\n        x //= base\n    \n    # Reverse the list of digits to get the correct order for the original base\n    reversed_digits = digits[::-1]\n    \n    # Join the digits back into a single string\n    result = ''.join(reversed_digits)\n    \n    return result\n\n# Test cases\nprint(change_base(8, 3))  # Output: \"22\"\nprint(change_base(8, 2))  # Out"
+    },
+    {
+      "task_id": "HumanEval/45",
+      "index": 45,
+      "correct": false,
+      "generated": "import math\n\n    \"\"\"Given length of a side and high return area for a triangle.\"\"\"\n    # Calculate the area using the formula\n    area = (1/2) * a * h\n    return area\n\n# Example usage:\nprint(triangle_area(5, 3))  # Output: 7.5\n"
+    },
+    {
+      "task_id": "HumanEval/46",
+      "index": 46,
+      "correct": false,
+      "generated": "class FibonacciCalculator:\n    def __init__(self):\n        self.cache = {0: 0, 1: 0, 2: 2, 3: 0}\n\n        if n in self.cache:\n            return self.cache[n]\n        \n        # Compute the value iteratively without recursion\n        result = self.fib4(n - 1) + self.fib4(n - 2) + self.fib4(n - 3) + self.fib4(n - 4)\n        self.cache[n] = result\n        \n        return result\n\n# Example usage:\ncalculator = FibonacciCalculator()\nprint(calculator.fib4(5))  # Output: 4\nprint(calculator.fib4(6))  # "
+    },
+    {
+      "task_id": "HumanEval/47",
+      "index": 47,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\"Return median of elements in the list l.\n    \n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n    \"\"\"\n    # Sort the list\n    sorted_list = sorted(l)\n    \n    n = len(sorted_list)\n    if n % 2 == 1:\n        # If the length of the list is odd, return the middle element\n        return sorted_list[n // 2]\n    else:\n        # If the length of the list is even, return the average of the two middle elements\n        mid_index = n "
+    },
+    {
+      "task_id": "HumanEval/48",
+      "index": 48,
+      "correct": true,
+      "generated": "    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_text = ''.join(char.lower() for char in text if char.isalnum())\n    \n    # Check if the cleaned text is equal to its reverse\n    return cleaned_text == cleaned_text[::-1]\n\n# Test cases\nprint(is_palindrome(\"\"))  # True\nprint(is_palindrome(\"aba\"))  # True\nprint(is_palindrome(\"aaaaa\"))  # True\nprint(is_palindrome(\"zbcd\"))  # False\n"
+    },
+    {
+      "task_id": "HumanEval/49",
+      "index": 49,
+      "correct": false,
+      "generated": "    \"\"\"Return 2^n modulo p (be aware of numerics).\n    \n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n    \"\"\"\n    if n == 0:\n        return 1 % p\n    \n    result = 1\n    base = n\n    while base > 0:\n        # If the current bit is set, multiply the result by 2 raised to the power of the bit position in n\n        if base & 1:\n            result = (result * 2) % p\n        \n        # Square the base for the n"
+    },
+    {
+      "task_id": "HumanEval/50",
+      "index": 50,
+      "correct": false,
+      "generated": "import string\n"
+    },
+    {
+      "task_id": "HumanEval/51",
+      "index": 51,
+      "correct": true,
+      "generated": "    # Initialize an empty string to store the result\n    result = \"\"\n    \n    # Iterate through each character in the input text\n    for char in text:\n        # Check if the character is not a vowel\n        if char.lower() not in \"aeiou\":\n            # Add the non-vowel character to the result\n            result += char\n    \n    return result\n\n# Test cases\nprint(remove_vowels(\"\"))  # Output: ''\nprint(remove_vowels(\"abcdef\\nghijklm\"))  # Output: 'bcdf\\nghjklm'\nprint(remove_vowels('abcdef'))  # Ou"
+    },
+    {
+      "task_id": "HumanEval/52",
+      "index": 52,
+      "correct": false,
+      "generated": "    for num in l:\n        if num <= t:\n            continue\n        else:\n            return False\n    return True\n\n# Test cases\nprint(below_threshold([1, 2, 4, 10], 100))  # Expected output: True\nprint(below_threshold([1, 20, 4, 10], 5))  # Expected output: False\n"
+    },
+    {
+      "task_id": "HumanEval/53",
+      "index": 53,
+      "correct": true,
+      "generated": "    if not isinstance(x, int) or not isinstance(y, int):\n        raise ValueError(\"Both arguments must be integers.\")\n    \n    return x + y\n\n# Test cases\nprint(add(2, 3))  # Output: 5\nprint(add(5, 7))  # Output: 12\n"
+    },
+    {
+      "task_id": "HumanEval/54",
+      "index": 54,
+      "correct": true,
+      "generated": "    # Convert both strings to sets of their characters for easy comparison\n    set_s0 = set(s0)\n    set_s1 = set(s1)\n\n    # Compare the sets to see if they are equal\n    return set_s0 == set_s1\n\n# Test cases\nprint(same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc'))  # True\nprint(same_chars('abcd', 'dddddddabc'))              # True\nprint(same_chars('dddddddabc', 'abcd'))               # True\nprint(same_chars('eabcd', 'dddddddabc'))             # False\nprint(same_chars('abcd', 'dddddddabce'))         "
+    },
+    {
+      "task_id": "HumanEval/55",
+      "index": 55,
+      "correct": false,
+      "generated": "    # Base case: if n is 0 or 1, return n\n    if n <= 1:\n        return n\n\n    # Check if the result is already computed\n    if cache.get(n, None) is not None:\n        return cache[n]\n\n    # Recursive calculation with memoization\n    cache[n] = fib(n - 1) + fib(n - 2)\n\n    return cache[n]\n"
+    },
+    {
+      "task_id": "HumanEval/56",
+      "index": 56,
+      "correct": true,
+      "generated": "    \"\"\" Brackets is a string of \"<\" and \">\".\n    Return True if every opening bracket has a corresponding closing bracket.\n\n    >>> correct_bracketing(\"<\")\n    False\n    >>> correct_bracketing(\"<>\")\n    True\n    >>> correct_bracketing(\"<<><>>\")\n    True\n    >>> correct_bracketing(\"><<>\")\n    False\n    \"\"\"\n    \n    # Initialize an empty stack to keep track of opening brackets\n    stack = []\n    \n    # Iterate through each character in the input string\n    for char in brackets:\n        # If the ch"
+    },
+    {
+      "task_id": "HumanEval/57",
+      "index": 57,
+      "correct": false,
+      "generated": "    \"\"\"Return True if the list of numbers is monotonically increasing or decreasing.\"\"\"\n    # Check if all elements are equal and greater than the previous element\n    return l[1:] == l[:-1] or (l[1:] > l[:-1] and len(l) >= 3)\n\n# Test cases\nprint(monotonic([1, 2, 4, 20]))  # Output: True\nprint(monotonic([1, 20, 4, 10]))  # Output: False\nprint(monotonic([4, 1, 0, -10]))  # Output: True\n"
+    },
+    {
+      "task_id": "HumanEval/58",
+      "index": 58,
+      "correct": false,
+      "generated": "from typing import List\n\n    # Use set intersection to find common elements\n    common_elements = set(l1) & set(l2)\n    \n    # Convert the set back to a list and sort it\n    sorted_common = sorted(list(common_elements))\n    \n    return sorted_common\n\n# Test cases\nprint(common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]))  # Output: [1, 5, 653]\nprint(common([5, 3, 2, 8], [3, 2]))  # Output: [2, 3]\n"
+    },
+    {
+      "task_id": "HumanEval/59",
+      "index": 59,
+      "correct": false,
+      "generated": "import math\n\n    # Initialize the largest prime factor as 1 (since 1 is always a factor)\n    largest_prime = 1\n    \n    # Divide n by 2 until it becomes odd\n    while n % 2 == 0:\n        largest_prime = 2\n        n //= 2\n    \n    # Now n must be odd, so we can skip one element (Note i = i + 2)\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        # While i divides n, update n and largest_prime\n        while n % i == 0:\n            largest_prime = i\n            n //= i\n    \n    # If n is a pri"
+    },
+    {
+      "task_id": "HumanEval/60",
+      "index": 60,
+      "correct": true,
+      "generated": "    \"\"\"\n    SumToN is a function that returns the sum of all integers from 1 to n.\n\n    Parameters:\n    n (int): The upper limit of the range of numbers to sum.\n\n    Returns:\n    int: The sum of all integers from 1 to n.\n    \"\"\"\n    return n * (n + 1) // 2\n\n# Test cases\nassert sum_to_n(30) == 465\nassert sum_to_n(100) == 5050\nassert sum_to_n(5) == 15\nassert sum_to_n(10) == 55\nassert sum_to_n(1) == 1\n"
+    },
+    {
+      "task_id": "HumanEval/61",
+      "index": 61,
+      "correct": true,
+      "generated": "    stack = []\n    \n    for char in brackets:\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if not stack or stack[-1] != '(':\n                return False\n            stack.pop()\n    \n    return len(stack) == 0\n\n# Test cases\nprint(correct_bracketing(\"(\"))  # Output: False\nprint(correct_bracketing(\"()\"))  # Output: True\nprint(correct_bracketing(\"(()())\"))  # Output: True\nprint(correct_bracketing(\")(()\"))  # Output: False\n"
+    },
+    {
+      "task_id": "HumanEval/62",
+      "index": 62,
+      "correct": false,
+      "generated": "from typing import List\n\n    # Calculate the derivative of each coefficient\n    deriv_coeffs = [c * i for i, c in enumerate(xs)]\n    \n    return deriv_coeffs\n\n# Test cases\nprint(derivative([3, 1, 2, 4, 5]))  # Expected output: [1, 4, 12, 20]\nprint(derivative([1, 2, 3]))        # Expected output: [2, 6]\n"
+    },
+    {
+      "task_id": "HumanEval/63",
+      "index": 63,
+      "correct": true,
+      "generated": "    # Base cases\n    if n == 0 or n == 1:\n        return 0\n    elif n == 2:\n        return 1\n\n    # Initialize the first three Fibonacci numbers\n    fibs = [0, 0, 1]\n\n    # Compute the nth Fibonacci number using dynamic programming\n    for i in range(3, n + 1):\n        next_fib = fibs[i - 1] + fibs[i - 2] + fibs[i - 3]\n        fibs.append(next_fib)\n\n    return fibs[n]\n\n# Test cases\nprint(fibfib(1))  # Output: 0\nprint(fibfib(5))  # Output: 4\nprint(fibfib(8))  # Output: 24\n"
+    },
+    {
+      "task_id": "HumanEval/64",
+      "index": 64,
+      "correct": false,
+      "generated": "    # Initialize a counter for vowels\n    vowels = 0\n    \n    # Iterate through each character in the string\n    for char in s:\n        # Check if the character is a vowel (case-insensitive)\n        if char.lower() in ['a', 'e', 'i', 'o', 'u']:\n            vowels += 1\n            \n    return vowels\n\n# Test cases to verify the correctness of the function\ntest_cases = [\n    (\"abcde\", 2),\n    (\"ACEDY\", 3),\n    (\"AEIOU\", 5),\n    (\"HelloWorld\", 3),\n    (\"PythonProgramming\", 4)\n]\n\nfor input_str, expec"
+    },
+    {
+      "task_id": "HumanEval/65",
+      "index": 65,
+      "correct": false,
+      "generated": "    # Handle case where shift >= number of digits\n    if shift >= len(str(x)):\n        return str(x)[::-1]\n    \n    # Handle case where shift < number of digits\n    elif shift < len(str(x)):\n        return ''.join([str(x[i]) for i in range(len(str(x)) - shift)])\n    else:\n        return '0' * (len(str(x) + shift) // len(str(x))) + str(x)\n\n# Test cases\nprint(circular_shift(123456789, 1))  # Output: \"234567891\"\nprint(circular_shift(123456789, 2))  # Output: \"1234567892\"\n"
+    },
+    {
+      "task_id": "HumanEval/66",
+      "index": 66,
+      "correct": false,
+      "generated": "    # Initialize the sum to zero\n    total_sum = 0\n    \n    # Iterate through each character in the string\n    for char in s:\n        # Convert the character to its ASCII value and add it to the total sum\n        total_sum += ord(char)\n    \n    return total_sum\n\n# Test cases to verify the correctness of the function\nprint(digitSum(\"\"))  # Expected output: 0\nprint(digitSum(\"abAB\"))  # Expected output: 131\nprint(digitSum(\"abcCd\"))  # Expected output: 67\nprint(digitSum(\"helloE\"))  # Expected output"
+    },
+    {
+      "task_id": "HumanEval/67",
+      "index": 67,
+      "correct": false,
+      "generated": "    # Split the string into two parts: one part is the number of apples and oranges\n    # The other part is the number of mango fruits\n    apple_orange_parts = s.split(' ')\n    \n    # Calculate the number of mango fruits\n    mango_fruits = int(apple_orange_parts[0]) + int(apple_orange_parts[1])\n    \n    return mango_fruits\n\n# Test cases\nprint(fruit_distribution(\"5 apples and 6 oranges\", 19))  # Output: 8\nprint(fruit_distribution(\"0 apples and 1 oranges\", 3))   # Output: 2\nprint(fruit_distributio"
+    },
+    {
+      "task_id": "HumanEval/68",
+      "index": 68,
+      "correct": false,
+      "generated": "To complete the `pluck` function, I'll need to understand the problem better. The goal is to find the node with the smallest even value in a binary search tree (BST) where each node's value is either odd or even. If there are multiple nodes with the same smallest even value, I want to return the node with the smallest index.\n\nHere's how I would approach this:\n\n1. Traverse the BST from left to right.\n2. For each node, check if its value is even.\n3. If it is, compare its value with the smallest ev"
+    },
+    {
+      "task_id": "HumanEval/69",
+      "index": 69,
+      "correct": true,
+      "generated": "    # Dictionary to store the frequency of each element\n    freq = {}\n    \n    # Count the frequency of each element in the list\n    for num in lst:\n        if num in freq:\n            freq[num] += 1\n        else:\n            freq[num] = 1\n    \n    # Find the maximum element with at least the same frequency as its value\n    max_element = -1\n    for num, freq_count in freq.items():\n        if freq_count >= num and num > max_element:\n            max_element = num\n    \n    return max_element\n\n# Tes"
+    },
+    {
+      "task_id": "HumanEval/70",
+      "index": 70,
+      "correct": false,
+      "generated": "    if not lst:  # If the list is empty, return an empty list\n        return []\n\n    min_val = lst[0]  # Initialize the minimum value as the first element\n    for num in lst[1:]:  # Iterate through the rest of the list starting from the second element\n        if num < min_val:\n            min_val = num\n\n    # Place the minimum value at the beginning of the list\n    lst.insert(0, min_val)\n\n    return lst\n"
+    },
+    {
+      "task_id": "HumanEval/71",
+      "index": 71,
+      "correct": false,
+      "generated": "import math\n\n    # Check if the sides form a valid triangle\n    if (a + b > c) and (a + c > b) and (b + c > a):\n        # Calculate the semi-perimeter\n        s = (a + b + c) / 2\n        \n        # Calculate the area using Heron's formula\n        area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n        \n        # Round the result to 2 decimal places\n        area_rounded = round(area, 2)\n        \n        return area_rounded\n    \n    else:\n        # Return -1 if the sides do not form a valid tria"
+    },
+    {
+      "task_id": "HumanEval/72",
+      "index": 72,
+      "correct": false,
+      "generated": "    \"\"\"\n    Check if the list 'q' will fly based on the condition that it must be balanced and the sum of its elements must not exceed 'w'.\n    \n    :param q: List[int] - A list of integers representing the current state of the object.\n    :param w: int - Maximum possible weight for the object.\n    :return: bool - True if the object will fly, False otherwise.\n    \"\"\"\n    # Check if the list is balanced\n    if len(q) % 2 == 0:\n        return all(q[i] == q[-i-1] for i in range(len(q) // 2))\n    el"
+    },
+    {
+      "task_id": "HumanEval/73",
+      "index": 73,
+      "correct": false,
+      "generated": "    # Check if the array is already a palindrome\n    if arr == sorted(arr):\n        return 0\n    \n    # Count the number of odd elements\n    odd_count = sum(1 for num in arr if num % 2 != 0)\n    \n    # Find the minimum changes needed\n    min_changes = float('inf')\n    left, right = 0, len(arr) - 1\n    \n    while left < right:\n        diff = abs(arr[left] - arr[right])\n        if diff > 1:\n            min_changes += 1\n        left += 1\n        right -= 1\n    \n    return min_changes\n\n# Test cases\n"
+    },
+    {
+      "task_id": "HumanEval/74",
+      "index": 74,
+      "correct": false,
+      "generated": "    # Initialize variables to store counts of characters in each list\n    char_count_lst1 = 0\n    char_count_lst2 = 0\n    \n    # Iterate through each string in the first list\n    for char in lst1:\n        # Increment the count for the current character in the first list\n        char_count_lst1 += 1\n        \n        # If the current character is not found in the second list, increment the count for it\n        if char not in lst2:\n            char_count_lst2 += 1\n            \n    # Compare the cou"
+    },
+    {
+      "task_id": "HumanEval/75",
+      "index": 75,
+      "correct": false,
+      "generated": "    # Check if the number is less than or equal to 100\n    if a <= 100:\n        primes = [2, 3, 5]  # List of known prime numbers\n        for i in range(len(primes)):\n            if a % primes[i] == 0:\n                return False  # If any prime divides a, it cannot be a prime factor\n        return True  # If no divisor found, it must be a prime itself\n    else:\n        return False  # The input number is too large\n\n# Test cases\nprint(is_multiply_prime(30))  # Expected output: True\nprint(is_mul"
+    },
+    {
+      "task_id": "HumanEval/76",
+      "index": 76,
+      "correct": false,
+      "generated": "    # Check if x is less than or equal to 0\n    if x <= 0:\n        return False\n    \n    # If x is 1, it is always a simple power of any number\n    if x == 1:\n        return True\n    \n    # Iterate from 2 to sqrt(x) to find the smallest k such that n^k = x\n    for k in range(2, int(x ** 0.5) + 1):\n        if x % n == 0:\n            return True\n    return False\n\n# Test cases\nprint(is_simple_power(1, 4))  # True\nprint(is_simple_power(2, 2))  # True\nprint(is_simple_power(8, 2))  # True\nprint(is_sim"
+    },
+    {
+      "task_id": "HumanEval/77",
+      "index": 77,
+      "correct": false,
+      "generated": "import math\n\n    # Check if the absolute value of 'a' is divisible by 6\n    return abs(a) % 6 == 0\n\n# Test cases\nprint(iscube(1))   # True\nprint(iscube(2))   # False\nprint(iscube(-1))  # True\nprint(iscube(64))  # True\nprint(iscube(0))   # True\nprint(iscube(180)) # False\n"
+    },
+    {
+      "task_id": "HumanEval/78",
+      "index": 78,
+      "correct": true,
+      "generated": "    # Define the set of prime hexadecimal digits\n    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}\n    \n    count = 0\n    for char in num:\n        if char in prime_hex_digits:\n            count += 1\n    \n    return count\n\n# Test cases\nprint(hex_key(\"AB\"))       # Output: 1\nprint(hex_key(\"1077E\"))    # Output: 2\nprint(hex_key(\"ABED1A33\")) # Output: 4\nprint(hex_key(\"123456789ABCDEF0\")) # Output: 6\nprint(hex_key(\"2020\"))     # Output: 2\n"
+    },
+    {
+      "task_id": "HumanEval/79",
+      "index": 79,
+      "correct": false,
+      "generated": "    # Convert the decimal number to binary\n    binary_str = bin(decimal)[2:]  # [2:] removes the '0b' prefix\n    \n    # Add the extra characters 'db'\n    binary_str += 'db'\n    \n    return binary_str\n\n# Test cases\nprint(decimal_to_binary(15))  # Output: db1111db\nprint(decimal_to_binary(32))  # Output: db100000db\n"
+    },
+    {
+      "task_id": "HumanEval/80",
+      "index": 80,
+      "correct": false,
+      "generated": "    # Check if the string length is less than 3\n    if len(s) < 3:\n        return False\n\n    # Iterate through the string with a step of 3\n    for i in range(len(s) - 2):\n        # If any three consecutive characters are the same, return False\n        if s[i] == s[i + 1] == s[i + 2]:\n            return False\n\n    # If all checks pass, the string is happy\n    return True\n\n# Test cases\nprint(is_happy(\"a\"))       # Output: False\nprint(is_happy(\"aa\"))      # Output: False\nprint(is_happy(\"abcd\"))    "
+    },
+    {
+      "task_id": "HumanEval/81",
+      "index": 81,
+      "correct": false,
+      "generated": "To complete the `numerical_letter_grade` function, we need to map each GPA value to its corresponding letter grade based on the provided table. Here's how we can implement this:\n\n```python\n    # Define the mapping from GPA to letter grade\n    letter_grades = {\n        4.0: 'A+', \n        4.1: 'A',\n        4.2: 'A-', \n        4.3: 'B+',\n        4.4: 'B',\n        4.5: 'B-', \n        4.6: 'C+',\n        4.7: 'C',\n        4.8: 'C-', \n        4.9: 'D+',\n        5.0: 'D',\n        5.1: 'D-', \n        5."
+    },
+    {
+      "task_id": "HumanEval/82",
+      "index": 82,
+      "correct": false,
+      "generated": "import math\n\n    \"\"\"Check if the length of the string is a prime number\"\"\"\n    \n    # Calculate the length of the string\n    length = len(string)\n    \n    # Check if the length is a prime number\n    return length > 1 and all(length % i != 0 for i in range(2, int(math.sqrt(length)) + 1))\n\n# Test cases\nprint(prime_length('Hello'))  # Expected: True\nprint(prime_length('abcdcba'))  # Expected: True\nprint(prime_length('kittens'))  # Expected: True\nprint(prime_length('orange'))  # Expected: False\n"
+    },
+    {
+      "task_id": "HumanEval/83",
+      "index": 83,
+      "correct": false,
+      "generated": "    \"\"\"\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n    \"\"\"\n    # If n is less than 2, there are no such numbers\n    if n < 2:\n        return 0\n    \n    # Calculate the total number of n-digit numbers and subtract those that start or end with 1\n    total_numbers = (10 ** n) - 1\n    \n    # The remaining numbers will be those that start or end with 1\n    ones_count = total_numbers // 2\n    \n    return ones_count\n\n# Exam"
+    },
+    {
+      "task_id": "HumanEval/84",
+      "index": 84,
+      "correct": false,
+      "generated": "    # Convert the decimal number to binary\n    binary_representation = bin(N)[2:]  # [2:] removes the '0b' prefix\n    \n    # Calculate the sum of the digits in the binary representation\n    digit_sum = sum(int(digit) for digit in binary_representation)\n    \n    # Return the result as a string\n    return str(digit_sum)\n\n# Test cases\nprint(solve(1000))  # Expected output: \"1\"\nprint(solve(150))   # Expected output: \"110\"\nprint(solve(147))   # Expected output: \"12\"\n"
+    },
+    {
+      "task_id": "HumanEval/85",
+      "index": 85,
+      "correct": false,
+      "generated": "    # Initialize an empty list to store the result\n    result = []\n    \n    # Iterate through the list starting from index 1 (odd indices)\n    for i in range(1, len(lst), 2):\n        # Check if the element is even\n        if lst[i] % 2 == 0:\n            # Add it to the result list\n            result.append(lst[i])\n    \n    return result\n\n# Test cases to verify the correctness of the function\nprint(add([4, 2, 6, 7]))  # Expected output: [2]\nprint(add([3, 5, 8, 9, 11]))  # Expected output: [5, 9]\n"
+    },
+    {
+      "task_id": "HumanEval/86",
+      "index": 86,
+      "correct": false,
+      "generated": "import re\n\n    # Split the input string into words\n    words = s.split()\n    \n    # Use regular expression to replace each word with its sorted character sequence\n    result = ''.join(sorted(word) for word in words)\n    \n    return result\n\n# Test cases\nprint(anti_shuffle('Hi'))  # Output: 'Hi'\nprint(anti_shuffle('hello'))  # Output: 'ehllo'\nprint(anti_shuffle('Hello World!!!'))  # Output: 'Hello !!!Wdlor'\n"
+    },
+    {
+      "task_id": "HumanEval/87",
+      "index": 87,
+      "correct": false,
+      "generated": "To complete the function `get_row`, we need to follow these steps:\n\n1. Iterate through each sublist in the input list `lst`.\n2. For each sublist, check if it contains at least one element.\n3. If a sublist has elements, extract the first element as the row index and the rest of the elements as the column indices.\n4. Convert this extracted information into a tuple `(row_index, column_indices)` where `row_index` starts from 0 and increases for each sublist.\n5. Sort the resulting tuples based on the"
+    },
+    {
+      "task_id": "HumanEval/88",
+      "index": 88,
+      "correct": false,
+      "generated": "    \"\"\"\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n    Note:\n    * don't change the given array.\n    \"\"\"\n\n    # Check if the array is empty\n    if not array:\n        return []\n\n    # Initialize variables for the current element and the sum\n    cu"
+    },
+    {
+      "task_id": "HumanEval/89",
+      "index": 89,
+      "correct": false,
+      "generated": "    # Define the alphabet for rotation\n    alphabet = \"abcdefghijklmnopqrstuvwxyz\"\n    \n    # Initialize an empty list to store the encrypted characters\n    encrypted_chars = []\n    \n    # Iterate over each character in the input string\n    for char in s:\n        # Calculate the new position after rotation\n        new_position = (alphabet.index(char) + 2) % len(alphabet)\n        \n        # Append the new character to the encrypted list\n        encrypted_chars.append(alphabet[new_position])\n    \n"
+    },
+    {
+      "task_id": "HumanEval/90",
+      "index": 90,
+      "correct": false,
+      "generated": "    # First, sort the list in ascending order\n    sorted_lst = sorted(lst)\n    \n    # Check if the length of the sorted list is less than or equal to 2\n    if len(sorted_lst) <= 2:\n        return None\n    \n    # Find the index where the second smallest element should be inserted\n    second_smallest_index = len(sorted_lst) - 2\n    \n    # Insert the second smallest element at its correct position\n    lst[second_smallest_index] = float('inf')\n    \n    # Return the second smallest element\n    return"
+    },
+    {
+      "task_id": "HumanEval/91",
+      "index": 91,
+      "correct": false,
+      "generated": "    \"\"\"\n    Count the number of boredoms in the given string.\n    \n    A boredom is defined as a sentence starting with the word \"I\" followed by any characters until the end of the string.\n    \n    Parameters:\n    S (str): The input string containing sentences separated by '.', '?' or '!'.\n    \n    Returns:\n    int: The number of boredoms found in the input string.\n    \"\"\"\n    # Initialize a counter for boredoms\n    boredoms = 0\n    \n    # Iterate through each character in the string\n    for cha"
+    },
+    {
+      "task_id": "HumanEval/92",
+      "index": 92,
+      "correct": false,
+      "generated": "    \"\"\"\n    Check if any of the three numbers is equal to the sum of the other two.\n\n    Parameters:\n    x (int): The first number.\n    y (int): The second number.\n    z (int): The third number.\n\n    Returns:\n    bool: True if any number is equal to the sum of the other two, False otherwise.\n    \"\"\"\n    # Calculate the sum of the other two numbers\n    sum_of_others = y + z\n    \n    # Check if any number is equal to the sum of the other two\n    return x == sum_of_others or y == sum_of_others or z"
+    },
+    {
+      "task_id": "HumanEval/93",
+      "index": 93,
+      "correct": false,
+      "generated": "    # Define the mapping of vowels to their positions in the alphabet\n    vowel_positions = {'a': 0, 'e': 1, 'i': 2, 'o': 3, 'u': 4}\n    \n    # Initialize an empty string to store the encoded message\n    encoded_message = ''\n    \n    # Iterate through each character in the input message\n    for char in message:\n        if char.isalpha():\n            # Check if the character is a vowel\n            if char.lower() in vowel_positions:\n                # Replace the vowel with its position in the alp"
+    },
+    {
+      "task_id": "HumanEval/94",
+      "index": 94,
+      "correct": false,
+      "generated": "To complete the provided Python function `skjkasdkd`, we can follow these steps:\n\n1. **Filter out non-prime numbers**: We will iterate through the list and filter out any numbers that are not prime.\n2. **Check for prime numbers**: Once we have filtered out non-prime numbers, we will check if each remaining number is prime.\n3. **Sum the digits of the prime numbers**: If a number is prime, we will calculate its sum of digits.\n4. **Return the result**: Finally, we will return the sum of the digits "
+    },
+    {
+      "task_id": "HumanEval/95",
+      "index": 95,
+      "correct": false,
+      "generated": "    \"\"\"\n    Given a dictionary, return True if all keys are strings in lower case or all keys are strings in upper case,\n    else return False. The function should return False is the given dictionary is empty.\n\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age"
+    },
+    {
+      "task_id": "HumanEval/96",
+      "index": 96,
+      "correct": false,
+      "generated": "import math\n\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, int(math.sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    primes = []\n    for i in range(2, n + 1):\n        if is_prime(i):\n            primes.append(i)\n    \n    return primes\n\n# Test cases\nprint(count_up_to(5))  # Output: [2, 3]\nprint(count_up_to(11))  # Output: [2, 3, 5, 7]\nprint(count_up_to(0))  # Output: []\nprint(count_up_to(20))  # Ou"
+    },
+    {
+      "task_id": "HumanEval/97",
+      "index": 97,
+      "correct": true,
+      "generated": "    # Extract the unit digits of both numbers\n    unit_digit_a = abs(a % 10)\n    unit_digit_b = abs(b % 10)\n\n    # Multiply the unit digits\n    result = unit_digit_a * unit_digit_b\n\n    # If the original number had a negative sign, negate the result\n    if a < 0:\n        result *= -1\n\n    return result\n\n# Test cases\nprint(multiply(148, 412))  # Output: 16\nprint(multiply(19, 28))    # Output: 72\nprint(multiply(2020, 1851))  # Output: 0\nprint(multiply(14, -15))   # Output: 20\n"
+    },
+    {
+      "task_id": "HumanEval/98",
+      "index": 98,
+      "correct": false,
+      "generated": "    # Initialize a counter for uppercase vowels\n    upper_vowels = 0\n    \n    # Iterate through each character in the string\n    for char in s:\n        # Check if the character is an uppercase vowel\n        if 'AEIOU'.find(char) != -1:\n            upper_vowels += 1\n            \n    # Return the total count of uppercase vowels in even indices\n    return upper_vowels\n\n# Test cases\nprint(count_upper('aBCdEf'))  # Output: 1\nprint(count_upper('abcdefg'))  # Output: 0\nprint(count_upper('dBBE'))    # O"
+    },
+    {
+      "task_id": "HumanEval/99",
+      "index": 99,
+      "correct": false,
+      "generated": "import math\n\n    \"\"\"\n    Returns the closest integer to the given value. If the value is equidistant\n    from two integers, rounds it away from zero.\n    \n    Parameters:\n    value (str): The string representation of the number to be rounded.\n    \n    Returns:\n    int: The closest integer to the given value.\n    \"\"\"\n    # Convert the string to an integer\n    num = int(value)\n    \n    # Check if the number is exactly halfway between two integers\n    if abs(num - math.floor(num)) == 0.5:\n        #"
+    },
+    {
+      "task_id": "HumanEval/100",
+      "index": 100,
+      "correct": false,
+      "generated": "    \"\"\"\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n    \"\"\"\n    # If n is odd, add one more stone than the previous level\n    if n % 2 != 0:\n        return [n"
+    },
+    {
+      "task_id": "HumanEval/101",
+      "index": 101,
+      "correct": false,
+      "generated": "    # Initialize an empty list to store the words\n    words = []\n    \n    # Iterate through each character in the input string\n    for char in s:\n        # Check if the current character is not a comma or space\n        if char != ',' and char != ' ':\n            # Add the word to the list\n            words.append(char)\n    \n    # Return the list of words\n    return words\n\n# Test cases to verify the correctness of the solution\nprint(words_string(\"Hi, my name is John\"))  # Expected output: ['Hi', "
+    },
+    {
+      "task_id": "HumanEval/102",
+      "index": 102,
+      "correct": false,
+      "generated": "    # Ensure x <= y for simplicity\n    if x > y:\n        x, y = y, x\n\n    # Find the midpoint of the range\n    mid = (y + x) // 2\n\n    # Check if the middle element is even\n    if mid % 2 == 0:\n        return mid\n    else:\n        # If not even, check both sides of the midpoint\n        if mid < x:\n            return choose_num(mid + 1, y)\n        elif mid > y:\n            return choose_num(x, mid - 1)\n        else:\n            return -1  # Return -1 if neither side contains an even number\n\n# Tes"
+    },
+    {
+      "task_id": "HumanEval/103",
+      "index": 103,
+      "correct": false,
+      "generated": "    # Step 1: Compute the sum of all integers from n to m\n    total_sum = sum(range(n, m + 1))\n    \n    # Step 2: Calculate the average\n    average = total_sum / (m - n + 1)\n    \n    # Step 3: Round the average to the nearest integer\n    rounded_average = round(average)\n    \n    # Step 4: Convert the rounded average to binary\n    binary_representation = bin(rounded_average)[2:]  # Get binary representation without '0b'\n    \n    return f\"{binary_representation}\"\n\n# Test cases\nprint(rounded_avg(1,"
+    },
+    {
+      "task_id": "HumanEval/104",
+      "index": 104,
+      "correct": true,
+      "generated": "    # Filter out numbers with even digits\n    filtered_numbers = [num for num in x if not any(int(digit) % 2 == 0 for digit in str(num))]\n    \n    # Sort the filtered numbers\n    sorted_numbers = sorted(filtered_numbers)\n    \n    return sorted_numbers\n\n# Test cases\nprint(unique_digits([15, 33, 1422, 1]))  # Output: [1, 15, 33]\nprint(unique_digits([152, 323, 1422, 10]))  # Output: []\n"
+    },
+    {
+      "task_id": "HumanEval/105",
+      "index": 105,
+      "correct": false,
+      "generated": "    # Step 1: Sort the numbers in ascending order\n    sorted_arr = sorted(arr)\n    \n    # Step 2: Reverse the sorted list\n    reversed_sorted_arr = sorted_arr[::-1]\n    \n    # Step 3: Replace digits with their names\n    result = []\n    for num in reversed_sorted_arr:\n        if num == 0:\n            result.append('Zero')\n        elif num == 1:\n            result.append('One')\n        elif num == 2:\n            result.append('Two')\n        elif num == 3:\n            result.append('Three')\n       "
+    },
+    {
+      "task_id": "HumanEval/106",
+      "index": 106,
+      "correct": true,
+      "generated": "    result = []\n    for i in range(1, n + 1):\n        # Check if i is even\n        if i % 2 == 0:\n            # Calculate factorial\n            fact = 1\n            for j in range(1, i + 1):\n                fact *= j\n            result.append(fact)\n        else:\n            # Calculate sum of numbers from 1 to i\n            sum_of_numbers = sum(range(1, i + 1))\n            result.append(sum_of_numbers)\n    \n    return result\n\n# Test the function with the provided example\nprint(f(5))  # Expected "
+    },
+    {
+      "task_id": "HumanEval/107",
+      "index": 107,
+      "correct": true,
+      "generated": "    # Initialize counters for even and odd palindromes\n    even_count = 0\n    odd_count = 0\n    \n    # Iterate through each number in the range [1, n]\n    for i in range(1, n + 1):\n        # Check if the current number is a palindrome\n        if str(i) == str(i)[::-1]:\n            # Increment the count based on whether it's even or odd\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n                \n    # Return the counts as a tuple\n  "
+    },
+    {
+      "task_id": "HumanEval/108",
+      "index": 108,
+      "correct": false,
+      "generated": "    \"\"\"\n    Count the numbers in the array whose sum of digits is greater than 0.\n\n    Parameters:\n    arr (list): A list of integers.\n\n    Returns:\n    int: The count of numbers with a sum of digits greater than 0.\n    \"\"\"\n    # Initialize a counter for numbers with a sum of digits greater than 0\n    count = 0\n    \n    # Iterate through each number in the array\n    for num in arr:\n        # Convert the number to a string to easily access individual digits\n        str_num = str(num)\n        \n   "
+    },
+    {
+      "task_id": "HumanEval/109",
+      "index": 109,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\"\n    Determine if it is possible to sort the array using right shifts.\n    \n    :param arr: A list of integers representing the initial state of the array.\n    :return: True if the array can be sorted with right shifts, False otherwise.\n    \"\"\"\n    # Check if the array is already sorted\n    if arr == sorted(arr):\n        return True\n    \n    # Perform right shifts until the array becomes unsorted\n    while True:\n        new_arr = [0] * len(arr)\n        for i in ra"
+    },
+    {
+      "task_id": "HumanEval/110",
+      "index": 110,
+      "correct": false,
+      "generated": "    # Check if both lists have at least one element\n    if not lst1 or not lst2:\n        return \"NO\"\n\n    # Count the number of odd elements in both lists\n    odd_count_1 = sum(1 for num in lst1 if num % 2 != 0)\n    odd_count_2 = sum(1 for num in lst2 if num % 2 != 0)\n\n    # If there are more than half odd elements in either list, it's impossible to make all elements even\n    if odd_count_1 > len(lst1) // 2 or odd_count_2 > len(lst2) // 2:\n        return \"NO\"\n\n    # If there are enough odd eleme"
+    },
+    {
+      "task_id": "HumanEval/111",
+      "index": 111,
+      "correct": false,
+      "generated": "    # Initialize an empty dictionary to store the result\n    result = {}\n    \n    # Iterate through each character in the test string\n    for char in test:\n        # If the character is already in the dictionary, increment its count\n        if char in result:\n            result[char] += 1\n        else:\n            # Otherwise, add the character to the dictionary with a count of 1\n            result[char] = 1\n    \n    # Return the result as a dictionary\n    return dict(result)\n"
+    },
+    {
+      "task_id": "HumanEval/112",
+      "index": 112,
+      "correct": false,
+      "generated": "    # Step 1: Reverse the input string s\n    reversed_s = s[::-1]\n    \n    # Step 2: Iterate through each character in the reversed string\n    for i in range(len(reversed_s)):\n        # Step 3: Check if the current character in s is in c\n        if reversed_s[i] in c:\n            # Step 4: Remove the character from s\n            s = s[:i] + s[i+1:]\n            \n    # Step 5: Check if the resulting string is a palindrome\n    if s == s[::-1]:\n        return (reversed_s, True)\n    else:\n        ret"
+    },
+    {
+      "task_id": "HumanEval/113",
+      "index": 113,
+      "correct": false,
+      "generated": "    \"\"\"Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n    >>> odd_count(['1234567'])\n    [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"]\n    >>> odd_count(['3',\"11111111\"])\n    [\"the number of odd elements 1n the str1ng 1 of the 1nput.\",\n    "
+    },
+    {
+      "task_id": "HumanEval/114",
+      "index": 114,
+      "correct": false,
+      "generated": "from typing import List\n"
+    },
+    {
+      "task_id": "HumanEval/115",
+      "index": 115,
+      "correct": false,
+      "generated": "import math\n\n    # Calculate the total volume of water\n    total_volume = sum(sum(row) for row in grid)\n    \n    # Determine if we can extract all the water with the available capacity\n    if total_volume >= capacity:\n        return total_volume // capacity\n    \n    # Find out how much water can be extracted with the remaining capacity\n    remaining_capacity = capacity - total_volume\n    min_times_to_lower = (remaining_capacity + capacity - 1) // capacity\n    \n    return min_times_to_lower\n\n# Ex"
+    },
+    {
+      "task_id": "HumanEval/116",
+      "index": 116,
+      "correct": false,
+      "generated": "    \"\"\"\n    Sorts an array of non-negative integers according to the number of ones in their binary representation,\n    and then by the decimal value if the counts are equal.\n    \n    :param arr: List[int] - A list of non-negative integers.\n    :return: List[int] - The sorted list of integers.\n    \"\"\"\n    # Count the number of ones in each binary representation\n    count = [sum(1 for bit in bin(num)[2:]) for num in arr]\n    \n    # Create a dictionary to map each count to its corresponding value\n"
+    },
+    {
+      "task_id": "HumanEval/117",
+      "index": 117,
+      "correct": false,
+      "generated": "import re\n\n    # Split the string into words using regex to handle multiple spaces\n    words = re.findall(r'\\b\\w+\\b', s)\n    \n    result = []\n    for word in words:\n        # Count the number of consonants in the current word\n        consonant_count = sum(1 for char in word if 'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ' in char.lower())\n        \n        # Check if the count of consonants matches the required number\n        if consonant_count == n:\n            result.append(word)\n    \n    return"
+    },
+    {
+      "task_id": "HumanEval/118",
+      "index": 118,
+      "correct": false,
+      "generated": "    # Initialize variables to store the closest vowel found and its index\n    closest_vowel = ''\n    vowel_index = -1\n    \n    # Iterate from the end of the word towards the beginning\n    for i in range(len(word) - 1, -1, -1):\n        char = word[i]\n        \n        # Check if the current character is a vowel\n        if char.lower() in 'aeiou':\n            # Update the closest vowel if a closer one is found\n            if len(closest_vowel) == 0 or abs(i - vowel_index) < abs(i - closest_vowel.in"
+    },
+    {
+      "task_id": "HumanEval/119",
+      "index": 119,
+      "correct": false,
+      "generated": "    # Initialize an empty stack to keep track of opening parentheses\n    stack = []\n    \n    # Iterate through each character in the input list\n    for char in lst:\n        # If the current character is an opening parenthesis, push it onto the stack\n        if char == '(':\n            stack.append(char)\n        else:\n            # If the stack is not empty and the top element is an opening parenthesis,\n            # pop elements from the stack until the top is an closing parenthesis\n            "
+    },
+    {
+      "task_id": "HumanEval/120",
+      "index": 120,
+      "correct": false,
+      "generated": "from typing import List\n"
+    },
+    {
+      "task_id": "HumanEval/121",
+      "index": 121,
+      "correct": false,
+      "generated": "    # Initialize the sum to zero\n    total_sum = 0\n    \n    # Iterate through the list starting from the second element (index 1)\n    for i in range(1, len(lst), 2):  # Step size of 2 ensures we only consider even indices\n        # Check if the current element is odd\n        if lst[i] % 2 != 0:\n            # Add the odd element to the total sum\n            total_sum += lst[i]\n    \n    return total_sum\n\n# Test cases to verify the correctness of the function\nprint(solution([5, 8, 7, 1]))  # Expect"
+    },
+    {
+      "task_id": "HumanEval/122",
+      "index": 122,
+      "correct": true,
+      "generated": "    \"\"\"\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n    \n    Example:\n    \n    >>> add_elements([111,21,3,4000,5,6,7,8,9], 4)\n    24\n    \n    Constraints:\n        1. 1 <= len(arr) <= 100\n        2. 1 <= k <= len(arr)\n    \"\"\"\n    sum_of_elements = 0\n    for i in range(min(k, len(arr))):\n        if arr[i] <= 100:\n            sum_of_elements += arr[i]\n    return sum_of_elements\n"
+    },
+    {
+      "task_id": "HumanEval/123",
+      "index": 123,
+      "correct": false,
+      "generated": "    \"\"\"\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n    The Collatz conjecture is a conjecture in mathematics that concerns a sequence defined\n    as follows: start with any positive integer n. Then each term is obtained from the \n    previous term as follows: if the previous term is even, the next term is one half of \n    the previous term. If the previous term is odd, the next term is 3 times the previous\n    term plus 1. The conjecture i"
+    },
+    {
+      "task_id": "HumanEval/124",
+      "index": 124,
+      "correct": false,
+      "generated": "import re\n\n    # Check if the date string is not empty\n    if not date:\n        return False\n    \n    # Define the pattern for matching dates in the format mm-dd-yyyy\n    pattern = r'^([01]?[2-9]|3[01])-(0[1-9]|1[0-2])-(19|20)\\d$'\n    \n    # Use regular expression to match the date pattern\n    if re.match(pattern, date):\n        # Extract the day, month, and year from the matched date\n        day, month, year = map(int, date.split('-'))\n        \n        # Validate the month (should be between 1 "
+    },
+    {
+      "task_id": "HumanEval/125",
+      "index": 125,
+      "correct": false,
+      "generated": "    # Check for spaces and commas\n    has_spaces_or_commas = any(char in ' \\',.' for char in txt)\n    \n    # Count lowercase letters with odd alphabetical order\n    odd_order_lowercase_count = sum(1 for letter in txt if ord(letter) - ord('a') % 2 == 1)\n    \n    # Return either all words (if no spaces or commas) or the count of odd-order lowercase letters\n    if not has_spaces_or_commas:\n        return [word.strip() for word in txt.split()]\n    else:\n        return odd_order_lowercase_count\n\n# Te"
+    },
+    {
+      "task_id": "HumanEval/126",
+      "index": 126,
+      "correct": false,
+      "generated": "To complete the given Python function `is_sorted`, we need to check if all elements in the list are in strictly increasing order. Here's how you can implement this:\n\n```python\n    \"\"\"\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n    \n    Examples\n    >>> is_sorted([5])\n    True\n    >>> is_sorted([1, 2, 3, 4, 5])\n    True\n    >>> is_so"
+    },
+    {
+      "task_id": "HumanEval/127",
+      "index": 127,
+      "correct": false,
+      "generated": "import math\n\n    # Calculate the length of the intersection\n    intersection_length = max(interval1[1], interval2[1]) - min(interval1[0], interval2[0])\n    \n    # Check if the length is a prime number\n    def is_prime(n):\n        if n <= 1:\n            return False\n        for i in range(2, int(math.sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n    \n    # Return \"YES\" if the length is prime, otherwise return \"NO\"\n    return \"YES\" if is_prime(intersect"
+    },
+    {
+      "task_id": "HumanEval/128",
+      "index": 128,
+      "correct": false,
+      "generated": "import math\n\n    \"\"\"\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n    Example:\n    >>> prod_signs([1, 2, 2, -4]) == -9\n    >>> prod_signs([0, 1]) == 0\n    >>> prod_signs([]) == None\n    \"\"\"\n    sign_product = None\n    \n    # Iterate through each element in the array\n    for x in arr:\n        abs_x = abs(x)\n    "
+    },
+    {
+      "task_id": "HumanEval/129",
+      "index": 129,
+      "correct": false,
+      "generated": "from typing import List\n"
+    },
+    {
+      "task_id": "HumanEval/130",
+      "index": 130,
+      "correct": false,
+      "generated": "    # Base cases\n    if n == 0:\n        return [3]\n    \n    # Initialize the first three terms of the sequence\n    if n < 3:\n        return [3] * (n + 1)\n\n    # Calculate the Tribonacci sequence up to the nth term\n    tribos = [3] * (n + 1)\n    tribos[1], tribos[2] = 3, 3\n    \n    # Fill the rest of the sequence\n    for i in range(3, n + 1):\n        tribos[i] = tribos[i - 1] + tribos[i - 2] + tribos[i + 1]\n\n    return tribos[:n + 1]\n\n# Test the function with some examples\nprint(tri(3))  # Output"
+    },
+    {
+      "task_id": "HumanEval/131",
+      "index": 131,
+      "correct": false,
+      "generated": "    # Base case: if n is less than or equal to 0, return 0\n    if n <= 0:\n        return 0\n    \n    # Initialize the result variable\n    res = 1\n    \n    # Iterate through each digit of n\n    while n > 0:\n        # Check if the current digit is odd\n        if n % 2 != 0:\n            # Multiply the result with the current digit\n            res *= n\n        # Remove the last digit from n\n        n //= 10\n    \n    # Return the final result\n    return res\n\n# Test cases\nprint(digits(1))       # Outpu"
+    },
+    {
+      "task_id": "HumanEval/132",
+      "index": 132,
+      "correct": false,
+      "generated": "    \"\"\"\n    Check if there is any valid subsequence of brackets where at least one bracket is nested.\n    \n    :param string: A string containing only square brackets.\n    :return: True if such a subsequence exists, otherwise False.\n    \"\"\"\n    # Initialize an empty stack to keep track of opening brackets\n    stack = []\n    \n    # Iterate through each character in the string\n    for char in string:\n        # If the character is an opening bracket, push it onto the stack\n        if char == '[':\n "
+    },
+    {
+      "task_id": "HumanEval/133",
+      "index": 133,
+      "correct": false,
+      "generated": "import math\n\n    # Initialize the total sum with 0\n    total_sum = 0\n    \n    for num in lst:\n        # Square the current number and round it up to the nearest integer\n        rounded_up = math.ceil(num ** 2)\n        \n        # Add the rounded-up value to the total sum\n        total_sum += rounded_up\n    \n    return total_sum\n\n# Test cases\nprint(sum_squares([1, 2, 3]))  # Output: 14\nprint(sum_squares([1, 4, 9]))  # Output: 98\nprint(sum_squares([1, 3, 5, 7]))  # Output: 84\nprint(sum_squares([1.4"
+    },
+    {
+      "task_id": "HumanEval/134",
+      "index": 134,
+      "correct": false,
+      "generated": "    # Check if the string is empty\n    if len(txt) == 0:\n        return False\n    \n    # Get the last character of the string\n    last_char = txt[-1]\n    \n    # Check if the last character is an alphabetical character\n    if not last_char.isalpha():\n        return False\n    \n    # Check if the last character is not part of any word\n    for char in txt:\n        if char.isalpha() and char != last_char:\n            return False\n    \n    return True\n\n# Test cases\nprint(check_if_last_char_is_a_letter"
+    },
+    {
+      "task_id": "HumanEval/135",
+      "index": 135,
+      "correct": false,
+      "generated": "    max_index = -1  # Initialize the maximum index to -1\n    \n    for i in range(len(arr)):\n        if arr[i] <= arr[i-1]:\n            max_index = i  # Update the maximum index if a larger element is found\n    \n    return max_index\n\n# Test cases\nprint(can_arrange([1,2,4,3,5]))  # Output: 3\nprint(can_arrange([1,2,3]))      # Output: -1\n"
+    },
+    {
+      "task_id": "HumanEval/136",
+      "index": 136,
+      "correct": false,
+      "generated": "    # Initialize variables to store the maximum and minimum values found so far\n    max_value = float('-inf')\n    min_value = float('inf')\n\n    # Iterate through each element in the list\n    for num in lst:\n        if num > max_value:\n            max_value = num\n        elif num < min_value:\n            min_value = num\n\n    # Return the tuple containing the maximum and minimum values\n    return (max_value, min_value)\n\n# Test cases\nprint(largest_smallest_integers([2, 4, 1, 3, 5, 7]))  # Output: ("
+    },
+    {
+      "task_id": "HumanEval/137",
+      "index": 137,
+      "correct": false,
+      "generated": "    # Convert both inputs to strings for comparison\n    str_a = str(a)\n    str_b = str(b)\n\n    # Compare the strings directly\n    if str_a > str_b:\n        return float(str_a)\n    elif str_a < str_b:\n        return float(str_b)\n    else:\n        return None\n\n# Test cases\nprint(compare_one(1, 2.5))  # ➞ 2.5\nprint(compare_one(1, \"2,3\"))  # ➞ \"2,3\"\nprint(compare_one(\"5,1\", \"6\"))  # ➞ \"6\"\nprint(compare_one(\"1\", 1))  # ➞ None\n"
+    },
+    {
+      "task_id": "HumanEval/138",
+      "index": 138,
+      "correct": false,
+      "generated": "    # Check if n is less than or equal to 0\n    if n <= 0:\n        return False\n    \n    # If n is odd, it cannot be expressed as the sum of four positive even numbers\n    if n % 2 != 0:\n        return False\n    \n    # Check if there exist three other positive integers that add up to n\n    for i in range(1, n // 3 + 1):\n        if (n - 2 * i) % 2 == 0 and (n - 2 * i) > 0:\n            return True\n    \n    return False\n\n# Test cases\nprint(is_equal_to_sum_even(4))   # Expected: False\nprint(is_equal"
+    },
+    {
+      "task_id": "HumanEval/139",
+      "index": 139,
+      "correct": false,
+      "generated": "import math\n\n    \"\"\"The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n\n    For example:\n    >>> special_factorial(4)\n    288\n\n    The function will receive an integer as input and should return the special\n    factorial of this integer.\n    \"\"\"\n    # Calculate the Brazilian factorial using the math.factorial function\n    result = math.factorial(n)\n    \n    # Multiply the result by each factorial from 1! down to (n-1)!\n    for i in range(1, n):\n  "
+    },
+    {
+      "task_id": "HumanEval/140",
+      "index": 140,
+      "correct": false,
+      "generated": "    # Replace multiple consecutive spaces with single space\n    text = re.sub(r'\\s+', ' ', text)\n    \n    # Replace more than two consecutive spaces with '-'\n    text = re.sub(r' {2,}', '-', text)\n    \n    return text\n\n# Test cases\nprint(fix_spaces(\"Example\"))  # Output: \"Example\"\nprint(fix_spaces(\"Example 1\"))  # Output: \"Example_1\"\nprint(fix_spaces(\" Example 2\"))  # Output: \"_Example_2\"\nprint(fix_spaces(\" Example   3\"))  # Output: \"_Example-3\"\n"
+    },
+    {
+      "task_id": "HumanEval/141",
+      "index": 141,
+      "correct": false,
+      "generated": "import re\n\n    \"\"\"Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions \n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'.\n    - The substring before the dot should not be empty, and it starts with a letter from \n    the l"
+    },
+    {
+      "task_id": "HumanEval/142",
+      "index": 142,
+      "correct": false,
+      "generated": "    total_sum = 0\n    \n    # Iterate over each element in the list\n    for i, value in enumerate(lst):\n        # Check if the current index is a multiple of 3 or 4 but not a multiple of both\n        if (i % 3 == 0) or ((i % 4 == 0) and (i % 3 != 0)):\n            # Square the value if the condition is met\n            total_sum += value ** 2\n            \n    return total_sum\n\n# Test cases\nprint(sum_squares([1, 2, 3]))  # Output: 6\nprint(sum_squares([]))         # Output: 0\nprint(sum_squares([-1, -"
+    },
+    {
+      "task_id": "HumanEval/143",
+      "index": 143,
+      "correct": false,
+      "generated": "import math\n"
+    },
+    {
+      "task_id": "HumanEval/144",
+      "index": 144,
+      "correct": false,
+      "generated": "from math import gcd\n\n    # Convert the strings to integers for easier manipulation\n    num_x = int(x)\n    den_x = int(n)\n    \n    # Calculate the greatest common divisor (GCD) of the numerator and denominator\n    g = gcd(num_x, den_x)\n    \n    # Simplify the fraction by dividing both the numerator and denominator by their GCD\n    simplified_numerator = num_x // g\n    simplified_denominator = den_x // g\n    \n    # Check if the simplified fraction is a whole number\n    return simplified_numerator"
+    },
+    {
+      "task_id": "HumanEval/145",
+      "index": 145,
+      "correct": false,
+      "generated": "from typing import List\n\n    \"\"\"\n    Sorts the given list of integers in ascending order according to the sum of their digits.\n    If there are multiple numbers with the same digit sum, they are sorted alphabetically by their index in the original list.\n    \n    :param nums: List of integers to be sorted.\n    :return: Sorted list of integers.\n    \"\"\"\n    # Convert each integer to its absolute value and then to a string representation\n    abs_nums = [abs(num) for num in nums]\n    \n    # Calculate"
+    },
+    {
+      "task_id": "HumanEval/146",
+      "index": 146,
+      "correct": false,
+      "generated": "    # Helper function to check if a number is odd\n    def is_odd(num):\n        return num % 2 != 0\n\n    # Filter the list based on the conditions\n    filtered_nums = [num for num in nums if num > 10 and is_odd(num[0]) and is_odd(num[-1])]\n    \n    # Return the count of numbers that satisfy the conditions\n    return len(filtered_nums)\n\n# Test cases\nprint(specialFilter([15, -73, 14, -15]))  # Output: 1\nprint(specialFilter([33, -2, -3, 45, 21, 109]))  # Output: 2\n"
+    },
+    {
+      "task_id": "HumanEval/147",
+      "index": 147,
+      "correct": false,
+      "generated": "    # Initialize the result counter\n    res = 0\n    \n    # Iterate over all possible values for 'i' in the range 1 to n-2\n    for i in range(1, n-1):\n        # Calculate the corresponding 'j' value based on the formula a[i] = i * i - i + 1\n        j = i * i - i + 1\n        \n        # Check if the sum of 'a[i]', 'a[j]', and 'a[k]' is divisible by 3\n        if (a[i] + a[j] + a[k]) % 3 == 0:\n            res += 1\n            \n    return res\n\n# Example usage:\nn = 5\nprint(get_max_triples(n))  # Output"
+    },
+    {
+      "task_id": "HumanEval/148",
+      "index": 148,
+      "correct": false,
+      "generated": "    # Define the order of planets in the solar system\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    \n    # Check if both planet names are valid\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    \n    # Filter planets based on their proximity to the Sun\n    filtered_planets = [planet for planet in planets if planet != planet1 and planet != planet2]\n    \n    # Sort the filtered planets by their proximity to the Sun\n   "
+    },
+    {
+      "task_id": "HumanEval/149",
+      "index": 149,
+      "correct": false,
+      "generated": "def list_sort(lst):\n    # Step 1: Identify words (individual elements)\n    words = [word for word in lst if len(word) % 2 == 0]\n    \n    # Step 2: Filter out words with odd lengths\n    filtered_words = [word for word in words if len(word) % 2 != 0]\n    \n    # Step 3: Sort words by length\n    sorted_words = sorted(filtered_words, key=lambda x: (-len(x), x))\n    \n    # Step 4: Return the sorted list\n    return sorted_words\n\n# Test cases\nassert list_sort([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\nassert list_so"
+    },
+    {
+      "task_id": "HumanEval/150",
+      "index": 150,
+      "correct": false,
+      "generated": "import math\n\n    # Check if n is a prime number\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, int(math.sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    # Return x if n is prime, otherwise return y\n    return x if is_prime(n) else y\n\n# Test cases\nprint(x_or_y(7, 34, 12))  # Expected output: 34\nprint(x_or_y(15, 8, 5))   # Expected output: 5\n"
+    },
+    {
+      "task_id": "HumanEval/151",
+      "index": 151,
+      "correct": false,
+      "generated": "    # Initialize the sum with 0\n    result = 0\n    \n    # Iterate through each number in the list\n    for num in lst:\n        # Check if the number is positive or zero\n        if isinstance(num, int) and num > 0:\n            # Square the number and add it to the result\n            result += num ** 2\n            \n    # Return the final sum of squared odd numbers\n    return result\n\n# Test cases\nprint(double_the_difference([1, 3, 2, 0]))  # Expected output: 10\nprint(double_the_difference([-1, -2, 0"
+    },
+    {
+      "task_id": "HumanEval/152",
+      "index": 152,
+      "correct": true,
+      "generated": "    # Initialize an empty list to store the differences\n    differences = []\n    \n    # Iterate through each element in the game array\n    for i in range(len(game)):\n        # Calculate the difference between the current guess and the game score\n        diff = abs(guess[i] - game[i])\n        \n        # Append the difference to the differences list\n        differences.append(diff)\n    \n    # Return the list of differences\n    return differences\n\n# Example usage:\ngame = [1, 2, 3, 4, 5, 1]\nguess = "
+    },
+    {
+      "task_id": "HumanEval/153",
+      "index": 153,
+      "correct": false,
+      "generated": "from typing import List\n"
+    },
+    {
+      "task_id": "HumanEval/154",
+      "index": 154,
+      "correct": false,
+      "generated": "    # Check if the second word or any rotation of it is a substring in the first word\n    return any(b[i:] == b[:i] for i in range(len(b)))\n\n# Test cases\nprint(cycpattern_check(\"abcd\", \"abd\"))  # False\nprint(cycpattern_check(\"hello\", \"ell\"))  # True\nprint(cycpattern_check(\"whassup\", \"psus\"))  # False\nprint(cycpattern_check(\"abab\", \"baa\"))  # True\nprint(cycpattern_check(\"efef\", \"eeff\"))  # False\nprint(cycpattern_check(\"himenss\", \"simen\"))  # True\n"
+    },
+    {
+      "task_id": "HumanEval/155",
+      "index": 155,
+      "correct": false,
+      "generated": "    \"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n    Example:\n        even_odd_count(-12) ==> (1, 1)\n        even_odd_count(123) ==> (1, 2)\n\n    Args:\n        num (int): The integer to analyze.\n\n    Returns:\n        tuple: A tuple containing two elements - the first is the count of even digits, and the second is the count of odd digits.\n    \"\"\"\n    # Initialize counters for even and odd digits\n    even_count = 0\n    odd_count = 0\n\n    # Iterate th"
+    },
+    {
+      "task_id": "HumanEval/156",
+      "index": 156,
+      "correct": true,
+      "generated": "    # Mapping of integers to their corresponding Roman numerals\n    roman_numerals = {\n        1000: 'm',\n        900: 'cm',\n        500: 'd',\n        400: 'cd',\n        100: 'c',\n        90: 'xc',\n        50: 'l',\n        40: 'xl',\n        10: 'x',\n        9: 'ix',\n        5: 'v',\n        4: 'iv',\n        1: 'i'\n    }\n\n    # Initialize the result string\n    result = ''\n\n    # Iterate over the mapping values\n    for value, numeral in sorted(roman_numerals.items(), reverse=True):\n        while nu"
+    },
+    {
+      "task_id": "HumanEval/157",
+      "index": 157,
+      "correct": false,
+      "generated": "import math\n\n    # Check if any side is longer than the sum of the other two sides\n    return a**2 + b**2 > c**2 or a**2 + c**2 > b**2 or b**2 + c**2 > a**2\n\n# Test cases\nprint(right_angle_triangle(3, 4, 5))  # Expected: True\nprint(right_angle_triangle(1, 2, 3))  # Expected: False\n"
+    },
+    {
+      "task_id": "HumanEval/158",
+      "index": 158,
+      "correct": false,
+      "generated": "    # Step 1: Identify unique characters for each string\n    unique_chars = {}\n    for word in words:\n        unique_chars.update({char: True for char in word})\n    \n    # Step 2: Determine the set with the highest number of unique characters\n    max_unique_chars_set = {char: True for char in unique_chars}\n    for char, is_unique in max_unique_chars_set.items():\n        if not is_unique:\n            break\n    \n    # Step 3: Order strings by length and then by unique character count\n    sorted_wo"
+    },
+    {
+      "task_id": "HumanEval/159",
+      "index": 159,
+      "correct": false,
+      "generated": "    # Calculate the number of additional carrots needed\n    additional_carrots_needed = max(0, need - remaining)\n    \n    # Return the total number of carrots eaten and the number of carrots left\n    return [additional_carrots_needed + number, remaining - additional_carrots_needed]\n\n# Test cases\nprint(eat(5, 6, 10))  # Expected output: [11, 4]\nprint(eat(4, 8, 9))   # Expected output: [12, 1]\nprint(eat(1, 10, 10)) # Expected output: [11, 0]\nprint(eat(2, 11, 5))  # Expected output: [7, 0]\n"
+    },
+    {
+      "task_id": "HumanEval/160",
+      "index": 160,
+      "correct": false,
+      "generated": "    # Initialize the result with the first element in the operand list\n    result = operand[0]\n\n    # Iterate through each operator in the operator list\n    for op in operator:\n        if op == '+':\n            # Add the current value from the operand list to the result\n            result += operand[1]\n        elif op == '-':\n            # Subtract the current value from the result\n            result -= operand[1]\n        elif op == '*':\n            # Multiply the current value from the operand "
+    },
+    {
+      "task_id": "HumanEval/161",
+      "index": 161,
+      "correct": false,
+      "generated": "    # Check if the string contains only letters\n    if not s.isalpha():\n        # Reverse the string if it contains only letters\n        return s[::-1]\n    \n    # Otherwise, return the string in lowercase\n    return s.lower()\n\n# Test cases\nprint(solve(\"1234\"))  # Output: \"4321\"\nprint(solve(\"ab\"))    # Output: \"AB\"\nprint(solve(\"#a@C\"))  # Output: \"#A@c\"\n"
+    },
+    {
+      "task_id": "HumanEval/162",
+      "index": 162,
+      "correct": false,
+      "generated": "import hashlib\n\n    \"\"\"\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    \"\"\"\n    if not text:\n        return None\n    \n    # Create a new MD5 hash object\n    md5_hash = hashlib.md5()\n    \n    # Update the hash object with the bytes of the input text\n    md5_hash.update(text.encode())\n    \n    # Return the hexadecimal representation of the hash\n    return"
+    },
+    {
+      "task_id": "HumanEval/163",
+      "index": 163,
+      "correct": false,
+      "generated": "    \"\"\"\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n    For example:\n    generate_integers(2, 8) => [2, 4, 6, 8]\n    generate_integers(8, 2) => [2, 4, 6, 8]\n    generate_integers(10, 14) => []\n    \"\"\"\n    # Initialize an empty list to store even digits\n    evens = []\n\n    # Iterate through numbers from 'a' to 'b'\n    for num in range(a, b + 1):\n        # Check if the current number has at least one even digit\n        if any(int(digit)"
+    }
+  ]
+}

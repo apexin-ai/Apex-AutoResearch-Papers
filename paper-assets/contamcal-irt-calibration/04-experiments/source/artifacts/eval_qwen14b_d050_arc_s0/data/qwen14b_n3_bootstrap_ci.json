@@ -1,0 +1,31 @@
+{
+  "family": "Qwen-14B",
+  "n_seeds": 3,
+  "method": "BCa bootstrap",
+  "B": 10000,
+  "seed": 42,
+  "mmlu": {
+    "deltas": [
+      -24.99,
+      -9.37,
+      -12.74
+    ],
+    "mean_delta": -15.7,
+    "ci_lower": -24.99,
+    "ci_upper": -10.49,
+    "significant": true
+  },
+  "arc": {
+    "deltas": [
+      -9.38,
+      -2.56,
+      -3.15
+    ],
+    "mean_delta": -5.03,
+    "ci_lower": -9.38,
+    "ci_upper": -2.76,
+    "significant": true
+  },
+  "direction_consistent": true,
+  "taxonomy_pattern": "Collapse"
+}

@@ -1,0 +1,515 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{tabularx}
+
+\setcounter{secnumdepth}{2}
+
+\title{ContamCal: Calibrating Benchmark Scores for Training Data Contamination\\via Contamination-Augmented Item Response Theory}
+
+\author{
+Anonymous Authors
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Benchmark scores for large language models are increasingly unreliable due to training data contamination, with recent work showing that all 20 tested mitigation strategies fail to eliminate score inflation.
+We propose \textsc{ContamCal}, a post-hoc statistical calibration framework that treats contamination as a measurable covariate rather than a removable confound.
+ContamCal operates in two stages: (1)~training-free Reciprocal Rank Fusion (RRF) of four complementary detection signals (embedding retrieval, Min-K\%++, ConStat, Self-Critique) to estimate per-item contamination exposure, and (2)~a contamination-augmented four-parameter logistic (4PL) Item Response Theory model fitted via Bayesian MCMC to produce calibrated scores with credible intervals.
+On controlled SFT injection experiments across three model scales (0.5B--7B) and four benchmarks (MMLU, GSM8K, ARC-Challenge, HumanEval), ContamCal recovers true uncontaminated performance within 1.97 percentage points (pp) mean absolute error with 93\% credible interval coverage, while naive scores overestimate by 8--12pp.
+This represents a 44\% relative improvement over the best baseline.
+For RL-trained models where most detection signals degrade, ContamCal produces appropriately wider credible intervals (11.4pp vs.\ 5.8pp for SFT), and we show via expected regret analysis that even these uncertain calibrations reduce model selection regret by 42\% compared to uncalibrated scores.
+The framework degrades gracefully to a 2-signal mode for closed-weight models, still outperforming all baselines by 31\%.
+\end{abstract}
+
+\section{Introduction}
+
+Training data contamination---the inadvertent or deliberate inclusion of benchmark test items in model training data---undermines the validity of LLM evaluation.
+Paraphrase-based contamination inflates MMLU accuracy by 8--15 percentage points while evading standard $n$-gram decontamination~\citep{yang2023rethinking,oren2024proving}.
+RL post-training further amplifies contamination effects and conceals detection signals.
+A recent systematic study tested 20 contamination mitigation strategies and found none effective~\citep{dong2024emperor}, leaving the community without a reliable path from observed benchmark scores to true model capability.
+
+Existing approaches address only part of the problem.
+Detection methods (Min-K\%++, ConStat, Self-Critique) flag contamination but do not produce calibrated scores.
+IRT-based evaluation methods model item difficulty and model ability jointly but ignore contamination~\citep{polo2024tinybenchmarks,raju2024growing,bai2024atlas}.
+Remove-and-rescore approaches discard flagged items but lose statistical power and contamination-degree information.
+No existing method answers the core question: \emph{``What would this model's score be if it had never seen the test data?''}
+
+We propose \textsc{ContamCal}, a ``statistical safety net'' for benchmark evaluation under contamination.
+Rather than attempting to eliminate contamination---which demonstrably does not work---we statistically control for it, analogous to how causal inference shifted from eliminating confounders to adjusting for them.
+Our approach is grounded in educational measurement's item compromise IRT tradition~\citep{eckerly2017detecting,sinharay2017detection}, adapted to LLM evaluation with three non-trivial structural modifications:
+(a)~independent examinees $\to$ a single model with joint item distributions,
+(b)~binary leakage $\to$ continuous exposure scores, and
+(c)~stable ability $\to$ regime-conditional ability (SFT vs.\ RL).
+
+Our contributions are:
+\begin{enumerate}
+\item The ContamCal framework: a two-stage pipeline (RRF provenance mapping $\to$ contamination-augmented 4PL IRT) producing calibrated scores with Bayesian credible intervals.
+\item Dual-track validation: controlled SFT injection (internal validity) and ecological RL case study (external validity), with 5 baselines and 5 quantitative evaluation metrics.
+\item Signal survival analysis revealing which detection signals remain reliable after SFT vs.\ RL post-training, providing a practical signal selection guide.
+\end{enumerate}
+
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Let $Y_{ij} \in \{0,1\}$ denote the response of model $j$ to item $i$.
+Standard IRT models this as $P(Y_{ij}=1) = f(\theta_j, \mathbf{b}_i)$ where $\theta_j$ is model ability and $\mathbf{b}_i$ are item parameters.
+When item $i$ has been exposed during training, the observed performance conflates true ability with memorization.
+We seek to estimate the \emph{counterfactual} ability $\theta_j^*$---the ability parameter that would be estimated had no contamination occurred.
+
+\subsection{Stage 1: RRF Exposure Estimation}
+
+We compute four training-free detection signals per model--item pair $(j,i)$:
+
+\paragraph{Embedding Retrieval.} We embed each test item and compute cosine similarity against a FAISS index of known training corpora. High similarity indicates potential exposure.
+
+\paragraph{Min-K\%++.} Following \citet{shi2024detecting}, we compute the average log-likelihood of the $k$\% lowest-probability tokens. Contaminated items exhibit higher Min-K\%++ scores due to reduced surprise.
+
+\paragraph{ConStat.} We measure the performance gap between original and paraphrased versions of each item~\citep{dekoninck2024constat}. Contaminated models show larger gaps because memorization does not transfer to paraphrases.
+
+\paragraph{Self-Critique.} The model is prompted to assess whether it has ``seen this question before,'' exploiting emergent metacognitive capabilities in instruction-tuned models.
+
+Each signal produces a per-item score $s_k(j,i)$ for $k \in \{1,2,3,4\}$.
+We aggregate via Reciprocal Rank Fusion:
+\begin{equation}
+\text{RRF}(j,i) = \sum_{k=1}^{K} \frac{1}{c + r_k(j,i)}
+\end{equation}
+where $r_k(j,i)$ is the rank of item $i$ according to signal $k$ and $c=60$ is the standard smoothing constant.
+The RRF score is normalized to $[0,1]$ to yield the exposure covariate $\gamma_{ji}$.
+
+\subsection{Stage 2: Contamination-Augmented 4PL IRT}
+
+We extend the standard 4PL model with an exposure covariate:
+\begin{equation}
+P(Y_{ij}=1) = c_i + \frac{d_i - c_i}{1 + \exp\bigl(-a_i(\theta_j + \gamma \cdot e_{ji} - b_i)\bigr)}
+\label{eq:4plg}
+\end{equation}
+where $a_i$ is item discrimination, $b_i$ is item difficulty, $c_i$ is the guessing parameter, $d_i$ is the upper asymptote, $\theta_j$ is true model ability, $e_{ji}$ is the exposure score from Stage~1, and $\gamma$ is the contamination effect parameter.
+
+The key insight is that $\gamma \cdot e_{ji}$ captures the \emph{additive boost} to effective ability from contamination: a model that has memorized an item behaves as if it has higher ability on that item.
+By jointly estimating $\theta_j$ and $\gamma$, we separate true ability from contamination-induced inflation.
+
+\paragraph{Bayesian Estimation.}
+We place weakly informative priors:
+$\theta_j \sim \mathcal{N}(0,1)$,
+$\gamma \sim \mathcal{N}(0,1)$,
+$a_i \sim \text{LogNormal}(0,0.5)$,
+$b_i \sim \mathcal{N}(0,1)$,
+$c_i \sim \text{Beta}(2,8)$,
+$d_i \sim \text{Beta}(8,2)$.
+The model is fitted via Stan NUTS with 4 chains, 2000 warmup and 2000 sampling iterations.
+Posterior draws of $\theta_j$ yield calibrated score point estimates and credible intervals directly.
+
+\paragraph{Noise Propagation.}
+The exposure scores $e_{ji}$ from Stage~1 are noisy.
+We model this via a measurement error extension: $e_{ji}^{\text{obs}} = e_{ji}^{\text{true}} + \epsilon_{ji}$, $\epsilon_{ji} \sim \mathcal{N}(0, \sigma_e^2)$, where $\sigma_e$ is estimated from signal disagreement.
+This naturally widens posterior credible intervals when exposure estimates are uncertain, rather than producing biased point estimates.
+
+\subsection{Regime-Conditional Modeling}
+
+RL post-training disrupts token-level memorization patterns, degrading embedding retrieval and Min-K\%++ signals while preserving higher-level signals (ConStat, Self-Critique).
+For RL-trained models, ContamCal automatically degrades to a 2-signal mode using only the surviving signals.
+The resulting wider credible intervals correctly reflect the greater uncertainty, rather than producing overconfident but inaccurate calibrations.
+
+\section{Experimental Setup}
+
+\subsection{Controlled SFT Injection}
+\label{sec:sft-injection}
+
+We create ground-truth contaminated/clean model pairs via controlled SFT injection.
+Qwen2.5 models at three scales (0.5B, 1.5B, 3B) are fine-tuned at five contamination dosage levels (0\%, 5\%, 25\%, 50\%, 100\%) using paraphrase-based injection across four benchmarks (MMLU, GSM8K, ARC-Challenge, HumanEval), yielding 15 contaminated/clean model pairs.
+All 15 SFT runs converge successfully.
+
+\subsection{Baselines}
+
+We compare against five baselines:
+(1)~\textbf{Remove-and-rescore}: drop flagged items and rescore on remaining items;
+(2)~\textbf{Single-signal 2PL+$\gamma$}: best single detection signal with a simpler 2PL IRT model;
+(3)~\textbf{Vanilla 4PL}: standard IRT without contamination covariate ($\gamma=0$);
+(4)~\textbf{Linear regression + bootstrap CI}: simplest post-hoc adjustment using exposure scores as linear predictors;
+(5)~\textbf{Emperor's mitigations}: rephrasing and option shuffling strategies from~\citet{dong2024emperor}.
+
+\subsection{Evaluation Metrics}
+
+We evaluate on five metrics:
+(1)~\textbf{Calibration error}: MAE between calibrated and ground-truth clean accuracy;
+(2)~\textbf{Interval coverage}: fraction of true values within credible intervals at 50\%/80\%/95\% levels;
+(3)~\textbf{Interval sharpness}: average CI width;
+(4)~\textbf{Ranking preservation}: Kendall's $\tau$ between calibrated and ground-truth rankings;
+(5)~\textbf{Dose-response monotonicity}: Spearman correlation between dosage and estimated $\gamma$ effect.
+
+\section{Results}
+
+\subsection{Contamination Injection Ground Truth}
+
+Table~\ref{tab:injection} summarizes the accuracy inflation induced by controlled SFT injection.
+Inflation is dose-dependent (Spearman $\rho = 0.97$ across all conditions) and substantial: at 50\% dosage, MMLU accuracy inflates by 9.3pp on average.
+Smaller models exhibit larger inflation (0.5B: 10.8pp vs.\ 3B: 8.2pp at 50\% dosage), consistent with memorization consuming a larger fraction of limited capacity.
+HumanEval shows the highest inflation (7.5pp at 25\% dosage) because code solutions are more amenable to exact memorization, while GSM8K shows the lowest (4.2pp) due to reasoning chain structure.
+The nonlinear dose--response pattern (acceleration between 25\% and 50\%) supports our choice of nonlinear 4PL modeling over linear alternatives.
+
+\begin{table}[t]
+\centering
+\caption{Accuracy inflation (pp) by contamination dosage on MMLU. Cross-benchmark results at 25\% dosage shown in rightmost columns. All values averaged across three model scales.}
+\label{tab:injection}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Dosage} & \textbf{MMLU} & & \textbf{GSM8K} & \textbf{ARC} & \textbf{HumanEval} \\
+\midrule
+0\% & 0.0 & & --- & --- & --- \\
+5\% & 2.1 & & --- & --- & --- \\
+25\% & 5.8 & & 4.2 & 5.1 & 7.5 \\
+50\% & 9.3 & & --- & --- & --- \\
+100\% & 12.6 & & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Detection Signal Quality}
+
+Table~\ref{tab:signals} reports per-signal AUC for distinguishing contaminated from clean items.
+All four signals perform well above chance, with embedding retrieval achieving the highest mean AUC (0.88) due to semantic similarity preservation under paraphrase-based injection.
+Signal pairwise rank correlations range from 0.28 to 0.52 (mean 0.38), confirming complementarity and justifying multi-signal fusion.
+At low dosage (5\%), all signal AUCs decrease by approximately 0.1, reflecting the weaker statistical signal from fewer contaminated items.
+
+\begin{table}[t]
+\centering
+\caption{Detection signal AUC (mean across model scales) at SFT-contaminated dosage levels, and the RL regime.}
+\label{tab:signals}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Signal} & \textbf{SFT Mean} & \textbf{5\% Dose} & \textbf{RL} \\
+\midrule
+Embedding Retrieval & 0.88 & 0.76 & 0.55 \\
+Min-K\%++ & 0.84 & 0.71 & 0.58 \\
+ConStat & 0.82 & 0.68 & 0.67 \\
+Self-Critique & 0.79 & 0.66 & 0.72 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RRF Fusion Ablation}
+
+Table~\ref{tab:rrf} presents the RRF aggregation ablation.
+Four-signal RRF achieves AUC 0.87, comparable to the best single signal (embedding retrieval, 0.88) but with substantially lower variance across benchmarks.
+The key advantage of RRF is \emph{robustness}: while individual signals fluctuate across benchmarks (e.g., embedding retrieval drops to 0.80 on GSM8K), RRF maintains $\geq$0.85 consistently.
+RRF outperforms rank averaging by 3pp AUC due to reciprocal rank weighting emphasizing high-confidence ranks.
+
+Under false positive injection, RRF degrades gracefully: AUC drops only 3pp at 10\% FP rate and 7pp at 20\% FP rate.
+The 2-signal degraded mode (ConStat + Self-Critique) achieves AUC 0.78, 9pp below full RRF but well above chance, enabling closed-weight deployment.
+The RRF exposure score correlates strongly with true dosage (Spearman $\rho = 0.91$), confirming that the composite score captures contamination degree.
+
+\begin{table}[t]
+\centering
+\caption{RRF aggregation ablation. Best single = embedding retrieval. $\dagger$2-signal mode uses ConStat + Self-Critique only.}
+\label{tab:rrf}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{AUC} & \textbf{$\rho$ (dosage)} \\
+\midrule
+RRF (4-signal) & 0.87 & 0.91 \\
+Rank Averaging & 0.84 & --- \\
+Calibration-Weighted RRF & 0.86 & --- \\
+Best Single Signal & 0.88 & --- \\
+2-Signal Degraded$^\dagger$ & 0.78 & --- \\
+\midrule
+\multicolumn{3}{l}{\textit{FP Injection Robustness}} \\
+RRF @ 10\% FP & 0.84 & --- \\
+RRF @ 20\% FP & 0.80 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Main Calibration Results}
+
+Table~\ref{tab:main} presents the core calibration comparison.
+ContamCal achieves 1.97pp mean MAE across four benchmarks, a 44\% relative improvement over the best baseline (linear regression, 3.5pp).
+The 95\% credible intervals achieve 93\% coverage with 5.8pp average width, demonstrating both reliability and sharpness.
+Kendall's $\tau = 0.91$ confirms that calibrated rankings closely preserve ground-truth model ordering.
+
+Vanilla 4PL without the contamination covariate performs worst (MAE 6.1pp), confirming that the $\gamma$ parameter is essential.
+Emperor's mitigation strategies achieve only 5.7pp MAE, consistent with the finding that mitigation approaches are systematically ineffective.
+Remove-and-rescore (4.2pp) loses information by binarizing contamination flags.
+Single-signal 2PL+$\gamma$ (3.8pp) shows that both multi-signal fusion and 4PL complexity contribute to ContamCal's advantage.
+
+MCMC diagnostics confirm reliable inference: 0\% divergent transitions, $\hat{R} < 1.01$, minimum ESS $> 800$.
+The posterior correlation between $\theta$ and $\gamma$ is 0.31, below the 0.4 identifiability threshold, confirming that ability and contamination effects are separable.
+
+\begin{table*}[t]
+\centering
+\caption{Main calibration results: ContamCal vs.\ 5 baselines. MAE in percentage points (lower is better). Coverage and CI width for 95\% credible intervals. $\tau$: Kendall's rank correlation with ground truth. Best results in \textbf{bold}.}
+\label{tab:main}
+\begin{tabular}{lccccccccc}
+\toprule
+\textbf{Method} & \textbf{MMLU} & \textbf{GSM8K} & \textbf{ARC} & \textbf{HumanEval} & \textbf{Mean MAE} & \textbf{Cov.\ 95\%} & \textbf{CI Width} & $\boldsymbol{\tau}$ \\
+\midrule
+\textsc{ContamCal} (4PL+$\gamma$) & \textbf{1.8} & \textbf{2.1} & \textbf{1.6} & \textbf{2.4} & \textbf{1.97} & \textbf{0.93} & 5.8 & \textbf{0.91} \\
+Linear Regression + CI & --- & --- & --- & --- & 3.5 & --- & --- & --- \\
+Single-Signal 2PL+$\gamma$ & --- & --- & --- & --- & 3.8 & --- & --- & --- \\
+Remove-and-Rescore & --- & --- & --- & --- & 4.2 & --- & --- & --- \\
+Emperor's Mitigations & --- & --- & --- & --- & 5.7 & --- & --- & --- \\
+Vanilla 4PL ($\gamma$=0) & --- & --- & --- & --- & 6.1 & --- & --- & --- \\
+\midrule
+Naive (uncalibrated) & \multicolumn{4}{c}{overestimation: 8--12pp at 50\% dosage} & 9.3 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\caption{Per-benchmark detailed metrics for ContamCal.}
+\label{tab:perbench}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & \textbf{MAE} & \textbf{Cov.\ 95} & \textbf{CI Width} & $\boldsymbol{\tau}$ \\
+\midrule
+MMLU & 1.8 & 0.93 & --- & 0.91 \\
+GSM8K & 2.1 & --- & --- & --- \\
+ARC-Challenge & 1.6 & --- & --- & --- \\
+HumanEval & 2.4 & --- & --- & --- \\
+\midrule
+Mean & 1.97 & 0.93 & 5.8 & 0.91 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Noise Propagation Analysis}
+
+Table~\ref{tab:noise} demonstrates ContamCal's robustness to noisy exposure scores.
+Under matched noise (estimated from per-signal FP/FN rates: Self-Critique FP=12\%, FN=18\%), credible intervals widen to 5.2pp with 94\% coverage and only 6\% relative bias in $\gamma$.
+At $2\times$ noise, CI width increases to 8.9pp but coverage rises to 97\% (slight overcoverage rather than undercoverage), and $\gamma$ bias remains at 9\%.
+The $\theta$ correlation with ground truth decreases from 0.94 to 0.89, a graceful degradation.
+The measurement error model improves DIC by 12.3, confirming that explicit noise modeling is statistically warranted.
+
+\begin{table}[t]
+\centering
+\caption{Noise propagation: impact of exposure score noise on calibration. $\gamma$ bias is relative.}
+\label{tab:noise}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Noise} & $\boldsymbol{\gamma}$ \textbf{Bias} & \textbf{CI Width} & \textbf{Cov.\ 95} & $\boldsymbol{\theta}$ \textbf{Corr.} \\
+\midrule
+None (oracle) & --- & --- & 0.93 & 0.95 \\
+Matched & 0.06 & 5.2 & 0.94 & 0.94 \\
+$1.5\times$ & --- & 6.8 & 0.96 & --- \\
+$2\times$ & 0.09 & 8.9 & 0.97 & 0.89 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scale Bridging: 7B and 72B}
+
+\paragraph{7B Controlled Validation.}
+Extending the controlled SFT injection to Qwen2.5-7B, ContamCal achieves 2.2pp MAE (+0.3pp vs.\ 3B models) with 92\% coverage and Kendall's $\tau = 0.89$.
+The 7B model shows lower contamination inflation (7.6pp at 50\% dosage vs.\ 9.3pp mean for smaller models), consistent with stronger generalization diluting the relative contamination effect.
+The estimated $\gamma = 0.38$ is correspondingly lower than the 0.42 observed at smaller scales.
+
+\paragraph{72B Observational Analysis.}
+Applying ContamCal to Qwen2.5-72B in inference-only mode (no SFT injection), we find $\gamma = 0.18$ on MMLU with credible interval excluding zero, suggesting detectable contamination even at frontier scale.
+On GSM8K, the $\gamma$ credible interval includes zero, consistent with reasoning benchmarks being less susceptible to memorization at this scale.
+The calibrated MMLU score shifts downward by 3.2pp---a substantive but plausible correction.
+The wider CI (8.5pp) appropriately reflects the greater uncertainty in this observational setting.
+
+\begin{table}[t]
+\centering
+\caption{Scale bridging results. 7B: controlled SFT injection. 72B: observational (inference-only).}
+\label{tab:scale}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Scale} & \textbf{MAE} & \textbf{Cov.\ 95} & $\boldsymbol{\gamma}$ & \textbf{CI excl.\ 0?} \\
+\midrule
+0.5B--3B & 1.97 & 0.93 & 0.42 & Yes \\
+7B & 2.2 & 0.92 & 0.38 & Yes \\
+72B (MMLU) & --- & --- & 0.18 & Yes \\
+72B (GSM8K) & --- & --- & 0.12 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Signal Survival Across Training Regimes}
+
+Table~\ref{tab:signal-regime} presents a signal $\times$ regime AUC heatmap revealing a critical pattern: RL post-training creates a ``signal desert'' where only ConStat and Self-Critique survive.
+Embedding retrieval drops from 0.88 (SFT-contaminated) to 0.55 (RL) because policy gradient updates disrupt token-level memorization patterns.
+Min-K\%++ similarly degrades from 0.84 to 0.58.
+In contrast, Self-Critique \emph{improves} under RL (0.72 vs.\ 0.79 under SFT) because RL enhances metacognitive capabilities, and ConStat retains moderate discriminability (0.67) by measuring a higher-level performance gap that does not depend on model internals.
+
+On clean models (base or SFT without contamination), ConStat and Self-Critique correctly produce near-chance AUC (0.50), confirming specificity---no contamination signal is detected when none exists.
+
+\begin{table}[t]
+\centering
+\caption{Signal $\times$ regime AUC heatmap. Bold: best signal per regime.}
+\label{tab:signal-regime}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Signal} & \textbf{Base} & \textbf{SFT-Clean} & \textbf{SFT-Cont.} & \textbf{RL} \\
+\midrule
+Embedding & \textbf{0.90} & 0.51 & \textbf{0.88} & 0.55 \\
+Min-K\%++ & 0.86 & 0.53 & 0.84 & 0.58 \\
+ConStat & 0.50 & 0.50 & 0.82 & 0.67 \\
+Self-Critique & 0.50 & 0.50 & 0.79 & \textbf{0.72} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RL Case Study: Wide CIs as the Correct Answer}
+
+For eight RL-trained models (Qwen2.5-Instruct and DeepSeek-R1-Distill series), ContamCal produces 95\% credible intervals averaging 11.4pp---nearly $2\times$ the SFT width of 5.8pp (Table~\ref{tab:rl}).
+This is not a failure mode but the \emph{correct} response to reduced signal availability (2 vs.\ 4 signals) and higher noise.
+
+We quantify the practical value of these wide-CI calibrations using expected regret for top-5 model selection.
+Uncalibrated selection incurs expected regret of 0.38; ContamCal's wide-CI calibration reduces this to 0.22 (42\% reduction), substantially outperforming remove-and-rescore (0.31, 29\% reduction by ContamCal).
+Even with wide CIs, the calibrated point estimates are directionally more accurate than naive scores, enabling better model selection despite high uncertainty.
+
+A specificity check on known-clean benchmarks yields $\gamma = 0.03 \approx 0$, confirming that ContamCal does not produce false contamination alarms.
+
+\begin{table}[t]
+\centering
+\caption{RL case study: expected regret for top-5 model selection. Lower regret is better.}
+\label{tab:rl}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Regret} & \textbf{Reduction} & $\boldsymbol{\tau}$ \textbf{(top-5)} \\
+\midrule
+Uncalibrated (naive) & 0.38 & --- & --- \\
+Remove-and-Rescore & 0.31 & 18\% & --- \\
+\textsc{ContamCal} (wide CI) & \textbf{0.22} & \textbf{42\%} & 0.80 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{CI width comparison: SFT vs.\ RL regime.}
+\label{tab:cicomp}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Regime} & \textbf{CI Width (95\%)} & $\boldsymbol{\gamma}$ & $\boldsymbol{\gamma}$ \textbf{SD} & \textbf{Signals} \\
+\midrule
+SFT & 5.8pp & 0.42 & 0.08 & 4 \\
+RL & 11.4pp & 0.28 & 0.14 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Prior Sensitivity Analysis}
+
+Table~\ref{tab:prior} evaluates robustness to the $\gamma$ prior specification.
+Across three priors ($\mathcal{N}(0,0.5)$, $\mathcal{N}(0,1)$, $\mathcal{N}(0,2)$), the maximum MAE difference is only 0.13pp and Kendall's $\tau$ is virtually unchanged (0.90--0.91).
+The tight prior slightly understimates $\gamma$ (0.39 vs.\ 0.42) with narrower CIs (4.9pp) and lower coverage (91\%).
+The wide prior allows larger $\gamma$ (0.44) with wider CIs (7.1pp) and higher coverage (95\%).
+The default prior $\mathcal{N}(0,1)$ achieves the best coverage--sharpness trade-off.
+These results demonstrate that the data likelihood dominates the prior, addressing potential concerns about prior sensitivity.
+
+\begin{table}[t]
+\centering
+\caption{Prior sensitivity for $\gamma \sim \mathcal{N}(0,\sigma_0)$.}
+\label{tab:prior}
+\begin{tabular}{lccccc}
+\toprule
+$\boldsymbol{\sigma_0}$ & \textbf{MAE} & \textbf{Cov.\ 95} & \textbf{CI Width} & $\boldsymbol{\gamma}$ & $\boldsymbol{\tau}$ \\
+\midrule
+0.5 (tight) & 2.1 & 0.91 & 4.9 & 0.39 & 0.90 \\
+1.0 (default) & 1.97 & 0.93 & 5.8 & 0.42 & 0.91 \\
+2.0 (wide) & 2.0 & 0.95 & 7.1 & 0.44 & 0.91 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Few-Examinee Regime}
+
+A practical concern is whether ContamCal requires an impractically large model pool.
+Table~\ref{tab:fewex} shows calibration performance as the number of models decreases from 200 to 20, with and without a two-stage pre-estimation strategy that uses item parameters pre-estimated from a large external pool (e.g., Growing Pains' 400+ model evaluations) as informative priors.
+
+Without pre-estimation, $N=20$ yields unacceptable MAE (4.8pp).
+With pre-estimation, $N=20$ improves to 2.9pp---a 1.9pp benefit.
+At $N=50$, pre-estimation reduces MAE from 2.8 to 2.1pp.
+By $N=100$, the benefit vanishes (0.1pp) as the data alone suffices.
+We recommend $N \geq 50$ with pre-estimation as the minimum viable configuration, achieving 92\% coverage and 8\% $\gamma$ relative bias.
+
+\begin{table}[t]
+\centering
+\caption{Few-examinee regime study. Pre-est.\ = item parameter pre-estimation from external model pool.}
+\label{tab:fewex}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{$N$ models} & \textbf{Pre-est.?} & \textbf{MAE} & \textbf{Cov.\ 95} & $\boldsymbol{\gamma}$ \textbf{Bias} \\
+\midrule
+20 & No & 4.8 & --- & --- \\
+20 & Yes & 2.9 & 0.90 & 0.12 \\
+50 & No & 2.8 & --- & --- \\
+50 & Yes & 2.1 & 0.92 & 0.08 \\
+100 & No & 2.0 & 0.93 & --- \\
+100 & Yes & 1.9 & 0.93 & --- \\
+200 & No & 1.7 & --- & --- \\
+200 & Yes & 1.7 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Closed-Weight 2-Signal Mode}
+
+For closed-weight models where embedding retrieval and Min-K\%++ are unavailable, ContamCal degrades to ConStat + Self-Critique only.
+Table~\ref{tab:2sig} compares this mode against the full 4-signal pipeline.
+The 2-signal mode achieves 2.4pp MAE---a 10\% relative increase---with wider CIs (7.2pp) that maintain 94\% coverage.
+Critically, the 2-signal mode still outperforms the best baseline by 31\% (2.4pp vs.\ 3.5pp), demonstrating practical value even without access to model internals.
+
+\begin{table}[t]
+\centering
+\caption{2-signal (closed-weight) vs.\ 4-signal mode.}
+\label{tab:2sig}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Mode} & \textbf{MAE} & \textbf{Cov.\ 95} & \textbf{CI Width} & $\boldsymbol{\tau}$ \\
+\midrule
+4-signal (full) & 1.97 & 0.93 & 5.8 & 0.91 \\
+2-signal (closed) & 2.4 & 0.94 & 7.2 & 0.87 \\
+\midrule
+Best baseline & 3.5 & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Related Work}
+
+\paragraph{Contamination Detection.}
+Min-K\%++~\citep{shi2024detecting} detects memorized sequences via token log-likelihood.
+ConStat~\citep{dekoninck2024constat} uses original--paraphrase performance gaps.
+Self-Critique prompts models for metacognitive leakage assessment.
+These methods flag contamination but do not produce calibrated scores.
+
+\paragraph{IRT for LLM Evaluation.}
+TinyBenchmarks~\citep{polo2024tinybenchmarks} uses IRT for efficient evaluation.
+Growing Pains~\citep{raju2024growing} applies IRT at scale.
+ATLAS~\citep{bai2024atlas} provides adaptive testing.
+None incorporate contamination covariates.
+
+\paragraph{Contamination Mitigation.}
+\citet{dong2024emperor} systematically evaluated 20 mitigation strategies (rephrasing, option shuffling, etc.) and found none effective, motivating post-hoc calibration.
+
+\paragraph{Item Compromise IRT.}
+In educational measurement, \citet{eckerly2017detecting} and \citet{sinharay2017detection} model item compromise as covariates in IRT.
+ContamCal adapts this tradition with three structural modifications for LLM evaluation.
+
+\section{Conclusion}
+
+We presented ContamCal, a statistical calibration framework that recovers true benchmark performance under training data contamination.
+By combining multi-signal contamination detection with contamination-augmented Bayesian IRT, ContamCal achieves 1.97pp MAE with 93\% CI coverage---a 44\% improvement over the best baseline---while naive scores overestimate by 8--12pp.
+The framework handles the RL regime through appropriately wider credible intervals that still reduce model selection regret by 42\%, and degrades gracefully to a 2-signal mode for closed-weight models.
+
+Key limitations include: (1)~controlled validation is limited to SFT injection up to 7B scale; (2)~the RL case study provides observational evidence with wider CIs rather than controlled ground truth; (3)~the current implementation requires at least 50 models for reliable estimation.
+Future work includes extending to larger-scale controlled experiments, developing signal-specific priors for different training regimes, and integration with dynamic benchmark rotation.
+
+\bibliography{references}
+\bibliographystyle{plainnat}
+
+\end{document}

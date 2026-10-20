@@ -1,0 +1,14 @@
+paper_key: "brown_2024_ppp"
+title: "The Expected Behaviors of Posterior Predictive Tests and Their Unexpected Interpretation"
+venue: "Molecular Biology and Evolution, 41(3), msae051"
+full_text_available: false
+
+research:
+  baselines: [frequentist p-values, uniform null distribution assumption]
+  metrics:
+    - {name: "posterior predictive p-value (PPP)", direction: "descriptive"}
+  datasets:
+    - {name: "phylogenetic models", size: "various"}
+  ablation_dimensions: [model complexity, data size]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "Bayesian model diagnostics"

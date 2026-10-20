@@ -1,0 +1,603 @@
+tier: best
+narrative_guidance: '原始framing完全成立：ContamCal是benchmark contamination的"statistical
+  safety net"， 三条claims按原始强度表述。Headline: "ContamCal recovers true performance within
+  2pp MAE with 93% CI coverage, while naive scores overestimate by 8-12pp." RL宽CI叙事自然成立——"wide
+  CIs are the correct answer"用expected regret量化证明。投AAAI无需调整framing。
+
+  '
+imagined_experiments:
+- name: controlled_sft_injection
+  plan_id: exp-001
+  description: 'Qwen2.5-0.5B/1.5B/3B × 5 dosage levels (0%/5%/25%/50%/100%) SFT注入，
+    生成15个contaminated/clean模型对作为ground truth。
+
+    '
+  expected_results:
+    sft_runs_completed: 15
+    dosage_0pct_acc_delta_mmlu_pp: 0.0
+    dosage_5pct_acc_inflation_mmlu_pp: 2.1
+    dosage_25pct_acc_inflation_mmlu_pp: 5.8
+    dosage_50pct_acc_inflation_mmlu_pp: 9.3
+    dosage_100pct_acc_inflation_mmlu_pp: 12.6
+    dosage_25pct_acc_inflation_gsm8k_pp: 4.2
+    dosage_25pct_acc_inflation_arc_pp: 5.1
+    dosage_25pct_acc_inflation_humaneval_pp: 7.5
+    scale_0_5B_mean_inflation_50pct_pp: 10.8
+    scale_1_5B_mean_inflation_50pct_pp: 9.1
+    scale_3B_mean_inflation_50pct_pp: 8.2
+    dose_response_spearman_across_all: 0.97
+    convergence_failures: 0
+  result_rationale: 'best档下SFT注入实验完全按预期工作。paraphrase-based injection在5%剂量时已产生可测量的2pp
+    inflation， 100%剂量下MMLU膨胀达12.6pp，与Emperor''s New Clothes报告的8-15pp范围一致。 较小模型(0.5B)受contamination影响更大（memorization
+    capacity占比更高）， 3B模型因能力更强、泛化更好而inflation略低。GSM8K因reasoning chain结构使得 memorization效果弱于纯knowledge
+    recall的MMLU。HumanEval inflation最高因为 code solutions更容易被精确记忆。dose-response严格单调（spearman=0.97），
+    为后续IRT建模提供理想的ground truth梯度。
+
+    '
+  tables:
+  - name: 'Table 1: Accuracy Inflation (pp) by Model Scale × Dosage × Benchmark'
+    rows: 60
+    columns:
+    - model
+    - benchmark
+    - dosage
+    - clean_acc
+    - contaminated_acc
+    - inflation_pp
+  figures_description:
+  - 'Fig 1: Dose-response curves (dosage vs inflation) for each model×benchmark combination,
+    12 panels, showing strict monotonicity'
+  analysis: '所有15个SFT run成功收敛。inflation幅度在MMLU上与文献一致。 关键观察：inflation并非线性——25%→50%的增量大于5%→25%，表明contamination效果存在加速区间，
+    支持非线性4PL建模的必要性。跨benchmark一致性强，为Claim 1提供坚实的ground truth基础。
+
+    '
+- name: stage1_signal_pipeline
+  plan_id: exp-002
+  description: '在exp-001的所有模型上计算4种检测信号：embedding retrieval, Min-K%++, ConStat, Self-Critique。输出per-model-item
+    exposure scores。
+
+    '
+  expected_results:
+    embedding_retrieval_auc_sft_mean: 0.88
+    mink_pp_auc_sft_mean: 0.84
+    constat_auc_sft_mean: 0.82
+    self_critique_auc_sft_mean: 0.79
+    embedding_retrieval_auc_at_5pct_dosage: 0.76
+    mink_pp_auc_at_5pct_dosage: 0.71
+    constat_auc_at_5pct_dosage: 0.68
+    self_critique_auc_at_5pct_dosage: 0.66
+    signal_pairwise_rank_corr_max: 0.52
+    signal_pairwise_rank_corr_min: 0.28
+    items_with_all4_signals_agree_contaminated_pct: 0.73
+    items_with_disagreement_pct: 0.27
+  result_rationale: 'best档下所有4个信号都有效但各有侧重。Embedding retrieval AUC最高(0.88)因为 paraphrase-based
+    injection保留了语义相似性，FAISS能直接捕获。Min-K%++次之(0.84) 因为SFT后model perplexity在seen items上显著降低。ConStat(0.82)通过original
+    vs paraphrase performance gap检测有效但受paraphrase质量影响。Self-Critique最低(0.79) 因为依赖模型自身判断，噪声更大，但仍远超chance。在低剂量(5%)时所有信号AUC下降约0.1，
+    这是合理的——更少的contaminated items意味着更弱的统计信号。 信号间相关性适中(0.28-0.52)，说明它们捕获的是complementary
+    information， 为RRF融合提供理想条件。
+
+    '
+  tables:
+  - name: 'Table 2: Per-Signal AUC by Model × Dosage'
+    rows: 60
+    columns:
+    - model
+    - dosage
+    - embedding_auc
+    - mink_auc
+    - constat_auc
+    - selfcritique_auc
+  figures_description:
+  - 'Fig 2: Signal AUC heatmap (signal × dosage), averaged across models and benchmarks'
+  - 'Fig 3: Pairwise signal rank correlation matrix (4×4)'
+  analysis: '信号质量全面达到best档预期。关键发现：信号间低-中等相关性(mean=0.38)证实 complementarity假设，为RRF融合奠定基础。HumanEval上embedding
+    retrieval AUC 特别高(0.92)因为code的语义embedding更具区分性。
+
+    '
+- name: rrf_aggregation_ablation
+  plan_id: exp-003
+  description: 'RRF融合4信号为composite exposure score。消融实验：RRF vs rank averaging, 单信号,
+    calibration-weighted RRF, FP注入鲁棒性, 2-signal降级模式。
+
+    '
+  expected_results:
+    rrf_4signal_auc: 0.87
+    rank_averaging_auc: 0.84
+    best_single_signal_auc: 0.88
+    calibration_weighted_rrf_auc: 0.86
+    rrf_minus_best_single_delta_auc: -0.01
+    rrf_auc_at_fp_rate_10pct: 0.84
+    rrf_auc_at_fp_rate_20pct: 0.8
+    degraded_2signal_auc: 0.78
+    rrf_4signal_vs_2signal_delta: 0.09
+    rrf_exposure_score_spearman_with_true_dosage: 0.91
+    rank_stability_bootstrap_cv: 0.04
+  result_rationale: 'best档下RRF融合AUC(0.87)接近最好的单信号(embedding 0.88)但关键优势在于鲁棒性： RRF在所有benchmark上都稳定达到0.85+，而单信号表现波动大（embedding在GSM8K上可能
+    降到0.80，ConStat在HumanEval上可能降到0.75）。RRF比rank averaging高3pp因为 reciprocal rank weighting对高置信排名给予更大权重。Calibration-weighted
+    RRF略低于 vanilla RRF因为权重估计引入了额外noise，且在best档的高信号质量下vanilla RRF已足够。 FP注入10%时AUC仅降3pp，20%时降7pp，证明graceful
+    degradation。 2-signal模式(ConStat+Self-Critique)AUC=0.78，比4-signal低9pp但仍远超chance，
+    满足closed-weight场景的可用性。exposure score与true dosage的spearman=0.91 证明RRF输出确实捕获了contamination程度的有序信息。
+
+    '
+  tables:
+  - name: 'Table 3: RRF Ablation Results'
+    rows: 8
+    columns:
+    - method
+    - auc_mmlu
+    - auc_gsm8k
+    - auc_arc
+    - auc_humaneval
+    - auc_mean
+    - auc_std
+  - name: 'Table 4: FP Injection Robustness'
+    rows: 4
+    columns:
+    - fp_rate
+    - rrf_auc
+    - delta_from_clean
+  figures_description:
+  - 'Fig 4: Signal dropout ablation bar chart — AUC by combination (4-signal, each
+    3-signal, each single, 2-signal degraded)'
+  - 'Fig 5: RRF exposure score vs true dosage scatter plot with Spearman annotation'
+  analysis: 'RRF fusion的核心价值不在于AUC绝对值（最好的单信号可能匹配），而在于跨benchmark、 跨模型的一致性和FP鲁棒性。这直接支持Claim
+    2的"outperforming any single signal"—— 含义是worst-case performance更优，而非mean AUC更高。2-signal降级模式AUC=0.78
+    为closed-weight实用性提供了有力支撑。
+
+    '
+- name: noise_propagation_analysis
+  plan_id: exp-005
+  description: '校准noise注入到exposure scores中：估计per-item FP/FN率， 注入matched/1.5×/2×高斯噪声，重新拟合IRT，测量CI宽化。
+
+    '
+  expected_results:
+    selfcritique_estimated_fp_rate: 0.12
+    selfcritique_estimated_fn_rate: 0.18
+    matched_noise_ci_width_gamma_pp: 5.2
+    noise_1_5x_ci_width_gamma_pp: 6.8
+    noise_2x_ci_width_gamma_pp: 8.9
+    matched_noise_ci_coverage_95: 0.94
+    noise_1_5x_ci_coverage_95: 0.96
+    noise_2x_ci_coverage_95: 0.97
+    gamma_rel_bias_at_matched_noise: 0.06
+    gamma_rel_bias_at_2x_noise: 0.09
+    theta_corr_at_matched_noise: 0.94
+    theta_corr_at_2x_noise: 0.89
+    measurement_error_model_dic_improvement: 12.3
+  result_rationale: 'best档下noise propagation表现理想：随着noise增加，CI合理宽化（5.2→8.9pp）而非崩溃，
+    coverage从94%略升至97%（略过覆盖而非欠覆盖）。这说明Bayesian posterior正确地将 exposure score uncertainty吸收进了参数不确定性。gamma相对偏差从0.06增到0.09，
+    表明点估计稳健性在2×noise下仍可接受。theta相关性从0.94降至0.89，下降幅度合理—— 更多noise意味着contamination信号更弱，ability估计回退向vanilla
+    IRT。 Self-Critique的FP=12%/FN=18%在best档下是合理的——比embedding差但比random好得多。 measurement
+    error扩展模型DIC改善12.3说明显式建模exposure noise有统计意义上的价值。
+
+    '
+  tables:
+  - name: 'Table 5: Noise Propagation Results'
+    rows: 4
+    columns:
+    - noise_level
+    - gamma_mean
+    - gamma_rel_bias
+    - ci_width_pp
+    - ci_coverage_95
+    - theta_corr
+  figures_description:
+  - 'Fig 6: CI width vs noise level line plot, with coverage annotated at each point'
+  - 'Fig 7: θ recovery correlation scatterplots at 3 noise levels (1×, 1.5×, 2×)'
+  analysis: '核心结论：4PL+γ的Bayesian formulation天然支持noise propagation——更noisy的exposure
+    scores产生更宽的CI而不是更差的点估计。这直接支持Claim 3，也为RL regime下 Self-Critique-only信号的wider CIs提供了机制解释。
+
+    '
+- name: irt_calibration_and_baselines
+  plan_id: exp-006
+  description: '在exp-001/003的controlled数据上拟合4PL+γ IRT (Stan NUTS)， 计算calibrated scores，与5个baselines比较，评估5个指标。
+
+    '
+  expected_results:
+    contam_cal_mae_pp_mmlu: 1.8
+    contam_cal_mae_pp_gsm8k: 2.1
+    contam_cal_mae_pp_arc: 1.6
+    contam_cal_mae_pp_humaneval: 2.4
+    contam_cal_mae_pp_mean: 1.97
+    contam_cal_ci_coverage_95: 0.93
+    contam_cal_ci_coverage_80: 0.84
+    contam_cal_ci_coverage_50: 0.55
+    contam_cal_ci_width_95_pp: 5.8
+    contam_cal_kendall_tau: 0.91
+    contam_cal_dose_response_spearman: 0.96
+    baseline_remove_rescore_mae_pp: 4.2
+    baseline_single_2plg_mae_pp: 3.8
+    baseline_vanilla_4pl_mae_pp: 6.1
+    baseline_linear_regression_mae_pp: 3.5
+    baseline_emperor_mitigation_mae_pp: 5.7
+    best_baseline_mae_pp: 3.5
+    margin_over_best_baseline_mae_relative: 0.44
+    naive_score_overestimation_50pct_dosage_pp: 9.3
+    gamma_posterior_mean: 0.42
+    gamma_posterior_sd: 0.08
+    gamma_rel_bias_real_data: 0.06
+    theta_corr_with_ground_truth: 0.95
+    theta_gamma_posterior_corr: 0.31
+    nuts_divergent_pct: 0.0
+    nuts_max_rhat: 1.005
+    nuts_ess_min: 800
+  result_rationale: 'best档核心实验。4PL+γ MAE=1.97pp完全复现仿真表现——真实SFT数据上的contamination 结构与仿真假设匹配良好。MMLU
+    MAE最低(1.8pp)因为item数量最多(14K)提供了最强的 统计功效；HumanEval最高(2.4pp)因为item少且code execution评分的binary
+    nature 增加了noise。93% coverage接近nominal 95%，略低是因为real data的item heterogeneity 比仿真更大，但仍在可接受范围。CI宽度5.8pp在sharpness和coverage间取得了好的平衡。
+
+    Baselines方面：vanilla 4PL(无γ)MAE=6.1pp最差，因为完全忽略contamination， 证明contamination covariate是必要的。Emperor''s
+    mitigation MAE=5.7pp次差， 与ICML 2025发现一致——mitigation strategies确实不够有效。Linear regression
+    MAE=3.5pp 是最好的baseline，但仍比ContamCal差44%——IRT的优势在于non-linear item response 建模和proper
+    uncertainty propagation。Remove-rescore MAE=4.2pp受限于binary flagging丢失了contamination程度信息。Single-signal
+    2PL+γ MAE=3.8pp表明 signal fusion和4PL复杂度各贡献了一部分改善。
+
+    θ-γ posterior correlation=0.31 < 0.4阈值，证实identifiability。 gamma rel_bias=0.06与仿真的0.068几乎一致。NUTS诊断完美——无divergence，
+    Rhat<1.01，ESS>800。
+
+    '
+  tables:
+  - name: 'Table 6 (Main Result): Calibration Performance — ContamCal vs 5 Baselines'
+    rows: 6
+    columns:
+    - method
+    - mae_mmlu
+    - mae_gsm8k
+    - mae_arc
+    - mae_humaneval
+    - mae_mean
+    - ci_coverage_95
+    - ci_width_95
+    - kendall_tau
+  - name: 'Table 7: Per-Benchmark Detailed Metrics'
+    rows: 4
+    columns:
+    - benchmark
+    - mae_pp
+    - coverage_50
+    - coverage_80
+    - coverage_95
+    - ci_width_95_pp
+    - kendall_tau
+    - dose_response_spearman
+  - name: 'Table 8: MCMC Diagnostics'
+    rows: 4
+    columns:
+    - benchmark
+    - divergent_pct
+    - max_rhat
+    - min_ess
+    - fit_time_sec
+  figures_description:
+  - 'Fig 8 (Main Figure): Calibrated vs true accuracy scatter plot, all benchmarks,
+    with 95% CI error bars, diagonal reference line'
+  - 'Fig 9: MAE bar chart — ContamCal vs 5 baselines, per benchmark'
+  - 'Fig 10: Dose-response curves — γ effect size vs contamination dosage, 4 benchmark
+    panels'
+  - 'Fig 11: Coverage calibration plot — nominal vs empirical coverage at 50/80/95%
+    levels'
+  analysis: '这是论文的核心结果表。MAE 1.97pp vs best baseline 3.5pp (44% relative improvement)
+    提供了Claim 1的强有力支撑。93% coverage证明CI可靠。headline result可直接写为 "ContamCal recovers true
+    performance within 2pp MAE with 93% CI coverage, while naive scores overestimate
+    by 8-12pp." Kendall τ=0.91证明model ranking 在calibration后基本保持正确——contamination改变的是绝对分数而非相对排名，
+    但ContamCal在absolute calibration上的优势对于跨benchmark比较至关重要。
+
+    '
+- name: scale_bridging_7b
+  plan_id: exp-007
+  description: 'Qwen2.5-7B在5个dosage水平下的controlled SFT注入，验证calibration在更大模型上的有效性。
+
+    '
+  expected_results:
+    dosage_25pct_acc_inflation_mmlu_pp: 4.8
+    dosage_50pct_acc_inflation_mmlu_pp: 7.6
+    dosage_100pct_acc_inflation_mmlu_pp: 10.2
+    contam_cal_mae_pp_mean_7b: 2.2
+    contam_cal_ci_coverage_95_7b: 0.92
+    contam_cal_kendall_tau_7b: 0.89
+    mae_increase_vs_3b_pp: 0.3
+    gamma_mean_7b: 0.38
+    dose_response_spearman_7b: 0.94
+  result_rationale: 'best档下7B模型表现略弱于0.5-3B但仍在acceptable范围内。7B的inflation略低于小模型 (50%
+    dosage: 7.6pp vs 9.3pp mean for smaller)因为7B的更强泛化能力意味着 contamination的relative
+    contribution更小。MAE略增至2.2pp(+0.3pp vs 3B)因为 7B模型的item response pattern更复杂，但仍远优于baselines。gamma估计值0.38略低于
+    小模型的0.42，反映了contamination对larger model的较小相对效应。 Coverage 92%和Kendall τ=0.89仍然强劲，证明ContamCal可扩展到7B规模。
+
+    '
+  tables:
+  - name: 'Table 9: 7B Scale Bridging Results'
+    rows: 5
+    columns:
+    - dosage
+    - inflation_pp
+    - contam_cal_mae_pp
+    - ci_coverage_95
+    - kendall_tau
+  figures_description:
+  - 'Fig 12: MAE vs model scale line plot (0.5B, 1.5B, 3B, 7B) showing graceful degradation'
+  analysis: '7B结果证明ContamCal从小模型到中等规模模型的可扩展性。MAE增加有限(+0.3pp) 且符合理论预期——更大的模型有更复杂的ability
+    landscape但contamination的相对效应更小。
+
+    '
+- name: signal_survival_analysis
+  plan_id: exp-008
+  description: '检测信号在不同训练regime下的可靠性系统评估。 Signal × regime AUC heatmap: 4 signals ×
+    {base, SFT-clean, SFT-contaminated, RL-post-trained}。
+
+    '
+  expected_results:
+    embedding_auc_base: 0.9
+    embedding_auc_sft_clean: 0.51
+    embedding_auc_sft_contam: 0.88
+    embedding_auc_rl: 0.55
+    mink_auc_base: 0.86
+    mink_auc_sft_clean: 0.53
+    mink_auc_sft_contam: 0.84
+    mink_auc_rl: 0.58
+    constat_auc_base: 0.5
+    constat_auc_sft_clean: 0.5
+    constat_auc_sft_contam: 0.82
+    constat_auc_rl: 0.67
+    selfcritique_auc_base: 0.5
+    selfcritique_auc_sft_clean: 0.5
+    selfcritique_auc_sft_contam: 0.79
+    selfcritique_auc_rl: 0.72
+    signal_survival_rl_best: Self-Critique
+    signal_survival_rl_second: ConStat
+  result_rationale: 'best档下信号存活模式清晰：embedding和Min-K%++在SFT-contaminated上表现强劲 (0.88/0.84)但在RL后严重降级(0.55/0.58)——RL的policy
+    gradient更新破坏了 token-level memorization pattern，使得perplexity-based信号失效。 ConStat在RL后保留AUC=0.67因为它测量的是performance
+    gap(original vs paraphrase) 这一higher-level信号，不依赖model internals。Self-Critique在RL后最强(0.72)
+    因为它利用模型的reasoning能力来自我评估，RL强化了这种元认知能力而非削弱。 base模型和SFT-clean模型上ConStat和Self-Critique接近chance(0.50)是正确的——
+    没有contamination时不应有信号（specificity验证）。 这个heatmap直接支持RRF fusion的必要性：没有任何单一信号在所有regime下都最优。
+
+    '
+  tables:
+  - name: 'Table 10 (Supporting Contribution): Signal × Regime AUC Heatmap'
+    rows: 4
+    columns:
+    - signal
+    - base
+    - sft_clean
+    - sft_contam
+    - rl_post_trained
+  figures_description:
+  - 'Fig 13: Signal survival heatmap (4×4 matrix, color-coded by AUC)'
+  - 'Fig 14: Per-signal AUC degradation from SFT→RL, paired bar chart'
+  analysis: '这是论文的Supporting Contribution 5。关键insight：RL post-training创造了一个 "signal
+    desert"——只有Self-Critique和ConStat存活。这解释了为什么RL regime 需要更宽的CI（更少信号→更大不确定性），同时也为2-signal
+    degraded mode提供了 empirical justification。
+
+    '
+- name: rl_observational_case_study
+  plan_id: exp-009
+  description: '对现有RL-trained模型(Qwen2.5-Instruct系列, DeepSeek-R1-Distill系列) 应用Self-Critique
+    + available signals，拟合IRT with wider CIs， expected regret量化。
+
+    '
+  expected_results:
+    selfcritique_auc_rl_models_mean: 0.71
+    available_signals_rl_count: 2
+    contam_cal_ci_width_95_rl_pp: 11.4
+    contam_cal_ci_width_95_sft_comparison_pp: 5.8
+    ci_width_ratio_rl_vs_sft: 1.97
+    expected_regret_uncalibrated: 0.38
+    expected_regret_calibrated_wide_ci: 0.22
+    expected_regret_remove_rescore: 0.31
+    regret_reduction_vs_uncalibrated: 0.42
+    regret_reduction_vs_remove_rescore: 0.29
+    near_zero_gamma_clean_benchmark_check: 0.03
+    gamma_posterior_rl_mean: 0.28
+    gamma_posterior_rl_sd: 0.14
+    gamma_ci_includes_zero_rl: false
+    num_models_rl_case: 8
+    kendall_tau_rl_top5_selection: 0.8
+  result_rationale: 'best档下RL observational case study展示了"wide CIs are the correct
+    answer"的完整叙事。 Self-Critique AUC=0.71（略超0.70阈值）在RL模型上提供了可用但noisy的信号。 CI宽度11.4pp约为SFT的2倍——这不是方法失败，而是正确反映了RL
+    regime下检测信号的 更大不确定性。gamma posterior mean=0.28 (sd=0.14)表明RL模型确实存在contamination
+    效应但估计更不确定；CI不包含0证明信号是directionally informative的。
+
+    Expected regret量化是关键：uncalibrated选择top-5模型的expected regret=0.38， 使用wide-CI calibrated
+    scores后降至0.22（42% reduction），优于remove-rescore的0.31。 机制：即使CI很宽，calibrated scores的point
+    estimate仍然比naive scores更准确， 而wide CI让决策者知道应该对RL模型的排名更谨慎。
+
+    Near-zero gamma check在known-clean benchmark上γ=0.03(接近0)， 通过specificity检验——模型不会对uncontaminated
+    data产生false alarm。
+
+    '
+  tables:
+  - name: 'Table 11: RL Case Study — Expected Regret Comparison'
+    rows: 3
+    columns:
+    - method
+    - expected_regret
+    - regret_reduction_vs_naive
+    - top5_kendall_tau
+  - name: 'Table 12: RL vs SFT CI Width Comparison'
+    rows: 2
+    columns:
+    - regime
+    - mean_ci_width_95_pp
+    - gamma_mean
+    - gamma_sd
+    - signal_count
+  figures_description:
+  - 'Fig 15: RL vs SFT credible interval width comparison (paired model bar chart)'
+  - 'Fig 16: Expected regret cumulative plot — uncalibrated vs calibrated vs remove-rescore'
+  - 'Fig 17: Near-zero gamma check — posterior density on clean benchmark showing
+    mass near zero'
+  analysis: 'RL case study的叙事完美支持Claim 3。核心message不是"ContamCal在RL上也很准" （那不诚实），而是"ContamCal在RL上给出了appropriately
+    uncertain的答案， 这些uncertain answers仍然改善了决策"。42% regret reduction是一个compelling number。
+    Near-zero gamma specificity check排除了"方法总是报告contamination"的担忧。
+
+    '
+- name: prior_sensitivity
+  plan_id: exp-010
+  description: '使用γ prior N(0,0.5)和N(0,2)（默认N(0,1)）重新拟合IRT， 验证calibrated scores和CIs对prior选择的鲁棒性。
+
+    '
+  expected_results:
+    mae_prior_tight_n05: 2.1
+    mae_prior_default_n10: 1.97
+    mae_prior_wide_n20: 2.0
+    coverage_95_prior_tight: 0.91
+    coverage_95_prior_default: 0.93
+    coverage_95_prior_wide: 0.95
+    ci_width_prior_tight_pp: 4.9
+    ci_width_prior_default_pp: 5.8
+    ci_width_prior_wide_pp: 7.1
+    gamma_mean_prior_tight: 0.39
+    gamma_mean_prior_default: 0.42
+    gamma_mean_prior_wide: 0.44
+    max_mae_diff_across_priors_pp: 0.13
+    kendall_tau_prior_tight: 0.9
+    kendall_tau_prior_default: 0.91
+    kendall_tau_prior_wide: 0.91
+  result_rationale: 'best档下prior sensitivity表现理想：三种prior下MAE差异仅0.13pp，Kendall τ几乎
+    不变(0.90-0.91)。tight prior N(0,0.5)略微shrink了gamma估计(0.39 vs 0.42) 导致MAE略高(2.1pp)，但差异很小。wide
+    prior N(0,2)允许gamma更大(0.44)且CI更宽 (7.1pp vs 5.8pp)，coverage从93%升至95%但sharpness代价可接受。
+    这种行为说明：(1)数据信息量足够大，prior的影响被likelihood dominated； (2)在best档的高信号质量下，任何reasonable
+    prior都能得到好的结果。 这直接回应了"prior choice drives results"的潜在reviewer concern。
+
+    '
+  tables:
+  - name: 'Table 13: Prior Sensitivity Analysis'
+    rows: 3
+    columns:
+    - prior
+    - mae_pp
+    - coverage_95
+    - ci_width_pp
+    - gamma_mean
+    - kendall_tau
+  figures_description:
+  - 'Fig 18: Prior sensitivity — MAE and CI width across 3 prior choices, error bars'
+  analysis: 'Prior sensitivity结果证明方法稳健。MAE变化<0.15pp且ranking完全稳定， 满足了Bayesian方法的基本robustness要求。default
+    prior N(0,1)在 coverage/sharpness trade-off上最优。
+
+    '
+- name: few_examinee_regime
+  plan_id: exp-011
+  description: '仿真研究：model count 20/50/100/200下的IRT性能。 两阶段估计策略：用Growing Pains 400+模型池预估item参数作为informative
+    priors。
+
+    '
+  expected_results:
+    mae_pp_n20_no_preestimate: 4.8
+    mae_pp_n20_with_preestimate: 2.9
+    mae_pp_n50_no_preestimate: 2.8
+    mae_pp_n50_with_preestimate: 2.1
+    mae_pp_n100_no_preestimate: 2.0
+    mae_pp_n100_with_preestimate: 1.9
+    mae_pp_n200_no_preestimate: 1.7
+    mae_pp_n200_with_preestimate: 1.7
+    preestimate_benefit_n20_pp: 1.9
+    preestimate_benefit_n50_pp: 0.7
+    preestimate_benefit_n100_pp: 0.1
+    coverage_95_n20_preestimate: 0.9
+    coverage_95_n50_preestimate: 0.92
+    coverage_95_n100_preestimate: 0.93
+    gamma_rel_bias_n20_preestimate: 0.12
+    gamma_rel_bias_n50_preestimate: 0.08
+    min_viable_model_count: 50
+  result_rationale: 'best档下few-examinee仿真展示了清晰的performance gradient和pre-estimation策略的价值。
+    N=20裸跑MAE=4.8pp不可接受，但pre-estimation将其降至2.9pp——从Growing Pains的 400+模型池中借用item parameter
+    estimates作为informative prior极大地稳定了估计。 N=50是一个sweet spot：裸跑MAE已降至2.8pp，pre-estimation进一步降至2.1pp。
+    N=100+时pre-estimation的marginal benefit趋近于0（0.1pp），因为数据本身已足够。 min viable model
+    count设为50（with pre-estimation），此时coverage 92%且 gamma rel_bias 8%都在可接受范围。这直接回应了reviewer
+    concern #6 "too few models"。
+
+    '
+  tables:
+  - name: 'Table 14: Few-Examinee Regime Study'
+    rows: 8
+    columns:
+    - n_models
+    - preestimate
+    - mae_pp
+    - coverage_95
+    - ci_width_pp
+    - gamma_rel_bias
+  figures_description:
+  - 'Fig 19: MAE vs model count, with/without pre-estimation, two lines converging
+    at N=100+'
+  analysis: 'N=50 with pre-estimation是论文推荐的minimum viable configuration。 pre-estimation策略巧妙利用了existing
+    model evaluation pools（如Growing Pains的 Open LLM Leaderboard数据），无需额外实验成本。
+
+    '
+- name: observational_72b
+  plan_id: exp-012
+  description: 'Qwen2.5-72B观测分析（仅推理，无SFT）。将ecological validity扩展到frontier模型规模。
+
+    '
+  expected_results:
+    gamma_posterior_72b_mmlu: 0.18
+    gamma_posterior_72b_gsm8k: 0.12
+    gamma_ci_excludes_zero_72b_mmlu: true
+    gamma_ci_excludes_zero_72b_gsm8k: false
+    calibrated_score_shift_mmlu_pp: -3.2
+    calibrated_score_shift_gsm8k_pp: -1.8
+    ci_width_95_72b_pp: 8.5
+    selfcritique_auc_72b_estimated: 0.68
+    qualitative_consistency_with_7b: true
+  result_rationale: 'best档下72B观测分析提供了重要的ecological validity但不能有ground truth验证。 gamma=0.18（MMLU）表明即使72B模型也存在可检测的contamination效应，但效应量小于
+    小模型(0.42)——这合理因为72B的能力足够强使得contamination的relative contribution更小。 MMLU上gamma CI排除0说明信号存在；GSM8K上CI包含0说明reasoning
+    benchmark对72B的 contamination效应可能在noise floor以下。calibrated score下调3.2pp（MMLU） 是一个substantive但不极端的correction。CI宽度8.5pp反映了observational
+    setting 的更大不确定性。Self-Critique AUC=0.68略低于0.70阈值，但仍在"方向性有效"范围内。
+
+    '
+  tables:
+  - name: 'Table 15: 72B Observational Analysis'
+    rows: 4
+    columns:
+    - benchmark
+    - gamma_mean
+    - gamma_ci_lower
+    - gamma_ci_upper
+    - calibrated_shift_pp
+    - ci_width_pp
+  figures_description:
+  - 'Fig 20: Gamma estimates across model scales (0.5B→72B) showing decreasing trend'
+  analysis: '72B结果支持"contamination effects exist at all scales but diminish with scale"的叙事。
+    这是生态效度论证——不是定量验证，而是证明ContamCal在frontier scale下产生 plausible和internally consistent的结果。
+
+    '
+- name: closed_weight_2signal_mode
+  plan_id: exp-013
+  description: '降级2-signal模式(ConStat + Self-Critique)的消融研究， 量化2-signal vs 4-signal的calibration
+    accuracy差距。
+
+    '
+  expected_results:
+    contam_cal_2signal_mae_pp: 2.4
+    contam_cal_4signal_mae_pp: 1.97
+    mae_increase_2signal_relative: 0.1
+    contam_cal_2signal_ci_coverage_95: 0.94
+    contam_cal_2signal_ci_width_95_pp: 7.2
+    contam_cal_2signal_kendall_tau: 0.87
+    contam_cal_2signal_dose_response_spearman: 0.92
+    still_beats_best_baseline: true
+    margin_over_best_baseline_2signal_relative: 0.31
+  result_rationale: 'best档下2-signal降级模式MAE增加10%(2.4pp vs 1.97pp)，在best档范围[0.05, 0.15]的
+    中间位置。CI宽度从5.8pp增至7.2pp（+24%），coverage从93%升至94%——更宽的CI 正确补偿了更少信号带来的更大不确定性。Kendall
+    τ从0.91降至0.87，ranking能力略降 但仍然strong。关键：2-signal模式仍然beat best baseline 31%（2.4pp
+    vs 3.5pp）， 证明即使在closed-weight限制下ContamCal仍有实际价值。 MAE增加主要来自ConStat在某些benchmark上的noise较大（缺少embedding和Min-K%++
+    的complementary information），但Self-Critique的reasoning-level信号提供了 必要的anchor。dose-response
+    spearman=0.92仍然strong。
+
+    '
+  tables:
+  - name: 'Table 16: 2-Signal vs 4-Signal Degraded Mode Comparison'
+    rows: 2
+    columns:
+    - mode
+    - mae_pp
+    - coverage_95
+    - ci_width_pp
+    - kendall_tau
+    - margin_vs_baseline
+  figures_description:
+  - 'Fig 21: 2-signal vs 4-signal calibration accuracy per benchmark, grouped bar
+    chart'
+  analysis: 2-signal模式的10% MAE degradation是一个acceptable trade-off，证明ContamCal 可以gracefully
+    degrade到closed-weight settings。论文可以confidence地claim "even without model internals
+    access, ContamCal provides meaningful calibration improvement over baselines."
+    这大幅扩展了方法的practical applicability。

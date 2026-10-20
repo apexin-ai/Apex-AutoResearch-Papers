@@ -1,0 +1,9 @@
+Figure: fig_calibration.pdf / fig_calibration.png
+Location: cqa1-21977:/root/autodl-tmp/artifacts/
+Data (N=16 pooled IRT, same respondent set):
+  MMLU:  raw_MAE=0.0155, vanilla_2PL=0.0068, 2PL+gamma=0.0072
+  ARC-C: raw_MAE=0.0338, vanilla_2PL=0.0158, 2PL+gamma=0.0201
+  GSM8K: raw_MAE=0.1694, vanilla_2PL=0.0063, 2PL+gamma=0.0062
+
+Key insight: vanilla 2PL ≈ 2PL+gamma across all benchmarks.
+Calibration improvement is from IRT ability estimation, not contamination-aware gamma.

@@ -1,0 +1,91 @@
+paper_key: "xu_2025_dcr"
+title: "DCR: Quantifying Data Contamination in LLMs Evaluation"
+venue: "EMNLP 2025"
+full_text_available: true
+
+research:
+  baselines: [raw accuracy without adjustment]
+  metrics:
+    - {name: "DCR Factor", direction: "higher_means_more_contaminated"}
+    - {name: "Adjusted Accuracy (Acc_adj)", direction: "higher_better"}
+    - {name: "Absolute Error |Δ|", direction: "lower_better"}
+    - {name: "Pearson correlation r", direction: "higher_better"}
+  datasets:
+    - {name: "SST-2", size: "67.3k train / 1.82k test"}
+    - {name: "LIAR2", size: "18.4k train / 2.3k test"}
+    - {name: "GSM8K", size: "7.47k train / 1.32k test"}
+  ablation_dimensions: [BDC level (L1-L4), model scale (0.5B-72B), number of test prompts (5-50), LLM checker model choice]
+  training_recipe: {optimizer: "pre-training injection", lr: "standard pre-training", hardware: "GPU hours per model in Table 5"}
+  method_family: "fuzzy inference-based contamination quantification"
+
+positioning:
+  core_claim: "A two-stage framework (quantification + fuzzy adjustment) can produce adjusted accuracy scores within ~3.5% average error of true uncontaminated performance across model scales"
+  key_results: "SST-2 avg error 3.44%, LIAR2 3.74%, GSM8K 2.76%; Pearson r=0.92 (SST-2), 0.66 (LIAR2), 0.86 (GSM8K); threshold effect at ~1B parameters"
+  limitations:
+    - "Validation limited to models ≤72B; frontier systems (405B+) untested"
+    - "Only two open-source models with fully disclosed pre-training corpora"
+    - "Simulates single-stage contamination; real pipelines use curriculum learning"
+    - "Not yet adapted for generative tasks (MT, summarization)"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Despite growing BDC detection work, few methods have been integrated into actual LLM development — detection without quantification is insufficient"
+  tension: "Detection tells you IF contamination exists, but not HOW MUCH it inflates scores — practitioners need adjusted scores, not binary flags"
+  key_insight: "Four-level contamination hierarchy (semantic → informational → data → label) with fuzzy aggregation produces interpretable, actionable adjusted scores"
+  argument_chain: "BDC exists at 4 levels → DCR test sheet probes each level → fuzzy inference aggregates into DCR Factor → Acc_adj = Acc × (1 - DCR Factor) → validated via controlled injection"
+  contribution_framing: "Three contributions: DCR framework, DCR Factor metric, extensive validation (9 LLMs, 3 benchmarks)"
+  intro_structure: "5 paragraphs: BDC problem → detection vs quantification gap → DCR overview → contributions → scope"
+  notable_technique: "Controlled pre-training injection at each BDC level provides ground truth for validation — unusual rigor in contamination research"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: "DCR framework two-stage pipeline: quantification stage (test sheet → model responses → contamination scores) feeding adjustment stage (fuzzy system → DCR Factor → adjusted accuracy)"
+    narrative_role: "Complete pipeline overview — reader sees entire method at once"
+    design_elements: ["flowchart", "two-stage separation", "color-coded stages"]
+    visual_style: "Left-to-right pipeline diagram with labeled inputs/outputs at each stage"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "grouped_bar"
+      what_compared: "Raw vs adjusted accuracy across baseline to L4 injection"
+      how_gain_highlighted: "Growing gap between raw and adjusted at higher contamination levels"
+      design_note: "Model family grouping reveals scale-dependent patterns"
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "Accuracy vs DCR Factor across all models/levels/benchmarks"
+      how_gain_highlighted: "Color-coded by benchmark with regression line showing strong correlation"
+      design_note: "Single unified scatter with regression validates framework coherence"
+  ablation_figures:
+    - figure_id: "Figure 5-7"
+      viz_type: "function_plots"
+      dimensions_varied: ["fuzzy membership functions", "inference rule surfaces"]
+      design_note: "Appendix figures explain fuzzy system internals"
+  figure_narrative_role: "Figure 1 (method overview) → Figure 2 (per-benchmark results) → Figure 3 (unified correlation) → Appendix (fuzzy system details)"
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (9 LLMs × BDC levels)"
+    col_axis: "DCR Factor × Acc × Acc_adj × |Δ|"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "average error emphasized"
+    statistical_reporting: "point estimates per model-level combination"
+    num_baselines: 0
+    design_note: "117 model variants in single comprehensive table; organized by model family then scale"
+  ablation_tables:
+    - table_id: "Table 6"
+      what_varied: ["number of test prompts (5-50)"]
+      variation_style: "full_numbers"
+      design_note: "Cost-accuracy tradeoff analysis with time estimates"
+    - table_id: "Table 7"
+      what_varied: ["LLM checker model choice"]
+      variation_style: "full_numbers"
+      design_note: "GPT-4o-mini vs o3-mini: accuracy-cost Pareto"
+  supplementary_tables:
+    in_appendix: true
+    content: "Fuzzy membership parameters, inference rules, GPU costs, checker model comparison"
+    reason: "Main results in Tables 1-3; implementation details and sensitivity analysis in appendix"

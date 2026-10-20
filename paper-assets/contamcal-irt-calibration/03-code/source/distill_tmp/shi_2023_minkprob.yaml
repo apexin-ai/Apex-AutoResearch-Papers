@@ -1,0 +1,16 @@
+paper_key: "shi_2023_minkprob"
+title: "Detecting Pretraining Data from Large Language Models"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: [perplexity, zlib entropy, lowercase comparison, reference model]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "TPR@FPR", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA", size: "temporal split benchmark"}
+    - {name: "copyrighted books", size: "real-world application"}
+  ablation_dimensions: [k% threshold, model scale]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "token-level membership inference"

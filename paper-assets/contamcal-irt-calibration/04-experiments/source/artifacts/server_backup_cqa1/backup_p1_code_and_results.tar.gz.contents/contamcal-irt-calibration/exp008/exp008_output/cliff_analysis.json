@@ -1,0 +1,370 @@
+{
+  "s1_embedding": {
+    "mmlu": {
+      "pattern": "stable",
+      "total_drop": 0.0,
+      "cliff_ratio": 0.0,
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.0
+        }
+      ]
+    },
+    "gsm8k": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.8007,
+      "total_drop": 0.0286,
+      "max_single_step_drop": 0.0229,
+      "cliff_transition": "sft_clean -> sft_contam",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": -0.0019
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0229
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.0076
+        }
+      ]
+    },
+    "arc_challenge": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9288,
+      "total_drop": 0.0267,
+      "max_single_step_drop": 0.0248,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": -0.0133
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0152
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.0248
+        }
+      ]
+    }
+  },
+  "s2_minkpp": {
+    "mmlu": {
+      "pattern": "cliff",
+      "cliff_ratio": 1.0088,
+      "total_drop": 0.2171,
+      "max_single_step_drop": 0.219,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0019
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": -0.0038
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.219
+        }
+      ]
+    },
+    "gsm8k": {
+      "pattern": "cliff",
+      "cliff_ratio": 1.0136,
+      "total_drop": 0.4191,
+      "max_single_step_drop": 0.4248,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": -0.0057
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.4248
+        }
+      ]
+    },
+    "arc_challenge": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9915,
+      "total_drop": 0.2248,
+      "max_single_step_drop": 0.2229,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": -0.0019
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0038
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.2229
+        }
+      ]
+    }
+  },
+  "s3_constat": {
+    "mmlu": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9257,
+      "total_drop": 0.3848,
+      "max_single_step_drop": 0.3562,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0114
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0172
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.3562
+        }
+      ]
+    },
+    "gsm8k": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.951,
+      "total_drop": 0.4286,
+      "max_single_step_drop": 0.4076,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.021
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.4076
+        }
+      ]
+    },
+    "arc_challenge": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9788,
+      "total_drop": 0.5372,
+      "max_single_step_drop": 0.5258,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0019
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0095
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.5258
+        }
+      ]
+    }
+  },
+  "s4_selfcritique": {
+    "mmlu": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9862,
+      "total_drop": 0.6876,
+      "max_single_step_drop": 0.6781,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0095
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.6781
+        }
+      ]
+    },
+    "gsm8k": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9755,
+      "total_drop": 0.699,
+      "max_single_step_drop": 0.6819,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0171
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.6819
+        }
+      ]
+    },
+    "arc_challenge": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9961,
+      "total_drop": 0.4876,
+      "max_single_step_drop": 0.4857,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0114
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": -0.0095
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.4857
+        }
+      ]
+    }
+  },
+  "rrf_score": {
+    "mmlu": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9875,
+      "total_drop": 0.4562,
+      "max_single_step_drop": 0.4505,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": -0.0076
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0133
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.4505
+        }
+      ]
+    },
+    "gsm8k": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9488,
+      "total_drop": 0.3714,
+      "max_single_step_drop": 0.3524,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.019
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.3524
+        }
+      ]
+    },
+    "arc_challenge": {
+      "pattern": "cliff",
+      "cliff_ratio": 0.9829,
+      "total_drop": 0.3333,
+      "max_single_step_drop": 0.3276,
+      "cliff_transition": "sft_contam -> rl_aligned",
+      "deltas": [
+        {
+          "from": "base",
+          "to": "sft_clean",
+          "delta_auc": 0.0
+        },
+        {
+          "from": "sft_clean",
+          "to": "sft_contam",
+          "delta_auc": 0.0057
+        },
+        {
+          "from": "sft_contam",
+          "to": "rl_aligned",
+          "delta_auc": 0.3276
+        }
+      ]
+    }
+  }
+}

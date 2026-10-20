@@ -1,0 +1,6 @@
+Remote: westd-29999:/root/autodl-tmp/exp001/eval_results_v2/
+Files:
+- irt_dose_response.csv (51 rows = header + 25×2 benchmarks)
+- irt_mmlu_dose_response.pdf (MMLU IRT dose-response plot)
+- irt_arc_challenge_dose_response.pdf (ARC IRT dose-response plot)
+Note: RuntimeWarning on first iteration (prev_nll=inf) is benign.

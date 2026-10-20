@@ -1,0 +1,14 @@
+# Qwen2.5-7B LoRA SFT config for A100-80G
+# Gradient checkpointing required: ~25GB VRAM with GC vs ~45GB without
+model_name: Qwen/Qwen2.5-7B
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+learning_rate: 5e-5
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+bf16: true
+max_seq_length: 2048
+num_train_epochs: 1
+seed: 42

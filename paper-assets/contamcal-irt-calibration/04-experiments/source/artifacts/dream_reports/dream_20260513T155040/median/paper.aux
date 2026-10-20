@@ -1,0 +1,105 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Key question.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Existing approaches.}{1}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Our approach.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination detection.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination mitigation.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM evaluation.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item compromise in educational measurement.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 1: RRF Provenance Mapping}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 2: Contamination-Augmented 4PL IRT}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bayesian inference.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Regime-Conditional Modeling}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Growing Pains Pre-Estimation for Few-Examinee Regime}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Controlled SFT injection (exp-001).}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Controlled SFT Injection}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:sft_injection}{{4.2}{4}{Controlled SFT Injection}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Stage 1: Detection Signal Quality}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:signal_quality}{{4.3}{4}{Stage 1: Detection Signal Quality}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Score inflation (pp) by dosage and model scale. Clean SFT (0\% dosage) shows $<$1\,pp degradation, confirming reliable baselines.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:inflation}{{1}{5}{Score inflation (pp) by dosage and model scale. Clean SFT (0\% dosage) shows $<$1\,pp degradation, confirming reliable baselines}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Detection signal AUC by benchmark (SFT regime). All signals exceed 0.63; inter-signal correlations average 0.41, indicating complementary coverage.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:signal_auc}{{2}{5}{Detection signal AUC by benchmark (SFT regime). All signals exceed 0.63; inter-signal correlations average 0.41, indicating complementary coverage}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}RRF Aggregation and Ablation}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:rrf}{{4.4}{5}{RRF Aggregation and Ablation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Noise Propagation Analysis}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:noise}{{4.5}{5}{Noise Propagation Analysis}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Inter-signal Spearman correlations. Moderate correlations confirm that signals capture different dimensions of contamination evidence.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:signal_corr}{{3}{6}{Inter-signal Spearman correlations. Moderate correlations confirm that signals capture different dimensions of contamination evidence}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Aggregation method comparison. RRF's advantage over single signals is modest but consistent; its value lies in robustness and graceful degradation rather than peak AUC.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:rrf}{{4}{6}{Aggregation method comparison. RRF's advantage over single signals is modest but consistent; its value lies in robustness and graceful degradation rather than peak AUC}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Calibration Results and Baseline Comparison}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:calibration}{{4.6}{6}{Calibration Results and Baseline Comparison}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response validation.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Scale Bridging to 7B}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:scale}{{4.7}{6}{Scale Bridging to 7B}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RRF robustness to false positive injection. Moderate resilience up to 20\% FP rate; 30\% FP causes substantial degradation.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:fp_robust}{{5}{7}{RRF robustness to false positive injection. Moderate resilience up to 20\% FP rate; 30\% FP causes substantial degradation}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Noise propagation effects on calibration. CI widening is proportional to noise level; at 2$\times $ noise, practical utility is limited.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:noise}{{6}{7}{Noise propagation effects on calibration. CI widening is proportional to noise level; at 2$\times $ noise, practical utility is limited}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Signal Survival Across Training Regimes}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:signal_survival}{{4.8}{7}{Signal Survival Across Training Regimes}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}RL-Trained Models: Observational Case Study}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:rl_case}{{4.9}{7}{RL-Trained Models: Observational Case Study}{subsection.4.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Specificity check.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Prior Sensitivity Analysis}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:prior}{{4.10}{7}{Prior Sensitivity Analysis}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Calibration MAE (pp) by method and benchmark. ContamCal achieves the lowest average MAE; the gap over linear regression is modest but consistent.}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:main_mae}{{7}{8}{Calibration MAE (pp) by method and benchmark. ContamCal achieves the lowest average MAE; the gap over linear regression is modest but consistent}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Coverage and sharpness comparison. ContamCal provides the best coverage at moderate CI width. Vanilla 4PL is overconfident (narrow CIs, low coverage).}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:coverage}{{8}{8}{Coverage and sharpness comparison. ContamCal provides the best coverage at moderate CI width. Vanilla 4PL is overconfident (narrow CIs, low coverage)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Few-Examinee Regime}{8}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:few_examinee}{{4.11}{8}{Few-Examinee Regime}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Closed-Weight 2-Signal Mode}{8}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:closed_weight}{{4.12}{8}{Closed-Weight 2-Signal Mode}{subsection.4.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}Frontier Scale: 72B Observational Analysis}{8}{subsection.4.13}\protected@file@percent }
+\newlabel{sec:72b}{{4.13}{8}{Frontier Scale: 72B Observational Analysis}{subsection.4.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces $\gamma $ posterior by dosage level. Contamination is identifiable at $\geq $25\% dosage; 5\% dosage falls below the detection floor.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:dose_response}{{9}{9}{$\gamma $ posterior by dosage level. Contamination is identifiable at $\geq $25\% dosage; 5\% dosage falls below the detection floor}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Scale bridging: 7B vs.\ 0.5--3B calibration. No regression observed; metrics remain consistent.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:scale}{{10}{9}{Scale bridging: 7B vs.\ 0.5--3B calibration. No regression observed; metrics remain consistent}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When ContamCal works well.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When ContamCal reaches its limits.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Identifiability boundaries.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The value of honest uncertainty.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.19}\protected@file@percent }
+\bibcite{dong2025emperor}{1}
+\bibcite{eckerly2017}{2}
+\bibcite{sinharay2017}{3}
+\bibcite{shi2023minkpp}{4}
+\bibcite{golchin2024constat}{5}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Signal $\times $ regime AUC. RL post-training causes cliff-like degradation for embedding and logit-based signals; only Self-Critique survives.}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:signal_regime}{{11}{10}{Signal $\times $ regime AUC. RL post-training causes cliff-like degradation for embedding and logit-based signals; only Self-Critique survives}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces RL case study results. Wide CIs reflect low signal quality rather than method failure; $\gamma $ is indistinguishable from zero for most models.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:rl_models}{{12}{10}{RL case study results. Wide CIs reflect low signal quality rather than method failure; $\gamma $ is indistinguishable from zero for most models}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Future work.}{10}{section*.20}\protected@file@percent }
+\bibcite{balachandran2024dcr}{6}
+\bibcite{raina2024growingpains}{7}
+\bibcite{polo2024atlas}{8}
+\bibcite{ni2024hibayes}{9}
+\bibcite{cormack2009rrf}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Expected regret for top-3 model selection. Calibrated scores reduce regret by 17\%, outperforming remove-rescore (7\%).}}{11}{table.13}\protected@file@percent }
+\newlabel{tab:regret}{{13}{11}{Expected regret for top-3 model selection. Calibrated scores reduce regret by 17\%, outperforming remove-rescore (7\%)}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Prior sensitivity. Results are robust to 4$\times $ prior variance change; the default $\mathcal  {N}(0,1)$ balances accuracy and coverage.}}{11}{table.14}\protected@file@percent }
+\newlabel{tab:prior}{{14}{11}{Prior sensitivity. Results are robust to 4$\times $ prior variance change; the default $\mathcal {N}(0,1)$ balances accuracy and coverage}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Few-examinee regime. Growing Pains (GP) pre-estimation substantially improves small-sample calibration, extending the practical floor from $N=50$ to $N=20$.}}{12}{table.15}\protected@file@percent }
+\newlabel{tab:few}{{15}{12}{Few-examinee regime. Growing Pains (GP) pre-estimation substantially improves small-sample calibration, extending the practical floor from $N=50$ to $N=20$}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces 2-signal vs.\ 4-signal calibration. Closed-weight mode is functional but incurs $\sim $29\% MAE degradation.}}{12}{table.16}\protected@file@percent }
+\newlabel{tab:2signal}{{16}{12}{2-signal vs.\ 4-signal calibration. Closed-weight mode is functional but incurs $\sim $29\% MAE degradation}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces 2-signal MAE by benchmark. HumanEval and GSM8K show the largest degradation.}}{12}{table.17}\protected@file@percent }
+\newlabel{tab:2signal_bench}{{17}{12}{2-signal MAE by benchmark. HumanEval and GSM8K show the largest degradation}{table.17}{}}
+\gdef \@abspage@last{12}

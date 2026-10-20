@@ -1,0 +1,22 @@
+{
+  "cross_benchmark_summary": {
+    "S1_Embedding": {
+      "d000": {"mmlu": 0.5049, "gsm8k": 0.5502, "arc": 0.4270},
+      "d005": {"mmlu": 0.9530, "gsm8k": 0.9882, "arc": 0.9950},
+      "d100": {"mmlu": 0.4943, "gsm8k": 0.4127, "arc": 0.5010}
+    },
+    "S2_MinKpp": {
+      "d000": {"mmlu": 0.5090, "gsm8k": 0.5697, "arc": 0.5075},
+      "d005": {"mmlu": 0.4655, "gsm8k": 0.4649, "arc": 0.4659},
+      "d100": {"mmlu": 0.5053, "gsm8k": 0.4841, "arc": 0.4950}
+    },
+    "S4_SelfCritique": {
+      "d000": {"mmlu": 0.4957, "gsm8k": 0.4800, "arc": 0.5175},
+      "d005": {"mmlu": 0.5165, "gsm8k": 0.4947, "arc": 0.4325},
+      "d100": {"mmlu": 0.5125, "gsm8k": 0.4393, "arc": 0.5515}
+    }
+  },
+  "surviving_signals": 0,
+  "signals_total": 3,
+  "interpretation": "No individual signal maintains AUC>0.6 across all dosage regimes. S1 strong at d005 only (low contamination = detectable outliers). Validates need for IRT multi-signal fusion (C2)."
+}

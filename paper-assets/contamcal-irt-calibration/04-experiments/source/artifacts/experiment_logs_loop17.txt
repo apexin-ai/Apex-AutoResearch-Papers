@@ -1,0 +1,57 @@
+# Experiment Logs - Loop 17 (2026-05-16)
+
+## 1. D108 MMLU Domain Gamma N=24 v4 (PID 789935)
+**Status**: FAILED — CmdStan RuntimeError (all 4 chains retcode=1)
+**Error**: RuntimeError in fit_stan_model() → model.sample(), contam_irt_2pl_gamma model
+**Note**: All 7 domain result files exist and contain valid data (crash was on final domain or post-processing)
+
+### Domain Results:
+
+| Domain         | N_mod | N_items | gamma_mean | 95% CI          | CI≠0? | PPP   | rhat_max | rhat_ok |
+|----------------|-------|---------|------------|-----------------|-------|-------|----------|---------|
+| STEM_Math      | 23    | 1190    | +0.969     | [0.527, 1.430]  | YES   | 0.438 | 1.009    | yes     |
+| STEM_Science   | 23    | 1397    | +0.838     | [0.385, 1.274]  | YES   | 0.807 | 1.008    | yes     |
+| STEM_CS_Eng    | 23    | 557     | +0.197     | [-0.448, 0.835] | NO    | 0.892 | 1.008    | yes     |
+| Medical        | 24    | 1640    | -0.199     | [-0.338, -0.060]| YES   | 1.000 | 1.009    | yes     |
+| Humanities     | 21    | 2000    | -0.407     | [-0.776, -0.041]| YES   | 1.000 | 1.014    | NO      |
+| Social_Sciences| 21    | 2000    | -0.497     | [-0.827, -0.151]| YES   | 1.000 | 1.010    | yes     |
+| Business_Law   | 21    | 2000    | -0.168     | [-0.538, 0.230] | NO    | 1.000 | 1.008    | yes     |
+
+Key findings:
+- STEM_Math & STEM_Science: significant positive gamma → contamination inflates scores
+- Medical, Humanities, Social_Sciences: significant negative gamma → contamination deflates scores
+- STEM_CS_Eng & Business_Law: gamma CI includes zero → no significant contamination effect
+- Humanities: rhat_ok=false (max_rhat=1.014), diagnostics not fully converged
+- Script crashed after writing domain results; error was in CmdStan sampling (retcodes=[1,1,1,1])
+
+## 2. Pooled IRT RRF N=25 v2
+**Status**: COMPLETED
+**Config**: 4pl_gamma model, RRF exposure signal, 0.5B+1.5B scales
+
+| Benchmark     | N_mod | gamma_mean | 95% CI          | CI≠0? | PPP   | rhat_max | raw_mae | cal_mae | delta_mae |
+|---------------|-------|------------|-----------------|-------|-------|----------|---------|---------|-----------|
+| MMLU          | 8     | -0.404     | [-1.836, 1.071] | NO    | 0.006 | 1.008    | 0.008   | 0.021   | -0.014    |
+| GSM8K         | 16    | +0.142     | [-0.749, 0.962] | NO    | 0.398 | 1.007    | 0.153   | 0.035   | +0.118    |
+| ARC_Challenge | 8     | +1.513     | [0.234, 2.866]  | YES   | 0.000 | 1.007    | 0.009   | 0.086   | -0.077    |
+
+Issues:
+- MMLU: PPP=0.006 (poor fit), N=8 with 4PL+γ borderline per C008; cal_mae > raw_mae (calibration worsens)
+- ARC: PPP=0.000 (terrible fit), cal_mae=0.086 >> raw_mae=0.009 (calibration much worse); N=8 with 4PL+γ overparameterized per C008
+- GSM8K: N=16 with 4PL+γ appropriate per C008; good calibration improvement (delta_mae=+0.118)
+- MMLU and ARC only have 1.5B models (N=8), need 0.5B+1.5B to reach N≥16 for 4PL
+
+## 3. 1.5B-Instruct Eval (cuda:5, PID 782625)
+**Status**: STILL RUNNING
+**Progress**: mmlu (paraphrased) at 66% (4425/6596), ~2 min ETA for this subset
+**Note**: Already completed original mmlu (14042 items), now on paraphrased variant
+
+## 4. 0.5B-Instruct Eval (cuda:2)
+**Status**: STILL RUNNING
+**Progress**: mmlu at 66% (9356/14042), ~19 it/s
+**Log file**: /tmp/eval_05B_instruct.log
+**Note**: Had initial HF connection timeouts (huggingface.co) but recovered and is evaluating normally
+
+## Anomalies
+- MMLU domain gamma v4 crash needs investigation: CmdStan all-chains-fail on one domain
+- Humanities domain rhat=1.014 (above 1.01 threshold) — may need longer warmup or more chains
+- Pooled IRT: MMLU and ARC with N=8 using 4PL+γ violates C008 (N<16 → should use 2PL+γ)

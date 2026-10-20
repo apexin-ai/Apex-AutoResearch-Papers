@@ -1,0 +1,43 @@
+2026-05-14 22:19:41,829 [INFO] Loading eval results from /root/autodl-tmp/exp001/eval_results
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_d000_s42_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_d000_s42_para_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_d005_s42_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_d005_s42_para_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_d000_s42_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_d000_s42_para_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_s42_aligned
+2026-05-14 22:19:41,830 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-14 22:19:41,830 [INFO] Found 9 model evaluations
+2026-05-14 22:19:41,852 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']
+2026-05-14 22:19:42,603 [INFO] Models: 9 | Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']
+2026-05-14 22:19:42,604 [INFO] Dosages: [0, 0, 5, 100, 0, 0, 100, 0, 0]
+2026-05-14 22:19:42,604 [INFO] 
+============================================================
+2026-05-14 22:19:42,604 [INFO] BENCHMARK: mmlu
+2026-05-14 22:19:42,604 [INFO] ============================================================
+2026-05-14 22:19:42,605 [INFO] --- IRT Calibration (4pl_gamma) ---
+2026-05-14 22:19:42,605 [INFO] === mmlu: 9 models x 14042 items ===
+2026-05-14 22:19:42,605 [INFO] Mean accuracy: 0.485
+2026-05-14 22:19:42,610 [INFO] Compiling Stan model: contam_irt_4pl_simple.stan
+2026-05-14 22:19:42,644 [INFO] Fitting: 9 models x 14042 items, 4 chains x 1000 samples
+2026-05-14 22:19:42,970 [INFO] CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<16:08,  2.06it/s, (Warmup)][A[Achain 1:   0%|[33m          [0m| 1/2000 [00:00<16:29,  2.02it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<16:30,  2.02it/s, (Warmup)][A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<16:31,  2.02it/s, (Warmup)][A[A[A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [27:36<8:45:59, 16.61s/it, (Warmup)][A[A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [32:24<4:15:50,  8.53s/it, (Warmup)][A[A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [32:44<10:23:55, 19.70s/it, (Warmup)][A[A[A

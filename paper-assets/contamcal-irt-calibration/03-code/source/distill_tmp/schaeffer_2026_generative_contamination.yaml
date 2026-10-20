@@ -1,0 +1,17 @@
+paper_key: "schaeffer_2026_generative_contamination"
+title: "Quantifying the Effect of Test Set Contamination on Generative Evaluations"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [uncontaminated pretraining baseline]
+  metrics:
+    - {name: "MATH accuracy", direction: "higher_better"}
+    - {name: "irreducible error", direction: "lower_better"}
+    - {name: "contamination effect size", direction: "descriptive"}
+  datasets:
+    - {name: "MATH", size: "standard"}
+    - {name: "web pretraining corpus", size: "controlled mixture"}
+  ablation_dimensions: [number of test set replicas, model scale, sampling temperature, solution length]
+  training_recipe: {optimizer: "pretraining from scratch", lr: "standard", hardware: "not specified"}
+  method_family: "controlled contamination scaling law"

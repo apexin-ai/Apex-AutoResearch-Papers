@@ -1,0 +1,8 @@
+2026-05-16 16:06:10,612 WARNING core.tools.dream  [dream] Phase 2 best parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 563, column 13:
+              - [ARC γ (CI excl. 0?), "-1.46 (Ye ... 
+                ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 563, column 31:
+              - [ARC γ (CI excl. 0?), "-1.46 (Yes)", "-0.72 (No)", ... 
+                                  ^

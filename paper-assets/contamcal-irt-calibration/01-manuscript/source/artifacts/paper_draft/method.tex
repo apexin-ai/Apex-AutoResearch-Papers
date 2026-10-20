@@ -1,0 +1,81 @@
+\section{Method}
+\label{sec:method}
+
+ContamCal operates in two stages: Stage~1 estimates per-item contamination exposure from multiple detection signals via training-free fusion; Stage~2 embeds these scores in a contamination-augmented IRT model to produce calibrated ability estimates with credible intervals.
+
+\subsection{Problem Formulation}
+\label{sec:formulation}
+
+Let $y_{ijk} \in \{0,1\}$ denote the binary response of model~$j$ ($j=1,\ldots,J$) to item~$i$ ($i=1,\ldots,I_k$) on benchmark~$k$. Standard IRT assumes $P(y_{ijk}=1) = f(\theta_j, \boldsymbol{\xi}_i)$ where $\theta_j$ is latent ability and $\boldsymbol{\xi}_i$ collects item parameters. When training corpora contain benchmark items, the observed ability $\hat{\theta}_j$ confounds genuine capability with memorization.
+
+Our goal is twofold: (1)~estimate $\theta_j^{\text{clean}}$, the ability each model would exhibit had it never encountered test items during training, and (2)~diagnose contamination effects at domain granularity within each benchmark. We draw on item compromise IRT \citep{eckerly_2017_item_compromise,sinharay_2017_preknowledge} and explanatory IRT \citep{deboeck_2004_explanatory_irt}, adapting these frameworks through three structural modifications for LLM evaluation.
+
+\textit{Adaptation~1: Independent examinees $\to$ shared item pool.} Classical IRT assumes independent test-takers. In LLM evaluation, a fixed item set is shared across all models, and responses within a single model may exhibit residual correlations beyond the scalar~$\theta_j$ \citep{sanmartin_2009_irt}. We mitigate this by fitting per-benchmark models.
+
+\textit{Adaptation~2: Binary leakage $\to$ continuous exposure.} Item compromise IRT uses binary indicators \citep{sinharay_2017_preknowledge}. LLM contamination is graded: a model may have encountered an item zero, once, or hundreds of times. We replace binary indicators with continuous exposure scores $e_{ij} \in [0,1]$ derived from detection signals, following the explanatory IRT tradition \citep{deboeck_2004_explanatory_irt}.
+
+\textit{Adaptation~3: Stable ability $\to$ regime-conditional ability.} In educational testing, ability is approximately constant. For LLMs, the training regime (SFT vs.\ RL) qualitatively changes both internal representations and signal reliability. We recover clean ability via counterfactual inference (setting exposure to zero) rather than regime-specific ability parameters.
+
+\subsection{Stage 1: Multi-Signal Exposure Mapping}
+\label{sec:stage1}
+
+For each model~$j$ and item~$i$, we consider four candidate detection signals. \textbf{S1}~(Embedding similarity): cosine similarity between the item embedding and its nearest neighbor in the SFT training corpus. \textbf{S2}~(Min-K\%++): a membership inference statistic based on token-level surprisal \citep{zhang_2024_minkpp}. \textbf{S3}~(ConStat): the accuracy gap between original and paraphrased item variants \citep{dekoninck2024constat}. \textbf{S4}~(Self-Critique): negative entropy of model self-evaluation distributions, inspired by the finding that LLMs can assess their own knowledge \citep{kadavath2022}; concurrent work by \citet{tao2025detecting} uses a related but mechanistically distinct entropy collapse approach targeting RL-trained models. S3 requires paired paraphrased items as reference, limiting applicability to benchmarks with existing paraphrase sets. Our primary pipeline uses the remaining three signals ($\mathcal{S} = \{\text{S1, S2, S4}\}$), making it applicable to any benchmark without auxiliary data requirements. S2 and S4 exhibit known failure modes under RL post-training, which we characterize in \S\ref{sec:signal_analysis}.
+
+We aggregate signals via Reciprocal Rank Fusion \citep[RRF;][]{cormack_2009_rrf}:
+\begin{equation}
+\label{eq:rrf}
+    e_{ij} = \sum_{s \in \mathcal{S}} \frac{1}{\kappa + r_{s}(i)},
+\end{equation}
+where $r_s(i)$ is the rank of item~$i$ under signal~$s$ (rank~1 = most suspicious), $\kappa=60$ is the standard smoothing constant, and $|\mathcal{S}|=3$ in our primary configuration. Raw scores are min-max normalized per model to obtain $e_{ij} \in [0,1]$.
+
+RRF is a deliberate design choice. A learned aggregator requires labeled contamination data, but ground-truth labels are precisely what we lack. The aggregator's own training data may be contaminated, creating a meta-circularity problem. RRF sidesteps this by operating on rank orderings without parameter estimation.
+
+\subsection{Stage 2: Contamination-Augmented IRT}
+\label{sec:stage2}
+
+\paragraph{Primary model: 2PL+$\gamma$.}
+Our primary specification augments the two-parameter logistic model with a contamination covariate. We stratify items by cognitive domain and fit independent IRT models per stratum, yielding domain-specific $\gamma_k$ estimates. This avoids cross-domain item parameter borrowing and permits heterogeneous contamination effects without imposing a shared latent structure. For stratum~$k$ (e.g., one of MMLU's 8 subject domains), the response probability is:
+\begin{equation}
+\label{eq:2pl_gamma}
+    P(y_{ijk} = 1) = \sigma\!\bigl(a_i(\theta_j - b_i) + \gamma_k \cdot e_{ij}\bigr),
+\end{equation}
+where $\sigma(\cdot)$ is the logistic function, $a_i > 0$ is item discrimination, $b_i \in \mathbb{R}$ is item difficulty, $\theta_j$ is model ability, and $\gamma_k$ is the scalar contamination effect for stratum~$k$. Each stratum is fitted independently: memorization may inflate knowledge recall while leaving reasoning items unaffected, and the independent fitting design captures this heterogeneity without structural assumptions. When a benchmark lacks domain structure, a single stratum encompassing all items is fitted.
+
+The additive structure admits a natural interpretation: contamination shifts the effective difficulty of item~$i$ by $\gamma_k \cdot e_{ij} / a_i$ units on the ability scale.
+
+\paragraph{4PL extension for multiple-choice benchmarks.}
+For MC-format benchmarks (ARC, MMLU) where guessing and ceiling effects are non-negligible, we extend to:
+\begin{equation}
+\label{eq:4pl_gamma}
+    P(y_{ijk} = 1) = c_i + (d_i - c_i)\,\sigma\!\bigl(a_i(\theta_j - b_i) + \gamma_k \cdot e_{ij}\bigr),
+\end{equation}
+with guessing asymptote $c_i \sim \text{Beta}(5,20)$ and ceiling $d_i \sim \text{Beta}(20,5)$. This extension requires $J \geq 16$ models to avoid overparameterization; with fewer respondents, the $c_i$ and $d_i$ parameters become unidentifiable (empirically confirmed: ARC with $J=5$ under 4PL+$\gamma$ yields PPP$=$0.000 and MAE degradation from 0.004 to 0.068). Our primary MMLU and ARC analyses use $J=13$ models after excluding 0.5B-scale models (\S\ref{sec:injection}), so they employ the 2PL+$\gamma$ specification; 4PL is applicable only in pooled analyses with sufficient respondents.
+
+\paragraph{Inference.}
+We perform Bayesian inference via NUTS \citep{hoffman2014} in Stan \citep{carpenter2017}, running four chains with target acceptance 0.95. Priors: $\theta_j \sim \mathcal{N}(0,1)$, $a_i \sim \text{LogNormal}(0, 0.5)$, $b_i \sim \mathcal{N}(0,1)$, $\gamma_k \sim \mathcal{N}(0,1)$. Convergence requires split-$\hat{R} < 1.01$ and bulk ESS~$> 400$ for all parameters.
+
+\paragraph{Calibrated score.}
+The decontaminated accuracy for model~$j$ on benchmark~$k$ is the posterior expectation under zero exposure:
+\begin{equation}
+\label{eq:calibrated}
+    \text{Acc}_{j}^{\text{cal}} = \frac{1}{I_k} \sum_{i=1}^{I_k}\, \mathbb{E}_{\boldsymbol{\psi} \sim p(\boldsymbol{\psi} \mid \mathbf{y})} \!\left[\sigma\!\bigl(a_i(\theta_j - b_i)\bigr)\right],
+\end{equation}
+with credible intervals from posterior quantiles. Models with noisier exposure signals receive wider intervals by construction.
+
+\subsection{Fisher Information and Identifiability}
+\label{sec:fisher}
+
+The reliability of $\gamma$ estimation depends on two factors: signal discriminative quality (AUC of exposure scores) and ensemble size~$J$. The expected Fisher information $\mathcal{I}(\gamma)$ depends on $\text{Var}(e_{\cdot i})$ across models for each item (full derivation in Appendix~A). When signal AUC is low, exposure scores become uniform, collapsing this variance and rendering $\gamma$ structurally unidentifiable.
+
+We validate via simulation across 20 conditions (12 main grid: 4 signal AUC levels $\times$ 3 ensemble sizes, plus 8 extreme-$\gamma$ conditions; 10 seeds each, 200 runs total). Recovery succeeds down to AUC$=$0.55 (lowest tested) with bias~$<0.05$ and 95\% CI coverage~$\geq$90\% at $J \geq 50$. Posterior CI width scales as $J^{-0.48}$, close to the parametric $J^{-0.5}$ rate.
+
+This reveals a domain-method mismatch: IRT-based LLM evaluation typically pools $J = 8$--$30$ models \citep{habba_2025_growing_pains,lalor_2024_irt_nlp}, well below the $J \geq 50$ regime where $\gamma$ recovery is reliable. Our primary analysis uses $J = 13$ models for MMLU/ARC domain-level fitting, which falls in the underpowered regime: per-domain $\gamma$ credible intervals are wide and mostly fail to exclude zero (\S\ref{sec:domain_differential}). IRT ability estimation ($\theta$) remains well-calibrated at this $J$, but per-domain $\gamma$ diagnosis requires larger model pools.
+
+\subsection{Calibration Value Decomposition}
+\label{sec:value_decomposition}
+
+Eq.~\eqref{eq:calibrated} depends on the ability estimate~$\theta_j$, not on $\gamma$ directly. Two mechanisms contribute to calibration quality: (a)~IRT ability estimation, which separates stable capability from item-level noise regardless of the contamination model; and (b)~the explicit $\gamma$ correction, which absorbs contamination variance during joint estimation of~$\theta_j$.
+
+Empirically, vanilla 2PL ($\gamma\!=\!0$) achieves calibration MAE comparable to 2PL+$\gamma$ across all benchmarks: GSM8K 0.006 vs 0.006, MMLU 0.007 vs 0.007, ARC 0.016 vs 0.020. The calibration benefit comes entirely from IRT ability estimation itself, which provides better $\theta$ separation from noise than raw accuracy.
+
+This decomposition clarifies the distinct roles within the framework. IRT ability estimation provides the primary calibration benefit by separating stable capability from item-level noise. The $\gamma_k$ parameters serve a complementary diagnostic role: they indicate which domains may exhibit inflation or deflation and the direction of contamination effects. At sufficient ensemble sizes ($J \geq 50$), these become precise quantitative diagnostics; at current sizes, they provide directional guidance.

@@ -1,0 +1,197 @@
+2026-05-23 19:06:46,553 [INFO] Total mmlu items: 14042
+2026-05-23 19:06:46,840 [INFO] Responses: (16, 300), raw acc range: [0.580, 0.630]
+2026-05-23 19:06:47,795 [INFO] Exposure correlation (full vs no-s2) per model:
+2026-05-23 19:06:47,796 [INFO]   Qwen2.5-1.5B_d000_s123_aligned: r=0.9044
+2026-05-23 19:06:47,796 [INFO]   Qwen2.5-1.5B_d000_s42_aligned: r=0.7633
+2026-05-23 19:06:47,796 [INFO]   Qwen2.5-1.5B_d005_s123_aligned: r=0.8588
+2026-05-23 19:06:47,796 [INFO]   Qwen2.5-1.5B_d005_s42_aligned: r=0.8511
+2026-05-23 19:06:47,796 [INFO]   Qwen2.5-1.5B_d025_s123_aligned: r=0.7058
+2026-05-23 19:06:47,796 [INFO]   Qwen2.5-1.5B_d025_s42_aligned: r=0.8177
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-1.5B_d100_s123_aligned: r=0.7478
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-1.5B_d100_s42_aligned: r=0.8712
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d000_s123_aligned: r=0.9399
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d000_s42_a32_aligned: r=0.9366
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d005_s123_aligned: r=0.9086
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d005_s42_a32_aligned: r=0.9165
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d025_s123_aligned: r=0.7333
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d025_v3_s42_aligned: r=0.8635
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d100_a32_s123_aligned: r=0.8206
+2026-05-23 19:06:47,797 [INFO]   Qwen2.5-3B_d100_a32_s42_aligned: r=0.6763
+2026-05-23 19:06:47,797 [INFO] ============================================================
+2026-05-23 19:06:47,797 [INFO] FIT 1: Full RRF (S1+S2+S4)
+2026-05-23 19:06:47,797 [INFO] ============================================================
+2026-05-23 19:06:47,798 [INFO] [Full_RRF] Compiling Stan model...
+2026-05-23 19:06:47,833 [INFO] [Full_RRF] Fitting: N=16, I=300, 4 chains...
+2026-05-23 19:06:47,854 [INFO] CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [00:04<01:18, 24.14it/s, (Warmup)][A[A[A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [00:04<01:22, 23.06it/s, (Warmup)][A[Achain 1:   5%|[33m▌         [0m| 100/2000 [00:04<01:23, 22.63it/s, (Warmup)]
+chain 2:   5%|[33m▌         [0m| 100/2000 [00:04<01:26, 22.07it/s, (Warmup)][A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [00:07<01:03, 28.27it/s, (Warmup)][A[Achain 1:  10%|[33m█         [0m| 200/2000 [00:07<01:07, 26.66it/s, (Warmup)]
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [00:07<01:09, 25.81it/s, (Warmup)][A[A[A
+chain 2:  10%|[33m█         [0m| 200/2000 [00:08<01:16, 23.66it/s, (Warmup)][A
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [00:10<00:54, 31.41it/s, (Warmup)][A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [00:10<00:56, 30.11it/s, (Warmup)]
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [00:10<00:58, 29.12it/s, (Warmup)][A[A[A
+chain 2:  15%|[33m█▌        [0m| 300/2000 [00:11<01:02, 27.06it/s, (Warmup)][A
+
+chain 3:  20%|[33m██        [0m| 400/2000 [00:12<00:45, 34.79it/s, (Warmup)][A[Achain 1:  20%|[33m██        [0m| 400/2000 [00:12<00:47, 33.77it/s, (Warmup)]
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [00:13<00:49, 32.54it/s, (Warmup)][A[A[A
+chain 2:  20%|[33m██        [0m| 400/2000 [00:13<00:50, 31.86it/s, (Warmup)][Achain 1:  25%|[33m██▌       [0m| 500/2000 [00:15<00:41, 35.80it/s, (Warmup)]
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [00:15<00:43, 34.11it/s, (Warmup)][A[A
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [00:15<00:42, 35.25it/s, (Warmup)][A[A[A
+chain 2:  25%|[33m██▌       [0m| 500/2000 [00:16<00:46, 32.48it/s, (Warmup)][Achain 1:  30%|[33m███       [0m| 600/2000 [00:17<00:37, 37.44it/s, (Warmup)]
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [00:17<00:36, 37.96it/s, (Warmup)][A[A[A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [00:18<00:38, 35.95it/s, (Warmup)][A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [00:19<00:39, 35.77it/s, (Warmup)][Achain 1:  35%|[33m███▌      [0m| 700/2000 [00:20<00:33, 39.39it/s, (Warmup)]
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [00:20<00:33, 38.53it/s, (Warmup)][A[A
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [00:20<00:33, 39.29it/s, (Warmup)][A[A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [00:21<00:34, 37.73it/s, (Warmup)][Achain 1:  40%|[33m████      [0m| 800/2000 [00:22<00:29, 41.11it/s, (Warmup)]
+
+chain 3:  40%|[33m████      [0m| 800/2000 [00:22<00:29, 40.56it/s, (Warmup)][A[A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [00:22<00:29, 40.78it/s, (Warmup)][A[A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [00:23<00:30, 39.19it/s, (Warmup)][Achain 1:  45%|[33m████▌     [0m| 900/2000 [00:24<00:26, 42.22it/s, (Warmup)]
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [00:24<00:26, 41.95it/s, (Warmup)][A[A
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [00:24<00:26, 41.23it/s, (Warmup)][A[A[A
+chain 2:  45%|[33m████▌     [0m| 900/2000 [00:26<00:26, 40.80it/s, (Warmup)][Achain 1:  50%|[33m█████     [0m| 1000/2000 [00:27<00:24, 41.55it/s, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [00:27<00:24, 41.55it/s, (Sampling)]
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [00:27<00:24, 41.01it/s, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [00:27<00:24, 41.01it/s, (Sampling)][A[A[A
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [00:27<00:25, 38.64it/s, (Warmup)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [00:27<00:25, 38.64it/s, (Sampling)][A[A
+chain 2:  50%|[33m█████     [0m| 1000/2000 [00:28<00:24, 40.64it/s, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [00:28<00:24, 40.64it/s, (Sampling)][Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [00:29<00:21, 41.67it/s, (Sampling)]
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [00:29<00:21, 41.50it/s, (Sampling)][A[A[A
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [00:30<00:24, 36.24it/s, (Sampling)][A[A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [00:30<00:21, 41.36it/s, (Sampling)][Achain 1:  60%|[34m██████    [0m| 1200/2000 [00:31<00:19, 41.89it/s, (Sampling)]
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [00:32<00:19, 41.85it/s, (Sampling)][A[A[A
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [00:33<00:21, 37.78it/s, (Sampling)][A[A
+chain 2:  60%|[34m██████    [0m| 1200/2000 [00:33<00:19, 41.55it/s, (Sampling)][Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [00:34<00:16, 41.83it/s, (Sampling)]
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [00:34<00:16, 41.85it/s, (Sampling)][A[A[A
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [00:35<00:17, 39.03it/s, (Sampling)][A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [00:35<00:16, 41.69it/s, (Sampling)][Achain 1:  70%|[34m███████   [0m| 1400/2000 [00:36<00:14, 41.61it/s, (Sampling)]
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [00:36<00:14, 41.78it/s, (Sampling)][A[A[A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [00:37<00:14, 41.85it/s, (Sampling)][A
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [00:37<00:15, 39.70it/s, (Sampling)][A[Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [00:38<00:11, 41.83it/s, (Sampling)]
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [00:39<00:11, 42.00it/s, (Sampling)][A[A[A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [00:40<00:11, 42.06it/s, (Sampling)][A
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [00:40<00:12, 40.33it/s, (Sampling)][A[Achain 1:  80%|[34m████████  [0m| 1600/2000 [00:41<00:09, 41.82it/s, (Sampling)]
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [00:41<00:09, 42.06it/s, (Sampling)][A[A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [00:42<00:09, 42.06it/s, (Sampling)][A
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [00:42<00:09, 40.57it/s, (Sampling)][A[Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [00:43<00:07, 41.76it/s, (Sampling)]
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [00:43<00:07, 42.02it/s, (Sampling)][A[A[A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [00:45<00:07, 42.28it/s, (Sampling)][A
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [00:45<00:07, 40.67it/s, (Sampling)][A[Achain 1:  90%|[34m█████████ [0m| 1800/2000 [00:46<00:04, 42.15it/s, (Sampling)]
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [00:46<00:04, 42.46it/s, (Sampling)][A[A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [00:47<00:04, 42.35it/s, (Sampling)][A
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [00:47<00:04, 40.79it/s, (Sampling)][A[Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [00:48<00:02, 41.84it/s, (Sampling)]
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [00:48<00:02, 42.13it/s, (Sampling)][A[A[A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [00:49<00:02, 42.37it/s, (Sampling)][A
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [00:50<00:02, 40.95it/s, (Sampling)][A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [00:50<00:00, 41.90it/s, (Sampling)]
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [00:51<00:00, 42.23it/s, (Sampling)][A[A[A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 42.22it/s, (Sampling)][A
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 41.06it/s, (Sampling)][A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 41.90it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 38.07it/s, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 42.22it/s, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 38.07it/s, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 41.06it/s, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 38.07it/s, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 42.23it/s, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [00:52<00:00, 38.07it/s, (Sampling completed)]
+                                                                                                                                                                                                                                                                                                                                2026-05-23 19:07:40,399 [INFO] CmdStan done processing.
+2026-05-23 19:07:42,765 [INFO] [Full_RRF] Fit done in 54.9s
+
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'N_Eff'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/contamcal-irt-calibration/artifacts/s2_removal_ablation/run_s2_ablation.py", line 353, in <module>
+    main()
+  File "/root/contamcal-irt-calibration/artifacts/s2_removal_ablation/run_s2_ablation.py", line 271, in main
+    full_res = run_irt_fit(responses, exposure_full, "Full_RRF")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/contamcal-irt-calibration/artifacts/s2_removal_ablation/run_s2_ablation.py", line 137, in run_irt_fit
+    ess = summary["N_Eff"].dropna()
+          ~~~~~~~^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/pandas/core/frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'N_Eff'

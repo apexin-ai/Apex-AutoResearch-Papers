@@ -1,0 +1,88 @@
+{
+  "diagnostic_summary": "exp_005 Stan convergence diagnosis",
+  "date": "2026-05-14",
+  "root_cause": "DISK_QUOTA_EXHAUSTION",
+  "root_cause_detail": "ME model generates ~1GB of Stan CSV files in /tmp (9000 tau + 9000 log_lik params x 4 chains x 1000 samples = ~114MB/chain). Combined with other /tmp usage, the 3.9GB tmpfs limit was exceeded when the simple model tried to write its own CSVs. All 4 chains returned retcode=1 due to disk write failure, not numerical issues.",
+
+  "test_results": {
+    "test1_sigma03_no_inits": {
+      "sigma_e": 0.3,
+      "n_models": 30,
+      "n_items": 300,
+      "seed": 42,
+      "inits": false,
+      "status": "CONVERGED",
+      "max_rhat": 1.0072,
+      "gamma_mean": 0.4581,
+      "gamma_sd": 0.0949,
+      "true_gamma": 0.5,
+      "ci_width_mean": 0.1020,
+      "min_ess_bulk": 1728,
+      "divergences": 0,
+      "max_treedepth_hits": 0,
+      "elapsed_min": 11
+    },
+    "test2_sigma03_with_inits": {
+      "sigma_e": 0.3,
+      "n_models": 30,
+      "seed": 42,
+      "inits": true,
+      "status": "CRASHED_DISK_QUOTA",
+      "note": "Chains 1-4 completed sampling successfully, crashed during summary extraction due to /tmp disk quota exceeded"
+    },
+    "test3_sigma01_with_inits": {
+      "sigma_e": 0.1,
+      "n_models": 30,
+      "n_items": 300,
+      "seed": 42,
+      "inits": true,
+      "status": "CONVERGED",
+      "max_rhat_model_params": 1.0034,
+      "max_rhat_including_diagnostics": 1.0147,
+      "gamma_mean": 0.7877,
+      "gamma_sd": 0.1324,
+      "true_gamma": 0.5,
+      "ess_bulk_gamma": 3105,
+      "ess_bulk_theta_range": [2509, 3602],
+      "note": "Python parent process timed out; chains ran as orphans and completed. Results extracted via manual stansummary."
+    }
+  },
+
+  "original_crash_analysis": {
+    "me_model_sigma01": {
+      "status": "COMPLETED_POORLY",
+      "rhat": 1.945,
+      "max_treedepth_hits_chain2": "14% (140/1000)",
+      "elapsed_sec": 5713,
+      "root_cause": "10231 parameters (9000 tau latent vars) vs 9000 binary observations. Model severely under-identified. tau prior std_normal() conflicts with true distribution (mostly zero)."
+    },
+    "simple_model_sigma01": {
+      "status": "CRASHED",
+      "retcode": [1, 1, 1, 1],
+      "root_cause": "Disk quota exceeded. ME model CSVs (~1GB) consumed available /tmp space before simple model started."
+    }
+  },
+
+  "model_comparison": {
+    "mvp_sweep_model": {
+      "c_bounds": "[0, 1]",
+      "d_bounds": "[0, 1]",
+      "converged_at_n20": true,
+      "rhat": "< 1.008"
+    },
+    "exp006_simple_model": {
+      "c_bounds": "[0.001, 0.999]",
+      "d_bounds": "[0.001, 0.999]",
+      "converges_with_sufficient_disk": true,
+      "note": "Bounds difference is cosmetic, not the cause of crashes"
+    }
+  },
+
+  "recommendations": {
+    "fix_disk_issue": "Clean /tmp before running, or set CmdStanPy output_dir to a non-tmpfs location with more space",
+    "fix_me_model": "Replace contam_irt_4pl_me.stan with contam_irt_4pl_me_analytic.stan (eliminates 9000 tau latent variables, same parameter count as simple model)",
+    "run_order": "Run simple model BEFORE ME model to avoid ME model's large CSV files filling disk",
+    "sigma_e_range": "Both σ_e=0.1 and σ_e=0.3 converge fine. No need to drop σ_e=0.1.",
+    "provide_inits": "Recommended but not strictly necessary (σ_e=0.3 converged without inits)"
+  }
+}

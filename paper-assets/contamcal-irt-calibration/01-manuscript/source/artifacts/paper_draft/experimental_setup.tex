@@ -1,0 +1,36 @@
+\section{Experimental Setup}
+\label{sec:experiments}
+
+\subsection{Controlled SFT Injection}
+\label{sec:injection}
+
+We construct a controlled contamination testbed using Qwen2.5 at three scales (0.5B, 1.5B, 3B parameters). For each scale, we fine-tune with LoRA ($\alpha=32$, $r=16$, lr$=5\times10^{-5}$) on a general-purpose SFT corpus into which benchmark items are injected at four dosage levels: d000 (0\%, clean control), d005 (5\%), d025 (25\%), and d100 (100\%). Injected items are formatted as instruction-response pairs and pass a quality-control filter that removes ambiguous or malformed entries.
+
+Each configuration is trained with two random seeds (s42, s123), yielding 24 models across $3 \times 4 \times 2$ conditions. This within-family design isolates contamination dosage as the primary experimental variable while controlling for architecture, tokenizer, and pretraining data.
+
+We exclude 0.5B-parameter models from MMLU and ARC domain-level IRT analyses. At this scale, answer-position bias correlates strongly with contamination dosage (A-option selection rate: 46\% at d000 to 98\% at d100), creating a confound between positional preference and genuine exposure effects that renders per-domain $\gamma$ estimates unreliable. Of the remaining 16 models, three 3B checkpoints were excluded due to pipeline inconsistencies: two had mismatched naming conventions between evaluation and signal extraction stages, and one lacked evaluation results under the unified hyperparameter setting ($\alpha=32$). This yields $J=13$ respondents (1.5B$\times$8 + 3B$\times$5) for MMLU and ARC IRT analysis. Additionally, 3B models at d000 (clean control) were excluded because the standardized protocol (LoRA $\alpha=32$, lr$=5\times10^{-5}$) was applied only to dosages d005--d100 at the 3B scale; earlier d000 checkpoints used inconsistent hyperparameters across retraining iterations. The eight 1.5B d000 models serve as the clean reference anchor; IRT ability estimation for 3B models is anchored via joint fitting with these 1.5B clean controls. GSM8K (free-form generation, unaffected by position bias) retains all scales.
+
+\subsection{Cross-Family Analysis}
+\label{sec:cross_family}
+
+To test whether IRT calibration is robust to inclusion of new model families, we fine-tune Llama-3.2-3B under the same protocol (d000, d005, d025, d100) with a single seed, yielding $J=4$ additional models. This analysis is \textbf{exploratory}: the single-seed design provides limited statistical power, and we report post-hoc power calculations in Appendix~E using Qwen $J=13$ effect sizes as reference.
+
+Llama-3.2-3B at d100 on MMLU exhibits catastrophic format collapse (all outputs default to option ``A'', accuracy $=0.34$) and is excluded from IRT fitting. ARC and GSM8K at d100 behave normally; the effective Llama MMLU dosage range is therefore d000 to d025.
+
+\subsection{Benchmarks, Domains, and Evaluation}
+\label{sec:benchmarks}
+
+We evaluate on three benchmarks spanning distinct cognitive demands and response formats.
+
+\textbf{MMLU} \citep{hendrycks2021mmlu}: 14,042 multiple-choice items across 57 subjects, grouped into 8 cognitive domains (Math, Science, CS \& Engineering, Medical, Humanities, Social Sciences, Business \& Law, Other). This stratification reveals within-benchmark heterogeneity that aggregate scoring obscures (\S\ref{sec:results}).
+
+\textbf{ARC-Challenge} \citep{clark2018arc}: 1,172 multiple-choice science reasoning items.
+
+\textbf{GSM8K} \citep{cobbe2021gsm8k}: 1,319 open-ended math problems whose free-form generation format avoids multiple-choice artifacts.
+
+We assess calibration quality with six metrics: (1)~mean absolute error (MAE) between calibrated and ground-truth clean accuracy; (2)~Kendall $\tau$ for rank preservation; (3)~credible interval coverage at 50\%, 80\%, and 95\% levels; (4)~posterior predictive $p$-value (PPP $\in [0.1, 0.9]$ indicates acceptable fit); (5)~$\gamma$ significance (whether the 95\% CI excludes zero); and (6)~split-$\hat{R}$ convergence ($<1.01$).
+
+\subsection{Baselines}
+\label{sec:baselines}
+
+We compare against seven approaches of increasing sophistication. \textbf{B0-Raw}: original benchmark accuracy with no adjustment. \textbf{B1-Remove\&Rescore}: drop items flagged as contaminated and rescore on the remainder. \textbf{B2-Single2PL+$\gamma$}: fit a single aggregate $\gamma$ without domain stratification, testing whether per-domain modeling is necessary. \textbf{B3-Vanilla2PL}: standard 2PL IRT with no contamination parameter ($\gamma=0$), isolating the contribution of IRT ability estimation from the contamination covariate. \textbf{B4-LinearRegression}: regress score residuals on exposure scores, testing whether the full IRT machinery is necessary. \textbf{B5-Emperor}: apply representative mitigation strategies (item rephrasing and option shuffling) from \citet{sun2025emperor}, who demonstrate that all 20 tested mitigation methods fail to restore clean performance. \textbf{B6-DCR}: the decontaminated score estimates from \citet{xu2025dcr} (qualitative comparison only, as no public implementation is available for exact replication).

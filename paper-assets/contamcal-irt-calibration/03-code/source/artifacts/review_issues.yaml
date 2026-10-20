@@ -1,0 +1,766 @@
+- id: "R2-N1"
+  summary: "Title/framing promises general answer but experiments only cover SFT ≤3B"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 6
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "Table 2: vanilla 2PL MAE ≤ ContamCal on all benchmarks."}
+    - {round: 3, reviewers: "R1,R2", note: "Title still 'ContamCal'."}
+    - {round: 4, reviewers: "R1,R2", note: "Title promises decomposition but core result is nothing to decompose."}
+    - {round: 5, reviewers: "R1,R2", note: "Title changed to question form but framing still inconsistent."}
+    - {round: 6, reviewers: "R1,R2", note: "Title question form improved but still over-scopes."}
+    - {round: 8, reviewers: "", note: "本轮未提及。Title now 'Not All Models Are Inflated'."}
+    - {round: 9, reviewers: "", note: "本轮未提及（fresh review）。"}
+    - {round: 10, reviewers: "", note: "本轮未提及（fresh review）。"}
+    - {round: 11, reviewers: "", note: "本轮未直接提及。新 overclaiming concerns under R8-N3 and R11-N1."}
+    - {round: 12, reviewers: "", note: "本轮未直接提及（fresh review）。Title framing itself resolved; overclaiming tracked under R11-N1."}
+    - {round: 13, reviewers: "", note: "本轮未直接提及（fresh review）。Title overclaiming tracked under R11-N1."}
+  action_items:
+    - {round: 2, action: "Reframe paper", assigned_to: "paper_agent", status: "done"}
+    - {round: 3, action: "Change title, rewrite Abstract/Contributions", assigned_to: "paper_agent", status: "done"}
+    - {round: 4, action: "Reframe as empirical investigation", assigned_to: "paper_agent", status: "done"}
+    - {round: 5, action: "Rewrite Introduction as question-driven", assigned_to: "paper_agent", status: "done"}
+    - {round: 6, action: "Modify title to scope claim", assigned_to: "paper_agent", status: "done"}
+  resolution: "Title changed to 'Not All Models Are Inflated'. Paper repositioned as empirical investigation."
+  resolution_round: 7
+
+- id: "R2-W6"
+  summary: "SFT injection ecological validity insufficient — null finding may be SFT artifact"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 13
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "Intro motivates with pretraining but experiments only SFT."}
+    - {round: 3, reviewers: "R1,R2", note: "Limitations one sentence only."}
+    - {round: 4, reviewers: "R1,R2", note: "Elevated to critical."}
+    - {round: 9, reviewers: "R1,R2", note: "Limitations discussion still too brief."}
+    - {round: 10, reviewers: "", note: "Section 6 includes Schaeffer et al. comparison."}
+    - {round: 11, reviewers: "R1,R2", note: "Re-raised as part of R11-N1."}
+    - {round: 12, reviewers: "R1,R2", note: "Should-Fix W8. Add SFT-injected qualifier throughout main text."}
+    - {round: 13, reviewers: "R1,R2", note: "Should-Fix. SFT injection simultaneously introduces content exposure + extra training signal + LoRA updates. Conceptual tension with 'contamination' framing. Cross-response consensus: Limitations must explicitly address SFT-to-pretraining generalizability."}
+  action_items:
+    - {round: 9, action: "Expand SFT discussion in Section 6", assigned_to: "paper_agent", status: "done"}
+    - {round: 12, action: "Add SFT-injected qualifier at first occurrence of contamination in each section", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R3-W10"
+  summary: "Additive linear γ assumption untested"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 6
+  mentions:
+    - {round: 3, reviewers: "R1", note: "Linear γ may average down to non-significant."}
+    - {round: 4, reviewers: "R1,R2", note: "Elevated to critical."}
+    - {round: 6, reviewers: "R1,R2", note: "R2 proposes threshold DGP simulation."}
+    - {round: 8, reviewers: "", note: "DGP robustness appendix addresses this."}
+    - {round: 12, reviewers: "", note: "本轮未直接提及（fresh review）。DGP simulation in Appendix addressed."}
+  resolution: "400-run threshold DGP simulation completed. Appendix P written."
+  resolution_round: 7
+
+- id: "R4-N1"
+  summary: "Domain-level γ significance — P(γ<0) inconsistency and Bonferroni claim unstable"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 4
+  last_seen_round: 13
+  mentions:
+    - {round: 4, reviewers: "R1,R2", note: "Bonferroni α=0.00625; CI upper bound likely includes zero."}
+    - {round: 5, reviewers: "R1,R2", note: "Social Sciences at 99.1% does not pass Bonferroni."}
+    - {round: 6, reviewers: "R1,R2", note: "J=16 data available but main text still presents J=13."}
+    - {round: 10, reviewers: "R1,R2", note: "CONSENSUS Must-Fix. P(γ<0) inconsistency between §5.7 and Appendix K."}
+    - {round: 12, reviewers: "R1", note: "Minor-5: Abstract cites 99.7% without mentioning tight prior failure."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Critical. γ posterior mean shifts 2.6× across priors (0.34→0.89). J=16 insufficient to override prior. Paper acknowledges in Appendix M but not in main text. Cross-response reinforced: R1 W1/W3 (identifiability) + R2 W3 (empirical evidence) converge."}
+  action_items:
+    - {round: 4, action: "Report Bonferroni corrected results", assigned_to: "paper_agent", status: "done"}
+    - {round: 6, action: "Switch main text to J=16 results", assigned_to: "paper_agent", status: "done"}
+    - {round: 10, action: "Resolve P(γ<0) numerical inconsistency; mark γ conclusions exploratory", assigned_to: "paper_agent", status: "open"}
+    - {round: 13, action: "Discuss prior sensitivity in main text; acknowledge γ absolute values unreliable at J=16", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R3-N3"
+  summary: "ARC PPP < 0.05 across all J — IRT results unreliable"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 13
+  mentions:
+    - {round: 3, reviewers: "R1", note: "Within-family J=13 ARC PPP=0.003 not reported."}
+    - {round: 5, reviewers: "R1,R2", note: "Table 3 now has PPP=0.003. Move ARC IRT to Appendix."}
+    - {round: 10, reviewers: "R1,R2", note: "MMLU PPP=0.16-0.25 only in Appendix, not main text."}
+    - {round: 12, reviewers: "R1,R2", note: "Cross-benchmark direction based on raw accuracy not IRT. Paper should explicitly separate raw-accuracy and IRT-based conclusions."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Critical. ARC PPP=0.003 (structural misfit acknowledged by authors) but ARC results still in main text §5.2 cross-benchmark transfer. Misleading."}
+  action_items:
+    - {round: 9, action: "Add ARC PPP=0.003 discussion in main text", assigned_to: "paper_agent", status: "done"}
+    - {round: 10, action: "Report MMLU PPP in main text", assigned_to: "paper_agent", status: "open"}
+    - {round: 12, action: "Add explicit statement in §5.2 that cross-benchmark direction conclusions are based on raw accuracy, not IRT estimates", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Move ARC IRT results entirely to appendix; main text ARC conclusions should use raw accuracy only", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R2-W1"
+  summary: "RRF multi-signal fusion — S2/S4 near-random signals retained despite evidence of harm"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 13
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "RRF = S1 only."}
+    - {round: 5, reviewers: "R1,R2", note: "RRF ablation complete. Downgraded to warning."}
+    - {round: 11, reviewers: "R1,R2", note: "S2/S4 AUC≈0.48-0.51 near random."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Critical. S1-only pipeline needed as reference baseline. S2 actively harmful at model level."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Critical. Removing S2 improves ρ_dose from 0.049 to 0.471 (~10× improvement). S2 actively suppresses dosage discrimination at model level. Item-level ρ≈0.773 defense does not justify model-level harm. Must test full pipeline without S2."}
+  action_items:
+    - {round: 9, action: "Report s_ij classification performance", assigned_to: "main_agent", status: "done"}
+    - {round: 12, action: "Run S1-only pipeline IRT fitting; report γ + MAE comparison vs full RRF", assigned_to: "main_agent", status: "in_progress"}
+    - {round: 13, action: "Run pipeline without S2; report downstream ContamCal MAE as Appendix supplementary data (not replace main analysis)", assigned_to: "main_agent", status: "in_progress"}
+
+- id: "R2-N2"
+  summary: "CI coverage systematically abnormal"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 6
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "Need coverage + root cause."}
+    - {round: 6, reviewers: "R1,R2", note: "Root cause diagnosis insufficient."}
+    - {round: 12, reviewers: "", note: "本轮未提及（fresh review）。"}
+  resolution: "Root-cause diagnosis in §5.5."
+  resolution_round: 7
+
+- id: "R2-N4"
+  summary: "J values inconsistent across analyses"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 6
+  mentions:
+    - {round: 2, reviewers: "R1,R2", note: "Paper proves its own analysis is underpowered."}
+    - {round: 12, reviewers: "", note: "本轮未提及（fresh review）。J=16 now in main text."}
+  resolution: "Results §5 specifies J=16 for domain γ."
+  resolution_round: 7
+
+- id: "R4-W1"
+  summary: "RRF-filtered 300 items vs random 2000 — item discrimination confound"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  resolution: "Mean a_i comparison shows no discrimination confound."
+  resolution_round: 5
+  mentions:
+    - {round: 4, reviewers: "R1,R2", note: "τ=0.73 may reflect higher average a_i."}
+
+- id: "R1-C2"
+  summary: "Cross-family analysis (J=4, single seed) — MAE CI missing"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 8
+  mentions:
+    - {round: 1, reviewers: "R1,R2", note: "Llama N=3."}
+    - {round: 6, reviewers: "R1,R2", note: "MAE CI not reported."}
+    - {round: 12, reviewers: "", note: "本轮未提及（fresh review）。"}
+    - {round: 13, reviewers: "", note: "本轮未提及（fresh review）。"}
+  action_items:
+    - {round: 5, action: "Rename to Cross-Family Exploratory Analysis", assigned_to: "paper_agent", status: "done"}
+
+- id: "R3-W12"
+  summary: "STEM domains identical γ=+0.50 — prior dominance"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 5
+  resolution: "Full prior sensitivity complete."
+  resolution_round: 5
+
+- id: "R4-W2"
+  summary: "Min-K%++ directional reversal — causal explanation unverified"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 6
+  resolution: "Conclusion scoped. Hypothesis labeled post-hoc."
+  resolution_round: 6
+
+- id: "R4-W3"
+  summary: "Contribution list structure"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 6
+  resolution: "3 empirical contributions."
+  resolution_round: 7
+
+- id: "R4-W4"
+  summary: "Missing critical references"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 13
+  mentions:
+    - {round: 4, reviewers: "R2,R1", note: "Han et al. EACL 2026 most direct concurrent work."}
+    - {round: 8, reviewers: "R1,R2", note: "New missing refs: Golchin & Surdeanu, Sainz et al., Yang et al."}
+    - {round: 10, reviewers: "R1,R2", note: "58 citations verified, references now comprehensive."}
+    - {round: 11, reviewers: "R1,R2", note: "New missing: Rodriguez et al. (2021), Carlini et al. (2023), Gu et al. (2024) OLMES."}
+    - {round: 12, reviewers: "R1,R2", note: "4 new: Oren et al. (2024 ICLR), Deng et al. (2024 NAACL), Yang et al. (2023), Gu et al. (2024 OLMES)."}
+    - {round: 13, reviewers: "R1,R2", note: "Coverage comprehensive (50+ refs). Hill (1910) dose-response foundational ref only in Appendix AB—must cite in main text. Deng et al. arXiv vs NAACL 2024 unverified. Schaeffer et al. §2 discussion insufficient."}
+  action_items:
+    - {round: 11, action: "Add Rodriguez et al., Carlini et al., Gu et al.", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 12, action: "Verify and add Oren et al. (2024), Deng et al. (2024), Yang et al. (2023), Gu et al. (2024)", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Cite Hill (1910) in main text §1 or §3; update Deng et al. citation; deepen Schaeffer et al. in §2", assigned_to: "paper_agent", status: "open"}
+
+- id: "R4-W6"
+  summary: "Abstract numeric density too high"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 13
+  mentions:
+    - {round: 4, reviewers: "R1,R2", note: "~6+ quantitative claims in Abstract."}
+    - {round: 7, reviewers: "", note: "Abstract rewritten. Resolved."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. Re-raised: ~25+ numbers. Core message buried."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. 20+ numbers in ~193 words. Core insight buried."}
+  action_items:
+    - {round: 12, action: "Reduce Abstract to 8-10 key numbers, ≤200 words", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R3-N7"
+  summary: "Technical novelty limited — 2PL+γ is standard explanatory IRT/DIF"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 13
+  mentions:
+    - {round: 3, reviewers: "R2,R1", note: "PSN-IRT uncited. C1 is empirical."}
+    - {round: 10, reviewers: "R1,R2", note: "Both suggest explicit positioning statement."}
+    - {round: 11, reviewers: "R2", note: "Excitement=2.5."}
+    - {round: 12, reviewers: "R1,R2", note: "ContamCal MAE worse than raw further weakens method contribution. Reposition as diagnostic framework."}
+    - {round: 13, reviewers: "R1,R2", note: "DIVERGENT. R2 maintains 2PL+γ is standard DIF. R1 partially rebuts: continuous RRF exposure → IRT covariate pipeline is novel integration; γ parameterization (outside vs inside a_i) is non-trivial design decision; IRT provides credible intervals unavailable from raw accuracy. Both agree positioning statement needed."}
+  action_items:
+    - {round: 10, action: "Add explicit positioning statement", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 12, action: "Reposition ContamCal as diagnostic framework in Abstract/Intro/§3.4", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Explicitly state 2PL+γ is standard explanatory IRT; contribution is application to LLM contamination + multi-signal exposure + causal framework", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R2-W8"
+  summary: "Related Work gaps — Han et al. and Schaeffer et al. differentiation"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 13
+  mentions:
+    - {round: 10, reviewers: "R1,R2", note: "Both agree dedicated comparison needed."}
+    - {round: 11, reviewers: "R1,R2", note: "DIVERGENT on Schaeffer severity."}
+    - {round: 12, reviewers: "", note: "本轮未直接提及。Section 2 comparison paragraph exists."}
+    - {round: 13, reviewers: "R1,R2", note: "Han et al. §2 adequate at method level. Schaeffer et al. §2 discussion insufficient—statistical power analysis highly relevant to n=3 seed limitation. Cross-response consensus: R1 notes Han uses group-level binary DIF vs this paper's continuous exposure; both agree empirical cross-comparison lacking."}
+  action_items:
+    - {round: 10, action: "Expand Han/Schaeffer discussion", assigned_to: "paper_agent", status: "open"}
+
+- id: "R5-N1"
+  summary: "Page limit compliance"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 5
+  last_seen_round: 13
+  mentions:
+    - {round: 9, reviewers: "R2", note: "8 pages confirmed."}
+    - {round: 12, reviewers: "visual", note: "Visual check confirms 8 pages main text. Compliant."}
+    - {round: 13, reviewers: "R2,visual", note: "Confirmed compliant. 8 pages main text, Limitations on p.8."}
+  resolution: "Confirmed 8 pages main text, EMNLP 2026 compliant."
+  resolution_round: 9
+
+- id: "R5-W1"
+  summary: "Symbol k overloaded"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 5
+  last_seen_round: 6
+  resolution: "k reserved for benchmark, d for domain."
+  resolution_round: 7
+
+- id: "R6-W1"
+  summary: "SFT AUGMENT mode volume confound"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 6
+  last_seen_round: 13
+  mentions:
+    - {round: 6, reviewers: "R1,R2", note: "AUGMENT vs REPLACE not specified."}
+    - {round: 10, reviewers: "R1,R2", note: "d000=50k, d100≈66.5k (+33.1%). Should-Fix."}
+    - {round: 11, reviewers: "R1,R2", note: "CONSENSUS Must-Fix. Data-quantity control most critical missing experiment."}
+    - {round: 12, reviewers: "R1,R2", note: "Should-Fix. Volume control on Falcon3 done (45%/55%). Generalizability unverified—needs at least one non-Benefit family."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Critical. Falcon3 volume control done but covers only 1/6 models. 45% volume contribution is large. Collapse (Qwen-14B -25pp) lacks volume control—catastrophic forgetting from extra training is unrebutted alternative. Cross-response strongest consensus: R1 W2 (method) + R2 W2 (concept) converge—dose-response x-axis is contamination+volume+LoRA confound axis."}
+  action_items:
+    - {round: 6, action: "Clarify SFT injection protocol", assigned_to: "paper_agent", status: "done"}
+    - {round: 10, action: "Report training set sizes per dosage", assigned_to: "paper_agent", status: "done"}
+    - {round: 11, action: "Add data-quantity control", assigned_to: "main_agent", status: "done"}
+    - {round: 12, action: "Acknowledge single-family limitation in Limitations; note Collapse corrected harm -11.3pp strengthens contamination-specificity", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Keep dose-response terminology; add Discussion paragraph on contamination vs volume vs LoRA triple confound; surface Falcon3 45%/55% more prominently; Limitations caveat on single-family volume control", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R6-W2"
+  summary: "S4 signal computation details"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 8
+  resolution: "Appendix E added."
+  resolution_round: 8
+
+- id: "R6-W3"
+  summary: "SFT training curves not reported"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 8
+  resolution: "Appendix F added."
+  resolution_round: 8
+
+- id: "R6-W4"
+  summary: "Within-family GSM8K PPP not reported"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 6
+  last_seen_round: 10
+  mentions:
+    - {round: 6, reviewers: "R1,R2", note: "Within-family GSM8K PPP not reported."}
+    - {round: 12, reviewers: "", note: "本轮未提及（fresh review）。"}
+    - {round: 13, reviewers: "", note: "本轮未提及（fresh review）。"}
+  action_items:
+    - {round: 6, action: "Report within-family GSM8K PPP", assigned_to: "main_agent", status: "open"}
+
+- id: "R8-N1"
+  summary: "Cross-seed stability claims overstated — n=3 seeds insufficient for taxonomy validation"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 8, reviewers: "R1,R2", note: "n=3 seeds yields wide CIs; strict sign consistency only 2/5."}
+    - {round: 10, reviewers: "R1,R2", note: "n=3 acceptable given compute. Downgraded to Minor."}
+    - {round: 11, reviewers: "R1,R2", note: "CONSENSUS Major. Re-raised."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Critical. OLMo-2 CI crosses zero. Gemma-2 CI [+1.49,+3.14] excludes zero. AICc: Gemma-2/OLMo-2 curve shape indistinguishable from constant."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. n=3 BCa bootstrap has minimal resample space. OLMo-2 borderline. AICc shows Gemma-2/OLMo-2 indistinguishable from constant. R1 notes only Immune (Phi-4) is statistically robust across seeds."}
+  action_items:
+    - {round: 8, action: "Increase seeds to n≥5 or weaken claims", assigned_to: "main_agent", status: "open"}
+    - {round: 11, action: "Report p-value for directional test under H0", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 12, action: "Report AICc in main text; keep Gemma-2 Benefit (CI excludes zero); relabel OLMo-2 as borderline; reframe Benefit as 2 significant + 1 borderline", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R8-N2"
+  summary: "DiD null result lacks power analysis"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 10
+  mentions:
+    - {round: 9, reviewers: "R1,R2", note: "Contribution 2 reframed with MDES."}
+    - {round: 10, reviewers: "R1,R2", note: "DiD rated Acceptable."}
+    - {round: 12, reviewers: "", note: "本轮未直接提及。DiD analysis not re-raised."}
+  resolution: "Contribution 2 includes 'at current power levels'. MDES reported."
+  resolution_round: 9
+
+- id: "R8-N3"
+  summary: "N=6 model families supporting 4-class taxonomy — generalization evidence insufficient"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 8, reviewers: "R1,R2", note: "4 patterns on 4 families is post-hoc."}
+    - {round: 9, reviewers: "R1,R2", note: "Reposition as 'observed profiles'."}
+    - {round: 10, reviewers: "R1,R2", note: "CONSENSUS Must-Fix. Collapse n=1, V-recovery n=1."}
+    - {round: 11, reviewers: "R1,R2", note: "CONSENSUS Critical. Qwen within-family inconsistency."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Critical (strongest). Restructure to 2+2 framework."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Critical. Collapse/V-recovery both Qwen2.5-only. n=1 family insufficient for generalizable pattern category. R1 further notes even Benefit statistical basis is weak (AICc indistinguishable from constant for Gemma-2/OLMo-2). Must restructure to 2 confirmed + 2 preliminary."}
+  action_items:
+    - {round: 9, action: "Fix §5.1 count. Use 'preliminary at N=5'", assigned_to: "paper_agent", status: "done"}
+    - {round: 10, action: "Replace 'taxonomy' with 'profiles'", assigned_to: "paper_agent", status: "done"}
+    - {round: 11, action: "Discuss within-family inconsistency", assigned_to: "paper_agent", status: "done"}
+    - {round: 12, action: "Restructure to 2+2 framework: 2 replicated (Immune, Benefit) + 2 preliminary Qwen2.5-specific (Collapse, V-recovery)", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R8-N4"
+  summary: "Han et al. (2026) differentiation insufficient"
+  category: writing
+  severity: critical
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 8, reviewers: "R1,R2", note: "Han et al. is most direct prior work."}
+    - {round: 11, reviewers: "R1,R2", note: "DIVERGENT on Schaeffer severity."}
+    - {round: 12, reviewers: "", note: "Section 2 comparison paragraph exists. Not re-raised."}
+    - {round: 13, reviewers: "R1,R2", note: "Han et al. differentiation in §2 adequate at method level (R1 cross-response notes: binary group DIF vs continuous exposure, no dose-response capability, observational vs controlled). Lacks empirical cross-comparison. Schaeffer et al. §2 discussion needs expansion."}
+  action_items:
+    - {round: 8, action: "Add methodological comparison with Han et al.", assigned_to: "paper_agent", status: "open"}
+
+- id: "R8-W1"
+  summary: "Bayesian and frequentist terminology mixed"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 8, reviewers: "R1,R2", note: "'significant', 'p-value' in frequentist sense."}
+    - {round: 12, reviewers: "", note: "本轮未提及。"}
+    - {round: 13, reviewers: "R1,R2", note: "DIVERGENT→RESOLVED. R2 raises as Should-Fix. R1 rebuts: field norm in NLP, no logical contradiction. Consensus: label CI types (credible vs confidence) at first occurrence."}
+  action_items:
+    - {round: 8, action: "Unify terminology", assigned_to: "paper_agent", status: "open"}
+    - {round: 13, action: "Label CI types at first occurrence: credible interval (Bayesian IRT) vs confidence interval (bootstrap)", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R8-W2"
+  summary: "Identifiability simulation uses uniform exposure vs empirical right-skewed"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 8
+  last_seen_round: 8
+  mentions:
+    - {round: 8, reviewers: "R1,R2", note: "Empirical RRF highly right-skewed."}
+    - {round: 12, reviewers: "", note: "本轮未提及。"}
+    - {round: 13, reviewers: "", note: "本轮未提及（fresh review）。"}
+  action_items:
+    - {round: 8, action: "Re-run simulation with right-skewed exposure", assigned_to: "main_agent", status: "open"}
+
+- id: "R8-W3"
+  summary: "Algorithm 1 threshold τ=2pp lacks theoretical basis"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 8, reviewers: "R2,R1", note: "30/30 pass too coarse."}
+    - {round: 10, reviewers: "R1,R2", note: "Appendix includes nearest-transition analysis."}
+    - {round: 11, reviewers: "R1,R2", note: "DIVERGENT: R1 Major, R2 Critical."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. Label as descriptive heuristic or provide permutation null."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. Algorithm 1 is descriptive heuristic, not method contribution. Appendix U sensitivity sweep helps but does not change fundamental nature. Position as 'organizational framework for experimental results'. Cross-response: R1 adds τ and σ sensitivity analysis needed."}
+  action_items:
+    - {round: 11, action: "Report Immune/Benefit boundary sensitivity", assigned_to: "paper_agent", status: "done"}
+    - {round: 12, action: "Label Algorithm 1 as descriptive heuristic in §4", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R8-M1"
+  summary: "Missing references — Golchin & Surdeanu, Sainz et al., Yang et al."
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 10
+  mentions:
+    - {round: 8, reviewers: "R1,R2", note: "Three missing refs."}
+    - {round: 10, reviewers: "", note: "Golchin & Surdeanu and Sainz now cited."}
+    - {round: 12, reviewers: "", note: "Merged into R4-W4."}
+  action_items:
+    - {round: 8, action: "Add missing references", assigned_to: "paper_agent", status: "open"}
+
+- id: "R8-M2"
+  summary: "Minor writing issues — Figure 1 caption, Table formatting"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 10, reviewers: "R1,R2", note: "Figure 1 y-axis ranges differ across panels."}
+    - {round: 11, reviewers: "R1,R2", note: "Figure 1 y-axis 50-75%."}
+    - {round: 12, reviewers: "visual", note: "Figure 3 heatmap cell text small. Figure 6 text at readability limit."}
+    - {round: 13, reviewers: "R1,visual", note: "Figure 1 y-axis range inconsistent. Figure 2/3 heatmap cell text too small for print. Figure 1 caption ~60 words, too dense."}
+  action_items:
+    - {round: 12, action: "Fix Figure 1 Y-axis label to 'Δ Accuracy (percentage points)'", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "AUDIT-1"
+  summary: "Figure 1 missing from PDF"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 8
+  last_seen_round: 13
+  mentions:
+    - {round: 8, reviewers: "audit", note: "Figure 1 does not exist."}
+    - {round: 9, reviewers: "", note: "Figure 1 present on page 2."}
+    - {round: 12, reviewers: "visual", note: "Confirmed present on page 2."}
+    - {round: 13, reviewers: "visual", note: "Confirmed present on page 2."}
+  resolution: "Figure 1 present in Introduction."
+  resolution_round: 9
+
+- id: "R9-N1"
+  summary: "Taxonomy based on ad-hoc Algorithm 1 — lacks parametric DR modeling"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 12
+  mentions:
+    - {round: 9, reviewers: "R1,R2", note: "Pharmacology has parametric DR models."}
+    - {round: 10, reviewers: "R1,R2", note: "Appendix W: parametric DR comparison added."}
+    - {round: 12, reviewers: "", note: "本轮未直接提及。Parametric comparison exists."}
+  resolution: "Appendix W: Parametric DR Model Comparison added."
+  resolution_round: 9
+
+- id: "R9-N2"
+  summary: "'Architecture determines vulnerability' causal claim exceeds evidence"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 9
+  last_seen_round: 10
+  mentions:
+    - {round: 9, reviewers: "R1,R2", note: "Replace with 'family-level factors'."}
+    - {round: 12, reviewers: "", note: "本轮未直接提及。"}
+  resolution: "All causal claims replaced. Confounders listed."
+  resolution_round: 9
+
+- id: "R9-S1"
+  summary: "Unified LoRA r=16 unequal treatment strength across scales"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 9
+  last_seen_round: 13
+  mentions:
+    - {round: 9, reviewers: "R1,R2", note: "Parameter fraction 0.45% (Phi-4) to 2.10%."}
+    - {round: 10, reviewers: "R1,R2", note: "Phi-4 vs Qwen-14B counter-argument has merit."}
+    - {round: 12, reviewers: "R1,R2", note: "DIVERGENT. R1 maintains concern; R2 considers largely addressed by same-scale comparison."}
+    - {round: 13, reviewers: "", note: "本轮未直接提及。Limitations discussion exists."}
+  action_items:
+    - {round: 9, action: "Discuss LoRA confound in Limitations", assigned_to: "paper_agent", status: "done"}
+    - {round: 10, action: "Report trainable parameter percentages", assigned_to: "paper_agent", status: "done"}
+
+- id: "R9-S2"
+  summary: "'65-70% MMLU baseline vulnerability band' over-precise for N=6"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 9
+  last_seen_round: 13
+  mentions:
+    - {round: 9, reviewers: "R1,R2", note: "Qualify with 'in our five-family sample'."}
+    - {round: 10, reviewers: "", note: "All claims qualified. Resolved."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Critical. Reopened. Band = 2 Qwen models only. LLaMA contradicts."}
+    - {round: 13, reviewers: "", note: "本轮未直接提及。Discussion §6 mentions 65-70% with LLaMA-3.1 contradiction acknowledged."}
+  action_items:
+    - {round: 12, action: "Remove 65-70% from Abstract/Intro; downgrade to Discussion observational association", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R9-S3"
+  summary: "Calibration baseline missing IRT variants"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 9
+  last_seen_round: 10
+  mentions:
+    - {round: 9, reviewers: "R1,R2", note: "2PL vs 2PL+γ ablation would be better."}
+    - {round: 12, reviewers: "", note: "本轮未提及。"}
+    - {round: 13, reviewers: "", note: "本轮未提及。"}
+  action_items:
+    - {round: 9, action: "Add 2PL vs 2PL+γ ablation", assigned_to: "paper_agent", status: "open"}
+
+- id: "R10-N1"
+  summary: "ContamCal calibration MAE (0.009) worse than raw accuracy (0.006)"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 10
+  last_seen_round: 13
+  mentions:
+    - {round: 10, reviewers: "R2", note: "Core method underperforms 'do nothing' baseline."}
+    - {round: 10, reviewers: "R1", note: "REBUT: §3.3 predicts this; γ serves diagnosis."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Critical. Reposition as diagnostic framework, not calibration tool."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Critical (strongest consensus). MMLU MAE=0.009>0.006, ARC MAE=0.020>0.007. Method name 'ContamCal' promises calibration but delivers worse-than-baseline results. 'Value lies in diagnosis' defense itself problematic—if observed dosages produce small effects, framework's practical utility is questionable. R1 notes IRT provides credible intervals and item-level modeling unavailable from raw accuracy, but concedes γ unreliability (N3) undermines these incremental benefits."}
+  action_items:
+    - {round: 10, action: "Clarify ContamCal value is diagnostic not calibration", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 12, action: "Reposition ContamCal as diagnostic framework in Abstract/Intro; contextualize Table 3 MAE", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Rewrite §5.5 from 'Calibration Quality' to 'Diagnostic Utility'; lead with domain-level γ_d vs raw accuracy contrast (Social Sciences γ_d=-0.63 vs pooled non-significant); contextualize aggregate MAE as non-target", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R10-W1"
+  summary: "γ parameterization outside a_i bracket unjustified"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 10
+  last_seen_round: 13
+  mentions:
+    - {round: 10, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. Non-uniform vs uniform DIF."}
+    - {round: 11, reviewers: "R1,R2", note: "Notation improved. Substantive question unanswered."}
+    - {round: 12, reviewers: "R1,R2", note: "Both recommend Appendix comparison (PPP, WAIC)."}
+    - {round: 13, reviewers: "R1,R2", note: "DIVERGENT→RESOLVED. R2 rebuts R1: ΔELPD≈0 actually supports author's choice (neither better). R1 accepts. Consensus: state choice is interpretive convenience (ΔELPD≈0), not statistical evidence."}
+  action_items:
+    - {round: 10, action: "Justify γ outside a_i or compare with inside-a_i form", assigned_to: "paper_agent", status: "open"}
+    - {round: 12, action: "Run uniform vs non-uniform DIF comparison (PPP/WAIC) if time permits", assigned_to: "main_agent", status: "open"}
+    - {round: 13, action: "Add one sentence in §3.2 noting ΔELPD≈0 and choice is for interpretive convenience", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R10-W2"
+  summary: "300/14042 MMLU item subset — selection bias toward high-exposure-variance items"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 10
+  last_seen_round: 13
+  mentions:
+    - {round: 10, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. 2.1% of items selected."}
+    - {round: 11, reviewers: "R1", note: "High exposure variance items may be systematically different."}
+    - {round: 12, reviewers: "R1,R2", note: "CONSENSUS Critical. Report subset distribution comparison. Attempt full-item or larger subset IRT."}
+    - {round: 13, reviewers: "R1", note: "Minor. KS/χ² tests in §5.5 confirm representativeness (p=0.946/0.574). But exposure variance bias untested—should mention in limitations."}
+  action_items:
+    - {round: 12, action: "Compute 300 vs 14042 difficulty/domain distribution comparison + KS test", assigned_to: "main_agent", status: "in_progress"}
+
+- id: "R11-N1"
+  summary: "Abstract/Title overclaiming — 'Not All Models Are Inflated' exceeds evidence from 6 models ≤14B under SFT"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 13
+  mentions:
+    - {round: 11, reviewers: "R1,R2", note: "CONSENSUS Critical. Three overclaim dimensions."}
+    - {round: 12, reviewers: "R1,R2", note: "Strongly reinforced. Title implies generality for N=6 SFT study."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. Title scope exceeds evidence: 6 models ≤14.7B, all SFT, all open-source. R1 cross-response: claim defensible if scoped to 'SFT-stage + 7B-14B + diverse families', but current wording lacks qualification. Schaeffer et al. (2025) and Bordt et al. (2025) performed controlled injection at smaller scale."}
+  action_items:
+    - {round: 11, action: "Add scope qualifier to title; soften Abstract language", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 12, action: "Strengthen scope qualification in Abstract; keep title but soften surrounding language", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Abstract first sentence must scope: 6 models, 7-14B, 5 open-source families, SFT injection", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R11-W1"
+  summary: "DiD parallel trends assumption untested"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 11
+  last_seen_round: 12
+  mentions:
+    - {round: 11, reviewers: "R1,R2", note: "No pre-treatment trend comparison."}
+    - {round: 12, reviewers: "R1,R2", note: "DIVERGENT. R2 rebuts: controlled experiment, pre-treatment balance strong (Cohen's d=0.02)."}
+  action_items:
+    - {round: 11, action: "Report pre-treatment balance; add parallel trends discussion", assigned_to: "paper_agent", status: "done"}
+  resolution: "Pre-treatment balance reported (Cohen's d=0.02, p>0.19). Controlled experiment design largely mitigates concern."
+  resolution_round: 12
+
+- id: "R11-W2"
+  summary: "'Contamination' vs 'additional training' conceptual tension"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 11
+  last_seen_round: 13
+  mentions:
+    - {round: 11, reviewers: "R1,R2", note: "CONSENSUS Major. DiD null + augmentation confound."}
+    - {round: 12, reviewers: "R1,R2", note: "Should-Fix. Volume control 45%/55% clarifies but terminology needs precision."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. SFT injection = content exposure + extra volume + LoRA updates. Table 1 labels conflate all three as 'contamination response'. Volume control shows 45% is volume. §6 Discussion paragraph exists but insufficient. Cross-response: R2 concept concern + R1 method concern converge to challenge core narrative framing."}
+  action_items:
+    - {round: 11, action: "Distinguish contamination-specific from general training effects", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 12, action: "Add Discussion paragraph defining contamination vs additional training in this framework", assigned_to: "paper_agent", status: "in_progress"}
+    - {round: 13, action: "Expand Discussion paragraph: triple confound (content/volume/LoRA), surface 45%/55% Falcon3 split prominently, Limitations caveat on single-family control", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R11-W3"
+  summary: "2PL+γ identifiability — θ and γ·e collinearity with b"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 11
+  last_seen_round: 11
+  mentions:
+    - {round: 11, reviewers: "R2,R1", note: "Potential collinearity if e_ij correlates with b_j."}
+    - {round: 12, reviewers: "", note: "§3.3 includes identifiability discussion: |r|<0.13, R²<0.014."}
+  action_items:
+    - {round: 11, action: "Expand identifiability discussion", assigned_to: "paper_agent", status: "done"}
+  resolution: "§3.3 reports e_ij and b_i near-orthogonal (|r|<0.13, R²<0.014)."
+  resolution_round: 12
+
+- id: "R11-M1"
+  summary: "Benchmark diversity insufficient — MMLU dominates"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 11
+  last_seen_round: 12
+  mentions:
+    - {round: 11, reviewers: "R2", note: "Only 3 benchmarks, MMLU dominates."}
+    - {round: 12, reviewers: "R1,R2", note: "DIVERGENT. R1 rebuts: 3 formats comprehensive. Both agree MMLU-driven but acceptable."}
+  action_items:
+    - {round: 11, action: "Scope cross-benchmark conclusions", assigned_to: "paper_agent", status: "done"}
+  resolution: "3 benchmarks across 3 formats accepted. MMLU dominance acknowledged. Not re-raised as must-fix."
+  resolution_round: 12
+
+- id: "R12-M1"
+  summary: "Algorithm 1 Benefit sub-branches both return same label — dead code"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 12
+  last_seen_round: 13
+  mentions:
+    - {round: 12, reviewers: "R1,R2", note: "Lines 91-94 both return BENEFIT. Remove dead logic or add sub-labels."}
+    - {round: 13, reviewers: "R1,R2", note: "Re-confirmed. Two branches (saturating/sustained gain) both return BENEFIT. Either design remnant or intentional merge—either way, remove redundant branching."}
+  action_items:
+    - {round: 12, action: "Remove unused branching logic in Algorithm 1", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R12-M2"
+  summary: "Stage 1→Stage 2 uncertainty propagation missing — e_ij is point estimate"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 12
+  last_seen_round: 13
+  mentions:
+    - {round: 12, reviewers: "R1", note: "RRF is rank-based non-parametric. Uncertainty propagation non-trivial."}
+    - {round: 13, reviewers: "R1,R2", note: "CONSENSUS Should-Fix. e_ij from RRF enters IRT as fixed covariate. Exposure measurement error → γ CI underestimated. Especially severe at J=16 where uncertainty is already large. May partly explain γ instability (R4-N1)."}
+  action_items:
+    - {round: 12, action: "Acknowledge e_ij point estimate limitation; mention as future work", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R13-W1"
+  summary: "DiD MDES 1.2-2.0pp practical significance boundary undiscussed"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 13
+  last_seen_round: 13
+  mentions:
+    - {round: 13, reviewers: "R1", note: "MDES 1.2-2.0pp rules out effects >2pp but 1pp item-specific effects may matter in high-stakes evaluation. Paper does not discuss practical significance threshold."}
+  action_items:
+    - {round: 13, action: "Discuss MDES practical significance in context of real-world contamination scenarios", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R13-m5"
+  summary: "Table 1 'Stab.' column definition unclear"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 13
+  mentions:
+    - {round: 13, reviewers: "R1,R2", note: "Stab. column in Table 1 not defined in caption or footnote."}
+  action_items:
+    - {round: 13, action: "Add footnote defining Stab. column in Table 1", assigned_to: "paper_agent", status: "in_progress"}
+
+- id: "R13-m6"
+  summary: "ρ=0.3 saturation ratio source not cited"
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 13
+  last_seen_round: 13
+  mentions:
+    - {round: 13, reviewers: "R1", note: "ρ=0.3 saturation ratio used in Algorithm 1 without source."}
+  action_items:
+    - {round: 13, action: "Add source or justification for ρ=0.3", assigned_to: "paper_agent", status: "in_progress"}

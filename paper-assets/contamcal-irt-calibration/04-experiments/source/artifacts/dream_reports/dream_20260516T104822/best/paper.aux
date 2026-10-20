@@ -1,0 +1,118 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{sainz2023nlp,magar2022data}
+\citation{yang2023rethinking,golchin2024time}
+\citation{shi2024detecting}
+\citation{eckerly2017detecting,sinharay2017assessing}
+\citation{deboeck2004explanatory}
+\citation{cormack2009reciprocal}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shi2024detecting}
+\citation{oren2024proving}
+\citation{dong2024generalization}
+\citation{shi2024cdd}
+\citation{lalor2024benchmarking}
+\citation{polo2024tinybenchmarks}
+\citation{burnell2023rethinking}
+\citation{zhuang2024hibayes}
+\citation{oren2024proving}
+\citation{yang2025emperor}
+\citation{white2024livebench}
+\citation{shokri2017membership,carlini2022quantifying}
+\citation{pruthi2020estimating,park2023trak}
+\citation{eckerly2017detecting}
+\citation{sinharay2017assessing}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{IRT for LLM Evaluation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination Mitigation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Membership Inference and Data Attribution.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Item Compromise in Educational Testing.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\citation{shi2024detecting}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 1: Exposure Score Construction}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 2: Contamination-Augmented IRT}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Calibration Gating}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Quality-Controlled Exposure Scores}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Controlled Injection Protocol}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Accuracy and detection signal comparison. QC-filtered paraphrases produce higher S1 AUC (0.993 vs.\ 0.979) by eliminating noisy false negatives. Accuracy deltas reflect reduced effective dosage under QC filtering.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:qc}{{1}{4}{Accuracy and detection signal comparison. QC-filtered paraphrases produce higher S1 AUC (0.993 vs.\ 0.979) by eliminating noisy false negatives. Accuracy deltas reflect reduced effective dosage under QC filtering}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Qwen2.5-7B dosage-response. MC benchmarks (MMLU, ARC) show negligible contamination effects ($|\Delta | < 0.5$pp). HumanEval shows the largest movement (+2.4pp), consistent with code generation benefiting from solution pattern exposure.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:7b}{{2}{4}{Qwen2.5-7B dosage-response. MC benchmarks (MMLU, ARC) show negligible contamination effects ($|\Delta | < 0.5$pp). HumanEval shows the largest movement (+2.4pp), consistent with code generation benefiting from solution pattern exposure}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Benchmarks}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baselines}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Paraphrase Quality Validation}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:qc}{{5.1}{4}{Paraphrase Quality Validation}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scale Bridging: 7B Results}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-family comparison of d100$-$d000 accuracy deltas. Kendall $\tau {=}0.87$ between families confirms contamination susceptibility is a benchmark property, not a model-family artifact.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:crossfamily}{{3}{5}{Cross-family comparison of d100$-$d000 accuracy deltas. Kendall $\tau {=}0.87$ between families confirms contamination susceptibility is a benchmark property, not a model-family artifact}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-benchmark $\gamma _k$ estimates from $N{=}24$ pooled analysis. ARC forgetting ($\gamma {=}{-}1.2$) is significant; GSM8K is correctly gated out despite +43pp aggregate inflation at 3B---IRT attributes improvement to $\theta $ (general ability gain from SFT) rather than $\gamma $ (contamination).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:gamma}{{4}{5}{Per-benchmark $\gam _k$ estimates from $N{=}24$ pooled analysis. ARC forgetting ($\gam {=}{-}1.2$) is significant; GSM8K is correctly gated out despite +43pp aggregate inflation at 3B---IRT attributes improvement to $\thet $ (general ability gain from SFT) rather than $\gam $ (contamination)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cross-Family Validation}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}IRT Contamination Characterization}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:irt}{{5.4}{5}{IRT Contamination Characterization}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Calibration Performance}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Calibration metrics on ARC. ContamCal MAE${=}0.030$ significantly outperforms B4 linear regression MAE${=}0.052$ (bootstrap $p{=}0.03$). Coverage reaches 63\% at 95\% CI with $N{=}24$ pooling. GSM8K is correctly gated out.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:calibration}{{5}{6}{Calibration metrics on ARC. ContamCal MAE${=}0.030$ significantly outperforms B4 linear regression MAE${=}0.052$ (bootstrap $p{=}0.03$). Coverage reaches 63\% at 95\% CI with $N{=}24$ pooling. GSM8K is correctly gated out}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Min-K++ (S2) Cohen's $d$ for contaminated vs.\ clean items across scales. Negative $d$ indicates reversal---contaminated items score \emph  {lower} than clean items. Effect attenuates with scale but persists through 3B across both model families.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:reversal}{{6}{6}{Min-K++ (S2) Cohen's $d$ for contaminated vs.\ clean items across scales. Negative $d$ indicates reversal---contaminated items score \emph {lower} than clean items. Effect attenuates with scale but persists through 3B across both model families}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Signal Failure: Min-K++ Reversal}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Closed-Weight Degraded Mode}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Observational Case Study: Production Models}{6}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}72B Frontier Extension}{6}{subsection.5.9}\protected@file@percent }
+\citation{mislevy1986bayes}
+\citation{reckase2009multidimensional}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 4-signal vs.\ 2-signal (closed-weight) calibration. Removing S1 (embedding similarity) causes significant MAE degradation (+0.032, $p{=}0.012$). The $\gamma $ estimate attenuates to 54\% of the full-signal value ($-$0.65 vs.\ $-$1.2), as noisy exposure scores push the posterior toward the prior.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:2signal}{{7}{7}{4-signal vs.\ 2-signal (closed-weight) calibration. Removing S1 (embedding similarity) causes significant MAE degradation (+0.032, $p{=}0.012$). The $\gam $ estimate attenuates to 54\% of the full-signal value ($-$0.65 vs.\ $-$1.2), as noisy exposure scores push the posterior toward the prior}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Observational model accuracies and mean RRF exposure (Exp.$\bar  {}$). Low exposure ($\bar  {x}{=}0.032$) produces appropriately wide CIs: ARC $\gamma {=}{-}0.38$ [$-$1.65, 0.89], GSM8K $\gamma {=}0.15$ [$-$0.72, 1.02]. Specificity confirmed: clean benchmark $\gamma {=}0.04$ [$-$0.55, 0.63].}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:obs}{{8}{7}{Observational model accuracies and mean RRF exposure (Exp.$\bar {}$). Low exposure ($\bar {x}{=}0.032$) produces appropriately wide CIs: ARC $\gam {=}{-}0.38$ [$-$1.65, 0.89], GSM8K $\gam {=}0.15$ [$-$0.72, 1.02]. Specificity confirmed: clean benchmark $\gam {=}0.04$ [$-$0.55, 0.63]}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{0.5B Position Bias Exclusion.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GSM8K: Inflation Without Contamination Signal.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage Gap.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Deployment.}{7}{section*.9}\protected@file@percent }
+\citation{reckase2009multidimensional,burnell2023rethinking}
+\bibcite{eckerly2017detecting}{{1}{2017}{{Eckerly}}{{}}}
+\bibcite{sinharay2017assessing}{{2}{2017}{{Sinharay}}{{}}}
+\bibcite{deboeck2004explanatory}{{3}{2004}{{De~Boeck and Wilson}}{{}}}
+\bibcite{cormack2009reciprocal}{{4}{2009}{{Cormack et~al.}}{{}}}
+\bibcite{shi2024detecting}{{5}{2024}{{Shi et~al.}}{{}}}
+\bibcite{oren2024proving}{{6}{2024}{{Oren et~al.}}{{}}}
+\bibcite{yang2023rethinking}{{7}{2023}{{Yang et~al.}}{{}}}
+\bibcite{golchin2024time}{{8}{2024}{{Golchin and Surdeanu}}{{}}}
+\bibcite{lalor2024benchmarking}{{9}{2024}{{Lalor et~al.}}{{}}}
+\bibcite{polo2024tinybenchmarks}{{10}{2024}{{Polo et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\bibcite{white2024livebench}{{11}{2024}{{White et~al.}}{{}}}
+\bibcite{yang2025emperor}{{12}{2025}{{Yang et~al.}}{{}}}
+\bibcite{zhuang2024hibayes}{{13}{2024}{{Zhuang et~al.}}{{}}}
+\bibcite{shokri2017membership}{{14}{2017}{{Shokri et~al.}}{{}}}
+\bibcite{carlini2022quantifying}{{15}{2022}{{Carlini et~al.}}{{}}}
+\bibcite{pruthi2020estimating}{{16}{2020}{{Pruthi et~al.}}{{}}}
+\bibcite{park2023trak}{{17}{2023}{{Park et~al.}}{{}}}
+\bibcite{mislevy1986bayes}{{18}{1986}{{Mislevy}}{{}}}
+\bibcite{reckase2009multidimensional}{{19}{2009}{{Reckase}}{{}}}
+\bibcite{burnell2023rethinking}{{20}{2023}{{Burnell et~al.}}{{}}}
+\bibcite{dong2024generalization}{{21}{2024}{{Dong et~al.}}{{}}}
+\bibcite{shi2024cdd}{{22}{2024b}{{Shi et~al.}}{{}}}
+\bibcite{sainz2023nlp}{{23}{2023}{{Sainz et~al.}}{{}}}
+\bibcite{magar2022data}{{24}{2022}{{Magar and Schwartz}}{{}}}
+\bibcite{holland1993differential}{{25}{1993}{{Holland and Wainer}}{{}}}
+\bibcite{guo2017calibration}{{26}{2017}{{Guo et~al.}}{{}}}
+\bibcite{angelopoulos2023conformal}{{27}{2023}{{Angelopoulos and Bates}}{{}}}
+\bibcite{talts2018validating}{{28}{2018}{{Talts et~al.}}{{}}}
+\bibcite{liang2023holistic}{{29}{2023}{{Liang et~al.}}{{}}}
+\bibcite{zheng2023judging}{{30}{2023}{{Zheng et~al.}}{{}}}
+\bibcite{adams1997multidimensional}{{31}{1997}{{Adams et~al.}}{{}}}
+\bibcite{sanmartin2009}{{32}{2009}{{San~Mart{\'\i }n et~al.}}{{}}}
+\bibcite{maris2009equivalences}{{33}{2009}{{Maris and Bechger}}{{}}}
+\bibcite{zumbo1999handbook}{{34}{1999}{{Zumbo}}{{}}}
+\bibcite{thissen1993detection}{{35}{1993}{{Thissen et~al.}}{{}}}
+\gdef \@abspage@last{10}

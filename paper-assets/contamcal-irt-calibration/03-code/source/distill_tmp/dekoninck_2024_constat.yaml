@@ -1,0 +1,15 @@
+paper_key: "dekoninck_2024_constat"
+title: "ConStat: Performance-Based Contamination Detection in Large Language Models"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [raw benchmark comparison, n-gram overlap]
+  metrics:
+    - {name: "contamination level", direction: "descriptive"}
+    - {name: "performance inflation", direction: "descriptive"}
+  datasets:
+    - {name: "Open LLM Leaderboard benchmarks", size: "various"}
+  ablation_dimensions: [reference benchmark choice, reference model set]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "performance-based contamination detection"

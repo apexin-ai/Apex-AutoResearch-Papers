@@ -1,0 +1,15 @@
+paper_key: "luettgau_2025_hibayes"
+title: "HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: [conventional frequentist statistics, flat Bayesian models]
+  metrics:
+    - {name: "posterior uncertainty width", direction: "descriptive"}
+    - {name: "model comparison (WAIC/LOO)", direction: "descriptive"}
+  datasets:
+    - {name: "AI evaluation datasets (various)", size: "including <20 data point scenarios"}
+  ablation_dimensions: [hierarchical depth, prior specification, data volume]
+  training_recipe: {optimizer: "MCMC/NUTS sampling", lr: "N/A", hardware: "N/A"}
+  method_family: "hierarchical Bayesian GLM for evaluation"

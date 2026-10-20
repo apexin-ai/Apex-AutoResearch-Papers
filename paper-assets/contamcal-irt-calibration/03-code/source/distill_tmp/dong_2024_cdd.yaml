@@ -1,0 +1,77 @@
+paper_key: "dong_2024_cdd"
+title: "Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models"
+venue: "ACL 2024 Findings"
+full_text_available: true
+
+research:
+  baselines: [N-gram overlap, embedding similarity, perplexity, Min-K% Probability, LLM Decontaminator]
+  metrics:
+    - {name: "CDD Accuracy", direction: "higher_better"}
+    - {name: "TED Mitigation Rate", direction: "higher_better"}
+    - {name: "Leak Ratio", direction: "lower_better"}
+  datasets:
+    - {name: "DetCon", size: "2224 contamination detection tasks"}
+    - {name: "ComiEval", size: "560 mitigation evaluation tasks"}
+    - {name: "HumanEval", size: "standard"}
+  ablation_dimensions: [contamination degree (0-20 epochs), mixing ratio, learning rate, explicit vs implicit contamination]
+  training_recipe: {optimizer: "LoRA fine-tuning", lr: "multiple rates tested", hardware: "not specified"}
+  method_family: "output distribution analysis"
+
+positioning:
+  core_claim: "Output distribution peakedness (edit distance concentration) is a reliable contamination signal, and distribution correction can restore trustworthy evaluation scores"
+  key_results: "CDD accuracy 70.6-71.5%, 21-30% relative improvement over baselines; TED mitigates up to 66.9% contamination effect; ChatGPT HumanEval leak ratio 23.8% → 41.5%"
+  limitations:
+    - "Only validated on code generation and logical reasoning domains"
+    - "Requires multiple samplings with computational overhead"
+    - "Uses LoRA fine-tuning rather than full-parameter training"
+    - "Assumes base LLMs are uncontaminated"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLMs increasingly trained on web data that includes test benchmarks, making evaluation unreliable"
+  tension: "Existing detection methods (n-gram, embedding) are shallow; no method bridges detection to trustworthy score correction"
+  key_insight: "Training alters output distribution to become peaked — edit distance distribution concentrates near zero for contaminated data (>20x density shift)"
+  argument_chain: "contamination inflates scores → output distribution shifts → CDD detects via peakedness → TED corrects via distribution filtering → validated on controlled + real-world (ChatGPT)"
+  contribution_framing: "Two contributions: CDD for detection, TED for mitigation; framed as complementary tools"
+  intro_structure: "5 paragraphs: problem statement → existing limitations → key insight → contributions → paper outline"
+  notable_technique: "Real-world case study on ChatGPT HumanEval provides immediate practical relevance beyond controlled experiments"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "CodeLlama fine-tuned on leaked HumanEval shows performance stagnation on similar unleaked data"
+    narrative_role: "Establishes that contamination inflates scores without improving generalization"
+    design_elements: ["before/after comparison", "performance gap visualization"]
+    visual_style: "Line plot with clear divergence between leaked vs unleaked performance"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "distribution_plot"
+      what_compared: "Edit distance distributions before/after contamination"
+      how_gain_highlighted: "Dramatic density shift (>20x) at zero distance for contaminated samples"
+      design_note: "Overlaid distributions make shift immediately visible"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation: contamination doesn't generalize) → Figure 3 (mechanism: distribution shift) → Tables (validation)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "domains (code generation, logical reasoning) × metrics"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "average relative improvement percentages"
+    num_baselines: 5
+    design_note: "Relative improvement framing makes gains immediately interpretable"
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["ChatGPT versions", "HumanEval variants"]
+      variation_style: "full_numbers"
+      design_note: "Real-world case study table connects controlled experiments to practical impact"
+  supplementary_tables:
+    in_appendix: false
+    content: "All tables in main paper"
+    reason: "Focused scope (2 domains) keeps table count manageable"

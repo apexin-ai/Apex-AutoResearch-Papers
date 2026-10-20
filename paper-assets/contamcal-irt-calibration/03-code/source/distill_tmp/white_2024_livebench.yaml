@@ -1,0 +1,15 @@
+paper_key: "white_2024_livebench"
+title: "LiveBench: A Challenging, Contamination-Free LLM Benchmark"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: [static benchmarks (MMLU, GSM8K, etc.)]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "contamination resistance", direction: "descriptive"}
+  datasets:
+    - {name: "LiveBench", size: "18 tasks, 6 categories, monthly updates"}
+  ablation_dimensions: [update frequency, task category, source recency]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "dynamic contamination-resistant benchmarking"

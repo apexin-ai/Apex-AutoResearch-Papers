@@ -1,0 +1,7 @@
+Files on server at /root/contamcal-irt-calibration/exp006/:
+- run_irt_calibration.py (17KB): CmdStanPy MCMC 4PL+gamma IRT calibration
+- baselines.py (18KB): 7 baselines with unified BaselineMethod.fit() interface
+- evaluate_calibration.py (11KB): MAE, Coverage, Sharpness, Kendall tau, Dose-response
+- run_exp006.py (11KB): End-to-end pipeline loading exp-001/exp-002 data
+
+Dry-run validated: 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval), IRT convergence OK (Rhat<1.01, ESS>1400, 0 divergences)

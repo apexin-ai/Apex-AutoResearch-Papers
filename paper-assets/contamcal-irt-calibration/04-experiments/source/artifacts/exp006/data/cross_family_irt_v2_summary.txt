@@ -1,0 +1,7 @@
+Results at: /root/autodl-tmp/exp006/results_cross_family_irt_v2/pooled_rrf_irt_results.json
+Combined RRF: /root/autodl-tmp/exp003/rrf_cross_family_qwen_llama/exposure_scores.json
+
+Summary:
+- GSM8K: Qwen+Llama N=28, γ=-0.11 [-0.52, 0.28]; Qwen-only N=24, γ=0.06 [-0.36, 0.49]
+- ARC: Qwen+Llama N=20, γ=0.00 [-0.57, 0.60]; Qwen-only N=16, γ=0.73 [0.02, 1.44]
+- Family-specificity confirmed: ARC contamination signal disappears when pooling across families

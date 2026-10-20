@@ -1,0 +1,78 @@
+{
+  "regime_names": [
+    "base",
+    "sft_clean",
+    "sft_contam",
+    "rl_aligned"
+  ],
+  "benchmarks": [
+    "mmlu",
+    "gsm8k",
+    "arc_challenge"
+  ],
+  "per_signal_aggregated": {
+    "rrf_score": {
+      "label": "RRF (fused)",
+      "mean_auc_base": 0.9975,
+      "std_auc_base": 0.0044,
+      "mean_auc_sft_clean": 1.0,
+      "std_auc_sft_clean": 0.0,
+      "mean_auc_sft_contam": 0.9873,
+      "std_auc_sft_contam": 0.0067,
+      "mean_auc_rl_aligned": 0.6105,
+      "std_auc_rl_aligned": 0.0671
+    },
+    "s1_embedding": {
+      "label": "Embedding",
+      "mean_auc_base": 0.9918,
+      "std_auc_base": 0.0072,
+      "mean_auc_sft_clean": 0.9968,
+      "std_auc_sft_clean": 0.0055,
+      "mean_auc_sft_contam": 0.9841,
+      "std_auc_sft_contam": 0.0162,
+      "mean_auc_rl_aligned": 0.9733,
+      "std_auc_rl_aligned": 0.0231
+    },
+    "s2_minkpp": {
+      "label": "Min-K%++",
+      "mean_auc_base": 0.9962,
+      "std_auc_base": 0.0033,
+      "mean_auc_sft_clean": 0.9981,
+      "std_auc_sft_clean": 0.0019,
+      "mean_auc_sft_contam": 0.9981,
+      "std_auc_sft_contam": 0.0019,
+      "mean_auc_rl_aligned": 0.7092,
+      "std_auc_rl_aligned": 0.1178
+    },
+    "s3_constat": {
+      "label": "ConStat",
+      "mean_auc_base": 0.9975,
+      "std_auc_base": 0.0022,
+      "mean_auc_sft_clean": 0.993,
+      "std_auc_sft_clean": 0.0077,
+      "mean_auc_sft_contam": 0.9771,
+      "std_auc_sft_contam": 0.0088,
+      "mean_auc_rl_aligned": 0.5473,
+      "std_auc_rl_aligned": 0.079
+    },
+    "s4_selfcritique": {
+      "label": "Self-Critique",
+      "mean_auc_base": 0.9994,
+      "std_auc_base": 0.0011,
+      "mean_auc_sft_clean": 0.9956,
+      "std_auc_sft_clean": 0.0077,
+      "mean_auc_sft_contam": 0.9899,
+      "std_auc_sft_contam": 0.0067,
+      "mean_auc_rl_aligned": 0.3746,
+      "std_auc_rl_aligned": 0.1178
+    }
+  },
+  "survival_counts": {
+    "rrf_score": 0,
+    "s1_embedding": 3,
+    "s2_minkpp": 0,
+    "s3_constat": 0,
+    "s4_selfcritique": 0
+  },
+  "n_benchmarks": 3
+}

@@ -1,0 +1,47 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+We identify six limitations that bound the scope of our conclusions.
+
+\paragraph{Scale ceiling.}
+All experiments use models at or below 3B parameters. Larger models (7B+) may exhibit qualitatively different contamination dynamics where SFT injection is absorbed into the parameter space without producing measurable signal divergence. The dose-response attenuation we observe between 0.5B and 3B (Section~\ref{sec:domain_differential}) suggests that contamination effects diminish with scale, but whether they vanish entirely or plateau remains untested.
+
+\paragraph{Signal coverage.}
+S1 (embedding similarity) requires access to the training corpus, which is unavailable for closed-source models. For API-only models, only S2 (Min-K\%++) and S4 (Self-Critique) are applicable, and both show poor discrimination at scales below 1.5B (Section~\ref{sec:signal_failure}). The framework's practical applicability to closed-source evaluation settings remains unvalidated.
+
+\paragraph{Ensemble size requirement.}
+Our simulation study establishes that reliable $\gamma$ recovery requires $J \geq 50$ respondents, yet current LLM evaluation pools contain $J = 8$--$30$ models. Our own experiments use $J = 24$, which is adequate for domains where detection AUC $\geq 0.70$ but suboptimal for the full parameter space. This domain-method mismatch is structural: LLM evaluation will not reach educational testing sample sizes ($J > 1000$) in the foreseeable future, making signal quality the binding constraint on $\gamma$ identifiability.
+
+\paragraph{Credible interval coverage.}
+The 50\% posterior credible intervals achieve approximately 35\% empirical coverage, indicating that the intervals are too narrow. In practice, this means the Bayesian uncertainty quantification functions as a directional indicator (positive vs.\ negative $\gamma$, credible interval excluding zero or not) rather than a precise probability statement. The calibration guarantee is weaker than the Bayesian framework nominally promises.
+
+\paragraph{Model misfit in non-STEM domains.}
+PPP $= 1.00$ for five of eight MMLU domains indicates that the 2PL+$\gamma$ specification is inadequate outside STEM. A single linear $\gamma$ cannot capture non-monotone relationships between exposure and correctness. These domains likely require richer contamination response functions or multidimensional ability specifications.
+
+\paragraph{Single injection protocol.}
+We use LoRA-based SFT injection exclusively. Contamination that occurs during full-parameter fine-tuning or pretraining-stage data leakage may produce different distributional signatures that our signal battery does not capture. Our controlled injection paradigm validates the IRT framework under known conditions but does not guarantee transferability to all contamination mechanisms.
+
+\subsection{Implications for Practice}
+\label{sec:implications}
+
+Our findings carry concrete recommendations for four practitioner communities.
+
+\paragraph{Benchmark developers.}
+Domain-level analysis is essential. Pooled contamination estimates mask heterogeneous effects through arithmetic cancellation (Section~\ref{sec:domain_differential}): MMLU Math shows $\gamma = +0.97$ while Social Sciences shows $\gamma = -0.50$, yet the pooled estimate is non-significant. Benchmarks with domain structure should report per-domain diagnostics as standard practice.
+
+\paragraph{Detection practitioners.}
+Min-K\%++ should not be trusted at scales below 1.5B parameters. The directional reversal we document (Section~\ref{sec:signal_failure}) means that applying this signal at small scales produces conclusions opposite to ground truth. S1 embedding similarity is the only signal that maintains reliable discrimination across all tested scales, though it requires training corpus access.
+
+\paragraph{Leaderboard operators.}
+IRT ability estimation provides calibration benefit regardless of whether contamination is explicitly modeled (Section~\ref{sec:calibration_results}). Adding IRT to evaluation pipelines is a low-cost improvement: vanilla 2PL reduces MAE relative to raw scores on ARC by 53\% (0.034 to 0.016) without requiring any contamination detection infrastructure. The $\gamma$ parameters then provide optional diagnostic capability on top of this calibration baseline.
+
+\paragraph{Researchers evaluating LLMs.}
+Per-domain breakdowns should be reported as standard practice, especially for MMLU where STEM and non-STEM contamination effects differ qualitatively in both direction and model fit. Aggregate scores obscure information that is diagnostic of evaluation validity.
+
+\subsection{Future Directions}
+\label{sec:future}
+
+Three extensions address the limitations above. First, multidimensional IRT (MIRT) could replace the scalar $\gamma$ for non-STEM domains where 2PL+$\gamma$ shows systematic misfit, modeling domain-specific ability dimensions that interact differently with contamination exposure. Second, active signal selection via Fisher information optimization could identify the minimal signal combination needed per domain, reducing the requirement for full corpus access. Third, scaling to $J > 100$ by pooling respondents across model families with anchored $\theta$ scales would bring ensemble sizes closer to the regime where $\gamma$ recovery is most reliable.
