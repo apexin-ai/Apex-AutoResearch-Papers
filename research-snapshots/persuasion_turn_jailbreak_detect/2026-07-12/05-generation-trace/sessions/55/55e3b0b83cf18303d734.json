@@ -1,0 +1,1550 @@
+{
+  "schema_version": "1.0",
+  "id": "55e3b0b83cf18303d734",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Extract all experiment data related to: 1. WildChat and OASST2 adaptation curves (FPR vs N target conversations) 2. Per-",
+  "task_key": "agent-afbd91c4ab95ef894",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-afbd91c4ab95ef894.jsonl",
+    "occurrence": 1,
+    "bytes": 127327,
+    "sha256": "cfe3ef70e08dd61b026e4a17ea72b9bb3ba1f2be575c63d59e68119a2a8584dd"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T21:30:53.287Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Extract all experiment data related to:\n1. WildChat and OASST2 adaptation curves (FPR vs N target conversations)\n2. Per-seed variance data (seed 42, 123, 456) for DD OOD / AA OOD F1, std across variants\n\nFrom the registry JSON file at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt\n\nThis is a JSON file with schema: {result: string}. The \"result\" field is itself a JSON string that needs to be parsed.\n\nSearch for entries mentioning \"wildchat\", \"oasst2\", \"adaptation\", \"FPR\", \"seed\", \"variance\", \"std\", \"DD OOD\", \"AA OOD\". Return ALL metrics and conclusion text verbatim. Do NOT summarize or omit any numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "53db2303-bc2d-46ed-893b-900c9f3b71b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T21:30:53.290Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "53db2303-bc2d-46ed-893b-900c9f3b71b4",
+                "isSidechain": true,
+                "agentId": "afbd91c4ab95ef894",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c9194c99-e1c9-4150-9ee1-6ed307e2542a",
+                "timestamp": "2026-05-22T21:30:53.290Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T21:30:55.676Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AWJn5D5GyetghwQQfvFSDn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9194c99-e1c9-4150-9ee1-6ed307e2542a",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKYgKtRC6MY8gczomFx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9aed5b4e-3944-4b01-a3d4-98bdf021e2a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Q7HyUSt1YGpLY2G6Bfm6gy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6712,
+                "cache_read_input_tokens": 8118,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6712
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 8118,
+                    "cache_creation_input_tokens": 6712,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6712,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T21:30:56.015Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (84366 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01AWJn5D5GyetghwQQfvFSDn"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9aed5b4e-3944-4b01-a3d4-98bdf021e2a5",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "291426ef-6545-4db3-a550-b7dd1e141be8",
+            "toolUseResult": "Error: File content (84366 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "9aed5b4e-3944-4b01-a3d4-98bdf021e2a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T21:30:57.882Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is too large to read in one shot. Let me search for the specific content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "291426ef-6545-4db3-a550-b7dd1e141be8",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKYt1bnAXhnw5Tpu5xd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "abd6d0ef-3727-4716-a969-b5e89a015cbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_019dghqogsCEPqAVKTiHQyDH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1048,
+                "cache_read_input_tokens": 14830,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1048,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T21:30:59.602Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NQ4sXtRa6UMXqANuZLYM6L",
+              "name": "Bash",
+              "input": {
+                "command": "grep -oi '\"result\".*' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt | wc -c",
+                "description": "Check size of result field"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abd6d0ef-3727-4716-a969-b5e89a015cbc",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKYt1bnAXhnw5Tpu5xd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6cc86d81-7b9b-4c9f-88cf-64c677dc5c49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_019dghqogsCEPqAVKTiHQyDH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1048,
+                "cache_read_input_tokens": 14830,
+                "output_tokens": 200,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1048
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 200,
+                    "cache_read_input_tokens": 14830,
+                    "cache_creation_input_tokens": 1048,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1048,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T21:30:59.696Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NQ4sXtRa6UMXqANuZLYM6L",
+              "type": "tool_result",
+              "content": "199702",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cc86d81-7b9b-4c9f-88cf-64c677dc5c49",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "72791d88-b4c0-473c-b6b6-16c24eb55b71",
+            "sourceToolAssistantUUID": "6cc86d81-7b9b-4c9f-88cf-64c677dc5c49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T21:31:04.254Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017VQL5CT31RScRP7x6LMfFE",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json, re\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\n# Parse outer JSON\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\nprint(type(registry))\nif isinstance(registry, list):\n    print(f'List of {len(registry)} items')\n    print('First item keys:', list(registry[0].keys()) if registry else 'empty')\nelif isinstance(registry, dict):\n    print('Dict keys:', list(registry.keys())[:20])\n\" 2>&1 | head -50",
+                "description": "Parse outer JSON structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72791d88-b4c0-473c-b6b6-16c24eb55b71",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKZ9ifKKRA4zr8h2Rzm",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "54710eb1-0af5-4554-80dd-dd40b12547de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01BHmrKj766Tp8DnFFyY6K8k",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 15878,
+                "output_tokens": 317,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 214
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 317,
+                    "cache_read_input_tokens": 15878,
+                    "cache_creation_input_tokens": 214,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 214,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T21:31:04.384Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017VQL5CT31RScRP7x6LMfFE",
+              "type": "tool_result",
+              "content": "<class 'dict'>\nDict keys: ['success', 'data', 'error', 'metadata']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54710eb1-0af5-4554-80dd-dd40b12547de",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "09543c67-8bd9-4213-981d-34b7978f05fe",
+            "sourceToolAssistantUUID": "54710eb1-0af5-4554-80dd-dd40b12547de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T21:31:08.411Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0196BWAbic4UnKPdd2Krfzwr",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nprint(type(data))\nif isinstance(data, list):\n    print(f'List of {len(data)} items')\n    if data:\n        print('First item keys:', list(data[0].keys()))\nelif isinstance(data, dict):\n    print('Dict keys:', list(data.keys())[:30])\n\" 2>&1",
+                "description": "Inspect data field structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09543c67-8bd9-4213-981d-34b7978f05fe",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKZVqdqNAWfP5vQK6c6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d0654a4c-965e-4d94-b3eb-f9f4169a7fb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01W7wzzr4LLXAWLvqq7E9SwV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 353,
+                "cache_read_input_tokens": 16092,
+                "output_tokens": 311,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 353
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 311,
+                    "cache_read_input_tokens": 16092,
+                    "cache_creation_input_tokens": 353,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 353,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T21:31:08.534Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0196BWAbic4UnKPdd2Krfzwr",
+              "type": "tool_result",
+              "content": "<class 'dict'>\nDict keys: ['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0654a4c-965e-4d94-b3eb-f9f4169a7fb2",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "06cdc5f3-6087-4398-87ac-bc74d664d0fd",
+            "sourceToolAssistantUUID": "d0654a4c-965e-4d94-b3eb-f9f4169a7fb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T21:31:12.266Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tv2SPvcS7vSzgjm5ZLp2H1",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\nprint(f'Number of experiments: {len(experiments)}')\nif experiments:\n    print('First experiment keys:', list(experiments[0].keys()) if isinstance(experiments, list) else list(experiments.keys())[:20])\n\" 2>&1",
+                "description": "Inspect experiments field"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06cdc5f3-6087-4398-87ac-bc74d664d0fd",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKZomPv6w6ZhShExxdd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fc7da2d3-71d6-4159-a1c1-76202fc02fb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_016V9zqDqvWjXP43pLwhU5Q2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 347,
+                "cache_read_input_tokens": 16445,
+                "output_tokens": 294,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 347
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 294,
+                    "cache_read_input_tokens": 16445,
+                    "cache_creation_input_tokens": 347,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 347,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T21:31:12.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tv2SPvcS7vSzgjm5ZLp2H1",
+              "type": "tool_result",
+              "content": "Number of experiments: 132\nFirst experiment keys: ['exp46_inference_efficiency', 'exp63_toxicchat_fpfn', 'exp62_topic_diagnosis', 'exp61_random_binary_partition', 'exp60_turncount_baseline', 'exp59_resample_350', 'exp58_truncated_single_turn', 'exp57_svd_iid_only', 'exp53_llm_judge_prompt_opt', 'exp55_5seed_mlm_vs_9class_aa', 'exp56_crossllm_10shot_adaptation', 'exp54_causal_probe_subspace', 'exp52_oasst2_n25_multiseed', 'exp51_lmsys_benign_ood', 'exp50_layerwise_representation', 'exp45_benign_adaptation_curve', 'exp49_representation_analysis', 'exp48_ensemble_mlm_9class', 'exp46', 'exp44_multi_llm_mixed']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc7da2d3-71d6-4159-a1c1-76202fc02fb4",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "155afc4a-cc2c-42d5-abfa-64054e76f8af",
+            "sourceToolAssistantUUID": "fc7da2d3-71d6-4159-a1c1-76202fc02fb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T21:31:16.640Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018YMGVWKBLpiMYtANS6cHJR",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\n# It's a list of dicts, each dict has experiment keys\n# Let's flatten to get all experiment names\nall_exp_names = []\nfor item in experiments:\n    all_exp_names.extend(list(item.keys()))\nprint('All experiment names:')\nfor name in sorted(all_exp_names):\n    print(name)\n\" 2>&1",
+                "description": "List all experiment names"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "155afc4a-cc2c-42d5-abfa-64054e76f8af",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKa5p3Yzt4KiAgAv9hw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6f665631-84ce-4b5e-be22-2308b39e8a6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_016rLRVf5KBzb4iynB1vfAw7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 557,
+                "cache_read_input_tokens": 16792,
+                "output_tokens": 323,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 557
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 323,
+                    "cache_read_input_tokens": 16792,
+                    "cache_creation_input_tokens": 557,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 557,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T21:31:16.861Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 17, in <module>\n    all_exp_names.extend(list(item.keys()))\n                              ^^^^^^^^^\nAttributeError: 'str' object has no attribute 'keys'",
+              "is_error": true,
+              "tool_use_id": "toolu_018YMGVWKBLpiMYtANS6cHJR"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f665631-84ce-4b5e-be22-2308b39e8a6f",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "4fc5efad-d5ed-4298-b9a1-8e76ceb8eff4",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 17, in <module>\n    all_exp_names.extend(list(item.keys()))\n                              ^^^^^^^^^\nAttributeError: 'str' object has no attribute 'keys'",
+            "sourceToolAssistantUUID": "6f665631-84ce-4b5e-be22-2308b39e8a6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T21:31:21.600Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014KfT3xSRrs3KfUG1TAyU6j",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\n# Check what the list items look like\nprint('Type of first:', type(experiments[0]))\nprint('First item:', repr(experiments[0])[:300])\nprint('Second item type:', type(experiments[1]))\nprint('Second item:', repr(experiments[1])[:300])\n\" 2>&1",
+                "description": "Check experiment list item types"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fc5efad-d5ed-4298-b9a1-8e76ceb8eff4",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKaRrJPRgFumDJxZaNg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "13f0df71-0089-447d-85ab-dedda1fd38c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01HJA2T1Ah7y8aa5joqSyAaj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 410,
+                "cache_read_input_tokens": 17349,
+                "output_tokens": 308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 410
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 308,
+                    "cache_read_input_tokens": 17349,
+                    "cache_creation_input_tokens": 410,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 410,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T21:31:21.814Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    print('Type of first:', type(experiments[0]))\n                                 ~~~~~~~~~~~^^^\nKeyError: 0",
+              "is_error": true,
+              "tool_use_id": "toolu_014KfT3xSRrs3KfUG1TAyU6j"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13f0df71-0089-447d-85ab-dedda1fd38c5",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "d028c3bb-76dc-4a6c-9f7d-6c1cc211dcbc",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    print('Type of first:', type(experiments[0]))\n                                 ~~~~~~~~~~~^^^\nKeyError: 0",
+            "sourceToolAssistantUUID": "13f0df71-0089-447d-85ab-dedda1fd38c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T21:31:26.684Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018q9ykVb1CHeLDgU6CBDj8w",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\n# It's actually a dict with 132 keys\nprint('Keys sample:', list(experiments.keys())[:30])\n\" 2>&1",
+                "description": "Check experiments as dict"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d028c3bb-76dc-4a6c-9f7d-6c1cc211dcbc",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKanKMpSd5rXaznvFsW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a2b29522-92d0-4539-a525-5dc90f8a54cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01SDUcyVVJ33m9Dz8GCLTaYa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 385,
+                "cache_read_input_tokens": 17759,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 385
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 17759,
+                    "cache_creation_input_tokens": 385,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 385,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T21:31:26.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018q9ykVb1CHeLDgU6CBDj8w",
+              "type": "tool_result",
+              "content": "Keys sample: ['exp46_inference_efficiency', 'exp63_toxicchat_fpfn', 'exp62_topic_diagnosis', 'exp61_random_binary_partition', 'exp60_turncount_baseline', 'exp59_resample_350', 'exp58_truncated_single_turn', 'exp57_svd_iid_only', 'exp53_llm_judge_prompt_opt', 'exp55_5seed_mlm_vs_9class_aa', 'exp56_crossllm_10shot_adaptation', 'exp54_causal_probe_subspace', 'exp52_oasst2_n25_multiseed', 'exp51_lmsys_benign_ood', 'exp50_layerwise_representation', 'exp45_benign_adaptation_curve', 'exp49_representation_analysis', 'exp48_ensemble_mlm_9class', 'exp46', 'exp44_multi_llm_mixed', 'exp43_mhj_human_eval', 'exp42b_balanced_ratio_ablation', 'exp42_ood_benign_mixed', 'exp41_tost_10seed', 'exp40_llama_guard_baseline', 'exp40', 'exp39_extra_seeds_tost', 'exp38_wildcat_calibration', 'exp37_length_matched_benign', 'exp36']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2b29522-92d0-4539-a525-5dc90f8a54cf",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "a988ad17-b876-48cb-b08f-886d4020c4ab",
+            "sourceToolAssistantUUID": "a2b29522-92d0-4539-a525-5dc90f8a54cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T21:31:31.047Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RApa5ANUTNwp2HAdnzDHCm",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\nprint('All experiment keys:')\nfor k in sorted(experiments.keys()):\n    print(k)\n\" 2>&1",
+                "description": "List all experiment keys"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a988ad17-b876-48cb-b08f-886d4020c4ab",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKb9Y4LCJCoqiAmjAnC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85e4331c-1ddb-41f3-ae2c-2eeb9f2f7f6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Q6WMKA56TFD1Gh3eS3jXS6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 631,
+                "cache_read_input_tokens": 18144,
+                "output_tokens": 267,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 631
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 267,
+                    "cache_read_input_tokens": 18144,
+                    "cache_creation_input_tokens": 631,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 631,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T21:31:31.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RApa5ANUTNwp2HAdnzDHCm",
+              "type": "tool_result",
+              "content": "All experiment keys:\ncross_attack_baseline\nexp10_fewshot_llm_judge\nexp11_tost_equivalence\nexp12_toxicchat_bootstrap\nexp13_meanpool_multiseed\nexp14_cross_llm_validation\nexp14b_cross_llm_control\nexp14c_prediction_analysis\nexp15_roberta_large\nexp15b_roberta_large_lr\nexp15c_roberta_large_mlm\nexp16_9class_train\nexp16_llama_benign_gen\nexp16_llama_jailbreak_gen\nexp16_multi_llm\nexp16_multi_llm_training\nexp16_vanilla_train\nexp16b_llama_only_mlm\nexp17_dataset_scale\nexp17_dryrun\nexp17_qwen_benign_gen\nexp17_qwen_jailbreak_gen\nexp18_e2e_finetune\nexp19_wildchat_fpr\nexp1_roberta_9class\nexp1_roberta_mlm\nexp1_roberta_vanilla\nexp20_deepcontext_proxy\nexp21_cross_checkpoint\nexp22_aa_early_detection\nexp23_aa_error_analysis\nexp24_calibration_ece\nexp25_fitd_early_detection\nexp26_frozen_probing\nexp27_mean_pooling\nexp28_data_efficiency\nexp28b_data_efficiency_supplement\nexp28c_vanilla_supplement\nexp29_inference_efficiency\nexp2_actorattack_mcnemar\nexp2_actorattack_ood\nexp30_length_stratified\nexp31_lambda_ablation_aa\nexp32_strategy_prediction\nexp33_strategy_prediction_plan002\nexp34_representation_tsne\nexp35_cross_seed_ensemble\nexp36\nexp36_frozen_mlm_probing\nexp37_length_matched_benign\nexp38_wildcat_calibration\nexp39_extra_seeds_tost\nexp3_probing\nexp3_roberta_probing\nexp40\nexp40_llama_guard_baseline\nexp41_tost_10seed\nexp42_ood_benign_mixed\nexp42b_balanced_ratio_ablation\nexp43_mhj_human_eval\nexp44_multi_llm_mixed\nexp45_benign_adaptation_curve\nexp46\nexp46_inference_efficiency\nexp48_ensemble_mlm_9class\nexp49_representation_analysis\nexp4_dd_ood_perturbation\nexp50_layerwise_representation\nexp51_lmsys_benign_ood\nexp52_oasst2_n25_multiseed\nexp53_llm_judge_prompt_opt\nexp54_causal_probe_subspace\nexp55_5seed_mlm_vs_9class_aa\nexp56_crossllm_10shot_adaptation\nexp57_svd_iid_only\nexp58_truncated_single_turn\nexp59_resample_350\nexp5_llm_judge_ood\nexp60_turncount_baseline\nexp61_random_binary_partition\nexp62_topic_diagnosis\nexp63_toxicchat_fpfn\nexp6_actorattack_perturbation\nexp7_tfidf_perprefix_actorattack\nexp8_mhj_human_data\nexp9_bootstrap_ci\nllama_crescendo_dryrun\nmf1_binary_seed123\nmf1_binary_seed456\nmf1_scrambled_seed123\nmf1_scrambled_seed456\nphase_b_full\npilot_phase_b\nplan_002_clean_training\nplan_002_seed123\nplan_002_seed456\nplan_003_scrambled_ablation\nplan_003_scrambled_fix\nplan_003_scrambled_perturbation\nplan_003_scrambled_retrain\nplan_004_perturbation_eval\nplan_005_multi_attack_gen\nplan_006_cross_attack_clean\nplan_007_tfidf_fitd_dd\nplan_008_strategy_transition\nplan_012_gpt55_judge\nplan_012_llm_judge_qwen\nplan_013_binary_perturbation\nplan_013_none_collapse\nplan_015_dd_eval\nplan_016_sentiment_control\nplan_016v2_topic_control\nplan_016v2_topic_eval_seed123\nplan_016v2_topic_eval_seed42\nplan_016v2_topic_eval_seed456\nplan_016v2_topic_perturbation\nplan_016v2_topic_seed123\nplan_016v2_topic_seed456\nplan_017_eval_seed123\nplan_017_eval_seed456\nplan_017_mlm_control\nplan_017_mlm_perturbation\nplan_017_mlm_seed123\nplan_017_mlm_seed456\nplan_018_eval_seed123\nplan_018_eval_seed456\nplan_018_wiki_mlm_control\nplan_018_wiki_mlm_eval\nplan_018_wiki_mlm_seed123\nplan_018_wiki_mlm_seed456\nplan_018_wiki_perturbation\nvanilla_multiseed_dd_ood",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85e4331c-1ddb-41f3-ae2c-2eeb9f2f7f6b",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "27307d3d-9667-4859-8325-d7635b269985",
+            "sourceToolAssistantUUID": "85e4331c-1ddb-41f3-ae2c-2eeb9f2f7f6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T21:31:38.937Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019tfi9MCg6d9d3PAqqZiMmh",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\n\n# Relevant experiments for WildChat, OASST2, adaptation curves, FPR, seeds, variance\ntarget_keys = [\n    'exp19_wildchat_fpr',\n    'exp45_benign_adaptation_curve',\n    'exp52_oasst2_n25_multiseed',\n    'exp56_crossllm_10shot_adaptation',\n    'exp51_lmsys_benign_ood',\n    'mf1_binary_seed123',\n    'mf1_binary_seed456',\n    'mf1_scrambled_seed123',\n    'mf1_scrambled_seed456',\n    'vanilla_multiseed_dd_ood',\n    'plan_017_eval_seed123',\n    'plan_017_eval_seed456',\n    'plan_018_eval_seed123',\n    'plan_018_eval_seed456',\n    'plan_016v2_topic_eval_seed123',\n    'plan_016v2_topic_eval_seed456',\n    'plan_016v2_topic_eval_seed42',\n    'exp2_actorattack_ood',\n    'exp41_tost_10seed',\n    'exp39_extra_seeds_tost',\n    'exp35_cross_seed_ensemble',\n    'exp4_dd_ood_perturbation',\n    'exp55_5seed_mlm_vs_9class_aa',\n]\n\nfor k in target_keys:\n    if k in experiments:\n        print(f'=== {k} ===')\n        print(json.dumps(experiments[k], indent=2))\n        print()\n\" 2>&1",
+                "description": "Extract relevant experiment entries"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27307d3d-9667-4859-8325-d7635b269985",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKbU8VzAVV9FMfWwpnn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "40ba4cf3-adfc-4728-98d4-eecd52c5ddfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01NhgBacWTWUAmB66udDmFkm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1658,
+                "cache_read_input_tokens": 18775,
+                "output_tokens": 644,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1658
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 644,
+                    "cache_read_input_tokens": 18775,
+                    "cache_creation_input_tokens": 1658,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1658,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T21:31:39.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019tfi9MCg6d9d3PAqqZiMmh",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (36.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/by1khfan8.txt\n\nPreview (first 2KB):\n=== exp19_wildchat_fpr ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-20T12:37:11.207Z\",\n  \"updated_at\": \"2026-05-20T12:45:10.364Z\",\n  \"hypothesis\": \"9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates\",\n  \"server\": \"westd-33183\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-33183\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-20T12:37:59.757Z\"\n  },\n  \"spec\": {\n    \"command\": \"python scripts/exp19_wildchat_fpr.py\",\n    \"server\": \"westd-33183\",\n    \"gpu\": \"cuda:0\",\n    \"pid\": \"28318\",\n    \"log_path\": \"results/exp19_wildchat_fpr.json\",\n    \"submitted_at\": \"2026-05-20T12:41:54.600Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"data/wildchat_benign_226.jsonl (226 filtered benign, avg 7.4 turns)\",\n    \"data_count\": 226,\n    \"model_name\": \"microsoft/deberta-v3-base (exp17 checkpoints: 9-class/MLM/vanilla)\",\n    \"seed\": \"42,123,456\",\n    \"checkpoint_path\": \"checkpoints/exp17/\",\n    \"wall_clock_seconds\": 195.8,\n    \"gpu_hours\": 0.05\n  },\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"dataset\": \"wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)\",\n    \"9class_fpr\": {\n      \"seed42\": 0.668,\n      \"seed123\": 0.611,\n      \"seed456\": 0.765,\n      \"mean\": 0.681,\n      \"std\": 0.064\n    },\n    \"mlm_fpr\": {\n      \"seed42\": 0.367,\n      \"seed123\": 0.646,\n      \"seed456\": 0.323,\n      \"mean\": 0.445,\n      \"std\": 0.143\n    },\n    \"vanilla_fpr\": {\n      \"seed42\": 0.473,\n      \"seed123\": 0.425,\n      \"seed456\": 0.544,\n      \"mean\": 0.481,\n      \"std\": 0.049\n    },\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40ba4cf3-adfc-4728-98d4-eecd52c5ddfa",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "bc897c13-0019-44dd-a57d-993395af0443",
+            "sourceToolAssistantUUID": "40ba4cf3-adfc-4728-98d4-eecd52c5ddfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T21:31:42.434Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017D8vD8R6En7hKP4M2gxy2B",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/by1khfan8.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc897c13-0019-44dd-a57d-993395af0443",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKc489iHRYYF2Sp9BVN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "20c02b07-ee4f-48d3-9411-aa0f2648c609",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Nv9TrMCvjzA5zn3cMsVnqg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1513,
+                "cache_read_input_tokens": 20433,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1513
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 20433,
+                    "cache_creation_input_tokens": 1513,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1513,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T21:31:42.797Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017D8vD8R6En7hKP4M2gxy2B",
+              "type": "tool_result",
+              "content": "1\t=== exp19_wildchat_fpr ===\n2\t{\n3\t  \"status\": \"DONE\",\n4\t  \"retry_count\": 0,\n5\t  \"created_at\": \"2026-05-20T12:37:11.207Z\",\n6\t  \"updated_at\": \"2026-05-20T12:45:10.364Z\",\n7\t  \"hypothesis\": \"9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates\",\n8\t  \"server\": \"westd-33183\",\n9\t  \"gpu\": \"cuda:0\",\n10\t  \"account\": \"root\",\n11\t  \"reproduce\": {\n12\t    \"server\": \"westd-33183\",\n13\t    \"gpu\": \"cuda:0\",\n14\t    \"started_at\": \"2026-05-20T12:37:59.757Z\"\n15\t  },\n16\t  \"spec\": {\n17\t    \"command\": \"python scripts/exp19_wildchat_fpr.py\",\n18\t    \"server\": \"westd-33183\",\n19\t    \"gpu\": \"cuda:0\",\n20\t    \"pid\": \"28318\",\n21\t    \"log_path\": \"results/exp19_wildchat_fpr.json\",\n22\t    \"submitted_at\": \"2026-05-20T12:41:54.600Z\",\n23\t    \"submitted_via\": \"submit_training_job\",\n24\t    \"backend\": \"tmux\",\n25\t    \"account\": \"root\",\n26\t    \"data_path\": \"data/wildchat_benign_226.jsonl (226 filtered benign, avg 7.4 turns)\",\n27\t    \"data_count\": 226,\n28\t    \"model_name\": \"microsoft/deberta-v3-base (exp17 checkpoints: 9-class/MLM/vanilla)\",\n29\t    \"seed\": \"42,123,456\",\n30\t    \"checkpoint_path\": \"checkpoints/exp17/\",\n31\t    \"wall_clock_seconds\": 195.8,\n32\t    \"gpu_hours\": 0.05\n33\t  },\n34\t  \"conclusion\": \"negative\",\n35\t  \"metrics\": {\n36\t    \"dataset\": \"wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)\",\n37\t    \"9class_fpr\": {\n38\t      \"seed42\": 0.668,\n39\t      \"seed123\": 0.611,\n40\t      \"seed456\": 0.765,\n41\t      \"mean\": 0.681,\n42\t      \"std\": 0.064\n43\t    },\n44\t    \"mlm_fpr\": {\n45\t      \"seed42\": 0.367,\n46\t      \"seed123\": 0.646,\n47\t      \"seed456\": 0.323,\n48\t      \"mean\": 0.445,\n49\t      \"std\": 0.143\n50\t    },\n51\t    \"vanilla_fpr\": {\n52\t      \"seed42\": 0.473,\n53\t      \"seed123\": 0.425,\n54\t      \"seed456\": 0.544,\n55\t      \"mean\": 0.481,\n56\t      \"std\": 0.049\n57\t    },\n58\t    \"note\": \"NEGATIVE: All variants show extreme FPR on real-world benign. 9-class worst (68.1%). Used exp17 checkpoints (Qwen 1000 scale). Severe distribution shift between synthetic training benign and real WildChat conversations.\"\n59\t  },\n60\t  \"completed_at\": \"2026-05-20T12:45:10.364Z\"\n61\t}\n62\t\n63\t=== exp45_benign_adaptation_curve ===\n64\t{\n65\t  \"status\": \"DONE\",\n66\t  \"retry_count\": 0,\n67\t  \"created_at\": \"2026-05-22T06:14:46.955Z\",\n68\t  \"updated_at\": \"2026-05-22T08:56:47.002Z\",\n69\t  \"hypothesis\": \"Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95.\",\n70\t  \"parent\": \"exp42_ood_benign_mixed\",\n71\t  \"spec\": {\n72\t    \"command\": \"python /root/persuasion_turn_jailbreak_detect/scripts/exp45_benign_adaptation_curve.py\",\n73\t    \"server\": \"westd-33183\",\n74\t    \"gpu\": \"cuda:0\",\n75\t    \"pid\": 47802,\n76\t    \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp45_benign_adaptation_curve.json\",\n77\t    \"submitted_at\": \"2026-05-22T06:34:49.435Z\",\n78\t    \"submitted_via\": \"submit_training_job\",\n79\t    \"backend\": \"tmux\",\n80\t    \"account\": \"root\",\n81\t    \"data_path\": \"/root/persuasion_turn_jailbreak_detect/data/\",\n82\t    \"data_count\": \"350 Qwen + up to 150 WildChat benign, 7 runs (N=0,5,10,25,50,100,150)\",\n83\t    \"model_name\": \"microsoft/deberta-v3-base\",\n84\t    \"seed\": 42,\n85\t    \"checkpoint_source\": \"trained from scratch per N value\",\n86\t    \"eval_data\": \"IID test + WildChat FPR (49) + OOD DD/AA/FITD (80 each)\",\n87\t    \"checkpoint_path\": \"N/A (7 intermediate checkpoints, not saved)\",\n88\t    \"wall_clock_seconds\": 930.3,\n89\t    \"gpu_hours\": 0.26\n90\t  },\n91\t  \"conclusion\": \"success\",\n92\t  \"metrics\": {\n93\t    \"n10_multiseed\": {\n94\t      \"seeds\": [\n95\t        42,\n96\t        123,\n97\t        456\n98\t      ],\n99\t      \"wc_fpr\": \"0.000\\u00b10.000\",\n100\t      \"iid_f1\": \"1.000\\u00b10.000\",\n101\t      \"dd_f1\": \"1.000\\u00b10.000\",\n102\t      \"aa_f1\": \"0.981\\u00b10.016\",\n103\t      \"fitd_f1\": \"1.000\\u00b10.000\"\n104\t    },\n105\t    \"single_seed_42\": {\n106\t      \"n0_fpr\": 0.653,\n107\t      \"n5_fpr\": 0.163,\n108\t      \"n10_fpr\": 0,\n109\t      \"n25_fpr\": 0,\n110\t      \"n50_fpr\": 0,\n111\t      \"n100_fpr\": 0,\n112\t      \"n150_fpr\": 0\n113\t    }\n114\t  },\n115\t  \"completed_at\": \"2026-05-22T06:50:19.707Z\"\n116\t}\n117\t\n118\t=== exp52_oasst2_n25_multiseed ===\n119\t{\n120\t  \"status\": \"DONE\",\n121\t  \"retry_count\": 0,\n122\t  \"created_at\": \"2026-05-22T10:08:46.884Z\",\n123\t  \"updated_at\": \"2026-05-22T10:16:27.542Z\",\n124\t  \"hypothesis\": \"OASST2 benign adaptation with N=25 yields consistently low FPR (\\u22645%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.\",\n125\t  \"parent\": \"exp51_lmsys_benign_ood\",\n126\t  \"spec\": {\n127\t    \"command\": \"python scripts/exp52_oasst2_n25_multiseed.py --seed {123,456} --n_adapt 25\",\n128\t    \"server\": \"westd-33183\",\n129\t    \"data_path\": \"data/oasst2_benign_adapt_50.json\",\n130\t    \"data_count\": 25,\n131\t    \"model_name\": \"DeBERTa-v3-base + GRU\",\n132\t    \"seed\": \"123,456\",\n133\t    \"checkpoint_source\": \"exp45_n0_seed42 (baseline) + retrained with OASST2 adaptation\",\n134\t    \"eval_data\": \"data/oasst2_benign_eval_200.json + plan_002_splits/test.jsonl + OOD (DD/AA/FITD)\"\n135\t  },\n136\t  \"metrics\": {\n137\t    \"seed_42\": {\n138\t      \"oasst2_fpr\": 0.015,\n139\t      \"iid_f1\": 1,\n140\t      \"aa_f1\": 0.953,\n141\t      \"dd_f1\": 1,\n142\t      \"fitd_f1\": 1\n143\t    },\n144\t    \"seed_123\": {\n145\t      \"oasst2_fpr\": 0.005,\n146\t      \"iid_f1\": 1,\n147\t      \"aa_f1\": 0.917,\n148\t      \"dd_f1\": 1,\n149\t      \"fitd_f1\": 1\n150\t    },\n151\t    \"seed_456\": {\n152\t      \"oasst2_fpr\": 0.01,\n153\t      \"iid_f1\": 1,\n154\t      \"aa_f1\": 0.99,\n155\t      \"dd_f1\": 1,\n156\t      \"fitd_f1\": 1\n157\t    },\n158\t    \"fpr_mean\": 0.01,\n159\t    \"fpr_std\": 0.005,\n160\t    \"fpr_range\": \"0.5%-1.5%\"\n161\t  },\n162\t  \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp52_oasst2_n25_seed{42,123,456}/\",\n163\t  \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp52_seed{123,456}.log\",\n164\t  \"conclusion\": \"success\",\n165\t  \"completed_at\": \"2026-05-22T10:16:27.542Z\"\n166\t}\n167\t\n168\t=== exp56_crossllm_10shot_adaptation ===\n169\t{\n170\t  \"status\": \"DONE\",\n171\t  \"retry_count\": 0,\n172\t  \"created_at\": \"2026-05-22T11:59:38.178Z\",\n173\t  \"updated_at\": \"2026-05-22T12:09:21.263Z\",\n174\t  \"hypothesis\": \"10-shot benign adaptation with Llama-origin conversations will reduce cross-LLM FPR from 88-90% to below 10%, extending the two-axis benign adaptation mechanism to cross-LLM distributional shift\",\n175\t  \"parent\": \"exp51_lmsys_benign_ood\",\n176\t  \"spec\": {\n177\t    \"command\": \"python scripts/exp56_crossllm_10shot.py\",\n178\t    \"server\": \"westd-49690\",\n179\t    \"data_path\": \"/root/persuasion_turn_jailbreak_detect/data/llama_conversations/benign_llama_250.jsonl\",\n180\t    \"data_count\": 250,\n181\t    \"model_name\": \"microsoft/deberta-v3-base\",\n182\t    \"seed\": 42,\n183\t    \"checkpoint_source\": \"plan_002 (9-class, seed 42)\",\n184\t    \"eval_data\": \"Llama-benign 200 eval + cross_llm dd/aa/fitd_llama 50 each\",\n185\t    \"log_path\": \"/tmp/exp56_crossllm.log\",\n186\t    \"pid\": 10405,\n187\t    \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp56_crossllm_n10_seed42\"\n188\t  },\n189\t  \"metrics\": {\n190\t    \"baseline_fpr\": 0.945,\n191\t    \"baseline_aa_llama_recall\": 0.74,\n192\t    \"adaptation_curve\": {\n193\t      \"n0\": {\n194\t        \"fpr\": 0.945,\n195\t        \"dd_f1\": 1,\n196\t        \"aa_f1\": 0.99,\n197\t        \"fitd_f1\": 1,\n198\t        \"dd_llama_recall\": 1,\n199\t        \"aa_llama_recall\": 0.74,\n200\t        \"fitd_llama_recall\": 1\n201\t      },\n202\t      \"n5\": {\n203\t        \"fpr\": 0.055,\n204\t        \"dd_f1\": 0.694,\n205\t        \"aa_f1\": 0.841,\n206\t        \"fitd_f1\": 0.99,\n207\t        \"dd_llama_recall\": 0.64,\n208\t        \"aa_llama_recall\": 0.04,\n209\t        \"fitd_llama_recall\": 0.76\n210\t      },\n211\t      \"n10\": {\n212\t        \"fpr\": 0.03,\n213\t        \"dd_f1\": 0.816,\n214\t        \"aa_f1\": 0.601,\n215\t        \"fitd_f1\": 1,\n216\t        \"dd_llama_recall\": 0.6,\n217\t        \"aa_llama_recall\": 0,\n218\t        \"fitd_llama_recall\": 0.8\n219\t      },\n220\t      \"n25\": {\n221\t        \"fpr\": 0.005,\n222\t        \"dd_f1\": 0.556,\n223\t        \"aa_f1\": 0.271,\n224\t        \"fitd_f1\": 0.99,\n225\t        \"dd_llama_recall\": 0.08,\n226\t        \"aa_llama_recall\": 0,\n227\t        \"fitd_llama_recall\": 0.52\n228\t      }\n229\t    }\n230\t  },\n231\t  \"conclusion\": \"negative\",\n232\t  \"completed_at\": \"2026-05-22T12:09:21.263Z\"\n233\t}\n234\t\n235\t=== exp51_lmsys_benign_ood ===\n236\t{\n237\t  \"status\": \"DONE\",\n238\t  \"retry_count\": 0,\n239\t  \"created_at\": \"2026-05-22T08:58:59.398Z\",\n240\t  \"updated_at\": \"2026-05-22T09:53:42.648Z\",\n241\t  \"hypothesis\": \"The two-axis decomposition (high FPR on OOD benign + 10-shot remediation) generalizes beyond WildChat: LMSYS-Chat-1M benign conversations will show high FPR (>20%) that 10 target-domain conversations can eliminate, confirming benign-side shift is a general phenomenon not specific to WildChat GPT-3.5 users.\",\n242\t  \"parent\": \"exp45_benign_adaptation_curve\",\n243\t  \"conclusion\": \"success\",\n244\t  \"spec\": {\n245\t    \"command\": \"python /root/persuasion_turn_jailbreak_detect/scripts/exp51_oasst2_eval.py\",\n246\t    \"server\": \"westd-33183\",\n247\t    \"data_path\": \"/root/persuasion_turn_jailbreak_detect/data/oasst2_benign_eval_200.json\",\n248\t    \"data_count\": \"200 eval + 10 adapt oasst2 benign conversations\",\n249\t    \"model_name\": \"microsoft/deberta-v3-base (9-class)\",\n250\t    \"seed\": 42,\n251\t    \"checkpoint_path\": \"N/A (eval + retrain)\",\n252\t    \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp51_oasst2_results.json\"\n253\t  },\n254\t  \"completed_at\": \"2026-05-22T09:43:58.937Z\",\n255\t  \"metrics\": {\n256\t    \"baseline_fpr\": 0.575,\n257\t    \"baseline_n\": 200,\n258\t    \"data_source\": \"oasst2 (real crowdsourced human)\",\n259\t    \"adaptation_curve\": {\n260\t      \"n0\": {\n261\t        \"fpr\": 0.575\n262\t      },\n263\t      \"n10\": {\n264\t        \"fpr\": 0.205,\n265\t        \"dd_f1\": 1,\n266\t        \"aa_f1\": 1,\n267\t        \"fitd_f1\": 1\n268\t      },\n269\t      \"n25\": {\n270\t        \"fpr\": 0.015,\n271\t        \"dd_f1\": 1,\n272\t        \"aa_f1\": 0.953,\n273\t        \"fitd_f1\": 1\n274\t      },\n275\t      \"n50\": {\n276\t        \"fpr\": 0.005,\n277\t        \"dd_f1\": 1,\n278\t        \"aa_f1\": 0.99,\n279\t        \"fitd_f1\": 1\n280\t      }\n281\t    },\n282\t    \"comparison_wildchat\": {\n283\t      \"baseline_fpr\": 0.681,\n284\t      \"n10_fpr\": 0,\n285\t      \"n10_sufficient\": true\n286\t    }\n287\t  }\n288\t}\n289\t\n290\t=== mf1_binary_seed123 ===\n291\t{\n292\t  \"status\": \"DONE\",\n293\t  \"retry_count\": 0,\n294\t  \"created_at\": \"2026-05-18T09:11:45.083Z\",\n295\t  \"updated_at\": \"2026-05-18T11:04:38.928Z\",\n296\t  \"hypothesis\": \"Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1\",\n297\t  \"spec\": {\n298\t    \"command\": \"train_deberta.py + train_gru.py + evaluate_gru.py (binary, seed=123)\",\n299\t    \"server\": \"westd-33183\",\n300\t    \"data_path\": \"data/plan_002_splits + data/dd_ood\",\n301\t    \"data_count\": 480,\n302\t    \"model_name\": \"DeBERTa-v3-base (num_persuasion_classes=2)\",\n303\t    \"seed\": 123,\n304\t    \"checkpoint_path\": \"checkpoints/mf1_binary_seed123/\",\n305\t    \"log_path\": \"results/mf1_binary_seed123.json\"\n306\t  },\n307\t  \"conclusion\": \"success\",\n308\t  \"metrics\": {\n309\t    \"dd_ood_full_f1\": 1,\n310\t    \"dd_ood_k1_f1\": 1,\n311\t    \"dd_ood_k2_f1\": 1,\n312\t    \"dd_ood_k3_f1\": 0.9904,\n313\t    \"dd_ood_k5_f1\": 1,\n314\t    \"iid_full_f1\": 1,\n315\t    \"iid_k1_f1\": 1,\n316\t    \"iid_k2_f1\": 1,\n317\t    \"iid_k3_f1\": 1,\n318\t    \"iid_k5_f1\": 1,\n319\t    \"deberta_val_persuasion_acc\": 1,\n320\t    \"deberta_val_intent_acc\": 1,\n321\t    \"seed\": 123\n322\t  },\n323\t  \"completed_at\": \"2026-05-18T11:04:38.928Z\"\n324\t}\n325\t\n326\t=== mf1_binary_seed456 ===\n327\t{\n328\t  \"status\": \"DONE\",\n329\t  \"retry_count\": 0,\n330\t  \"created_at\": \"2026-05-18T09:11:46.513Z\",\n331\t  \"updated_at\": \"2026-05-18T09:55:15.746Z\",\n332\t  \"hypothesis\": \"Binary persuasion DeBERTa+GRU pipeline with seed=456 will produce DD OOD performance consistent with seed=42, confirming reproducibility of the binary collapse approach.\",\n333\t  \"spec\": {\n334\t    \"command\": \"train_deberta_binary.py + train_classifier_binary.py + dd_ood_eval\",\n335\t    \"server\": \"westd-33183\",\n336\t    \"data_path\": \"data/plan_002_splits/\",\n337\t    \"data_count\": 0,\n338\t    \"model_name\": \"microsoft/deberta-v3-base\",\n339\t    \"seed\": 456\n340\t  },\n341\t  \"checkpoint_path\": \"checkpoints/mf1_binary_seed456/\",\n342\t  \"log_path\": \"logs/mf1_binary_seed456_pipeline.log\",\n343\t  \"metrics\": {\n344\t    \"dd_ood_full_f1\": 1,\n345\t    \"dd_ood_k1_f1\": 1,\n346\t    \"dd_ood_k2_f1\": 1,\n347\t    \"dd_ood_k3_f1\": 0.9904,\n348\t    \"dd_ood_k5_f1\": 1,\n349\t    \"deberta_val_persuasion_acc\": 1,\n350\t    \"deberta_val_intent_acc\": 1,\n351\t    \"seed\": 456\n352\t  },\n353\t  \"conclusion\": \"success\",\n354\t  \"completed_at\": \"2026-05-18T09:22:25.221Z\"\n355\t}\n356\t\n357\t=== mf1_scrambled_seed123 ===\n358\t{\n359\t  \"status\": \"DONE\",\n360\t  \"retry_count\": 0,\n361\t  \"created_at\": \"2026-05-18T09:11:48.357Z\",\n362\t  \"updated_at\": \"2026-05-18T09:54:48.227Z\",\n363\t  \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\",\n364\t  \"spec\": {\n365\t    \"command\": \"mf1_scrambled_seed123_pipeline.py\",\n366\t    \"server\": \"westd-33183\",\n367\t    \"data_path\": \"data/plan_002_splits/\",\n368\t    \"data_count\": 350,\n369\t    \"model_name\": \"microsoft/deberta-v3-base\",\n370\t    \"seed\": 123,\n371\t    \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\",\n372\t    \"log_path\": \"results/mf1_scrambled_seed123.json\"\n373\t  },\n374\t  \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\",\n375\t  \"log_path\": \"results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log\",\n376\t  \"metrics\": {\n377\t    \"val_persuasion_acc\": 0.6724,\n378\t    \"val_intent_acc\": 1,\n379\t    \"dd_ood_f1_k1\": 1,\n380\t    \"dd_ood_f1_k2\": 1,\n381\t    \"dd_ood_f1_k3\": 1,\n382\t    \"dd_ood_f1_k5\": 1,\n383\t    \"dd_ood_f1_full\": 1\n384\t  },\n385\t  \"conclusion\": \"success\",\n386\t  \"completed_at\": \"2026-05-18T09:20:32.092Z\"\n387\t}\n388\t\n389\t=== mf1_scrambled_seed456 ===\n390\t{\n391\t  \"status\": \"DONE\",\n392\t  \"retry_count\": 0,\n393\t  \"created_at\": \"2026-05-18T09:11:49.552Z\",\n394\t  \"updated_at\": \"2026-05-18T09:54:22.058Z\",\n395\t  \"hypothesis\": \"Scrambled-label classification (seed=456) on plan_002_splits data will show DD OOD F1 comparable to seed=42 (0.990), confirming scrambled variant's performance and variance for reviewer MF1\",\n396\t  \"spec\": {\n397\t    \"command\": \"python src/mf1_scrambled_seed456_pipeline.py\",\n398\t    \"server\": \"westd-33183\",\n399\t    \"data_path\": \"data/plan_002_splits/\",\n400\t    \"data_count\": 350,\n401\t    \"model_name\": \"microsoft/deberta-v3-base\",\n402\t    \"seed\": 456,\n403\t    \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed456/\",\n404\t    \"log_path\": \"results/mf1_scrambled_seed456_run.log\"\n405\t  },\n406\t  \"metrics\": {\n407\t    \"dd_ood_full_f1\": 1,\n408\t    \"dd_ood_k1_f1\": 1,\n409\t    \"dd_ood_k2_f1\": 1,\n410\t    \"dd_ood_k3_f1\": 0.99,\n411\t    \"dd_ood_k5_f1\": 1,\n412\t    \"deberta_val_persuasion_acc\": 0.698,\n413\t    \"seed\": 456\n414\t  },\n415\t  \"conclusion\": \"success\",\n416\t  \"completed_at\": \"2026-05-18T09:19:49.959Z\"\n417\t}\n418\t\n419\t=== vanilla_multiseed_dd_ood ===\n420\t{\n421\t  \"status\": \"DONE\",\n422\t  \"retry_count\": 0,\n423\t  \"created_at\": \"2026-05-18T11:26:57.037Z\",\n424\t  \"updated_at\": \"2026-05-18T11:27:25.460Z\",\n425\t  \"hypothesis\": \"DeBERTa vanilla (no Stage-1 fine-tuning) multi-seed DD OOD evaluation will confirm that the 62pp gap (vanilla 0.284 vs treatment 0.997) is not a seed artifact, and centered CKA will correct the misleading uncentered CKA=1.0 for vanilla vs MLM\",\n426\t  \"spec\": {\n427\t    \"command\": \"train_gru.py + evaluate_gru.py (vanilla, seed123/456) + centered_cka.py\",\n428\t    \"server\": \"westd-33183\",\n429\t    \"data_path\": \"data/plan_002_splits + data/dd_ood\",\n430\t    \"data_count\": 118,\n431\t    \"model_name\": \"DeBERTa-v3-base (vanilla, no Stage-1)\",\n432\t    \"seed\": \"123,456\",\n433\t    \"checkpoint_path\": \"checkpoints/vanilla_seed123/, checkpoints/vanilla_seed456/\",\n434\t    \"log_path\": \"results/vanilla_multiseed_dd_ood.json, results/centered_cka.json\"\n435\t  },\n436\t  \"conclusion\": \"success\",\n437\t  \"metrics\": {\n438\t    \"vanilla_3seed_dd_ood\": {\n439\t      \"k1\": {\n440\t        \"seed42\": 0.575,\n441\t        \"seed123\": 0.658,\n442\t        \"seed456\": 0.652,\n443\t        \"mean\": 0.628,\n444\t        \"std\": 0.038\n445\t      },\n446\t      \"k2\": {\n447\t        \"seed42\": 0.438,\n448\t        \"seed123\": 0.53,\n449\t        \"seed456\": 0.469,\n450\t        \"mean\": 0.479,\n451\t        \"std\": 0.038\n452\t      },\n453\t      \"k3\": {\n454\t        \"seed42\": 0.359,\n455\t        \"seed123\": 0.424,\n456\t        \"seed456\": 0.383,\n457\t        \"mean\": 0.389,\n458\t        \"std\": 0.027\n459\t      },\n460\t      \"k5\": {\n461\t        \"seed42\": 0.311,\n462\t        \"seed123\": 0.383,\n463\t        \"seed456\": 0.36,\n464\t        \"mean\": 0.351,\n465\t        \"std\": 0.03\n466\t      },\n467\t      \"full\": {\n468\t        \"seed42\": 0.285,\n469\t        \"seed123\": 0.305,\n470\t        \"seed456\": 0.348,\n471\t        \"mean\": 0.312,\n472\t        \"std\": 0.026\n473\t      }\n474\t    },\n475\t    \"centered_cka_iid\": {\n476\t      \"vanilla_vs_mlm\": 0.442,\n477\t      \"vanilla_vs_9class\": 0.393,\n478\t      \"mlm_vs_9class\": 0.586\n479\t    },\n480\t    \"centered_cka_dd_ood\": {\n481\t      \"vanilla_vs_mlm\": 0.797,\n482\t      \"vanilla_vs_9class\": 0.649,\n483\t      \"mlm_vs_9class\": 0.773\n484\t    },\n485\t    \"uncentered_cka_iid\": {\n486\t      \"vanilla_vs_mlm\": 1,\n487\t      \"vanilla_vs_9class\": 0.421,\n488\t      \"mlm_vs_9class\": 0.422\n489\t    },\n490\t    \"note\": \"Centered CKA reveals MLM DOES change representations (0.44 not 1.0). Uncentered CKA was misleading.\"\n491\t  },\n492\t  \"completed_at\": \"2026-05-18T11:27:25.460Z\"\n493\t}\n494\t\n495\t=== plan_017_eval_seed123 ===\n496\t{\n497\t  \"status\": \"PREPARING\",\n498\t  \"retry_count\": 0,\n499\t  \"created_at\": \"2026-05-18T06:40:37.831Z\",\n500\t  \"updated_at\": \"2026-05-18T06:40:37.831Z\",\n501\t  \"spec\": {\n502\t    \"command\": \"bash -c \\\"cd /root/persuasion_turn_jailbreak_detect && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/plan_017_dd_eval_seed.py --seed 123 --mlm_ckpt checkpoints/plan_017_mlm_seed123/best\\\"\",\n503\t    \"server\": \"westd-33183\",\n504\t    \"gpu\": [\n505\t      \"cuda:1\"\n506\t    ],\n507\t    \"pid\": \"24747\",\n508\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_017_eval_seed123.log\",\n509\t    \"submitted_at\": \"2026-05-18T06:40:37.725Z\",\n510\t    \"submitted_via\": \"submit_training_job\",\n511\t    \"backend\": \"tmux\",\n512\t    \"account\": \"root\"\n513\t  }\n514\t}\n515\t\n516\t=== plan_017_eval_seed456 ===\n517\t{\n518\t  \"status\": \"PREPARING\",\n519\t  \"retry_count\": 0,\n520\t  \"created_at\": \"2026-05-18T06:50:55.636Z\",\n521\t  \"updated_at\": \"2026-05-18T06:50:55.636Z\",\n522\t  \"spec\": {\n523\t    \"command\": \"bash -c \\\"cd /root/persuasion_turn_jailbreak_detect && export HF_HUB_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/plan_017_dd_eval_seed.py --seed 456 --mlm_ckpt checkpoints/plan_017_mlm_seed456/best\\\"\",\n524\t    \"server\": \"westd-33183\",\n525\t    \"gpu\": [\n526\t      \"cuda:1\"\n527\t    ],\n528\t    \"pid\": \"27159\",\n529\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_017_eval_seed456.log\",\n530\t    \"submitted_at\": \"2026-05-18T06:50:55.553Z\",\n531\t    \"submitted_via\": \"submit_training_job\",\n532\t    \"backend\": \"tmux\",\n533\t    \"account\": \"root\"\n534\t  }\n535\t}\n536\t\n537\t=== plan_018_eval_seed123 ===\n538\t{\n539\t  \"status\": \"PREPARING\",\n540\t  \"retry_count\": 0,\n541\t  \"created_at\": \"2026-05-18T07:01:23.658Z\",\n542\t  \"updated_at\": \"2026-05-18T07:01:23.658Z\",\n543\t  \"spec\": {\n544\t    \"command\": \"bash -c \\\"cd /root/persuasion_turn_jailbreak_detect && PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/hf_cache HF_HUB_OFFLINE=1 /root/miniconda3/bin/python -u src/plan_018_wiki_eval_seed.py --ckpt_dir checkpoints/plan_018_wiki_mlm_seed123/best --output results/plan_018_wiki_mlm_seed123.json --eval_seed 42\\\"\",\n545\t    \"server\": \"westd-33183\",\n546\t    \"gpu\": [\n547\t      \"cuda:0\"\n548\t    ],\n549\t    \"pid\": \"33251\",\n550\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_018_eval_seed123.log\",\n551\t    \"submitted_at\": \"2026-05-18T07:01:23.581Z\",\n552\t    \"submitted_via\": \"submit_training_job\",\n553\t    \"backend\": \"tmux\",\n554\t    \"account\": \"root\"\n555\t  }\n556\t}\n557\t\n558\t=== plan_018_eval_seed456 ===\n559\t{\n560\t  \"status\": \"PREPARING\",\n561\t  \"retry_count\": 0,\n562\t  \"created_at\": \"2026-05-18T07:02:13.081Z\",\n563\t  \"updated_at\": \"2026-05-18T07:02:13.081Z\",\n564\t  \"spec\": {\n565\t    \"command\": \"bash -c \\\"cd /root/persuasion_turn_jailbreak_detect && PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/hf_cache HF_HUB_OFFLINE=1 /root/miniconda3/bin/python -u src/plan_018_wiki_eval_seed.py --ckpt_dir checkpoints/plan_018_wiki_mlm_seed456/best --output results/plan_018_wiki_mlm_seed456.json --eval_seed 42\\\"\",\n566\t    \"server\": \"westd-33183\",\n567\t    \"gpu\": [\n568\t      \"cuda:0\"\n569\t    ],\n570\t    \"pid\": \"33721\",\n571\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_018_eval_seed456.log\",\n572\t    \"submitted_at\": \"2026-05-18T07:02:12.986Z\",\n573\t    \"submitted_via\": \"submit_training_job\",\n574\t    \"backend\": \"tmux\",\n575\t    \"account\": \"root\"\n576\t  }\n577\t}\n578\t\n579\t=== plan_016v2_topic_eval_seed123 ===\n580\t{\n581\t  \"status\": \"PREPARING\",\n582\t  \"retry_count\": 0,\n583\t  \"created_at\": \"2026-05-18T06:30:35.800Z\",\n584\t  \"updated_at\": \"2026-05-18T06:30:35.800Z\",\n585\t  \"spec\": {\n586\t    \"command\": \"bash -c \\\"export PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 && source /root/miniconda3/bin/activate base && cd /root/persuasion_turn_jailbreak_detect && python -u src/plan_016v2_dd_eval_seed.py --seed 123 --deberta_ckpt checkpoints/plan_016v2_topic_seed123/best --gru_save_dir checkpoints/plan_016v2_topic_seed123/gru --output results/plan_016v2_topic_seed123.json --device cuda:0\\\"\",\n587\t    \"server\": \"westd-33183\",\n588\t    \"gpu\": [\n589\t      \"cuda:2\"\n590\t    ],\n591\t    \"pid\": \"22017\",\n592\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_016v2_topic_eval_seed123.log\",\n593\t    \"submitted_at\": \"2026-05-18T06:30:35.730Z\",\n594\t    \"submitted_via\": \"submit_training_job\",\n595\t    \"backend\": \"tmux\",\n596\t    \"account\": \"root\"\n597\t  }\n598\t}\n599\t\n600\t=== plan_016v2_topic_eval_seed456 ===\n601\t{\n602\t  \"status\": \"PREPARING\",\n603\t  \"retry_count\": 0,\n604\t  \"created_at\": \"2026-05-18T06:31:11.271Z\",\n605\t  \"updated_at\": \"2026-05-18T06:31:11.271Z\",\n606\t  \"spec\": {\n607\t    \"command\": \"bash -c \\\"export PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 && source /root/miniconda3/bin/activate base && cd /root/persuasion_turn_jailbreak_detect && python -u src/plan_016v2_dd_eval_seed.py --seed 456 --deberta_ckpt checkpoints/plan_016v2_topic_seed456/best --gru_save_dir checkpoints/plan_016v2_topic_seed456/gru --output results/plan_016v2_topic_seed456.json --device cuda:0\\\"\",\n608\t    \"server\": \"westd-33183\",\n609\t    \"gpu\": [\n610\t      \"cuda:2\"\n611\t    ],\n612\t    \"pid\": \"22800\",\n613\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_016v2_topic_eval_seed456.log\",\n614\t    \"submitted_at\": \"2026-05-18T06:31:11.207Z\",\n615\t    \"submitted_via\": \"submit_training_job\",\n616\t    \"backend\": \"tmux\",\n617\t    \"account\": \"root\"\n618\t  }\n619\t}\n620\t\n621\t=== plan_016v2_topic_eval_seed42 ===\n622\t{\n623\t  \"status\": \"PREPARING\",\n624\t  \"retry_count\": 0,\n625\t  \"created_at\": \"2026-05-18T06:31:52.043Z\",\n626\t  \"updated_at\": \"2026-05-18T06:31:52.043Z\",\n627\t  \"spec\": {\n628\t    \"command\": \"bash -c \\\"export PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 && source /root/miniconda3/bin/activate base && cd /root/persuasion_turn_jailbreak_detect && python -u src/plan_016v2_dd_eval_seed.py --seed 42 --deberta_ckpt checkpoints/plan_016v2_topic/best --gru_save_dir checkpoints/plan_016v2_topic/gru_reseed42 --output results/plan_016v2_topic_seed42.json --device cuda:0\\\"\",\n629\t    \"server\": \"westd-33183\",\n630\t    \"gpu\": [\n631\t      \"cuda:2\"\n632\t    ],\n633\t    \"pid\": \"23592\",\n634\t    \"log_path\": \"~/runs/persuasion_turn_jailbreak_detect/plan_016v2_topic_eval_seed42.log\",\n635\t    \"submitted_at\": \"2026-05-18T06:31:51.984Z\",\n636\t    \"submitted_via\": \"submit_training_job\",\n637\t    \"backend\": \"tmux\",\n638\t    \"account\": \"root\"\n639\t  }\n640\t}\n641\t\n642\t=== exp2_actorattack_ood ===\n643\t{\n644\t  \"status\": \"DONE\",\n645\t  \"retry_count\": 0,\n646\t  \"created_at\": \"2026-05-18T10:41:47.379Z\",\n647\t  \"updated_at\": \"2026-05-18T12:59:16.967Z\",\n648\t  \"hypothesis\": \"Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type\",\n649\t  \"spec\": {\n650\t    \"command\": \"generate_actorattack.py + evaluate all variants\",\n651\t    \"server\": \"westd-33183\",\n652\t    \"data_path\": \"data/generated/actorattack_all.jsonl (80 jailbreak) + plan_002_splits/test.jsonl (38 benign)\",\n653\t    \"data_count\": 118,\n654\t    \"model_name\": \"DeBERTa-v3-base (7 variants \\u00d7 3 seeds) + RoBERTa-base (3 variants \\u00d7 3 seeds)\",\n655\t    \"seed\": \"42,123,456\",\n656\t    \"checkpoint_path\": \"checkpoints/*/\",\n657\t    \"log_path\": \"results/exp2_actorattack_ood.json\"\n658\t  },\n659\t  \"conclusion\": \"success\",\n660\t  \"metrics\": {\n661\t    \"deberta_9class\": {\n662\t      \"k1\": 0.773,\n663\t      \"k1_std\": 0.041,\n664\t      \"k2\": 0.855,\n665\t      \"k2_std\": 0.048,\n666\t      \"k3\": 0.921,\n667\t      \"k3_std\": 0.046,\n668\t      \"k5\": 0.966,\n669\t      \"k5_std\": 0.028,\n670\t      \"full\": 0.972,\n671\t      \"full_std\": 0.026\n672\t    },\n673\t    \"deberta_binary\": {\n674\t      \"k1\": 0.737,\n675\t      \"k1_std\": 0.074,\n676\t      \"k2\": 0.89,\n677\t      \"k2_std\": 0.065,\n678\t      \"k3\": 0.951,\n679\t      \"k3_std\": 0.036,\n680\t      \"k5\": 0.987,\n681\t      \"k5_std\": 0.012,\n682\t      \"full\": 0.99,\n683\t      \"full_std\": 0.008,\n684\t      \"note\": \"3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636\"\n685\t    },\n686\t    \"deberta_scrambled\": {\n687\t      \"k1\": 0.721,\n688\t      \"k1_std\": 0.101,\n689\t      \"k2\": 0.828,\n690\t      \"k2_std\": 0.054,\n691\t      \"k3\": 0.893,\n692\t      \"k3_std\": 0.067,\n693\t      \"k5\": 0.937,\n694\t      \"k5_std\": 0.057,\n695\t      \"full\": 0.951,\n696\t      \"full_std\": 0.043,\n697\t      \"per_seed_full\": {\n698\t        \"seed42\": 0.891,\n699\t        \"seed123\": 0.99,\n700\t        \"seed456\": 0.971\n701\t      },\n702\t      \"per_seed_k1\": {\n703\t        \"seed42\": 0.618,\n704\t        \"seed123\": 0.858,\n705\t        \"seed456\": 0.686\n706\t      },\n707\t      \"per_seed_k3\": {\n708\t        \"seed42\": 0.808,\n709\t        \"seed123\": 0.972,\n710\t        \"seed456\": 0.9\n711\t      },\n712\t      \"note\": \"3-seed complete, K2/K5 corrected\"\n713\t    },\n714\t    \"deberta_mlm\": {\n715\t      \"k1\": 0.736,\n716\t      \"k1_std\": 0.15,\n717\t      \"k2\": 0.909,\n718\t      \"k2_std\": 0.058,\n719\t      \"k3\": 0.945,\n720\t      \"k3_std\": 0.039,\n721\t      \"k5\": 0.929,\n722\t      \"k5_std\": 0.033,\n723\t      \"full\": 0.893,\n724\t      \"full_std\": 0.08\n725\t    },\n726\t    \"deberta_wiki_mlm\": {\n727\t      \"k1\": 0.656,\n728\t      \"k1_std\": 0.224,\n729\t      \"k2\": 0.672,\n730\t      \"k2_std\": 0.252,\n731\t      \"k3\": 0.693,\n732\t      \"k3_std\": 0.28,\n733\t      \"k5\": 0.689,\n734\t      \"k5_std\": 0.285,\n735\t      \"full\": 0.686,\n736\t      \"full_std\": 0.297\n737\t    },\n738\t    \"deberta_topic\": {\n739\t      \"k1\": 0.513,\n740\t      \"k1_std\": 0.077,\n741\t      \"k2\": 0.58,\n742\t      \"k2_std\": 0.109,\n743\t      \"k3\": 0.565,\n744\t      \"k3_std\": 0.1,\n745\t      \"k5\": 0.615,\n746\t      \"k5_std\": 0.111,\n747\t      \"full\": 0.625,\n748\t      \"full_std\": 0.141\n749\t    },\n750\t    \"deberta_vanilla\": {\n751\t      \"k1\": 0.337,\n752\t      \"k1_std\": 0.049,\n753\t      \"k2\": 0.306,\n754\t      \"k2_std\": 0.026,\n755\t      \"k3\": 0.284,\n756\t      \"k3_std\": 0.011,\n757\t      \"k5\": 0.262,\n758\t      \"k5_std\": 0.006,\n759\t      \"full\": 0.258,\n760\t      \"full_std\": 0\n761\t    },\n762\t    \"roberta_9class\": {\n763\t      \"k1\": 0.738,\n764\t      \"k1_std\": 0.033,\n765\t      \"k2\": 0.805,\n766\t      \"k2_std\": 0.033,\n767\t      \"k3\": 0.884,\n768\t      \"k3_std\": 0.066,\n769\t      \"k5\": 0.925,\n770\t      \"k5_std\": 0.066,\n771\t      \"full\": 0.939,\n772\t      \"full_std\": 0.046\n773\t    },\n774\t    \"roberta_mlm\": {\n775\t      \"k1\": 0.633,\n776\t      \"k1_std\": 0.133,\n777\t      \"k2\": 0.665,\n778\t      \"k2_std\": 0.15,\n779\t      \"k3\": 0.713,\n780\t      \"k3_std\": 0.174,\n781\t      \"k5\": 0.719,\n782\t      \"k5_std\": 0.184,\n783\t      \"full\": 0.73,\n784\t      \"full_std\": 0.201\n785\t    },\n786\t    \"roberta_vanilla\": {\n787\t      \"k1\": 0.41,\n788\t      \"k1_std\": 0.126,\n789\t      \"k2\": 0.425,\n790\t      \"k2_std\": 0.143,\n791\t      \"k3\": 0.432,\n792\t      \"k3_std\": 0.144,\n793\t      \"k5\": 0.466,\n794\t      \"k5_std\": 0.144,\n795\t      \"full\": 0.466,\n796\t      \"full_std\": 0.163\n797\t    },\n798\t    \"n_samples\": 118,\n799\t    \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \\u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"\n800\t  },\n801\t  \"completed_at\": \"2026-05-18T12:21:09.733Z\"\n802\t}\n803\t\n804\t=== exp41_tost_10seed ===\n805\t{\n806\t  \"status\": \"DONE\",\n807\t  \"retry_count\": 0,\n808\t  \"created_at\": \"2026-05-22T03:27:38.653Z\",\n809\t  \"updated_at\": \"2026-05-22T03:53:52.977Z\",\n810\t  \"hypothesis\": \"Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient statistical power: if scrambled and 9-class are truly equivalent within 5pp margin on ActorAttack, the increased sample size will yield p<0.05, confirming label content irrelevance across all OOD families.\",\n811\t  \"parent\": \"exp39_extra_seeds_tost\",\n812\t  \"spec\": {\n813\t    \"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/exp41_tost_10seed.py\",\n814\t    \"server\": \"westd-33183\",\n815\t    \"data_path\": \"/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/\",\n816\t    \"data_count\": \"train+val+test from plan_002_splits\",\n817\t    \"model_name\": \"deberta-v3-base + BiGRU\",\n818\t    \"seed\": \"2024,2025,2026,314,628 (new) + 42,123,456,789,1000 (prior)\",\n819\t    \"checkpoint_source\": \"newly trained from scratch (5 new seeds)\",\n820\t    \"eval_data\": \"DD OOD, AA OOD, FITD OOD test sets\"\n821\t  },\n822\t  \"log_path\": \"/root/persuasion_turn_jailbreak_detect/logs/exp41_tost_10seed.log\",\n823\t  \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp41_*/\",\n824\t  \"metrics\": {\n825\t    \"n_seeds\": 10,\n826\t    \"seeds\": [\n827\t      42,\n828\t      123,\n829\t      456,\n830\t      789,\n831\t      1000,\n832\t      2024,\n833\t      2025,\n834\t      2026,\n835\t      314,\n836\t      628\n837\t    ],\n838\t    \"tost_DD\": {\n839\t      \"p\": 2.06e-09,\n840\t      \"equivalent\": true,\n841\t      \"cohens_d\": -0.136\n842\t    },\n843\t    \"tost_AA\": {\n844\t      \"p\": 0.183,\n845\t      \"equivalent\": false,\n846\t      \"cohens_d\": 0.44\n847\t    },\n848\t    \"tost_FITD\": {\n849\t      \"p\": 0,\n850\t      \"equivalent\": true,\n851\t      \"cohens_d\": 0\n852\t    },\n853\t    \"9class_AA_mean\": 0.979,\n854\t    \"scrambled_AA_mean\": 0.949,\n855\t    \"AA_mean_diff_pp\": 3,\n856\t    \"training_time_min\": 16.8\n857\t  },\n858\t  \"conclusion\": \"negative\",\n859\t  \"completed_at\": \"2026-05-22T03:53:52.977Z\"\n860\t}\n861\t\n862\t=== exp39_extra_seeds_tost ===\n863\t{\n864\t  \"status\": \"DONE\",\n865\t  \"retry_count\": 0,\n866\t  \"created_at\": \"2026-05-21T09:15:07.434Z\",\n867\t  \"updated_at\": \"2026-05-21T09:33:25.262Z\",\n868\t  \"hypothesis\": \"\\u6269\\u5c55 9-class \\u548c scrambled \\u5230 5 seeds (\\u65b0\\u589e 789/1000) \\u5c06\\u63d0\\u4f9b\\u8db3\\u591f\\u7edf\\u8ba1\\u6548\\u529b\\u652f\\u6301 TOST \\u7b49\\u4ef7\\u6027\\u68c0\\u9a8c\\uff1ascrambled \\u5728 DD OOD \\u4e0a\\u4e0e 9-class \\u7b49\\u4ef7\\uff08\\u5dee\\u8ddd &lt;2pp\\uff09\\uff0c\\u4f46\\u5728 AA OOD \\u4e0a\\u663e\\u8457\\u66f4\\u4f4e\\uff0c\\u8bc1\\u660e\\u7b56\\u7565\\u6807\\u7b7e\\u7684\\u6b63\\u786e\\u8bed\\u4e49\\u4fe1\\u606f\\u5bf9 hard OOD \\u81f3\\u5173\\u91cd\\u8981\\u3002\",\n869\t  \"spec\": {\n870\t    \"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/exp39_extra_seeds.py\",\n871\t    \"server\": \"westd-33183\",\n872\t    \"data_path\": \"data/plan_002_splits/train.jsonl + DD/AA/FITD OOD\",\n873\t    \"data_count\": \"350 train + 80 DD + 80 AA + 80 FITD + 76 test\",\n874\t    \"model_name\": \"microsoft/deberta-v3-base + BiGRU (9class & scrambled)\",\n875\t    \"seed\": \"789,1000\",\n876\t    \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp39_*/\",\n877\t    \"log_path\": \"/tmp/exp39.log\"\n878\t  },\n879\t  \"metrics\": {\n880\t    \"9class_seed789\": {\n881\t      \"iid\": 1,\n882\t      \"dd_ood\": 1,\n883\t      \"aa_ood\": 0.9715,\n884\t      \"fitd_ood\": 1\n885\t    },\n886\t    \"9class_seed1000\": {\n887\t      \"iid\": 1,\n888\t      \"dd_ood\": 1,\n889\t      \"aa_ood\": 0.9715,\n890\t      \"fitd_ood\": 0.9904\n891\t    },\n892\t    \"scrambled_seed789\": {\n893\t      \"iid\": 1,\n894\t      \"dd_ood\": 1,\n895\t      \"aa_ood\": 0.9904,\n896\t      \"fitd_ood\": 1\n897\t    },\n898\t    \"scrambled_seed1000\": {\n899\t      \"iid\": 1,\n900\t      \"dd_ood\": 1,\n901\t      \"aa_ood\": 0.9904,\n902\t      \"fitd_ood\": 0.9904\n903\t    },\n904\t    \"total_time_min\": 7.6\n905\t  },\n906\t  \"conclusion\": \"success\",\n907\t  \"completed_at\": \"2026-05-21T09:33:25.263Z\"\n908\t}\n909\t\n910\t=== exp35_cross_seed_ensemble ===\n911\t{\n912\t  \"status\": \"DONE\",\n913\t  \"retry_count\": 0,\n914\t  \"created_at\": \"2026-05-20T20:12:07.318Z\",\n915\t  \"updated_at\": \"2026-05-20T20:28:58.939Z\",\n916\t  \"hypothesis\": \"3-seed majority vote ensemble \\u5c06\\u5728\\u6240\\u6709 OOD \\u653b\\u51fb\\u5bb6\\u65cf\\u4e0a\\u63d0\\u5347\\u68c0\\u6d4b F1\\uff08\\u5c24\\u5176\\u51cf\\u5c11 AA OOD \\u4e0a\\u7684\\u6f0f\\u68c0\\uff09\\uff0c9-class ensemble \\u7684\\u63d0\\u5347\\u5e45\\u5ea6\\u5927\\u4e8e MLM/vanilla\\uff0c\\u56e0\\u4e3a 9-class \\u5404 seed \\u7684\\u9519\\u8bef\\u6a21\\u5f0f\\u66f4\\u4e92\\u8865\\uff08\\u6765\\u81ea\\u4e0d\\u540c\\u7684\\u7b56\\u7565\\u8868\\u5f81\\u7a7a\\u95f4\\u521d\\u59cb\\u5316\\uff09\\u3002\",\n917\t  \"parent\": \"exp23_aa_error_analysis\",\n918\t  \"spec\": {\n919\t    \"command\": \"python scripts/exp35_cross_seed_ensemble.py\",\n920\t    \"server\": \"westd-33183\",\n921\t    \"data_path\": \"per_sample_predictions/ + FITD OOD generated\",\n922\t    \"data_count\": 354,\n923\t    \"model_name\": \"9class + jb_mlm + vanilla (3 seeds each)\",\n924\t    \"seed\": \"42,123,456\",\n925\t    \"checkpoint_source\": \"plan_002 + plan_017_mlm + pretrained\",\n926\t    \"eval_data\": \"DD 118 + FITD 118 + AA 118\"\n927\t  },\n928\t  \"metrics\": {\n929\t    \"dd_ood\": {\n930\t      \"9class\": {\n931\t        \"ensemble_f1\": 1,\n932\t        \"individual_mean\": 0.9968,\n933\t        \"individual_std\": 0.0045,\n934\t        \"delta\": 0.0032,\n935\t        \"fixed\": 1,\n936\t        \"broke\": 0\n937\t      },\n938\t      \"jb_mlm\": {\n939\t        \"ensemble_f1\": 1,\n940\t        \"individual_mean\": 0.9138,\n941\t        \"individual_std\": 0.115,\n942\t        \"delta\": 0.0862,\n943\t        \"fixed\": 30,\n944\t        \"broke\": 0\n945\t      },\n946\t      \"vanilla\": {\n947\t        \"ensemble_f1\": 0.2575,\n948\t        \"individual_mean\": 0.2619,\n949\t        \"individual_std\": 0.017,\n950\t        \"delta\": -0.0044,\n951\t        \"fixed\": 1,\n952\t        \"broke\": 0\n953\t      }\n954\t    },\n955\t    \"aa_ood\": {\n956\t      \"9class\": {\n957\t        \"ensemble_f1\": 0.9809,\n958\t        \"individual_mean\": 0.9719,\n959\t        \"individual_std\": 0.0261,\n960\t        \"delta\": 0.009,\n961\t        \"fixed\": 5,\n962\t        \"broke\": 0\n963\t      },\n964\t      \"jb_mlm\": {\n965\t        \"ensemble_f1\": 0.953,\n966\t        \"individual_mean\": 0.8934,\n967\t        \"individual_std\": 0.0799,\n968\t        \"delta\": 0.0596,\n969\t        \"fixed\": 26,\n970\t        \"broke\": 0\n971\t      },\n972\t      \"vanilla\": {\n973\t        \"ensemble_f1\": 0.2575,\n974\t        \"individual_mean\": 0.2575,\n975\t        \"individual_std\": 0,\n976\t        \"delta\": 0,\n977\t        \"fixed\": 0,\n978\t        \"broke\": 0\n979\t      }\n980\t    },\n981\t    \"fitd_ood\": {\n982\t      \"9class\": {\n983\t        \"ensemble_f1\": 1,\n984\t        \"individual_mean\": 1,\n985\t        \"individual_std\": 0,\n986\t        \"delta\": 0,\n987\t        \"fixed\": 0,\n988\t        \"broke\": 0\n989\t      },\n990\t      \"jb_mlm\": {\n991\t        \"ensemble_f1\": 1,\n992\t        \"individual_mean\": 0.9904,\n993\t        \"individual_std\": 0.0078,\n994\t        \"delta\": 0.0096,\n995\t        \"fixed\": 3,\n996\t        \"broke\": 0\n997\t      },\n998\t      \"vanilla\": {\n999\t        \"ensemble_f1\": 1,\n1000\t        \"individual_mean\": 0.9936,\n1001\t        \"individual_std\": 0.009,\n1002\t        \"delta\": 0.0064,\n1003\t        \"fixed\": 2,\n1004\t        \"broke\": 0\n1005\t      }\n1006\t    },\n1007\t    \"note\": \"Ensemble NEVER breaks correct predictions (broke=0 everywhere). jb_mlm benefits most from ensemble (+8.6pp DD, +6.0pp AA). 9class achieves perfect DD/FITD, near-perfect AA (0.981). Vanilla too weak to benefit.\"\n1008\t  },\n1009\t  \"checkpoint_path\": \"plan_002 + plan_017_mlm + pretrained (3 seeds each)\",\n1010\t  \"log_path\": \"results/exp35_cross_seed_ensemble.json\",\n1011\t  \"conclusion\": \"success\",\n1012\t  \"completed_at\": \"2026-05-20T20:28:58.939Z\"\n1013\t}\n1014\t\n1015\t=== exp4_dd_ood_perturbation ===\n1016\t{\n1017\t  \"status\": \"DONE\",\n1018\t  \"retry_count\": 0,\n1019\t  \"created_at\": \"2026-05-18T10:47:27.803Z\",\n1020\t  \"updated_at\": \"2026-05-18T12:06:21.623Z\",\n1021\t  \"hypothesis\": \"Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on DD OOD paraphrased data, while vanilla/wiki-MLM variants will show significant degradation, extending IID perturbation robustness findings to OOD setting\",\n1022\t  \"spec\": {\n1023\t    \"command\": \"python exp4_dd_ood_perturbation.py (Qwen3-8B paraphrasing + 7-variant eval)\",\n1024\t    \"server\": \"westd-33183\",\n1025\t    \"data_path\": \"data/dd_ood (80 conversations) + plan_002_splits/test.jsonl (38 benign)\",\n1026\t    \"data_count\": 118,\n1027\t    \"model_name\": \"DeBERTa-v3-base (7 variants \\u00d7 3 seeds)\",\n1028\t    \"seed\": \"42,123,456\",\n1029\t    \"checkpoint_path\": \"checkpoints/*/\",\n1030\t    \"log_path\": \"results/exp4_dd_ood_perturbation.json\"\n1031\t  },\n1032\t  \"conclusion\": \"success\",\n1033\t  \"metrics\": {\n1034\t    \"9class_3seed\": {\n1035\t      \"clean_k1\": 0.9905,\n1036\t      \"perturbed_k1\": 0.9968,\n1037\t      \"delta_k1\": 0.0063,\n1038\t      \"clean_k3\": 0.9719,\n1039\t      \"perturbed_k3\": 0.9936,\n1040\t      \"delta_k3\": 0.0217,\n1041\t      \"clean_full\": 0.9968,\n1042\t      \"perturbed_full\": 1,\n1043\t      \"delta_full\": 0.0032\n1044\t    },\n1045\t    \"binary_3seed\": {\n1046\t      \"clean_k1\": 0.9936,\n1047\t      \"perturbed_k1\": 1,\n1048\t      \"delta_k1\": 0.0064,\n1049\t      \"clean_full\": 0.9968,\n1050\t      \"perturbed_full\": 1,\n1051\t      \"delta_full\": 0.0032\n1052\t    },\n1053\t    \"scrambled_3seed\": {\n1054\t      \"clean_k1\": 0.9968,\n1055\t      \"perturbed_k1\": 0.9936,\n1056\t      \"delta_k1\": -0.0032,\n1057\t      \"clean_full\": 0.9968,\n1058\t      \"perturbed_full\": 1,\n1059\t      \"delta_full\": 0.0032\n1060\t    },\n1061\t    \"jb_mlm_3seed\": {\n1062\t      \"clean_k1\": 0.9733,\n1063\t      \"perturbed_k1\": 0.9733,\n1064\t      \"delta_k1\": 0,\n1065\t      \"clean_full\": 0.9138,\n1066\t      \"perturbed_full\": 0.9409,\n1067\t      \"delta_full\": 0.0271\n1068\t    },\n1069\t    \"wiki_mlm_3seed\": {\n1070\t      \"clean_k1\": 0.9131,\n1071\t      \"perturbed_k1\": 0.8808,\n1072\t      \"delta_k1\": -0.0323,\n1073\t      \"clean_full\": 0.9042,\n1074\t      \"perturbed_full\": 0.8715,\n1075\t      \"delta_full\": -0.0327\n1076\t    },\n1077\t    \"topic_3seed\": {\n1078\t      \"clean_k1\": 0.5912,\n1079\t      \"perturbed_k1\": 0.617,\n1080\t      \"delta_k1\": 0.0259,\n1081\t      \"clean_full\": 0.5412,\n1082\t      \"perturbed_full\": 0.5765,\n1083\t      \"delta_full\": 0.0353\n1084\t    },\n1085\t    \"vanilla_3seed\": {\n1086\t      \"clean_k1\": 0.6283,\n1087\t      \"perturbed_k1\": 0.5602,\n1088\t      \"delta_k1\": -0.0681,\n1089\t      \"clean_k2\": 0.4824,\n1090\t      \"perturbed_k2\": 0.4829,\n1091\t      \"delta_k2\": 0.0004,\n1092\t      \"clean_full\": 0.3123,\n1093\t      \"perturbed_full\": 0.3394,\n1094\t      \"delta_full\": 0.0271\n1095\t    },\n1096\t    \"mcnemar_perturbed_k1\": {\n1097\t      \"9class_vs_vanilla\": {\n1098\t        \"all_seeds_p\": \"<0.001\",\n1099\t        \"discordant_range\": \"49-56 favoring 9class\"\n1100\t      },\n1101\t      \"9class_vs_jb_mlm\": \"n.s. all seeds\",\n1102\t      \"9class_vs_scrambled\": \"n.s. all seeds\"\n1103\t    },\n1104\t    \"mcnemar_perturbed_full\": {\n1105\t      \"9class_vs_vanilla\": {\n1106\t        \"all_seeds_p\": \"<0.001\",\n1107\t        \"discordant_range\": \"67-78 favoring 9class\"\n1108\t      },\n1109\t      \"9class_vs_jb_mlm\": {\n1110\t        \"seed42\": \"tie\",\n1111\t        \"seed123\": \"n.s.\",\n1112\t        \"seed456\": \"p=4e-06 (b=19)\"\n1113\t      },\n1114\t      \"9class_vs_scrambled\": \"tie all seeds\"\n1115\t    }\n1116\t  },\n1117\t  \"completed_at\": \"2026-05-18T11:44:43.341Z\"\n1118\t}\n1119\t\n1120\t=== exp55_5seed_mlm_vs_9class_aa ===\n1121\t{\n1122\t  \"status\": \"DONE\",\n1123\t  \"retry_count\": 0,\n1124\t  \"created_at\": \"2026-05-22T11:11:41.549Z\",\n1125\t  \"updated_at\": \"2026-05-22T12:15:56.035Z\",\n1126\t  \"hypothesis\": \"9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)\",\n1127\t  \"spec\": {\n1128\t    \"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/exp55_5seed_expansion.py\",\n1129\t    \"server\": \"westd-49690\",\n1130\t    \"data_path\": \"/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/\",\n1131\t    \"data_count\": \"~800 train + OOD eval sets\",\n1132\t    \"model_name\": \"microsoft/deberta-v3-base\",\n1133\t    \"seed\": \"789,1024\",\n1134\t    \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp55_*\",\n1135\t    \"log_path\": \"/tmp/exp55_train.log\"\n1136\t  },\n1137\t  \"metrics\": {\n1138\t    \"n_seeds\": 5,\n1139\t    \"seeds\": [\n1140\t      42,\n1141\t      123,\n1142\t      456,\n1143\t      789,\n1144\t      1024\n1145\t    ],\n1146\t    \"9class_aa_ood\": {\n1147\t      \"mean\": 0.9735,\n1148\t      \"std\": 0.0124\n1149\t    },\n1150\t    \"mlm_aa_ood\": {\n1151\t      \"mean\": 0.9566,\n1152\t      \"std\": 0.0237\n1153\t    },\n1154\t    \"9class_iid\": {\n1155\t      \"mean\": 1,\n1156\t      \"std\": 0\n1157\t    },\n1158\t    \"mlm_iid\": {\n1159\t      \"mean\": 0.9816,\n1160\t      \"std\": 0.0134\n1161\t    },\n1162\t    \"9class_dd_ood\": {\n1163\t      \"mean\": 0.9924,\n1164\t      \"std\": 0.0111\n1165\t    },\n1166\t    \"mlm_dd_ood\": {\n1167\t      \"mean\": 0.9883,\n1168\t      \"std\": 0.0094\n1169\t    },\n1170\t    \"9class_fitd_ood\": {\n1171\t      \"mean\": 1,\n1172\t      \"std\": 0\n1173\t    },\n1174\t    \"mlm_fitd_ood\": {\n1175\t      \"mean\": 0.9883,\n1176\t      \"std\": 0.0094\n1177\t    },\n1178\t    \"aa_ood_delta_pp\": 1.69,\n1179\t    \"aa_ood_paired_ttest_p\": 0.2461,\n1180\t    \"aa_ood_wilcoxon_p\": 0.1875,\n1181\t    \"aa_ood_9class_wins\": 4,\n1182\t    \"aa_ood_mlm_wins\": 1,\n1183\t    \"total_time_min\": 10.5\n1184\t  },\n1185\t  \"conclusion\": \"negative\",\n1186\t  \"completed_at\": \"2026-05-22T12:15:56.035Z\"\n1187\t}\n1188\t\n1189\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20c02b07-ee4f-48d3-9411-aa0f2648c609",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "f228c1a4-9059-43f9-8848-7b2b0bbacf44",
+            "sourceToolAssistantUUID": "20c02b07-ee4f-48d3-9411-aa0f2648c609",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T21:31:45.985Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also fetch the remaining key experiments - specifically looking for more seed-level DD OOD / AA OOD data from plan_002, plan_017, and related multi-seed entries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f228c1a4-9059-43f9-8848-7b2b0bbacf44",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKcKzPAJStEXP5vQ8Jf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3a8bad23-e34a-4df6-b56d-f7e5968f36d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01QZetuJ7aET2HkkRYCjS8Gd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 19451,
+                "cache_read_input_tokens": 21946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 19451,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T21:31:53.708Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ASwoBs1v2Ewfn8H5FPn1LU",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/e4efefca-26d6-49cf-8a09-2af928a47017/tool-results/mcp-agent-ml-research-read_registry-1779485432679.txt', 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\nresult_str = outer['result']\nregistry = json.loads(result_str)\n\ndata = registry['data']\nexperiments = data['experiments']\n\n# Additional relevant experiments\ntarget_keys = [\n    'plan_002_seed123',\n    'plan_002_seed456',\n    'plan_002_clean_training',\n    'exp13_meanpool_multiseed',\n    'exp9_bootstrap_ci',\n    'exp11_tost_equivalence',\n    'exp38_wildcat_calibration',\n    'exp42_ood_benign_mixed',\n    'exp42b_balanced_ratio_ablation',\n    'exp28_data_efficiency',\n    'exp28b_data_efficiency_supplement',\n    'exp55_5seed_mlm_vs_9class_aa',\n]\n\nfor k in target_keys:\n    if k in experiments:\n        print(f'=== {k} ===')\n        print(json.dumps(experiments[k], indent=2))\n        print()\n    else:\n        print(f'=== {k} === NOT FOUND')\n        print()\n\" 2>&1",
+                "description": "Extract additional seed and adaptation experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a8bad23-e34a-4df6-b56d-f7e5968f36d6",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKcKzPAJStEXP5vQ8Jf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "718732c6-c25d-47b6-8535-6b8cad76c630",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01QZetuJ7aET2HkkRYCjS8Gd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 19451,
+                "cache_read_input_tokens": 21946,
+                "output_tokens": 522,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19451
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 522,
+                    "cache_read_input_tokens": 21946,
+                    "cache_creation_input_tokens": 19451,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 19451,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T21:31:53.803Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ASwoBs1v2Ewfn8H5FPn1LU",
+              "type": "tool_result",
+              "content": "=== plan_002_seed123 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-18T01:13:42.372Z\",\n  \"updated_at\": \"2026-05-18T07:29:32.962Z\",\n  \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\",\n  \"parent\": \"plan_002_clean_training\",\n  \"spec\": {\n    \"command\": \"python src/train_deberta.py + train_classifier.py + eval_early_detection.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/\",\n    \"data_count\": 500,\n    \"model_name\": \"DeBERTa-v3-base + BiGRU\",\n    \"seed\": 123,\n    \"checkpoint_source\": \"checkpoints/plan_002_seed123/\",\n    \"eval_data\": \"data/plan_002_splits/test.jsonl\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"treatment_k1_f1\": 1,\n    \"treatment_k2_f1\": 1,\n    \"treatment_k3_f1\": 1,\n    \"treatment_k5_f1\": 1,\n    \"treatment_full_f1\": 1,\n    \"baseline_k1_f1\": 0.987,\n    \"baseline_k2_f1\": 0.987,\n    \"baseline_k3_f1\": 0.987,\n    \"baseline_full_f1\": 1,\n    \"tfidf_all_k_f1\": 1,\n    \"dd_ood_k1_f1\": 1,\n    \"dd_ood_k2_f1\": 0.9904,\n    \"dd_ood_k3_f1\": 0.9904,\n    \"dd_ood_k5_f1\": 1,\n    \"dd_ood_full_f1\": 1\n  },\n  \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\",\n  \"completed_at\": \"2026-05-18T02:11:24.594Z\"\n}\n\n=== plan_002_seed456 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-18T01:12:15.664Z\",\n  \"updated_at\": \"2026-05-18T07:29:36.322Z\",\n  \"hypothesis\": \"Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds\",\n  \"parent\": \"plan_002_clean_training\",\n  \"spec\": {\n    \"command\": \"python src/train_deberta.py + train_classifier.py + eval_early_detection.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/\",\n    \"data_count\": 500,\n    \"model_name\": \"DeBERTa-v3-base + BiGRU\",\n    \"seed\": 456,\n    \"checkpoint_source\": \"checkpoints/plan_002_seed456/\",\n    \"eval_data\": \"data/plan_002_splits/test.jsonl\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"treatment_k1_f1\": 1,\n    \"treatment_k2_f1\": 1,\n    \"treatment_k3_f1\": 1,\n    \"treatment_k5_f1\": 1,\n    \"treatment_full_f1\": 1,\n    \"baseline_k1_f1\": 0.9296,\n    \"baseline_k2_f1\": 0.9589,\n    \"baseline_k3_f1\": 0.9867,\n    \"baseline_k5_f1\": 0.9867,\n    \"baseline_full_f1\": 1,\n    \"tfidf_all_k_f1\": 1,\n    \"deberta_best_epoch\": 2,\n    \"deberta_persuasion_acc\": 0.8593,\n    \"deberta_intent_acc\": 1,\n    \"dd_ood_k1_f1\": 0.9715,\n    \"dd_ood_k2_f1\": 0.9622,\n    \"dd_ood_k3_f1\": 0.935,\n    \"dd_ood_k5_f1\": 0.9904,\n    \"dd_ood_full_f1\": 0.9904\n  },\n  \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\",\n  \"completed_at\": \"2026-05-18T02:11:24.081Z\"\n}\n\n=== plan_002_clean_training ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T23:18:30.115Z\",\n  \"updated_at\": \"2026-05-17T23:19:02.467Z\",\n  \"hypothesis\": \"Persuasion-grounded DeBERTa embeddings on topic-anchored data will show significant early detection advantage over vanilla baseline, with Treatment-Baseline gap > 5pp at K=2 or K=3\",\n  \"parent\": \"phase_b_full\",\n  \"spec\": {\n    \"command\": \"scripts/run_plan_002.sh\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/ (crescendo 250 + topic-anchored V2 benign 250)\",\n    \"data_count\": 500,\n    \"model_name\": \"DeBERTa-v3-base + BiGRU\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"self-trained\",\n    \"eval_data\": \"data/plan_002_splits/test.jsonl\",\n    \"checkpoint_path\": \"checkpoints/plan_002/\",\n    \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/plan_002_eval.json\"\n  },\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"treatment_k1_f1\": 1,\n    \"baseline_k1_f1\": 0.987,\n    \"treatment_k2_f1\": 1,\n    \"baseline_k2_f1\": 0.9867,\n    \"treatment_k3_f1\": 1,\n    \"baseline_k3_f1\": 0.9867,\n    \"treatment_k5_f1\": 1,\n    \"baseline_k5_f1\": 1,\n    \"treatment_full_f1\": 1,\n    \"baseline_full_f1\": 1,\n    \"tfidf_all_k_f1\": 1,\n    \"max_delta_pp\": 1.3,\n    \"pass_criteria_5pp\": false\n  },\n  \"completed_at\": \"2026-05-17T23:19:02.467Z\"\n}\n\n=== exp13_meanpool_multiseed ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-18T23:35:41.779Z\",\n  \"updated_at\": \"2026-05-20T12:24:21.733Z\",\n  \"hypothesis\": \"Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary \\u2014 cross-validating shuffle ablation results\",\n  \"parent\": \"plan_015_dd_eval\",\n  \"spec\": {\n    \"command\": \"python scripts/meanpool_multiseed.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/ + data/generated/\",\n    \"data_count\": 586,\n    \"model_name\": \"DeBERTa-v3-base 9-class (3 seeds)\",\n    \"seed\": \"42,123,456\",\n    \"checkpoint_path\": \"checkpoints/plan_002_seed*/\",\n    \"log_path\": \"results/meanpool_multiseed.json\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"dd_ood\": {\n      \"k1\": {\n        \"mean\": 0.9905,\n        \"std\": 0.0134\n      },\n      \"k2\": {\n        \"mean\": 0.9936,\n        \"std\": 0.009\n      },\n      \"k3\": {\n        \"mean\": 0.9842,\n        \"std\": 0.016\n      },\n      \"k5\": {\n        \"mean\": 0.9968,\n        \"std\": 0.0045\n      },\n      \"full\": {\n        \"mean\": 0.9905,\n        \"std\": 0.0134\n      }\n    },\n    \"actorattack\": {\n      \"k1\": {\n        \"mean\": 0.8301,\n        \"std\": 0.0272\n      },\n      \"k2\": {\n        \"mean\": 0.903,\n        \"std\": 0.0229\n      },\n      \"k3\": {\n        \"mean\": 0.9622,\n        \"std\": 0.0076\n      },\n      \"k5\": {\n        \"mean\": 0.9716,\n        \"std\": 0.0153\n      },\n      \"full\": {\n        \"mean\": 0.9623,\n        \"std\": 0.0151\n      }\n    },\n    \"metric\": \"f1_macro\",\n    \"classifier\": \"mean_pooling + linear\",\n    \"encoder\": \"9-class DeBERTa-v3-base\",\n    \"note\": \"Mean pooling matches BiGRU on DD OOD (all K \\u22650.98). ActorAttack K\\u22653 also \\u22650.96. Confirms temporal modeling not necessary.\"\n  }\n}\n\n=== exp9_bootstrap_ci ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-18T16:16:19.153Z\",\n  \"updated_at\": \"2026-05-18T17:38:42.488Z\",\n  \"hypothesis\": \"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\",\n  \"spec\": {\n    \"command\": \"python scripts/exp9_bootstrap_ci.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\",\n    \"data_count\": 118,\n    \"model_name\": \"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\",\n    \"seed\": \"42,123,456\"\n  },\n  \"log_path\": \"results/exp9_run.log\",\n  \"checkpoint_path\": \"results/exp9_bootstrap_ci.json\",\n  \"metrics\": {\n    \"dd_ood_9class_full\": {\n      \"mean\": 0.9968,\n      \"ci\": [\n        0.9426,\n        1\n      ]\n    },\n    \"dd_ood_vanilla_full\": {\n      \"mean\": 0.2698,\n      \"ci\": [\n        0.2017,\n        0.3414\n      ]\n    },\n    \"actorattack_9class_full\": {\n      \"mean\": 0.9718,\n      \"ci\": [\n        0.8554,\n        1\n      ]\n    },\n    \"actorattack_vanilla_full\": {\n      \"mean\": 0.2565,\n      \"ci\": [\n        0.2027,\n        0.3139\n      ]\n    },\n    \"perm_9class_vs_vanilla_dd_full_p\": 0,\n    \"perm_9class_vs_vanilla_aa_full_p\": 0,\n    \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1,\n    \"perm_9class_vs_scrambled_dd_full_max_p\": 1\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-18T17:38:42.488Z\"\n}\n\n=== exp11_tost_equivalence ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-18T20:55:11.384Z\",\n  \"updated_at\": \"2026-05-18T20:55:29.568Z\",\n  \"hypothesis\": \"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within \\u0394=5pp margin), formally proving that persuasion label content does not matter \\u2014 any classification structure on domain text produces equivalent cross-attack generalization.\",\n  \"parent\": \"exp9_bootstrap_ci\",\n  \"spec\": {\n    \"command\": \"python scripts/tost_equivalence.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"results/exp9_bootstrap_ci.json (per-seed predictions)\",\n    \"data_count\": 236,\n    \"model_name\": \"DeBERTa-v3-base variants\",\n    \"seed\": \"42,123,456\",\n    \"checkpoint_path\": \"N/A (analysis only)\",\n    \"log_path\": \"results/tost_equivalence.json\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"dd_ood_full\": {\n      \"9class_vs_scrambled\": {\n        \"mean_diff\": 0,\n        \"ci_90\": [\n          -0.016,\n          0.016\n        ],\n        \"p_tost\": 0.006,\n        \"equivalent\": true,\n        \"ci_within_margin\": true\n      },\n      \"9class_vs_binary\": {\n        \"mean_diff\": -0.0032,\n        \"ci_90\": [\n          -0.013,\n          0.006\n        ],\n        \"p_tost\": 0.002,\n        \"equivalent\": true,\n        \"ci_within_margin\": true\n      },\n      \"9class_vs_jb_mlm\": {\n        \"mean_diff\": 0.083,\n        \"ci_90\": [\n          -0.145,\n          0.311\n        ],\n        \"p_tost\": 0.643,\n        \"equivalent\": false,\n        \"ci_within_margin\": false\n      },\n      \"scrambled_vs_binary\": {\n        \"mean_diff\": -0.0032,\n        \"ci_90\": [\n          -0.013,\n          0.006\n        ],\n        \"p_tost\": 0.002,\n        \"equivalent\": true,\n        \"ci_within_margin\": true\n      }\n    },\n    \"actorattack_full\": {\n      \"9class_vs_scrambled\": {\n        \"mean_diff\": 0.0209,\n        \"ci_90\": [\n          -0.109,\n          0.151\n        ],\n        \"p_tost\": 0.29,\n        \"equivalent\": false,\n        \"ci_within_margin\": false\n      },\n      \"9class_vs_binary\": {\n        \"mean_diff\": -0.0185,\n        \"ci_90\": [\n          -0.075,\n          0.038\n        ],\n        \"p_tost\": 0.122,\n        \"equivalent\": false,\n        \"ci_within_margin\": false\n      },\n      \"9class_vs_jb_mlm\": {\n        \"mean_diff\": 0.0784,\n        \"ci_90\": [\n          -0.109,\n          0.266\n        ],\n        \"p_tost\": 0.65,\n        \"equivalent\": false,\n        \"ci_within_margin\": false\n      },\n      \"scrambled_vs_binary\": {\n        \"mean_diff\": -0.0394,\n        \"ci_90\": [\n          -0.117,\n          0.038\n        ],\n        \"p_tost\": 0.363,\n        \"equivalent\": false,\n        \"ci_within_margin\": false\n      }\n    },\n    \"note\": \"DD OOD: 9class\\u2248scrambled\\u2248binary formally equivalent (TOST p<0.05, 90% CI within \\u00b10.05). ActorAttack: inconclusive due to n=3 + higher variance. jb_mlm clearly different from classification variants.\"\n  }\n}\n\n=== exp38_wildcat_calibration ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-21T01:32:34.913Z\",\n  \"updated_at\": \"2026-05-21T01:57:36.010Z\",\n  \"hypothesis\": \"\\u5c11\\u91cf WildChat benign \\u6837\\u672c (~50 \\u6761) \\u5373\\u53ef\\u901a\\u8fc7\\u9608\\u503c\\u6821\\u51c6\\u5c06 FPR \\u964d\\u81f3 <25% \\u4e14 TPR >90%\\uff0c\\u8bc1\\u660e domain calibration \\u662f\\u53ef\\u884c\\u7684 practical path\\uff0cWildChat \\u9ad8 FPR \\u662f\\u9608\\u503c\\u95ee\\u9898\\u800c\\u975e\\u8868\\u5f81\\u80fd\\u529b\\u95ee\\u9898\\u3002\",\n  \"parent\": \"exp24_calibration_ece\",\n  \"spec\": {\n    \"command\": \"python scripts/exp38_wildcat_calibration.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/wildchat_benign_226.jsonl + jailbreak test data\",\n    \"data_count\": \"226 WildChat benign + jailbreak test\",\n    \"model_name\": \"plan_002 9-class DeBERTa+BiGRU\",\n    \"seed\": \"42,123,456\",\n    \"checkpoint_source\": \"plan_002 seeds 42/123/456\",\n    \"eval_data\": \"WildChat benign 226 (113 cal + 113 test) + IID/DD/AA/FITD jailbreak\"\n  },\n  \"metrics\": {\n    \"roc_auc\": {\n      \"mean\": 0.7,\n      \"std\": 0.054,\n      \"per_seed\": {\n        \"seed42\": 0.768,\n        \"seed123\": 0.697,\n        \"seed456\": 0.635\n      }\n    },\n    \"default_t05_fpr\": {\n      \"mean\": 0.791,\n      \"std\": 0.098\n    },\n    \"threshold_calibration_held_out\": {\n      \"tpr95_fpr\": {\n        \"mean\": 0.627,\n        \"std\": 0.1\n      },\n      \"tpr90_fpr\": {\n        \"mean\": 0.587,\n        \"std\": 0.091\n      }\n    },\n    \"temperature_scaling\": {\n      \"learned_T\": \"20-40 (severe overconfidence)\",\n      \"temp_scaled_tpr95_fpr\": 0.627,\n      \"temp_scaled_tpr90_fpr\": 0.583,\n      \"note\": \"Temperature scaling does NOT change FPR because ROC is invariant to monotonic score transforms\"\n    },\n    \"note\": \"AUC=0.70 is the fundamental ceiling. Threshold calibration drops FPR from 79%\\u219263% (at TPR95), still far from <25% target. WildChat high FPR is genuine domain shift, not calibration artifact.\"\n  },\n  \"conclusion\": \"negative\",\n  \"checkpoint_path\": \"results/exp38_wildcat_calibration.json\",\n  \"log_path\": \"results/exp38_roc/\",\n  \"completed_at\": \"2026-05-21T01:57:36.011Z\"\n}\n\n=== exp42_ood_benign_mixed ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T03:58:04.544Z\",\n  \"updated_at\": \"2026-05-22T04:10:33.954Z\",\n  \"hypothesis\": \"Including WildChat benign conversations in training data will reduce WildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection F1 above 0.95 on DD/AA/FITD, because the current high FPR is driven by benign distribution mismatch (exp14c: 100% from FP explosion), not model architecture limitations. Mixed benign training should expand the model's benign representation space to cover real-world conversational diversity.\",\n  \"parent\": \"exp38_wildcat_calibration\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/exp42_mixed_train.jsonl (plan_002 train + 150 WildChat benign)\",\n    \"data_count\": \"~500 (350 original + 150 WildChat)\",\n    \"model_name\": \"microsoft/deberta-v3-base + BiGRU\",\n    \"seed\": \"42,123,456\",\n    \"checkpoint_source\": \"trained from scratch with mixed data\",\n    \"eval_data\": \"wildchat_eval (~76), DD OOD, AA OOD, FITD OOD, IID test\"\n  },\n  \"metrics\": {\n    \"wildchat_fpr_mean\": 0,\n    \"wildchat_fpr_std\": 0,\n    \"iid_f1_mean\": 1,\n    \"ood_dd_f1_mean\": 1,\n    \"ood_aa_f1_mean\": 0.956,\n    \"ood_fitd_f1_mean\": 1,\n    \"wildchat_eval_n\": 49,\n    \"data_filtered\": \"27/226 jailbreak patterns removed\",\n    \"train_size\": \"500 (350 orig + 150 WildChat benign)\"\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42_mixed_seed{42,123,456}/\",\n  \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp42_training.log\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-22T04:10:33.954Z\"\n}\n\n=== exp42b_balanced_ratio_ablation ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T04:17:59.853Z\",\n  \"updated_at\": \"2026-05-22T04:39:13.434Z\",\n  \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%\\u21920%) is driven by benign distribution coverage, not the shifted class ratio (50:50\\u219265:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\",\n  \"parent\": \"exp42\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl\",\n    \"data_count\": 350,\n    \"model_name\": \"deberta-v3-base + GRU\",\n    \"seed\": \"42,123,456\",\n    \"checkpoint_source\": \"trained from scratch (ablation of exp42)\",\n    \"eval_data\": \"wildchat_eval(49) + IID test + OOD DD/AA/FITD\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"wildchat_fpr_mean\": 0,\n    \"wildchat_fpr_std\": 0,\n    \"iid_f1_mean\": 1,\n    \"ood_dd_f1_mean\": 1,\n    \"ood_aa_f1_mean\": 0.9905,\n    \"ood_aa_recall_mean\": 0.9875,\n    \"ood_fitd_f1_mean\": 1,\n    \"wildchat_eval_n\": 49,\n    \"train_size\": 350,\n    \"train_composition\": \"175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)\",\n    \"total_time_min\": 4.8\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42b_balanced_seed{42,123,456}/\",\n  \"log_path\": \"/tmp/exp42b.log\",\n  \"completed_at\": \"2026-05-22T04:39:13.434Z\"\n}\n\n=== exp28_data_efficiency ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-20T14:40:19.137Z\",\n  \"updated_at\": \"2026-05-20T15:39:09.564Z\",\n  \"hypothesis\": \"9-class DAPT maintains strong OOD generalization even at 25% training data (n=50-125), outperforming vanilla baseline at 100% data (n=350), demonstrating high sample efficiency of persuasion-grounded representations.\",\n  \"spec\": {\n    \"command\": \"python scripts/exp28_data_efficiency.py + exp28_vanilla_only.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/train.jsonl\",\n    \"data_count\": 350,\n    \"model_name\": \"microsoft/deberta-v3-base\",\n    \"seed\": 42,\n    \"pid\": \"63305\",\n    \"log_path\": \"/tmp/exp28_data_efficiency.log\",\n    \"checkpoint_path\": \"/root/autodl-tmp/exp28_checkpoints\",\n    \"note\": \"Train set is 350 (not 500). Subset sizes: {50, 125, 250, 350}. 4 x 9class + 2 x vanilla = 6 conditions. Single seed=42.\"\n  },\n  \"metrics\": {\n    \"9class\": {\n      \"50\": {\n        \"iid\": 1,\n        \"dd_ood\": 1,\n        \"aa_ood\": 0.99\n      },\n      \"125\": {\n        \"iid\": 1,\n        \"dd_ood\": 1,\n        \"aa_ood\": 0.99\n      },\n      \"250\": {\n        \"iid\": 1,\n        \"dd_ood\": 1,\n        \"aa_ood\": 1\n      },\n      \"350\": {\n        \"iid\": 1,\n        \"dd_ood\": 1,\n        \"aa_ood\": 1\n      }\n    },\n    \"vanilla\": {\n      \"125\": {\n        \"iid\": 0.53,\n        \"dd_ood\": 0.24,\n        \"aa_ood\": 0.24\n      },\n      \"350\": {\n        \"iid\": 1,\n        \"dd_ood\": 0.36,\n        \"aa_ood\": 0.49\n      }\n    },\n    \"note\": \"9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 \\u2014 outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality.\"\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-20T15:38:00.832Z\"\n}\n\n=== exp28b_data_efficiency_supplement ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-20T15:40:53.186Z\",\n  \"updated_at\": \"2026-05-20T19:15:30.605Z\",\n  \"hypothesis\": \"9-class DAPT maintains robust OOD performance across different random seeds (model initialization), and vanilla DeBERTa shows poor OOD generalization even at smaller training sizes (N=50, N=250), confirming that the data efficiency advantage of 9-class DAPT is not an artifact of a single seed.\",\n  \"parent\": \"exp28_data_efficiency\",\n  \"spec\": {\n    \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && python scripts/exp28b_supplement.py\",\n    \"server\": \"westd-33183\",\n    \"data_path\": \"data/plan_002_splits/\",\n    \"data_count\": 350,\n    \"model_name\": \"microsoft/deberta-v3-base\",\n    \"seed\": \"42/123/456\",\n    \"checkpoint_source\": \"trained_from_scratch\",\n    \"eval_data\": \"plan_002_splits/test.jsonl + DD OOD + AA OOD\",\n    \"checkpoint_path\": \"N/A (probe only)\",\n    \"log_path\": \"/tmp/exp28b.log\"\n  },\n  \"metrics\": {\n    \"9class_3seed_N50_aa_ood\": \"0.969\\u00b10.037\",\n    \"9class_3seed_N125_aa_ood\": \"0.975\\u00b10.019\",\n    \"9class_3seed_N250_aa_ood\": \"0.975\\u00b10.035\",\n    \"9class_3seed_N350_aa_ood\": \"0.972\\u00b10.033\",\n    \"note\": \"9-class 3-seed complete. Vanilla N=50/250 missing (script crashed float16 dtype in GRU eval). exp28b added seed123+456 for 9-class only.\"\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-20T19:15:30.605Z\"\n}\n\n=== exp55_5seed_mlm_vs_9class_aa ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-22T11:11:41.549Z\",\n  \"updated_at\": \"2026-05-22T12:15:56.035Z\",\n  \"hypothesis\": \"9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/exp55_5seed_expansion.py\",\n    \"server\": \"westd-49690\",\n    \"data_path\": \"/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/\",\n    \"data_count\": \"~800 train + OOD eval sets\",\n    \"model_name\": \"microsoft/deberta-v3-base\",\n    \"seed\": \"789,1024\",\n    \"checkpoint_path\": \"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp55_*\",\n    \"log_path\": \"/tmp/exp55_train.log\"\n  },\n  \"metrics\": {\n    \"n_seeds\": 5,\n    \"seeds\": [\n      42,\n      123,\n      456,\n      789,\n      1024\n    ],\n    \"9class_aa_ood\": {\n      \"mean\": 0.9735,\n      \"std\": 0.0124\n    },\n    \"mlm_aa_ood\": {\n      \"mean\": 0.9566,\n      \"std\": 0.0237\n    },\n    \"9class_iid\": {\n      \"mean\": 1,\n      \"std\": 0\n    },\n    \"mlm_iid\": {\n      \"mean\": 0.9816,\n      \"std\": 0.0134\n    },\n    \"9class_dd_ood\": {\n      \"mean\": 0.9924,\n      \"std\": 0.0111\n    },\n    \"mlm_dd_ood\": {\n      \"mean\": 0.9883,\n      \"std\": 0.0094\n    },\n    \"9class_fitd_ood\": {\n      \"mean\": 1,\n      \"std\": 0\n    },\n    \"mlm_fitd_ood\": {\n      \"mean\": 0.9883,\n      \"std\": 0.0094\n    },\n    \"aa_ood_delta_pp\": 1.69,\n    \"aa_ood_paired_ttest_p\": 0.2461,\n    \"aa_ood_wilcoxon_p\": 0.1875,\n    \"aa_ood_9class_wins\": 4,\n    \"aa_ood_mlm_wins\": 1,\n    \"total_time_min\": 10.5\n  },\n  \"conclusion\": \"negative\",\n  \"completed_at\": \"2026-05-22T12:15:56.035Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "718732c6-c25d-47b6-8535-6b8cad76c630",
+            "isSidechain": true,
+            "promptId": "5df424ed-94b3-4801-a077-e8e00b57103c",
+            "agentId": "afbd91c4ab95ef894",
+            "type": "user",
+            "uuid": "8513564d-5f0e-4435-b987-77fbc836dea7",
+            "sourceToolAssistantUUID": "718732c6-c25d-47b6-8535-6b8cad76c630",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T21:32:53.032Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All relevant data has been extracted. Here is the complete verbatim data:\n\n---\n\n## 1. WildChat Adaptation Curve (FPR vs N target conversations)\n\n**exp19_wildchat_fpr** — Baseline FPR before any adaptation (exp17 checkpoints, 226 filtered benign, avg 7.4 turns):\n\n```\ndataset: wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)\n\n9class_fpr:\n  seed42:  0.668\n  seed123: 0.611\n  seed456: 0.765\n  mean:    0.681\n  std:     0.064\n\nmlm_fpr:\n  seed42:  0.367\n  seed123: 0.646\n  seed456: 0.323\n  mean:    0.445\n  std:     0.143\n\nvanilla_fpr:\n  seed42:  0.473\n  seed123: 0.425\n  seed456: 0.544\n  mean:    0.481\n  std:     0.049\n\nnote: \"NEGATIVE: All variants show extreme FPR on real-world benign. 9-class worst (68.1%). Used exp17 checkpoints (Qwen 1000 scale). Severe distribution shift between synthetic training benign and real WildChat conversations.\"\n```\n\n**exp45_benign_adaptation_curve** — WildChat adaptation curve (single seed 42):\n\n```\nsingle_seed_42:\n  n0_fpr:   0.653\n  n5_fpr:   0.163\n  n10_fpr:  0\n  n25_fpr:  0\n  n50_fpr:  0\n  n100_fpr: 0\n  n150_fpr: 0\n\nn10_multiseed (seeds: [42, 123, 456]):\n  wc_fpr:   \"0.000±0.000\"\n  iid_f1:   \"1.000±0.000\"\n  dd_f1:    \"1.000±0.000\"\n  aa_f1:    \"0.981±0.016\"\n  fitd_f1:  \"1.000±0.000\"\n\nconclusion: success\n```\n\n**exp38_wildcat_calibration** — Threshold calibration on WildChat (cannot fix domain shift):\n\n```\nroc_auc:\n  mean: 0.70, std: 0.054\n  per_seed: seed42=0.768, seed123=0.697, seed456=0.635\n\ndefault_t05_fpr: mean=0.791, std=0.098\n\nthreshold_calibration_held_out:\n  tpr95_fpr: mean=0.627, std=0.100\n  tpr90_fpr: mean=0.587, std=0.091\n\ntemperature_scaling:\n  learned_T: \"20-40 (severe overconfidence)\"\n  temp_scaled_tpr95_fpr: 0.627\n  temp_scaled_tpr90_fpr: 0.583\n  note: \"Temperature scaling does NOT change FPR because ROC is invariant to monotonic score transforms\"\n\nnote: \"AUC=0.70 is the fundamental ceiling. Threshold calibration drops FPR from 79%→63% (at TPR95), still far from <25% target. WildChat high FPR is genuine domain shift, not calibration artifact.\"\nconclusion: negative\n```\n\n**exp42_ood_benign_mixed** — Training with 150 WildChat benign samples (seeds 42/123/456):\n\n```\nwildchat_fpr_mean: 0\nwildchat_fpr_std:  0\niid_f1_mean:       1\nood_dd_f1_mean:    1\nood_aa_f1_mean:    0.956\nood_fitd_f1_mean:  1\nwildchat_eval_n:   49\ntrain_size: \"500 (350 orig + 150 WildChat benign)\"\nconclusion: success\n```\n\n**exp42b_balanced_ratio_ablation** — 50:50 ratio ablation (175 jailbreak + 87 orig benign + 88 WC benign, seeds 42/123/456):\n\n```\nwildchat_fpr_mean: 0\nwildchat_fpr_std:  0\niid_f1_mean:       1\nood_dd_f1_mean:    1\nood_aa_f1_mean:    0.9905\nood_aa_recall_mean: 0.9875\nood_fitd_f1_mean:  1\nwildchat_eval_n:   49\ntrain_size: 350\nconclusion: success\n```\n\n---\n\n## 2. OASST2 Adaptation Curve (FPR vs N target conversations)\n\n**exp51_lmsys_benign_ood** — OASST2 adaptation curve (seed 42, 200 eval conversations):\n\n```\nbaseline_fpr: 0.575\nbaseline_n: 200\ndata_source: \"oasst2 (real crowdsourced human)\"\n\nadaptation_curve:\n  n0:  fpr=0.575\n  n10: fpr=0.205, dd_f1=1, aa_f1=1,     fitd_f1=1\n  n25: fpr=0.015, dd_f1=1, aa_f1=0.953,  fitd_f1=1\n  n50: fpr=0.005, dd_f1=1, aa_f1=0.99,   fitd_f1=1\n\ncomparison_wildchat:\n  baseline_fpr: 0.681\n  n10_fpr: 0\n  n10_sufficient: true\n\nconclusion: success\n```\n\n**exp52_oasst2_n25_multiseed** — OASST2 N=25 adaptation, multi-seed validation (seeds 42/123/456):\n\n```\nseed_42:\n  oasst2_fpr: 0.015\n  iid_f1: 1, aa_f1: 0.953, dd_f1: 1, fitd_f1: 1\n\nseed_123:\n  oasst2_fpr: 0.005\n  iid_f1: 1, aa_f1: 0.917, dd_f1: 1, fitd_f1: 1\n\nseed_456:\n  oasst2_fpr: 0.010\n  iid_f1: 1, aa_f1: 0.990, dd_f1: 1, fitd_f1: 1\n\nfpr_mean:  0.010\nfpr_std:   0.005\nfpr_range: \"0.5%-1.5%\"\nconclusion: success\n```\n\n---\n\n## 3. Per-Seed Variance: DD OOD / AA OOD F1\n\n### 9-class (main treatment), seeds 42/123/456\n\n**plan_002_clean_training** (seed 42):\n\n```\ndd_ood: k1=1, k2=1, k3=1, k5=1, full=1\n```\n\n**plan_002_seed123** (seed 123):\n\n```\ndd_ood: k1=1, k2=0.9904, k3=0.9904, k5=1, full=1\n```\n\n**plan_002_seed456** (seed 456):\n\n```\ndd_ood: k1=0.9715, k2=0.9622, k3=0.9350, k5=0.9904, full=0.9904\n```\n\n**exp35_cross_seed_ensemble** (seeds 42/123/456, DD OOD + AA OOD, BiGRU):\n\n```\ndd_ood / 9class:\n  ensemble_f1:      1\n  individual_mean:  0.9968\n  individual_std:   0.0045\n\naa_ood / 9class:\n  ensemble_f1:      0.9809\n  individual_mean:  0.9719\n  individual_std:   0.0261\n\nfitd_ood / 9class:\n  ensemble_f1:      1\n  individual_mean:  1\n  individual_std:   0\n```\n\n**exp13_meanpool_multiseed** (seeds 42/123/456, mean pooling, 9-class):\n\n```\ndd_ood:\n  k1:   mean=0.9905, std=0.0134\n  k2:   mean=0.9936, std=0.0090\n  k3:   mean=0.9842, std=0.0160\n  k5:   mean=0.9968, std=0.0045\n  full: mean=0.9905, std=0.0134\n\nactorattack (AA):\n  k1:   mean=0.8301, std=0.0272\n  k2:   mean=0.9030, std=0.0229\n  k3:   mean=0.9622, std=0.0076\n  k5:   mean=0.9716, std=0.0153\n  full: mean=0.9623, std=0.0151\n```\n\n**exp2_actorattack_ood** (seeds 42/123/456, all DeBERTa variants):\n\n```\ndeberta_9class AA OOD:\n  k1=0.773 (std=0.041), k2=0.855 (std=0.048), k3=0.921 (std=0.046),\n  k5=0.966 (std=0.028), full=0.972 (std=0.026)\n\ndeberta_binary AA OOD:\n  k1=0.737 (std=0.074), k2=0.890 (std=0.065), k3=0.951 (std=0.036),\n  k5=0.987 (std=0.012), full=0.990 (std=0.008)\n  note: \"seed42 weak outlier at K1=0.636\"\n\ndeberta_scrambled AA OOD:\n  k1=0.721 (std=0.101), k2=0.828 (std=0.054), k3=0.893 (std=0.067),\n  k5=0.937 (std=0.057), full=0.951 (std=0.043)\n  per_seed_full: seed42=0.891, seed123=0.990, seed456=0.971\n  per_seed_k1:   seed42=0.618, seed123=0.858, seed456=0.686\n  per_seed_k3:   seed42=0.808, seed123=0.972, seed456=0.900\n\ndeberta_mlm AA OOD:\n  k1=0.736 (std=0.150), k2=0.909 (std=0.058), k3=0.945 (std=0.039),\n  k5=0.929 (std=0.033), full=0.893 (std=0.080)\n\ndeberta_vanilla AA OOD:\n  k1=0.337 (std=0.049), k2=0.306 (std=0.026), k3=0.284 (std=0.011),\n  k5=0.262 (std=0.006), full=0.258 (std=0.000)\n\nnote: \"Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"\n```\n\n### Vanilla, seeds 42/123/456 (DD OOD)\n\n**vanilla_multiseed_dd_ood**:\n\n```\nvanilla_3seed_dd_ood:\n  k1:   seed42=0.575, seed123=0.658, seed456=0.652, mean=0.628, std=0.038\n  k2:   seed42=0.438, seed123=0.530, seed456=0.469, mean=0.479, std=0.038\n  k3:   seed42=0.359, seed123=0.424, seed456=0.383, mean=0.389, std=0.027\n  k5:   seed42=0.311, seed123=0.383, seed456=0.360, mean=0.351, std=0.030\n  full: seed42=0.285, seed123=0.305, seed456=0.348, mean=0.312, std=0.026\n```\n\n### Binary variant, seeds 42/123/456 (DD OOD)\n\n**mf1_binary_seed123**: dd_ood_k1=1, k2=1, k3=0.9904, k5=1, full=1\n**mf1_binary_seed456**: dd_ood_k1=1, k2=1, k3=0.9904, k5=1, full=1\n\n### Scrambled variant, seeds 42/123/456 (DD OOD)\n\n**mf1_scrambled_seed123**: dd_ood_k1=1, k2=1, k3=1, k5=1, full=1\n**mf1_scrambled_seed456**: dd_ood_k1=1, k2=1, k3=0.990, k5=1, full=1\n\n### 5-seed expansion (seeds 42/123/456/789/1024)\n\n**exp55_5seed_mlm_vs_9class_aa** (full-prefix F1, DD and AA):\n\n```\n9class_aa_ood:   mean=0.9735, std=0.0124\nmlm_aa_ood:      mean=0.9566, std=0.0237\n9class_dd_ood:   mean=0.9924, std=0.0111\nmlm_dd_ood:      mean=0.9883, std=0.0094\n9class_fitd_ood: mean=1, std=0\nmlm_fitd_ood:    mean=0.9883, std=0.0094\naa_ood_delta_pp: 1.69\naa_ood_paired_ttest_p: 0.2461\naa_ood_wilcoxon_p: 0.1875\nconclusion: negative (delta not statistically significant)\n```\n\n**exp39_extra_seeds_tost** (seeds 789/1000):\n\n```\n9class_seed789: iid=1, dd_ood=1, aa_ood=0.9715, fitd_ood=1\n9class_seed1000: iid=1, dd_ood=1, aa_ood=0.9715, fitd_ood=0.9904\nscrambled_seed789: iid=1, dd_ood=1, aa_ood=0.9904, fitd_ood=1\nscrambled_seed1000: iid=1, dd_ood=1, aa_ood=0.9904, fitd_ood=0.9904\n```\n\n**exp41_tost_10seed** (all 10 seeds: 42/123/456/789/1000/2024/2025/2026/314/628):\n\n```\ntost_DD: p=2.06e-09, equivalent=true, cohens_d=-0.136\ntost_AA: p=0.183,    equivalent=false, cohens_d=0.44\ntost_FITD: p=0,      equivalent=true,  cohens_d=0\n9class_AA_mean: 0.979\nscrambled_AA_mean: 0.949\nAA_mean_diff_pp: 3\nconclusion: negative (AA not TOST-equivalent at 10 seeds)\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8513564d-5f0e-4435-b987-77fbc836dea7",
+            "isSidechain": true,
+            "agentId": "afbd91c4ab95ef894",
+            "requestId": "req_011CbJKd95aZxgRujSxgQd6U",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "168c86a1-3c02-4cb7-972c-f07180ec4f36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "e4efefca-26d6-49cf-8a09-2af928a47017",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Su6UqgTzrqEACzRVDCBuEQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9293,
+                "cache_read_input_tokens": 41397,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9293,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-extract-all-experiment-data-related-to-1-wildchat-and-oasst2-adaptation-curves.md"
+}

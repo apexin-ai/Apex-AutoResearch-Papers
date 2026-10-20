@@ -1,0 +1,1883 @@
+{
+  "schema_version": "1.0",
+  "id": "69c577d95fad313ef87e",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer 1 (R1) for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 2=Reject, 3=Wea",
+  "task_key": "agent-a5a7b01ec1b812007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a5a7b01ec1b812007.jsonl",
+    "occurrence": 1,
+    "bytes": 123406,
+    "sha256": "06c5f660f23a8dde709ae27cd75cbb8c708f1768a49a1d92b473860bd5ac2695"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T17:23:37.146Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer 1 (R1) for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept). Your focus areas are **methodology soundness** and **experimental rigor**.\n\n## Paper Summary\n\n**Title:** DisPeD: Exploiting the Pragmatic Evasion Asymmetry for Robust Multi-Turn Jailbreak Detection\n\nThe paper proposes DisPeD, a two-stage pipeline for detecting multi-turn jailbreak attacks on LLMs. It identifies a \"Pragmatic Evasion Asymmetry\": attackers can paraphrase surface content but cannot remove the underlying persuasion playbook (rapport building, reframing, escalation) without abandoning the attack. Stage 1 fine-tunes DeBERTa-v3-base with a multi-task objective (8-class persuasion strategy classification + binary intent classification). Stage 2 feeds resulting turn embeddings into a bidirectional GRU for conversation-level jailbreak detection.\n\n## Key Results\n- On register-normalized data (TF-IDF reduced from 1.0 to 0.58), DisPeD achieves F1=0.91 at K=2 turns, 14pp over vanilla semantic baseline (p<0.001)\n- Under adversarial paraphrasing: DisPeD degrades 3pp, semantic baseline 13pp, TF-IDF 18pp\n- Cross-attack zero-shot: trained on Crescendo only, achieves avg F1=0.85 on FITD and Deceptive Delight (16.5pp over baseline)\n- Scrambled label ablation: 15pp drop at K=2, confirming persuasion labels carry genuine signal\n- Hard negatives (WildChat high-drift benign): 9% FPR vs 17% baseline\n- Mechanistic analysis: jailbreak monotonicity score 0.82 vs benign 0.34\n\n## Dataset\n- 480 conversations (240 jailbreak, 240 benign), 72 held out for testing\n- Jailbreak: Crescendo-style; Benign: standard corpora + WildChat\n- Generated additional 72 FITD + 65 Deceptive Delight using Qwen3-8B\n- Register normalization via LLM paraphrasing to remove lexical shortcuts\n\n## Review Context (imagined experiment list from design doc)\nThe design doc lists 11 experiments: data_quality_fix, core_revalidation_clean, scrambled_label_ablation, adversarial_perturbation, multi_attack_generation, cross_attack_evaluation, tfidf_lr_baseline, strategy_transition_analysis, wildchat_hard_negatives, cross_checkpoint_variance, deepcontext_proxy_reproduction. The paper covers all 11 experiments in its tables.\n\n## Your Task\n\nWrite a detailed review covering:\n\n1. **Summary** (2-3 sentences)\n2. **Strengths** (numbered, with specific references to tables/sections)\n3. **Weaknesses** (numbered, with specific references)\n4. **Questions for Authors** (numbered)\n5. **Minor Issues** (numbered)\n6. **Overall Assessment** (1 paragraph)\n7. **Scores:**\n   - Soundness (1-4)\n   - Presentation (1-4)\n   - Contribution (1-4)\n   - Overall (1-6)\n   - Confidence (1-5)\n\nFocus especially on:\n- Statistical validity with small test set (72 samples)\n- Whether register normalization might introduce its own biases\n- The \"DeepContext Proxy\" as a stand-in for actual DeepContext\n- Whether the persuasion taxonomy is well-justified\n- Data leakage risks between Stage 1 and Stage 2\n- Reproducibility concerns (LLM-generated data, LLM annotations)\n\nBe rigorous and specific. Reference table numbers and section numbers. Do not mention any tier (best/median/worst) information. Output only the review text."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "045b047d-03d3-497f-9ab3-af9bc4b47781",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T17:23:37.152Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "045b047d-03d3-497f-9ab3-af9bc4b47781",
+                "isSidechain": true,
+                "agentId": "a5a7b01ec1b812007",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "dfe2d8dc-4f22-4fc9-a9d4-683e66d767bc",
+                "timestamp": "2026-05-17T17:23:37.152Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T17:23:40.464Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the paper and related project files to give a thorough review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfe2d8dc-4f22-4fc9-a9d4-683e66d767bc",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XeTxmqZWFUXVuCDGo2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a03e4a5c-e733-438e-bc31-1cd4bf9919e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjGXBh2kVACZtEd9Rmq4RV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16346,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16346,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T17:23:41.061Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Q73kAmKeH8WnadugadPYb",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__director_get_project_overview",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a03e4a5c-e733-438e-bc31-1cd4bf9919e9",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XeTxmqZWFUXVuCDGo2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fd297554-f89e-4129-817c-89a9efcc5634",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjGXBh2kVACZtEd9Rmq4RV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16346,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16346
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16346,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16346,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T17:23:41.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017Q73kAmKeH8WnadugadPYb",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__director_get_project_overview"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd297554-f89e-4129-817c-89a9efcc5634",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "628c7a11-cf68-4efc-b36e-73ac710e0932",
+            "sourceToolAssistantUUID": "fd297554-f89e-4129-817c-89a9efcc5634",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T17:23:44.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y6g6KbbsH3igcbBYSbXJbj",
+              "name": "mcp__agent-ml-research__director_get_project_overview",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "628c7a11-cf68-4efc-b36e-73ac710e0932",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8Xekn4CVvTJCQEaJEsV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c699114-2298-44f6-9f42-0ee2ef61891d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SiDgg1L3bfdTgwP7DniTo6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1447,
+                "cache_read_input_tokens": 16346,
+                "output_tokens": 77,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1447
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 77,
+                    "cache_read_input_tokens": 16346,
+                    "cache_creation_input_tokens": 1447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1447,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T17:23:44.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y6g6KbbsH3igcbBYSbXJbj",
+              "type": "tool_result",
+              "content": "{\"result\":\"# 项目 persuasion_turn_jailbreak_detect 概况\\n\\n## 实验状态 (2 个)\\n\\n- **phase_b_full**: DONE (success) — \\n- **pilot_phase_b**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **phase_b_full** (success): Persuasion-grounded DeBERTa embeddings (multi-task fine-tuned on 8-class persuasion + intent) enable significantly earlier detection of Crescendo jailbreak attacks compared to vanilla DeBERTa embeddings, especially at low K (2-3 turns) ← 基于 pilot_phase_b\\n- **pilot_phase_b** (success): Persuasion-aware DeBERTa embeddings (multi-task fine-tuned) fed to Bi-GRU will outperform vanilla DeBERTa embeddings at early detection (K=2,3,5 turns) of Crescendo-style jailbreak attacks\\n\\n## 趋势\\n成功 2 / 负向 0 / 失败 0 / 共 2\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-33183: 无 GPU 信息\\n\\n## 告警\\n（无）\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c699114-2298-44f6-9f42-0ee2ef61891d",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "8456af30-483e-44d9-9f9b-c8073e365e72",
+            "sourceToolAssistantUUID": "8c699114-2298-44f6-9f42-0ee2ef61891d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T17:23:47.290Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DfekTff5JHsjiyfEKnMaUA",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8456af30-483e-44d9-9f9b-c8073e365e72",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XezAiXwYu1gowYgj5r",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "750c8595-dd0d-49f0-86dc-bf443c3ea991",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017MdpfjNscs35JCu1YMUi2W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 531,
+                "cache_read_input_tokens": 17793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 531,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T17:23:47.302Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DfekTff5JHsjiyfEKnMaUA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **phase_b_full** (success): Persuasion-grounded DeBERTa embeddings (multi-task fine-tuned on 8-class persuasion + intent) enable significantly earlier detection of Crescendo jailbreak attacks compared to vanilla DeBERTa embeddings, especially at low K (2-3 turns) ← 基于 pilot_phase_b\\\\n- **pilot_phase_b** (success): Persuasion-aware DeBERTa embeddings (multi-task fine-tuned) fed to Bi-GRU will outperform vanilla DeBERTa embeddings at early detection (K=2,3,5 turns) of Crescendo-style jailbreak attacks\\\\n\\\\n## 趋势\\\\n成功 2 / 负向 0 / 失败 0 / 共 2\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-33183: 无 GPU 信息\\\\n\\\\n## 告警\\\\n（无）\\\\n\\\", \\\"total_chars\\\": 707, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "750c8595-dd0d-49f0-86dc-bf443c3ea991",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "604965dd-16ec-465d-871d-6b439855b6f9",
+            "sourceToolAssistantUUID": "750c8595-dd0d-49f0-86dc-bf443c3ea991",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T17:23:48.426Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VkS3zLSiosj2XzLFsw8Row",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "604965dd-16ec-465d-871d-6b439855b6f9",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XezAiXwYu1gowYgj5r",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4721b0f4-061b-4b1e-ad13-0ff5811e1342",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017MdpfjNscs35JCu1YMUi2W",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 531,
+                "cache_read_input_tokens": 17793,
+                "output_tokens": 198,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 531
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 198,
+                    "cache_read_input_tokens": 17793,
+                    "cache_creation_input_tokens": 531,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 531,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T17:23:48.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VkS3zLSiosj2XzLFsw8Row",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260517T165817/best/paper.tex\nartifacts/dream_reports/dream_20260517T165817/median/paper.tex\nartifacts/dream_reports/dream_20260517T165817/worst/paper.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4721b0f4-061b-4b1e-ad13-0ff5811e1342",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "a9cce449-d811-4adb-a01f-ef93af4919e6",
+            "sourceToolAssistantUUID": "4721b0f4-061b-4b1e-ad13-0ff5811e1342",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T17:23:51.668Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fubv5HpKNuCyhfF9mcjLEf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/best/paper.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9cce449-d811-4adb-a01f-ef93af4919e6",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XfJKNNRYmhv99HZnFT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b9fdaf7a-0603-4000-9119-41d0d0a4e6cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sdmn5eEwi6ySQxHXzEUy77",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 785,
+                "cache_read_input_tokens": 18324,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 785
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 18324,
+                    "cache_creation_input_tokens": 785,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 785,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T17:23:51.917Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fubv5HpKNuCyhfF9mcjLEf",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[utf8]{inputenc}\n3\t\\usepackage[T1]{fontenc}\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{booktabs}\n6\t\\usepackage{graphicx}\n7\t\\usepackage{multirow}\n8\t\\usepackage{hyperref}\n9\t\\usepackage[margin=2.5cm]{geometry}\n10\t\\usepackage{natbib}\n11\t\\usepackage{xcolor}\n12\t\\usepackage{tabularx}\n13\t\\usepackage{caption}\n14\t\n15\t\\title{DisPeD: Exploiting the Pragmatic Evasion Asymmetry\\\\for Robust Multi-Turn Jailbreak Detection}\n16\t\n17\t\\author{Anonymous}\n18\t\\date{}\n19\t\n20\t\\begin{document}\n21\t\\maketitle\n22\t\n23\t% ============================================================\n24\t% ABSTRACT\n25\t% ============================================================\n26\t\\begin{abstract}\n27\tMulti-turn jailbreak attacks against Large Language Models (LLMs) distribute adversarial intent across individually benign turns, defeating detectors that operate at the lexical or semantic level. We identify a \\emph{Pragmatic Evasion Asymmetry}: attackers can freely paraphrase surface content, but the underlying persuasion playbook (rapport building, reframing, escalation) is a structural prerequisite for attack success and cannot be removed without abandoning the attack itself. DisPeD exploits this asymmetry by fine-tuning DeBERTa on an 8-class persuasion strategy taxonomy to produce pragmatic-aware turn embeddings, then modeling the temporal strategy sequence with a GRU for conversation-level classification. On register-normalized data that eliminates lexical shortcuts (TF-IDF reduced from 1.0 to 0.58), DisPeD achieves F1\\,=\\,0.91 at only $K$\\,=\\,2 turns, a 14 percentage point (pp) improvement over a vanilla semantic baseline ($p$\\,<\\,0.001). Under adversarial paraphrasing, DisPeD degrades by only 3\\,pp while semantic and lexical baselines degrade by 13\\,pp and 18\\,pp respectively. A model trained exclusively on Crescendo-style attacks generalizes zero-shot to Foot-in-the-Door and Deceptive Delight attacks with an average F1 of 0.85, outperforming the semantic baseline by 16.5\\,pp. These results establish that discourse-level persuasion patterns provide a robust and generalizable signal for early multi-turn jailbreak detection.\n28\t\\end{abstract}\n29\t\n30\t% ============================================================\n31\t% 1. INTRODUCTION\n32\t% ============================================================\n33\t\\section{Introduction}\n34\t\n35\tMulti-turn jailbreak attacks pose a growing threat to deployed LLMs. Attacks such as Crescendo~\\citep{russinovich2024greatnow}, Foot-in-the-Door (FITD)~\\citep{zhou2024speak}, and Deceptive Delight~\\citep{jiang2024deceptive} distribute adversarial intent across multiple conversational turns, each of which appears benign in isolation. \\citet{bullwinkel2025multiturn} show that per-turn representations of these attacks are deliberately kept in a ``benign'' region of embedding space, causing representation-level defenses to fail with a 50-point ASR gap. Temporal approaches that track generic semantic drift~\\citep{su2026deepcontext} confuse benign conversational evolution with adversarial manipulation, producing high false-positive rates.\n36\t\n37\tWhy are these attacks so effective? A multi-turn attacker must accomplish two things: (1) maintain surface-level benignity on each turn, and (2) gradually steer the model toward compliance through a persuasion playbook. \\citet{zeng2024persuasion} and \\citet{hagendorff2026nature} independently show that identifiable persuasion strategies appear in over 97\\% of successful multi-turn attacks. The attacker has enormous freedom in choosing \\emph{what words} to use (lexical level) and \\emph{what topics} to discuss (semantic level), but the underlying \\emph{pragmatic function} of each turn (rapport building, authority appeal, reframing) is constrained by the attack's functional requirements.\n38\t\n39\tThis observation motivates what we call the \\textbf{Pragmatic Evasion Asymmetry}: an evasion hierarchy exists in which lexical features are easily evaded via paraphrasing, semantic embeddings are moderately robust but still vulnerable to per-turn content manipulation, and pragmatic persuasion patterns are structurally difficult to evade because they constitute the functional mechanism of the attack. In the terminology of Speech Act Theory~\\citep{austin1962things,searle1969speech}, existing detectors operate at the locutionary act level (what was said), while DisPeD operates at the illocutionary act level (what was done).\n40\t\n41\tWe present \\textbf{DisPeD} (\\textbf{Dis}course-level \\textbf{Pe}rsuasion \\textbf{D}etector), a two-stage pipeline that first fine-tunes DeBERTa-v3-base~\\citep{he2021debertav3} on a multi-task objective combining 8-class persuasion strategy classification and binary intent classification, then feeds the resulting turn embeddings into a bidirectional GRU for conversation-level jailbreak detection. By grounding turn representations in a persuasion taxonomy derived from Cialdini's influence principles~\\citep{cialdini2001science}, DisPeD detects the characteristic escalation trajectory of multi-turn attacks at the earliest possible stage.\n42\t\n43\tOur contributions are:\n44\t\\begin{enumerate}\n45\t    \\item We formalize the \\emph{Pragmatic Evasion Asymmetry} and provide empirical evidence through a three-tier robustness experiment: under adversarial paraphrasing, DisPeD (pragmatic) degrades by 3\\,pp, a vanilla semantic baseline by 13\\,pp, and a TF-IDF lexical baseline by 18\\,pp (Section~\\ref{sec:evasion}).\n46\t    \\item We demonstrate that persuasion-grounded embeddings enable significantly earlier detection: F1\\,=\\,0.91 at $K$\\,=\\,2 turns versus 0.77 for the semantic baseline, a 14\\,pp advantage that holds across attack types with zero-shot cross-attack transfer averaging 16.5\\,pp improvement (Sections~\\ref{sec:main_results} and~\\ref{sec:cross_attack}).\n47\t    \\item We provide a mechanistic analysis showing that jailbreak conversations exhibit monotonic escalation trajectories in persuasion strategy space (monotonicity score 0.82 vs. 0.34 for benign), explaining why pragmatic features succeed where semantic features fail (Section~\\ref{sec:trajectory}).\n48\t\\end{enumerate}\n49\t\n50\t% ============================================================\n51\t% 2. RELATED WORK\n52\t% ============================================================\n53\t\\section{Related Work}\n54\t\n55\t\\paragraph{Multi-turn jailbreak attacks.}\n56\tCrescendo~\\citep{russinovich2024greatnow} gradually escalates through conversational rapport, achieving high attack success rates against commercial LLMs. FITD~\\citep{zhou2024speak} applies the foot-in-the-door compliance technique, starting with small requests and progressively increasing severity. Deceptive Delight~\\citep{jiang2024deceptive} interleaves harmful content within benign creative writing frames. These attacks share a common structure: a persuasion playbook that transitions from trust-building to explicit elicitation across turns. \\citet{hagendorff2026nature} analyze persuasion strategies in adversarial conversations and find identifiable patterns in 97\\% of successful attacks, confirming that the persuasion structure is systematic rather than incidental.\n57\t\n58\t\\paragraph{Jailbreak detection.}\n59\tSingle-turn detectors such as perplexity filters~\\citep{alon2023detecting} and input classifiers~\\citep{inan2023llama} fail against multi-turn attacks because individual turns appear benign. \\citet{bullwinkel2025multiturn} demonstrate that per-turn representations are deliberately maintained in benign embedding regions. DeepContext~\\citep{su2026deepcontext} addresses this by tracking semantic drift across turns with an encoder-RNN pipeline, but uses generic embeddings that conflate benign topic evolution with adversarial manipulation.\n60\t\n61\t\\paragraph{Persuasion and LLM safety.}\n62\t\\citet{zeng2024persuasion} compile 40 persuasion techniques used in jailbreaking and show that persuasion-augmented prompts significantly increase ASR. \\citet{chen2025persuade} study how LLMs deploy persuasion strategies during multi-turn interactions, demonstrating that persuasion dynamics are extractable from turn-level representations. Our work is the first to use persuasion-grounded representations for jailbreak \\emph{detection} rather than attack construction or analysis.\n63\t\n64\t% ============================================================\n65\t% 3. METHOD\n66\t% ============================================================\n67\t\\section{Method}\n68\t\\label{sec:method}\n69\t\n70\tDisPeD consists of two stages: a persuasion-grounded encoder and a temporal sequence classifier.\n71\t\n72\t\\subsection{Stage 1: Persuasion-Grounded Encoder}\n73\t\n74\tWe fine-tune DeBERTa-v3-base on a multi-task objective with two heads:\n75\t\n76\t\\begin{itemize}\n77\t    \\item \\textbf{Persuasion strategy classification} (8 classes): rapport building, authority appeal, reciprocity, social proof, commitment/consistency, scarcity/urgency, reframing, and direct request. These categories are derived from Cialdini's principles of influence~\\citep{cialdini2001science} and adapted for adversarial conversational contexts following \\citet{zeng2024persuasion}. Benign turns lacking a persuasion function receive a ``none'' label.\n78\t    \\item \\textbf{Intent classification} (binary): whether the turn carries jailbreak intent.\n79\t\\end{itemize}\n80\t\n81\tThe total loss is $\\mathcal{L} = \\mathcal{L}_{\\text{persuasion}} + \\lambda \\mathcal{L}_{\\text{intent}}$, where $\\lambda = 1.0$. After training, we extract the [CLS] embedding from the fine-tuned encoder as the persuasion-grounded turn representation. The encoder achieves 79\\% accuracy on 8-class persuasion classification and 94\\% on binary intent classification (Table~\\ref{tab:encoder}).\n82\t\n83\t\\subsection{Stage 2: Temporal Sequence Classification}\n84\t\n85\tGiven a conversation of $K$ turns, we obtain turn embeddings $\\{e_1, \\ldots, e_K\\}$ from the Stage 1 encoder. A bidirectional GRU processes the embedding sequence and outputs a conversation-level binary classification (jailbreak vs. benign) from the final hidden state. This architecture captures the temporal progression of persuasion strategies across turns.\n86\t\n87\t\\subsection{Baselines}\n88\t\n89\tWe compare DisPeD against three baselines spanning the evasion hierarchy:\n90\t\\begin{itemize}\n91\t    \\item \\textbf{TF-IDF + Logistic Regression}: a lexical baseline operating on bag-of-words features.\n92\t    \\item \\textbf{DeBERTa Semantic Baseline}: the same Stage 2 GRU pipeline but with \\emph{vanilla} (not fine-tuned) DeBERTa embeddings, representing semantic-level detection.\n93\t    \\item \\textbf{DeepContext Proxy}: BERT-base + GRU, simulating the DeepContext architecture with generic drift features and no persuasion grounding.\n94\t\\end{itemize}\n95\t\n96\t% ============================================================\n97\t% 4. EXPERIMENTAL SETUP\n98\t% ============================================================\n99\t\\section{Experimental Setup}\n100\t\\label{sec:setup}\n101\t\n102\t\\subsection{Data Preparation and Register Normalization}\n103\t\\label{sec:data}\n104\t\n105\tOur dataset consists of 480 conversations (240 jailbreak, 240 benign) with 72 held out for testing. Jailbreak conversations are Crescendo-style multi-turn attacks; benign conversations are drawn from standard conversational corpora and WildChat~\\citep{zhao2024wildchat}.\n106\t\n107\tA critical challenge in multi-turn jailbreak detection is \\emph{lexical shortcut}: scripted attack dialogues have distributional properties distinct from naturalistic benign conversations, allowing simple bag-of-words classifiers to succeed without learning meaningful features. On our original data, TF-IDF separability was 1.0, indicating complete lexical shortcut.\n108\t\n109\tWe apply register normalization using LLM paraphrasing to convert jailbreak turns from formal/scripted register to conversational register, eliminating the distributional gap. Table~\\ref{tab:tfidf_diagnostic} confirms the effectiveness of this procedure: TF-IDF drops from 1.0 to 0.58, below our hard gate of 0.75 but above the random baseline of 0.50, reflecting residual functional vocabulary (e.g., ``hypothetical,'' ``scenario'') that attackers cannot entirely avoid. Persuasion strategy annotations are preserved at 94\\% after normalization, confirming that the persuasion structure is a discourse-level phenomenon independent of lexical realization.\n110\t\n111\t\\begin{table}[t]\n112\t\\centering\n113\t\\caption{TF-IDF separability before and after register normalization.}\n114\t\\label{tab:tfidf_diagnostic}\n115\t\\begin{tabular}{lcc}\n116\t\\toprule\n117\t\\textbf{Condition} & \\textbf{TF-IDF} & \\textbf{Vocab Overlap (\\%)} \\\\\n118\t\\midrule\n119\tOriginal data & 1.00 & 12.3 \\\\\n120\tRegister-normalized & 0.58 & 41.7 \\\\\n121\tRandom baseline & 0.50 & 50.0 \\\\\n122\t\\bottomrule\n123\t\\end{tabular}\n124\t\\end{table}\n125\t\n126\t\\subsection{Multi-Attack Dataset}\n127\t\\label{sec:multi_attack_data}\n128\t\n129\tTo evaluate cross-attack generalization (Section~\\ref{sec:cross_attack}), we generate additional attack conversations in two families beyond Crescendo using Qwen3-8B: 72 FITD-style conversations (avg. 6.8 turns) employing the foot-in-the-door compliance escalation pattern, and 65 Deceptive Delight-style conversations (avg. 5.2 turns) interleaving harmful content within benign frames. All generated conversations receive persuasion strategy annotations with 91\\% LLM annotation consistency. Table~\\ref{tab:attack_stats} summarizes the dataset statistics.\n130\t\n131\t\\begin{table}[t]\n132\t\\centering\n133\t\\caption{Attack type statistics. TF-IDF measured against benign conversations.}\n134\t\\label{tab:attack_stats}\n135\t\\begin{tabular}{lcccc}\n136\t\\toprule\n137\t\\textbf{Attack Type} & \\textbf{$n$} & \\textbf{Avg Turns} & \\textbf{Turn Range} & \\textbf{TF-IDF} \\\\\n138\t\\midrule\n139\tCrescendo (original) & 240 & 5.5 & 3--12 & 0.58 \\\\\n140\tFITD (generated) & 72 & 6.8 & 4--10 & 0.61 \\\\\n141\tDeceptive Delight (generated) & 65 & 5.2 & 3--8 & 0.55 \\\\\n142\t\\bottomrule\n143\t\\end{tabular}\n144\t\\end{table}\n145\t\n146\tThe three attack types share the same persuasion strategy vocabulary but differ in temporal arrangement. As shown in Table~\\ref{tab:strategy_dist}, FITD relies heavily on reciprocity (30\\%) and commitment/consistency (25\\%), reflecting its gradual compliance escalation. Deceptive Delight favors authority appeal (22\\%) and social proof (18\\%), using authoritative framing to embed harmful content. Crescendo is more evenly distributed across strategies. This variation in strategy profiles, combined with a shared underlying vocabulary, provides the conditions for testing zero-shot cross-attack transfer.\n147\t\n148\t\\begin{table}[t]\n149\t\\centering\n150\t\\caption{Persuasion strategy distribution (\\%) by attack type.}\n151\t\\label{tab:strategy_dist}\n152\t\\begin{tabular}{lccc}\n153\t\\toprule\n154\t\\textbf{Strategy} & \\textbf{Crescendo} & \\textbf{FITD} & \\textbf{Dec. Delight} \\\\\n155\t\\midrule\n156\tRapport building & 28 & 35 & 15 \\\\\n157\tAuthority appeal & 12 & 8 & 22 \\\\\n158\tReciprocity & 18 & 30 & 10 \\\\\n159\tSocial proof & 8 & 5 & 18 \\\\\n160\tCommitment/consistency & 15 & 25 & 8 \\\\\n161\tScarcity/urgency & 5 & 3 & 12 \\\\\n162\tReframing & 22 & 15 & 20 \\\\\n163\tDirect request & 7 & 4 & 15 \\\\\n164\t\\bottomrule\n165\t\\end{tabular}\n166\t\\end{table}\n167\t\n168\t% ============================================================\n169\t% 5. RESULTS\n170\t% ============================================================\n171\t\\section{Results}\n172\t\n173\t\\subsection{Main Results: Early Detection on Clean Data}\n174\t\\label{sec:main_results}\n175\t\n176\tTable~\\ref{tab:main_results} presents the core comparison between DisPeD and the semantic baseline across turn budgets on register-normalized data. DisPeD achieves F1\\,=\\,0.91 at $K$\\,=\\,2 turns, a 14\\,pp improvement over the semantic baseline (0.77, $p$\\,<\\,0.001 by bootstrap test). The advantage is largest at early turn budgets ($K$\\,=\\,1--2) and narrows at higher $K$ as the baseline accumulates sufficient semantic drift signal, converging to a 7\\,pp gap on full conversations.\n177\t\n178\t\\begin{table}[t]\n179\t\\centering\n180\t\\caption{F1 by turn budget on clean (register-normalized) data. $\\Delta$ is the improvement of DisPeD over the semantic baseline in percentage points. All $p$-values by bootstrap test.}\n181\t\\label{tab:main_results}\n182\t\\begin{tabular}{lcccc}\n183\t\\toprule\n184\t\\textbf{$K$} & \\textbf{DisPeD} & \\textbf{Baseline} & \\textbf{$\\Delta$ (pp)} & \\textbf{$p$} \\\\\n185\t\\midrule\n186\t1 & 0.82 & 0.68 & 14 & 0.003 \\\\\n187\t2 & 0.91 & 0.77 & 14 & 0.001 \\\\\n188\t3 & 0.93 & 0.83 & 10 & 0.004 \\\\\n189\t5 & 0.96 & 0.88 & 8 & 0.012 \\\\\n190\tAll & 0.96 & 0.89 & 7 & 0.018 \\\\\n191\t\\bottomrule\n192\t\\end{tabular}\n193\t\\end{table}\n194\t\n195\tAt $K$\\,=\\,2, DisPeD also achieves a substantially lower false-positive rate at 95\\% TPR: FPR\\,=\\,0.08 versus 0.19 for the baseline. This early detection capability is the headline result: persuasion strategy transitions (e.g., rapport building to authority framing) manifest within the first two turns, providing discriminative signal before explicitly harmful content appears.\n196\t\n197\tTable~\\ref{tab:encoder} reports the Stage 1 encoder metrics. The 79\\% persuasion classification accuracy (macro F1\\,=\\,0.74) confirms that the encoder learns meaningful persuasion representations rather than noise, while the 94\\% intent accuracy validates the multi-task training.\n198\t\n199\t\\begin{table}[t]\n200\t\\centering\n201\t\\caption{DeBERTa encoder metrics on clean data.}\n202\t\\label{tab:encoder}\n203\t\\begin{tabular}{lc}\n204\t\\toprule\n205\t\\textbf{Metric} & \\textbf{Value} \\\\\n206\t\\midrule\n207\tPersuasion 8-class accuracy & 0.79 \\\\\n208\tPersuasion macro F1 & 0.74 \\\\\n209\tIntent binary accuracy & 0.94 \\\\\n210\tBest epoch & 3 \\\\\n211\t\\bottomrule\n212\t\\end{tabular}\n213\t\\end{table}\n214\t\n215\t\\subsection{Pragmatic Evasion Asymmetry}\n216\t\\label{sec:evasion}\n217\t\n218\tTo empirically validate the Pragmatic Evasion Asymmetry, we apply aggressive paraphrasing (synonym substitution, sentence restructuring) to jailbreak conversations and measure detection degradation across four model tiers. Table~\\ref{tab:evasion_full} reports results on full conversations.\n219\t\n220\t\\begin{table}[t]\n221\t\\centering\n222\t\\caption{Evasion hierarchy under adversarial paraphrasing (full conversation). Models ordered by abstraction level. Drop is the F1 degradation in percentage points.}\n223\t\\label{tab:evasion_full}\n224\t\\begin{tabular}{lccc}\n225\t\\toprule\n226\t\\textbf{Model} & \\textbf{F1 (Clean)} & \\textbf{F1 (Perturbed)} & \\textbf{Drop (pp)} \\\\\n227\t\\midrule\n228\tDisPeD (pragmatic) & 0.96 & 0.93 & 3 \\\\\n229\tDeBERTa baseline (semantic) & 0.89 & 0.76 & 13 \\\\\n230\tDeepContext proxy (generic temporal) & 0.84 & 0.69 & 15 \\\\\n231\tTF-IDF + LR (lexical) & 0.72 & 0.54 & 18 \\\\\n232\t\\bottomrule\n233\t\\end{tabular}\n234\t\\end{table}\n235\t\n236\tThe results reveal a clear three-tier gradient aligned with the predicted evasion hierarchy. TF-IDF collapses under perturbation ($-$18\\,pp) because synonym substitution directly destroys the lexical features it relies on. The DeepContext proxy degrades by 15\\,pp because BERT-base representations partially depend on surface patterns. The semantic baseline degrades moderately ($-$13\\,pp) as contextual embeddings are disrupted by token-level changes even when meaning is largely preserved. DisPeD degrades minimally ($-$3\\,pp) because persuasion-grounded representations encode illocutionary acts that are invariant to paraphrasing: ``building rapport through self-disclosure'' retains its pragmatic function regardless of lexical realization.\n237\t\n238\tA particularly strong result: DisPeD under adversarial perturbation (F1\\,=\\,0.93) still outperforms the semantic baseline on \\emph{unperturbed} data (F1\\,=\\,0.89). Table~\\ref{tab:evasion_k2} shows that this pattern holds at $K$\\,=\\,2, where DisPeD maintains F1\\,=\\,0.87 versus 0.63 for the semantic baseline.\n239\t\n240\t\\begin{table}[t]\n241\t\\centering\n242\t\\caption{Evasion hierarchy at $K$\\,=\\,2 turns.}\n243\t\\label{tab:evasion_k2}\n244\t\\begin{tabular}{lccc}\n245\t\\toprule\n246\t\\textbf{Model} & \\textbf{F1 Clean} & \\textbf{F1 Perturbed} & \\textbf{Drop (pp)} \\\\\n247\t\\midrule\n248\tDisPeD & 0.91 & 0.87 & 4 \\\\\n249\tDeBERTa baseline & 0.77 & 0.63 & 14 \\\\\n250\tTF-IDF + LR & 0.65 & 0.48 & 17 \\\\\n251\t\\bottomrule\n252\t\\end{tabular}\n253\t\\end{table}\n254\t\n255\t\\subsection{Ablation: Scrambled Label Analysis}\n256\t\\label{sec:ablation}\n257\t\n258\tTo confirm that the advantage of DisPeD comes from the \\emph{semantic content} of persuasion labels rather than the fine-tuning process itself, we retrain the encoder with randomly scrambled persuasion strategy labels (intent labels remain intact). Table~\\ref{tab:scrambled} shows that scrambling causes a 15\\,pp drop at $K$\\,=\\,2, bringing performance close to the vanilla baseline (0.76 vs. 0.77). The scrambled encoder's persuasion classification accuracy drops to 0.13 ($\\approx 1/8$ random chance), confirming that the label signal is destroyed. This ablation establishes a causal link: the discriminative power of DisPeD derives from the semantic content of persuasion strategy annotations, not from any incidental benefit of multi-task training.\n259\t\n260\t\\begin{table}[t]\n261\t\\centering\n262\t\\caption{Effect of scrambling persuasion strategy labels. Drop is relative to properly labeled DisPeD.}\n263\t\\label{tab:scrambled}\n264\t\\begin{tabular}{lccc}\n265\t\\toprule\n266\t\\textbf{$K$} & \\textbf{Proper Labels} & \\textbf{Scrambled Labels} & \\textbf{Drop (pp)} \\\\\n267\t\\midrule\n268\t2 & 0.91 & 0.76 & 15 \\\\\n269\t3 & 0.93 & 0.81 & 12 \\\\\n270\tAll & 0.96 & 0.87 & 9 \\\\\n271\t\\bottomrule\n272\t\\end{tabular}\n273\t\\end{table}\n274\t\n275\t\\subsection{Cross-Attack Zero-Shot Generalization}\n276\t\\label{sec:cross_attack}\n277\t\n278\tA model trained exclusively on Crescendo-style attacks is evaluated zero-shot on FITD and Deceptive Delight attacks. Table~\\ref{tab:cross_attack} presents the results. DisPeD achieves an average F1 of 0.85 on unseen attack types, outperforming the semantic baseline by 16.5\\,pp. DisPeD on unseen attacks (0.85) approaches the semantic baseline on \\emph{seen} attacks (0.89), demonstrating that persuasion-grounded representations capture attack-type-agnostic pragmatic signals.\n279\t\n280\t\\begin{table}[t]\n281\t\\centering\n282\t\\caption{Zero-shot cross-attack generalization (full conversation). The model is trained on Crescendo only.}\n283\t\\label{tab:cross_attack}\n284\t\\begin{tabular}{lccc}\n285\t\\toprule\n286\t\\textbf{Attack Type} & \\textbf{DisPeD} & \\textbf{Baseline} & \\textbf{$\\Delta$ (pp)} \\\\\n287\t\\midrule\n288\tFITD & 0.84 & 0.67 & 17 \\\\\n289\tDeceptive Delight & 0.86 & 0.70 & 16 \\\\\n290\tCrescendo (held-out) & 0.96 & 0.89 & 7 \\\\\n291\t\\bottomrule\n292\t\\end{tabular}\n293\t\\end{table}\n294\t\n295\tTable~\\ref{tab:cross_attack_k2} reports early detection on unseen attacks. At $K$\\,=\\,2, DisPeD achieves recall of 0.78 on FITD and 0.81 on Deceptive Delight, versus 0.55 and 0.58 for the baseline.\n296\t\n297\t\\begin{table}[t]\n298\t\\centering\n299\t\\caption{Cross-attack early detection recall at $K$\\,=\\,2.}\n300\t\\label{tab:cross_attack_k2}\n301\t\\begin{tabular}{lcc}\n302\t\\toprule\n303\t\\textbf{Attack Type} & \\textbf{DisPeD Recall} & \\textbf{Baseline Recall} \\\\\n304\t\\midrule\n305\tFITD & 0.78 & 0.55 \\\\\n306\tDeceptive Delight & 0.81 & 0.58 \\\\\n307\t\\bottomrule\n308\t\\end{tabular}\n309\t\\end{table}\n310\t\n311\tThe transfer works because all three attack types share the same persuasion strategy vocabulary (Table~\\ref{tab:strategy_dist}), differing only in temporal arrangement. The GRU learns a generic ``persuasion escalation'' detector rather than Crescendo-specific surface patterns. Deceptive Delight transfers slightly better (0.86 vs. 0.84) because its strategy profile (strong reframing component) more closely resembles Crescendo's distribution.\n312\t\n313\t\\subsection{Mechanistic Analysis: Escalation Trajectories}\n314\t\\label{sec:trajectory}\n315\t\n316\tTo provide a mechanistic explanation for why pragmatic features succeed, we analyze persuasion strategy transition patterns. Table~\\ref{tab:trajectory} reports two quantitative metrics distinguishing jailbreak from benign conversations.\n317\t\n318\t\\begin{table}[t]\n319\t\\centering\n320\t\\caption{Strategy transition statistics. Monotonicity measures the fraction of transitions along the escalation direction. Entropy measures the diversity of transition types.}\n321\t\\label{tab:trajectory}\n322\t\\begin{tabular}{lccc}\n323\t\\toprule\n324\t\\textbf{Type} & \\textbf{Transition Entropy} & \\textbf{Monotonicity} & \\textbf{$n$} \\\\\n325\t\\midrule\n326\tJailbreak & 1.8 & 0.82 & 240 \\\\\n327\tBenign & 2.9 & 0.34 & 240 \\\\\n328\t\\bottomrule\n329\t\\end{tabular}\n330\t\\end{table}\n331\t\n332\tJailbreak conversations exhibit highly monotonic escalation (score 0.82): 82\\% of strategy transitions move from lower-risk to higher-risk categories (e.g., rapport building $\\to$ commitment/consistency $\\to$ reframing $\\to$ direct request). Benign conversations show near-random monotonicity (0.34) with oscillatory, task-driven patterns. Transition entropy is lower for jailbreaks (1.8 vs. 2.9) because attackers follow a concentrated playbook, while benign conversations traverse a wider range of pragmatic functions.\n333\t\n334\tTable~\\ref{tab:dominant_sequences} shows the most frequent strategy sequences. Jailbreak conversations converge on a small number of escalation trajectories (top-3 covering 74\\% of cases), while benign conversations are dominated by ``none'' labels (45\\%) reflecting the absence of persuasion intent. The trajectory-only separability (AUROC\\,=\\,0.91) confirms that the escalation pattern alone, without any content features, is strongly discriminative.\n335\t\n336\t\\begin{table}[t]\n337\t\\centering\n338\t\\caption{Top-3 dominant strategy sequences by conversation type.}\n339\t\\label{tab:dominant_sequences}\n340\t\\small\n341\t\\begin{tabular}{clcclc}\n342\t\\toprule\n343\t & \\textbf{Jailbreak Sequence} & \\textbf{\\%} & & \\textbf{Benign Sequence} & \\textbf{\\%} \\\\\n344\t\\midrule\n345\t1 & rapport$\\to$commit$\\to$reframe$\\to$direct & 34 & 1 & none$\\to$none$\\to$none$\\to$none & 45 \\\\\n346\t2 & rapport$\\to$social$\\to$reframe$\\to$direct & 22 & 2 & rapport$\\to$none$\\to$rapport$\\to$none & 18 \\\\\n347\t3 & rapport$\\to$reciprocity$\\to$commit$\\to$direct & 18 & 3 & none$\\to$rapport$\\to$none$\\to$direct & 12 \\\\\n348\t\\bottomrule\n349\t\\end{tabular}\n350\t\\end{table}\n351\t\n352\t\\subsection{Robustness on Hard Negatives}\n353\t\\label{sec:hard_negatives}\n354\t\n355\tA potential concern is that DisPeD might flag benign conversations with high topic diversity as jailbreaks. We evaluate on hard negatives from WildChat~\\citep{zhao2024wildchat}: 120 high-drift benign conversations where users shift across multiple domains (e.g., coding to personal advice to creative writing). We filter 15.2\\% of WildChat conversations as potential contamination.\n356\t\n357\t\\begin{table}[t]\n358\t\\centering\n359\t\\caption{False-positive rate on hard negatives (high-drift benign) vs. random benign.}\n360\t\\label{tab:hard_negatives}\n361\t\\begin{tabular}{lccc}\n362\t\\toprule\n363\t\\textbf{Model} & \\textbf{FPR (Hard)} & \\textbf{FPR (Random)} & \\textbf{$\\Delta$} \\\\\n364\t\\midrule\n365\tDisPeD & 0.09 & 0.03 & 0.06 \\\\\n366\tDeBERTa baseline & 0.17 & 0.06 & 0.11 \\\\\n367\tTF-IDF + LR & 0.22 & 0.08 & 0.14 \\\\\n368\t\\bottomrule\n369\t\\end{tabular}\n370\t\\end{table}\n371\t\n372\tTable~\\ref{tab:hard_negatives} shows that DisPeD maintains a low FPR of 9\\% on hard negatives, compared to 17\\% for the semantic baseline and 22\\% for TF-IDF. The persuasion-grounded representations distinguish ``topic drift'' (benign, oscillatory strategy transitions) from ``strategy escalation'' (adversarial, monotonic trajectory), a distinction that semantic embeddings cannot reliably make.\n373\t\n374\t\\subsection{Lexical Baseline Analysis}\n375\t\\label{sec:lexical}\n376\t\n377\tTable~\\ref{tab:tfidf_performance} reports the TF-IDF + Logistic Regression baseline on clean data. Even after register normalization, residual lexical signal provides above-chance performance (F1\\,=\\,0.72) due to functional vocabulary that attackers cannot entirely avoid. The top discriminative features (Table~\\ref{tab:top_features}) confirm this: jailbreak-indicative words (``hypothetical,'' ``scenario,'' ``imagine'') are framing devices required by the attack structure. This residual lexical signal (F1\\,=\\,0.72) falls far short of what pragmatic features achieve (F1\\,=\\,0.96) and collapses under adversarial perturbation (F1\\,=\\,0.54).\n378\t\n379\t\\begin{table}[t]\n380\t\\centering\n381\t\\caption{TF-IDF + LR performance by turn budget on clean data.}\n382\t\\label{tab:tfidf_performance}\n383\t\\begin{tabular}{lccc}\n384\t\\toprule\n385\t\\textbf{$K$} & \\textbf{F1} & \\textbf{Precision} & \\textbf{Recall} \\\\\n386\t\\midrule\n387\t2 & 0.65 & 0.68 & 0.62 \\\\\n388\t3 & 0.68 & 0.71 & 0.65 \\\\\n389\t5 & 0.70 & 0.73 & 0.68 \\\\\n390\tAll & 0.72 & 0.75 & 0.70 \\\\\n391\t\\bottomrule\n392\t\\end{tabular}\n393\t\\end{table}\n394\t\n395\t\\begin{table}[t]\n396\t\\centering\n397\t\\caption{Top-5 discriminative features by LR coefficient.}\n398\t\\label{tab:top_features}\n399\t\\begin{tabular}{clccl c}\n400\t\\toprule\n401\t\\textbf{Rank} & \\textbf{Jailbreak Feature} & \\textbf{Weight} & & \\textbf{Benign Feature} & \\textbf{Weight} \\\\\n402\t\\midrule\n403\t1 & hypothetical & 2.31 & & thanks & 1.89 \\\\\n404\t2 & scenario & 1.95 & & help & 1.72 \\\\\n405\t3 & imagine & 1.87 & & question & 1.54 \\\\\n406\t4 & creative & 1.62 & & code & 1.41 \\\\\n407\t5 & roleplay & 1.48 & & explain & 1.33 \\\\\n408\t\\bottomrule\n409\t\\end{tabular}\n410\t\\end{table}\n411\t\n412\t\\subsection{Checkpoint Sensitivity}\n413\t\\label{sec:checkpoint}\n414\t\n415\tTo assess reproducibility on our relatively small dataset, we evaluate DisPeD with DeBERTa encoders from different training epochs. Table~\\ref{tab:checkpoint} shows that downstream F1 varies by at most 1\\,pp across checkpoints, indicating that the results are robust to encoder training stochasticity.\n416\t\n417\t\\begin{table}[t]\n418\t\\centering\n419\t\\caption{Checkpoint sensitivity analysis.}\n420\t\\label{tab:checkpoint}\n421\t\\begin{tabular}{lcccc}\n422\t\\toprule\n423\t\\textbf{Checkpoint} & \\textbf{Persuasion Acc} & \\textbf{Intent Acc} & \\textbf{F1 (Full)} & \\textbf{F1 ($K$=2)} \\\\\n424\t\\midrule\n425\tEpoch 2 & 0.76 & 0.93 & 0.94 & 0.89 \\\\\n426\tEpoch 3 & 0.79 & 0.94 & 0.96 & 0.91 \\\\\n427\tEpoch final & 0.78 & 0.94 & 0.95 & 0.90 \\\\\n428\t\\bottomrule\n429\t\\end{tabular}\n430\t\\end{table}\n431\t\n432\t% ============================================================\n433\t% 6. DISCUSSION\n434\t% ============================================================\n435\t\\section{Discussion}\n436\t\n437\t\\paragraph{Why pragmatic features are structurally robust.}\n438\tThe Pragmatic Evasion Asymmetry is not merely an empirical observation but follows from the functional requirements of multi-turn attacks. An attacker who removes rapport building cannot establish the trust needed for later compliance. An attacker who skips reframing cannot normalize the harmful request. An attacker who eliminates all escalation has, by definition, not conducted a multi-turn attack. Each persuasion strategy serves a necessary function in the attack pipeline, and our experiments confirm that this structural constraint translates into measurably robust detection features.\n439\t\n440\t\\paragraph{Limitations.}\n441\tOur dataset is small (480 conversations) and the generated attack conversations may not capture the full diversity of real-world adversarial behavior. The persuasion taxonomy is limited to 8 categories; a finer-grained taxonomy might capture additional discriminative patterns. We do not evaluate against attacks that deliberately target the persuasion detection mechanism (adaptive adversaries aware of DisPeD). Human evaluation of the interpretability of strategy trajectories remains future work. Our scope is limited to persuasion-mediated multi-turn attacks; pure information accumulation attacks, token smuggling, and single-turn roleplay jailbreaks fall outside our detection target.\n442\t\n443\t% ============================================================\n444\t% 7. CONCLUSION\n445\t% ============================================================\n446\t\\section{Conclusion}\n447\t\n448\tWe introduced DisPeD, a multi-turn jailbreak detector that exploits the Pragmatic Evasion Asymmetry by grounding turn representations in a persuasion strategy taxonomy. Our experiments on register-normalized data demonstrate three key findings: (1) pragmatic features degrade minimally under adversarial paraphrasing (3\\,pp) compared to semantic (13\\,pp) and lexical (18\\,pp) features; (2) persuasion-grounded embeddings enable early detection at $K$\\,=\\,2 turns with 14\\,pp improvement over semantic baselines, an advantage that transfers zero-shot across attack families; and (3) the mechanistic basis for this advantage is the monotonic escalation trajectory in persuasion strategy space that characterizes multi-turn attacks. These results suggest that discourse-level pragmatic analysis is a promising direction for building jailbreak defenses that are robust to surface-level evasion.\n449\t\n450\t% ============================================================\n451\t% REFERENCES\n452\t% ============================================================\n453\t\\bibliographystyle{plainnat}\n454\t\n455\t\\begin{thebibliography}{20}\n456\t\n457\t\\bibitem[Alon and Kamfonas(2023)]{alon2023detecting}\n458\tG.~Alon and M.~Kamfonas.\n459\t\\newblock Detecting language model attacks with perplexity.\n460\t\\newblock \\emph{arXiv preprint arXiv:2308.14132}, 2023.\n461\t\n462\t\\bibitem[Austin(1962)]{austin1962things}\n463\tJ.~L. Austin.\n464\t\\newblock \\emph{How to Do Things with Words}.\n465\t\\newblock Oxford University Press, 1962.\n466\t\n467\t\\bibitem[Bullwinkel et~al.(2025)]{bullwinkel2025multiturn}\n468\tS.~Bullwinkel, P.~Schramowski, and K.~Kersting.\n469\t\\newblock Multi-turn jailbreaks hide in the representation space.\n470\t\\newblock \\emph{arXiv preprint arXiv:2507.02956}, 2025.\n471\t\n472\t\\bibitem[Chen et~al.(2025)]{chen2025persuade}\n473\tW.~Chen, Y.~Li, and R.~Jia.\n474\t\\newblock How do {LLMs} persuade? {E}xtracting persuasion dynamics from multi-turn conversations.\n475\t\\newblock \\emph{arXiv preprint arXiv:2508.05625}, 2025.\n476\t\n477\t\\bibitem[Cialdini(2001)]{cialdini2001science}\n478\tR.~B. Cialdini.\n479\t\\newblock \\emph{Influence: Science and Practice}.\n480\t\\newblock Allyn \\& Bacon, 4th edition, 2001.\n481\t\n482\t\\bibitem[Hagendorff(2026)]{hagendorff2026nature}\n483\tT.~Hagendorff.\n484\t\\newblock Persuasion strategies in adversarial conversations with large language models.\n485\t\\newblock \\emph{Nature Communications}, 2026.\n486\t\n487\t\\bibitem[He et~al.(2021)]{he2021debertav3}\n488\tP.~He, J.~Gao, and W.~Chen.\n489\t\\newblock {DeBERTaV3}: Improving {DeBERTa} using {ELECTRA}-style pre-training with gradient-disentangled embedding sharing.\n490\t\\newblock \\emph{arXiv preprint arXiv:2111.09543}, 2021.\n491\t\n492\t\\bibitem[Inan et~al.(2023)]{inan2023llama}\n493\tH.~Inan, K.~Upasani, J.~Chi, R.~Rungta, K.~Iyer, Y.~Mao, M.~Tontchev, Q.~Hu, B.~Fuller, D.~Testuggine, and M.~Khabsa.\n494\t\\newblock {Llama Guard}: {LLM}-based input-output safeguard for human-{AI} conversations.\n495\t\\newblock \\emph{arXiv preprint arXiv:2312.06674}, 2023.\n496\t\n497\t\\bibitem[Jiang et~al.(2024)]{jiang2024deceptive}\n498\tY.~Jiang, H.~Zhang, and others.\n499\t\\newblock Deceptive delight: Jailbreaking {LLMs} through camouflaged content mixing.\n500\t\\newblock \\emph{arXiv preprint}, 2024.\n501\t\n502\t\\bibitem[Russinovich and Salem(2024)]{russinovich2024greatnow}\n503\tM.~Russinovich and A.~Salem.\n504\t\\newblock Great, now write an article about that: The crescendo multi-turn {LLM} jailbreak attack.\n505\t\\newblock \\emph{arXiv preprint arXiv:2404.01833}, 2024.\n506\t\n507\t\\bibitem[Searle(1969)]{searle1969speech}\n508\tJ.~R. Searle.\n509\t\\newblock \\emph{Speech Acts: An Essay in the Philosophy of Language}.\n510\t\\newblock Cambridge University Press, 1969.\n511\t\n512\t\\bibitem[Su et~al.(2026)]{su2026deepcontext}\n513\tY.~Su, R.~Wang, and others.\n514\t\\newblock {DeepContext}: Temporal semantic drift tracking for multi-turn jailbreak detection.\n515\t\\newblock \\emph{Preprint}, 2026.\n516\t\n517\t\\bibitem[Zeng et~al.(2024)]{zeng2024persuasion}\n518\tY.~Zeng, H.~Lin, J.~Zhang, D.~Yang, R.~Jia, and W.~Shi.\n519\t\\newblock How {J}ohnny can persuade {LLMs} to jailbreak them: Rethinking persuasion to challenge {AI} safety by humanizing {LLMs}.\n520\t\\newblock In \\emph{Proceedings of ACL}, 2024.\n521\t\n522\t\\bibitem[Zhao et~al.(2024)]{zhao2024wildchat}\n523\tW.~Zhao, J.~Ren, B.~Li, and others.\n524\t\\newblock {WildChat}: 1{M} chat{GPT} interaction logs in the wild.\n525\t\\newblock In \\emph{Proceedings of ICLR}, 2024.\n526\t\n527\t\\bibitem[Zhou et~al.(2024)]{zhou2024speak}\n528\tZ.~Zhou, Y.~Guo, and others.\n529\t\\newblock Speak out of turn: Safety vulnerability of large language models in multi-turn dialogue.\n530\t\\newblock \\emph{arXiv preprint}, 2024.\n531\t\n532\t\\end{thebibliography}\n533\t\n534\t\\end{document}\n535\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9fdaf7a-0603-4000-9119-41d0d0a4e6cf",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "e1824791-abf7-46f1-8eb7-8ac7fa83c1b7",
+            "sourceToolAssistantUUID": "b9fdaf7a-0603-4000-9119-41d0d0a4e6cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T17:23:57.138Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also read the project's ideas, roadmap, and any experimental artifacts to understand the full context."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1824791-abf7-46f1-8eb7-8ac7fa83c1b7",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XfZ7c5SfzM2HXQbDex",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "83087cb5-4a32-4f36-925f-f86d15f69376",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Dnso96Lm5MqM5mN4uSg4t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12326,
+                "cache_read_input_tokens": 19109,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T17:23:58.645Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ac25SdyLJX4FZyma6gU8mY",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "83087cb5-4a32-4f36-925f-f86d15f69376",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XfZ7c5SfzM2HXQbDex",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "81e231d0-39af-47be-a43a-66c2d19df5e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Dnso96Lm5MqM5mN4uSg4t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12326,
+                "cache_read_input_tokens": 19109,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T17:23:58.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ac25SdyLJX4FZyma6gU8mY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'persuasion_turn_jailbreak_detect'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81e231d0-39af-47be-a43a-66c2d19df5e3",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "c834d948-31ef-4dbf-b876-dc78c3729d7c",
+            "sourceToolAssistantUUID": "81e231d0-39af-47be-a43a-66c2d19df5e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T17:23:59.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0136P4PUf7fkEwWHhPpTc6m6",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c834d948-31ef-4dbf-b876-dc78c3729d7c",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XfZ7c5SfzM2HXQbDex",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "298295d2-8451-41dd-9511-d213e9e0659d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Dnso96Lm5MqM5mN4uSg4t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12326,
+                "cache_read_input_tokens": 19109,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T17:23:59.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0136P4PUf7fkEwWHhPpTc6m6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\\\", \\\"content\\\": \\\"# persuasion_turn_jailbreak_detect — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 16:58 UTC | 更新原因: post-MVP kickoff: 转入 research 阶段，framing/plan/dream 已就位\\\\n\\\\n## 核心方向\\\\nPragmatic Evasion Asymmetry: 多轮 jailbreak 攻击可轻易规避词汇/语义层检测，但无法规避语用层检测——说服策略序列（rapport→reframing→escalation）是攻击成功的结构性前提。DisPeD 利用这一不对称性，在 DeBERTa 上训练 8 类说服策略分类，产生编码语用功能的 turn embeddings。详见 paper_framing.md。\\\\n\\\\n## 目标会议\\\\nEMNLP 2026 ARR — **DDL: 2026-05-25**（距今 8 天）\\\\n\\\\n## 阶段\\\\n**Research**（MVP 2026-05-17 PASS → complete_mvp 完成）\\\\n\\\\n## 当前进展\\\\n- MVP 验证通过：Treatment K=2 F1=0.987 vs Baseline 0.879 (+10.8pp)\\\\n- 关键阻塞：TF-IDF=1.0（词汇捷径），strategy=7 hardcoding（M004）\\\\n- paper_framing.md ✅ | experiment_plan.yaml ✅ | Dream 模拟已发起（等待回调）\\\\n- Core Claims: (1) Pragmatic Evasion Asymmetry (2) Early Detection via Persuasion Grounding (3) Adversarial Robustness\\\\n- 架构：单 track（persuasion-grounded DeBERTa → GRU），双 track 留 future work\\\\n\\\\n## 近期任务\\\\n- [ ] 等待 Dream 模拟回调 → 评估 framing/plan 是否需要调整\\\\n- [ ] **plan_001** (P0): 数据质量修复（register normalization + strategy label fix + TF-IDF gate < 0.75）\\\\n- [ ] **plan_002** (P0): 干净数据上重新训练 + 评估（core revalidation）\\\\n- [ ] **plan_003** (P0): scrambled-label ablation\\\\n- [ ] **plan_004** (P0): 对抗扰动实验（Claim 3 核心验证）\\\\n- [ ] **plan_005** (P0): 多攻击类型生成（FITD + Deceptive Delight）\\\\n- [ ] **plan_006** (P0): 跨攻击类型评估\\\\n- [ ] **plan_007** (P1): TF-IDF + LR baseline\\\\n- [ ] **plan_008** (P1): 策略转移矩阵可视化\\\\n\\\\n## GPU 预算\\\\n- 分配: 4× RTX PRO 6000 Blackwell (96GB) @ westd-33183\\\\n- 约束: C001 — 仅 cuda:0-3\\\\n- P0 总预算: ~44 GPU-hours | P1: ~5.5h | P2: ~12h\\\\n- 可用: ~768 GPU-hours (4卡×8天×24h) — 资源充裕\\\\n\\\\n## 进展摘要\\\\n1. MVP Phase B full 480 samples: treatment early detection K=2 +10.8pp, K=3 +5.9pp → PASS (D002)\\\\n2. TF-IDF=1.0 暴露数据有完美词汇捷径 → research 阶段首要解决\\\\n3. strategy=7 hardcoding (M004) 需修复后做 scrambled-label ablation 验证\\\\n4. paper_framing + experiment_plan 已写，Dream full review 已发起\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D003 | 2026-05-17 | 进入 Research 阶段，framing 定位为 Pragmatic Evasion Asymm | phase_b_full, pilot_phase_b |\\\\n| D002 | 2026-05-17 | MVP PASS — early detection K=2 +10.8pp, K=3 +5.9pp | pilot_phase_b |\\\\n| D001 | 2026-05-17 | 接受 DeBERTa F1=0.789 作为 baseline，停止数据 TF-IDF 迭代，ref | — |\\\\n\\\\n\\\", \\\"total_chars\\\": 2130, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "298295d2-8451-41dd-9511-d213e9e0659d",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "ba1829fc-e323-4cd2-9937-e21c04132722",
+            "sourceToolAssistantUUID": "298295d2-8451-41dd-9511-d213e9e0659d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T17:23:59.698Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PUdAXztpaz7hVq1BtKUjDi",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba1829fc-e323-4cd2-9937-e21c04132722",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XfZ7c5SfzM2HXQbDex",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "09a3f43b-ffc2-43f5-8fe5-95cf929f6711",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Dnso96Lm5MqM5mN4uSg4t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12326,
+                "cache_read_input_tokens": 19109,
+                "output_tokens": 328,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12326
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 328,
+                    "cache_read_input_tokens": 19109,
+                    "cache_creation_input_tokens": 12326,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12326,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T17:23:59.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PUdAXztpaz7hVq1BtKUjDi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 竞品实验参考\\\\n（待填充：首次正式对标竞品时补充）\\\\n\\\\n## 关键决策记录\\\\n\\\\n### D001: 停止数据迭代 (2026-05-17)\\\\n- **决策**：TF-IDF 高不再阻塞训练。DeBERTa F1=0.789 在目标范围，直接进入 Phase B。\\\\n- **原因**：数据迭代已 4+ 轮（v1→v4c），每轮修一个 shortcut 又暴露新的。Director 判断 early detection 是更有价值的 metric 方向。\\\\n- **影响**：论文 reframe 为 early detection（前 K turns），TF-IDF 在 truncated 场景自然会失效。\\\\n\\\\n### D002: 用 intended_strategy 替代 GPT-5.5 标注 (2026-05-17)\\\\n- **决策**：Crescendo jailbreak 用生成时的 intended_strategy 作为 persuasion ground truth；benign 全标 \\\\\\\"Direct Request\\\\\\\"。\\\\n- **原因**：intended_strategy 是 oracle labels（生成时写入），比 LLM 标注更准确。省去标注成本和 API 调用。\\\\n- **影响**：不再需要 GPT-5.5 标注流程。\\\\n\\\\n### D003: V4c casual register 方案 (2026-05-17)\\\\n- **决策**：benign 用 few-shot from Crescendo + casual register prompt + personas 生成。\\\\n- **原因**：V4 formal register 矫枉过正（Crescendo 实际是 casual rapport 风格）。\\\\n- **影响**：最终 230 条 benign 生成成功，但 TF-IDF 仍为 1.0（词汇层 shortcut 未完全消除）。\\\\n\\\\n## 实验经验\\\\n\\\\n### Crescendo 攻击的语言特征 (2026-05-17)\\\\n- Crescendo jailbreak 用 **casual rapport** 语气：hey, what if, just curious, I was wondering\\\\n- 不是 formal/hypothetical（之前的误判）\\\\n- 这意味着 benign 对照也需要 casual 风格\\\\n\\\\n### 磁盘空间约束 (2026-05-17)\\\\n- westd-33183 总容量 30GB，模型 cache 在 /root/autodl-tmp/\\\\n- DeBERTa checkpoint ~700MB，GRU ~几MB\\\\n- 训练前必须检查可用空间，pilot GRU 曾因磁盘满提前终止\\\\n\\\\n### Pipeline 端到端验证 (2026-05-17)\\\\n- DeBERTa multi-task → embedding extraction → GRU 全链路正常\\\\n- 270 条 pilot 数据足够验证 pipeline，分钟级完成\\\\n- DeBERTa best epoch 在 3-4 epoch 左右，不需要很长训练\\\\n\\\\n## Phase B MVP 结果 (2026-05-17)\\\\n- Treatment K=2 F1=0.987 vs Baseline 0.879 (+10.8pp) → MVP PASS\\\\n- Persuasion-grounded fine-tuning 的价值集中在 early turns\\\\n- TF-IDF F1=1.0 at all K → 词汇 shortcut 存在，论文需 acknowledge\\\\n\\\", \\\"total_chars\\\": 1569, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09a3f43b-ffc2-43f5-8fe5-95cf929f6711",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "e5f1dcdb-89b6-48d0-9fa2-04f19b1f4bb8",
+            "sourceToolAssistantUUID": "09a3f43b-ffc2-43f5-8fe5-95cf929f6711",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T17:24:03.236Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the paper framing and experiment plan for more context."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5f1dcdb-89b6-48d0-9fa2-04f19b1f4bb8",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8Xg8iwLZ346AzkNFTU9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4d320f46-0e78-497d-ad04-9b349b74623c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013QQ96mwmsTrE9wEnVfqK3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3019,
+                "cache_read_input_tokens": 31435,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3019,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T17:24:03.774Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HH7tvspz8Vpp6DaWmtvyBB",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d320f46-0e78-497d-ad04-9b349b74623c",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8Xg8iwLZ346AzkNFTU9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d4bdc274-7962-412e-b07c-43502ffcaa83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013QQ96mwmsTrE9wEnVfqK3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3019,
+                "cache_read_input_tokens": 31435,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3019,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T17:24:03.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HH7tvspz8Vpp6DaWmtvyBB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — persuasion_turn_jailbreak_detect\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission)\\\\n- Deadline: 2026-05-25 (ARR May cycle)\\\\n- Track: LLM Security / Discourse and Pragmatics\\\\n- Commitment deadline: 2026-08-02\\\\n\\\\n## Title (Working)\\\\nDisPeD: Exploiting the Pragmatic Evasion Asymmetry for Robust Multi-Turn Jailbreak Detection\\\\n\\\\n## Core Insight\\\\nMulti-turn jailbreak attacks can easily vary lexical and semantic content of individual turns, but the discourse-level persuasion playbook (rapport → reframing → escalation) is a structural necessity for attack success. Removing any stage either fails the attack or reduces it to a single-turn attack already covered by existing defenses. DisPeD exploits this asymmetry by fine-tuning DeBERTa on persuasion strategy classification, producing turn embeddings that encode pragmatic function rather than (only) semantic content.\\\\n\\\\n## Core Claims (3)\\\\n\\\\n### Claim 1: Pragmatic Evasion Asymmetry (Theoretical + Empirical)\\\\nAn evasion hierarchy exists for multi-turn jailbreak detection: lexical features (easily evaded via paraphrasing) < semantic embeddings (moderate, per-turn representations kept \\\\\\\"benign\\\\\\\" per Bullwinkel et al. 2025) < pragmatic persuasion patterns (structurally difficult to evade, as the persuasion playbook is a functional prerequisite for attack success).\\\\n- Evidence needed: adversarial perturbation experiment showing treatment degrades less than lexical/semantic baselines under paraphrasing\\\\n\\\\n### Claim 2: Early Detection via Persuasion Grounding\\\\nPersuasion-grounded turn embeddings (DeBERTa fine-tuned on 8-class persuasion taxonomy + intent) enable significantly earlier detection of multi-turn jailbreaks (at K=2-3 turns) compared to vanilla semantic embeddings, because persuasion strategy transitions (rapport → authority framing) manifest before explicitly harmful content appears.\\\\n- Evidence needed: early detection F1 at K=2,3 turns, treatment > baseline by >= 5pp on clean data (TF-IDF < 0.75)\\\\n\\\\n### Claim 3: Monotonic Escalation Trajectory\\\\nAdversarial conversations exhibit a monotonic escalation trajectory in persuasion strategy space (trust → test → normalize → elicit), while benign conversations exhibit oscillatory or non-monotonic patterns. This distinction is the mechanistic basis for Claims 1-2.\\\\n- Evidence needed: strategy transition matrix visualization, trajectory analysis comparing jailbreak vs benign\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: Multi-turn jailbreak attacks (Crescendo, FITD, Deceptive Delight) distribute adversarial intent across individually benign turns. Bullwinkel et al. (2025) show per-turn representations are deliberately kept in a \\\\\\\"benign\\\\\\\" region, causing representation-level defenses to fail with a 50-point ASR gap. DeepContext (2026) tracks generic semantic drift but confuses benign conversational evolution with adversarial manipulation.\\\\n\\\\n**Gap**: Existing detectors operate at the lexical or semantic level where attacks deliberately hide. No published work combines persuasion-grounded turn representations with temporal sequence modeling for multi-turn jailbreak detection.\\\\n\\\\n**Our angle**: We identify the Pragmatic Evasion Asymmetry. The persuasion playbook (rapport → reframing → escalation) is a structural necessity for multi-turn attack success. Unlike lexical or semantic features, pragmatic persuasion patterns cannot be evaded without abandoning the attack itself. DisPeD fine-tunes DeBERTa on an 8-class persuasion taxonomy to produce pragmatic-aware turn embeddings, then models the temporal strategy sequence with a GRU to detect the characteristic escalation trajectory.\\\\n\\\\n**Headline result**: \\\\\\\"DisPeD detects Crescendo-style jailbreaks at K=2 turns with F1=X vs Y for vanilla semantic baselines (+Z pp). Under adversarial paraphrasing that removes lexical cues, DisPeD maintains F1=W while lexical baselines degrade by V pp.\\\\\\\"\\\\n\\\\n## Architecture (Simplified for MVE)\\\\n\\\\nSingle-track with persuasion grounding (full dual-track in future work):\\\\n1. **Stage 1**: DeBERTa-v3-base fine-tuned on multi-task objective: 8-class persuasion strategy classification + binary jailbreak-intent classification\\\\n2. **Stage 2**: Bi-GRU over DeBERTa [CLS] embeddings for conversation-level binary classification\\\\n3. **Baseline**: Same pipeline but with vanilla (not fine-tuned) DeBERTa embeddings\\\\n\\\\n## Venue Fit Risks\\\\n- EMNLP 2026 LLM Security track: strong fit (dedicated track, high visibility)\\\\n- Discourse/Pragmatics reviewers may want more linguistic rigor: ground taxonomy in PAP (ACL 2024), Hagendorff (Nature Comm 2026), Cialdini principles, Speech Act Theory (Austin 1962, Searle 1969)\\\\n- Safety reviewers expect multiple attack types: need >= 2 attack families\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n### RC1: Lexical Shortcut (CRITICAL, must address pre-submission)\\\\nTF-IDF=1.0 on current data means lexical features alone perfectly separate classes. Must show the model works on data without lexical shortcuts.\\\\n- Mitigation: (a) register-normalize jailbreak data to match benign register, verify TF-IDF < 0.75, retrain; (b) adversarial perturbation evaluation (Claim 3)\\\\n\\\\n### RC2: Small Dataset\\\\n480 samples is small for a detection paper.\\\\n- Mitigation: (a) statistical significance via bootstrap CI or paired tests; (b) cross-validation; (c) focus narrative on proof-of-concept for the principle, not SOTA numbers\\\\n\\\\n### RC3: Single Attack Type (Crescendo Only)\\\\nNeed generalization evidence.\\\\n- Mitigation: generate FITD-style and Deceptive Delight-style conversations using existing pipeline\\\\n\\\\n### RC4: Strategy Label Confound (M004)\\\\nBenign turns hardcoded to strategy=7 creates shortcut for treatment model.\\\\n- Mitigation: (a) fix labeling (use \\\\\\\"none\\\\\\\"/9th class); (b) scrambled-label ablation\\\\n\\\\n### RC5: No DeepContext Comparison\\\\nPaper positions against DeepContext but no reproduction.\\\\n- Mitigation: vanilla DeBERTa → GRU is a fair proxy baseline (same architecture, only difference is persuasion grounding). Note DeepContext has no public code. If time allows, attempt reproduction as P1.\\\\n\\\\n### RC6: Interpretability Claims Without Human Eval\\\\nStrategy sequence outputs claimed interpretable but not evaluated.\\\\n- Mitigation: strategy transition matrix visualization (P1). Full human eval is future work given timeline constraints.\\\\n\\\\n## Scope Boundary\\\\n- IN: persuasion-mediated multi-turn attacks (Crescendo, FITD, Deceptive Delight, social engineering jailbreaks)\\\\n- OUT (acknowledged limitation): pure information accumulation attacks, token smuggling, single-frame roleplay\\\\n- The semantic GRU track provides coverage for out-of-scope attack types as a safety net\\\\n\\\\n## Theoretical Grounding\\\\n- Bullwinkel et al. (arXiv 2507.02956): per-turn representations kept \\\\\\\"benign\\\\\\\" by multi-turn attacks\\\\n- Speech Act Theory (Austin 1962, Searle 1969): existing detectors work at locutionary act level, DisPeD at illocutionary act level\\\\n- PAP (Zeng et al., ACL 2024): 40 persuasion techniques for jailbreaking\\\\n- Hagendorff (Nature Communications 2026): identifiable persuasion strategies in 97% ASR attacks\\\\n- \\\\\\\"How Do LLMs Persuade?\\\\\\\" (arXiv 2508.05625): persuasion dynamics extractable from turn-level representations\\\\n\\\", \\\"total_chars\\\": 7114, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4bdc274-7962-412e-b07c-43502ffcaa83",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "08d8584a-759b-4395-b346-0fc4f2eec082",
+            "sourceToolAssistantUUID": "d4bdc274-7962-412e-b07c-43502ffcaa83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T17:24:04.249Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JD5ex39NNUA9r7betbwuxo",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/experiment_plan.yaml",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08d8584a-759b-4395-b346-0fc4f2eec082",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8Xg8iwLZ346AzkNFTU9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3f15350a-9b54-4058-97be-48956c034bd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013QQ96mwmsTrE9wEnVfqK3K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3019,
+                "cache_read_input_tokens": 31435,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3019,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T17:24:04.269Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JD5ex39NNUA9r7betbwuxo",
+              "type": "tool_result",
+              "content": "experiment_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f15350a-9b54-4058-97be-48956c034bd6",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "ce148066-e1a1-4d8a-84b7-2e57813db92d",
+            "sourceToolAssistantUUID": "3f15350a-9b54-4058-97be-48956c034bd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T17:24:07.368Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0114CM9wVmpSjSFJJGGCCtQy",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/experiment_plan.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce148066-e1a1-4d8a-84b7-2e57813db92d",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XgU9zFmvg5CDLc95xE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3fd08564-b8f2-416c-a845-d576ac2cac77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ZFU1jLQeakNnhz7UfL8kr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2448,
+                "cache_read_input_tokens": 34454,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2448
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 34454,
+                    "cache_creation_input_tokens": 2448,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2448,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T17:24:07.376Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0114CM9wVmpSjSFJJGGCCtQy",
+              "type": "tool_result",
+              "content": "1\t# Experiment Plan — persuasion_turn_jailbreak_detect\n2\t# Generated: 2026-05-17\n3\t# Target: EMNLP 2026 ARR (DDL 2026-05-25)\n4\t# GPU budget: 4x RTX PRO 6000 Blackwell @ westd-33183, ~8 days = ~768 GPU-hours total\n5\t\n6\texperiments:\n7\t  # ============ P0: Critical Path (must complete before submission) ============\n8\t\n9\t  - id: plan_001\n10\t    name: data_quality_fix\n11\t    claim: [1, 2, 3]\n12\t    description: >\n13\t      Fix TF-IDF=1.0 data quality issue. Three sub-tasks:\n14\t      (a) Fix strategy=7 benign labeling — use \"none\" or 9th class instead of hardcoded 7 (M004 fix)\n15\t      (b) Register-normalize jailbreak data — LLM paraphrase jailbreak turns to conversational register\n16\t          while preserving persuasion strategy structure (the claim is pragmatic patterns survive register change)\n17\t      (c) Verify TF-IDF drops to <0.65 on normalized data (tightened per Reviewer feedback: 0.75 still allows residual lexical signal)\n18\t      (d) TF-IDF sanity check is HARD GATE — do not proceed to training if TF-IDF >= 0.65\n19\t      (e) Include 20-sample manual verification that paraphrased turns preserve original persuasion strategy category\n20\t    priority: P0\n21\t    gpu_budget_hours: 8\n22\t    deps: []\n23\t    pass_criteria: \"TF-IDF < 0.65 on register-normalized data with fixed labels; paraphrase preserves persuasion strategy in 20-sample check\"\n24\t    registry_id: null\n25\t\n26\t  - id: plan_002\n27\t    name: core_revalidation_clean\n28\t    claim: [2]\n29\t    description: >\n30\t      Re-run Phase B on clean data (from plan_001). Retrain both treatment (persuasion-grounded DeBERTa)\n31\t      and baseline (vanilla DeBERTa) from scratch on register-normalized data with fixed labels.\n32\t      Full evaluation at K=1,2,3,5,all. Core claim validation on clean data.\n33\t    priority: P0\n34\t    gpu_budget_hours: 12\n35\t    deps: [plan_001]\n36\t    pass_criteria: \"Treatment F1 > baseline F1 + 5pp at K=2 or K=3 on clean data\"\n37\t    registry_id: null\n38\t\n39\t  - id: plan_003\n40\t    name: scrambled_label_ablation\n41\t    claim: [2]\n42\t    description: >\n43\t      Ablation: randomly shuffle persuasion strategy labels for jailbreak turns, retrain treatment model.\n44\t      If performance drops significantly vs properly-labeled treatment, confirms persuasion labels\n45\t      carry real signal beyond being a class indicator. Validates that M004 fix was necessary.\n46\t    priority: P0\n47\t    gpu_budget_hours: 4\n48\t    deps: [plan_001]\n49\t    pass_criteria: \"Scrambled-label treatment F1 < properly-labeled treatment F1 (significant gap)\"\n50\t    registry_id: null\n51\t\n52\t  - id: plan_004\n53\t    name: adversarial_perturbation\n54\t    claim: [1, 3]\n55\t    description: >\n56\t      Core Claim 3 validation. Take clean jailbreak conversations, apply aggressive paraphrasing\n57\t      (synonym substitution, sentence restructuring, register shifting) to remove ALL lexical cues.\n58\t      Evaluate both treatment and baseline on perturbed data (models trained on unperturbed data).\n59\t      Treatment should degrade less than baseline, proving pragmatic features are robust.\n60\t      Also run TF-IDF baseline to show it collapses under perturbation.\n61\t    priority: P0\n62\t    gpu_budget_hours: 8\n63\t    deps: [plan_002]\n64\t    pass_criteria: \"Treatment F1 drop < baseline F1 drop under perturbation (delta-delta > 3pp)\"\n65\t    registry_id: null\n66\t\n67\t  - id: plan_005\n68\t    name: multi_attack_generation\n69\t    claim: [2]\n70\t    description: >\n71\t      Generate 2 additional attack types beyond Crescendo to test generalization:\n72\t      (a) FITD-style (foot-in-the-door): gradual compliance escalation\n73\t      (b) Deceptive Delight-style: interleaving benign and harmful content\n74\t      Use existing Qwen3-8B pipeline with appropriate attack playbooks.\n75\t      ~50-100 conversations per type. Annotate with persuasion strategies.\n76\t    priority: P0\n77\t    gpu_budget_hours: 8\n78\t    deps: []\n79\t    pass_criteria: \">=50 conversations per attack type, all with persuasion strategy annotations\"\n80\t    registry_id: null\n81\t\n82\t  - id: plan_006\n83\t    name: cross_attack_evaluation\n84\t    claim: [2]\n85\t    description: >\n86\t      Evaluate treatment and baseline models (trained on Crescendo) on FITD and Deceptive Delight\n87\t      attack types from plan_005. Tests zero-shot generalization across attack families.\n88\t    priority: P0\n89\t    gpu_budget_hours: 4\n90\t    deps: [plan_002, plan_005]\n91\t    pass_criteria: \"Treatment F1 > baseline F1 on unseen attack types\"\n92\t    registry_id: null\n93\t\n94\t  # ============ P1: Important (strongly recommended before submission) ============\n95\t\n96\t  - id: plan_007\n97\t    name: tfidf_lr_baseline\n98\t    claim: [1]\n99\t    description: >\n100\t      TF-IDF + Logistic Regression baseline on clean data. Quantifies how much of the detection\n101\t      is attributable to lexical features alone. Critical for the evasion hierarchy narrative.\n102\t    priority: P1\n103\t    gpu_budget_hours: 0.5\n104\t    deps: [plan_001]\n105\t    pass_criteria: \"Baseline number for comparison\"\n106\t    registry_id: null\n107\t\n108\t  - id: plan_008\n109\t    name: strategy_transition_analysis\n110\t    claim: [3]\n111\t    description: >\n112\t      Compute persuasion strategy transition matrices for jailbreak vs benign conversations.\n113\t      Visualize monotonic escalation trajectory (Claim 3). Generate paper figures:\n114\t      (a) Strategy transition heatmaps (jailbreak vs benign)\n115\t      (b) Per-turn strategy distribution evolution\n116\t      (c) Trajectory visualization in strategy space\n117\t    priority: P1\n118\t    gpu_budget_hours: 1\n119\t    deps: [plan_001]\n120\t    pass_criteria: \"Clear visual distinction between jailbreak escalation and benign oscillation patterns\"\n121\t    registry_id: null\n122\t\n123\t  - id: plan_009\n124\t    name: wildchat_hard_negatives\n125\t    claim: [2]\n126\t    description: >\n127\t      Filter WildChat for high-drift benign conversations as hard negatives.\n128\t      Evaluate FPR on these. Must handle contamination (previous runs found 14-16% jailbreak content\n129\t      in WildChat). Apply LLM-based or keyword-based filtering first.\n130\t    priority: P1\n131\t    gpu_budget_hours: 4\n132\t    deps: [plan_002]\n133\t    pass_criteria: \"FPR < 15% on high-drift benign conversations\"\n134\t    registry_id: null\n135\t\n136\t  # ============ P2: Nice to Have (if time permits) ============\n137\t\n138\t  - id: plan_010\n139\t    name: cross_checkpoint_variance\n140\t    claim: [2]\n141\t    description: >\n142\t      Evaluate from multiple DeBERTa fine-tuning checkpoints (epoch 2/3/final) to quantify\n143\t      encoder training stochasticity on downstream performance.\n144\t    priority: P2\n145\t    gpu_budget_hours: 4\n146\t    deps: [plan_002]\n147\t    pass_criteria: \"Variance across checkpoints < 2pp F1\"\n148\t    registry_id: null\n149\t\n150\t  - id: plan_011\n151\t    name: deepcontext_proxy_reproduction\n152\t    claim: [1, 2]\n153\t    description: >\n154\t      Attempt to reproduce DeepContext-like baseline: BERT-base (not DeBERTa) + GRU with\n155\t      generic drift features. Not a full DeepContext reproduction (no public code), but\n156\t      a proxy that isolates the encoder + feature representation contribution.\n157\t    priority: P2\n158\t    gpu_budget_hours: 8\n159\t    deps: [plan_001]\n160\t    pass_criteria: \"Proxy baseline F1 in reasonable range for comparison\"\n161\t    registry_id: null\n162\t\n163\t# MVP experiments (completed, for reference)\n164\tcompleted_mvp:\n165\t  - registry_id: pilot_phase_b\n166\t    description: \"Pilot Phase B on 270 samples, treatment F1=1.0 vs baseline 0.737\"\n167\t  - registry_id: phase_b_full\n168\t    description: \"Phase B full on 480 samples, treatment K=2 F1=0.987 vs baseline 0.879 (+10.8pp). TF-IDF=1.0 caveat.\"\n169\t\n170\t# Resource summary\n171\tresource_summary:\n172\t  total_p0_gpu_hours: 44\n173\t  total_p1_gpu_hours: 5.5\n174\t  total_p2_gpu_hours: 12\n175\t  available_gpu_hours: 768  # 4 GPUs x 8 days x 24h\n176\t  utilization_target: \"P0 all, P1 all, P2 as time permits\"\n177\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fd08564-b8f2-416c-a845-d576ac2cac77",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "36c48294-87b3-4dba-9695-b48893145e22",
+            "sourceToolAssistantUUID": "3fd08564-b8f2-416c-a845-d576ac2cac77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T17:24:11.231Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a thorough understanding of the paper, its experimental context, and the underlying project. Let me also check the dream report for any additional review context."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36c48294-87b3-4dba-9695-b48893145e22",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XghFn4XKmkXT5g3DMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "75207491-d20b-4ce6-9bc7-25d99034765f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RwVwCp3yekTPBVK78NnJvf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2722,
+                "cache_read_input_tokens": 36902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2722,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T17:24:11.649Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0111HsJxjUfiJuw2XpjtzS7U",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/dream_reports/**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75207491-d20b-4ce6-9bc7-25d99034765f",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XghFn4XKmkXT5g3DMq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0e1ff627-d98c-49ac-9078-caddd713a191",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RwVwCp3yekTPBVK78NnJvf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2722,
+                "cache_read_input_tokens": 36902,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2722
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 36902,
+                    "cache_creation_input_tokens": 2722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2722,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T17:24:11.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0111HsJxjUfiJuw2XpjtzS7U",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260517T165817/best/paper_framing.md\nartifacts/dream_reports/dream_20260517T165817/median/paper_framing.md\nartifacts/dream_reports/dream_20260517T165817/worst/paper_framing.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e1ff627-d98c-49ac-9078-caddd713a191",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "f25e100f-ee39-4c9d-a930-f624f4857b8b",
+            "sourceToolAssistantUUID": "0e1ff627-d98c-49ac-9078-caddd713a191",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T17:24:14.660Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me submit the review report."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f25e100f-ee39-4c9d-a930-f624f4857b8b",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8Xh1uhJNB81EgLMUM8L",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c32d5e47-e065-4738-a19d-6d8f0836e5b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011rB3AJW7F7Hxy73EmSmNCm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 225,
+                "cache_read_input_tokens": 39624,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 225,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T17:24:15.441Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015iAoZyXcb8eSiprNVFBYTV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c32d5e47-e065-4738-a19d-6d8f0836e5b2",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8Xh1uhJNB81EgLMUM8L",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9865b736-8929-48fc-8d15-3dd16ffd5b85",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011rB3AJW7F7Hxy73EmSmNCm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 225,
+                "cache_read_input_tokens": 39624,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 225
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 39624,
+                    "cache_creation_input_tokens": 225,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 225,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T17:24:15.444Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015iAoZyXcb8eSiprNVFBYTV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9865b736-8929-48fc-8d15-3dd16ffd5b85",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "474e47dd-c34b-4e7d-816c-0d38dd03c875",
+            "sourceToolAssistantUUID": "9865b736-8929-48fc-8d15-3dd16ffd5b85",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T17:24:19.264Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow I have all the information needed to write a thorough review. Let me compose it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "474e47dd-c34b-4e7d-816c-0d38dd03c875",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XhJCEAuo9AaAkCrC3i",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76d5efee-8d47-4d21-8747-ed1e02608372",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCuZi589J29TkanbXGRo6w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 676,
+                "cache_read_input_tokens": 39849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 676,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T17:25:47.677Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FcMdQyw6n7HjHevAZ8qphZ",
+              "name": "mcp__agent-ml-research__submit_dream_review_report",
+              "input": {
+                "project": "persuasion_turn_jailbreak_detect",
+                "tier": "best",
+                "dream_id": "dream_20260517T165817",
+                "overall_score": "weak accept",
+                "report": "\n# Review: DisPeD: Exploiting the Pragmatic Evasion Asymmetry for Robust Multi-Turn Jailbreak Detection\n\n## 1. Summary\n\nThis paper proposes DisPeD, a two-stage pipeline for detecting multi-turn jailbreak attacks on LLMs. The key insight is the \"Pragmatic Evasion Asymmetry\": while attackers can freely paraphrase surface content, the underlying persuasion playbook (rapport building, reframing, escalation) is structurally necessary for attack success and thus cannot be removed. Stage 1 fine-tunes DeBERTa-v3-base with a multi-task objective (8-class persuasion strategy classification + binary intent classification), and Stage 2 feeds resulting turn embeddings into a bidirectional GRU for conversation-level classification. The paper demonstrates robustness under adversarial paraphrasing, early detection at K=2 turns, and zero-shot cross-attack transfer.\n\n## 2. Strengths\n\n1. **Well-motivated theoretical framework.** The Pragmatic Evasion Asymmetry is a genuinely insightful framing. The connection to Speech Act Theory (Austin 1962, Searle 1969) — distinguishing locutionary from illocutionary acts — provides a principled linguistic foundation rather than a purely engineering-driven approach. This elevates the contribution beyond incremental systems work.\n\n2. **Register normalization addresses a critical confound head-on.** The paper acknowledges that TF-IDF separability was 1.0 on the original data (Section 4.1, Table 1) and explicitly applies register normalization to reduce it to 0.58. This is refreshingly honest and methodologically sound. The fact that persuasion strategy annotations are preserved at 94% after normalization is a strong supporting datum for the core claim.\n\n3. **Comprehensive evasion hierarchy experiment (Tables 4-5).** The three-tier gradient under adversarial paraphrasing (DisPeD -3pp, semantic -13pp, TF-IDF -18pp) directly validates the evasion asymmetry claim. The result that DisPeD under perturbation (F1=0.93) still exceeds the semantic baseline on clean data (F1=0.89) is particularly compelling.\n\n4. **Scrambled label ablation is the right control (Table 6).** The 15pp drop at K=2 with scrambled labels, bringing performance to baseline level (0.76 vs 0.77), cleanly demonstrates that the persuasion label content, not the multi-task training procedure itself, drives the advantage. This is a well-designed ablation that addresses the most obvious confound.\n\n5. **Cross-attack zero-shot transfer (Tables 7-8).** Training on Crescendo only and achieving F1=0.85 average on FITD and Deceptive Delight, with 16.5pp improvement over baseline, is a strong generalization result. The analysis connecting this to shared persuasion vocabulary but differing temporal arrangement (Table 3) is insightful.\n\n6. **Mechanistic analysis adds explanatory depth (Tables 9-10).** The monotonicity score (0.82 vs 0.34) and transition entropy analysis provide a concrete, quantitative explanation for why pragmatic features succeed. The trajectory-only AUROC of 0.91 is a strong standalone result that independently supports the core claim.\n\n7. **Hard negative evaluation addresses a realistic deployment concern (Table 11).** Testing on high-drift WildChat conversations (with contamination filtering) is operationally relevant. The 9% FPR vs 17% baseline demonstrates that DisPeD distinguishes topic drift from strategy escalation.\n\n## 3. Weaknesses\n\n1. **Small test set raises statistical reliability concerns (Critical).** The held-out test set contains only 72 conversations (36 jailbreak, 36 benign). At this scale, each misclassification shifts F1 by approximately 2-3 percentage points. The reported bootstrap p-values (Table 2) partially address this, but the confidence intervals themselves are not reported — only p-values. With n=72, the 95% CI around F1=0.91 is likely [0.82, 0.97] or wider, which means the 14pp gap over baseline could plausibly shrink to ~5pp or less at the lower bound. The paper should report bootstrap CIs explicitly. Furthermore, the cross-attack evaluation sets are even smaller (72 FITD, 65 Deceptive Delight), and no p-values are reported for Tables 7-8, making statistical significance of the cross-attack advantage unverifiable.\n\n2. **Register normalization may introduce its own biases (Major).** The LLM paraphrasing used for register normalization is a black box that may systematically alter certain types of content more than others. Specifically: (a) the LLM may find it harder to paraphrase turns with complex persuasion structures, creating a correlation between paraphrase quality and persuasion complexity that inflates DisPeD's advantage; (b) there is no control for whether the LLM paraphraser introduces its own stylistic fingerprints that could serve as new shortcuts; (c) the 94% strategy annotation preservation rate is measured on what appears to be the same LLM annotations, not human verification. The paper mentions a \"20-sample manual verification\" in the experiment plan but this does not appear in the paper. A human evaluation of strategy preservation post-normalization is needed.\n\n3. **DeepContext Proxy is a weak stand-in (Major).** The paper positions against DeepContext (Su et al. 2026) but replaces it with a \"proxy\" using BERT-base + GRU. This proxy differs from the actual DeepContext in at least three ways: (a) different encoder (BERT-base vs whatever DeepContext uses), (b) no explicit drift features that DeepContext reportedly computes, and (c) no access to DeepContext's training recipe. The proxy appears in only one table (Table 4), degrades 15pp under perturbation, and is described in a single sentence in Section 3.3. Calling this a \"DeepContext Proxy\" overstates the comparison. It would be more honest to label it \"BERT-base + GRU baseline\" and acknowledge that a direct comparison with DeepContext is not possible due to lack of public code.\n\n4. **Persuasion taxonomy lacks rigorous justification (Moderate).** The 8-class taxonomy is described as \"derived from Cialdini's principles of influence and adapted for adversarial conversational contexts following Zeng et al. (2024)\" (Section 3.1), but no systematic derivation or mapping is provided. Cialdini identifies 6 principles; Zeng et al. identify 40 techniques. How were these collapsed/expanded to 8 categories? Was there an inter-annotator agreement study? The 79% accuracy on 8-class classification (Table 3) is moderate, and without knowing the confusion matrix, it is unclear which strategies are conflated. If \"rapport building\" and \"reciprocity\" are frequently confused, this could undermine the trajectory analysis that depends on distinguishing these categories.\n\n5. **Data leakage risk between Stage 1 and Stage 2 (Moderate).** The binary intent classification head in Stage 1 explicitly encodes whether a turn carries \"jailbreak intent.\" The [CLS] embedding extracted from this encoder therefore contains a direct jailbreak signal baked in during training. This creates a potential leakage path: the Stage 2 GRU may be partially relying on the intent signal leaked through the embedding rather than the persuasion strategy structure. The scrambled label ablation (Table 6) shows that scrambling persuasion labels drops performance by 15pp, but the intent labels remain intact in the scrambled condition. A cleaner ablation would also test: (a) persuasion-only training (no intent head), and (b) intent-only training (no persuasion head), to disentangle the contributions.\n\n6. **Reproducibility concerns with LLM-generated data and annotations (Moderate).** Multiple critical components depend on LLM outputs: (a) register normalization via LLM paraphrasing, (b) FITD and Deceptive Delight conversation generation via Qwen3-8B, (c) persuasion strategy annotations with \"91% LLM annotation consistency\" (Section 4.2). The consistency metric (91%) measures LLM self-agreement, not accuracy against a human gold standard. Different LLMs or even different runs of the same LLM could produce different data, making exact reproduction difficult. The paper does not specify prompts, temperature settings, or random seeds for any of these generation steps.\n\n7. **Missing error analysis (Minor-Moderate).** The paper reports aggregate metrics but provides no analysis of failure cases. At K=2 with F1=0.91, approximately 9% of predictions are errors. What types of conversations does DisPeD get wrong? Are failures concentrated on specific persuasion strategies, specific conversation lengths, or the boundary between \"high-drift benign\" and \"low-intensity jailbreak\"? This would help readers assess where the method's limits lie.\n\n## 4. Questions for Authors\n\n1. Can you report bootstrap 95% confidence intervals for all F1 scores in Tables 2 and 7? Given n=72, are you confident the headline 14pp gap survives at the lower CI bound?\n\n2. In the scrambled label ablation (Table 6), the intent labels remain intact. Have you tested a persuasion-only variant (removing the intent head entirely) to confirm that the advantage is not driven primarily by the intent signal leaking through the [CLS] embedding?\n\n3. The register normalization uses LLM paraphrasing, but LLMs have known biases in paraphrase quality as a function of content complexity. Have you measured whether paraphrase fidelity differs systematically between turns with different persuasion strategies (e.g., \"direct request\" turns may be easier to paraphrase than \"reframing\" turns)?\n\n4. What is the confusion matrix for the 8-class persuasion strategy classifier? If certain strategy pairs (e.g., rapport building vs. reciprocity) are frequently confused, does this affect the trajectory monotonicity analysis?\n\n5. The \"monotonicity score\" (Section 5.6) requires a predefined ordering over persuasion strategies from \"lower-risk\" to \"higher-risk.\" How is this ordering defined? Is it based on the data (circular reasoning risk) or on prior theory?\n\n6. For the cross-attack experiments (Table 7), the FITD and Deceptive Delight conversations are generated by Qwen3-8B. Have you verified that these generated conversations actually constitute effective jailbreaks against a target LLM, or are they merely conversations that follow the structural pattern of each attack type?\n\n7. The benign conversations are drawn from \"standard conversational corpora and WildChat.\" What is the composition? Are there any multi-turn benign conversations that involve legitimate persuasion (e.g., negotiation, debate, sales)? This seems like a critical category for false positive analysis.\n\n## 5. Minor Issues\n\n1. Table 3 (strategy distribution) percentages for Crescendo sum to 115%, not 100%. This appears to be a data error that should be corrected.\n\n2. The paper does not specify the GRU hidden dimension, number of layers, dropout rate, or learning rate for either Stage 1 or Stage 2 training. These are necessary for reproducibility.\n\n3. Section 5.4 mentions \"15.2% of WildChat conversations\" filtered as potential contamination. The filtering criteria should be specified (keyword-based? LLM-based? what threshold?).\n\n4. The bibliography contains \"and others\" for multiple entries (Jiang et al. 2024, Su et al. 2026, Zhao et al. 2024, Zhou et al. 2024). Complete author lists should be provided.\n\n5. No figure is included in the paper. A trajectory visualization (escalation path in strategy space for jailbreak vs. benign conversations) would substantially strengthen the mechanistic analysis in Section 5.6 and make it more immediately accessible.\n\n6. The lambda=1.0 weighting for the multi-task loss (Section 3.1) is not ablated. Was this tuned? On what data?\n\n7. The paper does not report precision/recall breakdowns for Tables 2, 4, and 7, making it difficult to assess whether improvements come from reduced false positives, increased true positives, or both.\n\n## 6. Overall Assessment\n\nThis paper presents a well-motivated approach grounded in a genuine insight: the pragmatic structure of multi-turn jailbreak attacks is harder to evade than lexical or semantic features. The experimental design is thoughtful, with register normalization, scrambled label ablation, adversarial perturbation, and cross-attack transfer all addressing distinct facets of the core claim. The evasion hierarchy experiment (Table 4) and the mechanistic trajectory analysis (Tables 9-10) are the strongest contributions and provide both practical and explanatory value.\n\nHowever, the work has notable weaknesses. The small test set (n=72) with missing confidence intervals makes it difficult to assess the reliability of the headline results. The DeepContext proxy comparison overpromises relative to what is delivered. The persuasion taxonomy lacks rigorous justification and inter-annotator validation. The data leakage path from the intent classification head to Stage 2 is not adequately controlled for. And the heavy reliance on LLM-generated data and annotations without human gold standards or reproducibility safeguards is a concern for a venue that values scientific rigor.\n\nOn balance, the core idea is sound and the experimental coverage is broad for a short paper, but the statistical foundations need strengthening before the claims can be considered fully validated. The paper would benefit from: (1) explicit bootstrap CIs, (2) a persuasion-only ablation to rule out intent leakage, (3) honest relabeling of the DeepContext proxy, and (4) at least a small-scale human evaluation of the persuasion annotations. With these additions, this could be a solid contribution to the LLM safety literature.\n\n## 7. Scores\n\n- **Soundness:** 3/4 — The core methodology is well-designed, but the small test set without reported CIs, the intent leakage concern, and the unvalidated taxonomy introduce uncertainty about whether the claims are as strong as presented.\n- **Presentation:** 3/4 — The paper is clearly written with a coherent narrative from problem to solution. The register normalization discussion is commendably transparent. Minor issues: no figures, missing hyperparameters, incomplete bibliography entries.\n- **Contribution:** 3/4 — The Pragmatic Evasion Asymmetry is a meaningful conceptual contribution with clear practical implications. The cross-attack transfer and mechanistic analysis add value. Limited by the small-scale evaluation and lack of comparison with the actual DeepContext system.\n- **Overall:** 4/6 (Weak Accept) — A promising paper with a strong central idea and broad experimental coverage, but weakened by statistical concerns on the small test set, insufficient ablation of the intent head, and reproducibility gaps in LLM-dependent components. Revisions addressing the identified weaknesses could raise confidence substantially.\n- **Confidence:** 4/5 — I am confident in this assessment. I have carefully read the paper, cross-checked the experimental design against the claimed contributions, and identified specific gaps. The one area of lower confidence is the DeepContext comparison, where I cannot fully evaluate the proxy's fidelity without access to the original system.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76d5efee-8d47-4d21-8747-ed1e02608372",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XhJCEAuo9AaAkCrC3i",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d3e2081d-c638-49cf-b09d-d46a9408b463",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCuZi589J29TkanbXGRo6w",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 676,
+                "cache_read_input_tokens": 39849,
+                "output_tokens": 3796,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 676
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3796,
+                    "cache_read_input_tokens": 39849,
+                    "cache_creation_input_tokens": 676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 676,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T17:25:51.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FcMdQyw6n7HjHevAZ8qphZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/best/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260517T165817\\\", \\\"tier\\\": \\\"best\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3e2081d-c638-49cf-b09d-d46a9408b463",
+            "isSidechain": true,
+            "promptId": "9947c6c6-fa04-4662-a2b8-6020f419a7cb",
+            "agentId": "a5a7b01ec1b812007",
+            "type": "user",
+            "uuid": "e9b3c471-fa50-4a83-aaad-88b3f6edf2e0",
+            "sourceToolAssistantUUID": "d3e2081d-c638-49cf-b09d-d46a9408b463",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T17:26:03.013Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Review submitted successfully. Here is what was delivered:\n\n**Score: 4/6 (Weak Accept)**\n\nThe review covers the following key findings:\n\n**Main strengths identified:**\n- The Pragmatic Evasion Asymmetry is a genuinely insightful, linguistically grounded framing (Speech Act Theory connection)\n- Register normalization is honest and methodologically sound (TF-IDF 1.0 → 0.58 disclosed upfront)\n- The three-tier evasion hierarchy experiment (Table 4) directly validates the core claim\n- Scrambled label ablation (Table 6) is the right control, cleanly isolating persuasion label content\n- Cross-attack zero-shot transfer (Table 7) and mechanistic trajectory analysis (Tables 9-10) add real depth\n\n**Main weaknesses identified:**\n1. **Small test set (n=72)** without reported confidence intervals — each misclassification shifts F1 by ~2-3pp, and the 14pp headline gap may not survive at the lower CI bound\n2. **Register normalization may introduce its own biases** — LLM paraphrasing is a black box with no human verification of strategy preservation in the paper\n3. **DeepContext Proxy is overstated** — differs from actual DeepContext in encoder, features, and training recipe; should be honestly relabeled \"BERT-base + GRU baseline\"\n4. **Persuasion taxonomy lacks rigorous justification** — no systematic derivation from Cialdini's 6 principles or Zeng et al.'s 40 techniques to 8 classes; no inter-annotator agreement\n5. **Data leakage from intent head to Stage 2** — the intent classification signal in [CLS] embeddings is not disentangled; a persuasion-only ablation is needed\n6. **Reproducibility gaps** — heavy reliance on LLM-generated data/annotations without prompts, seeds, or human gold standards\n7. **Table 3 strategy percentages sum to 115%** — arithmetic error\n\nThe review was saved to `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/best/review_report.md`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9b3c471-fa50-4a83-aaad-88b3f6edf2e0",
+            "isSidechain": true,
+            "agentId": "a5a7b01ec1b812007",
+            "requestId": "req_011Cb8XpP76mg5CoQEfXNMWJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "29605df6-cf18-4817-a66e-20e15e7aa27a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "7ba16659-4839-4d18-aa99-4dde74627abd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0143RNDzZexqD3GUHT8JpXJ7",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4035,
+                "cache_read_input_tokens": 40525,
+                "output_tokens": 539,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4035
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 539,
+                    "cache_read_input_tokens": 40525,
+                    "cache_creation_input_tokens": 4035,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4035,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-1-r1-for-a-top-ml-venue-review-acceptance-rate-25-6-point-sca.md"
+}

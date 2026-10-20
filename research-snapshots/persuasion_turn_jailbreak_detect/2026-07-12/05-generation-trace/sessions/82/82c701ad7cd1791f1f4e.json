@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "82c701ad7cd1791f1f4e",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: tax_error_inject_agent ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_traini",
+  "task_key": "26ce630d-009a-45bf-84e2-1af93639a6fd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/26ce630d-009a-45bf-84e2-1af93639a6fd.jsonl",
+    "occurrence": 1,
+    "bytes": 949754,
+    "sha256": "b2a98a40ad5a4e6b38e63e6e4d71f6bdbb1fca677564cc291bdd0806f1848643"
+  },
+  "statistics": {
+    "messages": 393,
+    "user_turns": 2,
+    "tool_calls": 115,
+    "roles": {
+      "record": 78,
+      "user": 2,
+      "assistant": 82,
+      "tool_call": 115,
+      "tool_result": 115,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "82c701ad7cd1791f1f4e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 231,
+      "chunks": [
+        {
+          "path": "82c701ad7cd1791f1f4e-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "82c701ad7cd1791f1f4e-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "82c701ad7cd1791f1f4e-part-0002.json",
+          "message_count": 127
+        },
+        {
+          "path": "82c701ad7cd1791f1f4e-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-tax-error-inject-agent-autodl-5090-ssh-root-ssh-execute-submit-copy-256.md"
+}

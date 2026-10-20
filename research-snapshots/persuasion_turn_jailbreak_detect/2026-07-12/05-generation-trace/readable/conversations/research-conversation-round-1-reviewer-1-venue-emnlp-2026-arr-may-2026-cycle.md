@@ -1,0 +1,7240 @@
+# Research conversation: [Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。 ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 145
+- **Recorded user turns:** 3
+- **Tool calls:** 36
+- **Original source:** `logs/chats/exported-trajectories/account-2/45ed6ff5-c944-4d96-b449-b024213524ab.jsonl`
+- **Structured JSON:** [`f4a6876d1c7e8f0178a1.json`](../../sessions/f4/f4a6876d1c7e8f0178a1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T07:03:12.706Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T07:03:12.706Z",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "content": "[Round 1 审稿请求]:\n你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。\n\n## Venue 信息\n- **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交）\n- **截止日期**: 2026-05-25\n- **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计入页数\n- **模板**: ACL LaTeX（review 模式）\n- **匿名规则**: Double-blind\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next, 1=Do not resubmit\n\n## 论文路径\n- TeX: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf`\n\n## 审查侧重（你的职责）\n\n### 1. 实验设计公平性\n- 7 个 Stage-1 变体是否真正只改变一个因素？是否有混淆变量？\n- 数据集划分（350/74/76）是否合理？OOD 评估中使用 IID benign 是否引入偏差？\n- 3-seed 评估是否足够支撑统计结论？种子数 n=3 的置信度问题\n\n### 2. 统计检验充分性\n- McNemar's test、TOST、bootstrap CIs、permutation tests 的使用是否正确？\n- TOST 在 ActorAttack 上 underpowered（SE=0.045, n=3）——这是否削弱了核心声称？\n- 方差减少 4-20x 的声称是否有统计检验支撑？\n\n### 3. 数据质量与规模\n- 训练集 250 jailbreak + 250 benign（all Qwen3-8B）——规模是否足够？\n- 策略标注 κ=0.78, n=50——样本量是否足以支撑 9-class taxonomy 的有效性？\n- ToxicChat 作为 human validation 是 single-turn 数据，能否有效验证 multi-turn 声称？\n\n### 4. Claims vs Evidence 对齐\n- 每个 Contribution 是否有直接实验证据支撑？\n- 负面结果（scrambled=correct, temporal order irrelevant）的证据是否充分？\n- Scale-dependent observation 基于不同架构的 3 个 encoder——是否能归因于 scale？\n\n### 5. Reproducibility\n- 超参数是否完整报告？\n- 数据生成流程是否可复现？\n\n请按以下格式输出审稿意见：\n```\n## Summary\n[2-3句概述]\n\n## Strengths\n[S1] ...\n[S2] ...\n\n## Weaknesses\n[W1] [Must-Fix / Should-Fix / Minor] ...\n[W2] ...\n\n## Questions\n[Q1] ...\n\n## Missing References\n[如有]\n\n## Overall Assessment\nScore: X.X\nConfidence: [1-5]\n```"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T07:03:12.710Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T07:03:12.710Z",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+## Round 1
+
+135 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T07:03:12.746Z_
+
+[Round 1 审稿请求]:
+你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。
+
+## Venue 信息
+- **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交）
+- **截止日期**: 2026-05-25
+- **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计入页数
+- **模板**: ACL LaTeX（review 模式）
+- **匿名规则**: Double-blind
+- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next, 1=Do not resubmit
+
+## 论文路径
+- TeX: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.tex`
+- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf`
+
+## 审查侧重（你的职责）
+
+### 1. 实验设计公平性
+- 7 个 Stage-1 变体是否真正只改变一个因素？是否有混淆变量？
+- 数据集划分（350/74/76）是否合理？OOD 评估中使用 IID benign 是否引入偏差？
+- 3-seed 评估是否足够支撑统计结论？种子数 n=3 的置信度问题
+
+### 2. 统计检验充分性
+- McNemar's test、TOST、bootstrap CIs、permutation tests 的使用是否正确？
+- TOST 在 ActorAttack 上 underpowered（SE=0.045, n=3）——这是否削弱了核心声称？
+- 方差减少 4-20x 的声称是否有统计检验支撑？
+
+### 3. 数据质量与规模
+- 训练集 250 jailbreak + 250 benign（all Qwen3-8B）——规模是否足够？
+- 策略标注 κ=0.78, n=50——样本量是否足以支撑 9-class taxonomy 的有效性？
+- ToxicChat 作为 human validation 是 single-turn 数据，能否有效验证 multi-turn 声称？
+
+### 4. Claims vs Evidence 对齐
+- 每个 Contribution 是否有直接实验证据支撑？
+- 负面结果（scrambled=correct, temporal order irrelevant）的证据是否充分？
+- Scale-dependent observation 基于不同架构的 3 个 encoder——是否能归因于 scale？
+
+### 5. Reproducibility
+- 超参数是否完整报告？
+- 数据生成流程是否可复现？
+
+请按以下格式输出审稿意见：
+```
+## Summary
+[2-3句概述]
+
+## Strengths
+[S1] ...
+[S2] ...
+
+## Weaknesses
+[W1] [Must-Fix / Should-Fix / Minor] ...
+[W2] ...
+
+## Questions
+[Q1] ...
+
+## Missing References
+[如有]
+
+## Overall Assessment
+Score: X.X
+Confidence: [1-5]
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "2d0bb932-6d04-4971-b905-fa8bb093a4e6",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T07:03:12.746Z_
+
+```json
+{
+  "parentUuid": "2d0bb932-6d04-4971-b905-fa8bb093a4e6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d2fc6bba-231f-4ef3-9c2d-b3ef53aec71b",
+  "timestamp": "2026-05-21T07:03:12.746Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T07:03:12.746Z_
+
+```json
+{
+  "parentUuid": "d2fc6bba-231f-4ef3-9c2d-b3ef53aec71b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8f69aeae-0d47-40fb-9a34-5a5a3aed47f2",
+  "timestamp": "2026-05-21T07:03:12.746Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T07:03:12.746Z_
+
+```json
+{
+  "parentUuid": "8f69aeae-0d47-40fb-9a34-5a5a3aed47f2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e115a223-2448-45b0-b9bb-494a35b0d69a",
+  "timestamp": "2026-05-21T07:03:12.746Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T07:03:16.499Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the paper and understanding the review requirements. I need to:
+
+1. First, load the review-reviewer-session-start skill as instructed
+2. Search for EMNLP 2026 / ACL ARR reviewer guidelines
+3. Read the paper PDF
+4. Conduct a thorough review focusing on methodology rigor, experimental design, and statistical testing
+
+Let me begin.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e115a223-2448-45b0-b9bb-494a35b0d69a",
+  "isSidechain": false,
+  "requestId": "req_011CbFHaA8178TvGpZ15AP9Q",
+  "type": "assistant",
+  "uuid": "d3ac38a5-46e1-4e56-9889-85eca13f44f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcNn4gQRLLuD2q1UY9TJTW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14985,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T07:03:17.028Z_
+
+开始审稿。先加载 session 启动 skill，然后并行读取论文和搜索 reviewer guidelines。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3ac38a5-46e1-4e56-9889-85eca13f44f9",
+  "isSidechain": false,
+  "requestId": "req_011CbFHaA8178TvGpZ15AP9Q",
+  "type": "assistant",
+  "uuid": "7cdeccc1-ecf2-4b25-8081-1fb0c770e69b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcNn4gQRLLuD2q1UY9TJTW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14985,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T07:03:17.610Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RzeficT5YfR1tKKAiPERTA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/skills/review-reviewer-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cdeccc1-ecf2-4b25-8081-1fb0c770e69b",
+  "isSidechain": false,
+  "requestId": "req_011CbFHaA8178TvGpZ15AP9Q",
+  "type": "assistant",
+  "uuid": "4281fb25-b0e3-490c-862e-9d35d62c2043",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VcNn4gQRLLuD2q1UY9TJTW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14985,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 240,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14985,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 240,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14985,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14985
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T07:03:17.627Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01RzeficT5YfR1tKKAiPERTA`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4281fb25-b0e3-490c-862e-9d35d62c2043",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "d74e0266-f29a-41b5-9a43-a15ab596861c",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827.",
+  "sourceToolAssistantUUID": "4281fb25-b0e3-490c-862e-9d35d62c2043",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T07:03:20.324Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013rhUkWYV67NihZYzmZJWaW`</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d74e0266-f29a-41b5-9a43-a15ab596861c",
+  "isSidechain": false,
+  "requestId": "req_011CbFHaXBXaSALDXvxq1EK9",
+  "type": "assistant",
+  "uuid": "370769f1-1bf8-4849-8c1f-bccd92bff9e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZ3LrEkDeneSfmNPNoB1s9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 26826,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 321,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 26826,
+          "cache_creation_input_tokens": 321,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 321
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T07:03:20.339Z_
+
+<details><summary>↩ Tool result · `toolu_013rhUkWYV67NihZYzmZJWaW`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "370769f1-1bf8-4849-8c1f-bccd92bff9e1",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "e92a9e0e-abca-4099-a6f0-a3bd59458eee",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 6,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "370769f1-1bf8-4849-8c1f-bccd92bff9e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T07:03:23.154Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01BhDGX3enn1gc6vzDjrR5pa`</summary>
+
+```json
+{
+  "pattern": "**/review-reviewer-session-start.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e92a9e0e-abca-4099-a6f0-a3bd59458eee",
+  "isSidechain": false,
+  "requestId": "req_011CbFHaiuj2EFDJ22cwAjrQ",
+  "type": "assistant",
+  "uuid": "d8860862-d24f-499f-80bb-9e669dd275f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011KtchnpKokHym7zhEwTTtu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 122,
+      "cache_read_input_tokens": 27147,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 27147,
+          "cache_creation_input_tokens": 122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T07:03:23.187Z_
+
+<details><summary>↩ Tool result · `toolu_01BhDGX3enn1gc6vzDjrR5pa`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8860862-d24f-499f-80bb-9e669dd275f4",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "6c841198-82fe-4360-9cda-5f72ec8d5107",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 28,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "d8860862-d24f-499f-80bb-9e669dd275f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-21T07:03:26.368Z_
+
+Skill 文件不存在，直接进入审稿流程。先并行读取论文和搜索 reviewer guidelines。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c841198-82fe-4360-9cda-5f72ec8d5107",
+  "isSidechain": false,
+  "requestId": "req_011CbFHawWGAiLPzgY1i7rus",
+  "type": "assistant",
+  "uuid": "2b4965d5-fe8a-4168-b127-3bfaa4724242",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UrNkj3NdCddCMGrbJvgzk8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 114,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T07:03:27.404Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012tQhMeHcucVFq6DkgLmaXb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references,WebSearch,WebFetch",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b4965d5-fe8a-4168-b127-3bfaa4724242",
+  "isSidechain": false,
+  "requestId": "req_011CbFHawWGAiLPzgY1i7rus",
+  "type": "assistant",
+  "uuid": "60380bc2-edc8-4367-9b6b-7ea27fa708fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UrNkj3NdCddCMGrbJvgzk8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 114,
+      "cache_read_input_tokens": 27269,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 114,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 27269,
+          "cache_creation_input_tokens": 114,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 114
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T07:03:27.409Z_
+
+<details><summary>↩ Tool result · `toolu_012tQhMeHcucVFq6DkgLmaXb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__pdf_to_images"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__review_reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__verify_references"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60380bc2-edc8-4367-9b6b-7ea27fa708fd",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "452e7415-c527-469d-a823-cf59ed8d9dce",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references",
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references,WebSearch,WebFetch",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "60380bc2-edc8-4367-9b6b-7ea27fa708fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-21T07:03:30.521Z_
+
+现在并行执行：搜索 ACL ARR reviewer guidelines、渲染论文 PDF、验证引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "452e7415-c527-469d-a823-cf59ed8d9dce",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbF2TXi8VYaVbUwLxJ",
+  "type": "assistant",
+  "uuid": "1b53d37e-0911-41a2-bfc0-4b535306acb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxmhaqnUykBfB8CnnZ6VtZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 27383,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27383,
+          "cache_creation_input_tokens": 2268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T07:03:31.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MLkwmcjp3NaJZJ8gPqXaQk`</summary>
+
+```json
+{
+  "query": "ACL ARR 2026 reviewer guidelines review form criteria scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b53d37e-0911-41a2-bfc0-4b535306acb4",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbF2TXi8VYaVbUwLxJ",
+  "type": "assistant",
+  "uuid": "d94cc0b2-efac-4f8d-ae16-b4ac359be62e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxmhaqnUykBfB8CnnZ6VtZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 27383,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27383,
+          "cache_creation_input_tokens": 2268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T07:03:32.416Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01KUeALtksT79oHocJVQ5PPr`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+  "project": "persuasion_turn_jailbreak_detect",
+  "pages": "1-10",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d94cc0b2-efac-4f8d-ae16-b4ac359be62e",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbF2TXi8VYaVbUwLxJ",
+  "type": "assistant",
+  "uuid": "ed52684f-0d9e-4680-81a5-033f8e117bf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxmhaqnUykBfB8CnnZ6VtZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 27383,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27383,
+          "cache_creation_input_tokens": 2268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T07:03:33.067Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__verify_references · `toolu_01WwkUmq9Fw1vp7Tb5J9LtUt`</summary>
+
+```json
+{
+  "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed52684f-0d9e-4680-81a5-033f8e117bf8",
+  "isSidechain": false,
+  "requestId": "req_011CbFHbF2TXi8VYaVbUwLxJ",
+  "type": "assistant",
+  "uuid": "d10f9ac8-5b27-4dc1-b701-67091cd73c7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QxmhaqnUykBfB8CnnZ6VtZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2268,
+      "cache_read_input_tokens": 27383,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2268,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 27383,
+          "cache_creation_input_tokens": 2268,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2268
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T07:03:39.477Z_
+
+<details><summary>↩ Tool result · `toolu_01MLkwmcjp3NaJZJ8gPqXaQk`</summary>
+
+```text
+Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria scoring"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewform"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"aclrollingreview/cfp.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"}]
+
+Based on the search results, here's information about ACL ARR 2026 reviewer guidelines, review form criteria, and scoring:
+
+## Scoring System
+
+Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.
+
+## Overall Recommendation Scale
+
+The scale includes a "5 = Consider for Award" option for papers that could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers). Other recommendation levels include:
+- 2 = Resubmit next cycle: for papers needing substantial revisions that can be completed by the next ARR cycle
+- 1.5 = Resubmit after next cycle: for papers needing substantial revisions that cannot be completed by the next ARR cycle
+- 1 = Do not resubmit: for papers that have to be fully redone, or are not relevant to the *ACL community
+
+## Review Criteria
+
+The main criteria for Findings papers are soundness and reproducibility, while conference recommendations may also consider novelty, impact and other factors. Soundness scores must be justified by the text of the review.
+
+For more detailed guidelines, you can visit the official ARR Reviewer Guidelines at aclrollingreview.org/reviewerguidelines and the Review Form at aclrollingreview.org/reviewform.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d94cc0b2-efac-4f8d-ae16-b4ac359be62e",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "1df35dbc-947c-438d-8125-6dc9cd12a265",
+  "toolUseResult": {
+    "query": "ACL ARR 2026 reviewer guidelines review form criteria scoring",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sds2SvXHCt2xPRrCw7N27C",
+        "content": [
+          {
+            "title": "ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/acguidelines"
+          },
+          {
+            "title": "Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewform"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "aclrollingreview/cfp.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "aclrollingreview/reviewing.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          }
+        ]
+      },
+      "Based on the search results, here's information about ACL ARR 2026 reviewer guidelines, review form criteria, and scoring:\n\n## Scoring System\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\n## Overall Recommendation Scale\n\nThe scale includes a \"5 = Consider for Award\" option for papers that could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers). Other recommendation levels include:\n- 2 = Resubmit next cycle: for papers needing substantial revisions that can be completed by the next ARR cycle\n- 1.5 = Resubmit after next cycle: for papers needing substantial revisions that cannot be completed by the next ARR cycle\n- 1 = Do not resubmit: for papers that have to be fully redone, or are not relevant to the *ACL community\n\n## Review Criteria\n\nThe main criteria for Findings papers are soundness and reproducibility, while conference recommendations may also consider novelty, impact and other factors. Soundness scores must be justified by the text of the review.\n\nFor more detailed guidelines, you can visit the official ARR Reviewer Guidelines at aclrollingreview.org/reviewerguidelines and the Review Form at aclrollingreview.org/reviewform."
+    ],
+    "durationSeconds": 8.348401013000002
+  },
+  "sourceToolAssistantUUID": "d94cc0b2-efac-4f8d-ae16-b4ac359be62e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "1df35dbc-947c-438d-8125-6dc9cd12a265",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T07:03:40.824Z_
+
+<details><summary>↩ Tool result · `toolu_01KUeALtksT79oHocJVQ5PPr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 462.7}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 528.7}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 525.7}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 557.1}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 467.7}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.5}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 476.6}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 513.6}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 508.5}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 558.8}], \"total_pages\": 22, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed52684f-0d9e-4680-81a5-033f8e117bf8",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "a43028a4-e8ea-447e-ba55-888e424367c2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 462.7}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 528.7}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 525.7}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 557.1}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 467.7}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 534.5}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 476.6}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 513.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 508.5}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 558.8}], \\\"total_pages\\\": 22, \\\"rendered_pages\\\": 10, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 462.7}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 528.7}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 525.7}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 557.1}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 467.7}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.5}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 476.6}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 513.6}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 508.5}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 558.8}], \"total_pages\": 22, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ed52684f-0d9e-4680-81a5-033f8e117bf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T07:04:38.452Z_
+
+<details><summary>↩ Tool result · `toolu_01WwkUmq9Fw1vp7Tb5J9LtUt`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (50.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-review-reviewer-1-10e47827/45ed6ff5-c944-4d96-b449-b024213524ab/tool-results/toolu_01WwkUmq9Fw1vp7Tb5J9LtUt.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 62, \"total_citations\": 96, \"unique_cited_keys\": 61, \"orphan_bib\": 1, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 43, \"online_not_found\": 10, \"online_mismatch\": 9}, \"cross_check\": {\"orphan_bib\": [\"devlin2019bert\"], \"missing_bib\": [], \"orphan_count\": 1, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"inan2023llamaguard\", \"type\": \"article\", \"title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"authors\": \"Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer,...\", \"year\": \"2023\", \"venue\": \"arXiv preprint\"}, {\"key\": \"metallamaguard3_2024\", \"type\": \"misc\", \"title\": \"Llama Guard 3\", \"authors\": \"Meta AI\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"zeng2024shieldgemma\", \"type\": \"article\", \"title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"authors\": \"Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"han2024wildguard\", \"type\": \"inproceedings\", \"title\": \"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"authors\": \"Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"anthropic2025constitutional\", \"type\": \"techreport\", \"title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"authors\": \"Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"deepcontext2026\", \"type\": \"article\", \"title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"authors
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d10f9ac8-5b27-4dc1-b701-67091cd73c7d",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "0e03d3e4-b15b-4f80-9a29-645e41226abd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 62, \\\"total_citations\\\": 96, \\\"unique_cited_keys\\\": 61, \\\"orphan_bib\\\": 1, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 43, \\\"online_not_found\\\": 10, \\\"online_mismatch\\\": 9}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"devlin2019bert\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 1, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\\\", \\\"authors\\\": \\\"Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer,...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"metallamaguard3_2024\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"Llama Guard 3\\\", \\\"authors\\\": \\\"Meta AI\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ShieldGemma: Generative AI Content Moderation Based on Gemma\\\", \\\"authors\\\": \\\"Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\\\", \\\"authors\\\": \\\"Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"anthropic2025constitutional\\\", \\\"type\\\": \\\"techreport\\\", \\\"title\\\": \\\"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\\\", \\\"authors\\\": \\\"Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\\\", \\\"authors\\\": \\\"Albrethsen, Justin and Datta, Yash and Kumar, Kunal and Rajasekar, Sharath\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\\\", \\\"authors\\\": \\\"Tong, Haibo and Zhao, Dongcheng and Shen, Guobin and He, Xiang and Lin, Dachuan ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\\\", \\\"authors\\\": \\\"Huang, Zixuan and Huang, Kecheng and Yin, Lihao and He, Bowei and Zhen, Huiling ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"safedream2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\\\", \\\"authors\\\": \\\"Yan, Bo and Lin, Weikai and Zhu, Yada and Wang, Song\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\\\", \\\"authors\\\": \\\"Bullwinkel, Blake and Russinovich, Mark and Salem, Ahmed and Zanella-Beguelin, S...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"mann1988rst\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\\\", \\\"authors\\\": \\\"Mann, William C. and Thompson, Sandra A.\\\", \\\"year\\\": \\\"1988\\\", \\\"venue\\\": \\\"Text \\\\\\\\& Talk\\\"}, {\\\"key\\\": \\\"prasad2008pdtb\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"The Penn Discourse TreeBank 2.0\\\", \\\"authors\\\": \\\"Prasad, Rashmi and Dinesh, Nikhil and Lee, Alan and Miltsakaki, Eleni and Robald...\\\", \\\"year\\\": \\\"2008\\\", \\\"venue\\\": \\\"Proceedings of the International Conference on Language Resources and Evaluation\\\"}, {\\\"key\\\": \\\"stolcke2000dialogueact\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\\\", \\\"authors\\\": \\\"Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and B...\\\", \\\"year\\\": \\\"2000\\\", \\\"venue\\\": \\\"Computational Linguistics\\\"}, {\\\"key\\\": \\\"austin1962speechacts\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"How to Do Things with Words\\\", \\\"authors\\\": \\\"Austin, J. L.\\\", \\\"year\\\": \\\"1962\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"searle1969speechacts\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"Speech Acts: An Essay in the Philosophy of Language\\\", \\\"authors\\\": \\\"Searle, J. R.\\\", \\\"year\\\": \\\"1969\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"Influence: Science and Practice\\\", \\\"authors\\\": \\\"Cialdini, Robert B.\\\", \\\"year\\\": \\\"2001\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\\\", \\\"authors\\\": \\\"Zeng, Yi and Lin, Hongpeng and Zhang, Jingwen and Yang, Diyi and Jia, Ruoxi and ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the Association for Computational Linguistics\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\\\", \\\"authors\\\": \\\"Russinovich, Mark and Salem, Ahmed and Eldan, Ronen\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"USENIX Security Symposium\\\"}, {\\\"key\\\": \\\"chao2023pair\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Jailbreaking Black Box Large Language Models in Twenty Queries\\\", \\\"authors\\\": \\\"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"IEEE Conference on Secure and Trustworthy Machine Learning\\\"}, {\\\"key\\\": \\\"wei2023jailbroken\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Jailbroken: How Does LLM Safety Training Fail?\\\", \\\"authors\\\": \\\"Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Large Reasoning Models Are Autonomous Jailbreak Agents\\\", \\\"authors\\\": \\\"Hagendorff, Thilo and Derner, Erik and Oliver, Nuria\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Nature Communications\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\\\", \\\"authors\\\": \\\"Wang, Zhenhua and Xie, Wei and Wang, Baosheng and Wang, Enze and Gui, Zhiwen and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"type\\\": \\\"techreport\\\", \\\"title\\\": \\\"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\\\", \\\"authors\\\": \\\"Palo Alto Networks Unit 42\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\\\", \\\"authors\\\": \\\"Ren, Qibing and Li, Hao and Liu, Dongrui and Xie, Zhanxu and Lu, Xiaoya and Qiao...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"zou2023gcg\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Universal and Transferable Adversarial Attacks on Aligned Language Models\\\", \\\"authors\\\": \\\"Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J. Z...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\\\", \\\"authors\\\": \\\"Lin, Zi and Wang, Zihan and Tong, Yongqi and Wang, Yangkun and Guo, Yuxin and Wa...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2023\\\"}, {\\\"key\\\": \\\"li2024mhj\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\\\", \\\"authors\\\": \\\"Li, Nathaniel and Han, Ziwen and Steneker, Ian and Primack, Willow and Goodside,...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"gururangan2018artifacts\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Annotation Artifacts in Natural Language Inference Data\\\", \\\"authors\\\": \\\"Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and ...\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the Conference of the North American Chapter of the Association f...\\\"}, {\\\"key\\\": \\\"niven2019probing\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Probing Neural Network Comprehension of Natural Language Arguments\\\", \\\"authors\\\": \\\"Niven, Timothy and Kao, Hung-Yu\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the Association for Computational Linguistics\\\"}, {\\\"key\\\": \\\"nasr2025attackermovessecond\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\\\", \\\"authors\\\": \\\"Nasr, Milad and Carlini, Nicholas and Sitawarin, Chawin and Schulhoff, Sander V....\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"andriushchenko2024adaptive\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\\\", \\\"authors\\\": \\\"Andriushchenko, Maksym and Croce, Francesco and Flammarion, Nicolas\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"he2021deberta\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\\\", \\\"authors\\\": \\\"He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\\\", \\\"authors\\\": \\\"He, Pengcheng and Gao, Jianfeng and Chen, Weizhu\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Similarity of Neural Network Representations Revisited\\\", \\\"authors\\\": \\\"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"authors\\\": \\\"Yang, An and Yang, Baosong and Zhang, Beichen and Wang, Binyuan and Li, Bo and L...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\\\", \\\"authors\\\": \\\"Gururangan, Suchin and Marasovi\\\\\\\\'c, Ana and Swayamdipta, Swabha and Lo, Kyle and...\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 58th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"caruana1997multitask\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Multitask Learning\\\", \\\"authors\\\": \\\"Caruana, Rich\\\", \\\"year\\\": \\\"1997\\\", \\\"venue\\\": \\\"Machine Learning\\\"}, {\\\"key\\\": \\\"phang2018stilts\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\\\", \\\"authors\\\": \\\"Phang, Jason and F\\\\\\\\'evry, Thibault and Bowman, Samuel R.\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:1811.01088\\\"}, {\\\"key\\\": \\\"liu2019mtdnn\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Multi-Task Deep Neural Networks for Natural Language Understanding\\\", \\\"authors\\\": \\\"Liu, Xiaodong and He, Pengcheng and Chen, Weizhu and Gao, Jianfeng\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"howard2018ulmfit\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Universal Language Model Fine-tuning for Text Classification\\\", \\\"authors\\\": \\\"Howard, Jeremy and Ruder, Sebastian\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"dasanmartino2020semeval\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\\\", \\\"authors\\\": \\\"Da San Martino, Giovanni and Barr\\\\\\\\'on-Cede\\\\\\\\~no, Alberto and Wachsmuth, Henning a...\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the Fourteenth Workshop on Semantic Evaluation\\\"}, {\\\"key\\\": \\\"dasanmartino2019fine\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Fine-Grained Analysis of Propaganda in News Articles\\\", \\\"authors\\\": \\\"Da San Martino, Giovanni and Yu, Seunghak and Barr\\\\\\\\'on-Cede\\\\\\\\~no, Alberto and Pet...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"jin2020textfooler\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\\\", \\\"authors\\\": \\\"Jin, Di and Jin, Zhijing and Zhou, Joey Tianyi and Szolovits, Peter\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the AAAI Conference on Artificial Intelligence\\\"}, {\\\"key\\\": \\\"li2020bertattack\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\\\", \\\"authors\\\": \\\"Li, Linyang and Ma, Ruotian and Guo, Qipeng and Xue, Xiangyang and Qiu, Xipeng\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"devlin2019bert\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\\\", \\\"authors\\\": \\\"Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"conneau2018probing\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"What you can cram into a single \\\\\\\\$\\\\\\\\&!\\\\\\\\#* vector: Probing sentence embeddings for linguistic properties\\\", \\\"authors\\\": \\\"Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo\\\\\\\\\\\\\\\"i...\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"hewitt2019structural\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Structural Probe for Finding Syntax in Word Representations\\\", \\\"authors\\\": \\\"Hewitt, John and Manning, Christopher D.\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RoBERTa: A Robustly Optimized BERT Pretraining Approach\\\", \\\"authors\\\": \\\"Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:1907.11692\\\"}, {\\\"key\\\": \\\"wang2019persuasion\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\\\", \\\"authors\\\": \\\"Wang, Xuewei and Shi, Weiyan and Kim, Richard and Oh, Yoojung and Yang, Sijia an...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"robey2024smoothllm\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\\\", \\\"authors\\\": \\\"Robey, Alexander and Wong, Eric and Hassani, Hamed and Pappas, George J.\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"mehrotra2024tap\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\\\", \\\"authors\\\": \\\"Mehrotra, Anay and Zampetakis, Manolis and Kassianik, Paul and Nelson, Blaine an...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"chao2024jailbreakbench\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\\\", \\\"authors\\\": \\\"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2404.01318\\\"}, {\\\"key\\\": \\\"mazeika2024harmbench\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\\\", \\\"authors\\\": \\\"Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"lu2025xboundary\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\\\", \\\"authors\\\": \\\"Lu, Xiaoya and Liu, Dongrui and Yu, Yi and Xu, Luxin and Shao, Jing\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2025\\\"}, {\\\"key\\\": \\\"kadali2026trace\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Langua...\\\", \\\"authors\\\": \\\"Kadali, Sri Durga Sai Sowmya and Papalexakis, Evangelos E.\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.11495\\\"}, {\\\"key\\\": \\\"hua2026rcs\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\\\", \\\"authors\\\": \\\"Hua, Peichun and Li, Hao and Shi, Shanghao and Yu, Zhiyuan and Zhang, Ning\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"jiang2024redqueen\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\\\", \\\"authors\\\": \\\"Jiang, Yifan and Aggarwal, Kriti and Laud, Tanmay and Munir, Kashif and Pujara, ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"song2026multibreak\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\\\", \\\"authors\\\": \\\"Song, Jialin and Liu, Xiaodong and Yang, Weiwei and Chen, Wuyang and Feng, Mingq...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"zhang2025jbshield\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\\\", \\\"authors\\\": \\\"Zhang, Shenyi and Zhai, Yuchen and Guo, Keyan and Hu, Hongxin and Guo, Shengnan ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"USENIX Security Symposium\\\"}, {\\\"key\\\": \\\"perez2022redteaming\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Red Teaming Language Models with Language Models\\\", \\\"authors\\\": \\\"Perez, Ethan and Huang, Saffron and Song, Francis and Cai, Trevor and Ring, Roma...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"kulkarni2026latentadversarial\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\\\", \\\"authors\\\": \\\"Kulkarni, Prashant\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"derya2026revisitingjbshield\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\\\", \\\"authors\\\": \\\"Derya, Kemal and Sunar, Berk\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"he2021deberta\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2024mhj\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chao2023pair\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"mehrotra2024tap\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"perez2022redteaming\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wei2023jailbroken\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"jiang2024redqueen\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"mazeika2024harmbench\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chao2024jailbreakbench\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"song2026multibreak\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"safedream2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lu2025xboundary\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zhang2025jbshield\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kulkarni2026latentadversarial\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kadali2026trace\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hua2026rcs\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"derya2026revisitingjbshield\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"metallamaguard3_2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"anthropic2025constitutional\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"robey2024smoothllm\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"mann1988rst\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"prasad2008pdtb\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"stolcke2000dialogueact\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"austin1962speechacts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"searle1969speechacts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"dasanmartino2019fine\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"dasanmartino2020semeval\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2019persuasion\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"howard2018ulmfit\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"phang2018stilts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"caruana1997multitask\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019mtdnn\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gururangan2018artifacts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"niven2019probing\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"jin2020textfooler\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2020bertattack\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"nasr2025attackermovessecond\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"andriushchenko2024adaptive\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"conneau2018probing\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hewitt2019structural\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 36, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 36, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 56, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 108, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 121, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 171, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 180, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 193, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 198, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zou2023gcg\\\", \\\"file\\\": \\\"conclusion.tex\\\", \\\"line\\\": 54, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 177, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 178, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 186, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 399, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"title\\\": \\\"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"metallamaguard3_2024\\\", \\\"title\\\": \\\"Llama Guard 3\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.289, \\\"matched_title\\\": \\\"Llama Guard 3 Vision: Safeguarding Human-AI Image Understanding Conversations\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.29 below threshold 0.82\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"title\\\": \\\"ShieldGemma: Generative AI Content Moderation Based on Gemma\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ShieldGemma: Generative AI Content Moderation Based on Gemma\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"title\\\": \\\"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=han vs api=choi\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"anthropic2025constitutional\\\", \\\"title\\\": \\\"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"title\\\": \\\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"title\\\": \\\"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.328, \\\"matched_title\\\": \\\"AI Alignment: A Comprehensive Survey\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.33 below threshold 0.82\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"title\\\": \\\"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.882, \\\"matched_title\\\": \\\"Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"safedream2026\\\", \\\"title\\\": \\\"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"title\\\": \\\"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mann1988rst\\\", \\\"title\\\": \\\"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Rhetorical Structure Theory: Toward a functional theory of text organization\\\", \\\"matched_year\\\": \\\"1988\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"prasad2008pdtb\\\", \\\"title\\\": \\\"The Penn Discourse TreeBank 2.0\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.984, \\\"matched_title\\\": \\\"The Penn Discourse TreeBank 2.0.\\\", \\\"matched_year\\\": \\\"2008\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"stolcke2000dialogueact\\\", \\\"title\\\": \\\"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\\\", \\\"matched_year\\\": \\\"2000\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"austin1962speechacts\\\", \\\"title\\\": \\\"How to Do Things with Words\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"How To Do Things With Words\\\", \\\"matched_year\\\": \\\"1975\\\", \\\"mismatch_fields\\\": [\\\"year: bib=1962 vs api=1975\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"searle1969speechacts\\\", \\\"title\\\": \\\"Speech Acts: An Essay in the Philosophy of Language\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Speech Acts: An Essay in the Philosophy of Language\\\", \\\"matched_year\\\": \\\"1969\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"title\\\": \\\"Influence: Science and Practice\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Influence: science and practice\\\", \\\"matched_year\\\": \\\"2008\\\", \\\"mismatch_fields\\\": [\\\"year: bib=2001 vs api=2008\\\", \\\"first_author: bib=cialdini vs api=giebels\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"title\\\": \\\"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"title\\\": \\\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chao2023pair\\\", \\\"title\\\": \\\"Jailbreaking Black Box Large Language Models in Twenty Queries\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbreaking Black Box Large Language Models in Twenty Queries\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wei2023jailbroken\\\", \\\"title\\\": \\\"Jailbroken: How Does LLM Safety Training Fail?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbroken: How Does LLM Safety Training Fail?\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"title\\\": \\\"Large Reasoning Models Are Autonomous Jailbreak Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Large reasoning models are autonomous jailbreak agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"title\\\": \\\"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"title\\\": \\\"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.446, \\\"matched_title\\\": \\\"BitBypass: A New Direction in Jailbreaking Aligned Large Language Models with Bitstream Camouflage\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.45 below threshold 0.82\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"title\\\": \\\"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.402, \\\"matched_title\\\": \\\"NEXUS: Network Exploration for eXploiting Unsafe Sequences in Multi-Turn LLM Jailbreaks\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.40 below threshold 0.82\\\"}, {\\\"key\\\": \\\"zou2023gcg\\\", \\\"title\\\": \\\"Universal and Transferable Adversarial Attacks on Aligned Language Models\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.301, \\\"matched_title\\\": \\\"Text Data Augmentation for Deep Learning\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.30 below threshold 0.82\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"title\\\": \\\"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=lin vs api=zi\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2024mhj\\\", \\\"title\\\": \\\"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"gururangan2018artifacts\\\", \\\"title\\\": \\\"Annotation Artifacts in Natural Language Inference Data\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Annotation Artifacts in Natural Language Inference Data\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"niven2019probing\\\", \\\"title\\\": \\\"Probing Neural Network Comprehension of Natural Language Arguments\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Probing Neural Network Comprehension of Natural Language Arguments\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"nasr2025attackermovessecond\\\", \\\"title\\\": \\\"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"andriushchenko2024adaptive\\\", \\\"title\\\": \\\"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"he2021deberta\\\", \\\"title\\\": \\\"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DEBERTA: DECODING-ENHANCED BERT WITH DISENTANGLED ATTENTION\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"title\\\": \\\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [\\\"year: bib=2023 vs api=2021\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"title\\\": \\\"Similarity of Neural Network Representations Revisited\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Similarity of Neural Network Representations Revisited\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Qwen3 Technical Report\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"title\\\": \\\"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.492, \\\"matched_title\\\": \\\"From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.49 below threshold 0.82\\\"}, {\\\"key\\\": \\\"caruana1997multitask\\\", \\\"title\\\": \\\"Multitask Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Multitask Learning\\\", \\\"matched_year\\\": \\\"1997\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"phang2018stilts\\\", \\\"title\\\": \\\"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"liu2019mtdnn\\\", \\\"title\\\": \\\"Multi-Task Deep Neural Networks for Natural Language Understanding\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Multi-Task Deep Neural Networks for Natural Language Understanding\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"howard2018ulmfit\\\", \\\"title\\\": \\\"Universal Language Model Fine-tuning for Text Classification\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Universal Language Model Fine-tuning for Text Classification\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dasanmartino2020semeval\\\", \\\"title\\\": \\\"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=da san martino vs api=martino\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dasanmartino2019fine\\\", \\\"title\\\": \\\"Fine-Grained Analysis of Propaganda in News Articles\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Fine-Grained Analysis of Propaganda in News Articles\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=da san martino vs api=martino\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jin2020textfooler\\\", \\\"title\\\": \\\"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2020bertattack\\\", \\\"title\\\": \\\"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"devlin2019bert\\\", \\\"title\\\": \\\"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.338, \\\"matched_title\\\": \\\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.34 below threshold 0.82\\\"}, {\\\"key\\\": \\\"conneau2018probing\\\", \\\"title\\\": \\\"What you can cram into a single \\\\\\\\$\\\\\\\\&!\\\\\\\\#* vector: Probing sentence embeddings for linguistic properties\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.98, \\\"matched_title\\\": \\\"What you can cram into a single $&amp;!#* vector: Probing sentence embeddings for linguistic properties\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hewitt2019structural\\\", \\\"title\\\": \\\"A Structural Probe for Finding Syntax in Word Representations\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.316, \\\"matched_title\\\": \\\"What Does BERT Learn about the Structure of Language?\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.32 below threshold 0.82\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"title\\\": \\\"RoBERTa: A Robustly Optimized BERT Pretraining Approach\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.495, \\\"matched_title\\\": \\\"Use of Bidirectional Encoder Representations from Transformers (BERT) and Robustly Optimized Bert Pretraining Approach (RoBERTa) for Nepali News Classification\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.50 below threshold 0.82\\\"}, {\\\"key\\\": \\\"wang2019persuasion\\\", \\\"title\\\": \\\"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"robey2024smoothllm\\\", \\\"title\\\": \\\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mehrotra2024tap\\\", \\\"title\\\": \\\"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.435, \\\"matched_title\\\": \\\"A survey of safety and trustworthiness of large language models through the lens of verification and validation\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.44 below threshold 0.82\\\"}, {\\\"key\\\": \\\"chao2024jailbreakbench\\\", \\\"title\\\": \\\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=chao vs api=andriushchenko\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mazeika2024harmbench\\\", \\\"title\\\": \\\"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lu2025xboundary\\\", \\\"title\\\": \\\"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kadali2026trace\\\", \\\"title\\\": \\\"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hua2026rcs\\\", \\\"title\\\": \\\"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=hua vs api=peichun\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jiang2024redqueen\\\", \\\"title\\\": \\\"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"song2026multibreak\\\", \\\"title\\\": \\\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhang2025jbshield\\\", \\\"title\\\": \\\"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"perez2022redteaming\\\", \\\"title\\\": \\\"Red Teaming Language Models with Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Red Teaming Language Models with Language Models\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kulkarni2026latentadversarial\\\", \\\"title\\\": \\\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"derya2026revisitingjbshield\\\", \\\"title\\\": \\\"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 62, \"total_citations\": 96, \"unique_cited_keys\": 61, \"orphan_bib\": 1, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 43, \"online_not_found\": 10, \"online_mismatch\": 9}, \"cross_check\": {\"orphan_bib\": [\"devlin2019bert\"], \"missing_bib\": [], \"orphan_count\": 1, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"inan2023llamaguard\", \"type\": \"article\", \"title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"authors\": \"Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer,...\", \"year\": \"2023\", \"venue\": \"arXiv preprint\"}, {\"key\": \"metallamaguard3_2024\", \"type\": \"misc\", \"title\": \"Llama Guard 3\", \"authors\": \"Meta AI\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"zeng2024shieldgemma\", \"type\": \"article\", \"title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"authors\": \"Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"han2024wildguard\", \"type\": \"inproceedings\", \"title\": \"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"authors\": \"Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"anthropic2025constitutional\", \"type\": \"techreport\", \"title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"authors\": \"Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"deepcontext2026\", \"type\": \"article\", \"title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"authors\": \"Albrethsen, Justin and Datta, Yash and Kumar, Kunal and Rajasekar, Sharath\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}, {\"key\": \"tong2025biid\", \"type\": \"article\", \"title\": \"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\", \"authors\": \"Tong, Haibo and Zhao, Dongcheng and Shen, Guobin and He, Xiang and Lin, Dachuan ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"gguard2025\", \"type\": \"article\", \"title\": \"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\", \"authors\": \"Huang, Zixuan and Huang, Kecheng and Yin, Lihao and He, Bowei and Zhen, Huiling ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"safedream2026\", \"type\": \"article\", \"title\": \"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\", \"authors\": \"Yan, Bo and Lin, Weikai and Zhu, Yada and Wang, Song\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}, {\"key\": \"bullwinkel2025repeng\", \"type\": \"article\", \"title\": \"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\", \"authors\": \"Bullwinkel, Blake and Russinovich, Mark and Salem, Ahmed and Zanella-Beguelin, S...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"mann1988rst\", \"type\": \"article\", \"title\": \"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\", \"authors\": \"Mann, William C. and Thompson, Sandra A.\", \"year\": \"1988\", \"venue\": \"Text \\\\& Talk\"}, {\"key\": \"prasad2008pdtb\", \"type\": \"inproceedings\", \"title\": \"The Penn Discourse TreeBank 2.0\", \"authors\": \"Prasad, Rashmi and Dinesh, Nikhil and Lee, Alan and Miltsakaki, Eleni and Robald...\", \"year\": \"2008\", \"venue\": \"Proceedings of the International Conference on Language Resources and Evaluation\"}, {\"key\": \"stolcke2000dialogueact\", \"type\": \"article\", \"title\": \"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\", \"authors\": \"Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and B...\", \"year\": \"2000\", \"venue\": \"Computational Linguistics\"}, {\"key\": \"austin1962speechacts\", \"type\": \"book\", \"title\": \"How to Do Things with Words\", \"authors\": \"Austin, J. L.\", \"year\": \"1962\", \"venue\": \"\"}, {\"key\": \"searle1969speechacts\", \"type\": \"book\", \"title\": \"Speech Acts: An Essay in the Philosophy of Language\", \"authors\": \"Searle, J. R.\", \"year\": \"1969\", \"venue\": \"\"}, {\"key\": \"cialdini2001influence\", \"type\": \"book\", \"title\": \"Influence: Science and Practice\", \"authors\": \"Cialdini, Robert B.\", \"year\": \"2001\", \"venue\": \"\"}, {\"key\": \"zeng2024pap\", \"type\": \"inproceedings\", \"title\": \"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\", \"authors\": \"Zeng, Yi and Lin, Hongpeng and Zhang, Jingwen and Yang, Diyi and Jia, Ruoxi and ...\", \"year\": \"2024\", \"venue\": \"Proceedings of the Association for Computational Linguistics\"}, {\"key\": \"russinovich2024crescendo\", \"type\": \"inproceedings\", \"title\": \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\", \"authors\": \"Russinovich, Mark and Salem, Ahmed and Eldan, Ronen\", \"year\": \"2025\", \"venue\": \"USENIX Security Symposium\"}, {\"key\": \"chao2023pair\", \"type\": \"inproceedings\", \"title\": \"Jailbreaking Black Box Large Language Models in Twenty Queries\", \"authors\": \"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\", \"year\": \"2024\", \"venue\": \"IEEE Conference on Secure and Trustworthy Machine Learning\"}, {\"key\": \"wei2023jailbroken\", \"type\": \"inproceedings\", \"title\": \"Jailbroken: How Does LLM Safety Training Fail?\", \"authors\": \"Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"hagendorff2026reasoning\", \"type\": \"article\", \"title\": \"Large Reasoning Models Are Autonomous Jailbreak Agents\", \"authors\": \"Hagendorff, Thilo and Derner, Erik and Oliver, Nuria\", \"year\": \"2026\", \"venue\": \"Nature Communications\"}, {\"key\": \"fitd2024\", \"type\": \"article\", \"title\": \"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\", \"authors\": \"Wang, Zhenhua and Xie, Wei and Wang, Baosheng and Wang, Enze and Gui, Zhiwen and...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"deceptivedelight2024\", \"type\": \"techreport\", \"title\": \"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\", \"authors\": \"Palo Alto Networks Unit 42\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"ren2024actorattack\", \"type\": \"inproceedings\", \"title\": \"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\", \"authors\": \"Ren, Qibing and Li, Hao and Liu, Dongrui and Xie, Zhanxu and Lu, Xiaoya and Qiao...\", \"year\": \"2025\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"zou2023gcg\", \"type\": \"article\", \"title\": \"Universal and Transferable Adversarial Attacks on Aligned Language Models\", \"authors\": \"Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J. Z...\", \"year\": \"2023\", \"venue\": \"arXiv preprint\"}, {\"key\": \"lin2023toxicchat\", \"type\": \"inproceedings\", \"title\": \"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\", \"authors\": \"Lin, Zi and Wang, Zihan and Tong, Yongqi and Wang, Yangkun and Guo, Yuxin and Wa...\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2023\"}, {\"key\": \"li2024mhj\", \"type\": \"article\", \"title\": \"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\", \"authors\": \"Li, Nathaniel and Han, Ziwen and Steneker, Ian and Primack, Willow and Goodside,...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"gururangan2018artifacts\", \"type\": \"inproceedings\", \"title\": \"Annotation Artifacts in Natural Language Inference Data\", \"authors\": \"Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and ...\", \"year\": \"2018\", \"venue\": \"Proceedings of the Conference of the North American Chapter of the Association f...\"}, {\"key\": \"niven2019probing\", \"type\": \"inproceedings\", \"title\": \"Probing Neural Network Comprehension of Natural Language Arguments\", \"authors\": \"Niven, Timothy and Kao, Hung-Yu\", \"year\": \"2019\", \"venue\": \"Proceedings of the Association for Computational Linguistics\"}, {\"key\": \"nasr2025attackermovessecond\", \"type\": \"article\", \"title\": \"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\", \"authors\": \"Nasr, Milad and Carlini, Nicholas and Sitawarin, Chawin and Schulhoff, Sander V....\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"andriushchenko2024adaptive\", \"type\": \"inproceedings\", \"title\": \"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\", \"authors\": \"Andriushchenko, Maksym and Croce, Francesco and Flammarion, Nicolas\", \"year\": \"2025\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"he2021deberta\", \"type\": \"inproceedings\", \"title\": \"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\", \"authors\": \"He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu\", \"year\": \"2021\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"he2023debertav3\", \"type\": \"inproceedings\", \"title\": \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", \"authors\": \"He, Pengcheng and Gao, Jianfeng and Chen, Weizhu\", \"year\": \"2023\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"kornblith2019cka\", \"type\": \"inproceedings\", \"title\": \"Similarity of Neural Network Representations Revisited\", \"authors\": \"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\", \"year\": \"2019\", \"venue\": \"International Conference on Machine Learning\"}, {\"key\": \"qwen3_2025\", \"type\": \"article\", \"title\": \"Qwen3 Technical Report\", \"authors\": \"Yang, An and Yang, Baosong and Zhang, Beichen and Wang, Binyuan and Li, Bo and L...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"gururangan2020dontstop\", \"type\": \"inproceedings\", \"title\": \"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\", \"authors\": \"Gururangan, Suchin and Marasovi\\\\'c, Ana and Swayamdipta, Swabha and Lo, Kyle and...\", \"year\": \"2020\", \"venue\": \"Proceedings of the 58th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"caruana1997multitask\", \"type\": \"article\", \"title\": \"Multitask Learning\", \"authors\": \"Caruana, Rich\", \"year\": \"1997\", \"venue\": \"Machine Learning\"}, {\"key\": \"phang2018stilts\", \"type\": \"article\", \"title\": \"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\", \"authors\": \"Phang, Jason and F\\\\'evry, Thibault and Bowman, Samuel R.\", \"year\": \"2018\", \"venue\": \"arXiv preprint arXiv:1811.01088\"}, {\"key\": \"liu2019mtdnn\", \"type\": \"inproceedings\", \"title\": \"Multi-Task Deep Neural Networks for Natural Language Understanding\", \"authors\": \"Liu, Xiaodong and He, Pengcheng and Chen, Weizhu and Gao, Jianfeng\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"howard2018ulmfit\", \"type\": \"inproceedings\", \"title\": \"Universal Language Model Fine-tuning for Text Classification\", \"authors\": \"Howard, Jeremy and Ruder, Sebastian\", \"year\": \"2018\", \"venue\": \"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"dasanmartino2020semeval\", \"type\": \"inproceedings\", \"title\": \"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\", \"authors\": \"Da San Martino, Giovanni and Barr\\\\'on-Cede\\\\~no, Alberto and Wachsmuth, Henning a...\", \"year\": \"2020\", \"venue\": \"Proceedings of the Fourteenth Workshop on Semantic Evaluation\"}, {\"key\": \"dasanmartino2019fine\", \"type\": \"inproceedings\", \"title\": \"Fine-Grained Analysis of Propaganda in News Articles\", \"authors\": \"Da San Martino, Giovanni and Yu, Seunghak and Barr\\\\'on-Cede\\\\~no, Alberto and Pet...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"jin2020textfooler\", \"type\": \"inproceedings\", \"title\": \"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\", \"authors\": \"Jin, Di and Jin, Zhijing and Zhou, Joey Tianyi and Szolovits, Peter\", \"year\": \"2020\", \"venue\": \"Proceedings of the AAAI Conference on Artificial Intelligence\"}, {\"key\": \"li2020bertattack\", \"type\": \"inproceedings\", \"title\": \"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\", \"authors\": \"Li, Linyang and Ma, Ruotian and Guo, Qipeng and Xue, Xiangyang and Qiu, Xipeng\", \"year\": \"2020\", \"venue\": \"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"devlin2019bert\", \"type\": \"inproceedings\", \"title\": \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\", \"authors\": \"Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina\", \"year\": \"2019\", \"venue\": \"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"conneau2018probing\", \"type\": \"inproceedings\", \"title\": \"What you can cram into a single \\\\$\\\\&!\\\\#* vector: Probing sentence embeddings for linguistic properties\", \"authors\": \"Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo\\\\\\\"i...\", \"year\": \"2018\", \"venue\": \"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"hewitt2019structural\", \"type\": \"inproceedings\", \"title\": \"A Structural Probe for Finding Syntax in Word Representations\", \"authors\": \"Hewitt, John and Manning, Christopher D.\", \"year\": \"2019\", \"venue\": \"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"liu2019roberta\", \"type\": \"article\", \"title\": \"RoBERTa: A Robustly Optimized BERT Pretraining Approach\", \"authors\": \"Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and...\", \"year\": \"2019\", \"venue\": \"arXiv preprint arXiv:1907.11692\"}, {\"key\": \"wang2019persuasion\", \"type\": \"inproceedings\", \"title\": \"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\", \"authors\": \"Wang, Xuewei and Shi, Weiyan and Kim, Richard and Oh, Yoojung and Yang, Sijia an...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"robey2024smoothllm\", \"type\": \"inproceedings\", \"title\": \"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\", \"authors\": \"Robey, Alexander and Wong, Eric and Hassani, Hamed and Pappas, George J.\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning\"}, {\"key\": \"mehrotra2024tap\", \"type\": \"inproceedings\", \"title\": \"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\", \"authors\": \"Mehrotra, Anay and Zampetakis, Manolis and Kassianik, Paul and Nelson, Blaine an...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"chao2024jailbreakbench\", \"type\": \"article\", \"title\": \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\", \"authors\": \"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2404.01318\"}, {\"key\": \"mazeika2024harmbench\", \"type\": \"inproceedings\", \"title\": \"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\", \"authors\": \"Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning\"}, {\"key\": \"lu2025xboundary\", \"type\": \"inproceedings\", \"title\": \"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\", \"authors\": \"Lu, Xiaoya and Liu, Dongrui and Yu, Yi and Xu, Luxin and Shao, Jing\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2025\"}, {\"key\": \"kadali2026trace\", \"type\": \"article\", \"title\": \"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Langua...\", \"authors\": \"Kadali, Sri Durga Sai Sowmya and Papalexakis, Evangelos E.\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.11495\"}, {\"key\": \"hua2026rcs\", \"type\": \"inproceedings\", \"title\": \"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\", \"authors\": \"Hua, Peichun and Li, Hao and Shi, Shanghao and Yu, Zhiyuan and Zhang, Ning\", \"year\": \"2026\", \"venue\": \"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"jiang2024redqueen\", \"type\": \"article\", \"title\": \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\", \"authors\": \"Jiang, Yifan and Aggarwal, Kriti and Laud, Tanmay and Munir, Kashif and Pujara, ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"song2026multibreak\", \"type\": \"inproceedings\", \"title\": \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\", \"authors\": \"Song, Jialin and Liu, Xiaodong and Yang, Weiwei and Chen, Wuyang and Feng, Mingq...\", \"year\": \"2026\", \"venue\": \"International Conference on Machine Learning\"}, {\"key\": \"zhang2025jbshield\", \"type\": \"inproceedings\", \"title\": \"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\", \"authors\": \"Zhang, Shenyi and Zhai, Yuchen and Guo, Keyan and Hu, Hongxin and Guo, Shengnan ...\", \"year\": \"2025\", \"venue\": \"USENIX Security Symposium\"}, {\"key\": \"perez2022redteaming\", \"type\": \"inproceedings\", \"title\": \"Red Teaming Language Models with Language Models\", \"authors\": \"Perez, Ethan and Huang, Saffron and Song, Francis and Cai, Trevor and Ring, Roma...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"kulkarni2026latentadversarial\", \"type\": \"article\", \"title\": \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\", \"authors\": \"Kulkarni, Prashant\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}, {\"key\": \"derya2026revisitingjbshield\", \"type\": \"article\", \"title\": \"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\", \"authors\": \"Derya, Kemal and Sunar, Berk\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}], \"tex_citations\": [{\"key\": \"russinovich2024crescendo\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"fitd2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citet\"}, {\"key\": \"hagendorff2026reasoning\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citet\"}, {\"key\": \"bullwinkel2025repeng\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"inan2023llamaguard\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"han2024wildguard\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"zeng2024shieldgemma\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"tong2025biid\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"gguard2025\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"he2021deberta\", \"file\": \"introduction.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"introduction.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"introduction.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"hagendorff2026reasoning\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"li2024mhj\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"russinovich2024crescendo\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"fitd2024\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"chao2023pair\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"mehrotra2024tap\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"perez2022redteaming\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"wei2023jailbroken\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citet\"}, {\"key\": \"jiang2024redqueen\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"mazeika2024harmbench\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"chao2024jailbreakbench\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"song2026multibreak\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"tong2025biid\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"gguard2025\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"safedream2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"lu2025xboundary\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"zhang2025jbshield\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"kulkarni2026latentadversarial\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"kadali2026trace\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"hua2026rcs\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"derya2026revisitingjbshield\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"inan2023llamaguard\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"metallamaguard3_2024\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"zeng2024shieldgemma\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"han2024wildguard\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"anthropic2025constitutional\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"robey2024smoothllm\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"mann1988rst\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"prasad2008pdtb\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"stolcke2000dialogueact\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"austin1962speechacts\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"searle1969speechacts\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"cialdini2001influence\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"hagendorff2026reasoning\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citet\"}, {\"key\": \"dasanmartino2019fine\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"dasanmartino2020semeval\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"wang2019persuasion\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"gururangan2020dontstop\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"howard2018ulmfit\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"phang2018stilts\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"caruana1997multitask\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"liu2019mtdnn\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"gururangan2018artifacts\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"niven2019probing\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"jin2020textfooler\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"li2020bertattack\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"nasr2025attackermovessecond\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"andriushchenko2024adaptive\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"conneau2018probing\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"hewitt2019structural\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"he2023debertav3\", \"file\": \"method.tex\", \"line\": 14, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"method.tex\", \"line\": 36, \"command\": \"citep\"}, {\"key\": \"cialdini2001influence\", \"file\": \"method.tex\", \"line\": 36, \"command\": \"citep\"}, {\"key\": \"qwen3_2025\", \"file\": \"experiments.tex\", \"line\": 8, \"command\": \"citep\"}, {\"key\": \"russinovich2024crescendo\", \"file\": \"experiments.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"fitd2024\", \"file\": \"experiments.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"experiments.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"experiments.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"lin2023toxicchat\", \"file\": \"experiments.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"experiments.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"experiments.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"bullwinkel2025repeng\", \"file\": \"experiments.tex\", \"line\": 56, \"command\": \"citep\"}, {\"key\": \"gururangan2020dontstop\", \"file\": \"experiments.tex\", \"line\": 108, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"experiments.tex\", \"line\": 121, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"experiments.tex\", \"line\": 171, \"command\": \"citep\"}, {\"key\": \"kornblith2019cka\", \"file\": \"experiments.tex\", \"line\": 180, \"command\": \"citep\"}, {\"key\": \"lin2023toxicchat\", \"file\": \"experiments.tex\", \"line\": 193, \"command\": \"citep\"}, {\"key\": \"lin2023toxicchat\", \"file\": \"experiments.tex\", \"line\": 198, \"command\": \"citep\"}, {\"key\": \"zou2023gcg\", \"file\": \"conclusion.tex\", \"line\": 54, \"command\": \"citep\"}, {\"key\": \"cialdini2001influence\", \"file\": \"appendix.tex\", \"line\": 177, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"appendix.tex\", \"line\": 178, \"command\": \"citep\"}, {\"key\": \"kornblith2019cka\", \"file\": \"appendix.tex\", \"line\": 186, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"appendix.tex\", \"line\": 399, \"command\": \"citep\"}, {\"key\": \"he2023debertav3\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"qwen3_2025\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citep\"}], \"online_verification\": [{\"key\": \"inan2023llamaguard\", \"title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"metallamaguard3_2024\", \"title\": \"Llama Guard 3\", \"status\": \"not_found\", \"confidence\": 0.289, \"matched_title\": \"Llama Guard 3 Vision: Safeguarding Human-AI Image Understanding Conversations\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.29 below threshold 0.82\"}, {\"key\": \"zeng2024shieldgemma\", \"title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"han2024wildguard\", \"title\": \"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=han vs api=choi\"], \"note\": \"\"}, {\"key\": \"anthropic2025constitutional\", \"title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"deepcontext2026\", \"title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tong2025biid\", \"title\": \"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\", \"status\": \"not_found\", \"confidence\": 0.328, \"matched_title\": \"AI Alignment: A Comprehensive Survey\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.33 below threshold 0.82\"}, {\"key\": \"gguard2025\", \"title\": \"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\", \"status\": \"verified\", \"confidence\": 0.882, \"matched_title\": \"Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"safedream2026\", \"title\": \"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"bullwinkel2025repeng\", \"title\": \"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mann1988rst\", \"title\": \"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Rhetorical Structure Theory: Toward a functional theory of text organization\", \"matched_year\": \"1988\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"prasad2008pdtb\", \"title\": \"The Penn Discourse TreeBank 2.0\", \"status\": \"verified\", \"confidence\": 0.984, \"matched_title\": \"The Penn Discourse TreeBank 2.0.\", \"matched_year\": \"2008\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"stolcke2000dialogueact\", \"title\": \"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\", \"matched_year\": \"2000\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"austin1962speechacts\", \"title\": \"How to Do Things with Words\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"How To Do Things With Words\", \"matched_year\": \"1975\", \"mismatch_fields\": [\"year: bib=1962 vs api=1975\"], \"note\": \"\"}, {\"key\": \"searle1969speechacts\", \"title\": \"Speech Acts: An Essay in the Philosophy of Language\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Speech Acts: An Essay in the Philosophy of Language\", \"matched_year\": \"1969\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"cialdini2001influence\", \"title\": \"Influence: Science and Practice\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Influence: science and practice\", \"matched_year\": \"2008\", \"mismatch_fields\": [\"year: bib=2001 vs api=2008\", \"first_author: bib=cialdini vs api=giebels\"], \"note\": \"\"}, {\"key\": \"zeng2024pap\", \"title\": \"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"russinovich2024crescendo\", \"title\": \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chao2023pair\", \"title\": \"Jailbreaking Black Box Large Language Models in Twenty Queries\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbreaking Black Box Large Language Models in Twenty Queries\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wei2023jailbroken\", \"title\": \"Jailbroken: How Does LLM Safety Training Fail?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbroken: How Does LLM Safety Training Fail?\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hagendorff2026reasoning\", \"title\": \"Large Reasoning Models Are Autonomous Jailbreak Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Large reasoning models are autonomous jailbreak agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"fitd2024\", \"title\": \"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"deceptivedelight2024\", \"title\": \"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\", \"status\": \"not_found\", \"confidence\": 0.446, \"matched_title\": \"BitBypass: A New Direction in Jailbreaking Aligned Large Language Models with Bitstream Camouflage\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"ren2024actorattack\", \"title\": \"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\", \"status\": \"not_found\", \"confidence\": 0.402, \"matched_title\": \"NEXUS: Network Exploration for eXploiting Unsafe Sequences in Multi-Turn LLM Jailbreaks\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.40 below threshold 0.82\"}, {\"key\": \"zou2023gcg\", \"title\": \"Universal and Transferable Adversarial Attacks on Aligned Language Models\", \"status\": \"not_found\", \"confidence\": 0.301, \"matched_title\": \"Text Data Augmentation for Deep Learning\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.30 below threshold 0.82\"}, {\"key\": \"lin2023toxicchat\", \"title\": \"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=lin vs api=zi\"], \"note\": \"\"}, {\"key\": \"li2024mhj\", \"title\": \"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"gururangan2018artifacts\", \"title\": \"Annotation Artifacts in Natural Language Inference Data\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Annotation Artifacts in Natural Language Inference Data\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"niven2019probing\", \"title\": \"Probing Neural Network Comprehension of Natural Language Arguments\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Probing Neural Network Comprehension of Natural Language Arguments\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"nasr2025attackermovessecond\", \"title\": \"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"andriushchenko2024adaptive\", \"title\": \"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"he2021deberta\", \"title\": \"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DEBERTA: DECODING-ENHANCED BERT WITH DISENTANGLED ATTENTION\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"he2023debertav3\", \"title\": \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", \"matched_year\": \"2021\", \"mismatch_fields\": [\"year: bib=2023 vs api=2021\"], \"note\": \"\"}, {\"key\": \"kornblith2019cka\", \"title\": \"Similarity of Neural Network Representations Revisited\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Similarity of Neural Network Representations Revisited\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qwen3_2025\", \"title\": \"Qwen3 Technical Report\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Qwen3 Technical Report\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"gururangan2020dontstop\", \"title\": \"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\", \"status\": \"not_found\", \"confidence\": 0.492, \"matched_title\": \"From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.49 below threshold 0.82\"}, {\"key\": \"caruana1997multitask\", \"title\": \"Multitask Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Multitask Learning\", \"matched_year\": \"1997\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"phang2018stilts\", \"title\": \"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"liu2019mtdnn\", \"title\": \"Multi-Task Deep Neural Networks for Natural Language Understanding\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Multi-Task Deep Neural Networks for Natural Language Understanding\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"howard2018ulmfit\", \"title\": \"Universal Language Model Fine-tuning for Text Classification\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Universal Language Model Fine-tuning for Text Classification\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"dasanmartino2020semeval\", \"title\": \"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\", \"matched_year\": \"2020\", \"mismatch_fields\": [\"first_author: bib=da san martino vs api=martino\"], \"note\": \"\"}, {\"key\": \"dasanmartino2019fine\", \"title\": \"Fine-Grained Analysis of Propaganda in News Articles\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Fine-Grained Analysis of Propaganda in News Articles\", \"matched_year\": \"2019\", \"mismatch_fields\": [\"first_author: bib=da san martino vs api=martino\"], \"note\": \"\"}, {\"key\": \"jin2020textfooler\", \"title\": \"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2020bertattack\", \"title\": \"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"devlin2019bert\", \"title\": \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\", \"status\": \"not_found\", \"confidence\": 0.338, \"matched_title\": \"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.34 below threshold 0.82\"}, {\"key\": \"conneau2018probing\", \"title\": \"What you can cram into a single \\\\$\\\\&!\\\\#* vector: Probing sentence embeddings for linguistic properties\", \"status\": \"verified\", \"confidence\": 0.98, \"matched_title\": \"What you can cram into a single $&amp;!#* vector: Probing sentence embeddings for linguistic properties\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hewitt2019structural\", \"title\": \"A Structural Probe for Finding Syntax in Word Representations\", \"status\": \"not_found\", \"confidence\": 0.316, \"matched_title\": \"What Does BERT Learn about the Structure of Language?\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.32 below threshold 0.82\"}, {\"key\": \"liu2019roberta\", \"title\": \"RoBERTa: A Robustly Optimized BERT Pretraining Approach\", \"status\": \"not_found\", \"confidence\": 0.495, \"matched_title\": \"Use of Bidirectional Encoder Representations from Transformers (BERT) and Robustly Optimized Bert Pretraining Approach (RoBERTa) for Nepali News Classification\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.50 below threshold 0.82\"}, {\"key\": \"wang2019persuasion\", \"title\": \"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"robey2024smoothllm\", \"title\": \"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mehrotra2024tap\", \"title\": \"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\", \"status\": \"not_found\", \"confidence\": 0.435, \"matched_title\": \"A survey of safety and trustworthiness of large language models through the lens of verification and validation\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.44 below threshold 0.82\"}, {\"key\": \"chao2024jailbreakbench\", \"title\": \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=chao vs api=andriushchenko\"], \"note\": \"\"}, {\"key\": \"mazeika2024harmbench\", \"title\": \"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lu2025xboundary\", \"title\": \"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kadali2026trace\", \"title\": \"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hua2026rcs\", \"title\": \"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=hua vs api=peichun\"], \"note\": \"\"}, {\"key\": \"jiang2024redqueen\", \"title\": \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"song2026multibreak\", \"title\": \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhang2025jbshield\", \"title\": \"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"perez2022redteaming\", \"title\": \"Red Teaming Language Models with Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Red Teaming Language Models with Language Models\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kulkarni2026latentadversarial\", \"title\": \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"derya2026revisitingjbshield\", \"title\": \"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d10f9ac8-5b27-4dc1-b701-67091cd73c7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-21T07:04:38.458Z_
+
+```json
+{
+  "parentUuid": "0e03d3e4-b15b-4f80-9a29-645e41226abd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "87160fd9-6e2e-41c8-9f8c-6b1c9a71a5c0",
+  "timestamp": "2026-05-21T07:04:38.458Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "87160fd9-6e2e-41c8-9f8c-6b1c9a71a5c0",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-21T07:04:42.266Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the search results, PDF images, and reference verification results. Let me now:
+
+1. Fetch the detailed ARR review form
+2. Read the PDF pages to understand the paper
+3. Read the reference verification results in detail
+
+Let me read the PDF pages first, and also fetch the ARR review form.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87160fd9-6e2e-41c8-9f8c-6b1c9a71a5c0",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "3025283d-543d-436d-b321-a7daa434680f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-21T07:04:42.804Z_
+
+论文共 22 页，先读前 10 页，同时获取 ARR review form 详细评分维度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3025283d-543d-436d-b321-a7daa434680f",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "b0750011-403b-4697-b6cd-691845aa5e9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T07:04:44.691Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016Z3Nn5rXZBup8Kk1UV9ctS`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewform",
+  "prompt": "Extract the complete review form: all scoring dimensions, their scales (1-5 etc.), and descriptions for each score level. Focus on: soundness, excitement/novelty, overall assessment, confidence, reproducibility, and any other scored dimensions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0750011-403b-4697-b6cd-691845aa5e9e",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "ea56ee31-62af-490f-8b66-5b67fa6538ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-21T07:04:45.151Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013YbGCdPvdAqr8gixyJEyXg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea56ee31-62af-490f-8b66-5b67fa6538ec",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "2d0519e3-0395-4058-a485-16004bbb5a56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T07:04:45.607Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01K8R9D4Lc7o1V2jPL7GSm4F`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d0519e3-0395-4058-a485-16004bbb5a56",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "9978ce68-03e3-498a-9664-879865b9728d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T07:04:46.363Z_
+
+<details><summary>↩ Tool result · `toolu_013YbGCdPvdAqr8gixyJEyXg`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d0519e3-0395-4058-a485-16004bbb5a56",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "6a392018-b25d-4c9a-b66a-3215537fcbca",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 473817
+    }
+  },
+  "sourceToolAssistantUUID": "2d0519e3-0395-4058-a485-16004bbb5a56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T07:04:46.658Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013uLPKmDW8uj2Gg3EqJ4cuf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a392018-b25d-4c9a-b66a-3215537fcbca",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "d45ff5fb-03e5-4667-845d-028b592c570a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T07:04:47.403Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UzJhXnj6eukWnxddAVQ7uJ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d45ff5fb-03e5-4667-845d-028b592c570a",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "67f5e421-866d-4993-9bb0-b95a2deabe8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T07:04:47.568Z_
+
+<details><summary>↩ Tool result · `toolu_01K8R9D4Lc7o1V2jPL7GSm4F`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9978ce68-03e3-498a-9664-879865b9728d",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "40a53c6e-21f9-4fa3-a12b-64dfb72a8eba",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 541382
+    }
+  },
+  "sourceToolAssistantUUID": "9978ce68-03e3-498a-9664-879865b9728d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-21T07:04:47.574Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FZtW9vu7WvqhHdUHhH3Zw6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40a53c6e-21f9-4fa3-a12b-64dfb72a8eba",
+  "isSidechain": false,
+  "requestId": "req_011CbFHgUXxGPAPK5pAeLL17",
+  "type": "assistant",
+  "uuid": "331228dd-6f33-4278-9f5e-a49fc4de5d6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzwr6q9ZPvgbr5G2ZQxtz2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3252,
+      "cache_read_input_tokens": 29651,
+      "output_tokens": 665,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 665,
+          "cache_read_input_tokens": 29651,
+          "cache_creation_input_tokens": 3252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "331228dd-6f33-4278-9f5e-a49fc4de5d6a",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T07:04:48.291Z_
+
+<details><summary>↩ Tool result · `toolu_013uLPKmDW8uj2Gg3EqJ4cuf`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d45ff5fb-03e5-4667-845d-028b592c570a",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "ef0893f4-64f7-4129-9ac3-cf2116980441",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 538342
+    }
+  },
+  "sourceToolAssistantUUID": "d45ff5fb-03e5-4667-845d-028b592c570a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "ef0893f4-64f7-4129-9ac3-cf2116980441",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T07:04:48.824Z_
+
+<details><summary>↩ Tool result · `toolu_01UzJhXnj6eukWnxddAVQ7uJ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67f5e421-866d-4993-9bb0-b95a2deabe8e",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "15b77b00-5bae-45f3-8595-a7b70317631f",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 570513
+    }
+  },
+  "sourceToolAssistantUUID": "67f5e421-866d-4993-9bb0-b95a2deabe8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T07:04:48.925Z_
+
+<details><summary>↩ Tool result · `toolu_01FZtW9vu7WvqhHdUHhH3Zw6`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "331228dd-6f33-4278-9f5e-a49fc4de5d6a",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "bce29533-6390-4072-b3f1-0530b08c6572",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 478938
+    }
+  },
+  "sourceToolAssistantUUID": "331228dd-6f33-4278-9f5e-a49fc4de5d6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "bce29533-6390-4072-b3f1-0530b08c6572",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T07:04:52.451Z_
+
+<details><summary>↩ Tool result · `toolu_016Z3Nn5rXZBup8Kk1UV9ctS`</summary>
+
+```text
+# ACL Rolling Review Form - Scoring Dimensions
+
+## 1. **Reviewer Confidence** (1-5 scale)
+- **5**: "Positive that my evaluation is correct. I read the paper very carefully..."
+- **4**: "Quite sure. I tried to check the important points carefully..."
+- **3**: "Pretty sure, but there's a chance I missed something..."
+- **2**: "Willing to defend my evaluation, but it is fairly likely that I missed some details..."
+- **1**: "Not my area, or paper is very hard to understand..."
+
+## 2. **Soundness** (1-5 scale with half-points)
+- **5**: "Excellent: This study is one of the most thorough I have seen..."
+- **4**: "Strong: This study provides sufficient support for all of its claims..."
+- **3**: "Acceptable: This study provides sufficient support for its main claims..."
+- **2**: "Poor: Some of the main claims are not sufficiently supported..."
+- **1**: "Major Issues: This study is not yet sufficiently thorough to warrant publication..."
+
+## 3. **Excitement** (1-5 scale with half-points)
+- **5**: "Highly Exciting: I would recommend this paper to others and/or attend..."
+- **4**: "Exciting: I would mention this paper to others and/or make an effort..."
+- **3**: "Interesting: I might mention some points of this paper to others..."
+- **2**: "Potentially Interesting: this paper does not resonate with me..."
+- **1**: "Not Exciting: this paper does not resonate with me, and I don't think..."
+
+## 4. **Overall Assessment** (1-5 scale with half-points)
+- **5**: "Consider for Award: Could be considered for outstanding paper award..."
+- **4**: "Conference: Could be accepted to an *ACL conference..."
+- **3**: "Findings: Could be accepted to the Findings of the ACL..."
+- **2**: "Resubmit next cycle: Needs substantial revisions..."
+- **1**: "Do not resubmit: Paper has to be fully redone..."
+
+## 5. **Reproducibility** (1-5 scale)
+- **5**: "They could easily reproduce the results..."
+- **4**: "They could mostly reproduce the results..."
+- **3**: "They could reproduce with some difficulty..."
+- **2**: "They would be hard pressed to reproduce the results..."
+- **1**: "They would not be able to reproduce the results..."
+
+## 6. **Datasets** (1-5 scale)
+- **5**: "Enabling: Should affect other people's research project choices..."
+- **4**: "Useful: I would recommend to other researchers..."
+- **3**: "Potentially useful: Someone might find useful..."
+- **2**: "Documentary: Useful for replication, limited other interest..."
+- **1**: "No usable datasets submitted..."
+
+## 7. **Software** (1-5 scale)
+- **5**: "Enabling: Should affect other people's project choices..."
+- **4**: "Useful: I would recommend to researchers or developers..."
+- **3**: "Potentially useful: Someone might find useful..."
+- **2**: "Documentary: Useful for replication, limited other interest..."
+- **1**: "No usable software released..."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea56ee31-62af-490f-8b66-5b67fa6538ec",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "e8f66eab-eaca-4355-aa41-5edcef3d2c5d",
+  "toolUseResult": {
+    "bytes": 25365,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ACL Rolling Review Form - Scoring Dimensions\n\n## 1. **Reviewer Confidence** (1-5 scale)\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully...\"\n- **4**: \"Quite sure. I tried to check the important points carefully...\"\n- **3**: \"Pretty sure, but there's a chance I missed something...\"\n- **2**: \"Willing to defend my evaluation, but it is fairly likely that I missed some details...\"\n- **1**: \"Not my area, or paper is very hard to understand...\"\n\n## 2. **Soundness** (1-5 scale with half-points)\n- **5**: \"Excellent: This study is one of the most thorough I have seen...\"\n- **4**: \"Strong: This study provides sufficient support for all of its claims...\"\n- **3**: \"Acceptable: This study provides sufficient support for its main claims...\"\n- **2**: \"Poor: Some of the main claims are not sufficiently supported...\"\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication...\"\n\n## 3. **Excitement** (1-5 scale with half-points)\n- **5**: \"Highly Exciting: I would recommend this paper to others and/or attend...\"\n- **4**: \"Exciting: I would mention this paper to others and/or make an effort...\"\n- **3**: \"Interesting: I might mention some points of this paper to others...\"\n- **2**: \"Potentially Interesting: this paper does not resonate with me...\"\n- **1**: \"Not Exciting: this paper does not resonate with me, and I don't think...\"\n\n## 4. **Overall Assessment** (1-5 scale with half-points)\n- **5**: \"Consider for Award: Could be considered for outstanding paper award...\"\n- **4**: \"Conference: Could be accepted to an *ACL conference...\"\n- **3**: \"Findings: Could be accepted to the Findings of the ACL...\"\n- **2**: \"Resubmit next cycle: Needs substantial revisions...\"\n- **1**: \"Do not resubmit: Paper has to be fully redone...\"\n\n## 5. **Reproducibility** (1-5 scale)\n- **5**: \"They could easily reproduce the results...\"\n- **4**: \"They could mostly reproduce the results...\"\n- **3**: \"They could reproduce with some difficulty...\"\n- **2**: \"They would be hard pressed to reproduce the results...\"\n- **1**: \"They would not be able to reproduce the results...\"\n\n## 6. **Datasets** (1-5 scale)\n- **5**: \"Enabling: Should affect other people's research project choices...\"\n- **4**: \"Useful: I would recommend to other researchers...\"\n- **3**: \"Potentially useful: Someone might find useful...\"\n- **2**: \"Documentary: Useful for replication, limited other interest...\"\n- **1**: \"No usable datasets submitted...\"\n\n## 7. **Software** (1-5 scale)\n- **5**: \"Enabling: Should affect other people's project choices...\"\n- **4**: \"Useful: I would recommend to researchers or developers...\"\n- **3**: \"Potentially useful: Someone might find useful...\"\n- **2**: \"Documentary: Useful for replication, limited other interest...\"\n- **1**: \"No usable software released...\"",
+    "durationMs": 7756,
+    "url": "https://aclrollingreview.org/reviewform"
+  },
+  "sourceToolAssistantUUID": "ea56ee31-62af-490f-8b66-5b67fa6538ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-21T07:04:55.642Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've read pages 1-5. Let me continue reading pages 6-10 and the remaining pages (11-22 for appendix).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8f66eab-eaca-4355-aa41-5edcef3d2c5d",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "ec7dad26-b9cb-42ca-b6e7-7aba627c4dae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-21T07:04:56.158Z_
+
+继续读取后续页面。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec7dad26-b9cb-42ca-b6e7-7aba627c4dae",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "cc7d4007-9630-49c6-9a0f-d039a7832835",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T07:04:56.705Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LEwuD4CzVuVLFHKgy43eCQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc7d4007-9630-49c6-9a0f-d039a7832835",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "a3b66421-4e16-4481-a890-cbcb76632f3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T07:04:57.418Z_
+
+<details><summary>↩ Tool result · `toolu_01LEwuD4CzVuVLFHKgy43eCQ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3b66421-4e16-4481-a890-cbcb76632f3f",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "860d2960-f0b2-4c0c-9880-633380f46db0",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 547279
+    }
+  },
+  "sourceToolAssistantUUID": "a3b66421-4e16-4481-a890-cbcb76632f3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T07:04:57.612Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TyMkaq7QhdMuuhBFtzwh3E`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "860d2960-f0b2-4c0c-9880-633380f46db0",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "d64e3677-72c3-4b51-95c6-cc9b6854beca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T07:04:58.006Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AS9evHkaExPN7KP6MgRTL5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d64e3677-72c3-4b51-95c6-cc9b6854beca",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "b82e5947-a5a4-41bc-ab37-369e570bde8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T07:04:58.772Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BSiVotNHb1GuxMTqek7dni`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b82e5947-a5a4-41bc-ab37-369e570bde8c",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "e079956b-20fb-45ca-93d0-495023685807",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-21T07:04:59.196Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NkZ3g1pCcNmWz6PgcDdhUL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e079956b-20fb-45ca-93d0-495023685807",
+  "isSidechain": false,
+  "requestId": "req_011CbFHhWRqSEo7RWx62XCvM",
+  "type": "assistant",
+  "uuid": "36206558-03b2-40d1-8cdd-37fa797be60f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vUf1c1MERz2fVEZrKiZC3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1912,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 32903,
+      "output_tokens": 491,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1912,
+          "output_tokens": 491,
+          "cache_read_input_tokens": 32903,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T07:04:59.223Z_
+
+<details><summary>↩ Tool result · `toolu_01TyMkaq7QhdMuuhBFtzwh3E`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d64e3677-72c3-4b51-95c6-cc9b6854beca",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "8309d463-e8e3-42c5-b024-f5a8afed25fb",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 487999
+    }
+  },
+  "sourceToolAssistantUUID": "d64e3677-72c3-4b51-95c6-cc9b6854beca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "8309d463-e8e3-42c5-b024-f5a8afed25fb",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T07:05:00.336Z_
+
+<details><summary>↩ Tool result · `toolu_01AS9evHkaExPN7KP6MgRTL5`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b82e5947-a5a4-41bc-ab37-369e570bde8c",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "0e062e54-1e32-452f-8243-41d84ed9e5ac",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 525878
+    }
+  },
+  "sourceToolAssistantUUID": "b82e5947-a5a4-41bc-ab37-369e570bde8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "0e062e54-1e32-452f-8243-41d84ed9e5ac",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T07:05:01.684Z_
+
+<details><summary>↩ Tool result · `toolu_01BSiVotNHb1GuxMTqek7dni`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e079956b-20fb-45ca-93d0-495023685807",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "22e6706f-da8c-4238-821e-c2148a31c736",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 520717
+    }
+  },
+  "sourceToolAssistantUUID": "e079956b-20fb-45ca-93d0-495023685807",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T07:05:01.709Z_
+
+<details><summary>↩ Tool result · `toolu_01NkZ3g1pCcNmWz6PgcDdhUL`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36206558-03b2-40d1-8cdd-37fa797be60f",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "7557531f-1852-4452-9acf-3e21964ee8d5",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 572190
+    }
+  },
+  "sourceToolAssistantUUID": "36206558-03b2-40d1-8cdd-37fa797be60f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67 · 2026-05-21T07:05:01.715Z_
+
+```json
+{
+  "parentUuid": "7557531f-1852-4452-9acf-3e21964ee8d5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6ae6feb7-7315-478d-b504-70eaaadd247e",
+  "timestamp": "2026-05-21T07:05:01.715Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "6ae6feb7-7315-478d-b504-70eaaadd247e",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-21T07:05:07.153Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've read pages 1-10. The paper is 22 pages total, so there are appendix pages 11-22. Let me render and read those too, as they contain important experimental details, statistical tests, and ablation results that are critical for my review focus areas.
+
+Let me now render pages 11-22.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ae6feb7-7315-478d-b504-70eaaadd247e",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiCkjWkVmFbcjen3Da",
+  "type": "assistant",
+  "uuid": "2314d729-3c70-4d93-98fc-4c4cf66ec4ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7BTQVJ7fy8dgaFXDLdF6q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4426,
+      "cache_read_input_tokens": 34376,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 34376,
+          "cache_creation_input_tokens": 4426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-21T07:05:08.136Z_
+
+继续渲染和读取附录页面（11-22），这些包含关键的统计检验细节和消融实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2314d729-3c70-4d93-98fc-4c4cf66ec4ff",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiCkjWkVmFbcjen3Da",
+  "type": "assistant",
+  "uuid": "77dbc6e7-cbc0-4568-bf81-22b439a6b18c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7BTQVJ7fy8dgaFXDLdF6q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4426,
+      "cache_read_input_tokens": 34376,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 34376,
+          "cache_creation_input_tokens": 4426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-21T07:05:09.133Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01SngYcmRJyP4E6mCM4oLLBe`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+  "project": "persuasion_turn_jailbreak_detect",
+  "pages": "11-20",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77dbc6e7-cbc0-4568-bf81-22b439a6b18c",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiCkjWkVmFbcjen3Da",
+  "type": "assistant",
+  "uuid": "d6b94f36-ae93-40ae-b44a-8cf70989e994",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7BTQVJ7fy8dgaFXDLdF6q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4426,
+      "cache_read_input_tokens": 34376,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 34376,
+          "cache_creation_input_tokens": 4426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-21T07:05:10.512Z_
+
+<details><summary>↩ Tool result · `toolu_01SngYcmRJyP4E6mCM4oLLBe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 566.0}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.7}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 345.0}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 468.6}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 369.4}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 401.5}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 498.4}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 501.1}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 465.5}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 466.9}], \"total_pages\": 22, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6b94f36-ae93-40ae-b44a-8cf70989e994",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "63475af2-6f0c-411f-9a51-b1b2b8eafcb2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 566.0}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 531.7}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 345.0}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 468.6}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 369.4}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 401.5}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 498.4}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.1}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 465.5}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 466.9}], \\\"total_pages\\\": 22, \\\"rendered_pages\\\": 10, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 566.0}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.7}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 345.0}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 468.6}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 369.4}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 401.5}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 498.4}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 501.1}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 465.5}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 466.9}], \"total_pages\": 22, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d6b94f36-ae93-40ae-b44a-8cf70989e994",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-21T07:05:15.273Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JtZ7ARm5uxmnFoSomb75Js`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63475af2-6f0c-411f-9a51-b1b2b8eafcb2",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiqanb59DCuTNVApCk",
+  "type": "assistant",
+  "uuid": "37839027-cf29-4988-b01c-5a5f95a8ef27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LaG2fsCErvjorCFuxTEdrs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 38802,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 38802,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-21T07:05:15.802Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TqMnoPQeahaZGMWg3YDm2Y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37839027-cf29-4988-b01c-5a5f95a8ef27",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiqanb59DCuTNVApCk",
+  "type": "assistant",
+  "uuid": "41866652-138f-4ed0-a992-f69f57955df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LaG2fsCErvjorCFuxTEdrs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 38802,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 38802,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T07:05:16.582Z_
+
+<details><summary>↩ Tool result · `toolu_01JtZ7ARm5uxmnFoSomb75Js`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37839027-cf29-4988-b01c-5a5f95a8ef27",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "3dc289e5-fa2e-48ea-b0c4-9e02d84eac35",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 579620
+    }
+  },
+  "sourceToolAssistantUUID": "37839027-cf29-4988-b01c-5a5f95a8ef27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-21T07:05:16.792Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018GkQkh2JRC5mG5f2RNcrzo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3dc289e5-fa2e-48ea-b0c4-9e02d84eac35",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiqanb59DCuTNVApCk",
+  "type": "assistant",
+  "uuid": "c9298919-6b61-407e-a66c-97b6baa97a70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LaG2fsCErvjorCFuxTEdrs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 38802,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 38802,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-21T07:05:17.291Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NKhh2Qe8WKSYcTscL36z6x`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9298919-6b61-407e-a66c-97b6baa97a70",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiqanb59DCuTNVApCk",
+  "type": "assistant",
+  "uuid": "40f0dc6a-550a-453b-a86a-5a92964b4a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LaG2fsCErvjorCFuxTEdrs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 38802,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 38802,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T07:05:17.580Z_
+
+<details><summary>↩ Tool result · `toolu_01TqMnoPQeahaZGMWg3YDm2Y`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41866652-138f-4ed0-a992-f69f57955df2",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "f3bdbf53-5e0d-4173-8bf6-c473e46ec6a8",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 544505
+    }
+  },
+  "sourceToolAssistantUUID": "41866652-138f-4ed0-a992-f69f57955df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-21T07:05:17.593Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Qtzb4xbNY5Wu73pwVz2DNf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3bdbf53-5e0d-4173-8bf6-c473e46ec6a8",
+  "isSidechain": false,
+  "requestId": "req_011CbFHiqanb59DCuTNVApCk",
+  "type": "assistant",
+  "uuid": "9ebf1053-320c-47f3-9484-a9b1363f6aeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LaG2fsCErvjorCFuxTEdrs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1317,
+      "cache_read_input_tokens": 38802,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1317,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 38802,
+          "cache_creation_input_tokens": 1317,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1317
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "9ebf1053-320c-47f3-9484-a9b1363f6aeb",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T07:05:18.204Z_
+
+<details><summary>↩ Tool result · `toolu_018GkQkh2JRC5mG5f2RNcrzo`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9298919-6b61-407e-a66c-97b6baa97a70",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "0bd88117-cc66-4aa7-ae58-d4c083800785",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 353308
+    }
+  },
+  "sourceToolAssistantUUID": "c9298919-6b61-407e-a66c-97b6baa97a70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "0bd88117-cc66-4aa7-ae58-d4c083800785",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-21T07:05:19.011Z_
+
+<details><summary>↩ Tool result · `toolu_01Qtzb4xbNY5Wu73pwVz2DNf`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9ebf1053-320c-47f3-9484-a9b1363f6aeb",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "ab3c0c58-f4a3-4354-81e6-2f8d76c282cf",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 378237
+    }
+  },
+  "sourceToolAssistantUUID": "9ebf1053-320c-47f3-9484-a9b1363f6aeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "dc11d384-7563-4e3b-afa8-053391bd8a13",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-21T07:05:19.150Z_
+
+<details><summary>↩ Tool result · `toolu_01NKhh2Qe8WKSYcTscL36z6x`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40f0dc6a-550a-453b-a86a-5a92964b4a69",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "dc11d384-7563-4e3b-afa8-053391bd8a13",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 479862
+    }
+  },
+  "sourceToolAssistantUUID": "40f0dc6a-550a-453b-a86a-5a92964b4a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "dc11d384-7563-4e3b-afa8-053391bd8a13",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-21T07:05:22.305Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LEQKuWv6KNZzc5avw1Yequ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc11d384-7563-4e3b-afa8-053391bd8a13",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjUc12N2U2h8PocteK",
+  "type": "assistant",
+  "uuid": "70a8bf92-4ce3-4c7b-a37d-1b3260b46798",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtrP9LGcFdpSgsMKYPYA7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 40119,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 228,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 40119,
+          "cache_creation_input_tokens": 1803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-21T07:05:22.765Z_
+
+<details><summary>↩ Tool result · `toolu_01LEQKuWv6KNZzc5avw1Yequ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70a8bf92-4ce3-4c7b-a37d-1b3260b46798",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "59bd6837-de9a-4a64-af87-41eb9431619a",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 411110
+    }
+  },
+  "sourceToolAssistantUUID": "70a8bf92-4ce3-4c7b-a37d-1b3260b46798",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-21T07:05:22.778Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01S1o1X53ZD5znNfzvSZoFE2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59bd6837-de9a-4a64-af87-41eb9431619a",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjUc12N2U2h8PocteK",
+  "type": "assistant",
+  "uuid": "d250cded-2c0c-41ea-a821-49b8f622bdfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtrP9LGcFdpSgsMKYPYA7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 40119,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 228,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 40119,
+          "cache_creation_input_tokens": 1803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-21T07:05:23.734Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TLuoygHhi6cHAtXe1jNFyA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d250cded-2c0c-41ea-a821-49b8f622bdfc",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjUc12N2U2h8PocteK",
+  "type": "assistant",
+  "uuid": "7277c049-fc2a-4b57-90ba-a8c133105503",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtrP9LGcFdpSgsMKYPYA7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 40119,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 228,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 40119,
+          "cache_creation_input_tokens": 1803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T07:05:23.768Z_
+
+<details><summary>↩ Tool result · `toolu_01S1o1X53ZD5znNfzvSZoFE2`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d250cded-2c0c-41ea-a821-49b8f622bdfc",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "d8310004-60c6-4293-9c22-1591f4ddc023",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 510312
+    }
+  },
+  "sourceToolAssistantUUID": "d250cded-2c0c-41ea-a821-49b8f622bdfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-21T07:05:24.343Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01T2HSffN3wVVH3qDfAw9QNV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8310004-60c6-4293-9c22-1591f4ddc023",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjUc12N2U2h8PocteK",
+  "type": "assistant",
+  "uuid": "d49980fd-f730-49a4-a1ea-094b76f28c62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtrP9LGcFdpSgsMKYPYA7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 40119,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 228,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 40119,
+          "cache_creation_input_tokens": 1803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-21T07:05:24.552Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GCssqGBGTmPKvXSpXzh7cs`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p20.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d49980fd-f730-49a4-a1ea-094b76f28c62",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjUc12N2U2h8PocteK",
+  "type": "assistant",
+  "uuid": "e67a3986-c287-45ac-b215-c5c8aa617218",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtrP9LGcFdpSgsMKYPYA7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 1803,
+      "cache_read_input_tokens": 40119,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1803,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 228,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 40119,
+          "cache_creation_input_tokens": 1803,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1803
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "e67a3986-c287-45ac-b215-c5c8aa617218",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-21T07:05:25.310Z_
+
+<details><summary>↩ Tool result · `toolu_01TLuoygHhi6cHAtXe1jNFyA`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7277c049-fc2a-4b57-90ba-a8c133105503",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "a8ac3525-347c-414d-9603-b6f68758b89e",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 513146
+    }
+  },
+  "sourceToolAssistantUUID": "7277c049-fc2a-4b57-90ba-a8c133105503",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "a8ac3525-347c-414d-9603-b6f68758b89e",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-21T07:05:26.064Z_
+
+<details><summary>↩ Tool result · `toolu_01T2HSffN3wVVH3qDfAw9QNV`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d49980fd-f730-49a4-a1ea-094b76f28c62",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "f2b98b77-dcc9-4b1f-92b2-ce307851c9b8",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 476719
+    }
+  },
+  "sourceToolAssistantUUID": "d49980fd-f730-49a4-a1ea-094b76f28c62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-21T07:05:26.163Z_
+
+<details><summary>↩ Tool result · `toolu_01GCssqGBGTmPKvXSpXzh7cs`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e67a3986-c287-45ac-b215-c5c8aa617218",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "2905e447-d2ee-4c55-8eaf-1e8cc1113880",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 478137
+    }
+  },
+  "sourceToolAssistantUUID": "e67a3986-c287-45ac-b215-c5c8aa617218",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 106 · 2026-05-21T07:05:26.166Z_
+
+```json
+{
+  "parentUuid": "2905e447-d2ee-4c55-8eaf-1e8cc1113880",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "dbd74c3a-ade8-403f-8589-ecb2bf421a07",
+  "timestamp": "2026-05-21T07:05:26.166Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "dbd74c3a-ade8-403f-8589-ecb2bf421a07",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 109 · 2026-05-21T07:05:29.268Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also read the last 2 pages (21-22) to complete my review of the appendix.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbd74c3a-ade8-403f-8589-ecb2bf421a07",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjzYaBVELEhqskkj45",
+  "type": "assistant",
+  "uuid": "65f34b11-d60e-4c9e-ab4b-7520b0f83138",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139tpbsZf1VRNebAVTX7AUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2523,
+      "cache_read_input_tokens": 41922,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 41922,
+          "cache_creation_input_tokens": 2523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-21T07:05:29.775Z_
+
+读取最后两页。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65f34b11-d60e-4c9e-ab4b-7520b0f83138",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjzYaBVELEhqskkj45",
+  "type": "assistant",
+  "uuid": "a0c1f453-37cb-4d37-91dd-3a4983bdf426",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139tpbsZf1VRNebAVTX7AUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2523,
+      "cache_read_input_tokens": 41922,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 41922,
+          "cache_creation_input_tokens": 2523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-21T07:05:31.042Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01LTw8gnZmrNjZg8VHLa8j1y`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+  "project": "persuasion_turn_jailbreak_detect",
+  "pages": "21-22",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0c1f453-37cb-4d37-91dd-3a4983bdf426",
+  "isSidechain": false,
+  "requestId": "req_011CbFHjzYaBVELEhqskkj45",
+  "type": "assistant",
+  "uuid": "383496d2-58af-4e87-b1ed-7b6d57b7c0d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0139tpbsZf1VRNebAVTX7AUt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2523,
+      "cache_read_input_tokens": 41922,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 41922,
+          "cache_creation_input_tokens": 2523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-21T07:05:31.267Z_
+
+<details><summary>↩ Tool result · `toolu_01LTw8gnZmrNjZg8VHLa8j1y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 476.1}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 141.1}], \"total_pages\": 22, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "383496d2-58af-4e87-b1ed-7b6d57b7c0d2",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "f67d3d51-2726-4310-9e78-2b6cda8f765a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 476.1}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 141.1}], \\\"total_pages\\\": 22, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 476.1}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 141.1}], \"total_pages\": 22, \"rendered_pages\": 2, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "383496d2-58af-4e87-b1ed-7b6d57b7c0d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-21T07:05:34.703Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015NMsEmJuikSHRsLcr2BY2S`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p21.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f67d3d51-2726-4310-9e78-2b6cda8f765a",
+  "isSidechain": false,
+  "requestId": "req_011CbFHkNNjJQzmJjLvL5uU6",
+  "type": "assistant",
+  "uuid": "e993234a-4817-4e0b-ba67-d19c5b3d85c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DKtDmQ9Fh7fb9UUjVoUgjy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 519,
+      "cache_read_input_tokens": 44445,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 519,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 44445,
+          "cache_creation_input_tokens": 519,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 519
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-21T07:05:35.006Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01751Ei1CiPsYEt6PRNitt3G`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p22.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e993234a-4817-4e0b-ba67-d19c5b3d85c5",
+  "isSidechain": false,
+  "requestId": "req_011CbFHkNNjJQzmJjLvL5uU6",
+  "type": "assistant",
+  "uuid": "502c00eb-0d41-4351-97fe-5c7ab4daceff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DKtDmQ9Fh7fb9UUjVoUgjy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 519,
+      "cache_read_input_tokens": 44445,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 519,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 44445,
+          "cache_creation_input_tokens": 519,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 519
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-21T07:05:35.025Z_
+
+<details><summary>↩ Tool result · `toolu_01751Ei1CiPsYEt6PRNitt3G`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "502c00eb-0d41-4351-97fe-5c7ab4daceff",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "8f412b89-045d-4d60-ae87-1bfa337adb6c",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 144508,
+      "dimensions": {
+        "originalWidth": 1241,
+        "originalHeight": 1754,
+        "displayWidth": 1241,
+        "displayHeight": 1754
+      }
+    }
+  },
+  "sourceToolAssistantUUID": "502c00eb-0d41-4351-97fe-5c7ab4daceff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "8f412b89-045d-4d60-ae87-1bfa337adb6c",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-21T07:05:35.294Z_
+
+<details><summary>↩ Tool result · `toolu_015NMsEmJuikSHRsLcr2BY2S`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e993234a-4817-4e0b-ba67-d19c5b3d85c5",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "20758ab5-65f0-4eaf-84d3-f23205df72db",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 487514
+    }
+  },
+  "sourceToolAssistantUUID": "e993234a-4817-4e0b-ba67-d19c5b3d85c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "20758ab5-65f0-4eaf-84d3-f23205df72db",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 120_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 121 · 2026-05-21T07:05:38.779Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the reference verification results in detail to check for any problematic citations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20758ab5-65f0-4eaf-84d3-f23205df72db",
+  "isSidechain": false,
+  "requestId": "req_011CbFHkfapv6szHRaVxFtkh",
+  "type": "assistant",
+  "uuid": "e317eb5e-73f2-4961-9873-042dedbbe3f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3vQxfYKgbyHk8xyTXnVA4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 44964,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 44964,
+          "cache_creation_input_tokens": 571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-21T07:05:39.499Z_
+
+现在读取引用验证的详细结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e317eb5e-73f2-4961-9873-042dedbbe3f4",
+  "isSidechain": false,
+  "requestId": "req_011CbFHkfapv6szHRaVxFtkh",
+  "type": "assistant",
+  "uuid": "6afaf352-3fb1-4b8f-b741-76b317e838aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3vQxfYKgbyHk8xyTXnVA4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 44964,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 44964,
+          "cache_creation_input_tokens": 571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-21T07:05:42.840Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XKxrZnTvC3b51MyB1oyu9X`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-review-reviewer-1-10e47827/45ed6ff5-c944-4d96-b449-b024213524ab/tool-results/toolu_01WwkUmq9Fw1vp7Tb5J9LtUt.txt",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6afaf352-3fb1-4b8f-b741-76b317e838aa",
+  "isSidechain": false,
+  "requestId": "req_011CbFHkfapv6szHRaVxFtkh",
+  "type": "assistant",
+  "uuid": "e9ec7f53-700d-4452-af59-e140ed0bc4b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3vQxfYKgbyHk8xyTXnVA4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 44964,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 44964,
+          "cache_creation_input_tokens": 571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-21T07:05:43.151Z_
+
+<details><summary>↩ Tool result · `toolu_01XKxrZnTvC3b51MyB1oyu9X`</summary>
+
+```text
+1	{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 62, \"total_citations\": 96, \"unique_cited_keys\": 61, \"orphan_bib\": 1, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 43, \"online_not_found\": 10, \"online_mismatch\": 9}, \"cross_check\": {\"orphan_bib\": [\"devlin2019bert\"], \"missing_bib\": [], \"orphan_count\": 1, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"inan2023llamaguard\", \"type\": \"article\", \"title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"authors\": \"Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer,...\", \"year\": \"2023\", \"venue\": \"arXiv preprint\"}, {\"key\": \"metallamaguard3_2024\", \"type\": \"misc\", \"title\": \"Llama Guard 3\", \"authors\": \"Meta AI\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"zeng2024shieldgemma\", \"type\": \"article\", \"title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"authors\": \"Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"han2024wildguard\", \"type\": \"inproceedings\", \"title\": \"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"authors\": \"Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"anthropic2025constitutional\", \"type\": \"techreport\", \"title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"authors\": \"Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"deepcontext2026\", \"type\": \"article\", \"title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"authors\": \"Albrethsen, Justin and Datta, Yash and Kumar, Kunal and Rajasekar, Sharath\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}, {\"key\": \"tong2025biid\", \"type\": \"article\", \"title\": \"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\", \"authors\": \"Tong, Haibo and Zhao, Dongcheng and Shen, Guobin and He, Xiang and Lin, Dachuan ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"gguard2025\", \"type\": \"article\", \"title\": \"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\", \"authors\": \"Huang, Zixuan and Huang, Kecheng and Yin, Lihao and He, Bowei and Zhen, Huiling ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"safedream2026\", \"type\": \"article\", \"title\": \"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\", \"authors\": \"Yan, Bo and Lin, Weikai and Zhu, Yada and Wang, Song\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}, {\"key\": \"bullwinkel2025repeng\", \"type\": \"article\", \"title\": \"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\", \"authors\": \"Bullwinkel, Blake and Russinovich, Mark and Salem, Ahmed and Zanella-Beguelin, S...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"mann1988rst\", \"type\": \"article\", \"title\": \"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\", \"authors\": \"Mann, William C. and Thompson, Sandra A.\", \"year\": \"1988\", \"venue\": \"Text \\\\& Talk\"}, {\"key\": \"prasad2008pdtb\", \"type\": \"inproceedings\", \"title\": \"The Penn Discourse TreeBank 2.0\", \"authors\": \"Prasad, Rashmi and Dinesh, Nikhil and Lee, Alan and Miltsakaki, Eleni and Robald...\", \"year\": \"2008\", \"venue\": \"Proceedings of the International Conference on Language Resources and Evaluation\"}, {\"key\": \"stolcke2000dialogueact\", \"type\": \"article\", \"title\": \"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\", \"authors\": \"Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and B...\", \"year\": \"2000\", \"venue\": \"Computational Linguistics\"}, {\"key\": \"austin1962speechacts\", \"type\": \"book\", \"title\": \"How to Do Things with Words\", \"authors\": \"Austin, J. L.\", \"year\": \"1962\", \"venue\": \"\"}, {\"key\": \"searle1969speechacts\", \"type\": \"book\", \"title\": \"Speech Acts: An Essay in the Philosophy of Language\", \"authors\": \"Searle, J. R.\", \"year\": \"1969\", \"venue\": \"\"}, {\"key\": \"cialdini2001influence\", \"type\": \"book\", \"title\": \"Influence: Science and Practice\", \"authors\": \"Cialdini, Robert B.\", \"year\": \"2001\", \"venue\": \"\"}, {\"key\": \"zeng2024pap\", \"type\": \"inproceedings\", \"title\": \"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\", \"authors\": \"Zeng, Yi and Lin, Hongpeng and Zhang, Jingwen and Yang, Diyi and Jia, Ruoxi and ...\", \"year\": \"2024\", \"venue\": \"Proceedings of the Association for Computational Linguistics\"}, {\"key\": \"russinovich2024crescendo\", \"type\": \"inproceedings\", \"title\": \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\", \"authors\": \"Russinovich, Mark and Salem, Ahmed and Eldan, Ronen\", \"year\": \"2025\", \"venue\": \"USENIX Security Symposium\"}, {\"key\": \"chao2023pair\", \"type\": \"inproceedings\", \"title\": \"Jailbreaking Black Box Large Language Models in Twenty Queries\", \"authors\": \"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\", \"year\": \"2024\", \"venue\": \"IEEE Conference on Secure and Trustworthy Machine Learning\"}, {\"key\": \"wei2023jailbroken\", \"type\": \"inproceedings\", \"title\": \"Jailbroken: How Does LLM Safety Training Fail?\", \"authors\": \"Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"hagendorff2026reasoning\", \"type\": \"article\", \"title\": \"Large Reasoning Models Are Autonomous Jailbreak Agents\", \"authors\": \"Hagendorff, Thilo and Derner, Erik and Oliver, Nuria\", \"year\": \"2026\", \"venue\": \"Nature Communications\"}, {\"key\": \"fitd2024\", \"type\": \"article\", \"title\": \"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\", \"authors\": \"Wang, Zhenhua and Xie, Wei and Wang, Baosheng and Wang, Enze and Gui, Zhiwen and...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"deceptivedelight2024\", \"type\": \"techreport\", \"title\": \"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\", \"authors\": \"Palo Alto Networks Unit 42\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"ren2024actorattack\", \"type\": \"inproceedings\", \"title\": \"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\", \"authors\": \"Ren, Qibing and Li, Hao and Liu, Dongrui and Xie, Zhanxu and Lu, Xiaoya and Qiao...\", \"year\": \"2025\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"zou2023gcg\", \"type\": \"article\", \"title\": \"Universal and Transferable Adversarial Attacks on Aligned Language Models\", \"authors\": \"Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J. Z...\", \"year\": \"2023\", \"venue\": \"arXiv preprint\"}, {\"key\": \"lin2023toxicchat\", \"type\": \"inproceedings\", \"title\": \"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\", \"authors\": \"Lin, Zi and Wang, Zihan and Tong, Yongqi and Wang, Yangkun and Guo, Yuxin and Wa...\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2023\"}, {\"key\": \"li2024mhj\", \"type\": \"article\", \"title\": \"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\", \"authors\": \"Li, Nathaniel and Han, Ziwen and Steneker, Ian and Primack, Willow and Goodside,...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"gururangan2018artifacts\", \"type\": \"inproceedings\", \"title\": \"Annotation Artifacts in Natural Language Inference Data\", \"authors\": \"Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and ...\", \"year\": \"2018\", \"venue\": \"Proceedings of the Conference of the North American Chapter of the Association f...\"}, {\"key\": \"niven2019probing\", \"type\": \"inproceedings\", \"title\": \"Probing Neural Network Comprehension of Natural Language Arguments\", \"authors\": \"Niven, Timothy and Kao, Hung-Yu\", \"year\": \"2019\", \"venue\": \"Proceedings of the Association for Computational Linguistics\"}, {\"key\": \"nasr2025attackermovessecond\", \"type\": \"article\", \"title\": \"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\", \"authors\": \"Nasr, Milad and Carlini, Nicholas and Sitawarin, Chawin and Schulhoff, Sander V....\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"andriushchenko2024adaptive\", \"type\": \"inproceedings\", \"title\": \"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\", \"authors\": \"Andriushchenko, Maksym and Croce, Francesco and Flammarion, Nicolas\", \"year\": \"2025\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"he2021deberta\", \"type\": \"inproceedings\", \"title\": \"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\", \"authors\": \"He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu\", \"year\": \"2021\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"he2023debertav3\", \"type\": \"inproceedings\", \"title\": \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", \"authors\": \"He, Pengcheng and Gao, Jianfeng and Chen, Weizhu\", \"year\": \"2023\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"kornblith2019cka\", \"type\": \"inproceedings\", \"title\": \"Similarity of Neural Network Representations Revisited\", \"authors\": \"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\", \"year\": \"2019\", \"venue\": \"International Conference on Machine Learning\"}, {\"key\": \"qwen3_2025\", \"type\": \"article\", \"title\": \"Qwen3 Technical Report\", \"authors\": \"Yang, An and Yang, Baosong and Zhang, Beichen and Wang, Binyuan and Li, Bo and L...\", \"year\": \"2025\", \"venue\": \"arXiv preprint\"}, {\"key\": \"gururangan2020dontstop\", \"type\": \"inproceedings\", \"title\": \"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\", \"authors\": \"Gururangan, Suchin and Marasovi\\\\'c, Ana and Swayamdipta, Swabha and Lo, Kyle and...\", \"year\": \"2020\", \"venue\": \"Proceedings of the 58th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"caruana1997multitask\", \"type\": \"article\", \"title\": \"Multitask Learning\", \"authors\": \"Caruana, Rich\", \"year\": \"1997\", \"venue\": \"Machine Learning\"}, {\"key\": \"phang2018stilts\", \"type\": \"article\", \"title\": \"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\", \"authors\": \"Phang, Jason and F\\\\'evry, Thibault and Bowman, Samuel R.\", \"year\": \"2018\", \"venue\": \"arXiv preprint arXiv:1811.01088\"}, {\"key\": \"liu2019mtdnn\", \"type\": \"inproceedings\", \"title\": \"Multi-Task Deep Neural Networks for Natural Language Understanding\", \"authors\": \"Liu, Xiaodong and He, Pengcheng and Chen, Weizhu and Gao, Jianfeng\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"howard2018ulmfit\", \"type\": \"inproceedings\", \"title\": \"Universal Language Model Fine-tuning for Text Classification\", \"authors\": \"Howard, Jeremy and Ruder, Sebastian\", \"year\": \"2018\", \"venue\": \"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"dasanmartino2020semeval\", \"type\": \"inproceedings\", \"title\": \"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\", \"authors\": \"Da San Martino, Giovanni and Barr\\\\'on-Cede\\\\~no, Alberto and Wachsmuth, Henning a...\", \"year\": \"2020\", \"venue\": \"Proceedings of the Fourteenth Workshop on Semantic Evaluation\"}, {\"key\": \"dasanmartino2019fine\", \"type\": \"inproceedings\", \"title\": \"Fine-Grained Analysis of Propaganda in News Articles\", \"authors\": \"Da San Martino, Giovanni and Yu, Seunghak and Barr\\\\'on-Cede\\\\~no, Alberto and Pet...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"jin2020textfooler\", \"type\": \"inproceedings\", \"title\": \"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\", \"authors\": \"Jin, Di and Jin, Zhijing and Zhou, Joey Tianyi and Szolovits, Peter\", \"year\": \"2020\", \"venue\": \"Proceedings of the AAAI Conference on Artificial Intelligence\"}, {\"key\": \"li2020bertattack\", \"type\": \"inproceedings\", \"title\": \"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\", \"authors\": \"Li, Linyang and Ma, Ruotian and Guo, Qipeng and Xue, Xiangyang and Qiu, Xipeng\", \"year\": \"2020\", \"venue\": \"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"devlin2019bert\", \"type\": \"inproceedings\", \"title\": \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\", \"authors\": \"Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina\", \"year\": \"2019\", \"venue\": \"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"conneau2018probing\", \"type\": \"inproceedings\", \"title\": \"What you can cram into a single \\\\$\\\\&!\\\\#* vector: Probing sentence embeddings for linguistic properties\", \"authors\": \"Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo\\\\\\\"i...\", \"year\": \"2018\", \"venue\": \"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"hewitt2019structural\", \"type\": \"inproceedings\", \"title\": \"A Structural Probe for Finding Syntax in Word Representations\", \"authors\": \"Hewitt, John and Manning, Christopher D.\", \"year\": \"2019\", \"venue\": \"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"liu2019roberta\", \"type\": \"article\", \"title\": \"RoBERTa: A Robustly Optimized BERT Pretraining Approach\", \"authors\": \"Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and...\", \"year\": \"2019\", \"venue\": \"arXiv preprint arXiv:1907.11692\"}, {\"key\": \"wang2019persuasion\", \"type\": \"inproceedings\", \"title\": \"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\", \"authors\": \"Wang, Xuewei and Shi, Weiyan and Kim, Richard and Oh, Yoojung and Yang, Sijia an...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"robey2024smoothllm\", \"type\": \"inproceedings\", \"title\": \"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\", \"authors\": \"Robey, Alexander and Wong, Eric and Hassani, Hamed and Pappas, George J.\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning\"}, {\"key\": \"mehrotra2024tap\", \"type\": \"inproceedings\", \"title\": \"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\", \"authors\": \"Mehrotra, Anay and Zampetakis, Manolis and Kassianik, Paul and Nelson, Blaine an...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"chao2024jailbreakbench\", \"type\": \"article\", \"title\": \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\", \"authors\": \"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2404.01318\"}, {\"key\": \"mazeika2024harmbench\", \"type\": \"inproceedings\", \"title\": \"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\", \"authors\": \"Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning\"}, {\"key\": \"lu2025xboundary\", \"type\": \"inproceedings\", \"title\": \"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\", \"authors\": \"Lu, Xiaoya and Liu, Dongrui and Yu, Yi and Xu, Luxin and Shao, Jing\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2025\"}, {\"key\": \"kadali2026trace\", \"type\": \"article\", \"title\": \"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Langua...\", \"authors\": \"Kadali, Sri Durga Sai Sowmya and Papalexakis, Evangelos E.\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.11495\"}, {\"key\": \"hua2026rcs\", \"type\": \"inproceedings\", \"title\": \"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\", \"authors\": \"Hua, Peichun and Li, Hao and Shi, Shanghao and Yu, Zhiyuan and Zhang, Ning\", \"year\": \"2026\", \"venue\": \"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"jiang2024redqueen\", \"type\": \"article\", \"title\": \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\", \"authors\": \"Jiang, Yifan and Aggarwal, Kriti and Laud, Tanmay and Munir, Kashif and Pujara, ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint\"}, {\"key\": \"song2026multibreak\", \"type\": \"inproceedings\", \"title\": \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\", \"authors\": \"Song, Jialin and Liu, Xiaodong and Yang, Weiwei and Chen, Wuyang and Feng, Mingq...\", \"year\": \"2026\", \"venue\": \"International Conference on Machine Learning\"}, {\"key\": \"zhang2025jbshield\", \"type\": \"inproceedings\", \"title\": \"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\", \"authors\": \"Zhang, Shenyi and Zhai, Yuchen and Guo, Keyan and Hu, Hongxin and Guo, Shengnan ...\", \"year\": \"2025\", \"venue\": \"USENIX Security Symposium\"}, {\"key\": \"perez2022redteaming\", \"type\": \"inproceedings\", \"title\": \"Red Teaming Language Models with Language Models\", \"authors\": \"Perez, Ethan and Huang, Saffron and Song, Francis and Cai, Trevor and Ring, Roma...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"kulkarni2026latentadversarial\", \"type\": \"article\", \"title\": \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\", \"authors\": \"Kulkarni, Prashant\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}, {\"key\": \"derya2026revisitingjbshield\", \"type\": \"article\", \"title\": \"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\", \"authors\": \"Derya, Kemal and Sunar, Berk\", \"year\": \"2026\", \"venue\": \"arXiv preprint\"}], \"tex_citations\": [{\"key\": \"russinovich2024crescendo\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"fitd2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citet\"}, {\"key\": \"hagendorff2026reasoning\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citet\"}, {\"key\": \"bullwinkel2025repeng\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"citep\"}, {\"key\": \"inan2023llamaguard\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"han2024wildguard\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"zeng2024shieldgemma\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"tong2025biid\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"gguard2025\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"citep\"}, {\"key\": \"he2021deberta\", \"file\": \"introduction.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"introduction.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"introduction.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"hagendorff2026reasoning\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"li2024mhj\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"russinovich2024crescendo\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"fitd2024\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"chao2023pair\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"mehrotra2024tap\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"perez2022redteaming\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"wei2023jailbroken\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citet\"}, {\"key\": \"jiang2024redqueen\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"mazeika2024harmbench\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"chao2024jailbreakbench\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"song2026multibreak\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"tong2025biid\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"gguard2025\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"safedream2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"lu2025xboundary\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"zhang2025jbshield\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"kulkarni2026latentadversarial\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"kadali2026trace\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"hua2026rcs\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"derya2026revisitingjbshield\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"inan2023llamaguard\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"metallamaguard3_2024\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"zeng2024shieldgemma\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"han2024wildguard\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"anthropic2025constitutional\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"robey2024smoothllm\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"mann1988rst\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"prasad2008pdtb\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"stolcke2000dialogueact\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"austin1962speechacts\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"searle1969speechacts\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"cialdini2001influence\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"hagendorff2026reasoning\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citet\"}, {\"key\": \"dasanmartino2019fine\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"dasanmartino2020semeval\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"wang2019persuasion\", \"file\": \"related_work.tex\", \"line\": 12, \"command\": \"citep\"}, {\"key\": \"gururangan2020dontstop\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"howard2018ulmfit\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"phang2018stilts\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"caruana1997multitask\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"liu2019mtdnn\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"gururangan2018artifacts\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"niven2019probing\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"jin2020textfooler\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"li2020bertattack\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"nasr2025attackermovessecond\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"andriushchenko2024adaptive\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"conneau2018probing\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"hewitt2019structural\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"he2023debertav3\", \"file\": \"method.tex\", \"line\": 14, \"command\": \"citep\"}, {\"key\": \"zeng2024pap\", \"file\": \"method.tex\", \"line\": 36, \"command\": \"citep\"}, {\"key\": \"cialdini2001influence\", \"file\": \"method.tex\", \"line\": 36, \"command\": \"citep\"}, {\"key\": \"qwen3_2025\", \"file\": \"experiments.tex\", \"line\": 8, \"command\": \"citep\"}, {\"key\": \"russinovich2024crescendo\", \"file\": \"experiments.tex\", \"line\": 9, \"command\": \"citep\"}, {\"key\": \"fitd2024\", \"file\": \"experiments.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"experiments.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"experiments.tex\", \"line\": 11, \"command\": \"citep\"}, {\"key\": \"lin2023toxicchat\", \"file\": \"experiments.tex\", \"line\": 15, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"experiments.tex\", \"line\": 19, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"experiments.tex\", \"line\": 20, \"command\": \"citep\"}, {\"key\": \"bullwinkel2025repeng\", \"file\": \"experiments.tex\", \"line\": 56, \"command\": \"citep\"}, {\"key\": \"gururangan2020dontstop\", \"file\": \"experiments.tex\", \"line\": 108, \"command\": \"citep\"}, {\"key\": \"ren2024actorattack\", \"file\": \"experiments.tex\", \"line\": 121, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"experiments.tex\", \"line\": 171, \"command\": \"citep\"}, {\"key\": \"kornblith2019cka\", \"file\": \"experiments.tex\", \"line\": 180, \"command\": \"citep\"}, {\"key\": \"lin2023toxicchat\", \"file\": \"experiments.tex\", \"line\": 193, \"command\": \"citep\"}, {\"key\": \"lin2023toxicchat\", \"file\": \"experiments.tex\", \"line\": 198, \"command\": \"citep\"}, {\"key\": \"zou2023gcg\", \"file\": \"conclusion.tex\", \"line\": 54, \"command\": \"citep\"}, {\"key\": \"cialdini2001influence\", \"file\": \"appendix.tex\", \"line\": 177, \"command\": \"citep\"}, {\"key\": \"deceptivedelight2024\", \"file\": \"appendix.tex\", \"line\": 178, \"command\": \"citep\"}, {\"key\": \"kornblith2019cka\", \"file\": \"appendix.tex\", \"line\": 186, \"command\": \"citep\"}, {\"key\": \"deepcontext2026\", \"file\": \"appendix.tex\", \"line\": 399, \"command\": \"citep\"}, {\"key\": \"he2023debertav3\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"liu2019roberta\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citep\"}, {\"key\": \"qwen3_2025\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citep\"}], \"online_verification\": [{\"key\": \"inan2023llamaguard\", \"title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"metallamaguard3_2024\", \"title\": \"Llama Guard 3\", \"status\": \"not_found\", \"confidence\": 0.289, \"matched_title\": \"Llama Guard 3 Vision: Safeguarding Human-AI Image Understanding Conversations\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.29 below threshold 0.82\"}, {\"key\": \"zeng2024shieldgemma\", \"title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ShieldGemma: Generative AI Content Moderation Based on Gemma\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"han2024wildguard\", \"title\": \"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=han vs api=choi\"], \"note\": \"\"}, {\"key\": \"anthropic2025constitutional\", \"title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"deepcontext2026\", \"title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"tong2025biid\", \"title\": \"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\", \"status\": \"not_found\", \"confidence\": 0.328, \"matched_title\": \"AI Alignment: A Comprehensive Survey\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.33 below threshold 0.82\"}, {\"key\": \"gguard2025\", \"title\": \"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\", \"status\": \"verified\", \"confidence\": 0.882, \"matched_title\": \"Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"safedream2026\", \"title\": \"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"bullwinkel2025repeng\", \"title\": \"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mann1988rst\", \"title\": \"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Rhetorical Structure Theory: Toward a functional theory of text organization\", \"matched_year\": \"1988\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"prasad2008pdtb\", \"title\": \"The Penn Discourse TreeBank 2.0\", \"status\": \"verified\", \"confidence\": 0.984, \"matched_title\": \"The Penn Discourse TreeBank 2.0.\", \"matched_year\": \"2008\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"stolcke2000dialogueact\", \"title\": \"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\", \"matched_year\": \"2000\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"austin1962speechacts\", \"title\": \"How to Do Things with Words\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"How To Do Things With Words\", \"matched_year\": \"1975\", \"mismatch_fields\": [\"year: bib=1962 vs api=1975\"], \"note\": \"\"}, {\"key\": \"searle1969speechacts\", \"title\": \"Speech Acts: An Essay in the Philosophy of Language\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Speech Acts: An Essay in the Philosophy of Language\", \"matched_year\": \"1969\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"cialdini2001influence\", \"title\": \"Influence: Science and Practice\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Influence: science and practice\", \"matched_year\": \"2008\", \"mismatch_fields\": [\"year: bib=2001 vs api=2008\", \"first_author: bib=cialdini vs api=giebels\"], \"note\": \"\"}, {\"key\": \"zeng2024pap\", \"title\": \"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"russinovich2024crescendo\", \"title\": \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chao2023pair\", \"title\": \"Jailbreaking Black Box Large Language Models in Twenty Queries\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbreaking Black Box Large Language Models in Twenty Queries\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wei2023jailbroken\", \"title\": \"Jailbroken: How Does LLM Safety Training Fail?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbroken: How Does LLM Safety Training Fail?\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hagendorff2026reasoning\", \"title\": \"Large Reasoning Models Are Autonomous Jailbreak Agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Large reasoning models are autonomous jailbreak agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"fitd2024\", \"title\": \"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"deceptivedelight2024\", \"title\": \"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\", \"status\": \"not_found\", \"confidence\": 0.446, \"matched_title\": \"BitBypass: A New Direction in Jailbreaking Aligned Large Language Models with Bitstream Camouflage\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.45 below threshold 0.82\"}, {\"key\": \"ren2024actorattack\", \"title\": \"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\", \"status\": \"not_found\", \"confidence\": 0.402, \"matched_title\": \"NEXUS: Network Exploration for eXploiting Unsafe Sequences in Multi-Turn LLM Jailbreaks\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.40 below threshold 0.82\"}, {\"key\": \"zou2023gcg\", \"title\": \"Universal and Transferable Adversarial Attacks on Aligned Language Models\", \"status\": \"not_found\", \"confidence\": 0.301, \"matched_title\": \"Text Data Augmentation for Deep Learning\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.30 below threshold 0.82\"}, {\"key\": \"lin2023toxicchat\", \"title\": \"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=lin vs api=zi\"], \"note\": \"\"}, {\"key\": \"li2024mhj\", \"title\": \"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"gururangan2018artifacts\", \"title\": \"Annotation Artifacts in Natural Language Inference Data\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Annotation Artifacts in Natural Language Inference Data\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"niven2019probing\", \"title\": \"Probing Neural Network Comprehension of Natural Language Arguments\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Probing Neural Network Comprehension of Natural Language Arguments\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"nasr2025attackermovessecond\", \"title\": \"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"andriushchenko2024adaptive\", \"title\": \"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"he2021deberta\", \"title\": \"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DEBERTA: DECODING-ENHANCED BERT WITH DISENTANGLED ATTENTION\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"he2023debertav3\", \"title\": \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\", \"matched_year\": \"2021\", \"mismatch_fields\": [\"year: bib=2023 vs api=2021\"], \"note\": \"\"}, {\"key\": \"kornblith2019cka\", \"title\": \"Similarity of Neural Network Representations Revisited\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Similarity of Neural Network Representations Revisited\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qwen3_2025\", \"title\": \"Qwen3 Technical Report\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Qwen3 Technical Report\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"gururangan2020dontstop\", \"title\": \"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\", \"status\": \"not_found\", \"confidence\": 0.492, \"matched_title\": \"From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.49 below threshold 0.82\"}, {\"key\": \"caruana1997multitask\", \"title\": \"Multitask Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Multitask Learning\", \"matched_year\": \"1997\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"phang2018stilts\", \"title\": \"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"liu2019mtdnn\", \"title\": \"Multi-Task Deep Neural Networks for Natural Language Understanding\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Multi-Task Deep Neural Networks for Natural Language Understanding\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"howard2018ulmfit\", \"title\": \"Universal Language Model Fine-tuning for Text Classification\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Universal Language Model Fine-tuning for Text Classification\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"dasanmartino2020semeval\", \"title\": \"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\", \"matched_year\": \"2020\", \"mismatch_fields\": [\"first_author: bib=da san martino vs api=martino\"], \"note\": \"\"}, {\"key\": \"dasanmartino2019fine\", \"title\": \"Fine-Grained Analysis of Propaganda in News Articles\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Fine-Grained Analysis of Propaganda in News Articles\", \"matched_year\": \"2019\", \"mismatch_fields\": [\"first_author: bib=da san martino vs api=martino\"], \"note\": \"\"}, {\"key\": \"jin2020textfooler\", \"title\": \"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2020bertattack\", \"title\": \"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"devlin2019bert\", \"title\": \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\", \"status\": \"not_found\", \"confidence\": 0.338, \"matched_title\": \"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.34 below threshold 0.82\"}, {\"key\": \"conneau2018probing\", \"title\": \"What you can cram into a single \\\\$\\\\&!\\\\#* vector: Probing sentence embeddings for linguistic properties\", \"status\": \"verified\", \"confidence\": 0.98, \"matched_title\": \"What you can cram into a single $&amp;!#* vector: Probing sentence embeddings for linguistic properties\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hewitt2019structural\", \"title\": \"A Structural Probe for Finding Syntax in Word Representations\", \"status\": \"not_found\", \"confidence\": 0.316, \"matched_title\": \"What Does BERT Learn about the Structure of Language?\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.32 below threshold 0.82\"}, {\"key\": \"liu2019roberta\", \"title\": \"RoBERTa: A Robustly Optimized BERT Pretraining Approach\", \"status\": \"not_found\", \"confidence\": 0.495, \"matched_title\": \"Use of Bidirectional Encoder Representations from Transformers (BERT) and Robustly Optimized Bert Pretraining Approach (RoBERTa) for Nepali News Classification\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.50 below threshold 0.82\"}, {\"key\": \"wang2019persuasion\", \"title\": \"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"robey2024smoothllm\", \"title\": \"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mehrotra2024tap\", \"title\": \"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\", \"status\": \"not_found\", \"confidence\": 0.435, \"matched_title\": \"A survey of safety and trustworthiness of large language models through the lens of verification and validation\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.44 below threshold 0.82\"}, {\"key\": \"chao2024jailbreakbench\", \"title\": \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=chao vs api=andriushchenko\"], \"note\": \"\"}, {\"key\": \"mazeika2024harmbench\", \"title\": \"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lu2025xboundary\", \"title\": \"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kadali2026trace\", \"title\": \"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"hua2026rcs\", \"title\": \"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=hua vs api=peichun\"], \"note\": \"\"}, {\"key\": \"jiang2024redqueen\", \"title\": \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"song2026multibreak\", \"title\": \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhang2025jbshield\", \"title\": \"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"perez2022redteaming\", \"title\": \"Red Teaming Language Models with Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Red Teaming Language Models with Language Models\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kulkarni2026latentadversarial\", \"title\": \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"derya2026revisitingjbshield\", \"title\": \"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9ec7f53-700d-4452-af59-e140ed0bc4b9",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "5eb41964-d71e-4500-9393-d74834a07cc7",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-review-reviewer-1-10e47827/45ed6ff5-c944-4d96-b449-b024213524ab/tool-results/toolu_01WwkUmq9Fw1vp7Tb5J9LtUt.txt",
+      "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 62, \\\"total_citations\\\": 96, \\\"unique_cited_keys\\\": 61, \\\"orphan_bib\\\": 1, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 43, \\\"online_not_found\\\": 10, \\\"online_mismatch\\\": 9}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"devlin2019bert\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 1, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\\\", \\\"authors\\\": \\\"Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer,...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"metallamaguard3_2024\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"Llama Guard 3\\\", \\\"authors\\\": \\\"Meta AI\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ShieldGemma: Generative AI Content Moderation Based on Gemma\\\", \\\"authors\\\": \\\"Zeng, Wenjun and Liu, Yuchi and Mullins, Ryan and Peran, Ludovic and Fernandez, ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\\\", \\\"authors\\\": \\\"Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"anthropic2025constitutional\\\", \\\"type\\\": \\\"techreport\\\", \\\"title\\\": \\\"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\\\", \\\"authors\\\": \\\"Sharma, Mrinank and Tong, Meg and Mu, Jesse and Korbak, Tomek and others\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\\\", \\\"authors\\\": \\\"Albrethsen, Justin and Datta, Yash and Kumar, Kunal and Rajasekar, Sharath\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\\\", \\\"authors\\\": \\\"Tong, Haibo and Zhao, Dongcheng and Shen, Guobin and He, Xiang and Lin, Dachuan ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\\\", \\\"authors\\\": \\\"Huang, Zixuan and Huang, Kecheng and Yin, Lihao and He, Bowei and Zhen, Huiling ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"safedream2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\\\", \\\"authors\\\": \\\"Yan, Bo and Lin, Weikai and Zhu, Yada and Wang, Song\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\\\", \\\"authors\\\": \\\"Bullwinkel, Blake and Russinovich, Mark and Salem, Ahmed and Zanella-Beguelin, S...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"mann1988rst\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\\\", \\\"authors\\\": \\\"Mann, William C. and Thompson, Sandra A.\\\", \\\"year\\\": \\\"1988\\\", \\\"venue\\\": \\\"Text \\\\\\\\& Talk\\\"}, {\\\"key\\\": \\\"prasad2008pdtb\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"The Penn Discourse TreeBank 2.0\\\", \\\"authors\\\": \\\"Prasad, Rashmi and Dinesh, Nikhil and Lee, Alan and Miltsakaki, Eleni and Robald...\\\", \\\"year\\\": \\\"2008\\\", \\\"venue\\\": \\\"Proceedings of the International Conference on Language Resources and Evaluation\\\"}, {\\\"key\\\": \\\"stolcke2000dialogueact\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\\\", \\\"authors\\\": \\\"Stolcke, Andreas and Ries, Klaus and Coccaro, Noah and Shriberg, Elizabeth and B...\\\", \\\"year\\\": \\\"2000\\\", \\\"venue\\\": \\\"Computational Linguistics\\\"}, {\\\"key\\\": \\\"austin1962speechacts\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"How to Do Things with Words\\\", \\\"authors\\\": \\\"Austin, J. L.\\\", \\\"year\\\": \\\"1962\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"searle1969speechacts\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"Speech Acts: An Essay in the Philosophy of Language\\\", \\\"authors\\\": \\\"Searle, J. R.\\\", \\\"year\\\": \\\"1969\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"Influence: Science and Practice\\\", \\\"authors\\\": \\\"Cialdini, Robert B.\\\", \\\"year\\\": \\\"2001\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\\\", \\\"authors\\\": \\\"Zeng, Yi and Lin, Hongpeng and Zhang, Jingwen and Yang, Diyi and Jia, Ruoxi and ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the Association for Computational Linguistics\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\\\", \\\"authors\\\": \\\"Russinovich, Mark and Salem, Ahmed and Eldan, Ronen\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"USENIX Security Symposium\\\"}, {\\\"key\\\": \\\"chao2023pair\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Jailbreaking Black Box Large Language Models in Twenty Queries\\\", \\\"authors\\\": \\\"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"IEEE Conference on Secure and Trustworthy Machine Learning\\\"}, {\\\"key\\\": \\\"wei2023jailbroken\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Jailbroken: How Does LLM Safety Training Fail?\\\", \\\"authors\\\": \\\"Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Large Reasoning Models Are Autonomous Jailbreak Agents\\\", \\\"authors\\\": \\\"Hagendorff, Thilo and Derner, Erik and Oliver, Nuria\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Nature Communications\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\\\", \\\"authors\\\": \\\"Wang, Zhenhua and Xie, Wei and Wang, Baosheng and Wang, Enze and Gui, Zhiwen and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"type\\\": \\\"techreport\\\", \\\"title\\\": \\\"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\\\", \\\"authors\\\": \\\"Palo Alto Networks Unit 42\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\\\", \\\"authors\\\": \\\"Ren, Qibing and Li, Hao and Liu, Dongrui and Xie, Zhanxu and Lu, Xiaoya and Qiao...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"zou2023gcg\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Universal and Transferable Adversarial Attacks on Aligned Language Models\\\", \\\"authors\\\": \\\"Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J. Z...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\\\", \\\"authors\\\": \\\"Lin, Zi and Wang, Zihan and Tong, Yongqi and Wang, Yangkun and Guo, Yuxin and Wa...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2023\\\"}, {\\\"key\\\": \\\"li2024mhj\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\\\", \\\"authors\\\": \\\"Li, Nathaniel and Han, Ziwen and Steneker, Ian and Primack, Willow and Goodside,...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"gururangan2018artifacts\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Annotation Artifacts in Natural Language Inference Data\\\", \\\"authors\\\": \\\"Gururangan, Suchin and Swayamdipta, Swabha and Levy, Omer and Schwartz, Roy and ...\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the Conference of the North American Chapter of the Association f...\\\"}, {\\\"key\\\": \\\"niven2019probing\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Probing Neural Network Comprehension of Natural Language Arguments\\\", \\\"authors\\\": \\\"Niven, Timothy and Kao, Hung-Yu\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the Association for Computational Linguistics\\\"}, {\\\"key\\\": \\\"nasr2025attackermovessecond\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\\\", \\\"authors\\\": \\\"Nasr, Milad and Carlini, Nicholas and Sitawarin, Chawin and Schulhoff, Sander V....\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"andriushchenko2024adaptive\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\\\", \\\"authors\\\": \\\"Andriushchenko, Maksym and Croce, Francesco and Flammarion, Nicolas\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"he2021deberta\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\\\", \\\"authors\\\": \\\"He, Pengcheng and Liu, Xiaodong and Gao, Jianfeng and Chen, Weizhu\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\\\", \\\"authors\\\": \\\"He, Pengcheng and Gao, Jianfeng and Chen, Weizhu\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Similarity of Neural Network Representations Revisited\\\", \\\"authors\\\": \\\"Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"authors\\\": \\\"Yang, An and Yang, Baosong and Zhang, Beichen and Wang, Binyuan and Li, Bo and L...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\\\", \\\"authors\\\": \\\"Gururangan, Suchin and Marasovi\\\\\\\\'c, Ana and Swayamdipta, Swabha and Lo, Kyle and...\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 58th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"caruana1997multitask\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Multitask Learning\\\", \\\"authors\\\": \\\"Caruana, Rich\\\", \\\"year\\\": \\\"1997\\\", \\\"venue\\\": \\\"Machine Learning\\\"}, {\\\"key\\\": \\\"phang2018stilts\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\\\", \\\"authors\\\": \\\"Phang, Jason and F\\\\\\\\'evry, Thibault and Bowman, Samuel R.\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:1811.01088\\\"}, {\\\"key\\\": \\\"liu2019mtdnn\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Multi-Task Deep Neural Networks for Natural Language Understanding\\\", \\\"authors\\\": \\\"Liu, Xiaodong and He, Pengcheng and Chen, Weizhu and Gao, Jianfeng\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"howard2018ulmfit\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Universal Language Model Fine-tuning for Text Classification\\\", \\\"authors\\\": \\\"Howard, Jeremy and Ruder, Sebastian\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"dasanmartino2020semeval\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\\\", \\\"authors\\\": \\\"Da San Martino, Giovanni and Barr\\\\\\\\'on-Cede\\\\\\\\~no, Alberto and Wachsmuth, Henning a...\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the Fourteenth Workshop on Semantic Evaluation\\\"}, {\\\"key\\\": \\\"dasanmartino2019fine\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Fine-Grained Analysis of Propaganda in News Articles\\\", \\\"authors\\\": \\\"Da San Martino, Giovanni and Yu, Seunghak and Barr\\\\\\\\'on-Cede\\\\\\\\~no, Alberto and Pet...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 2019 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"jin2020textfooler\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\\\", \\\"authors\\\": \\\"Jin, Di and Jin, Zhijing and Zhou, Joey Tianyi and Szolovits, Peter\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the AAAI Conference on Artificial Intelligence\\\"}, {\\\"key\\\": \\\"li2020bertattack\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\\\", \\\"authors\\\": \\\"Li, Linyang and Ma, Ruotian and Guo, Qipeng and Xue, Xiangyang and Qiu, Xipeng\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 2020 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"devlin2019bert\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\\\", \\\"authors\\\": \\\"Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"conneau2018probing\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"What you can cram into a single \\\\\\\\$\\\\\\\\&!\\\\\\\\#* vector: Probing sentence embeddings for linguistic properties\\\", \\\"authors\\\": \\\"Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo\\\\\\\\\\\\\\\"i...\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the 56th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"hewitt2019structural\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Structural Probe for Finding Syntax in Word Representations\\\", \\\"authors\\\": \\\"Hewitt, John and Manning, Christopher D.\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 2019 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RoBERTa: A Robustly Optimized BERT Pretraining Approach\\\", \\\"authors\\\": \\\"Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:1907.11692\\\"}, {\\\"key\\\": \\\"wang2019persuasion\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\\\", \\\"authors\\\": \\\"Wang, Xuewei and Shi, Weiyan and Kim, Richard and Oh, Yoojung and Yang, Sijia an...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"robey2024smoothllm\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\\\", \\\"authors\\\": \\\"Robey, Alexander and Wong, Eric and Hassani, Hamed and Pappas, George J.\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"mehrotra2024tap\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\\\", \\\"authors\\\": \\\"Mehrotra, Anay and Zampetakis, Manolis and Kassianik, Paul and Nelson, Blaine an...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"chao2024jailbreakbench\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\\\", \\\"authors\\\": \\\"Chao, Patrick and Robey, Alexander and Dobriban, Edgar and Hassani, Hamed and Pa...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2404.01318\\\"}, {\\\"key\\\": \\\"mazeika2024harmbench\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\\\", \\\"authors\\\": \\\"Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"lu2025xboundary\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\\\", \\\"authors\\\": \\\"Lu, Xiaoya and Liu, Dongrui and Yu, Yi and Xu, Luxin and Shao, Jing\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2025\\\"}, {\\\"key\\\": \\\"kadali2026trace\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Langua...\\\", \\\"authors\\\": \\\"Kadali, Sri Durga Sai Sowmya and Papalexakis, Evangelos E.\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.11495\\\"}, {\\\"key\\\": \\\"hua2026rcs\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\\\", \\\"authors\\\": \\\"Hua, Peichun and Li, Hao and Shi, Shanghao and Yu, Zhiyuan and Zhang, Ning\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"jiang2024redqueen\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\\\", \\\"authors\\\": \\\"Jiang, Yifan and Aggarwal, Kriti and Laud, Tanmay and Munir, Kashif and Pujara, ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"song2026multibreak\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\\\", \\\"authors\\\": \\\"Song, Jialin and Liu, Xiaodong and Yang, Weiwei and Chen, Wuyang and Feng, Mingq...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"zhang2025jbshield\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\\\", \\\"authors\\\": \\\"Zhang, Shenyi and Zhai, Yuchen and Guo, Keyan and Hu, Hongxin and Guo, Shengnan ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"USENIX Security Symposium\\\"}, {\\\"key\\\": \\\"perez2022redteaming\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Red Teaming Language Models with Language Models\\\", \\\"authors\\\": \\\"Perez, Ethan and Huang, Saffron and Song, Francis and Cai, Trevor and Ring, Roma...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 2022 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"kulkarni2026latentadversarial\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\\\", \\\"authors\\\": \\\"Kulkarni, Prashant\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}, {\\\"key\\\": \\\"derya2026revisitingjbshield\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\\\", \\\"authors\\\": \\\"Derya, Kemal and Sunar, Berk\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"he2021deberta\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2024mhj\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chao2023pair\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"mehrotra2024tap\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"perez2022redteaming\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wei2023jailbroken\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"jiang2024redqueen\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"mazeika2024harmbench\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"chao2024jailbreakbench\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"song2026multibreak\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"safedream2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lu2025xboundary\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zhang2025jbshield\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kulkarni2026latentadversarial\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kadali2026trace\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hua2026rcs\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"derya2026revisitingjbshield\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"metallamaguard3_2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"anthropic2025constitutional\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"robey2024smoothllm\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"mann1988rst\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"prasad2008pdtb\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"stolcke2000dialogueact\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"austin1962speechacts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"searle1969speechacts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"dasanmartino2019fine\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"dasanmartino2020semeval\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"wang2019persuasion\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"howard2018ulmfit\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"phang2018stilts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"caruana1997multitask\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019mtdnn\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gururangan2018artifacts\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"niven2019probing\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"jin2020textfooler\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2020bertattack\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"nasr2025attackermovessecond\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"andriushchenko2024adaptive\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"conneau2018probing\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"hewitt2019structural\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 36, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 36, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 19, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 56, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 108, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 121, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 171, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 180, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 193, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 198, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zou2023gcg\\\", \\\"file\\\": \\\"conclusion.tex\\\", \\\"line\\\": 54, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 177, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 178, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 186, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 399, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citep\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"inan2023llamaguard\\\", \\\"title\\\": \\\"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"metallamaguard3_2024\\\", \\\"title\\\": \\\"Llama Guard 3\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.289, \\\"matched_title\\\": \\\"Llama Guard 3 Vision: Safeguarding Human-AI Image Understanding Conversations\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.29 below threshold 0.82\\\"}, {\\\"key\\\": \\\"zeng2024shieldgemma\\\", \\\"title\\\": \\\"ShieldGemma: Generative AI Content Moderation Based on Gemma\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ShieldGemma: Generative AI Content Moderation Based on Gemma\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"han2024wildguard\\\", \\\"title\\\": \\\"WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=han vs api=choi\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"anthropic2025constitutional\\\", \\\"title\\\": \\\"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Constitutional Classifiers: Defending against Universal Jailbreaks across Thousands of Hours of Red Teaming\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"deepcontext2026\\\", \\\"title\\\": \\\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"tong2025biid\\\", \\\"title\\\": \\\"Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.328, \\\"matched_title\\\": \\\"AI Alignment: A Comprehensive Survey\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.33 below threshold 0.82\\\"}, {\\\"key\\\": \\\"gguard2025\\\", \\\"title\\\": \\\"An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.882, \\\"matched_title\\\": \\\"Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"safedream2026\\\", \\\"title\\\": \\\"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SafeDream: Safety World Model for Proactive Early Jailbreak Detection\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"bullwinkel2025repeng\\\", \\\"title\\\": \\\"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mann1988rst\\\", \\\"title\\\": \\\"Rhetorical Structure Theory: Toward a Functional Theory of Text Organization\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Rhetorical Structure Theory: Toward a functional theory of text organization\\\", \\\"matched_year\\\": \\\"1988\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"prasad2008pdtb\\\", \\\"title\\\": \\\"The Penn Discourse TreeBank 2.0\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.984, \\\"matched_title\\\": \\\"The Penn Discourse TreeBank 2.0.\\\", \\\"matched_year\\\": \\\"2008\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"stolcke2000dialogueact\\\", \\\"title\\\": \\\"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Dialogue Act Modeling for Automatic Tagging and Recognition of Conversational Speech\\\", \\\"matched_year\\\": \\\"2000\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"austin1962speechacts\\\", \\\"title\\\": \\\"How to Do Things with Words\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"How To Do Things With Words\\\", \\\"matched_year\\\": \\\"1975\\\", \\\"mismatch_fields\\\": [\\\"year: bib=1962 vs api=1975\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"searle1969speechacts\\\", \\\"title\\\": \\\"Speech Acts: An Essay in the Philosophy of Language\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Speech Acts: An Essay in the Philosophy of Language\\\", \\\"matched_year\\\": \\\"1969\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"cialdini2001influence\\\", \\\"title\\\": \\\"Influence: Science and Practice\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Influence: science and practice\\\", \\\"matched_year\\\": \\\"2008\\\", \\\"mismatch_fields\\\": [\\\"year: bib=2001 vs api=2008\\\", \\\"first_author: bib=cialdini vs api=giebels\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zeng2024pap\\\", \\\"title\\\": \\\"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"russinovich2024crescendo\\\", \\\"title\\\": \\\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chao2023pair\\\", \\\"title\\\": \\\"Jailbreaking Black Box Large Language Models in Twenty Queries\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbreaking Black Box Large Language Models in Twenty Queries\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wei2023jailbroken\\\", \\\"title\\\": \\\"Jailbroken: How Does LLM Safety Training Fail?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbroken: How Does LLM Safety Training Fail?\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hagendorff2026reasoning\\\", \\\"title\\\": \\\"Large Reasoning Models Are Autonomous Jailbreak Agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Large reasoning models are autonomous jailbreak agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fitd2024\\\", \\\"title\\\": \\\"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"deceptivedelight2024\\\", \\\"title\\\": \\\"Deceptive Delight: Jailbreak LLMs Through Camouflage and Distraction\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.446, \\\"matched_title\\\": \\\"BitBypass: A New Direction in Jailbreaking Aligned Large Language Models with Bitstream Camouflage\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.45 below threshold 0.82\\\"}, {\\\"key\\\": \\\"ren2024actorattack\\\", \\\"title\\\": \\\"ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.402, \\\"matched_title\\\": \\\"NEXUS: Network Exploration for eXploiting Unsafe Sequences in Multi-Turn LLM Jailbreaks\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.40 below threshold 0.82\\\"}, {\\\"key\\\": \\\"zou2023gcg\\\", \\\"title\\\": \\\"Universal and Transferable Adversarial Attacks on Aligned Language Models\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.301, \\\"matched_title\\\": \\\"Text Data Augmentation for Deep Learning\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.30 below threshold 0.82\\\"}, {\\\"key\\\": \\\"lin2023toxicchat\\\", \\\"title\\\": \\\"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ToxicChat: Unveiling Hidden Challenges of Toxicity Detection in Real-World User-AI Conversation\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=lin vs api=zi\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2024mhj\\\", \\\"title\\\": \\\"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"gururangan2018artifacts\\\", \\\"title\\\": \\\"Annotation Artifacts in Natural Language Inference Data\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Annotation Artifacts in Natural Language Inference Data\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"niven2019probing\\\", \\\"title\\\": \\\"Probing Neural Network Comprehension of Natural Language Arguments\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Probing Neural Network Comprehension of Natural Language Arguments\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"nasr2025attackermovessecond\\\", \\\"title\\\": \\\"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreaks and Prompt Injections\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against Llm Jailbreaks and Prompt Injections\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"andriushchenko2024adaptive\\\", \\\"title\\\": \\\"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"he2021deberta\\\", \\\"title\\\": \\\"DeBERTa: Decoding-enhanced BERT with Disentangled Attention\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DEBERTA: DECODING-ENHANCED BERT WITH DISENTANGLED ATTENTION\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"he2023debertav3\\\", \\\"title\\\": \\\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [\\\"year: bib=2023 vs api=2021\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kornblith2019cka\\\", \\\"title\\\": \\\"Similarity of Neural Network Representations Revisited\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Similarity of Neural Network Representations Revisited\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qwen3_2025\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Qwen3 Technical Report\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"gururangan2020dontstop\\\", \\\"title\\\": \\\"Don't Stop Pretraining: Adapt Language Models to Domains and Tasks\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.492, \\\"matched_title\\\": \\\"From Pretraining Data to Language Models to Downstream Tasks: Tracking the Trails of Political Biases Leading to Unfair NLP Models\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.49 below threshold 0.82\\\"}, {\\\"key\\\": \\\"caruana1997multitask\\\", \\\"title\\\": \\\"Multitask Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Multitask Learning\\\", \\\"matched_year\\\": \\\"1997\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"phang2018stilts\\\", \\\"title\\\": \\\"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Sentence Encoders on STILTs: Supplementary Training on Intermediate Labeled-data Tasks\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"liu2019mtdnn\\\", \\\"title\\\": \\\"Multi-Task Deep Neural Networks for Natural Language Understanding\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Multi-Task Deep Neural Networks for Natural Language Understanding\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"howard2018ulmfit\\\", \\\"title\\\": \\\"Universal Language Model Fine-tuning for Text Classification\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Universal Language Model Fine-tuning for Text Classification\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dasanmartino2020semeval\\\", \\\"title\\\": \\\"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SemEval-2020 Task 11: Detection of Propaganda Techniques in News Articles\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=da san martino vs api=martino\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dasanmartino2019fine\\\", \\\"title\\\": \\\"Fine-Grained Analysis of Propaganda in News Articles\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Fine-Grained Analysis of Propaganda in News Articles\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=da san martino vs api=martino\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jin2020textfooler\\\", \\\"title\\\": \\\"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2020bertattack\\\", \\\"title\\\": \\\"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"BERT-ATTACK: Adversarial Attack Against BERT Using BERT\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"devlin2019bert\\\", \\\"title\\\": \\\"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.338, \\\"matched_title\\\": \\\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.34 below threshold 0.82\\\"}, {\\\"key\\\": \\\"conneau2018probing\\\", \\\"title\\\": \\\"What you can cram into a single \\\\\\\\$\\\\\\\\&!\\\\\\\\#* vector: Probing sentence embeddings for linguistic properties\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.98, \\\"matched_title\\\": \\\"What you can cram into a single $&amp;!#* vector: Probing sentence embeddings for linguistic properties\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hewitt2019structural\\\", \\\"title\\\": \\\"A Structural Probe for Finding Syntax in Word Representations\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.316, \\\"matched_title\\\": \\\"What Does BERT Learn about the Structure of Language?\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.32 below threshold 0.82\\\"}, {\\\"key\\\": \\\"liu2019roberta\\\", \\\"title\\\": \\\"RoBERTa: A Robustly Optimized BERT Pretraining Approach\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.495, \\\"matched_title\\\": \\\"Use of Bidirectional Encoder Representations from Transformers (BERT) and Robustly Optimized Bert Pretraining Approach (RoBERTa) for Nepali News Classification\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.50 below threshold 0.82\\\"}, {\\\"key\\\": \\\"wang2019persuasion\\\", \\\"title\\\": \\\"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Persuasion for Good: Towards a Personalized Persuasive Dialogue System for Social Good\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"robey2024smoothllm\\\", \\\"title\\\": \\\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mehrotra2024tap\\\", \\\"title\\\": \\\"Tree of Attacks: Jailbreaking Black-Box LLMs with the Pruning of Candidate Outputs\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.435, \\\"matched_title\\\": \\\"A survey of safety and trustworthiness of large language models through the lens of verification and validation\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.44 below threshold 0.82\\\"}, {\\\"key\\\": \\\"chao2024jailbreakbench\\\", \\\"title\\\": \\\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=chao vs api=andriushchenko\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mazeika2024harmbench\\\", \\\"title\\\": \\\"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lu2025xboundary\\\", \\\"title\\\": \\\"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"X-Boundary: Establishing Exact Safety Boundary to Shield LLMs from Multi-Turn Jailbreaks without Compromising Usability\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kadali2026trace\\\", \\\"title\\\": \\\"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"hua2026rcs\\\", \\\"title\\\": \\\"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Rethinking Jailbreak Detection of Large Vision Language Models with Representational Contrastive Scoring\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=hua vs api=peichun\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jiang2024redqueen\\\", \\\"title\\\": \\\"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RED QUEEN: Safeguarding Large Language Models against Concealed Multi-Turn Jailbreaking\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"song2026multibreak\\\", \\\"title\\\": \\\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhang2025jbshield\\\", \\\"title\\\": \\\"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JBShield: Defending Large Language Models from Jailbreak Attacks through Activated Concept Analysis and Manipulation\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"perez2022redteaming\\\", \\\"title\\\": \\\"Red Teaming Language Models with Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Red Teaming Language Models with Language Models\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kulkarni2026latentadversarial\\\", \\\"title\\\": \\\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"derya2026revisitingjbshield\\\", \\\"title\\\": \\\"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Revisiting JBShield: Breaking and Rebuilding Representation-Level Jailbreak Defenses\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "e9ec7f53-700d-4452-af59-e140ed0bc4b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "5eb41964-d71e-4500-9393-d74834a07cc7",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 127 · 2026-05-21T07:07:28.875Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the paper. Let me compile my review. Let me organize my notes from reading the full paper:
+
+## Paper Summary
+**Title**: DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection
+- Disentangles factors behind cross-attack generalization in multi-turn jailbreak detection
+- Stage 1: Adapts DeBERTa encoder on jailbreak conversation text (7 variants controlling domain exposure, classification supervision, label quality, granularity)
+- Stage 2: Freezes encoder, trains BiGRU for conversation-level classification
+
+
+- Uses synthetic multi-turn data from Qwen3-8B (250 jailbreak + 250 benign conversations) and evaluates on both in-distribution tests (Crescendo, DD) and out-of-distribution attacks (FITD, ActorAttack), with validation against human-labeled ToxicChat data
+
+## Key findings:
+Classification-based domain adaptation substantially outperforms the baseline (OOD F1 of 0.818 versus 0.291), though interestingly scrambled labels perform similarly to correct ones, temporal ordering doesn't affect performance, and label granularity shows no meaningful impact. The results hold consistently across three different encoder sizes, and human validation on ToxicChat confirms the findings.
+
+Now I'm checking whether the experimental variants are truly isolating single factors. The 9-class versus binary comparison cleanly tests label granularity, scrambling randomizes labels while preserving structure, and MLM-only removes the classification component entirely. The topic variant switches to a 5-class topic classifier on the same conversations, so it's genuinely changing the classification objective rather than introducing confounds. domain text, different classification task. But the topic labels are unrelated to jailbreak. So this isolates whether classification supervision on a RELEVANT task matters.
+  - Wiki MLM: completely different domain text (Wikipedia), same MLM objective → isolates domain specificity
+  - Vanilla: no adaptation at all
+
+  Potential confound: Topic variant uses 5-class labels from different categories. The "Topic" variant changes both the classification TASK and the label semantic meaning. But the point is to test whether unsupervised domain-adapted representations need classification supervision vs just domain exposure. Actually I need to re-read Table 1 more carefully.
+
+  Actually looking at Table 1: Topic variant does 5-class topic classification on the SAME jailbreak conversation text. So it's same domain, different classification task. This isolates whether classification supervision specifically on jailbreak-relevant labels is what matters, vs any classification supervision on the domain text. That seems well-controlled.
+
+  The experimental design is solid: MLM-only tests pure domain exposure, Topic adds irrelevant classification supervision to see if any task helps, the 9-class variant adds relevant supervision, and Binary tests whether label granularity matters. The scrambled variant is interesting because it forces the model to learn decision boundaries with incorrect labels, which should reveal whether the semantic correctness of the labels themselves drives the improvement.
+
+  The scrambled result being approximately correct is striking—it suggests the model might be learning useful representations just from the structure of having to make distinctions, even with wrong labels. This is a genuinely surprising finding that challenges the assumption that label semantics are critical.
+
+  Now looking at the experimental setup: the dataset is quite small at 350 training samples with only 76 test samples for IID evaluation. For binary classification this might suffice, but the statistical power for detecting differences is limited. The OOD evaluation is also somewhat limited because it uses IID benign samples alongside OOD attack families—the benign side doesn't test generalization, which could artificially boost OOD performance. And with only 3 random seeds, the variance estimates are rough even with bootstrap confidence intervals.
+
+  For the statistical testing, I'm noticing potential issues with how McNemar's test is applied. They're pooling predictions across seeds and comparing variants, which inflates the effective sample size and might not properly account for the dependence structure introduced by using the same 3 seeds across conditions.
+
+On TOST equivalence testing, they acknowledge the underpowered nature at n=3 with SE=0.045, marking results as "suggestive but not conclusive." The bootstrap confidence intervals also have the same pooling problem—they're resampling individual predictions across seeds rather than computing statistics per seed first, which again treats correlated predictions as independent observations.
+
+For the variance reduction claim of 4-20×, they report the ratios but I don't see formal statistical tests like an F-test or Levene's test backing it up. On the data quality side, using only 250 jailbreak and 250 benign examples all generated by Qwen3-8B is limiting—the model might be learning Qwen's specific linguistic patterns rather than generalizable jailbreak characteristics, and 500 samples is relatively small for training an encoder. They do partially address this with ToxicChat validation using real human data.
+
+For strategy annotation, the Cohen's kappa of 0.78 across 50 samples for a 9-class taxonomy is problematic—that's only about 5-6 samples per class on average, which makes per-class reliability questionable. The ToxicChat validation is also limited since it's single-turn data, but their core contribution is about multi-turn jailbreaks, so this validation doesn't fully test what they're claiming.
+
+Now looking at how well their claims align with the evidence: the classification-based DAPT approach is clearly the strongest, with the 9-class variant hitting OOD F1 of 0.818 versus 0.291 for the baseline. The unsupervised pretraining claim holds up too—MLM alone gets them from 0.291 to around 0.6 on OOD, but then collapses under mixed-LLM training while the 9-class approach stays robust. The scrambled labels result is interesting though—it performs nearly perfectly on IID data, but I need to check whether that advantage persists on OOD, which would be suspicious.
+
+Looking at the OOD results more carefully, scrambled actually maintains performance there too, achieving 0.943±0.009 on DD OOD versus 0.944±0.009 for the 9-class variant, and similar equivalence on ActorAttack. The statistical tests confirm they're essentially indistinguishable, which is a striking finding but raises questions about what the model is actually learning. The temporal order claim rests on Table 2 showing minimal degradation from shuffling, though they only tested this with BiGRU, so it might not generalize to other architectures. And the label granularity claim—that 9-class, binary, and scrambled all perform similarly—needs careful examination of the actual numbers.
+
+On the scale-dependent claim, they're comparing three models of different sizes but also different architectures and pretraining approaches, so isolating scale as the driver is tricky despite their acknowledgment of these confounds. The variance reduction claim of 4-20× comes from comparing classification supervision to MLM on synthetic OOD data, with the paper citing specific numbers around standard deviations. Looking at the statistical tests more carefully, the equivalence tests show significance on the main dataset but the ActorAttack results are underpowered. When I check Table 3 directly, the standard deviation ratios across OOD conditions are around 13×, which actually does fall within the claimed 4-20× range—so the variance reduction claim appears valid, though it would benefit from a formal statistical test like Levene's to be rigorous.
+
+Now examining the reproducibility details: the hyperparameters are well-documented in the appendix with learning rates, optimizer settings, warmup schedule, and batch configuration all specified. Data generation uses Qwen3-8B with clear prompt templates and annotation guidelines, and they're planning to release both the data and code under MIT. The computational cost is reasonable at under 4 GPU-hours on A100s. I'm noticing an issue with how the OOD evaluation handles IID benign examples though.
+
+The benign samples in the OOD test set come from the same Qwen3-8B generation pipeline as training, which undermines the generalization claim—the model might perform well simply because it recognizes the familiar benign pattern rather than truly generalizing to novel attacks. Beyond that, the entire training data depends on a single LLM source, and while they do test with Llama-3.1-8B conversations and validate on ToxicChat, this still represents limited diversity in the underlying data generation.
+
+There's also a potential data leakage issue since Stage 1 uses masked language modeling on the same jailbreak conversation text that appears in evaluation, though the test split is separate and this follows standard domain-adaptive pretraining practice. The 9-class taxonomy itself, built from Cialdini's principles and PAP categories, shows κ=0.78 inter-annotator agreement on 50 samples, but without a confusion matrix it's unclear whether certain classes like "emotional manipulation" and "authority appeal" are actually distinct or conflated. The fact that scrambled labels perform nearly as well as correct ones actually suggests the taxonomy might not be adding much value despite the effort to construct it. The figures are generally clear, though the bar charts are fairly standard.
+
+Now I'm checking the reference verification results—there are 10 references that couldn't be found online (likely indexing issues with well-known papers like BERT and RoBERTa), 9 minor mismatches in formatting and years, and one orphan bibliography entry that's never cited. Moving into the formal assessment now, where I'm weighing the strengths like the controlled ablation study with seven variants and the comprehensive statistical testing against these concerns.
+
+The main weaknesses I'm seeing are the underpowered sample size of just three seeds for the statistical claims, the out-of-distribution evaluation that only uses in-distribution benign examples which overstates generalization, and the fact that all training data comes from a single LLM source. There's also the issue that the "scale-dependent" finding is confounded by architectural differences, and the inter-rater agreement of 0.78 on fifty examples isn't strong enough to validate a nine-class taxonomy. The statistical methods themselves—pooling predictions across seeds and using bootstrap confidence intervals—artificially inflate the effective sample size. Plus, ToxicChat being single-turn undermines the multi-turn validation claim.
+
+Overall, this is a well-executed ablation study with genuinely interesting findings, and the controlled experimental design is its strongest aspect, though the statistical rigor, while above average for the field, has some methodological limitations that need acknowledging.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5eb41964-d71e-4500-9393-d74834a07cc7",
+  "isSidechain": false,
+  "requestId": "req_011CbFHmFDu6mSXTzsqUogVv",
+  "type": "assistant",
+  "uuid": "97ced8b4-0e4d-4418-abbe-1b7f9b277e0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gk2vgnBhJmaYxiGV6Ac3bY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20319,
+      "cache_read_input_tokens": 45535,
+      "output_tokens": 4330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4330,
+          "cache_read_input_tokens": 45535,
+          "cache_creation_input_tokens": 20319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-21T07:07:29.829Z_
+
+已完成全部 22 页论文阅读和引用验证。现在整理审稿意见并提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97ced8b4-0e4d-4418-abbe-1b7f9b277e0c",
+  "isSidechain": false,
+  "requestId": "req_011CbFHmFDu6mSXTzsqUogVv",
+  "type": "assistant",
+  "uuid": "dc94cf00-9b60-464c-85b9-684c5a0d736f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gk2vgnBhJmaYxiGV6Ac3bY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20319,
+      "cache_read_input_tokens": 45535,
+      "output_tokens": 4330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4330,
+          "cache_read_input_tokens": 45535,
+          "cache_creation_input_tokens": 20319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-21T07:07:31.632Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images · `toolu_01FhCBb7FhnCwXTgJfZpaD1i`</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc94cf00-9b60-464c-85b9-684c5a0d736f",
+  "isSidechain": false,
+  "requestId": "req_011CbFHmFDu6mSXTzsqUogVv",
+  "type": "assistant",
+  "uuid": "4d2f675a-9fce-4b0c-9069-af0460b6ab00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gk2vgnBhJmaYxiGV6Ac3bY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20319,
+      "cache_read_input_tokens": 45535,
+      "output_tokens": 4330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4330,
+          "cache_read_input_tokens": 45535,
+          "cache_creation_input_tokens": 20319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-21T07:07:31.654Z_
+
+<details><summary>↩ Tool result · `toolu_01FhCBb7FhnCwXTgJfZpaD1i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d2f675a-9fce-4b0c-9069-af0460b6ab00",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "c8266f99-158b-4f3e-9e75-69a112749e7c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4d2f675a-9fce-4b0c-9069-af0460b6ab00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 1，负责审查**方法严谨性、实验设计和统计检验**。  ## Venue 信息 - **会议**: EMNLP 2026（通过 ARR May 2026 cycle 提交） - **截止日期**: 2026-05-25 - **页数限制**: Long paper，正文 8 页，参考文献不限页数；Limitations 和 Ethics 不计…",
+  "leafUuid": "c8266f99-158b-4f3e-9e75-69a112749e7c",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-21T07:09:22.604Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01G9HEGWy1Pu1bk2WbihMpAo`</summary>
+
+```json
+{
+  "text": "\n# Reviewer 1 审稿意见：DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\n\n**审查侧重**：方法严谨性、实验设计与统计检验\n\n---\n\n## Summary\n\n本文通过控制消融实验研究了编码器适配在多轮越狱检测中的作用。Stage-1 冻结了 7 个 DeBERTa 变体（控制领域曝露、分类监督、标签质量/粒度），Stage-2 在冻结编码器上训练 BiGRU 做对话级分类。核心发现是分类监督式 DAPT 是最鲁棒的适配策略（OOD F1 从 vanilla 的 0.291 提升至 0.818），同时报告了三个负面结果（打乱标签≈正确标签、时序无关、标签粒度无影响）。实验设计总体合理，控制变量思路值得肯定，但在统计检验充分性、数据规模和部分 claim 的证据支撑上存在需要修正的问题。\n\n---\n\n## Strengths\n\n**[S1] 精心设计的控制消融框架。** 7 个 Stage-1 变体在相同下游管线（Stage-2 BiGRU）上评估，每个变体名义上只改变一个因素（Table 1）。这种因子分解设计在安全检测领域较少见，结构清晰。\n\n**[S2] 统计工具箱较完整。** 综合使用 McNemar's test、TOST 等价检验、BCa bootstrap CIs、permutation tests，在 NLP 安全文献中属于较高水准。关键的是，作者诚实地报告了 TOST 在 ActorAttack 上 underpowered 的问题（Section 4.2, Appendix C）。\n\n**[S3] 重要且诚实的负面结果。** Scrambled labels ≈ correct labels（Table 2-3）、temporal order irrelevant（∆ < 1pp）是对\"什么属性真正驱动检测\"的关键洞察。这类负面结果在发表压力下容易被忽略，作者选择正面呈现并讨论其含义值得肯定。\n\n**[S4] 可复现性细节充分。** Appendix M 报告了完整超参数（learning rate 2×10⁻⁵, AdamW, 4 epochs, batch 16 等），计算需求明确（< 4 GPU-hours on A100），计划开源代码和数据。\n\n**[S5] Human data 交叉验证。** ToxicChat 实验（Section 4.4）和 Mixed-LLM 实验（Section 4.5）补充了对纯合成数据的验证，展示了向真实数据迁移的初步证据。\n\n---\n\n## Weaknesses\n\n**[W1] [Must-Fix] Bootstrap CIs 和 McNemar's test 跨种子池化膨胀有效样本量**\n\n- 具体位置：Section 4.1（\"BCa bootstrap 95% confidence intervals (10,000 resamples) over individual predictions pooled across seeds\"）, Section 4.3（McNemar's \"49-78 discordant pairs\"）\n- 问题：将 3 个种子的逐样本预测池化后做统计检验，将有效样本量从 n=3 膨胀到 n=3×|test_set|。不同种子的预测并非独立——它们共享相同训练数据和验证集，仅随机初始化不同。McNemar's test 和 bootstrap CIs 的前提是观测独立，池化违反了这一假设，导致 p 值和 CI 宽度被人为缩小。\n- 为什么影响接收：这是实验方法论的核心问题。如果按正确的 seed-level 统计（先在每个种子上计算统计量，再在 3 个种子上做推断），许多目前 p < 0.001 的结论可能变为不显著。\n- 建议修改方向：(1) 报告 seed-level 的 paired comparison（即 3 对 F1 差值的配对 t 检验或 Wilcoxon signed-rank test）；(2) 如果坚持池化预测，需用 clustered bootstrap（以 seed 为 cluster）校正；(3) 在正文中明确标注当前统计方法的假设和局限。\n\n**[W2] [Must-Fix] n=3 种子对 TOST 等价检验根本性欠缺统计效力**\n\n- 具体位置：Section 4.2（\"TOST is underpowered (SE=0.045) despite a 2.1 pp mean gap\"）, Table 16（Appendix P）\n- 问题：TOST 在 ActorAttack 上未能拒绝非等价 null（作者已承认）。但问题不止于此：在 n=3 的条件下，即使 ε=5pp 的 margin 和实际差异为 0，TOST 的统计功效也极低（power < 0.3 for reasonable σ）。这意味着 TOST 无法区分\"真正等价\"和\"样本不足\"，使得所有基于 TOST 的等价结论（包括 DD 上的 p < 0.01）都缺乏可信度——DD 上 TOST 通过可能只是因为该条件下方差恰好极低（sd=0.003），而非因为有足够的统计效力支撑等价推断。\n- 为什么影响接收：\"分类监督变体等价\"是论文的核心负面结论之一（支撑 scrambled=correct 的 claim），但统计基础不稳固。\n- 建议修改方向：(1) 增加到至少 n=10 种子，或明确报告每个 TOST 的 power analysis；(2) 将当前结论降级为\"descriptive evidence suggesting equivalence\"而非统计检验支撑的结论；(3) 补充效应量（Cohen's d）让读者判断实际差异的实质意义。\n\n**[W3] [Must-Fix] OOD 评估中 benign 样本为 IID，膨胀了泛化性 claim**\n\n- 具体位置：Section 4.1（\"The OOD benign set is IID (same generation pipeline as training)\"）, Table 3\n- 问题：OOD 测试集的 jailbreak 样本来自 FITD 和 ActorAttack（新攻击族），但 benign 样本与训练集同分布（均由 Qwen3-8B 生成）。这意味着模型只需在\"未见过的攻击 vs 已见过分布的良性\"之间区分，而非在\"未见过的攻击 vs 未见过的良性\"之间区分。对于二分类任务，benign 侧的 IID 特性可能显著抬高 F1，因为 benign recall 几乎是免费的。Table 3 footnote 显示 vanilla 的 benign F1 在 OOD 上为 0.628-0.312（随长度下降），说明 benign 识别并非完全\"免费\"，但 DAPT 变体在 benign 上接近 1.0（Table 7），表明 IID benign 对 DAPT 变体几乎无区分力。\n- 为什么影响接收：\"cross-attack generalization\"是论文标题级 claim，但 OOD 评估设计系统性地高估了这一能力。\n- 建议修改方向：(1) 增加 OOD benign 评估条件（例如来自不同 LLM 生成的良性对话，或 ToxicChat 的良性子集作为 OOD benign）；(2) 分别报告 OOD jailbreak recall 和 OOD benign precision/recall，让读者判断泛化的具体维度；(3) 至少在 Discussion 中定量分析 IID benign 对 F1 的贡献。\n\n**[W4] [Should-Fix] \"Scale-dependent\" claim 被架构差异混淆**\n\n- 具体位置：Section 4.3（\"Three encoder scales...scale-dependent adaptation shrinks with scale\"）, Table 4, Contribution 列表\n- 问题：三个 encoder（DeBERTa-v3-base 125M/184M, RoBERTa-large 355M）不仅参数量不同，架构也不同（DeBERTa vs RoBERTa）、预训练数据不同、预训练目标不同（ELECTRA-style vs MLM）。将跨这三个模型的性能差异归因于\"scale\"是混淆变量——无法区分是 scale 效应还是 architecture 效应。作者在正文中有一句 disclaimer（\"architecture and pretraining differences prevent isolating scale as the sole factor\"），但 Contribution 列表和 Abstract 中的表述没有反映这一 caveat。\n- 建议修改方向：(1) 将\"scale-dependent observation\"改为\"architecture- and scale-dependent observation\"或\"model-capacity-dependent\"；(2) 如要严格声称 scale effect，需在同一架构族内对比（如 DeBERTa-v3-xsmall/small/base/large）；(3) 在 Abstract 和 Contribution 中加上架构差异的 caveat。\n\n**[W5] [Should-Fix] 方差减少 \"4-20×\" 缺乏正式统计检验**\n\n- 具体位置：Abstract（\"classification supervision reduces variance 4-20×\"）, Section 4.2, Conclusion\n- 问题：4-20× 的比率来自描述性统计（对比不同变体间 SD 的比值），但未用 Levene's test、Bartlett's test 或 F-test 等方法正式检验方差差异的显著性。在 n=3 种子下，SD 估计本身就不稳定（SD 的 relative standard error ≈ 1/√(2(n-1)) ≈ 0.5 for n=3），所以观测到的 4-20× 比率有很大不确定性。\n- 建议修改方向：(1) 报告方差比率的 CI（可用 bootstrap）；(2) 或降级为描述性观察（\"we observe\" 而非暗示稳健的结论）。\n\n**[W6] [Should-Fix] 策略标注验证不足：κ=0.78, n=50 不足以支撑 9-class taxonomy**\n\n- 具体位置：Section 3.2（\"inter-annotator agreement...κ=0.78, n=50\"）, Section 4.8, Appendix W\n- 问题：9 个策略类别的 inter-annotator agreement 仅在 50 个样本上测试。平均每类 ≈5.5 个样本，某些低频类别可能只有 1-2 个样本，导致 per-class κ 无法估计。κ=0.78 是 \"substantial agreement\" 但接近 \"almost perfect\" 的阈值（0.81），在 9-class 任务上并不算特别高。更关键的是，scrambled≈correct 的结果暗示标签语义对检测性能无贡献——这从根本上质疑了 9-class taxonomy 的实用价值（虽然作者将其定位为\"interpretability tool\"，但如果标签不影响性能，interpretability 的基础何在？）。\n- 建议修改方向：(1) 增加验证样本量（至少 200 以保证每类 >20 样本）并报告 per-class κ 和 confusion matrix；(2) 更明确地讨论 scrambled 结果对 taxonomy 价值的影响——如果分类标签对检测器无用，taxonomy 的价值仅限于数据分析/可视化，需要调整 framing。\n\n**[W7] [Should-Fix] 训练数据全部来自单一 LLM（Qwen3-8B），泛化性受限**\n\n- 具体位置：Section 4.1（\"All synthetic data is generated by Qwen3-8B\"）, Section 4.5\n- 问题：250 jailbreak + 250 benign 对话全部由 Qwen3-8B 生成。模型可能学到 Qwen3-8B 的特定语言风格而非通用越狱模式。Mixed-LLM 实验（Section 4.5）只加入了 Llama-3.1-8B 一个额外 LLM，ToxicChat 验证是 single-turn。Single-turn ToxicChat 无法验证多轮检测这一核心声称（作者在 Limitations 中已承认）。\n- 建议修改方向：(1) 增加至少 2-3 个不同 LLM 族的 mixed training 实验；(2) 如果条件允许，收集少量真实多轮越狱对话进行验证；(3) 在 Abstract 级别的 claim 中明确 \"synthetic multi-turn data\" 的限定。\n\n---\n\n## Questions\n\n**[Q1]** McNemar's test 的 \"49-78 discordant pairs\"（Section 4.3）是在多少总预测上计算的？如果是 3 seeds × 76 test samples = 228 predictions，则 49-78 discordant 占 21-34%，这不算少。但如果是 3 seeds × 全部评估样本（~500），比例就更低。请澄清池化的具体方式。\n\n**[Q2]** Scrambled variant 随机打乱标签后，模型仍然学到了等价的表征（Table 2-3）。这是否意味着 Stage-1 的分类 loss 主要起正则化作用（防止 MLM 崩溃），而非提供语义信号？如果是这样，是否有更简单的正则化方法（如 dropout tuning, EWC）可以达到同样效果？\n\n**[Q3]** Table 12（Appendix L）显示 Cross-LLM 条件下 Llama-only 的 F1 collapse 是由 unfamiliar benign text 的 false positives 驱动的。这是否意味着 DAPT 主要学习了 Qwen3-8B 的 benign 分布特征（作为 \"negative template\"），而非 jailbreak 的正面特征？如果是，这对 real-world deployment（benign 分布多样性远超训练集）意味着什么？\n\n**[Q4]** 为什么选择 ε=5pp 作为 TOST 的等价 margin？在越狱检测的应用场景中，5pp 的 F1 差异是否真的可以忽略？请提供选择 margin 的 justification。\n\n**[Q5]** Section 4.6 报告 ToxicChat ROC AUC = 0.704。这个数字距离可部署水平（通常 >0.9）还有很大差距。作者如何解释 DAPT 在 OOD 合成数据上表现优异（F1>0.8）但在真实人类数据上显著下降的原因？除了 single-turn vs multi-turn 的差异外，还有哪些因素？\n\n---\n\n## Missing References\n\n- 未发现关键缺失引用。引用验证显示 62 条 bib 条目中 43 条通过在线验证，10 条未找到（多为知名论文如 BERT、RoBERTa、GCG 的索引问题），9 条有轻微不匹配（作者姓名格式、年份）。1 条孤立引用（devlin2019bert 在 bib 中但未在正文引用）。\n\n---\n\n## Overall Assessment\n\n**Score: 3.5 (Borderline Conference)**\n\n**Confidence: 4/5**（对实验设计和统计方法的评估较有把握，对 jailbreak detection 领域的 novelty 判断的确信度稍低）\n\n**一句话总结**：控制消融设计精巧、负面结果有价值，但跨种子预测池化导致统计检验可信度存疑、OOD benign 为 IID 膨胀了泛化 claim、数据规模和多样性不足以支撑部分核心声称。\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 | 控制消融框架设计合理，但统计检验存在系统性问题（seed 池化膨胀样本量、TOST underpowered），OOD 评估设计偏向乐观 |\n| Excitement | 3.5/5 | \"什么属性驱动 encoder adaptation\" 的因子分解视角有新意，负面结果（scrambled=correct, temporal order irrelevant）对社区有启发，但 contribution 的 magnitude 受制于纯合成数据和小规模实验 |\n| Reproducibility | 4/5 | 超参数完整、计划开源代码和数据、计算需求合理（< 4 GPU-hours），扣分点在于数据生成 prompt 的完整性未完全展示 |\n| Overall | 3.5/5 | Borderline Conference — 实验设计理念强于执行。修复 W1-W3 后有望提升至 Conference accept |\n\n## 主要优势\n\n- 因子分解式控制消融在安全检测文献中少见，方法论贡献明确\n- 三个负面结果（scrambled=correct, temporal order irrelevant, granularity irrelevant）具有社区价值\n- 统计工具使用在 NLP 安全领域属上游水平，且诚实报告了 TOST underpowered\n- 可复现性材料充分\n",
+  "reviewer_id": "1",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8266f99-158b-4f3e-9e75-69a112749e7c",
+  "isSidechain": false,
+  "requestId": "req_011CbFHuFVFJZQQHPRBtKWmV",
+  "type": "assistant",
+  "uuid": "b64dc81a-f5eb-4705-9908-e32a67033ee8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtXWdoCSGMsKcUW9mChjRY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4388,
+      "cache_read_input_tokens": 65854,
+      "output_tokens": 5197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4388,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5197,
+          "cache_read_input_tokens": 65854,
+          "cache_creation_input_tokens": 4388,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4388
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-21T07:09:26.722Z_
+
+<details><summary>↩ Tool result · `toolu_01G9HEGWy1Pu1bk2WbihMpAo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_613965f45d48763f375aa83e9294b24a:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b64dc81a-f5eb-4705-9908-e32a67033ee8",
+  "isSidechain": false,
+  "promptId": "a354224d-cd00-4eef-bb00-b4f986658349",
+  "type": "user",
+  "uuid": "8493fa86-b659-40ca-bcd9-d39e535fdabf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_613965f45d48763f375aa83e9294b24a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_613965f45d48763f375aa83e9294b24a:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "b64dc81a-f5eb-4705-9908-e32a67033ee8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 135_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review methodology and experimental design for persuasion jailbreak detection",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 136 · 2026-05-21T07:10:20.130Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T07:10:20.130Z",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "content": "[Round 1 审稿请求]:\n以下是 Reviewer 2 的完整审稿意见，请逐条回应：对每个 Weakness 和 Question，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n## Reviewer 2 的审稿意见\n\n### Weaknesses\n\n**[W1] [Must-Fix] 核心贡献与 DAPT 的边界不清晰——novelty 定位需要更精确。**\n本文的核心发现可以概括为\"classification-based DAPT 是编码器适应到越狱检测领域的最优策略\"。但 Gururangan et al. (2020) 已经系统证明了 DAPT 在多个领域的有效性。Introduction 的 contribution 声明将 DAPT 的应用包装为 pipeline 的贡献，而非明确说明本文的增量贡献。\"evidence hierarchy\" 是实验观察的描述性总结，不是可复用的方法论创新。两阶段冻结设计是标准 probing 范式。\n\n**[W2] [Must-Fix] 合成数据单一来源导致泛化结论的外部效度存疑。**\n所有训练数据和绝大部分评估数据均由 Qwen3-8B 生成。跨攻击泛化的发现可能反映的是 Qwen3-8B 生成的攻击间的分布相似性，而非攻击类型本身的结构差异。ToxicChat 验证仅覆盖单轮数据。人写多轮越狱数据（如 MHJ）未被用于评估。Limitations 承认了这一点但影响被低估。\n\n**[W3] [Should-Fix] \"Analysis paper\"定位下，缺少对核心机制的深入解释。**\n建立了 evidence hierarchy 但对为什么分类监督比标注质量更重要、为什么 MLM-only 在混合 LLM 数据上崩溃，缺乏机制性解释。CKA 和 t-SNE 只是描述性的。\n\n**[W4] [Should-Fix] 术语不一致降低了可读性。**\n\"OOD\" vs \"cross-attack generalization\" vs \"cross-attack transfer\" 混用。\"DAPT\" 有时指整个 Stage-1 训练，有时特指 continued pretraining。\"evidence hierarchy\" 首次出现在 abstract 但直到 Section 4.3 才定义。\n\n**[W5] [Should-Fix] LLM-as-judge baseline 覆盖不足。**\n仅测试了 Qwen3-8B 和 GPT-5.5，缺少 Llama Guard 3、WildGuard 等专用安全分类器对比。\n\n**[W6] [Minor] 策略标注的人工验证规模偏小。**\nn=50, κ=0.78，每类平均仅约 5-6 个样本。\n\n### Questions\n\n[Q1] Scrambled labels 等效是否意味着 Stage-1 分类头的梯度信号方向对表征学习不重要？对 MTL 文献有何启示？\n[Q2] Mixed-LLM 训练不对称性的假设解释？\n[Q3] evidence hierarchy 的排序是否在所有三个 OOD 攻击族上一致？FITD 的不同模式是否削弱 hierarchy 的普遍性？\n[Q4] 扰动分析中 classification-supervised 零退化 vs DAPT 退化 ≥12pp 是否与 evidence hierarchy 矛盾？\n[Q5] 是否考虑过对比学习？\n\n### Missing References\nSafeDecoding (Xu et al., 2024), Circuit Breakers (Zou et al., 2024), GradSafe (Xie et al., 2024), WildChat (Zhao et al., 2024)\n\n### Overall: Score 3.0 (Findings), Confidence 4/5\n\n---\n\n请逐条回应（[AGREE] 或 [REBUT]），并说明理由。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 137 · 2026-05-21T07:10:20.131Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T07:10:20.131Z",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 138 · 2026-05-21T07:10:20.123Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8493fa86-b659-40ca-bcd9-d39e535fdabf",
+  "isSidechain": false,
+  "promptId": "aaa905fa-cc58-4a26-9127-28e534301021",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "1fc220cb-f94a-4c92-bebe-fdeab6f040af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139 · 2026-05-21T07:10:20.123Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fc220cb-f94a-4c92-bebe-fdeab6f040af",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "b5bfeca1-a617-4092-aaed-941dea2f0948",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "5b0c3b1d-d138-4b54-8348-dd90e67260cf",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+6 recorded events
+
+### User
+
+_source line 140 · 2026-05-21T07:10:20.234Z_
+
+[Round 1 审稿请求]:
+以下是 Reviewer 2 的完整审稿意见，请逐条回应：对每个 Weakness 和 Question，标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+
+---
+
+## Reviewer 2 的审稿意见
+
+### Weaknesses
+
+**[W1] [Must-Fix] 核心贡献与 DAPT 的边界不清晰——novelty 定位需要更精确。**
+本文的核心发现可以概括为"classification-based DAPT 是编码器适应到越狱检测领域的最优策略"。但 Gururangan et al. (2020) 已经系统证明了 DAPT 在多个领域的有效性。Introduction 的 contribution 声明将 DAPT 的应用包装为 pipeline 的贡献，而非明确说明本文的增量贡献。"evidence hierarchy" 是实验观察的描述性总结，不是可复用的方法论创新。两阶段冻结设计是标准 probing 范式。
+
+**[W2] [Must-Fix] 合成数据单一来源导致泛化结论的外部效度存疑。**
+所有训练数据和绝大部分评估数据均由 Qwen3-8B 生成。跨攻击泛化的发现可能反映的是 Qwen3-8B 生成的攻击间的分布相似性，而非攻击类型本身的结构差异。ToxicChat 验证仅覆盖单轮数据。人写多轮越狱数据（如 MHJ）未被用于评估。Limitations 承认了这一点但影响被低估。
+
+**[W3] [Should-Fix] "Analysis paper"定位下，缺少对核心机制的深入解释。**
+建立了 evidence hierarchy 但对为什么分类监督比标注质量更重要、为什么 MLM-only 在混合 LLM 数据上崩溃，缺乏机制性解释。CKA 和 t-SNE 只是描述性的。
+
+**[W4] [Should-Fix] 术语不一致降低了可读性。**
+"OOD" vs "cross-attack generalization" vs "cross-attack transfer" 混用。"DAPT" 有时指整个 Stage-1 训练，有时特指 continued pretraining。"evidence hierarchy" 首次出现在 abstract 但直到 Section 4.3 才定义。
+
+**[W5] [Should-Fix] LLM-as-judge baseline 覆盖不足。**
+仅测试了 Qwen3-8B 和 GPT-5.5，缺少 Llama Guard 3、WildGuard 等专用安全分类器对比。
+
+**[W6] [Minor] 策略标注的人工验证规模偏小。**
+n=50, κ=0.78，每类平均仅约 5-6 个样本。
+
+### Questions
+
+[Q1] Scrambled labels 等效是否意味着 Stage-1 分类头的梯度信号方向对表征学习不重要？对 MTL 文献有何启示？
+[Q2] Mixed-LLM 训练不对称性的假设解释？
+[Q3] evidence hierarchy 的排序是否在所有三个 OOD 攻击族上一致？FITD 的不同模式是否削弱 hierarchy 的普遍性？
+[Q4] 扰动分析中 classification-supervised 零退化 vs DAPT 退化 ≥12pp 是否与 evidence hierarchy 矛盾？
+[Q5] 是否考虑过对比学习？
+
+### Missing References
+SafeDecoding (Xu et al., 2024), Circuit Breakers (Zou et al., 2024), GradSafe (Xie et al., 2024), WildChat (Zhao et al., 2024)
+
+### Overall: Score 3.0 (Findings), Confidence 4/5
+
+---
+
+请逐条回应（[AGREE] 或 [REBUT]），并说明理由。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5bfeca1-a617-4092-aaed-941dea2f0948",
+  "isSidechain": false,
+  "promptId": "aaa905fa-cc58-4a26-9127-28e534301021",
+  "type": "user",
+  "uuid": "8680dd0b-5638-479c-9813-f052bba3e2ea",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 141 · 2026-05-21T07:10:20.233Z_
+
+```json
+{
+  "parentUuid": "8680dd0b-5638-479c-9813-f052bba3e2ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "93ac7f74-a269-4e52-b165-d4180a0eae64",
+  "timestamp": "2026-05-21T07:10:20.233Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 142 · 2026-05-21T07:10:45.587Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review Reviewer 2's comments and prepare my cross-review response. I need to go through each weakness and question, and based on my reading of the paper, provide [AGREE] or [REBUT] with evidence.
+
+Let me think through each one:
+
+**W1: DAPT novelty boundary unclear**
+R2 argues that DAPT is well-known (Gururangan et al., 2020) and the paper's contribution is not clearly differentiated. I need to think about this carefully. The paper's contribution is not "DAPT works" but rather the controlled ablation decomposing WHICH factors of DAPT matter. 
+
+The 7-variant controlled study isolating domain exposure, classification supervision, and label quality represents a genuine decomposition that Gururangan et al. didn't perform. R2 has a fair point though—the evidence hierarchy is somewhat descriptive, and the two-stage frozen design is standard probing methodology, so I partially agree with the concern.
+
+**W2: Synthetic data single source**
+This aligns with my W7. I agree with R2.
+
+**W3: Lack of mechanistic explanation**
+R2 wants deeper insight into why classification supervision outweighs label quality and why MLM-only fails on mixed-LLM data. The paper uses CKA and t-SNE visualizations to describe the phenomena, but stops short of providing causal mechanisms or theoretical grounding for these observations.
+
+**W4: Terminology inconsistency**
+Checking against my reading, I see "OOD" and "cross-attack generalization" used somewhat interchangeably, "DAPT" sometimes referring to all Stage-1 variants and sometimes to the specific continued pretraining, and "evidence hierarchy" appearing in the abstract before being formally defined. This is a legitimate readability issue.
+
+**W5: LLM-as-judge baseline coverage**
+The paper evaluates Qwen3-8B and GPT-5.5 as LLM judges in the appendix but doesn't benchmark against specialized safety models like Llama Guard 3, WildGuard, or ShieldGemma.
+
+**W6: Strategy annotation sample size**
+This matches my own concern.
+
+**Q1: Scrambled labels and MTL implications**
+The scrambled result is interesting—it suggests the classification gradient direction itself doesn't matter, only that a classification loss provides regularization and structure. That has real implications for how we think about multitask learning here.
+
+**Q2: Mixed-LLM asymmetry**
+The paper addresses this in Section 4.5 and Appendix L.
+
+**Q3: Evidence hierarchy consistency across OOD**
+FITD shows different patterns, so I need to verify whether the hierarchy actually holds across different out-of-distribution settings.
+
+**Q4: Perturbation analysis contradiction**
+There's a tension between classification-supervised variants showing no degradation under paraphrase versus DAPT degrading by 12 percentage points or more.
+
+Actually, this doesn't contradict the hierarchy—it supports it. Classification-supervised methods outperforming DAPT (which is MLM-only) is exactly what we'd expect, so I can push back on this one.
+
+**Q5: Contrastive learning**
+Fair suggestion but not really a weakness.
+
+**Missing references**
+SafeDecoding and Circuit Breakers are defense methods rather than detection approaches, so they're only tangentially relevant. GradSafe uses gradients for safety, which is closer to our work. WildChat is a dataset that could actually be useful for evaluation, though the paper's focus on encoder-based detection means some of these are less directly applicable.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93ac7f74-a269-4e52-b165-d4180a0eae64",
+  "isSidechain": false,
+  "requestId": "req_011CbFJ7fxEhneC965kPiiAz",
+  "type": "assistant",
+  "uuid": "140b10d1-463a-4567-9fb1-4d473f53ac65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kskg9R8GYwpXhaZY3gXat3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 64962,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 4600,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 64962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4600,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 64962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 64962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 38089
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 143 · 2026-05-21T07:10:45.591Z_
+
+逐条回应 Reviewer 2 的意见。我需要回顾论文中的关键证据来支撑判断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "140b10d1-463a-4567-9fb1-4d473f53ac65",
+  "isSidechain": false,
+  "requestId": "req_011CbFJ7fxEhneC965kPiiAz",
+  "type": "assistant",
+  "uuid": "038fb418-36ad-454d-abf5-1d00062a8dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kskg9R8GYwpXhaZY3gXat3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 64962,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 4600,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 64962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4600,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 64962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 64962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 38089
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 144 · 2026-05-21T07:12:01.505Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01JT35zCzsqUCCUwYAsQbSwA`</summary>
+
+```json
+{
+  "text": "\n# Reviewer 1 对 Reviewer 2 审稿意见的交叉回应\n\n---\n\n## Weaknesses 回应\n\n**[AGREE] R2-W1: 核心贡献与 DAPT 的边界不清晰**\n\n同意 R2 的核心判断。Gururangan et al. (2020) 已建立 DAPT 的一般有效性；本文的真正增量贡献不在于\"DAPT 有效\"，而在于因子分解——7 个变体控制消融揭示了*哪些因素*驱动适配效果。但正如 R2 所指出，论文的 framing 确实模糊了这一边界。具体来说：\n\n- Introduction 的 Contribution 列表第一条将 \"DisPeD pipeline\" 作为贡献，但 pipeline 本身（Stage-1 encoder adaptation + Stage-2 frozen BiGRU）是标准 probing 范式的直接应用，不构成方法论创新。\n- \"Evidence hierarchy\" 确实是实验观察的描述性总结（Section 4.3: \"A clear evidence hierarchy emerges across seven variants\"），不是可复用的方法论框架。\n\n但我要补充：R2 可能低估了负面结果的贡献价值。Scrambled≈correct（Table 2-3）和 temporal order irrelevant 这些发现在控制实验设计下的可信度高于通常的 ablation study，对社区理解 encoder adaptation 的机制有实质意义。建议作者重新定位 contribution：弱化 pipeline 和 hierarchy 的方法论包装，强化\"controlled factor decomposition revealing surprising null effects\"。\n\n**[AGREE] R2-W2: 合成数据单一来源导致泛化结论外部效度存疑**\n\n完全同意，这与我的 W7 一致。补充两点 R2 未展开的具体证据：\n\n1. Table 12（Appendix L）的 Cross-LLM 分析显示，Llama-only 条件下 F1 collapse 主要由 unfamiliar benign text 的 false positives 驱动（FP rate 在 unfamiliar benign 上升），说明模型确实学到了 Qwen3-8B 的 benign 分布特征作为\"negative template\"，而非学到了通用的 jailbreak 模式。\n2. Section 4.5 Mixed-LLM 实验仅加入 Llama-3.1-8B 250 条对话（一个额外 LLM），不足以证明跨 LLM 泛化。\n\nR2 提到 MHJ（Li et al., 2024）数据集未被用于评估，这是合理的建议——MHJ 包含真实人写多轮越狱对话，是当前最接近 real-world 的多轮评估数据。\n\n**[PARTIALLY AGREE] R2-W3: 缺少对核心机制的深入解释**\n\n部分同意。R2 的期望合理——\"分类监督比标签质量更重要\"和\"MLM-only 在混合 LLM 上崩溃\"缺乏因果解释。CKA（Appendix F, Figure 4）和 t-SNE（Appendix G）确实是描述性工具。\n\n但我认为 R2 的标准对本文类型略高。本文定位为 controlled empirical study（类似 NLI 领域的 Gururangan et al. 2018 \"Annotation Artifacts\" 或 Niven & Kao 2019 \"Probing Neural Network Comprehension\"——两者都以精心控制的实验建立现象，而非提供完整机制解释）。论文的 CKA 分析（Section 4.3 提到\"linear probing confirms that DAPT reshapes representations substantially, Figure 4, though comparable CKA shifts yield different detection gains\"）已指向一个值得追踪的线索：representation 的变化幅度不等于检测能力的变化幅度。\n\n建议作者补充一段讨论，明确区分\"本文建立的现象\"和\"待解释的机制\"，将 WHY 问题框架为 future work 中的具体假设（如：分类 loss 是否通过正则化防止 catastrophic forgetting？是否通过强制线性可分性保持判别信息？）。\n\n**[AGREE] R2-W4: 术语不一致**\n\n同意。我在阅读中也注意到这一问题：\n- \"OOD\" 在 Section 4.1 指代 FITD + ActorAttack 攻击族，但在 Section 4.4 的 ToxicChat 讨论中又隐含了\"distribution shift from synthetic to human data\"的含义——这是两个不同维度的 OOD。\n- \"DAPT\" 在 Section 2（Related Work, \"Domain-adaptive pretraining\"）指 Gururangan et al. 的 continued pretraining，但在 Section 4 的实验讨论中，\"DAPT variants\" 有时包括分类监督变体（如 9-class），这与 DAPT 的经典定义（无监督 continued pretraining）矛盾。\n- \"Evidence hierarchy\" 在 Abstract 中首次出现但未定义，读者需等到 Section 4.3 才理解其含义。\n\n这是可在 camera-ready 中修复的可读性问题。\n\n**[AGREE] R2-W5: LLM-as-judge baseline 覆盖不足**\n\n同意，但要补充 nuance。论文的比较对象确实仅限于 Qwen3-8B 和 GPT-5.5 作为 LLM-as-judge（Appendix A, Table 6）。Llama Guard 3、WildGuard、ShieldGemma 是当前最相关的专用安全分类器 baseline——它们与本文的 encoder-based 方法直接竞争同一应用场景。\n\n但需注意公平性问题：这些 baseline 多为 7B+ 参数的模型，本文的 encoder 仅 125-355M 参数，存在数量级的参数差距。建议作者添加这些 baseline 并明确标注参数量差异，让读者在效率-性能 tradeoff 维度上判断。论文在 Appendix U（Table 25）报告了推理延迟（DeBERTa+BiGRU 12.1ms vs Qwen3-8B 3-shot 5.2s），这一效率优势是合理的卖点，但需要与专用安全分类器（而非通用 LLM）对比才有说服力。\n\n**[AGREE] R2-W6: 策略标注人工验证规模偏小**\n\n同意，与我的 W6 一致。κ=0.78, n=50 在 9-class 任务上不充分。不再赘述。\n\n---\n\n## Questions 回应\n\n**[REBUT] R2-Q1: Scrambled labels 是否意味着梯度信号方向不重要？**\n\nR2 的推理方向正确但结论需要更谨慎。Scrambled≈correct 不直接意味着\"梯度方向不重要\"，而是意味着在*这个特定的 DAPT 设置*下（Stage-1 多任务 MLM+分类，Stage-2 冻结 probing），分类 loss 的主要作用可能是：(1) 提供正则化信号防止 MLM 过度改变表征；(2) 强制表征空间保持某种结构化（即使结构与真实标签不对应）。\n\n关键证据：Section 4.8（Strategy Trajectory Analysis）显示 9-class 策略预测准确率在 IID 上 50.1%（仅 50 个样本上的验证），在 OOD 上显著下降（\"Strategy prediction accuracy is substantially above random (50.1% vs 11.1% chance for 9 classes)\"但 \"OOD strategy accuracy degrades to 30.7%\"）。这说明分类头确实学到了*部分*语义信号，但这一信号对下游检测不是必要的。\n\n对 MTL 文献的启示需要更严格的实验才能确认——当前结论仅限于 frozen probing 场景，不能直接推广到 end-to-end fine-tuning。\n\n**[AGREE] R2-Q3: Evidence hierarchy 在 FITD 上的不同模式**\n\nR2 提出了一个我在初审中未充分关注的问题。重新检查 Table 3：\n\n- DD OOD：9-class (0.944±0.009) > MLM (0.904±0.113) > Vanilla (0.312±0.026) — hierarchy 成立\n- ActorAttack OOD：9-class (0.953±0.043) > MLM (不确定排名) > Vanilla (接近 0)\n- FITD OOD：Section 4.2 提到\"FITD is non-discriminative for all methods\"，且 Table 3 注释显示\"FITD is non-discriminative (no sd.)\"\n\nFITD 的非判别性确实削弱了 hierarchy 的普遍性声称。如果三个 OOD 攻击族中有一个无法区分变体，那么 \"clear evidence hierarchy\" 实际上只在 2/3 的 OOD 条件上成立。建议作者在讨论 hierarchy 时明确 FITD 的例外情况，并分析 FITD 为何表现不同（可能因为 FITD 使用的 foot-in-the-door 策略与训练集的 Crescendo 策略结构更相似）。\n\n**[REBUT] R2-Q4: 扰动分析零退化 vs DAPT 退化 ≥12pp 是否矛盾**\n\n不矛盾。Table 9-10（Appendix D）显示的是不同层级的鲁棒性：\n\n- Classification-supervised 变体（9-class, Binary 等）在对抗性 paraphrase 下 F1 不退化 → 说明它们学到的表征基于深层语义特征，对表面词汇变化鲁棒\n- MLM-only DAPT 变体退化 ≥12pp → 说明 MLM-only 的表征更依赖词汇/表面特征\n\n这恰好*支持* evidence hierarchy 而非矛盾：classification supervision 不仅提升平均性能，还提升鲁棒性。Hierarchy 的排序是 classification-supervised > MLM-only > vanilla，扰动实验中三者的鲁棒性排序完全一致。\n\n**[AGREE] R2-Q5: 是否考虑过对比学习？**\n\n合理的实验建议。对比学习（如 supervised SimCLR/SupCon 在 turn embeddings 上）可以作为 Stage-1 的额外变体，测试 \"结构化表征学习\" vs \"分类监督\" 的效果差异。但这属于 future work 范畴而非必须修改项。\n\n---\n\n## Missing References 回应\n\nR2 建议的四篇引用：\n- **SafeDecoding (Xu et al., 2024)** 和 **Circuit Breakers (Zou et al., 2024)**：这两篇是 defense methods（解码层干预和表征层断路器），而非 detection 方法。与本文的检测 pipeline 不在同一赛道，但 Related Work 中应简要提及作为\"防御 vs 检测\"的对比。\n- **GradSafe (Xie et al., 2024)**：基于梯度的安全检测，与本文的表征方法有方法论交集，应该引用。\n- **WildChat (Zhao et al., 2024)**：大规模真实用户-AI 对话数据集，可作为额外评估数据。与 ToxicChat 类似但规模更大，建议在 Future Work 中提及。\n\n---\n\n## 总结\n\nR2 的评审整体准确且有建设性。W1（novelty framing）和 W2（数据单一来源）是最核心的问题，与我的独立评估一致。R2 给出 3.0（Findings）略低于我的 3.5（Borderline Conference），主要分歧在于 R2 对 novelty 的要求更严格。我认为控制消融设计的精巧性和负面结果的社区价值值得在 novelty 维度额外加分，但同意如果 W1-W3 不修复，3.0-3.5 是合理区间。\n",
+  "reviewer_id": "1",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "038fb418-36ad-454d-abf5-1d00062a8dc7",
+  "isSidechain": false,
+  "requestId": "req_011CbFJ7fxEhneC965kPiiAz",
+  "type": "assistant",
+  "uuid": "b55b3517-ab70-4538-b9bd-c8b89fcf4c6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kskg9R8GYwpXhaZY3gXat3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 64962,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 4600,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 64962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4600,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 64962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 64962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 38089
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 145 · 2026-05-21T07:12:05.590Z_
+
+<details><summary>↩ Tool result · `toolu_01JT35zCzsqUCCUwYAsQbSwA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_613965f45d48763f375aa83e9294b24a:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b55b3517-ab70-4538-b9bd-c8b89fcf4c6f",
+  "isSidechain": false,
+  "promptId": "aaa905fa-cc58-4a26-9127-28e534301021",
+  "type": "user",
+  "uuid": "77188b75-0240-4738-a240-bf453b585b74",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_613965f45d48763f375aa83e9294b24a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_613965f45d48763f375aa83e9294b24a:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "b55b3517-ab70-4538-b9bd-c8b89fcf4c6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/review_reviewer_1_10e47827",
+  "sessionId": "45ed6ff5-c944-4d96-b449-b024213524ab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

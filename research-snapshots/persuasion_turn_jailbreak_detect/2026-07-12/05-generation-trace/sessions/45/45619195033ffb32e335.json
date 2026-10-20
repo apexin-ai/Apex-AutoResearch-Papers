@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "45619195033ffb32e335",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Server: westd-33183 Env: source /root/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate base P",
+  "task_key": "e0fc1be8-fe71-4a15-bbd5-2cdb920880ae",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/e0fc1be8-fe71-4a15-bbd5-2cdb920880ae.jsonl",
+    "occurrence": 1,
+    "bytes": 697791,
+    "sha256": "65e501a0280a3544b4f24f25f0a104f64b5385eea7bcfe489b729957f0402fd8"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 1,
+    "tool_calls": 54,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 38,
+      "tool_call": 54,
+      "tool_result": 54
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "45619195033ffb32e335-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "45619195033ffb32e335-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "45619195033ffb32e335-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-server-westd-33183-env-source-root-miniconda3-etc-profile-d-cond.md"
+}

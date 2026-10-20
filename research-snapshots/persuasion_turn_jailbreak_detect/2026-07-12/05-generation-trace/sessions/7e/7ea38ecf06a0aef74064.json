@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "id": "7ea38ecf06a0aef74064",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: persuasion_turn_jailbreak_detect - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0514_",
+  "task_key": "d2948266-7e3a-43cd-870e-456d66faf612",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/d2948266-7e3a-43cd-870e-456d66faf612.jsonl",
+    "occurrence": 1,
+    "bytes": 872450,
+    "sha256": "c5c5b4cdcb8d1401a594c9bab3d2900c695b3f64fbfe1a63489c236c0b55240c"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 13,
+    "tool_calls": 42,
+    "roles": {
+      "record": 70,
+      "user": 13,
+      "assistant": 29,
+      "tool_call": 42,
+      "tool_result": 42,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7ea38ecf06a0aef74064-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-persuasion-turn-jailbreak-detect-home-ubuntu-agent-ml-research-idea-gen-0514-copy-11.md"
+}

@@ -1,0 +1,1606 @@
+{
+  "schema_version": "1.0",
+  "session_id": "826407a493b01138d7ea",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-18T11:52:51.336Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X5Wqkh86MRPPpYb4UJb97A",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-33183",
+                "command": "tail -5 /root/persuasion_turn_jailbreak_detect/logs/exp4_vanilla_mcnemar.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "222f3413-0084-47af-aedd-ee25bf767497",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEDc3wWNKHnpDnrSdp",
+            "type": "assistant",
+            "uuid": "14ae59a9-fb46-4c0f-a532-2d5934d60992",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EHV8KJEoRvnpvnk7mUFNuM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1103,
+                "cache_read_input_tokens": 79516,
+                "output_tokens": 146,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1103,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 146,
+                    "cache_read_input_tokens": 79516,
+                    "cache_creation_input_tokens": 1103,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1103
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-18T11:52:51.781Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X5Wqkh86MRPPpYb4UJb97A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Part B saved to /root/persuasion_turn_jailbreak_detect/results/exp4_mcnemar_perturbed.json\\\\n\\\\n  Combined saved to /root/persuasion_turn_jailbreak_detect/results/exp4_vanilla_perturbation_mcnemar.json\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14ae59a9-fb46-4c0f-a532-2d5934d60992",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "82cdb701-4ec7-44fa-980f-de36803122ac",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Part B saved to /root/persuasion_turn_jailbreak_detect/results/exp4_mcnemar_perturbed.json\\\\n\\\\n  Combined saved to /root/persuasion_turn_jailbreak_detect/results/exp4_vanilla_perturbation_mcnemar.json\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  Part B saved to /root/persuasion_turn_jailbreak_detect/results/exp4_mcnemar_perturbed.json\\n\\n  Combined saved to /root/persuasion_turn_jailbreak_detect/results/exp4_vanilla_perturbation_mcnemar.json\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "14ae59a9-fb46-4c0f-a532-2d5934d60992",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-18T11:52:51.784Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "82cdb701-4ec7-44fa-980f-de36803122ac",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9618d0fb-3bcc-4533-abb5-c2769e45d947",
+                "timestamp": "2026-05-18T11:52:51.784Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-18T11:52:55.604Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script completed. Let me read the full results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9618d0fb-3bcc-4533-abb5-c2769e45d947",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEVhg5Y9bCc55hM7Ka",
+            "type": "assistant",
+            "uuid": "41b1716b-f4ad-407c-bfca-0c2174c0a88d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SdRzyk8SU8FXckn2kNA8kq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 404,
+                "cache_read_input_tokens": 80619,
+                "output_tokens": 257,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 404,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 257,
+                    "cache_read_input_tokens": 80619,
+                    "cache_creation_input_tokens": 404,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 404
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-18T11:52:56.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KjiHigQagMdBWecK4t81as",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-33183",
+                "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp4_vanilla_3seed_perturbation.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41b1716b-f4ad-407c-bfca-0c2174c0a88d",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEVhg5Y9bCc55hM7Ka",
+            "type": "assistant",
+            "uuid": "28675709-def4-4b8e-9b89-716ecb8bda92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SdRzyk8SU8FXckn2kNA8kq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 404,
+                "cache_read_input_tokens": 80619,
+                "output_tokens": 257,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 404,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 257,
+                    "cache_read_input_tokens": 80619,
+                    "cache_creation_input_tokens": 404,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 404
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-18T11:52:57.367Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KjiHigQagMdBWecK4t81as",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"seed42\\\\\\\": {\\\\n      \\\\\\\"clean\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.5752,\\\\n        \\\\\\\"k2\\\\\\\": 0.4381,\\\\n        \\\\\\\"k3\\\\\\\": 0.3596,\\\\n        \\\\\\\"k5\\\\\\\": 0.3105,\\\\n        \\\\\\\"full\\\\\\\": 0.2845\\\\n      },\\\\n      \\\\\\\"perturbed\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.5205,\\\\n        \\\\\\\"k2\\\\\\\": 0.4381,\\\\n        \\\\\\\"k3\\\\\\\": 0.3477,\\\\n        \\\\\\\"k5\\\\\\\": 0.2845,\\\\n        \\\\\\\"full\\\\\\\": 0.2711\\\\n      },\\\\n      \\\\\\\"delta\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": -0.0547,\\\\n        \\\\\\\"k2\\\\\\\": 0.0,\\\\n        \\\\\\\"k3\\\\\\\": -0.0119,\\\\n        \\\\\\\"k5\\\\\\\": -0.026,\\\\n        \\\\\\\"full\\\\\\\": -0.0134\\\\n      }\\\\n    },\\\\n    \\\\\\\"seed123\\\\\\\": {\\\\n      \\\\\\\"clean\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.6575,\\\\n        \\\\\\\"k2\\\\\\\": 0.5298,\\\\n        \\\\\\\"k3\\\\\\\": 0.4241,\\\\n        \\\\\\\"k5\\\\\\\": 0.3714,\\\\n        \\\\\\\"full\\\\\\\": 0.3048\\\\n      },\\\\n      \\\\\\\"perturbed\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.5761,\\\\n        \\\\\\\"k2\\\\\\\": 0.5015,\\\\n        \\\\\\\"k3\\\\\\\": 0.4241,\\\\n        \\\\\\\"k5\\\\\\\": 0.3714,\\\\n        \\\\\\\"full\\\\\\\": 0.3416\\\\n      },\\\\n      \\\\\\\"delta\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": -0.0814,\\\\n        \\\\\\\"k2\\\\\\\": -0.0283,\\\\n        \\\\\\\"k3\\\\\\\": 0.0,\\\\n        \\\\\\\"k5\\\\\\\": 0.0,\\\\n        \\\\\\\"full\\\\\\\": 0.0368\\\\n      }\\\\n    },\\\\n    \\\\\\\"seed456\\\\\\\": {\\\\n      \\\\\\\"clean\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.6523,\\\\n        \\\\\\\"k2\\\\\\\": 0.4794,\\\\n        \\\\\\\"k3\\\\\\\": 0.3829,\\\\n        \\\\\\\"k5\\\\\\\": 0.3596,\\\\n        \\\\\\\"full\\\\\\\": 0.3477\\\\n      },\\\\n      \\\\\\\"perturbed\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.584,\\\\n        \\\\\\\"k2\\\\\\\": 0.509,\\\\n        \\\\\\\"k3\\\\\\\": 0.4165,\\\\n        \\\\\\\"k5\\\\\\\": 0.3829,\\\\n        \\\\\\\"full\\\\\\\": 0.4055\\\\n      },\\\\n      \\\\\\\"delta\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": -0.0683,\\\\n        \\\\\\\"k2\\\\\\\": 0.0296,\\\\n        \\\\\\\"k3\\\\\\\": 0.0336,\\\\n        \\\\\\\"k5\\\\\\\": 0.0233,\\\\n        \\\\\\\"full\\\\\\\": 0.0578\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"mean_std\\\\\\\": {\\\\n    \\\\\\\"clean_k1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6283,\\\\n      \\\\\\\"std\\\\\\\": 0.0376\\\\n    },\\\\n    \\\\\\\"perturbed_k1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.5602,\\\\n      \\\\\\\"std\\\\\\\": 0.0283\\\\n    },\\\\n    \\\\\\\"delta_k1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": -0.0681,\\\\n      \\\\\\\"std\\\\\\\": 0.0109\\\\n    },\\\\n    \\\\\\\"clean_k2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4824,\\\\n      \\\\\\\"std\\\\\\\": 0.0375\\\\n    },\\\\n    \\\\\\\"perturbed_k2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4829,\\\\n      \\\\\\\"std\\\\\\\": 0.0318\\\\n    },\\\\n    \\\\\\\"delta_k2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0004,\\\\n      \\\\\\\"std\\\\\\\": 0.0236\\\\n    },\\\\n    \\\\\\\"clean_k3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3889,\\\\n      \\\\\\\"std\\\\\\\": 0.0267\\\\n    },\\\\n    \\\\\\\"perturbed_k3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3961,\\\\n      \\\\\\\"std\\\\\\\": 0.0344\\\\n    },\\\\n    \\\\\\\"delta_k3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0072,\\\\n      \\\\\\\"std\\\\\\\": 0.0193\\\\n    },\\\\n    \\\\\\\"clean_k5\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3472,\\\\n      \\\\\\\"std\\\\\\\": 0.0264\\\\n    },\\\\n    \\\\\\\"perturbed_k5\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3463,\\\\n      \\\\\\\"std\\\\\\\": 0.0439\\\\n    },\\\\n    \\\\\\\"delta_k5\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": -0.0009,\\\\n      \\\\\\\"std\\\\\\\": 0.0201\\\\n    },\\\\n    \\\\\\\"clean_full\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3123,\\\\n      \\\\\\\"std\\\\\\\": 0.0263\\\\n    },\\\\n    \\\\\\\"perturbed_full\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3394,\\\\n      \\\\\\\"std\\\\\\\": 0.0549\\\\n    },\\\\n    \\\\\\\"delta_full\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0271,\\\\n      \\\\\\\"std\\\\\\\": 0.0299\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28675709-def4-4b8e-9b89-716ecb8bda92",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "f6e6f417-72b3-4fb6-90a5-6fbc6461b081",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed\\\\\\\": {\\\\n    \\\\\\\"seed42\\\\\\\": {\\\\n      \\\\\\\"clean\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.5752,\\\\n        \\\\\\\"k2\\\\\\\": 0.4381,\\\\n        \\\\\\\"k3\\\\\\\": 0.3596,\\\\n        \\\\\\\"k5\\\\\\\": 0.3105,\\\\n        \\\\\\\"full\\\\\\\": 0.2845\\\\n      },\\\\n      \\\\\\\"perturbed\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.5205,\\\\n        \\\\\\\"k2\\\\\\\": 0.4381,\\\\n        \\\\\\\"k3\\\\\\\": 0.3477,\\\\n        \\\\\\\"k5\\\\\\\": 0.2845,\\\\n        \\\\\\\"full\\\\\\\": 0.2711\\\\n      },\\\\n      \\\\\\\"delta\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": -0.0547,\\\\n        \\\\\\\"k2\\\\\\\": 0.0,\\\\n        \\\\\\\"k3\\\\\\\": -0.0119,\\\\n        \\\\\\\"k5\\\\\\\": -0.026,\\\\n        \\\\\\\"full\\\\\\\": -0.0134\\\\n      }\\\\n    },\\\\n    \\\\\\\"seed123\\\\\\\": {\\\\n      \\\\\\\"clean\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.6575,\\\\n        \\\\\\\"k2\\\\\\\": 0.5298,\\\\n        \\\\\\\"k3\\\\\\\": 0.4241,\\\\n        \\\\\\\"k5\\\\\\\": 0.3714,\\\\n        \\\\\\\"full\\\\\\\": 0.3048\\\\n      },\\\\n      \\\\\\\"perturbed\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.5761,\\\\n        \\\\\\\"k2\\\\\\\": 0.5015,\\\\n        \\\\\\\"k3\\\\\\\": 0.4241,\\\\n        \\\\\\\"k5\\\\\\\": 0.3714,\\\\n        \\\\\\\"full\\\\\\\": 0.3416\\\\n      },\\\\n      \\\\\\\"delta\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": -0.0814,\\\\n        \\\\\\\"k2\\\\\\\": -0.0283,\\\\n        \\\\\\\"k3\\\\\\\": 0.0,\\\\n        \\\\\\\"k5\\\\\\\": 0.0,\\\\n        \\\\\\\"full\\\\\\\": 0.0368\\\\n      }\\\\n    },\\\\n    \\\\\\\"seed456\\\\\\\": {\\\\n      \\\\\\\"clean\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.6523,\\\\n        \\\\\\\"k2\\\\\\\": 0.4794,\\\\n        \\\\\\\"k3\\\\\\\": 0.3829,\\\\n        \\\\\\\"k5\\\\\\\": 0.3596,\\\\n        \\\\\\\"full\\\\\\\": 0.3477\\\\n      },\\\\n      \\\\\\\"perturbed\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": 0.584,\\\\n        \\\\\\\"k2\\\\\\\": 0.509,\\\\n        \\\\\\\"k3\\\\\\\": 0.4165,\\\\n        \\\\\\\"k5\\\\\\\": 0.3829,\\\\n        \\\\\\\"full\\\\\\\": 0.4055\\\\n      },\\\\n      \\\\\\\"delta\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": -0.0683,\\\\n        \\\\\\\"k2\\\\\\\": 0.0296,\\\\n        \\\\\\\"k3\\\\\\\": 0.0336,\\\\n        \\\\\\\"k5\\\\\\\": 0.0233,\\\\n        \\\\\\\"full\\\\\\\": 0.0578\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"mean_std\\\\\\\": {\\\\n    \\\\\\\"clean_k1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6283,\\\\n      \\\\\\\"std\\\\\\\": 0.0376\\\\n    },\\\\n    \\\\\\\"perturbed_k1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.5602,\\\\n      \\\\\\\"std\\\\\\\": 0.0283\\\\n    },\\\\n    \\\\\\\"delta_k1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": -0.0681,\\\\n      \\\\\\\"std\\\\\\\": 0.0109\\\\n    },\\\\n    \\\\\\\"clean_k2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4824,\\\\n      \\\\\\\"std\\\\\\\": 0.0375\\\\n    },\\\\n    \\\\\\\"perturbed_k2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.4829,\\\\n      \\\\\\\"std\\\\\\\": 0.0318\\\\n    },\\\\n    \\\\\\\"delta_k2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0004,\\\\n      \\\\\\\"std\\\\\\\": 0.0236\\\\n    },\\\\n    \\\\\\\"clean_k3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3889,\\\\n      \\\\\\\"std\\\\\\\": 0.0267\\\\n    },\\\\n    \\\\\\\"perturbed_k3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3961,\\\\n      \\\\\\\"std\\\\\\\": 0.0344\\\\n    },\\\\n    \\\\\\\"delta_k3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0072,\\\\n      \\\\\\\"std\\\\\\\": 0.0193\\\\n    },\\\\n    \\\\\\\"clean_k5\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3472,\\\\n      \\\\\\\"std\\\\\\\": 0.0264\\\\n    },\\\\n    \\\\\\\"perturbed_k5\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3463,\\\\n      \\\\\\\"std\\\\\\\": 0.0439\\\\n    },\\\\n    \\\\\\\"delta_k5\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": -0.0009,\\\\n      \\\\\\\"std\\\\\\\": 0.0201\\\\n    },\\\\n    \\\\\\\"clean_full\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3123,\\\\n      \\\\\\\"std\\\\\\\": 0.0263\\\\n    },\\\\n    \\\\\\\"perturbed_full\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3394,\\\\n      \\\\\\\"std\\\\\\\": 0.0549\\\\n    },\\\\n    \\\\\\\"delta_full\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.0271,\\\\n      \\\\\\\"std\\\\\\\": 0.0299\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_seed\\\": {\\n    \\\"seed42\\\": {\\n      \\\"clean\\\": {\\n        \\\"k1\\\": 0.5752,\\n        \\\"k2\\\": 0.4381,\\n        \\\"k3\\\": 0.3596,\\n        \\\"k5\\\": 0.3105,\\n        \\\"full\\\": 0.2845\\n      },\\n      \\\"perturbed\\\": {\\n        \\\"k1\\\": 0.5205,\\n        \\\"k2\\\": 0.4381,\\n        \\\"k3\\\": 0.3477,\\n        \\\"k5\\\": 0.2845,\\n        \\\"full\\\": 0.2711\\n      },\\n      \\\"delta\\\": {\\n        \\\"k1\\\": -0.0547,\\n        \\\"k2\\\": 0.0,\\n        \\\"k3\\\": -0.0119,\\n        \\\"k5\\\": -0.026,\\n        \\\"full\\\": -0.0134\\n      }\\n    },\\n    \\\"seed123\\\": {\\n      \\\"clean\\\": {\\n        \\\"k1\\\": 0.6575,\\n        \\\"k2\\\": 0.5298,\\n        \\\"k3\\\": 0.4241,\\n        \\\"k5\\\": 0.3714,\\n        \\\"full\\\": 0.3048\\n      },\\n      \\\"perturbed\\\": {\\n        \\\"k1\\\": 0.5761,\\n        \\\"k2\\\": 0.5015,\\n        \\\"k3\\\": 0.4241,\\n        \\\"k5\\\": 0.3714,\\n        \\\"full\\\": 0.3416\\n      },\\n      \\\"delta\\\": {\\n        \\\"k1\\\": -0.0814,\\n        \\\"k2\\\": -0.0283,\\n        \\\"k3\\\": 0.0,\\n        \\\"k5\\\": 0.0,\\n        \\\"full\\\": 0.0368\\n      }\\n    },\\n    \\\"seed456\\\": {\\n      \\\"clean\\\": {\\n        \\\"k1\\\": 0.6523,\\n        \\\"k2\\\": 0.4794,\\n        \\\"k3\\\": 0.3829,\\n        \\\"k5\\\": 0.3596,\\n        \\\"full\\\": 0.3477\\n      },\\n      \\\"perturbed\\\": {\\n        \\\"k1\\\": 0.584,\\n        \\\"k2\\\": 0.509,\\n        \\\"k3\\\": 0.4165,\\n        \\\"k5\\\": 0.3829,\\n        \\\"full\\\": 0.4055\\n      },\\n      \\\"delta\\\": {\\n        \\\"k1\\\": -0.0683,\\n        \\\"k2\\\": 0.0296,\\n        \\\"k3\\\": 0.0336,\\n        \\\"k5\\\": 0.0233,\\n        \\\"full\\\": 0.0578\\n      }\\n    }\\n  },\\n  \\\"mean_std\\\": {\\n    \\\"clean_k1\\\": {\\n      \\\"mean\\\": 0.6283,\\n      \\\"std\\\": 0.0376\\n    },\\n    \\\"perturbed_k1\\\": {\\n      \\\"mean\\\": 0.5602,\\n      \\\"std\\\": 0.0283\\n    },\\n    \\\"delta_k1\\\": {\\n      \\\"mean\\\": -0.0681,\\n      \\\"std\\\": 0.0109\\n    },\\n    \\\"clean_k2\\\": {\\n      \\\"mean\\\": 0.4824,\\n      \\\"std\\\": 0.0375\\n    },\\n    \\\"perturbed_k2\\\": {\\n      \\\"mean\\\": 0.4829,\\n      \\\"std\\\": 0.0318\\n    },\\n    \\\"delta_k2\\\": {\\n      \\\"mean\\\": 0.0004,\\n      \\\"std\\\": 0.0236\\n    },\\n    \\\"clean_k3\\\": {\\n      \\\"mean\\\": 0.3889,\\n      \\\"std\\\": 0.0267\\n    },\\n    \\\"perturbed_k3\\\": {\\n      \\\"mean\\\": 0.3961,\\n      \\\"std\\\": 0.0344\\n    },\\n    \\\"delta_k3\\\": {\\n      \\\"mean\\\": 0.0072,\\n      \\\"std\\\": 0.0193\\n    },\\n    \\\"clean_k5\\\": {\\n      \\\"mean\\\": 0.3472,\\n      \\\"std\\\": 0.0264\\n    },\\n    \\\"perturbed_k5\\\": {\\n      \\\"mean\\\": 0.3463,\\n      \\\"std\\\": 0.0439\\n    },\\n    \\\"delta_k5\\\": {\\n      \\\"mean\\\": -0.0009,\\n      \\\"std\\\": 0.0201\\n    },\\n    \\\"clean_full\\\": {\\n      \\\"mean\\\": 0.3123,\\n      \\\"std\\\": 0.0263\\n    },\\n    \\\"perturbed_full\\\": {\\n      \\\"mean\\\": 0.3394,\\n      \\\"std\\\": 0.0549\\n    },\\n    \\\"delta_full\\\": {\\n      \\\"mean\\\": 0.0271,\\n      \\\"std\\\": 0.0299\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "28675709-def4-4b8e-9b89-716ecb8bda92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-18T11:52:57.414Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PGrW97Ghq1NjwZYrBzjyXp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-33183",
+                "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp4_mcnemar_perturbed.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f6e6f417-72b3-4fb6-90a5-6fbc6461b081",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEVhg5Y9bCc55hM7Ka",
+            "type": "assistant",
+            "uuid": "c2645e34-e265-418a-a1e7-4244e659ad99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SdRzyk8SU8FXckn2kNA8kq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 404,
+                "cache_read_input_tokens": 80619,
+                "output_tokens": 257,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 404,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 257,
+                    "cache_read_input_tokens": 80619,
+                    "cache_creation_input_tokens": 404,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 404
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-18T11:52:57.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PGrW97Ghq1NjwZYrBzjyXp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\\\\\\\",\\\\n  \\\\\\\"comparisons\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"9class\\\\\\\",\\\\n      \\\\\\\"vanilla\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"9class\\\\\\\",\\\\n      \\\\\\\"jb_mlm\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"9class\\\\\\\",\\\\n      \\\\\\\"scrambled\\\\\\\"\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"k_values\\\\\\\": [\\\\n    \\\\\\\"k1\\\\\\\",\\\\n    \\\\\\\"full\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 56,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.5205\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 50,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.5761\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 49,\\\\n      \\\\\\\"c\\\\\\\": 1,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.584\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 78,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.2711\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 73,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.3416\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 67,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.4055\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 4,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.125,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.96\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 4,\\\\n      \\\\\\\"c\\\\\\\": 1,\\\\n      \\\\\\\"p_value\\\\\\\": 0.375,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.96\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 1,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.9902\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 19,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 4e-06,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.8326\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 2,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.5,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.9809\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 1,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"B>A\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2645e34-e265-418a-a1e7-4244e659ad99",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "c0bef8a9-b048-4230-95ca-b44036926aff",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\\\\\\\",\\\\n  \\\\\\\"comparisons\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"9class\\\\\\\",\\\\n      \\\\\\\"vanilla\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"9class\\\\\\\",\\\\n      \\\\\\\"jb_mlm\\\\\\\"\\\\n    ],\\\\n    [\\\\n      \\\\\\\"9class\\\\\\\",\\\\n      \\\\\\\"scrambled\\\\\\\"\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"k_values\\\\\\\": [\\\\n    \\\\\\\"k1\\\\\\\",\\\\n    \\\\\\\"full\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    42,\\\\n    123,\\\\n    456\\\\n  ],\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 56,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.5205\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 50,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.5761\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 49,\\\\n      \\\\\\\"c\\\\\\\": 1,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.584\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 78,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.2711\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 73,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.3416\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 67,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.4055\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 4,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.125,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.96\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 4,\\\\n      \\\\\\\"c\\\\\\\": 1,\\\\n      \\\\\\\"p_value\\\\\\\": 0.375,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.96\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 1,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.9902\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 19,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 4e-06,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.8326\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 2,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 0.5,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 0.9809\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 1,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"B>A\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 42,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 123,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"b\\\\\\\": 0,\\\\n      \\\\\\\"c\\\\\\\": 0,\\\\n      \\\\\\\"p_value\\\\\\\": 1.0,\\\\n      \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n      \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n      \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"seed\\\\\\\": 456,\\\\n      \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n      \\\\\\\"f1_b\\\\\\\": 1.0\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\\\",\\n  \\\"comparisons\\\": [\\n    [\\n      \\\"9class\\\",\\n      \\\"vanilla\\\"\\n    ],\\n    [\\n      \\\"9class\\\",\\n      \\\"jb_mlm\\\"\\n    ],\\n    [\\n      \\\"9class\\\",\\n      \\\"scrambled\\\"\\n    ]\\n  ],\\n  \\\"k_values\\\": [\\n    \\\"k1\\\",\\n    \\\"full\\\"\\n  ],\\n  \\\"seeds\\\": [\\n    42,\\n    123,\\n    456\\n  ],\\n  \\\"results\\\": [\\n    {\\n      \\\"b\\\": 56,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.0,\\n      \\\"test\\\": \\\"chi2_corrected\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 42,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.5205\\n    },\\n    {\\n      \\\"b\\\": 50,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.0,\\n      \\\"test\\\": \\\"chi2_corrected\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 123,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.5761\\n    },\\n    {\\n      \\\"b\\\": 49,\\n      \\\"c\\\": 1,\\n      \\\"p_value\\\": 0.0,\\n      \\\"test\\\": \\\"chi2_corrected\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 456,\\n      \\\"f1_a\\\": 0.9904,\\n      \\\"f1_b\\\": 0.584\\n    },\\n    {\\n      \\\"b\\\": 78,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.0,\\n      \\\"test\\\": \\\"chi2_corrected\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 42,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.2711\\n    },\\n    {\\n      \\\"b\\\": 73,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.0,\\n      \\\"test\\\": \\\"chi2_corrected\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 123,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.3416\\n    },\\n    {\\n      \\\"b\\\": 67,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.0,\\n      \\\"test\\\": \\\"chi2_corrected\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 456,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.4055\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"n/a\\\",\\n      \\\"direction\\\": \\\"tie\\\",\\n      \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 42,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 1.0\\n    },\\n    {\\n      \\\"b\\\": 4,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.125,\\n      \\\"test\\\": \\\"exact_binomial\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 123,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.96\\n    },\\n    {\\n      \\\"b\\\": 4,\\n      \\\"c\\\": 1,\\n      \\\"p_value\\\": 0.375,\\n      \\\"test\\\": \\\"exact_binomial\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 456,\\n      \\\"f1_a\\\": 0.9904,\\n      \\\"f1_b\\\": 0.96\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"n/a\\\",\\n      \\\"direction\\\": \\\"tie\\\",\\n      \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 42,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 1.0\\n    },\\n    {\\n      \\\"b\\\": 1,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"exact_binomial\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 123,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.9902\\n    },\\n    {\\n      \\\"b\\\": 19,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 4e-06,\\n      \\\"test\\\": \\\"exact_binomial\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 456,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.8326\\n    },\\n    {\\n      \\\"b\\\": 2,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 0.5,\\n      \\\"test\\\": \\\"exact_binomial\\\",\\n      \\\"direction\\\": \\\"A>B\\\",\\n      \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 42,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 0.9809\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"n/a\\\",\\n      \\\"direction\\\": \\\"tie\\\",\\n      \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 123,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 1.0\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 1,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"exact_binomial\\\",\\n      \\\"direction\\\": \\\"B>A\\\",\\n      \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n      \\\"k\\\": \\\"k1\\\",\\n      \\\"seed\\\": 456,\\n      \\\"f1_a\\\": 0.9904,\\n      \\\"f1_b\\\": 1.0\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"n/a\\\",\\n      \\\"direction\\\": \\\"tie\\\",\\n      \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 42,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 1.0\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"n/a\\\",\\n      \\\"direction\\\": \\\"tie\\\",\\n      \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 123,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 1.0\\n    },\\n    {\\n      \\\"b\\\": 0,\\n      \\\"c\\\": 0,\\n      \\\"p_value\\\": 1.0,\\n      \\\"test\\\": \\\"n/a\\\",\\n      \\\"direction\\\": \\\"tie\\\",\\n      \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n      \\\"k\\\": \\\"full\\\",\\n      \\\"seed\\\": 456,\\n      \\\"f1_a\\\": 1.0,\\n      \\\"f1_b\\\": 1.0\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c2645e34-e265-418a-a1e7-4244e659ad99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c0bef8a9-b048-4230-95ca-b44036926aff",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Vanilla 3-seed OOD perturbation and McNemar tests",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-18T11:53:05.442Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to:\n1. Verify the results match what was expected for seed42 (cross-check with exp4 json)\n2. Update the exp4 json with the new vanilla 3-seed data\n3. Save local artifacts and register\n\nLet me also check if I need to update the exp4_dd_ood_perturbation.json with the new vanilla results.\n\nSeed42 vanilla results match: k1=0.5752/0.5205, full=0.2845/0.2711. \n\nNow let me save the combined artifact locally and register it. Also need to update the exp4 JSON with the new vanilla 3-seed data.\n\n\nI'm adding the vanilla seed123 and seed456 results to the exp4_dd_ood_perturbation.json file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0bef8a9-b048-4230-95ca-b44036926aff",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEwm5nHXpYerzr7kyR",
+            "type": "assistant",
+            "uuid": "7ebfae85-d453-4ef7-a03c-a033852db607",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MJap13MceFyfE2BC9MvzNu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5631,
+                "cache_read_input_tokens": 81023,
+                "output_tokens": 549,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5631,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 549,
+                    "cache_read_input_tokens": 81023,
+                    "cache_creation_input_tokens": 5631,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5631
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-18T11:53:05.743Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results look correct. Seed42 matches previous results. Now let me update the main exp4 JSON with vanilla 3-seed data and save local artifact."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ebfae85-d453-4ef7-a03c-a033852db607",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEwm5nHXpYerzr7kyR",
+            "type": "assistant",
+            "uuid": "ee7c9266-53ac-4214-8eb7-eb4acefdc5f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MJap13MceFyfE2BC9MvzNu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5631,
+                "cache_read_input_tokens": 81023,
+                "output_tokens": 549,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5631,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 549,
+                    "cache_read_input_tokens": 81023,
+                    "cache_creation_input_tokens": 5631,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5631
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-18T11:53:09.262Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F2K4W8m7B8mmsuoi4yZVWF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-33183",
+                "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nimport numpy as np\n\n# Load exp4 results\nwith open('results/exp4_dd_ood_perturbation.json') as f:\n    exp4 = json.load(f)\n\n# Load new vanilla 3-seed results\nwith open('results/exp4_vanilla_3seed_perturbation.json') as f:\n    vanilla = json.load(f)\n\n# Update exp4 vanilla section\nexp4['variant_results']['vanilla'] = vanilla\nprint('Updated exp4 with vanilla 3-seed results')\n\nwith open('results/exp4_dd_ood_perturbation.json', 'w') as f:\n    json.dump(exp4, f, indent=2)\nprint('Saved updated exp4_dd_ood_perturbation.json')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee7c9266-53ac-4214-8eb7-eb4acefdc5f5",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zEwm5nHXpYerzr7kyR",
+            "type": "assistant",
+            "uuid": "a8aefdec-fcdd-4ff9-85ba-5d65dde2adf8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MJap13MceFyfE2BC9MvzNu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5631,
+                "cache_read_input_tokens": 81023,
+                "output_tokens": 549,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5631,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 549,
+                    "cache_read_input_tokens": 81023,
+                    "cache_creation_input_tokens": 5631,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5631
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-18T11:53:09.725Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F2K4W8m7B8mmsuoi4yZVWF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\n# Load exp4 results\\\\\\\\nwith open(\\\\\\\\'results/exp4_dd_ood_perturbation.json\\\\\\\\') as f:\\\\\\\\n    exp4 = json.load(f)\\\\\\\\n\\\\\\\\n# Load new vanilla 3-seed results\\\\\\\\nwith open(\\\\\\\\'results/exp4_vanilla_3seed_perturbation.json\\\\\\\\') as f:\\\\\\\\n    vanilla = json.load(f)\\\\\\\\n\\\\\\\\n# Update exp4 vanilla section\\\\\\\\nexp4[\\\\\\\\'variant_results\\\\\\\\'][\\\\\\\\'vanilla\\\\\\\\'] = vanilla\\\\\\\\nprint(\\\\\\\\'Updated exp4 with vanilla 3-seed results\\\\\\\\')\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'results/exp4_dd_ood_perturbation.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(exp4, f, indent=2)\\\\\\\\nprint(\\\\\\\\'Saved updated exp4_dd_ood_perturbation.json\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8aefdec-fcdd-4ff9-85ba-5d65dde2adf8",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "ab11932b-dde6-4188-8fc1-e0728566751e",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nimport numpy as np\\\\\\\\n\\\\\\\\n# Load exp4 results\\\\\\\\nwith open(\\\\\\\\'results/exp4_dd_ood_perturbation.json\\\\\\\\') as f:\\\\\\\\n    exp4 = json.load(f)\\\\\\\\n\\\\\\\\n# Load new vanilla 3-seed results\\\\\\\\nwith open(\\\\\\\\'results/exp4_vanilla_3seed_perturbation.json\\\\\\\\') as f:\\\\\\\\n    vanilla = json.load(f)\\\\\\\\n\\\\\\\\n# Update exp4 vanilla section\\\\\\\\nexp4[\\\\\\\\'variant_results\\\\\\\\'][\\\\\\\\'vanilla\\\\\\\\'] = vanilla\\\\\\\\nprint(\\\\\\\\'Updated exp4 with vanilla 3-seed results\\\\\\\\')\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'results/exp4_dd_ood_perturbation.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(exp4, f, indent=2)\\\\\\\\nprint(\\\\\\\\'Saved updated exp4_dd_ood_perturbation.json\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && python3 -c \\\"\\\\nimport json\\\\nimport numpy as np\\\\n\\\\n# Load exp4 results\\\\nwith open(\\\\'results/exp4_dd_ood_perturbation.json\\\\') as f:\\\\n    exp4 = json.load(f)\\\\n\\\\n# Load new vanilla 3-seed results\\\\nwith open(\\\\'results/exp4_vanilla_3seed_perturbation.json\\\\') as f:\\\\n    vanilla = json.load(f)\\\\n\\\\n# Update exp4 vanilla section\\\\nexp4[\\\\'variant_results\\\\'][\\\\'vanilla\\\\'] = vanilla\\\\nprint(\\\\'Updated exp4 with vanilla 3-seed results\\\\')\\\\n\\\\nwith open(\\\\'results/exp4_dd_ood_perturbation.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(exp4, f, indent=2)\\\\nprint(\\\\'Saved updated exp4_dd_ood_perturbation.json\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "a8aefdec-fcdd-4ff9-85ba-5d65dde2adf8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-18T11:53:14.128Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MZiYngowtMnfgcZ2Cc5Hqa",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-33183",
+                "command": "source /root/miniconda3/bin/activate && cd /root/persuasion_turn_jailbreak_detect && python -c \"\nimport json\nwith open('results/exp4_dd_ood_perturbation.json') as f:\n    exp4 = json.load(f)\nwith open('results/exp4_vanilla_3seed_perturbation.json') as f:\n    vanilla = json.load(f)\nexp4['variant_results']['vanilla'] = vanilla\nwith open('results/exp4_dd_ood_perturbation.json', 'w') as f:\n    json.dump(exp4, f, indent=2)\nprint('Done')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab11932b-dde6-4188-8fc1-e0728566751e",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zFpUozXhe1wmBeKgg4",
+            "type": "assistant",
+            "uuid": "6be98954-b043-472f-8bed-d57e420c7cd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014DUphRqNemeAH8qLMqjaLZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 959,
+                "cache_read_input_tokens": 86654,
+                "output_tokens": 265,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 959,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 265,
+                    "cache_read_input_tokens": 86654,
+                    "cache_creation_input_tokens": 959,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 959
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-18T11:53:15.324Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MZiYngowtMnfgcZ2Cc5Hqa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6be98954-b043-472f-8bed-d57e420c7cd9",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "abd54e7a-3569-42e9-8b1c-4e0a7e55b04e",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6be98954-b043-472f-8bed-d57e420c7cd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-18T11:53:17.503Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me save the combined artifact locally and register it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abd54e7a-3569-42e9-8b1c-4e0a7e55b04e",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zGEGHrUHiCPDbSTY4g",
+            "type": "assistant",
+            "uuid": "fce780cb-68b4-4cad-8af6-8b25cd0aea74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmLWfvAF5R4acK6za4HQhc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 87613,
+                "output_tokens": 146,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 341,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 146,
+                    "cache_read_input_tokens": 87613,
+                    "cache_creation_input_tokens": 341,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 341
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-18T11:53:18.497Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KvCSpVgkbiznb4DEZpQVtm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-33183",
+                "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp4_vanilla_perturbation_mcnemar.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fce780cb-68b4-4cad-8af6-8b25cd0aea74",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zGEGHrUHiCPDbSTY4g",
+            "type": "assistant",
+            "uuid": "ec817846-676a-4623-abff-34a7c048436d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmLWfvAF5R4acK6za4HQhc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 87613,
+                "output_tokens": 146,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 341,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 146,
+                    "cache_read_input_tokens": 87613,
+                    "cache_creation_input_tokens": 341,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 341
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-18T11:53:18.940Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KvCSpVgkbiznb4DEZpQVtm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"part_a_vanilla_perturbation\\\\\\\": {\\\\n    \\\\\\\"per_seed\\\\\\\": {\\\\n      \\\\\\\"seed42\\\\\\\": {\\\\n        \\\\\\\"clean\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.5752,\\\\n          \\\\\\\"k2\\\\\\\": 0.4381,\\\\n          \\\\\\\"k3\\\\\\\": 0.3596,\\\\n          \\\\\\\"k5\\\\\\\": 0.3105,\\\\n          \\\\\\\"full\\\\\\\": 0.2845\\\\n        },\\\\n        \\\\\\\"perturbed\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.5205,\\\\n          \\\\\\\"k2\\\\\\\": 0.4381,\\\\n          \\\\\\\"k3\\\\\\\": 0.3477,\\\\n          \\\\\\\"k5\\\\\\\": 0.2845,\\\\n          \\\\\\\"full\\\\\\\": 0.2711\\\\n        },\\\\n        \\\\\\\"delta\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": -0.0547,\\\\n          \\\\\\\"k2\\\\\\\": 0.0,\\\\n          \\\\\\\"k3\\\\\\\": -0.0119,\\\\n          \\\\\\\"k5\\\\\\\": -0.026,\\\\n          \\\\\\\"full\\\\\\\": -0.0134\\\\n        }\\\\n      },\\\\n      \\\\\\\"seed123\\\\\\\": {\\\\n        \\\\\\\"clean\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.6575,\\\\n          \\\\\\\"k2\\\\\\\": 0.5298,\\\\n          \\\\\\\"k3\\\\\\\": 0.4241,\\\\n          \\\\\\\"k5\\\\\\\": 0.3714,\\\\n          \\\\\\\"full\\\\\\\": 0.3048\\\\n        },\\\\n        \\\\\\\"perturbed\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.5761,\\\\n          \\\\\\\"k2\\\\\\\": 0.5015,\\\\n          \\\\\\\"k3\\\\\\\": 0.4241,\\\\n          \\\\\\\"k5\\\\\\\": 0.3714,\\\\n          \\\\\\\"full\\\\\\\": 0.3416\\\\n        },\\\\n        \\\\\\\"delta\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": -0.0814,\\\\n          \\\\\\\"k2\\\\\\\": -0.0283,\\\\n          \\\\\\\"k3\\\\\\\": 0.0,\\\\n          \\\\\\\"k5\\\\\\\": 0.0,\\\\n          \\\\\\\"full\\\\\\\": 0.0368\\\\n        }\\\\n      },\\\\n      \\\\\\\"seed456\\\\\\\": {\\\\n        \\\\\\\"clean\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.6523,\\\\n          \\\\\\\"k2\\\\\\\": 0.4794,\\\\n          \\\\\\\"k3\\\\\\\": 0.3829,\\\\n          \\\\\\\"k5\\\\\\\": 0.3596,\\\\n          \\\\\\\"full\\\\\\\": 0.3477\\\\n        },\\\\n        \\\\\\\"perturbed\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.584,\\\\n          \\\\\\\"k2\\\\\\\": 0.509,\\\\n          \\\\\\\"k3\\\\\\\": 0.4165,\\\\n          \\\\\\\"k5\\\\\\\": 0.3829,\\\\n          \\\\\\\"full\\\\\\\": 0.4055\\\\n        },\\\\n        \\\\\\\"delta\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": -0.0683,\\\\n          \\\\\\\"k2\\\\\\\": 0.0296,\\\\n          \\\\\\\"k3\\\\\\\": 0.0336,\\\\n          \\\\\\\"k5\\\\\\\": 0.0233,\\\\n          \\\\\\\"full\\\\\\\": 0.0578\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"mean_std\\\\\\\": {\\\\n      \\\\\\\"clean_k1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6283,\\\\n        \\\\\\\"std\\\\\\\": 0.0376\\\\n      },\\\\n      \\\\\\\"perturbed_k1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5602,\\\\n        \\\\\\\"std\\\\\\\": 0.0283\\\\n      },\\\\n      \\\\\\\"delta_k1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0681,\\\\n        \\\\\\\"std\\\\\\\": 0.0109\\\\n      },\\\\n      \\\\\\\"clean_k2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4824,\\\\n        \\\\\\\"std\\\\\\\": 0.0375\\\\n      },\\\\n      \\\\\\\"perturbed_k2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4829,\\\\n        \\\\\\\"std\\\\\\\": 0.0318\\\\n      },\\\\n      \\\\\\\"delta_k2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0004,\\\\n        \\\\\\\"std\\\\\\\": 0.0236\\\\n      },\\\\n      \\\\\\\"clean_k3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3889,\\\\n        \\\\\\\"std\\\\\\\": 0.0267\\\\n      },\\\\n      \\\\\\\"perturbed_k3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3961,\\\\n        \\\\\\\"std\\\\\\\": 0.0344\\\\n      },\\\\n      \\\\\\\"delta_k3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0072,\\\\n        \\\\\\\"std\\\\\\\": 0.0193\\\\n      },\\\\n      \\\\\\\"clean_k5\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3472,\\\\n        \\\\\\\"std\\\\\\\": 0.0264\\\\n      },\\\\n      \\\\\\\"perturbed_k5\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3463,\\\\n        \\\\\\\"std\\\\\\\": 0.0439\\\\n      },\\\\n      \\\\\\\"delta_k5\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0009,\\\\n        \\\\\\\"std\\\\\\\": 0.0201\\\\n      },\\\\n      \\\\\\\"clean_full\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3123,\\\\n        \\\\\\\"std\\\\\\\": 0.0263\\\\n      },\\\\n      \\\\\\\"perturbed_full\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3394,\\\\n        \\\\\\\"std\\\\\\\": 0.0549\\\\n      },\\\\n      \\\\\\\"delta_full\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0271,\\\\n        \\\\\\\"std\\\\\\\": 0.0299\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"part_b_mcnemar\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\\\\\\\",\\\\n    \\\\\\\"comparisons\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"9class\\\\\\\",\\\\n        \\\\\\\"vanilla\\\\\\\"\\\\n      ],\\\\n      [\\\\n        \\\\\\\"9class\\\\\\\",\\\\n        \\\\\\\"jb_mlm\\\\\\\"\\\\n      ],\\\\n      [\\\\n        \\\\\\\"9class\\\\\\\",\\\\n        \\\\\\\"scrambled\\\\\\\"\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"k_values\\\\\\\": [\\\\n      \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"full\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"results\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 56,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.5205\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 50,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.5761\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 49,\\\\n        \\\\\\\"c\\\\\\\": 1,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.584\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 78,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.2711\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 73,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.3416\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 67,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.4055\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 4,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.125,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.96\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 4,\\\\n        \\\\\\\"c\\\\\\\": 1,\\\\n        \\\\\\\"p_value\\\\\\\": 0.375,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.96\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 1,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.9902\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 19,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 4e-06,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.8326\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 2,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.5,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.9809\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 1,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"B>A\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec817846-676a-4623-abff-34a7c048436d",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "0a30f9fd-7ec8-46ea-8137-3a1008371235",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"part_a_vanilla_perturbation\\\\\\\": {\\\\n    \\\\\\\"per_seed\\\\\\\": {\\\\n      \\\\\\\"seed42\\\\\\\": {\\\\n        \\\\\\\"clean\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.5752,\\\\n          \\\\\\\"k2\\\\\\\": 0.4381,\\\\n          \\\\\\\"k3\\\\\\\": 0.3596,\\\\n          \\\\\\\"k5\\\\\\\": 0.3105,\\\\n          \\\\\\\"full\\\\\\\": 0.2845\\\\n        },\\\\n        \\\\\\\"perturbed\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.5205,\\\\n          \\\\\\\"k2\\\\\\\": 0.4381,\\\\n          \\\\\\\"k3\\\\\\\": 0.3477,\\\\n          \\\\\\\"k5\\\\\\\": 0.2845,\\\\n          \\\\\\\"full\\\\\\\": 0.2711\\\\n        },\\\\n        \\\\\\\"delta\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": -0.0547,\\\\n          \\\\\\\"k2\\\\\\\": 0.0,\\\\n          \\\\\\\"k3\\\\\\\": -0.0119,\\\\n          \\\\\\\"k5\\\\\\\": -0.026,\\\\n          \\\\\\\"full\\\\\\\": -0.0134\\\\n        }\\\\n      },\\\\n      \\\\\\\"seed123\\\\\\\": {\\\\n        \\\\\\\"clean\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.6575,\\\\n          \\\\\\\"k2\\\\\\\": 0.5298,\\\\n          \\\\\\\"k3\\\\\\\": 0.4241,\\\\n          \\\\\\\"k5\\\\\\\": 0.3714,\\\\n          \\\\\\\"full\\\\\\\": 0.3048\\\\n        },\\\\n        \\\\\\\"perturbed\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.5761,\\\\n          \\\\\\\"k2\\\\\\\": 0.5015,\\\\n          \\\\\\\"k3\\\\\\\": 0.4241,\\\\n          \\\\\\\"k5\\\\\\\": 0.3714,\\\\n          \\\\\\\"full\\\\\\\": 0.3416\\\\n        },\\\\n        \\\\\\\"delta\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": -0.0814,\\\\n          \\\\\\\"k2\\\\\\\": -0.0283,\\\\n          \\\\\\\"k3\\\\\\\": 0.0,\\\\n          \\\\\\\"k5\\\\\\\": 0.0,\\\\n          \\\\\\\"full\\\\\\\": 0.0368\\\\n        }\\\\n      },\\\\n      \\\\\\\"seed456\\\\\\\": {\\\\n        \\\\\\\"clean\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.6523,\\\\n          \\\\\\\"k2\\\\\\\": 0.4794,\\\\n          \\\\\\\"k3\\\\\\\": 0.3829,\\\\n          \\\\\\\"k5\\\\\\\": 0.3596,\\\\n          \\\\\\\"full\\\\\\\": 0.3477\\\\n        },\\\\n        \\\\\\\"perturbed\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": 0.584,\\\\n          \\\\\\\"k2\\\\\\\": 0.509,\\\\n          \\\\\\\"k3\\\\\\\": 0.4165,\\\\n          \\\\\\\"k5\\\\\\\": 0.3829,\\\\n          \\\\\\\"full\\\\\\\": 0.4055\\\\n        },\\\\n        \\\\\\\"delta\\\\\\\": {\\\\n          \\\\\\\"k1\\\\\\\": -0.0683,\\\\n          \\\\\\\"k2\\\\\\\": 0.0296,\\\\n          \\\\\\\"k3\\\\\\\": 0.0336,\\\\n          \\\\\\\"k5\\\\\\\": 0.0233,\\\\n          \\\\\\\"full\\\\\\\": 0.0578\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"mean_std\\\\\\\": {\\\\n      \\\\\\\"clean_k1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6283,\\\\n        \\\\\\\"std\\\\\\\": 0.0376\\\\n      },\\\\n      \\\\\\\"perturbed_k1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.5602,\\\\n        \\\\\\\"std\\\\\\\": 0.0283\\\\n      },\\\\n      \\\\\\\"delta_k1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0681,\\\\n        \\\\\\\"std\\\\\\\": 0.0109\\\\n      },\\\\n      \\\\\\\"clean_k2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4824,\\\\n        \\\\\\\"std\\\\\\\": 0.0375\\\\n      },\\\\n      \\\\\\\"perturbed_k2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.4829,\\\\n        \\\\\\\"std\\\\\\\": 0.0318\\\\n      },\\\\n      \\\\\\\"delta_k2\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0004,\\\\n        \\\\\\\"std\\\\\\\": 0.0236\\\\n      },\\\\n      \\\\\\\"clean_k3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3889,\\\\n        \\\\\\\"std\\\\\\\": 0.0267\\\\n      },\\\\n      \\\\\\\"perturbed_k3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3961,\\\\n        \\\\\\\"std\\\\\\\": 0.0344\\\\n      },\\\\n      \\\\\\\"delta_k3\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0072,\\\\n        \\\\\\\"std\\\\\\\": 0.0193\\\\n      },\\\\n      \\\\\\\"clean_k5\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3472,\\\\n        \\\\\\\"std\\\\\\\": 0.0264\\\\n      },\\\\n      \\\\\\\"perturbed_k5\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3463,\\\\n        \\\\\\\"std\\\\\\\": 0.0439\\\\n      },\\\\n      \\\\\\\"delta_k5\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.0009,\\\\n        \\\\\\\"std\\\\\\\": 0.0201\\\\n      },\\\\n      \\\\\\\"clean_full\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3123,\\\\n        \\\\\\\"std\\\\\\\": 0.0263\\\\n      },\\\\n      \\\\\\\"perturbed_full\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.3394,\\\\n        \\\\\\\"std\\\\\\\": 0.0549\\\\n      },\\\\n      \\\\\\\"delta_full\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.0271,\\\\n        \\\\\\\"std\\\\\\\": 0.0299\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"part_b_mcnemar\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\\\\\\\",\\\\n    \\\\\\\"comparisons\\\\\\\": [\\\\n      [\\\\n        \\\\\\\"9class\\\\\\\",\\\\n        \\\\\\\"vanilla\\\\\\\"\\\\n      ],\\\\n      [\\\\n        \\\\\\\"9class\\\\\\\",\\\\n        \\\\\\\"jb_mlm\\\\\\\"\\\\n      ],\\\\n      [\\\\n        \\\\\\\"9class\\\\\\\",\\\\n        \\\\\\\"scrambled\\\\\\\"\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"k_values\\\\\\\": [\\\\n      \\\\\\\"k1\\\\\\\",\\\\n      \\\\\\\"full\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"results\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 56,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.5205\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 50,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.5761\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 49,\\\\n        \\\\\\\"c\\\\\\\": 1,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.584\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 78,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.2711\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 73,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.3416\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 67,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"chi2_corrected\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_vanilla\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.4055\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 4,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.125,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.96\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 4,\\\\n        \\\\\\\"c\\\\\\\": 1,\\\\n        \\\\\\\"p_value\\\\\\\": 0.375,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.96\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 1,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.9902\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 19,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 4e-06,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_jb_mlm\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.8326\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 2,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 0.5,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"A>B\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 0.9809\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 1,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"exact_binomial\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"B>A\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"k1\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 0.9904,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 42,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 123,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      },\\\\n      {\\\\n        \\\\\\\"b\\\\\\\": 0,\\\\n        \\\\\\\"c\\\\\\\": 0,\\\\n        \\\\\\\"p_value\\\\\\\": 1.0,\\\\n        \\\\\\\"test\\\\\\\": \\\\\\\"n/a\\\\\\\",\\\\n        \\\\\\\"direction\\\\\\\": \\\\\\\"tie\\\\\\\",\\\\n        \\\\\\\"comparison\\\\\\\": \\\\\\\"9class_vs_scrambled\\\\\\\",\\\\n        \\\\\\\"k\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": 456,\\\\n        \\\\\\\"f1_a\\\\\\\": 1.0,\\\\n        \\\\\\\"f1_b\\\\\\\": 1.0\\\\n      }\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"part_a_vanilla_perturbation\\\": {\\n    \\\"per_seed\\\": {\\n      \\\"seed42\\\": {\\n        \\\"clean\\\": {\\n          \\\"k1\\\": 0.5752,\\n          \\\"k2\\\": 0.4381,\\n          \\\"k3\\\": 0.3596,\\n          \\\"k5\\\": 0.3105,\\n          \\\"full\\\": 0.2845\\n        },\\n        \\\"perturbed\\\": {\\n          \\\"k1\\\": 0.5205,\\n          \\\"k2\\\": 0.4381,\\n          \\\"k3\\\": 0.3477,\\n          \\\"k5\\\": 0.2845,\\n          \\\"full\\\": 0.2711\\n        },\\n        \\\"delta\\\": {\\n          \\\"k1\\\": -0.0547,\\n          \\\"k2\\\": 0.0,\\n          \\\"k3\\\": -0.0119,\\n          \\\"k5\\\": -0.026,\\n          \\\"full\\\": -0.0134\\n        }\\n      },\\n      \\\"seed123\\\": {\\n        \\\"clean\\\": {\\n          \\\"k1\\\": 0.6575,\\n          \\\"k2\\\": 0.5298,\\n          \\\"k3\\\": 0.4241,\\n          \\\"k5\\\": 0.3714,\\n          \\\"full\\\": 0.3048\\n        },\\n        \\\"perturbed\\\": {\\n          \\\"k1\\\": 0.5761,\\n          \\\"k2\\\": 0.5015,\\n          \\\"k3\\\": 0.4241,\\n          \\\"k5\\\": 0.3714,\\n          \\\"full\\\": 0.3416\\n        },\\n        \\\"delta\\\": {\\n          \\\"k1\\\": -0.0814,\\n          \\\"k2\\\": -0.0283,\\n          \\\"k3\\\": 0.0,\\n          \\\"k5\\\": 0.0,\\n          \\\"full\\\": 0.0368\\n        }\\n      },\\n      \\\"seed456\\\": {\\n        \\\"clean\\\": {\\n          \\\"k1\\\": 0.6523,\\n          \\\"k2\\\": 0.4794,\\n          \\\"k3\\\": 0.3829,\\n          \\\"k5\\\": 0.3596,\\n          \\\"full\\\": 0.3477\\n        },\\n        \\\"perturbed\\\": {\\n          \\\"k1\\\": 0.584,\\n          \\\"k2\\\": 0.509,\\n          \\\"k3\\\": 0.4165,\\n          \\\"k5\\\": 0.3829,\\n          \\\"full\\\": 0.4055\\n        },\\n        \\\"delta\\\": {\\n          \\\"k1\\\": -0.0683,\\n          \\\"k2\\\": 0.0296,\\n          \\\"k3\\\": 0.0336,\\n          \\\"k5\\\": 0.0233,\\n          \\\"full\\\": 0.0578\\n        }\\n      }\\n    },\\n    \\\"mean_std\\\": {\\n      \\\"clean_k1\\\": {\\n        \\\"mean\\\": 0.6283,\\n        \\\"std\\\": 0.0376\\n      },\\n      \\\"perturbed_k1\\\": {\\n        \\\"mean\\\": 0.5602,\\n        \\\"std\\\": 0.0283\\n      },\\n      \\\"delta_k1\\\": {\\n        \\\"mean\\\": -0.0681,\\n        \\\"std\\\": 0.0109\\n      },\\n      \\\"clean_k2\\\": {\\n        \\\"mean\\\": 0.4824,\\n        \\\"std\\\": 0.0375\\n      },\\n      \\\"perturbed_k2\\\": {\\n        \\\"mean\\\": 0.4829,\\n        \\\"std\\\": 0.0318\\n      },\\n      \\\"delta_k2\\\": {\\n        \\\"mean\\\": 0.0004,\\n        \\\"std\\\": 0.0236\\n      },\\n      \\\"clean_k3\\\": {\\n        \\\"mean\\\": 0.3889,\\n        \\\"std\\\": 0.0267\\n      },\\n      \\\"perturbed_k3\\\": {\\n        \\\"mean\\\": 0.3961,\\n        \\\"std\\\": 0.0344\\n      },\\n      \\\"delta_k3\\\": {\\n        \\\"mean\\\": 0.0072,\\n        \\\"std\\\": 0.0193\\n      },\\n      \\\"clean_k5\\\": {\\n        \\\"mean\\\": 0.3472,\\n        \\\"std\\\": 0.0264\\n      },\\n      \\\"perturbed_k5\\\": {\\n        \\\"mean\\\": 0.3463,\\n        \\\"std\\\": 0.0439\\n      },\\n      \\\"delta_k5\\\": {\\n        \\\"mean\\\": -0.0009,\\n        \\\"std\\\": 0.0201\\n      },\\n      \\\"clean_full\\\": {\\n        \\\"mean\\\": 0.3123,\\n        \\\"std\\\": 0.0263\\n      },\\n      \\\"perturbed_full\\\": {\\n        \\\"mean\\\": 0.3394,\\n        \\\"std\\\": 0.0549\\n      },\\n      \\\"delta_full\\\": {\\n        \\\"mean\\\": 0.0271,\\n        \\\"std\\\": 0.0299\\n      }\\n    }\\n  },\\n  \\\"part_b_mcnemar\\\": {\\n    \\\"description\\\": \\\"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\\\",\\n    \\\"comparisons\\\": [\\n      [\\n        \\\"9class\\\",\\n        \\\"vanilla\\\"\\n      ],\\n      [\\n        \\\"9class\\\",\\n        \\\"jb_mlm\\\"\\n      ],\\n      [\\n        \\\"9class\\\",\\n        \\\"scrambled\\\"\\n      ]\\n    ],\\n    \\\"k_values\\\": [\\n      \\\"k1\\\",\\n      \\\"full\\\"\\n    ],\\n    \\\"seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"results\\\": [\\n      {\\n        \\\"b\\\": 56,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.0,\\n        \\\"test\\\": \\\"chi2_corrected\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 42,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.5205\\n      },\\n      {\\n        \\\"b\\\": 50,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.0,\\n        \\\"test\\\": \\\"chi2_corrected\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 123,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.5761\\n      },\\n      {\\n        \\\"b\\\": 49,\\n        \\\"c\\\": 1,\\n        \\\"p_value\\\": 0.0,\\n        \\\"test\\\": \\\"chi2_corrected\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 456,\\n        \\\"f1_a\\\": 0.9904,\\n        \\\"f1_b\\\": 0.584\\n      },\\n      {\\n        \\\"b\\\": 78,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.0,\\n        \\\"test\\\": \\\"chi2_corrected\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 42,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.2711\\n      },\\n      {\\n        \\\"b\\\": 73,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.0,\\n        \\\"test\\\": \\\"chi2_corrected\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 123,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.3416\\n      },\\n      {\\n        \\\"b\\\": 67,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.0,\\n        \\\"test\\\": \\\"chi2_corrected\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_vanilla\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 456,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.4055\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"n/a\\\",\\n        \\\"direction\\\": \\\"tie\\\",\\n        \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 42,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 1.0\\n      },\\n      {\\n        \\\"b\\\": 4,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.125,\\n        \\\"test\\\": \\\"exact_binomial\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 123,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.96\\n      },\\n      {\\n        \\\"b\\\": 4,\\n        \\\"c\\\": 1,\\n        \\\"p_value\\\": 0.375,\\n        \\\"test\\\": \\\"exact_binomial\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 456,\\n        \\\"f1_a\\\": 0.9904,\\n        \\\"f1_b\\\": 0.96\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"n/a\\\",\\n        \\\"direction\\\": \\\"tie\\\",\\n        \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 42,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 1.0\\n      },\\n      {\\n        \\\"b\\\": 1,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"exact_binomial\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 123,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.9902\\n      },\\n      {\\n        \\\"b\\\": 19,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 4e-06,\\n        \\\"test\\\": \\\"exact_binomial\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_jb_mlm\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 456,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.8326\\n      },\\n      {\\n        \\\"b\\\": 2,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 0.5,\\n        \\\"test\\\": \\\"exact_binomial\\\",\\n        \\\"direction\\\": \\\"A>B\\\",\\n        \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 42,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 0.9809\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"n/a\\\",\\n        \\\"direction\\\": \\\"tie\\\",\\n        \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 123,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 1.0\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 1,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"exact_binomial\\\",\\n        \\\"direction\\\": \\\"B>A\\\",\\n        \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n        \\\"k\\\": \\\"k1\\\",\\n        \\\"seed\\\": 456,\\n        \\\"f1_a\\\": 0.9904,\\n        \\\"f1_b\\\": 1.0\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"n/a\\\",\\n        \\\"direction\\\": \\\"tie\\\",\\n        \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 42,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 1.0\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"n/a\\\",\\n        \\\"direction\\\": \\\"tie\\\",\\n        \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 123,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 1.0\\n      },\\n      {\\n        \\\"b\\\": 0,\\n        \\\"c\\\": 0,\\n        \\\"p_value\\\": 1.0,\\n        \\\"test\\\": \\\"n/a\\\",\\n        \\\"direction\\\": \\\"tie\\\",\\n        \\\"comparison\\\": \\\"9class_vs_scrambled\\\",\\n        \\\"k\\\": \\\"full\\\",\\n        \\\"seed\\\": 456,\\n        \\\"f1_a\\\": 1.0,\\n        \\\"f1_b\\\": 1.0\\n      }\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ec817846-676a-4623-abff-34a7c048436d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "0a30f9fd-7ec8-46ea-8137-3a1008371235",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356"
+              }
+            }
+          ],
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Vanilla 3-seed OOD perturbation and McNemar tests",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356"
+              }
+            }
+          ],
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-18T11:53:28.778Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me save the local artifact and register it. I need to write the combined JSON to the local artifacts directory.\n\nLet me also format the results nicely for the user.\n\nKey findings:\n\n**Part A: Vanilla 3-seed DD OOD Perturbation**\n\n| K | Clean (mean±std) | Perturbed (mean±std) | Delta (mean±std) |\n|---|---|---|---|\n| k1 | 0.6283±0.0376 | 0.5602±0.0283 | -0.0681±0.0109 |\n\n\n| k2 | 0.4824±0.0375 | 0.4829±0.0318 | +0.0004±0.0236 |\n| k3 | 0.3889±0.0267 | 0.3961±0.0344 | +0.0072±0.0193 |\n| k5 | 0.3472±0.0264 | 0.3463±0.0439 | -0.0009±0.0201 |\n| full | 0.3123±0.0263 | 0.3394±0.0549 |\n\nGenerating markdown table...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a30f9fd-7ec8-46ea-8137-3a1008371235",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zGVkhpf9MNN6EFuh9m",
+            "type": "assistant",
+            "uuid": "06777055-e660-497d-8b3d-c46a8952ae69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRDTsamBaMmDngt48ttXc6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5427,
+                "cache_read_input_tokens": 87954,
+                "output_tokens": 529,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5427,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 529,
+                    "cache_read_input_tokens": 87954,
+                    "cache_creation_input_tokens": 5427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5427
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-18T11:53:28.871Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me save the local artifact and register it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06777055-e660-497d-8b3d-c46a8952ae69",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zGVkhpf9MNN6EFuh9m",
+            "type": "assistant",
+            "uuid": "cbd3d482-da97-4798-b8ab-c8626693cf58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRDTsamBaMmDngt48ttXc6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5427,
+                "cache_read_input_tokens": 87954,
+                "output_tokens": 529,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5427,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 529,
+                    "cache_read_input_tokens": 87954,
+                    "cache_creation_input_tokens": 5427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5427
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-18T11:53:30.415Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GHUoXqQfYygpZGd4ezDXT5",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/",
+                "description": "List artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbd3d482-da97-4798-b8ab-c8626693cf58",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zGVkhpf9MNN6EFuh9m",
+            "type": "assistant",
+            "uuid": "98ecb1de-337b-4bc0-bbe2-459b28f6ec6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRDTsamBaMmDngt48ttXc6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5427,
+                "cache_read_input_tokens": 87954,
+                "output_tokens": 529,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5427,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 529,
+                    "cache_read_input_tokens": 87954,
+                    "cache_creation_input_tokens": 5427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5427
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-18T11:53:30.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GHUoXqQfYygpZGd4ezDXT5",
+              "type": "tool_result",
+              "content": "_project\ndata\ndream_reports\nexp1\nexp1_roberta_9class\nexp1_roberta_9class_results.json\nexp1_roberta_mlm_results.json\nexp1_roberta_vanilla_results.json\nexp3\nexp3_probing\nexp3_probing_results.json\nexp3_roberta_probing_results.json\nexp4\nexp4_dd_ood_perturbation_results.json\nexp5\nexp5_llm_judge_ood_results.json\nfig3_preview.jpg\nfig3_strategy_heatmap.pdf\ngenerate_crescendo_v2.py\nmanifest.yaml\nmatched_seed_stats.json\nmf1_binary_seed123_results.json\nmf1_scrambled_seed123\npaper_draft_20260518.pdf\nphase_b_supplement_eval.py\nplan_002_seed123\nplan_003_scrambled_perturbation\nplan_013_binary_perturbation\nplan_016\nplan_016v2\nplan_016v2_topic_control\nplan_016v2_topic_perturbation\nplan_017_mlm_perturbation\nplan_018_wiki_mlm_control\nplan_018_wiki_perturbation\nplot_strategy_heatmap.py\nreview_issues.yaml\nreview_reports\nroberta_centered_cka.json\nscrambled_data_investigation.md\nscripts\nstatistical_tests_results.json\ntaxonomy\nvanilla_multiseed_dd_ood.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98ecb1de-337b-4bc0-bbe2-459b28f6ec6f",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "3f9f0b4d-e4ca-44b4-bf77-5f8a3c1fe328",
+            "toolUseResult": {
+              "stdout": "_project\ndata\ndream_reports\nexp1\nexp1_roberta_9class\nexp1_roberta_9class_results.json\nexp1_roberta_mlm_results.json\nexp1_roberta_vanilla_results.json\nexp3\nexp3_probing\nexp3_probing_results.json\nexp3_roberta_probing_results.json\nexp4\nexp4_dd_ood_perturbation_results.json\nexp5\nexp5_llm_judge_ood_results.json\nfig3_preview.jpg\nfig3_strategy_heatmap.pdf\ngenerate_crescendo_v2.py\nmanifest.yaml\nmatched_seed_stats.json\nmf1_binary_seed123_results.json\nmf1_scrambled_seed123\npaper_draft_20260518.pdf\nphase_b_supplement_eval.py\nplan_002_seed123\nplan_003_scrambled_perturbation\nplan_013_binary_perturbation\nplan_016\nplan_016v2\nplan_016v2_topic_control\nplan_016v2_topic_perturbation\nplan_017_mlm_perturbation\nplan_018_wiki_mlm_control\nplan_018_wiki_perturbation\nplot_strategy_heatmap.py\nreview_issues.yaml\nreview_reports\nroberta_centered_cka.json\nscrambled_data_investigation.md\nscripts\nstatistical_tests_results.json\ntaxonomy\nvanilla_multiseed_dd_ood.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "98ecb1de-337b-4bc0-bbe2-459b28f6ec6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-18T11:53:30.604Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3f9f0b4d-e4ca-44b4-bf77-5f8a3c1fe328",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "7e6d40e5-3de1-4e6b-b21d-71ffb5138b95",
+                "timestamp": "2026-05-18T11:53:30.604Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-18T11:54:20.238Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hs2PnazcktrVnZcUcdcqsU",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp4_vanilla_perturbation_mcnemar.json",
+                "content": "{\n  \"part_a_vanilla_perturbation\": {\n    \"per_seed\": {\n      \"seed42\": {\n        \"clean\": {\"k1\": 0.5752, \"k2\": 0.4381, \"k3\": 0.3596, \"k5\": 0.3105, \"full\": 0.2845},\n        \"perturbed\": {\"k1\": 0.5205, \"k2\": 0.4381, \"k3\": 0.3477, \"k5\": 0.2845, \"full\": 0.2711},\n        \"delta\": {\"k1\": -0.0547, \"k2\": 0.0, \"k3\": -0.0119, \"k5\": -0.026, \"full\": -0.0134}\n      },\n      \"seed123\": {\n        \"clean\": {\"k1\": 0.6575, \"k2\": 0.5298, \"k3\": 0.4241, \"k5\": 0.3714, \"full\": 0.3048},\n        \"perturbed\": {\"k1\": 0.5761, \"k2\": 0.5015, \"k3\": 0.4241, \"k5\": 0.3714, \"full\": 0.3416},\n        \"delta\": {\"k1\": -0.0814, \"k2\": -0.0283, \"k3\": 0.0, \"k5\": 0.0, \"full\": 0.0368}\n      },\n      \"seed456\": {\n        \"clean\": {\"k1\": 0.6523, \"k2\": 0.4794, \"k3\": 0.3829, \"k5\": 0.3596, \"full\": 0.3477},\n        \"perturbed\": {\"k1\": 0.584, \"k2\": 0.509, \"k3\": 0.4165, \"k5\": 0.3829, \"full\": 0.4055},\n        \"delta\": {\"k1\": -0.0683, \"k2\": 0.0296, \"k3\": 0.0336, \"k5\": 0.0233, \"full\": 0.0578}\n      }\n    },\n    \"mean_std\": {\n      \"clean_k1\": {\"mean\": 0.6283, \"std\": 0.0376},\n      \"perturbed_k1\": {\"mean\": 0.5602, \"std\": 0.0283},\n      \"delta_k1\": {\"mean\": -0.0681, \"std\": 0.0109},\n      \"clean_k2\": {\"mean\": 0.4824, \"std\": 0.0375},\n      \"perturbed_k2\": {\"mean\": 0.4829, \"std\": 0.0318},\n      \"delta_k2\": {\"mean\": 0.0004, \"std\": 0.0236},\n      \"clean_k3\": {\"mean\": 0.3889, \"std\": 0.0267},\n      \"perturbed_k3\": {\"mean\": 0.3961, \"std\": 0.0344},\n      \"delta_k3\": {\"mean\": 0.0072, \"std\": 0.0193},\n      \"clean_k5\": {\"mean\": 0.3472, \"std\": 0.0264},\n      \"perturbed_k5\": {\"mean\": 0.3463, \"std\": 0.0439},\n      \"delta_k5\": {\"mean\": -0.0009, \"std\": 0.0201},\n      \"clean_full\": {\"mean\": 0.3123, \"std\": 0.0263},\n      \"perturbed_full\": {\"mean\": 0.3394, \"std\": 0.0549},\n      \"delta_full\": {\"mean\": 0.0271, \"std\": 0.0299}\n    }\n  },\n  \"part_b_mcnemar\": {\n    \"description\": \"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\",\n    \"comparisons\": [[\"9class\", \"vanilla\"], [\"9class\", \"jb_mlm\"], [\"9class\", \"scrambled\"]],\n    \"k_values\": [\"k1\", \"full\"],\n    \"seeds\": [42, 123, 456],\n    \"results\": [\n      {\"b\": 56, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"k1\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 0.5205},\n      {\"b\": 50, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"k1\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.5761},\n      {\"b\": 49, \"c\": 1, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"k1\", \"seed\": 456, \"f1_a\": 0.9904, \"f1_b\": 0.584},\n      {\"b\": 78, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"full\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 0.2711},\n      {\"b\": 73, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"full\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.3416},\n      {\"b\": 67, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"full\", \"seed\": 456, \"f1_a\": 1.0, \"f1_b\": 0.4055},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"k1\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 4, \"c\": 0, \"p_value\": 0.125, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"k1\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.96},\n      {\"b\": 4, \"c\": 1, \"p_value\": 0.375, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"k1\", \"seed\": 456, \"f1_a\": 0.9904, \"f1_b\": 0.96},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"full\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 1, \"c\": 0, \"p_value\": 1.0, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"full\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.9902},\n      {\"b\": 19, \"c\": 0, \"p_value\": 4e-06, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"full\", \"seed\": 456, \"f1_a\": 1.0, \"f1_b\": 0.8326},\n      {\"b\": 2, \"c\": 0, \"p_value\": 0.5, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"k1\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 0.9809},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"k1\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 1, \"p_value\": 1.0, \"test\": \"exact_binomial\", \"direction\": \"B>A\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"k1\", \"seed\": 456, \"f1_a\": 0.9904, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"full\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"full\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"full\", \"seed\": 456, \"f1_a\": 1.0, \"f1_b\": 1.0}\n    ]\n  }\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e6d40e5-3de1-4e6b-b21d-71ffb5138b95",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zHMnWNn7bdRyoUTgAz",
+            "type": "assistant",
+            "uuid": "ed4ef33e-7768-4d8e-86f7-4dd5e69b84fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AmJQkPRV2EPcCU1qQaf1Ba",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1011,
+                "cache_read_input_tokens": 93381,
+                "output_tokens": 2782,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1011,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2782,
+                    "cache_read_input_tokens": 93381,
+                    "cache_creation_input_tokens": 1011,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1011
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-18T11:54:20.290Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hs2PnazcktrVnZcUcdcqsU",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp4_vanilla_perturbation_mcnemar.json"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed4ef33e-7768-4d8e-86f7-4dd5e69b84fa",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "96f72507-bb6e-4628-81e2-e0a3eeee2b9d",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp4_vanilla_perturbation_mcnemar.json",
+              "content": "{\n  \"part_a_vanilla_perturbation\": {\n    \"per_seed\": {\n      \"seed42\": {\n        \"clean\": {\"k1\": 0.5752, \"k2\": 0.4381, \"k3\": 0.3596, \"k5\": 0.3105, \"full\": 0.2845},\n        \"perturbed\": {\"k1\": 0.5205, \"k2\": 0.4381, \"k3\": 0.3477, \"k5\": 0.2845, \"full\": 0.2711},\n        \"delta\": {\"k1\": -0.0547, \"k2\": 0.0, \"k3\": -0.0119, \"k5\": -0.026, \"full\": -0.0134}\n      },\n      \"seed123\": {\n        \"clean\": {\"k1\": 0.6575, \"k2\": 0.5298, \"k3\": 0.4241, \"k5\": 0.3714, \"full\": 0.3048},\n        \"perturbed\": {\"k1\": 0.5761, \"k2\": 0.5015, \"k3\": 0.4241, \"k5\": 0.3714, \"full\": 0.3416},\n        \"delta\": {\"k1\": -0.0814, \"k2\": -0.0283, \"k3\": 0.0, \"k5\": 0.0, \"full\": 0.0368}\n      },\n      \"seed456\": {\n        \"clean\": {\"k1\": 0.6523, \"k2\": 0.4794, \"k3\": 0.3829, \"k5\": 0.3596, \"full\": 0.3477},\n        \"perturbed\": {\"k1\": 0.584, \"k2\": 0.509, \"k3\": 0.4165, \"k5\": 0.3829, \"full\": 0.4055},\n        \"delta\": {\"k1\": -0.0683, \"k2\": 0.0296, \"k3\": 0.0336, \"k5\": 0.0233, \"full\": 0.0578}\n      }\n    },\n    \"mean_std\": {\n      \"clean_k1\": {\"mean\": 0.6283, \"std\": 0.0376},\n      \"perturbed_k1\": {\"mean\": 0.5602, \"std\": 0.0283},\n      \"delta_k1\": {\"mean\": -0.0681, \"std\": 0.0109},\n      \"clean_k2\": {\"mean\": 0.4824, \"std\": 0.0375},\n      \"perturbed_k2\": {\"mean\": 0.4829, \"std\": 0.0318},\n      \"delta_k2\": {\"mean\": 0.0004, \"std\": 0.0236},\n      \"clean_k3\": {\"mean\": 0.3889, \"std\": 0.0267},\n      \"perturbed_k3\": {\"mean\": 0.3961, \"std\": 0.0344},\n      \"delta_k3\": {\"mean\": 0.0072, \"std\": 0.0193},\n      \"clean_k5\": {\"mean\": 0.3472, \"std\": 0.0264},\n      \"perturbed_k5\": {\"mean\": 0.3463, \"std\": 0.0439},\n      \"delta_k5\": {\"mean\": -0.0009, \"std\": 0.0201},\n      \"clean_full\": {\"mean\": 0.3123, \"std\": 0.0263},\n      \"perturbed_full\": {\"mean\": 0.3394, \"std\": 0.0549},\n      \"delta_full\": {\"mean\": 0.0271, \"std\": 0.0299}\n    }\n  },\n  \"part_b_mcnemar\": {\n    \"description\": \"McNemar tests on perturbed DD OOD data (80 jailbreak + 38 benign = 118)\",\n    \"comparisons\": [[\"9class\", \"vanilla\"], [\"9class\", \"jb_mlm\"], [\"9class\", \"scrambled\"]],\n    \"k_values\": [\"k1\", \"full\"],\n    \"seeds\": [42, 123, 456],\n    \"results\": [\n      {\"b\": 56, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"k1\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 0.5205},\n      {\"b\": 50, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"k1\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.5761},\n      {\"b\": 49, \"c\": 1, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"k1\", \"seed\": 456, \"f1_a\": 0.9904, \"f1_b\": 0.584},\n      {\"b\": 78, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"full\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 0.2711},\n      {\"b\": 73, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"full\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.3416},\n      {\"b\": 67, \"c\": 0, \"p_value\": 0.0, \"test\": \"chi2_corrected\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_vanilla\", \"k\": \"full\", \"seed\": 456, \"f1_a\": 1.0, \"f1_b\": 0.4055},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"k1\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 4, \"c\": 0, \"p_value\": 0.125, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"k1\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.96},\n      {\"b\": 4, \"c\": 1, \"p_value\": 0.375, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"k1\", \"seed\": 456, \"f1_a\": 0.9904, \"f1_b\": 0.96},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"full\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 1, \"c\": 0, \"p_value\": 1.0, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"full\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 0.9902},\n      {\"b\": 19, \"c\": 0, \"p_value\": 4e-06, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_jb_mlm\", \"k\": \"full\", \"seed\": 456, \"f1_a\": 1.0, \"f1_b\": 0.8326},\n      {\"b\": 2, \"c\": 0, \"p_value\": 0.5, \"test\": \"exact_binomial\", \"direction\": \"A>B\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"k1\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 0.9809},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"k1\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 1, \"p_value\": 1.0, \"test\": \"exact_binomial\", \"direction\": \"B>A\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"k1\", \"seed\": 456, \"f1_a\": 0.9904, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"full\", \"seed\": 42, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"full\", \"seed\": 123, \"f1_a\": 1.0, \"f1_b\": 1.0},\n      {\"b\": 0, \"c\": 0, \"p_value\": 1.0, \"test\": \"n/a\", \"direction\": \"tie\", \"comparison\": \"9class_vs_scrambled\", \"k\": \"full\", \"seed\": 456, \"f1_a\": 1.0, \"f1_b\": 1.0}\n    ]\n  }\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "ed4ef33e-7768-4d8e-86f7-4dd5e69b84fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-18T11:54:25.632Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016sZp7AsYYrLnehLzgVCrW1",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp4_vanilla_perturbation_mcnemar",
+                "type": "data",
+                "description": "EXP-4 vanilla 3-seed OOD perturbation results + McNemar tests (9class vs vanilla/jb_mlm/scrambled on perturbed DD OOD)",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp4",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp4_vanilla_perturbation_mcnemar.json",
+                "tags": [
+                  "vanilla",
+                  "perturbation",
+                  "mcnemar",
+                  "ood",
+                  "3-seed"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96f72507-bb6e-4628-81e2-e0a3eeee2b9d",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zM26hAXLZq1f5AK4PQ",
+            "type": "assistant",
+            "uuid": "0463810f-2198-4432-87b3-3ccf1cbde1bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RpLFVxLExWksBFB7NEq2p",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2849,
+                "cache_read_input_tokens": 94392,
+                "output_tokens": 304,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2849,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 304,
+                    "cache_read_input_tokens": 94392,
+                    "cache_creation_input_tokens": 2849,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2849
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-18T11:54:25.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016sZp7AsYYrLnehLzgVCrW1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_6a9182\\\", \\\"name\\\": \\\"exp4_vanilla_perturbation_mcnemar\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"EXP-4 vanilla 3-seed OOD perturbation results + McNemar tests (9class vs vanilla/jb_mlm/scrambled on perturbed DD OOD)\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp4/data/exp4_vanilla_perturbation_mcnemar.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp4\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T11:54:25.639342+00:00\\\", \\\"tags\\\": [\\\"vanilla\\\", \\\"perturbation\\\", \\\"mcnemar\\\", \\\"ood\\\", \\\"3-seed\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0463810f-2198-4432-87b3-3ccf1cbde1bc",
+            "isSidechain": false,
+            "promptId": "1f74a042-8af4-462f-be65-df1fe9921fcc",
+            "type": "user",
+            "uuid": "41bf77fc-d3ac-429b-ac60-f1c2a667eab1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_6a9182\\\", \\\"name\\\": \\\"exp4_vanilla_perturbation_mcnemar\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"EXP-4 vanilla 3-seed OOD perturbation results + McNemar tests (9class vs vanilla/jb_mlm/scrambled on perturbed DD OOD)\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp4/data/exp4_vanilla_perturbation_mcnemar.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp4\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T11:54:25.639342+00:00\\\", \\\"tags\\\": [\\\"vanilla\\\", \\\"perturbation\\\", \\\"mcnemar\\\", \\\"ood\\\", \\\"3-seed\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_6a9182\", \"name\": \"exp4_vanilla_perturbation_mcnemar\", \"type\": \"data\", \"description\": \"EXP-4 vanilla 3-seed OOD perturbation results + McNemar tests (9class vs vanilla/jb_mlm/scrambled on perturbed DD OOD)\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/exp4/data/exp4_vanilla_perturbation_mcnemar.json\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"exp4\", \"skill\": \"\", \"created_at\": \"2026-05-18T11:54:25.639342+00:00\", \"tags\": [\"vanilla\", \"perturbation\", \"mcnemar\", \"ood\", \"3-seed\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "0463810f-2198-4432-87b3-3ccf1cbde1bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-18T11:54:40.901Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part A: Vanilla 3-seed DD OOD Perturbation\n\n| K | Clean (mean±std) | Perturbed (mean±std) | Delta (mean±std) |\n|---|---|---|---|\n| k1 | 0.6283±0.0376 | 0.5602±0.0283 | **-0.0681±0.0109** |\n| k2 | 0.4824±0.0375 | 0.4829±0.0318 | +0.0004±0.0236 |\n| k3 | 0.3889±0.0267 | 0.3961±0.0344 | +0.0072±0.0193 |\n| k5 | 0.3472±0.0264 | 0.3463±0.0439 | -0.0009±0.0201 |\n| full | 0.3123±0.0263 | 0.3394±0.0549 | +0.0271±0.0299 |\n\nVanilla shows consistent K1 degradation under perturbation (-6.8 pp), but overall performance is poor (F1 ~0.28-0.63) regardless of perturbation.\n\n## Part B: McNemar Tests on Perturbed DD OOD\n\n**K=1:**\n\n| Comparison | Seed | b | c | p-value | Dir |\n|---|---|---|---|---|---|\n| 9class vs vanilla | 42 | 56 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 123 | 50 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 456 | 49 | 1 | <0.001* | 9class |\n| 9class vs jb_mlm | 42 | 0 | 0 | 1.0 | tie |\n| 9class vs jb_mlm | 123 | 4 | 0 | 0.125 | n.s. |\n| 9class vs jb_mlm | 456 | 4 | 1 | 0.375 | n.s. |\n| 9class vs scrambled | 42 | 2 | 0 | 0.5 | n.s. |\n| 9class vs scrambled | 123 | 0 | 0 | 1.0 | tie |\n| 9class vs scrambled | 456 | 0 | 1 | 1.0 | n.s. |\n\n**K=Full:**\n\n| Comparison | Seed | b | c | p-value | Dir |\n|---|---|---|---|---|---|\n| 9class vs vanilla | 42 | 78 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 123 | 73 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 456 | 67 | 0 | <0.001* | 9class |\n| 9class vs jb_mlm | 42 | 0 | 0 | 1.0 | tie |\n| 9class vs jb_mlm | 123 | 1 | 0 | 1.0 | n.s. |\n| 9class vs jb_mlm | 456 | 19 | 0 | **4e-06*** | 9class |\n| 9class vs scrambled | all | 0 | 0 | 1.0 | tie |\n\n**Summary:**\n- **9class vs vanilla**: Highly significant across all seeds and K values (p<0.001). 9class dominates with 49-78 discordant samples in its favor.\n- **9class vs jb_mlm**: Not significant at K=1. At K=Full, seed456 shows significant difference (b=19, p=4e-06), other seeds tied.\n- **9class vs scrambled**: No significant difference at any seed or K. Near-perfect agreement on perturbed data.\n\nSaved to server (`results/exp4_vanilla_3seed_perturbation.json`, `results/exp4_mcnemar_perturbed.json`) and registered as artifact `art_20260518_6a9182`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41bf77fc-d3ac-429b-ac60-f1c2a667eab1",
+            "isSidechain": false,
+            "requestId": "req_011Cb9zMRKhFWrP2qcvWLsTB",
+            "type": "assistant",
+            "uuid": "99960237-dc75-4f1d-a0ad-68baac5a3f5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Z93XYYZYKctJrxKUk1JCs",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 635,
+                "cache_read_input_tokens": 97241,
+                "output_tokens": 1070,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 635,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1070,
+                    "cache_read_input_tokens": 97241,
+                    "cache_creation_input_tokens": 635,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 635
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "99960237-dc75-4f1d-a0ad-68baac5a3f5e",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356"
+              }
+            }
+          ],
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Vanilla 3-seed OOD perturbation and McNemar tests",
+                "sessionId": "36b86fdc-fadc-4dcf-85cf-d9463909b356"
+              }
+            }
+          ],
+          "id": "event-000213"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5269 @@
+# Research conversation: Search this large JSONL transcript file for per-seed F1 evaluation results. I need the individual seed F1 values (seeds 
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 1
+- **Tool calls:** 30
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-aeff3f1c4277ddacf.jsonl`
+- **Structured JSON:** [`1dfcc6be02b41f44de49.json`](../../sessions/1d/1dfcc6be02b41f44de49.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+81 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T05:39:12.747Z_
+
+Search this large JSONL transcript file for per-seed F1 evaluation results. I need the individual seed F1 values (seeds 42, 123, 456) for DD OOD Full and AA (ActorAttack) OOD Full for these model variants: 9-class, binary, scrambled, MLM-only (jb_mlm).
+
+The transcript file is at: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl
+
+Search strategies:
+1. grep for patterns like "seed.*42.*f1", "per.seed", "seed_42", "0.9904", "0.751", etc.
+2. Search for evaluation output that lists F1 results broken down by seed
+3. Look for lines containing "dd_ood_full" and "aa_ood_full" or "actorattack" with seed numbers
+
+I already know some values:
+- Vanilla DD-Full: s42=0.285, s123=0.305, s456=0.348
+- Vanilla AA-Full: all seeds = 0.258
+- Scrambled AA-Full: s42=0.891, s123=0.990, s456=0.971
+- MLM-only DD-Full: s42=1.000, s123=0.990, s456=0.751
+
+I specifically need the MISSING per-seed values for:
+- 9-class DD-Full per seed
+- 9-class AA-Full per seed
+- Binary DD-Full per seed
+- Binary AA-Full per seed
+- Scrambled DD-Full per seed
+- MLM-only AA-Full per seed
+
+Report the exact values you find, with the source context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "fd12de5a-9677-4b19-8e24-9718fc6a22d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-23T05:39:12.752Z_
+
+```json
+{
+  "parentUuid": "fd12de5a-9677-4b19-8e24-9718fc6a22d0",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "88351466-1660-491f-88fc-fc76c1a0d95c",
+  "timestamp": "2026-05-23T05:39:12.752Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-23T05:39:15.043Z_
+
+
+
+I'll search the transcript file systematically for the missing per-seed F1 values. Let me start with multiple search strategies in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88351466-1660-491f-88fc-fc76c1a0d95c",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxnUBLZbQX4PcQPrenY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fd28d504-a2a6-4443-8b15-4c2e2c91dd05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MNxx6DBw2zmJmNNspiMEze",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15148,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15148,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T05:39:16.114Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_011dbJuWGY4deR3yppGR29nd`</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl",
+  "description": "Check file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd28d504-a2a6-4443-8b15-4c2e2c91dd05",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxnUBLZbQX4PcQPrenY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7a44d86d-a894-4c61-96be-01a90d6e3497",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MNxx6DBw2zmJmNNspiMEze",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15148,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15148,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-23T05:39:16.169Z_
+
+<details><summary>↩ Tool result · `toolu_011dbJuWGY4deR3yppGR29nd`</summary>
+
+```text
+7078 /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a44d86d-a894-4c61-96be-01a90d6e3497",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "e483e3fc-b8e5-4e18-a24c-898baa809b47",
+  "sourceToolAssistantUUID": "7a44d86d-a894-4c61-96be-01a90d6e3497",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T05:39:25.530Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017kQZRt3Bh6MecNM7qM6w4r`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for 9-class related results\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        if '9' in msg and ('class' in msg.lower() or '9class' in msg.lower() or '9_class' in msg.lower()):\n            if any(k in msg.lower() for k in ['f1', 'seed', 'eval', 'ood']):\n                # Check if it has meaningful content\n                if 'content' in obj.get('message', {}):\n                    content = str(obj['message']['content'])\n                    if len(content) > 50 and ('f1' in content.lower() or 'seed' in content.lower()):\n                        if '9' in content and ('class' in content.lower() or 'ood' in content.lower()):\n                            print(f'=== LINE {i} ===')\n                            # Print relevant portion\n                            for segment in content.split('\\\\n'):\n                                if any(k in segment.lower() for k in ['f1', 'seed', 'ood', '9.class', '9class', '9_class']):\n                                    print(segment[:500])\n                            print()\n\" 2>&1 | head -200",
+  "description": "Search for 9-class F1 results in transcript"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e483e3fc-b8e5-4e18-a24c-898baa809b47",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxnjMtv58j8QppjSDxx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1040197f-1b90-41b6-a530-ae8db82b60ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KwjHJSeu8yLP8tyPtMrc3G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 15148,
+      "output_tokens": 508,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1126
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 508,
+          "cache_read_input_tokens": 15148,
+          "cache_creation_input_tokens": 1126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1126,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T05:39:26.066Z_
+
+<details><summary>↩ Tool result · `toolu_017kQZRt3Bh6MecNM7qM6w4r`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (32.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/85e3b989-c20f-497d-8ff6-585a23797fb3/tool-results/bfun8jk7a.txt
+
+Preview (first 2KB):
+=== LINE 2 ===
+- Table 7 FITD Vanilla 数值刚从 seed-42-only 改为 3-seed mean（K1: .990→.954, K2: 1.000→.952）。Director 已被通知但尚未确认。如果 Director 要求回滚，需改回旧值
+- 模型 checkpoints：/root/persuasion_turn_jailbreak_detect/checkpoints/（plan_002 = 主 pipeline，seeds 42/123/456）
+刚完成 Table 7 FITD per-seed std 补全（appendix.tex 已更新）。已向 Director 汇报 Vanilla 数值变更。
+- RUNNING：v4-taxei-fixed-inject25-r2, v4-fixed-inject10, v4-vanilla-seed123（这三个是其他项目残留，不属于本项目主线）
+- PREPARING：exp37_length_matched_benign, exp36_frozen_mlm_probing, exp13_meanpool_multiseed 等（均已有结果但 status 未推进到 DONE，实际 conclusion 已记录）
+- DONE (近期)：exp40_llama_guard_baseline (success), exp39_extra_seeds_tost (success), exp38_wildcat_calibration (negative)
+项目核心结论链：9-class DAPT >> MLM ≈ vanilla (OOD)；classification structure >> label semantics (scrambled ≈ 9-class on DD/FITD, TOST confirmed)；BiGRU ≈ mean pooling（时序建模非必要）；Llama Guard 3 完全失败（recall≈0）证明需要专门方法。
+TOST 5-seed 结果有两个 Director 需修正的偏差：DD 2pp p=0.0016（非<0.001）、AA Cohen's d=0.092（非0.18）。已报 Director 但确认状态未知。
+
+=== LINE 18 ===
+[{'tool_use_id': 'toolu_01AVXWCyvSDU3CpW8WwTyH5S', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp36_frozen_mlm_probing: 冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classi
+
+=== LINE 19 ===
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1040197f-1b90-41b6-a530-ae8db82b60ba",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "d1a2f365-99d6-48de-9f61-51efd0c90615",
+  "sourceToolAssistantUUID": "1040197f-1b90-41b6-a530-ae8db82b60ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-23T05:39:28.673Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015S6DR9R3pE55rCam2kjJjB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/85e3b989-c20f-497d-8ff6-585a23797fb3/tool-results/bfun8jk7a.txt",
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1a2f365-99d6-48de-9f61-51efd0c90615",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxoT5tFad8zDPYm9btR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "08a68706-a301-4315-8760-5c4d00f56f53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBwQu68Ugt18KVjHMVtyCX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1445,
+      "cache_read_input_tokens": 16274,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1445
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 16274,
+          "cache_creation_input_tokens": 1445,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1445,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T05:39:29.004Z_
+
+<details><summary>↩ Tool result · `toolu_015S6DR9R3pE55rCam2kjJjB`</summary>
+
+```text
+1	=== LINE 2 ===
+2	- Table 7 FITD Vanilla 数值刚从 seed-42-only 改为 3-seed mean（K1: .990→.954, K2: 1.000→.952）。Director 已被通知但尚未确认。如果 Director 要求回滚，需改回旧值
+3	- 模型 checkpoints：/root/persuasion_turn_jailbreak_detect/checkpoints/（plan_002 = 主 pipeline，seeds 42/123/456）
+4	刚完成 Table 7 FITD per-seed std 补全（appendix.tex 已更新）。已向 Director 汇报 Vanilla 数值变更。
+5	- RUNNING：v4-taxei-fixed-inject25-r2, v4-fixed-inject10, v4-vanilla-seed123（这三个是其他项目残留，不属于本项目主线）
+6	- PREPARING：exp37_length_matched_benign, exp36_frozen_mlm_probing, exp13_meanpool_multiseed 等（均已有结果但 status 未推进到 DONE，实际 conclusion 已记录）
+7	- DONE (近期)：exp40_llama_guard_baseline (success), exp39_extra_seeds_tost (success), exp38_wildcat_calibration (negative)
+8	项目核心结论链：9-class DAPT >> MLM ≈ vanilla (OOD)；classification structure >> label semantics (scrambled ≈ 9-class on DD/FITD, TOST confirmed)；BiGRU ≈ mean pooling（时序建模非必要）；Llama Guard 3 完全失败（recall≈0）证明需要专门方法。
+9	TOST 5-seed 结果有两个 Director 需修正的偏差：DD 2pp p=0.0016（非<0.001）、AA Cohen's d=0.092（非0.18）。已报 Director 但确认状态未知。
+10	
+11	=== LINE 18 ===
+12	[{'tool_use_id': 'toolu_01AVXWCyvSDU3CpW8WwTyH5S', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp36_frozen_mlm_probing: 冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classi
+13	
+14	=== LINE 19 ===
+15	[{'tool_use_id': 'toolu_017AXfG1PPXJm2MxNvsMRBTP', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\\", \\"content\\": \\"# persuasion_turn_jailbreak_detect — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 19:02 UTC | 更新原因: Loop 3 接手：Round 9 卡住已跳过，fresh review 已提交待审批\\\\n\\\\n## 核心方向\\\\nMulti-turn jailbreak 检测的系统性分解：classification DAPT 通过优化正则化（而非语义特
+16	
+17	=== LINE 49 ===
+18	1. experiments.tex L27 — 5-seed TOST note
+19	3. experiments.tex L112 — 5-seed TOST 完整段落
+20	### Fix 3: Table 2 caption — OOD upper bound 脚注
+21	> "OOD F1 values are upper bounds, as benign samples remain IID (see Section~5)."
+22	### Fix 9: Terminology — OOD 含义区分
+23	> "Throughout this paper, OOD refers to attack-family shift (novel persuasion strategies at test time); benign distribution shift (e.g., non-synthetic user conversations) is evaluated separately in Section~5."
+24	
+25	=== LINE 76 ===
+26	[{'tool_use_id': 'toolu_01V6vbsdQpuKPGEidSEUwVT5', 'type': 'tool_result', 'content': '1\t% conclusion.tex — compressed for 8-page limit\n2\t\n3\t\\section{Discussion}\n4\t\\label{sec:discussion}\n5\t\n6\t\\paragraph{Topic shortcut and label equivalence.}\n7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).\n8\t\n9\t\\paragraph{Single-LLM confound.}\n10\tToxicCha
+27	
+28	=== LINE 78 ===
+29	[{'tool_use_id': 'toolu_0169U7H9zNvLQc1EFNZ3gbxC', 'type': 'tool_result', 'content': "1\t% experiments.tex — D024 compressed for 8-page limit\n2\t\n3\t\\section{Experiments}\n4\t\n5\t\\paragraph{Terminology.}\n6\t\\emph{Cross-attack OOD}: evaluation on attack families unseen during training; benign distribution remains IID throughout (OOD reflects attack-side shift only). $K$: prefix length (number of conversation turns retained). \\emph{DAPT}: all Stage-1 adaptations, extending \\citet{gururang
+30	
+31	=== LINE 80 ===
+32	[{'tool_use_id': 'toolu_019NPG4XPy9psjbFnmBaX9PR', 'type': 'tool_result', 'content': '1\t% introduction.tex — expanded for 8-page target\n2\t\n3\t\\section{Introduction}\n4\t\n5\tMulti-turn jailbreak attacks distribute adversarial intent across individually benign turns. Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} all rely on persuasion as their core mechanism: \\citet{zeng2024pap} catalogue 40 persuasion te
+33	
+34	=== LINE 82 ===
+35	[{'tool_use_id': 'toolu_018h38SPYEEYbW1qwJjHHRDb', 'type': 'tool_result', 'content': '1\t% abstract.tex — D048 deep writing optimization\n2\t\\begin{abstract}\n3\tDetecting unseen multi-turn jailbreaks requires domain adaptation, but the form of adaptation matters.\n4\tMulti-turn jailbreak attacks spread adversarial intent across benign-seeming turns, and existing defenses fail to generalize across attack families: Llama Guard~3, a widely deployed safety classifier, detects only 1.8\\% of multi-
+36	
+37	=== LINE 92 ===
+38	[{'type': 'thinking', 'thinking': 'Now I have all the files. Let me plan the Workers:\n\nPaper directory: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/`\n\nFiles:\n- conclusion.tex: Discussion (L3-22) + Conclusion (L24-26) + Limitations (L28-35) + Ethics (L37-39)\n- experiments.tex: Setup, Tables, etc.\n- introduction.tex: C3 bullet\n- abstract.tex: Llama Guard description\n\n\n- related_work.tex: Contains the ablation gap statement\n- ref
+39	
+40	=== LINE 98 ===
+41	[{'type': 'tool_use', 'id': 'toolu_01DAamwxk6yPX3NH7pbU6wtD', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'paper-edit:experiments-intro-abstract', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '你的任务：在论文 experiments.tex、introduction.tex 和 abstract.tex 中执行 6 个精确的 surgical edit。不要修改指定之外的任何内容。\n\n论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/\n\n⛔ 保护区域（绝对不要修改这些行/段）：\n- experiments.tex 中包含 "OOD resu
+42	
+43	=== LINE 120 ===
+44	[{'tool_use_id': 'toolu_01R8TK4oNrzQLg97pM2Gr7fh', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"worker_id\\": \\"worker_paper-edit_experiments-intro-abstract_20260521T214615\\", \\"status\\": \\"done\\", \\"task_type\\": \\"paper-edit:experiments-intro-abstract\\", \\"project\\": \\"persuasion_turn_jailbreak_detect\\", \\"started_at\\": \\"2026-05-21T21:46:15.892592+00:00\\", \\"ended_at\\": \\"2026-05-21T21:47:43.408228+00:00\\", \\"setup\\": null, \\"tear
+45	
+46	=== LINE 148 ===
+47	[{'tool_use_id': 'toolu_01V8zEHM8X1bJ5TU3enzw7cH', 'type': 'tool_result', 'content': '17\t\n18\t\\paragraph{Regularization mechanism.}\n19\tFrozen probing near-parity (AA gap 3.1\\,pp), label irrelevance ($d$\\,=\\,0.09), and mean pooling matching BiGRU ($|\\Delta| < 1$\\,pp) converge: classification DAPT provides robustness through optimization regularization---paralleling findings in self-supervised learning where representation quality depends on training structure rather than label content~\
+48	
+49	=== LINE 150 ===
+50	[{'tool_use_id': 'toolu_01KMx5JbNojqZNZag3LK1nWA', 'type': 'tool_result', 'content': '20\t\n21\t\\paragraph{Benign distribution as the remaining bottleneck.}\n22\tOOD F1 figures are upper bounds (benign is IID). On WildChat, 9-class FPR reaches 68.1\\% (Appendix~\\ref{app:wildchat_fpr}) and 88--90\\% on cross-LLM benign conversations; cross-LLM error decomposition confirms collapse is driven by false positives on unfamiliar benign text.'}]
+51	
+52	=== LINE 159 ===
+53	[{'type': 'thinking', 'thinking': 'All critical edits verified:\n\n1. Fix 12 ✓ — "optimization regularization---paralleling findings in self-supervised learning where representation quality depends on training structure rather than label content~\\citep{chen2020simclr,grill2020byol}"\n2. Fix 2 text ✓ — "Unlike \\citet{zhang2021understanding}..." added\n3. Fix 1 ✓ — "Several findings are not derivable from prior DAPT literature: (i)~... (ii)~... (iii)~..."\n\n\n4. Fix 6 ✓ — "and 88--90\\% on cros
+54	
+55	=== LINE 171 ===
+56	[{'type': 'tool_use', 'id': 'toolu_019keTYvWuH3zxsXGNJcmnzA', 'name': 'mcp__agent-ml-research__main_agent_post_to_director', 'input': {'text': '[资源] GPU 0/1 (cuda:0 空闲，实验阶段关闭) | Worker 0 (4 个已完成回收) | 磁盘: 未检测\n\n## Round 10 写作修复 — 全部 13 项完成\n\n编译通过，正文 8 页未溢出，0 undefined citations，0 errors。\n\n### 逐项结果：\n\n| Fix | 内容 | 状态 |\n|-----|------|------|\n| 1 | Discussion "not derivable from prior work" 三点追加 | ✅ |\n| 2 | Zhang et al. random labels 引用 + 区别（text + bib） | ✅ |\n| 3 | Table 2 caption OOD upper
+57	
+58	=== LINE 180 ===
+59	[{'tool_use_id': 'toolu_01T9R35vu71oSvq8o38Gzj4A', 'type': 'tool_result', 'content': '17\t\n18\t\\paragraph{Regularization mechanism.}\n19\tFrozen probing near-parity (AA gap 3.1\\,pp), label irrelevance ($d$\\,=\\,0.09), and mean pooling matching BiGRU ($|\\Delta| < 1$\\,pp) converge: classification DAPT provides robustness through optimization regularization---paralleling findings in self-supervised learning where representation quality depends on training structure rather than label content~\
+60	
+61	=== LINE 181 ===
+62	[{'type': 'thinking', 'thinking': 'Director wants 2 follow-up fixes:\n\n**Fix 14**: Restructure the Regularization mechanism paragraph:\n- Split into parts: first sentence keeps convergence argument + SimCLR/BYOL\n- Zhang et al. distinction as separate sentence\n- "Not derivable" findings condensed to one sentence or footnote\n- Remove em-dashes, use short sentences\n\n**Fix 15**: Remove "and 88--90\\% on cross-LLM benign conversations" from L22 (Director recommends deletion)\n\nLet me plan both
+63	
+64	=== LINE 199 ===
+65	[{'tool_use_id': 'toolu_01SmgQKUGiDJLvDpZ9kNdtQz', 'type': 'tool_result', 'content': '17\t\n18\t\\paragraph{Regularization mechanism.}\n19\tFrozen probing near-parity (AA gap 3.1\\,pp), label irrelevance ($d$\\,=\\,0.09), and mean pooling matching BiGRU ($|\\Delta| < 1$\\,pp) converge: classification DAPT provides robustness through optimization regularization, not semantic feature learning. This parallels self-supervised learning, where representation quality depends on training structure rathe
+66	
+67	=== LINE 214 ===
+68	[{'tool_use_id': 'toolu_01TrumushzYXp19sXf53CMnq', 'type': 'tool_result', 'content': '1\t% conclusion.tex — compressed for 8-page limit\n2\t\n3\t\\section{Discussion}\n4\t\\label{sec:discussion}\n5\t\n6\t\\paragraph{Topic shortcut and label equivalence.}\n7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).\n8\t\n9\t\\paragraph{Single-LLM confound.}\n10\tToxicCha
+69	
+70	=== LINE 222 ===
+71	[{'type': 'thinking', 'thinking': 'OK, I need to compress about 15-20 lines. Let me analyze each compression target:\n\n**1. Related Work (target: 10-15 lines saved)**\n\nCurrent related_work.tex has 4 paragraphs:\n- P1 "Multi-turn jailbreak attacks" (L5-6): ~7 lines in LaTeX, covers attack families\n- P2 "Multi-turn defenses and production safety" (L8-9): ~10 lines, covers defenses\n\n\n- P3 "Computational persuasion and discourse" (L11-12): ~5 lines\n- P4 "Domain-adaptive pretraining" (L14-15)
+72	
+73	=== LINE 224 ===
+74	[{'type': 'tool_use', 'id': 'toolu_01QZvffYcoMezXwNVKhQtFrd', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'paper-edit:page-compression', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '🚨 紧急任务：论文主文溢出到 page 9。需要压缩约 15-20 行，把 Conclusion 拉回 page 8。\n\n论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/\n\n⛔ 保护区域（绝对不要修改）：\n- experiments.tex 含 "OOD results report 3-seed mean" 的行\n- experiments.tex 含 "Unles
+75	
+76	=== LINE 240 ===
+77	[{'tool_use_id': 'toolu_01T37vmGtSk6KWL7Rahf128a', 'type': 'tool_result', 'content': '1\t% related_work.tex — D048 deep writing optimization\n2\t\n3\t\\section{Related Work}\n4\t\n5\t\\paragraph{Multi-turn jailbreak attacks.}\n6\tAll multi-turn jailbreak families share a persuasion substrate~\\citep{zeng2024pap,hagendorff2026reasoning,li2024mhj}: Crescendo~\\citep{russinovich2024crescendo}, FITD~\\citep{fitd2024}, DD~\\citep{deceptivedelight2024}, and ActorAttack~\\citep{ren2024actorattack} each
+78	
+79	=== LINE 269 ===
+80	[{'type': 'tool_use', 'id': 'toolu_015BPLzFL8bR5TrNh7j8C7bP', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'paper-edit:bib-final-proofread', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '你的任务：论文 bibliography 最终校对。\n\n论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/\n\n⛔ 保护区域（不要修改这些）：\n- experiments.tex L27 (3-seed mean), L29 (Unless otherwise noted), L112 (TOST)\n- conclusion.tex Limitations 3 段、
+81	
+82	=== LINE 318 ===
+83	[{'tool_use_id': 'toolu_01KWPkxx2saaqXGciEWUjka7', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\\", \\"content\\": \\"# persuasion_turn_jailbreak_detect — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 22:09 UTC | 更新原因: Round 10 写作修复全部完成，确认审查已提交\\\\n\\\\n## 核心方向\\\\nMulti-turn jailbreak 检测的系统性分解：classification DAPT 通过优化正则化（而非语义特征学习）提供跨条件鲁棒性。三个 nu
+84	
+85	=== LINE 321 ===
+86	[{'tool_use_id': 'toolu_01VvimLpCCAMkGmd9kPX6wAX', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp36_frozen_mlm_probing: 冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classi
+87	
+88	=== LINE 333 ===
+89	**实验 A: 扩展 TOST seeds 到 n=10**（最简单，~3h）
+90	- 在现有 5 seeds (42,123,456,789,1000) 基础上新增 5 个 seeds (2024,2025,2026,314,628)
+91	- 对 9-class 和 scrambled 各训练 5 个新 seed → 总共 10 个新模型
+92	**实验 D: OOD benign 混合训练**（~6-8h）
+93	先汇报第一步服务器状态，然后我审批后立即开跑。**多个实验可以串行跑，seeds 实验最先。**
+94	
+95	=== LINE 350 ===
+96	[{'tool_use_id': 'toolu_015NjC6L8gudY5yVCaMoeXt5', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"worker_id\\": \\"worker_infra_server-check_20260522T032303\\", \\"status\\": \\"done\\", \\"task_type\\": \\"infra:server-check\\", \\"project\\": \\"persuasion_turn_jailbreak_detect\\", \\"started_at\\": \\"2026-05-22T03:23:03.608806+00:00\\", \\"ended_at\\": \\"2026-05-22T03:25:00.704623+00:00\\", \\"setup\\": null, \\"teardown\\": null, \\"setup_data\\": {}, \
+97	
+98	=== LINE 362 ===
+99	[{'type': 'thinking', 'thinking': "Disk cleanup worker spawned. While waiting, I should prepare for Experiment A (TOST 10-seed). I need to understand:\n1. The existing training scripts for seed experiments\n2. The current seed experiment setup (exp39 used seeds 42,123,456,789,1000)\n3. What needs to change for the new 5 seeds (2024,2025,2026,314,628)\n\nLet me read the relevant training scripts and exp39 setup to prepare the Worker prompt for Experiment A. I should also read the experiment plan 
+100	
+101	=== LINE 369 ===
+102	[{'tool_use_id': 'toolu_018pFZMUPzT6usZpzFaZ1sYB', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\n（待填充：首次正式对标竞品时补充）\\\\n\\\\n## 关键决策记录\\\\n\\\\n### D001: 停止数据迭代 (2026-05-17)\\\\n- **决策**：TF-IDF 高不再阻塞训练。转 early detection metric 方向。\\\\n\\\\n### D002: 用 intended_strategy 替代 GPT-5.5 标注 (2026-05-17)\
+103	
+104	=== LINE 380 ===
+105	[{'type': 'thinking', 'thinking': "Disk cleanup done. Released ~19.6GB, now 21GB free (32% used). Remaining checkpoints: exp26 (frozen probing, 3 seeds), exp27 (mean pooling), exp36 (frozen MLM, 3 seeds).\n\nNow I need to immediately start Experiment A (TOST 10-seed). Let me plan this:\n\n**Experiment A: Extend TOST to n=10 seeds**\n- Current: 5 seeds (42, 123, 456, 789, 1000) for 9-class and scrambled\n\n\n- New: 5 additional seeds (2024, 2025, 2026, 314, 628) for both 9-class and scrambled\n- 
+106	
+107	=== LINE 386 ===
+108	[{'type': 'tool_use', 'id': 'toolu_018sQ3TcpnvLDxUdinVXVoaY', 'name': 'mcp__agent-ml-research__update_registry', 'input': {'exp_id': 'exp41_tost_10seed', 'field': 'hypothesis', 'value': 'Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient statistical power: if scrambled and 9-class are truly equivalent within 5pp margin on ActorAttack, the increased sample size will yield p<0.05, confirming label content irrelevan
+109	
+110	=== LINE 387 ===
+111	[{'tool_use_id': 'toolu_018sQ3TcpnvLDxUdinVXVoaY', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp41_tost_10seed\\", \\"experiment\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:27:41.890Z\\", \\"hypothesis\\": \\"Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient s
+112	
+113	=== LINE 389 ===
+114	[{'tool_use_id': 'toolu_01QVWHGq3TgV5gSMW3q8qvVD', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp41_tost_10seed\\", \\"experiment\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:27:42.722Z\\", \\"hypothesis\\": \\"Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient s
+115	
+116	=== LINE 395 ===
+117	   - Registering and preparing Experiment A (TOST 10-seed extension)
+118	     - Terminology (L6): OOD definition moved to footnote for space savings
+119	     - Table 2 caption (L81): Added "OOD F1 values are upper bounds, as benign samples remain IID (see Section~\ref{sec:discussion})"
+120	     - Protected: L27 (3-seed mean), L29 (Unless otherwise noted), L112 (TOST paragraph)
+121	     - Remaining checkpoints: exp26_frozen_seed{123,42,456}, exp27_mean_pooling, exp36_frozen_mlm_seed{123,42,456}
+122	   - **Page overflow (CRITICAL)**: After Fix 1-15 added ~15-20 lines of text, Conclusion spilled to page 9 (EMNLP desk reject). Fixed by compressing Related Work (~10 lines), Discussion Regularization paragraph (~2 lines), and moving OOD terminology to footnote (~1 line). Total ~13 lines saved, Conclusion back on page 8.
+123	   - Registered exp41_tost_10seed with proper hypothesis and parent chain
+124	   - "[Director 指令] 三个决策：1. Table 7 保留 3-seed mean 2. exp40 已集成确认 3. 待命" 
+125	   - **Experiment A (exp41_tost_10seed)**: REGISTERED (PREPARING), needs Worker to execute training of 10 new models (5 seeds × 2 variants: 9-class + scrambled) with seeds 2024,2025,2026,314,628
+126	   - **Experiment D (OOD benign mixed training)**: Mix WildChat benign into training to reduce FPR from 68.1%
+127	   Just completed disk cleanup (freed ~19.6GB, now 21GB available on westd-33183) and registered exp41_tost_10seed in the registry with status=PREPARING, hypothesis about resolving TOST AA p=0.08, and parent=exp39_extra_seeds_tost. The next immediate action is to spawn a Worker to execute the actual training for Experiment A on westd-33183.
+128	   - Existing seeds: 42, 123, 456, 789, 1000 (from exp39)
+129	   - New seeds: 2024, 2025, 2026, 314, 628
+130	   - After training: Re-run TOST equivalence test with all 10 seeds
+131	   Spawn a Worker to execute Experiment A (exp41_tost_10seed) training on westd-33183. The Worker needs to:
+132	   2. Train 10 new models (5 seeds × {9-class, scrambled}) using seeds 2024, 2025, 2026, 314, 628
+133	   3. Run TOST equivalence analysis with all 10 seeds
+134	   Director's exact instruction: "**清理完后立即启动实验 A（TOST 10-seed）**，不等我二次确认。" and "每个实验完成后立即汇报结果，不要等全部做完。" Execution order: "A→D→C→B"
+135	
+136	=== LINE 418 ===
+137	[{'tool_use_id': 'toolu_01XrCUB8A2ERSEBBUJYd8H1N', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:27:42.722Z\\", \\"hypothesis\\": \\"Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient statistical power: if scrambled and
+138	
+139	=== LINE 420 ===
+140	[{'tool_use_id': 'toolu_01KF3az6nYce29Bf8KYDFLyM', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp41_tost_10seed（准备中）\\\\n- exp36_frozen_mlm_probing: 冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: 
+141	
+142	=== LINE 423 ===
+143	[{'type': 'thinking', 'thinking': 'OK, I can see that exp41_tost_10seed is in PREPARING status. I need to spawn a Worker to execute it on westd-33183. Let me also check what GPU is allocated to this project.\n\nFrom the summary:\n- Server: westd-33183, cuda:0, RTX PRO 6000 96GB\n- Python: conda base (/root/miniconda3/bin/python), torch 2.8.0+cu128\n- Existing seeds: 42, 123, 456, 789, 1000 (from exp39)\n\n\n- New seeds: 2024, 2025, 2026, 314, 628\n- Need to train: 5 new 9-class models + 5 new sc
+144	
+145	=== LINE 428 ===
+146	[{'type': 'thinking', 'thinking': "Good, confirmed: westd-33183, cuda:0 only. Now I need to spawn a Worker to execute Experiment A (exp41_tost_10seed).\n\nThe Worker needs to:\n1. Understand the existing training pipeline on the server\n2. Train 10 new models (5 seeds × {9-class, scrambled}) using seeds 2024, 2025, 2026, 314, 628\n3. Run TOST equivalence analysis with all 10 seeds\n4. Use submit_training_job for the actual training\n\nWait, actually let me think about this more carefully. The ex
+147	
+148	=== LINE 430 ===
+149	[{'type': 'tool_use', 'id': 'toolu_016zd2ZFCVoQW1Vuon9EPrWn', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'code:exp41_tost_10seed', 'project': 'persuasion_turn_jailbreak_detect', 'tool_groups': ['ssh', 'registry'], 'task_prompt': "## 任务：执行 exp41_tost_10seed（TOST 10-seed 扩展）\n\n### 目标\n在 westd-33183 上训练 10 个新模型（5 seeds × 2 variants: 9-class + scrambled），然后用全部 10 seeds 重新运行 TOST 等价性检验。\n\n### 背景\n- exp39_extra_seeds_tost 已经用 5 seeds (42, 123, 456, 789, 1000) 完成了 TOST 检验\
+150	
+151	=== LINE 437 ===
+152	[{'type': 'tool_use', 'id': 'toolu_01SmTaacUTJx9JuiK7WRrLKt', 'name': 'mcp__agent-ml-research__main_agent_post_to_director', 'input': {'text': '[资源] GPU 1/1 (cuda:0 westd-33183) | Worker 1 (GPU 1) | 磁盘: westd-33183 ~21GB 可用（刚清理）\n\n**Session Loop #3 恢复，实验 A 已启动**\n\n1. Context compaction 后恢复，registry/cron 同步完成\n2. 磁盘清理已在上轮完成（释放 ~19.6GB，当前 ~21GB 可用）\n3. **exp41_tost_10seed Worker 已 spawn**（worker_code_exp41_tost_10seed_20260522T033057），正在 westd-33183 cuda:0 上执行：\n   - 训练 10 个新模型（5 seeds × {9-clas
+153	
+154	=== LINE 451 ===
+155	[{'tool_use_id': 'toolu_01MaN7MQgbWanhqBKw8mqYMs', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"worker_id\\": \\"worker_code_exp41_tost_10seed_20260522T033057\\", \\"status\\": \\"done\\", \\"task_type\\": \\"code:exp41_tost_10seed\\", \\"project\\": \\"persuasion_turn_jailbreak_detect\\", \\"started_at\\": \\"2026-05-22T03:30:57.947161+00:00\\", \\"ended_at\\": \\"2026-05-22T03:55:08.339348+00:00\\", \\"setup\\": null, \\"teardown\\": null, \\"setup_data\\
+156	
+157	=== LINE 452 ===
+158	[{'type': 'thinking', 'thinking': "The Worker completed exp41_tost_10seed. Results:\n\n| | DD OOD | AA OOD | FITD OOD |\n|---|---|---|---|\n| TOST p | 2.06e-9 | **0.183** | 0.0 |\n| Equivalent? | YES | **NO** | YES |\n| Cohen's d | -0.14 | **0.44** | 0.0 |\n\nConclusion: **negative**. Increasing to n=10 seeds, the AA non-equivalence becomes MORE apparent (p from 0.081 to 0.183, Cohen's d from 0.08 to 0.44 medium effect size). \n\nWith more seeds, AA shows a consistent gap of about 3 percentage p
+159	
+160	=== LINE 458 ===
+161	[{'tool_use_id': 'toolu_013ozz4kGXNnnFi45T5whGKw', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp36_frozen_mlm_probing\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-20T20:31:39.154Z\\", \\"updated_at\\": \\"2026-05-20T20:31:47.291Z\\", \\"hypothesis\\": \\"冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classification DAPT 通过显式策略分类迫使编码器学习与攻击意图更直接相关的判别性特征，而 ML
+162	
+163	=== LINE 463 ===
+164	[{'tool_use_id': 'toolu_01B3shaJGXC8aGp77UkMeDbD', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:53:52.977Z\\", \\"hypothesis\\": \\"Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient statistical power:
+165	
+166	=== LINE 467 ===
+167	[{'type': 'thinking', 'thinking': 'Good, the Worker already updated the registry:\n- status: DONE\n- conclusion: negative\n- metrics: tost_DD (p=2.06e-9, equivalent=true, d=-0.136), tost_AA (p=0.183, equivalent=false, d=0.44), tost_FITD (p=0, equivalent=true, d=0)\n- 9class_AA_mean: 0.979, scrambled_AA_mean: 0.949, AA_mean_diff_pp: 3\n\n\n- training_time_min: 16.8\n\nThis is a negative result, which means I need to update the report, analyze what went wrong with the hypothesis, notify the Direct
+168	
+169	=== LINE 473 ===
+170	[{'tool_use_id': 'toolu_01DfDMVrTxqUqV4k2ADnCnvZ', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper_framing.md\\", \\"content\\": \\"# Paper Framing — persuasion_turn_jailbreak_detect\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission)\\\\n- Deadline: 2026-05-25 (ARR May cycle)\\\\n- Track: LLM Security / Discourse and Pragmatics\\\\n
+171	
+172	=== LINE 475 ===
+173	[{'tool_use_id': 'toolu_01HaraZUAuDgE5YEUcLkT7zc', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\n（待填充：首次正式对标竞品时补充）\\\\n\\\\n## 关键决策记录\\\\n\\\\n### D001: 停止数据迭代 (2026-05-17)\\\\n- **决策**：TF-IDF 高不再阻塞训练。转 early detection metric 方向。\\\\n\\\\n### D002: 用 intended_strategy 替代 GPT-5.5 标注 (2026-05-17)\
+174	
+175	=== LINE 480 ===
+176	[{'type': 'tool_use', 'id': 'toolu_01WLLvGrCS37w24Lh49Ucrfq', 'name': 'mcp__agent-ml-research__main_agent_post_to_director', 'input': {'text': '[资源] GPU 1/1 (cuda:0 westd-33183) | Worker 0 (刚完成 exp41) | 磁盘: westd-33183 ~21GB 可用\n\n[负向结果] exp41_tost_10seed\n\n**被证伪的 hypothesis**：扩展到 n=10 seeds 将使 AA OOD 上 TOST p<0.05，确认 label content irrelevance。\n\n**结果**：\n| | DD OOD | AA OOD | FITD OOD |\n|---|---|---|---|\n| TOST p | 2.06e-9 | **0.183** | 0.0 |\n| Equivalent? | YES | **NO** | YES |\n| Cohen\'
+177	
+178	=== LINE 487 ===
+179	[{'tool_use_id': 'toolu_01HXuyu2YjMRELmE62htv2fs', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": [{\\"id\\": \\"plan_001\\", \\"name\\": \\"data_quality_fix\\", \\"claim\\": [1, 2, 3], \\"status\\": \\"planned\\", \\"description\\": \\"ABANDONED: TF-IDF lexical separability is inherent to persuasive jailbreak vs general conversation (confirmed on 7 data sources including real WildChat F1=0.998). Pass criteria TF-IDF<0.65 is impossible on any 
+180	
+181	=== LINE 499 ===
+182	[{'type': 'tool_use', 'id': 'toolu_01THktzeZqZwbFHtnUrfgZXa', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'code:exp42_ood_benign_mixed', 'project': 'persuasion_turn_jailbreak_detect', 'tool_groups': ['ssh', 'registry'], 'task_prompt': '## 任务：执行 exp42_ood_benign_mixed（WildChat benign 混合训练降低 FPR）\n\n### 目标\n将 WildChat benign 对话混入训练数据，重训 9-class DAPT + BiGRU 模型，目标是将 WildChat FPR 从 68.1% 降到 30% 以下，同时保持 OOD jailbreak 检测性能。\n\n### 背景\n- 当前模型在 WildChat benign 上 FPR=68.1%（9-cl
+183	
+184	=== LINE 503 ===
+185	[{'type': 'tool_use', 'id': 'toolu_014TdriZXf2YWWfwgxd3fzom', 'name': 'mcp__agent-ml-research__save_project_file', 'input': {'project': 'persuasion_turn_jailbreak_detect', 'file': 'memory.md', 'content': '# Memory\n\n## 竞品实验参考\n（待填充：首次正式对标竞品时补充）\n\n## 关键决策记录\n\n### D001: 停止数据迭代 (2026-05-17)\n- **决策**：TF-IDF 高不再阻塞训练。转 early detection metric 方向。\n\n### D002: 用 intended_strategy 替代 GPT-5.5 标注 (2026-05-17)\n- Crescendo jailbreak 用生成时的 intended_strategy 作为 ground truth；benign 全标 "Direct Request"。\n\n
+186	
+187	=== LINE 516 ===
+188	[{'tool_use_id': 'toolu_01Mb5sUxCtv2HZpJiZHCgEXB', 'type': 'tool_result', 'content': '1\t% abstract.tex — D048 deep writing optimization\n2\t\\begin{abstract}\n3\tDetecting unseen multi-turn jailbreaks requires domain adaptation, but the form of adaptation matters.\n4\tMulti-turn jailbreak attacks spread adversarial intent across benign-seeming turns, and existing defenses fail to generalize across attack families: Llama Guard~3, a widely deployed turn-level safety classifier, detects only 1.8\\
+189	
+190	=== LINE 517 ===
+191	[{'tool_use_id': 'toolu_01M2jJHDqdjZfLQ719rvuUpi', 'type': 'tool_result', 'content': "100\t\\vspace{-2pt}\n101\t{\\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\\dagger}$Deterministic (no std). $^{\\ddagger}$MLM-only IID (Table~\\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed. $^{\\P}$Zero-shot; no domain training.}\n102\t\\end{table}\n103\t\n104\tA clear \\emph{evidence hierarchy} emerges across seven variants (Table~\\ref{tab:evidence_hierarch
+192	
+193	=== LINE 519 ===
+194	[{'tool_use_id': 'toolu_01RRHnHzhQ7cxzZvbbKbqrUk', 'type': 'tool_result', 'content': '1\t% introduction.tex — expanded for 8-page target\n2\t\n3\t\\section{Introduction}\n4\t\n5\tMulti-turn jailbreak attacks distribute adversarial intent across individually benign turns. Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} all rely on persuasion as their core mechanism: \\citet{zeng2024pap} catalogue 40 persuasion te
+195	
+196	=== LINE 522 ===
+197	[{'tool_use_id': 'toolu_011VKNtx3d39RFebZMgBSjjQ', 'type': 'tool_result', 'content': '1\t% conclusion.tex — compressed for 8-page limit\n2\t\n3\t\\section{Discussion}\n4\t\\label{sec:discussion}\n5\t\n6\t\\paragraph{Topic shortcut and label equivalence.}\n7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).\n8\t\n9\t\\paragraph{Single-LLM confound.}\n10\tToxicCha
+198	
+199	=== LINE 525 ===
+200	[{'type': 'thinking', 'thinking': 'Now I have all the files. Let me plan the 5 edits:\n\n1. **experiments.tex L112**: Update TOST paragraph with n=10 data\n2. **introduction.tex L24 C1**: Update "d=0.09 on ActorAttack" \n3. **introduction.tex L28 C3**: Update "label content irrelevance (d=0.09)"\n4. **abstract.tex L8**: "limited sensitivity to label correctness" → "attack-complexity-dependent sensitivity to label correctness"\n5. **conclusion.tex L19**: Update regularization mechanism paragraph\
+201	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08a68706-a301-4315-8760-5c4d00f56f53",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "b1a7dd4c-82a2-483b-b6da-a8447262e934",
+  "sourceToolAssistantUUID": "08a68706-a301-4315-8760-5c4d00f56f53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-23T05:39:31.637Z_
+
+Let me search more specifically for per-seed F1 values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1a7dd4c-82a2-483b-b6da-a8447262e934",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxofdhCBU6vpLw1KxeS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d40fcf80-ef1e-4d9f-b77d-f450b15d480d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QGFpEjP9bvdQPfeb7ACA5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13973,
+      "cache_read_input_tokens": 17719,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13973,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T05:39:40.803Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TXqCrLjfAapBATXpZ9Xy2a`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for per-seed F1 values with specific patterns\npython3 -c \"\nimport json\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for seed-specific F1 results\n        if ('seed' in msg.lower() and 'f1' in msg.lower() and any(v in msg for v in ['0.99', '0.98', '0.97', '0.96', '0.95', '0.751', '0.285', '0.305', '0.348'])):\n            if 'content' in obj.get('message', {}):\n                content = str(obj['message']['content'])\n                if len(content) > 100:\n                    # Find relevant sections\n                    lines = content.split('\\\\\\\\n')\n                    for j, l in enumerate(lines):\n                        if ('seed' in l.lower() or 'per.seed' in l.lower() or 'f1' in l.lower()) and any(v in l for v in ['0.99', '0.98', '0.97', '0.96', '0.95', '0.751', '0.285', '0.305', '0.348', '0.258']):\n                            print(f'LINE {i}, subline {j}: {l[:400]}')\n\" 2>&1 | head -100",
+  "description": "Search for per-seed F1 values in transcript"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d40fcf80-ef1e-4d9f-b77d-f450b15d480d",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxofdhCBU6vpLw1KxeS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "386e857a-00c9-4585-b413-d875925db0d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QGFpEjP9bvdQPfeb7ACA5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13973,
+      "cache_read_input_tokens": 17719,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 13973
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 17719,
+          "cache_creation_input_tokens": 13973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 13973,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T05:39:41.383Z_
+
+<details><summary>↩ Tool result · `toolu_01TXqCrLjfAapBATXpZ9Xy2a`</summary>
+
+```text
+LINE 76, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 78, subline 56: 57\tDD exhibits high lexical separability (TF-IDF F1\\,=\\,0.961); ActorAttack, where TF-IDF collapses to 0.261, serves as the primary stress test for beyond-lexical generalization.
+LINE 78, subline 58: 59\tMLM achieves mean F1 $\\geq$ 0.97 at all prefixes $K \\leq 5$ without any classification labels; domain exposure alone is sufficient.
+LINE 78, subline 59: 60\tAt full conversation length, MLM drops to 0.914$\\pm$0.115 (seed 456 recall = 0.64), while the 9-class model maintains 0.994$\\pm$0.005.
+LINE 78, subline 60: 61\tTF-IDF LR reaches F1 = 0.961 on full DD; DD is fully solvable by lexical features.
+LINE 78, subline 61: 62\tOn structurally complex ActorAttack, TF-IDF collapses to F1 = 0.261 (precision = 1.0, recall = 0.15), while 9-class maintains 0.972$\\pm$0.026: a 71\\,pp gap. Lexical methods cannot capture multi-persona role-playing attack structure. This establishes a ``difficulty threshold'' for lexical methods parallel to that of vanilla encoders: both succeed on DD and fail on ActorAttack (Section~\\ref{s
+LINE 78, subline 62: 63\tBootstrap CIs confirm non-overlapping intervals (9-class DD Full [0.943, 1.000] vs.\\ vanilla [0.202, 0.341]; all permutation $p < 0.0001$). FITD is non-discriminative (all variants F1\\,$\\geq$\\,0.990; Section~\\ref{sec:limitations}).
+LINE 78, subline 71: 72\tPrefix-length analysis (Appendix Table~\\ref{tab:full_prefix}) shows vanilla F1 drops from 0.628 at $K$=1 to 0.312 at full length. MLM achieves strong early detection ($K$=2: 0.993) but is unstable at full length (0.914$\\pm$0.115); the 9-class model maintains 0.972--0.994 across all prefixes, demonstrating that classification supervision stabilizes against distributional drift.
+LINE 78, subline 112: 112\tAll three classification-supervised variants converge to equivalent detection (F1 = 0.994--1.000); McNemar's ($p > 0.13$) and paired permutation tests ($p \\geq 0.40$) provide descriptive evidence suggesting equivalence. Extended to $n$=5 seeds, TOST (margin = 5\\,pp) confirms equivalence on DD ($p < 0.001$; Table~\\ref{tab:tost_sensitivity}); on ActorAttack, the mean gap narrows to 0.5\\,pp 
+LINE 214, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 369, subline 77: - **9-class F1=1.0 on mixed_test 是真实的**: 76 样本小测试集 + 强 DAPT embedding，BiGRU Epoch 1 即达 val_acc 0.9865\\\
+LINE 418, subline 0: [{'tool_use_id': 'toolu_01XrCUB8A2ERSEBBUJYd8H1N', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:27:42.722Z\\", \\"hypothesis\\": \\"Extending TOST equivalence test from n=5 to n=10 seeds will resolve th
+LINE 451, subline 8: 结论：**negative**。增加到 n=10 seeds 后，AA 上的非等价性更加明显（p 从 0.081 升至 0.183，Cohen\'s d 从 0.08 升至 0.44 中等效应量）。9-class 在 AA 上比 scrambled 高约 3pp（0.979 vs 0.949），scrambled 方差大（seed314: 0.833）。DD 和 FITD 确认等价。\\\
+LINE 452, subline 10: With more seeds, AA shows a consistent gap of about 3 percentage points between 9-class and scrambled (0.979 vs 0.949), though scrambled has high variance across seeds. This contradicts the hypothesis—instead of confirming label irrelevance, the results suggest labels actually do matter for AA, which challenges the paper's current framing around optimization regularization versus semantic learning
+LINE 458, subline 0: [{'tool_use_id': 'toolu_013ozz4kGXNnnFi45T5whGKw', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp36_frozen_mlm_probing\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-20T20:31:39.154Z\\", \\"updated_at\\": \\"2026-05-20T20:31:47.291Z\\", \\"hypothesis\\": \\"冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-c
+LINE 463, subline 0: [{'tool_use_id': 'toolu_01B3shaJGXC8aGp77UkMeDbD', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:53:52.977Z\\", \\"hypothesis\\": \\"Extending TOST equivalence test from n=5 to n=10 seed
+LINE 473, subline 14: **On Deceptive Delight (moderate OOD)**: DeBERTa vanilla collapses (F1=0.31±0.03), continued pretraining bridges ~60pp (MLM=0.91±0.12), classification achieves 0.997±0.005. RoBERTa vanilla already succeeds (0.981±0.026) — hierarchy is flat. Scrambled=binary=9-class (all 0.997±0.005).\\\
+LINE 473, subline 18: **On Human-Written Jailbreaks (exp8, ToxicChat, macro F1 — D036)**: Domain-adapted variants outperform vanilla on human-authored data from ToxicChat (LMSYS, 204 jailbreaks + 204 benign, balanced, no data leakage). Macro F1: JB-MLM=0.837±0.013, wiki-MLM=0.791±0.093, binary=0.705±0.072, scrambled=0.616±0.056, 9-class=0.596±0.087, topic=0.496±0.042, vanilla=0.413±0.021. All DA variants exceed vanilla
+LINE 473, subline 24: **Key nuances**: (1) Binary ≈ 9-class ≈ scrambled on ActorAttack Full (0.990 vs 0.972 vs 0.951, all within noise at n=3; D032). Label quality is not a detection-relevant factor on any OOD difficulty. (2) Classification supervision consistently reduces cross-seed variance 4-20x (Claim 3): 9-class std=0.005-0.026 vs MLM std=0.080-0.115, across both DD and ActorAttack. (3) Perturbation robustness is 
+LINE 473, subline 29: NOT: \\\\\\"Label quality matters on hard attacks\\\\\\" (3-seed ActorAttack: binary 0.990 ≈ 9-class 0.972 ≈ scrambled 0.951, all within noise; D032).\\\
+LINE 473, subline 35: Persuasive jailbreak conversations and general benign conversations are inherently lexically separable (TF-IDF≈1.0 on ALL data sources including real WildChat). TF-IDF remains strong on DD OOD (Full=0.961, per-prefix K1-K5 near-perfect). **But TF-IDF collapses on ActorAttack (Full=0.261, exp7)** — lexical features cannot capture multi-persona role-playing attack structure. DisPeD\'s value: (1) bri
+LINE 473, subline 48: Vanilla DeBERTa catastrophically fails on unseen attack types (F1=0.28 on DD). Classification-based domain-adaptive pretraining (9-class) bridges this gap robustly across ALL tested conditions — single-source (Qwen DD=0.997), mixed-LLM (DD=0.818), expanded scale (DD=0.889, AA=0.913). On single-source Qwen data, MLM also achieves near-perfect DD OOD (0.914±0.115), but this effectiveness is conditio
+LINE 473, subline 49: - Evidence: plan_017 MLM DD — 3-seed Full=0.914±0.115, K≤5 ≥0.97 (no classification labels)\\\
+LINE 473, subline 53: - Evidence: plan_006 scrambled DD — F1=0.935-0.990 (labels non-essential)\\\
+LINE 473, subline 54: - Evidence: plan_013 binary DD — F1=0.99 (label granularity non-essential)\\\
+LINE 475, subline 77: - **9-class F1=1.0 on mixed_test 是真实的**: 76 样本小测试集 + 强 DAPT embedding，BiGRU Epoch 1 即达 val_acc 0.9865\\\
+LINE 487, subline 0: [{'tool_use_id': 'toolu_01HXuyu2YjMRELmE62htv2fs', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": [{\\"id\\": \\"plan_001\\", \\"name\\": \\"data_quality_fix\\", \\"claim\\": [1, 2, 3], \\"status\\": \\"planned\\", \\"description\\": \\"ABANDONED: TF-IDF lexical separability is inherent to persuasive jailbreak vs general conversation (confirmed 
+LINE 487, subline 17: \\", \\"priority\\": \\"P0\\", \\"gpu_budget_hours\\": 3, \\"deps\\": [\\"plan_002\\"], \\"pass_criteria\\": \\"Topic control DD OOD F1 << persuasion treatment (1.0)\\", \\"registry_id\\": \\"plan_016v2_topic_control\\", \\"status\\": \\"DONE\\", \\"conclusion\\": \\"negative\\", \\"metrics\\": {\\"dd_ood_f1_full\\": {\\"mean\\": 0.5411, \\"std\\": 0.2069, \\"seeds\\": {\\"42\\": 0.7269, \\"123\\"
+LINE 487, subline 18: \\", \\"priority\\": \\"P0\\", \\"gpu_budget_hours\\": 3, \\"deps\\": [\\"plan_002\\"], \\"pass_criteria\\": \\"MLM control DD OOD F1 << persuasion treatment (1.0)\\", \\"registry_id\\": \\"plan_017_mlm_control\\", \\"status\\": \\"DONE\\", \\"conclusion\\": \\"negative\\", \\"metrics\\": {\\"dd_ood_f1_full\\": {\\"mean\\": 0.9138, \\"std\\": 0.115, \\"seeds\\": {\\"42\\": 1, \\"123\\": 0.9902, \\
+LINE 499, subline 60: - conclusion: success 如果 FPR<30% 且 OOD F1>0.95；negative 如果 FPR 仍>30%
+LINE 499, subline 68: ', 'context': 'exp42_ood_benign_mixed 已在 registry 中注册，status=PREPARING, hypothesis="Including WildChat benign conversations in training data will reduce WildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection F1 above 0.95 on DD/AA/FITD", parent=exp38_wildcat_calibration.
+LINE 503, subline 77: - **9-class F1=1.0 on mixed_test 是真实的**: 76 样本小测试集 + 强 DAPT embedding，BiGRU Epoch 1 即达 val_acc 0.9865
+LINE 503, subline 98: - 9-class AA mean=0.979, scrambled AA mean=0.949, gap=3pp，但 scrambled 方差大（seed 314: 0.833 outlier）
+LINE 517, subline 13: 112\tAll three classification-supervised variants converge to equivalent detection (F1 = 0.994--1.000); McNemar's ($p > 0.13$) and paired permutation tests ($p \\geq 0.40$) provide descriptive evidence suggesting equivalence. Extended to $n$=5 seeds, TOST (margin = 5\\,pp) confirms equivalence on DD ($p < 0.001$; Table~\\ref{tab:tost_sensitivity}); on ActorAttack, the mean gap narrows to 0.5\\,pp 
+LINE 522, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 542, subline 0: [{'type': 'tool_use', 'id': 'toolu_01GTzFdSbo8RX49awRTfaHcm', 'name': 'Edit', 'input': {'replace_all': False, 'file_path': '/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex', 'old_string': "Extended to $n$=5 seeds, TOST (margin = 5\\,pp) confirms equivalence on DD ($p < 0.001$; Table~\\ref{tab:tost_sensitivity}); on ActorAttack, t
+LINE 559, subline 14: The Worker gave me some results: 9-class AA averaged 0.979, scrambled AA was 0.949, and seed 314 scrambled came in at 0.833 as an outlier. I don\'t have all 10 individual seed values though, so I\'ll focus on what\'s actionable—updating the appendix text at L326 to mention the n=10 results and noting that the table needs the full 10-seed dataset, which I can generate later with a Worker.
+LINE 561, subline 0: [{'type': 'tool_use', 'id': 'toolu_016U4j1qmftFBRfajxAfYGsX', 'name': 'Edit', 'input': {'replace_all': False, 'file_path': '/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex', 'old_string': "On DD, TOST confirms scrambled $\\approx$ correct labels even at $\\delta$=2\\,pp ($p$=0.035 at $n$=3), demonstrating that label correctness is n
+LINE 571, subline 21: 326\tOn DD, TOST confirms scrambled $\\approx$ correct labels even at $\\delta$=2\\,pp ($p$=0.035 at $n$=3), demonstrating that label correctness is not a detection factor; the DD equivalence conclusion is robust to both margin choice and seed count ($p < 10^{-8}$ at $n$=10). On FITD, equivalence is similarly confirmed ($p < 10^{-8}$, $d \\approx 0$ at $n$=10). On ActorAttack, extending from $n$=5
+LINE 578, subline 2: Also, let me check experiments.tex L132 which mentions "All classification-supervised variants converge to equivalent performance (0.951--0.990, max gap 3.9pp); this extends the DD finding." — this refers to AA specifically and the 3-seed convergence claim. With the n=10 results showing d=0.44 on AA, this "extends the DD finding" statement might be misleading. The DD finding is equivalence, but on
+LINE 582, subline 2: This is about 3-seed results (binary, scrambled, 9-class) converging at n=3. With n=10, 9-class vs scrambled specifically shows d=0.44. But binary (0.990) vs 9-class (0.972) and binary vs scrambled (0.951) are also relevant. The "converge to equivalent" claim at n=3 is based on overlapping confidence intervals at 3 seeds.
+LINE 638, subline 0: [{'tool_use_id': 'toolu_01UaodNdnS9zmaqc6REHV5qh', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp42_ood_benign_mixed\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T03:58:04.544Z\\", \\"updated_at\\": \\"2026-05-22T04:10:33.954Z\\", \\"hypothesis\\": \\"Including WildChat benign conversations in train
+LINE 658, subline 77: - **9-class F1=1.0 on mixed_test 是真实的**: 76 样本小测试集 + 强 DAPT embedding，BiGRU Epoch 1 即达 val_acc 0.9865\\\
+LINE 658, subline 98: - 9-class AA mean=0.979, scrambled AA mean=0.949, gap=3pp，但 scrambled 方差大（seed 314: 0.833 outlier）\\\
+LINE 661, subline 77: - **9-class F1=1.0 on mixed_test 是真实的**: 76 样本小测试集 + 强 DAPT embedding，BiGRU Epoch 1 即达 val_acc 0.9865
+LINE 661, subline 98: - 9-class AA mean=0.979, scrambled AA mean=0.949, gap=3pp，但 scrambled 方差大（seed 314: 0.833 outlier）
+LINE 670, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 686, subline 18: AA OOD F1 & $\\sim$0.960 & 0.956 \\\\
+LINE 686, subline 24: Mixed benign training eliminates WildChat FPR entirely (68.1\\%\\,$\\rightarrow$\\,0\\%) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: the high FPR reflects benign distribution mismatch rather than model capacity limitations, and is remediable with modest in-domain benign da
+LINE 719, subline 4:                                                                   detection (ActorAttack F1 = 0.956; Appendix P),         646
+LINE 719, subline 9: 602   (F1 ≥ 0.97).
+LINE 748, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 750, subline 19: 417\tAA OOD F1 & $\\sim$0.960 & 0.956 \\\\
+LINE 750, subline 25: 423\tMixed benign training eliminates WildChat FPR entirely (68.1\\%\\,$\\rightarrow$\\,0\\%) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: the high FPR reflects benign distribution mismatch rather than model capacity limitations, and is remediable with modest in-domain beni
+LINE 758, subline 14: AA OOD F1 & $\\sim$0.960 & 0.956 \\\\
+LINE 758, subline 20: Mixed benign training eliminates WildChat FPR entirely (68.1\\%\\,$\\rightarrow$\\,0\\%) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: the high FPR reflects benign distribution mismatch rather than model capacity limitations, and is remediable with modest in-domain benign da
+LINE 758, subline 36: AA OOD F1 & $\\sim$0.960 & 0.956 \\\\
+LINE 758, subline 42: Mixed benign training reduces WildChat FPR from 68.1\\% to 0\\% (exact binomial 95\\% CI upper bound: 6.1\\%, $n$\\,=\\,49) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: when representative benign data is available, the high FPR is remediable without sacrificing detection pe
+LINE 767, subline 0: This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   The user is the Main Agent in an ML research system managing the `persuasion_turn_jailbreak_detect` project targeting EMNLP 2026 ARR May submission (DDL 2026-05-25). This session (Loop #3 continuation aft
+LINE 783, subline 0: [{'tool_use_id': 'toolu_015ncXjhRBRwfXhLE133UGxE', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp42b_balanced_ratio_ablation\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:17:59.853Z\\", \\"updated_at\\": \\"2026-05-22T04:17:59.853Z\\"}, \\"exp43_mhj_human_eval\\": {\\"status\\": \\"PREPARING
+LINE 816, subline 0: [{'tool_use_id': 'toolu_018DdWjBqVbWw5vYXBz3d8QZ', 'type': 'tool_result', 'content': '1\tSummary: WildChat FPR 0.0% (from 68.1%), IID F1=1.0, OOD DD F1=1.0, OOD AA F1=0.956, OOD FITD F1=1.0. All 3 seeds. Eval N=49. Data: 500 train (350 orig + 150 WildChat benign). Server results at /root/persuasion_turn_jailbreak_detect/results/exp42_ood_benign_mixed.json'}]
+LINE 821, subline 32: - metrics: wildchat_fpr_mean=0, iid_f1=1.0, ood_dd_f1=1.0, ood_aa_f1=0.956, ood_fitd_f1=1.0
+LINE 841, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 841, subline 21: 22\tOOD F1 figures are upper bounds (benign is IID). On WildChat, 9-class FPR reaches 68.1\\% (Appendix~\\ref{app:wildchat_fpr}); cross-LLM error decomposition confirms collapse is driven by false positives on unfamiliar benign text. A pilot retraining including 150 WildChat samples in the benign training set (Appendix~\\ref{app:benign_mixed}) reduces FPR on held-out WildChat from 68.1\\% to 0\\% 
+LINE 844, subline 29: 419\tAA OOD F1 & $\\sim$0.960 & 0.956 \\\\
+LINE 844, subline 35: 425\tMixed benign training reduces WildChat FPR from 68.1\\% to 0\\% (exact binomial 95\\% CI upper bound: 6.1\\%, $n$\\,=\\,49) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: when representative benign data is available, the high FPR is remediable without sacrificing detecti
+LINE 883, subline 0: [{'tool_use_id': 'toolu_01NRerpkxVLGFRpH7AieUyZL', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"lines\\": [\\"- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\", \\"  WildChat FPR: 0.0000 (0/49)\\", \\"  IID: F1=1.0000, Acc=1.0000\\", \\"  OOD DD recall: 1.0000 (80/80)\\", \\"  OOD DD F1 (vs
+LINE 893, subline 0: [{'tool_use_id': 'toolu_01Tr55knhMVmVD7WFUEbE5D1', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp42b_balanced_ratio_ablation\\", \\"experiment\\": {\\"status\\": \\"RUNNING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:17:59.853Z\\", \\"updated_at\\": \\"2026-05-22T04:39:07.035Z\\", \\"hypothesis\\": \\"exp42\'s WildChat FPR red
+LINE 895, subline 0: [{'tool_use_id': 'toolu_018paH2BSFkoBwUu3xFDt5Yc', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp42b_balanced_ratio_ablation\\", \\"experiment\\": {\\"status\\": \\"RUNNING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:17:59.853Z\\", \\"updated_at\\": \\"2026-05-22T04:39:08.286Z\\", \\"hypothesis\\": \\"exp42\'s WildChat FPR red
+LINE 897, subline 0: [{'tool_use_id': 'toolu_01LGBwqNqBAHzB4bnR4fFW26', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp42b_balanced_ratio_ablation\\", \\"experiment\\": {\\"status\\": \\"RUNNING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:17:59.853Z\\", \\"updated_at\\": \\"2026-05-22T04:39:08.981Z\\", \\"hypothesis\\": \\"exp42\'s WildChat FPR red
+LINE 903, subline 0: [{'tool_use_id': 'toolu_016kf1ofAhAmz4jCH1cjwgXs', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp42b_balanced_ratio_ablation\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:17:59.853Z\\", \\"updated_at\\": \\"2026-05-22T04:39:13.434Z\\", \\"hypothesis\\": \\"exp42\'s WildChat FPR reduct
+LINE 927, subline 0: [{'tool_use_id': 'toolu_01FKPgaxm15NSNdrXezawUTu', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp43_mhj_human_eval\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:12:23.950Z\\", \\"updated_at\\": \\"2026-05-22T04:40:26.816Z\\", \\"hypothesis\\": \\"9-class DAPT representations encode tr
+LINE 929, subline 0: [{'tool_use_id': 'toolu_015F8bzvQ8cg1QbP2XAL54hn', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp43_mhj_human_eval\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:12:23.950Z\\", \\"updated_at\\": \\"2026-05-22T04:40:30.180Z\\", \\"hypothesis\\": \\"9-class DAPT representations encode tr
+LINE 947, subline 0: [{'tool_use_id': 'toolu_01XwakXhGYNyvYU9VEfjeQQY', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp43_mhj_human_eval\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:12:23.950Z\\", \\"updated_at\\": \\"2026-05-22T04:41:09.940Z\\", \\"hypothesis\\": \\"9-class DAPT representations encode tr
+LINE 963, subline 85: Compare against baseline: Qwen-only 9-class (plan_002 results: DD F1=1.0, AA F1≈0.96, FITD F1=1.0)
+LINE 963, subline 112: - AA OOD F1: ~0.960
+LINE 996, subline 100: - IID F1: 1.000, DD OOD F1: 1.000, AA OOD F1: ~0.960, FITD OOD F1: 1.000
+LINE 1130, subline 0: [{'tool_use_id': 'toolu_01T8EuRVCTzbyyQgUDKwSVLY', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"lines\\": [\\"======================================================================\\", \\"[transformers] The tokenizer you are loading from \'/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\' wit
+LINE 1166, subline 10: 405\t\\paragraph{Class ratio shift.} Adding 150 WildChat benign to the original 350-conversation training set (175 jailbreak + 175 synthetic benign) shifts the benign-to-jailbreak ratio from 50:50 to approximately 65:35 (325 benign vs.\\ 175 jailbreak). To control for this confound, we downsample WildChat benign to 88 conversations (175 jailbreak : 88 WildChat benign + 87 original benign $\\approx
+LINE 1166, subline 24: 419\tAA OOD F1 & $\\sim$0.960 & 0.956 \\\\
+LINE 1166, subline 30: 425\tMixed benign training reduces WildChat FPR from 68.1\\% to 0\\% (exact binomial 95\\% CI upper bound: 6.1\\%, $n$\\,=\\,49) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: when representative benign data is available, the high FPR is remediable without sacrificing detecti
+LINE 1169, subline 6: 7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97).
+LINE 1169, subline 21: 22\tOOD F1 figures are upper bounds (benign is IID). On WildChat, 9-class FPR reaches 68.1\\% (Appendix~\\ref{app:wildchat_fpr}); cross-LLM error decomposition confirms collapse is driven by false positives on unfamiliar benign text. A pilot retraining including 150 WildChat samples in the benign training set (Appendix~\\ref{app:benign_mixed}) reduces FPR on held-out WildChat from 68.1\\% to 0\\% 
+LINE 1183, subline 22: 222\t{\\footnotesize $^{*}$High seed variance (std = 0.306): seed 456 outlier (F1 = 0.345); remaining two seeds achieve F1 $\\geq$ 0.97.}
+LINE 1183, subline 25: 225\tTable~\\ref{tab:cross_llm} shows three inference conditions. When both jailbreak and benign text come from Llama (row~2), all variants collapse (F1 = 0.26--0.43), but this conflates two sources of distribution shift: unfamiliar jailbreak patterns and unfamiliar benign text. Row~3 isolates jailbreak transferability by pairing Llama jailbreaks with the original Qwen benign distribution. Under t
+LINE 1192, subline 0: [{'tool_use_id': 'toolu_01CgCx82PiHRcaf1FjZ6rYmq', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp44_multi_llm_mixed\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:41:45.349Z\\", \\"updated_at\\": \\"2026-05-22T06:02:04.365Z\\", \\"hypothesis\\": \\"Mixed multi-LLM training (Qwen+Llama 
+LINE 1258, subline 21: 610\tTable~\\ref{tab:efficiency} compares inference cost. On matched data (IID test), DeBERTa+BiGRU processes a conversation in 12.1\\,ms---28$\\times$ slower than TF-IDF (0.43\\,ms) but this speed gap purchases +71\\,pp on ActorAttack (F1\\,=\\,0.972 vs.\\ 0.261; Table~\\ref{tab:evidence_hierarchy}). LLM-as-judge approaches are orders of magnitude slower ($\\sim$5.2\\,s per conversation for Qwen3
+LINE 1258, subline 48: 637\tTable~\\ref{tab:data_efficiency} shows that 9-class DAPT reaches near-saturation performance with as few as 50 conversations (25 jailbreak + 25 benign): AA OOD F1\\,=\\,0.969$\\pm$0.037, already surpassing vanilla at full training size ($N$=350, AA\\,=\\,0.489) by 48\\,pp using only 14\\% of the data. DD OOD is perfectly solved at all training sizes. Vanilla performance is noisy across $N$ (s
+LINE 1307, subline 70: - Results: WildChat FPR=0%, IID F1=1.0, DD F1=1.0, AA F1=0.956, FITD F1=1.0
+LINE 1372, subline 0: This session is being continued from a previous conversation that ran out of context. The summary below covers the earlier portion of the conversation.
+
+Summary:
+1. Primary Request and Intent:
+   The user is the Main Agent in an ML research system managing the `persuasion_turn_jailbreak_detect` project targeting EMNLP 2026 ARR May submission (DDL 2026-05-25). This session (Loop #3 continuation aft
+LINE 1410, subline 0: [{'tool_use_id': 'toolu_01GoR8Cje2NhS5nvdDaQYKyp', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp46_inference_efficiency\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T06:14:50.840Z\\", \\"updated_at\\": \\"2026-05-22T06:25:23.827Z\\", \\"hypothesis\\": \\"DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-jud
+LINE 1418, subline 7: | exp45_benign_adaptation_curve | Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95. | — | — | — |\\\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "386e857a-00c9-4585-b413-d875925db0d9",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "34cab9a6-9bce-4501-93e3-50f482265de6",
+  "sourceToolAssistantUUID": "386e857a-00c9-4585-b413-d875925db0d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-23T05:39:43.968Z_
+
+Good, I found some key lines. Let me dig deeper into the registry data which contains per-seed metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34cab9a6-9bce-4501-93e3-50f482265de6",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxpaZcqL1F7CV5C37sQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "db4ab308-0ab4-463d-9979-46d279c89d59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hs7yd3hKeT5gehJMiQyAT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11152,
+      "cache_read_input_tokens": 31692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11152,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T05:39:52.148Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01N1bWXZ4LBQi55fAv4hdQcN`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Extract the registry data from line 487 which has per-seed metrics\npython3 -c \"\nimport json\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 487:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Find the seeds data\n            import re\n            # Find all seeds blocks\n            seeds_matches = list(re.finditer(r'seeds.*?\\{.*?42.*?123.*?456.*?\\}', msg))\n            for m in seeds_matches:\n                start = max(0, m.start()-200)\n                end = min(len(msg), m.end()+50)\n                context = msg[start:end]\n                print(f'--- MATCH at pos {m.start()} ---')\n                print(context)\n                print()\n\" 2>&1",
+  "description": "Extract per-seed metrics from registry data at line 487"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db4ab308-0ab4-463d-9979-46d279c89d59",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxpaZcqL1F7CV5C37sQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "33dcaa09-b319-4c0e-9e80-c9375a02e4a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018hs7yd3hKeT5gehJMiQyAT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11152,
+      "cache_read_input_tokens": 31692,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 11152
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 31692,
+          "cache_creation_input_tokens": 11152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 11152,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T05:39:52.291Z_
+
+<details><summary>↩ Tool result · `toolu_01N1bWXZ4LBQi55fAv4hdQcN`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (57.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/85e3b989-c20f-497d-8ff6-585a23797fb3/tool-results/b1up5nkai.txt
+
+Preview (first 2KB):
+--- MATCH at pos 1492 ---
+nchored V2 benign + crescendo). Retrain both treatment (persuasion-grounded DeBERTa) and baseline (vanilla DeBERTa) from scratch with fixed labels. Full evaluation at K=1,2,3,5,all. MUST run 3 random seeds minimum (dream RC9: multi-seed required for n=72 test set). Report mean +/- std and bootstrap CIs. Data: crescendo_all.jsonl + benign_topic_anchored.jsonl, pair-grouped split.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 18, \\\"deps\\\": [\\\"plan_001\\\"], \\\"pass_criteria\\\": \\\"Treatment F1 > baseline F1 + 5pp at K=2 or K=3; results consistent across seeds\\\", \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"name\\\": \\\"scrambled_label_ablation\\\", \\\"claim\\\": [2], \\\"description\\\": \\\"Ablation: randomly shuffle persuasion strategy labels for jailbreak turns, retrain treatment model. If performance drops significantly vs properly-labeled treatment, confirms persuasion labels carry real signal beyond being a class indicator. Validates that M004 fix was necessary.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001\\\"], \\\"pass_criteria\\\": \\\"Scrambled-label treatment F1 < properly-labeled treatment F1 (significant gap)\\\", \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"name\\\": \\\"adversarial_perturbation\\\", \\\"claim\\\": [1, 3], \\\"description\\\": \\\"Core Claim 3 validation. Take clean jailbreak conversations, apply aggressive paraphrasing (synonym substitution, sentence restructuring, register shifting) to remove ALL lexical cues. Evaluate both treatment and baseline on perturbed data (models trained on unperturbed data). Treatment should degrade less than baseline, proving pragmatic features are robust. Also run TF-IDF baseline to show it collapses under perturbation.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33dcaa09-b319-4c0e-9e80-c9375a02e4a8",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "091e9112-1b75-431f-8f98-a27e7e681bb9",
+  "sourceToolAssistantUUID": "33dcaa09-b319-4c0e-9e80-c9375a02e4a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T05:40:05.013Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013K7B9QonGtf6QQqeQT3XFi`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# More targeted: find plan_002 (9-class), plan_006 (scrambled), plan_013 (binary), plan_017 (MLM) registry data with per-seed metrics\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for plan entries with per-seed data\n        for plan in ['plan_002', 'plan_006', 'plan_013', 'plan_017']:\n            if plan in msg:\n                # Find seeds blocks near this plan\n                plan_positions = [m.start() for m in re.finditer(plan, msg)]\n                for pp in plan_positions:\n                    # Look for seeds data within 2000 chars after plan reference\n                    region = msg[pp:pp+3000]\n                    seeds_match = re.search(r'seeds.*?\\\\\\\\\\\"42\\\\\\\\\\\".*?\\\\\\\\\\\"123\\\\\\\\\\\".*?\\\\\\\\\\\"456\\\\\\\\\\\"', region)\n                    if seeds_match:\n                        context = region[:seeds_match.end()+100]\n                        # Trim to just the relevant parts\n                        print(f'=== LINE {i}, {plan} ===')\n                        print(context[:1500])\n                        print()\n                        break\n\" 2>&1 | head -300",
+  "description": "Find plan_002/006/013/017 registry entries with per-seed data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "091e9112-1b75-431f-8f98-a27e7e681bb9",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxqPCHRY3AuuhehB8yw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e45ebd99-4a68-4a26-9976-eed827329f8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015TWqJ5LfyiiiHKwoF3Redq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1207,
+      "cache_read_input_tokens": 42844,
+      "output_tokens": 519,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1207
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 519,
+          "cache_read_input_tokens": 42844,
+          "cache_creation_input_tokens": 1207,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1207,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T05:40:05.577Z_
+
+<details><summary>↩ Tool result · `toolu_013K7B9QonGtf6QQqeQT3XFi`</summary>
+
+```text
+=== LINE 487, plan_002 ===
+plan_002\"], \"pass_criteria\": \"Characterize sensitivity; identify if lambda=1.0 is near-optimal\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_015\", \"name\": \"mean_pooling_baseline\", \"claim\": [1], \"description\": \"Sequence model comparison (dream RC11): replace Bi-GRU with mean pooling over turn embeddings. If mean pooling matches GRU, temporal modeling is unnecessary and the method reduces to per-turn feature aggregation. Important architectural ablation.\\n\", \"priority\": \"P1\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\"], \"pass_criteria\": \"GRU > mean pooling by >= 3pp (proves temporal modeling matters)\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_010\", \"name\": \"cross_checkpoint_variance\", \"claim\": [2], \"description\": \"Evaluate from multiple DeBERTa fine-tuning checkpoints (epoch 2/3/final) to quantify encoder training stochasticity on downstream performance.\\n\", \"priority\": \"P2\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_002\"], \"pass_criteria\": \"Variance across checkpoints < 2pp F1\", \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"plan_011\", \"name\": \"deepcontext_proxy_reproduction\", \"claim\": [1, 2], \"description\": \"Attempt to reproduce DeepContext-like baseline: BERT-base (not DeBERTa) + GRU with generic drift features. Not a full DeepContext reproduction (no public code), but a proxy that isolates the encoder + feature representation contribution.\\n\", \"priorit
+
+=== LINE 487, plan_017 ===
+plan_017\", \"name\": \"mlm_continued_pretraining_control\", \"claim\": [1], \"description\": \"MLM continued pretraining control (no classification labels). Pure masked language modeling on same training text. Tests whether text exposure alone (without any classification supervision) is sufficient for OOD generalization. RESULT: DD OOD F1=1.0 all K values, matching persuasion treatment. Hypothesis falsified \u2014 domain-adaptive fine-tuning is the driver, not persuasion-specific learning.\\n\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [\"plan_002\"], \"pass_criteria\": \"MLM control DD OOD F1 << persuasion treatment (1.0)\", \"registry_id\": \"plan_017_mlm_control\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.
+
+=== LINE 1883, plan_002 ===
+plan_002_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:13:42.372Z\", \"updated_at\": \"2026-05-18T07:29:32.962Z\", \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_003_scrambled_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:03:06.735Z\", \"updated_at\": \"2026-05-18T07:03:38.880Z\"}, \"plan_018_wiki_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:56:00.484Z\", \"updated_at\": \"2026-05-18T07:03:28.615Z\", \"hypothesis\": \"If domain-specific text exposure drives OOD generalization (plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.74
+
+=== LINE 1883, plan_006 ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.
+
+=== LINE 1883, plan_013 ===
+plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparable to JB MLM levels. Binary persuasion detection provides robust embeddings for later turns but is more vulnerable than 9-class at very early turns. Fine-grained strategy labels provide additional early-turn perturbation robustness.\"}, \"plan_016v2_topic_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:52:43.895Z\", \"updated_at\": \"2026-05-18T06:53:31.443Z\", \"hypothesis\": \"Topic classification model will show significant perturbation degradation comparabl
+
+=== LINE 1883, plan_017 ===
+plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_018_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:02:13.081Z\", \"updated_at\": \"2026-05-18T07:02:13.081Z\"}, \"plan_017_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:43:04.262Z\", \"updated_at\": \"2026-05-18T07:02:09.688Z\", \"hypothesis\": \"MLM continued pretraining (no classification labels) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that classification su
+
+=== LINE 2418, plan_002 ===
+plan_002_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:13:42.372Z\", \"updated_at\": \"2026-05-18T07:29:32.962Z\", \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_003_scrambled_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:03:06.735Z\", \"updated_at\": \"2026-05-18T07:03:38.880Z\"}, \"plan_018_wiki_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:56:00.484Z\", \"updated_at\": \"2026-05-18T07:03:28.615Z\", \"hypothesis\": \"If domain-specific text exposure drives OOD generalization (plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.74
+
+=== LINE 2418, plan_006 ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.
+
+=== LINE 2418, plan_013 ===
+plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparable to JB MLM levels. Binary persuasion detection provides robust embeddings for later turns but is more vulnerable than 9-class at very early turns. Fine-grained strategy labels provide additional early-turn perturbation robustness.\"}, \"plan_016v2_topic_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:52:43.895Z\", \"updated_at\": \"2026-05-18T06:53:31.443Z\", \"hypothesis\": \"Topic classification model will show significant perturbation degradation comparabl
+
+=== LINE 2418, plan_017 ===
+plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_018_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:02:13.081Z\", \"updated_at\": \"2026-05-18T07:02:13.081Z\"}, \"plan_017_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:43:04.262Z\", \"updated_at\": \"2026-05-18T07:02:09.688Z\", \"hypothesis\": \"MLM continued pretraining (no classification labels) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that classification su
+
+=== LINE 2727, plan_002 ===
+plan_002_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:13:42.372Z\", \"updated_at\": \"2026-05-18T07:29:32.962Z\", \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_003_scrambled_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:03:06.735Z\", \"updated_at\": \"2026-05-18T07:03:38.880Z\"}, \"plan_018_wiki_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:56:00.484Z\", \"updated_at\": \"2026-05-18T07:03:28.615Z\", \"hypothesis\": \"If domain-specific text exposure drives OOD generalization (plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.74
+
+=== LINE 2727, plan_006 ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.
+
+=== LINE 2727, plan_013 ===
+plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparable to JB MLM levels. Binary persuasion detection provides robust embeddings for later turns but is more vulnerable than 9-class at very early turns. Fine-grained strategy labels provide additional early-turn perturbation robustness.\"}, \"plan_016v2_topic_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:52:43.895Z\", \"updated_at\": \"2026-05-18T06:53:31.443Z\", \"hypothesis\": \"Topic classification model will show significant perturbation degradation comparabl
+
+=== LINE 2727, plan_017 ===
+plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_018_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:02:13.081Z\", \"updated_at\": \"2026-05-18T07:02:13.081Z\"}, \"plan_017_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:43:04.262Z\", \"updated_at\": \"2026-05-18T07:02:09.688Z\", \"hypothesis\": \"MLM continued pretraining (no classification labels) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that classification su
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e45ebd99-4a68-4a26-9976-eed827329f8f",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "04f0245b-1d3c-48a7-bae2-71c3fe0636bf",
+  "sourceToolAssistantUUID": "e45ebd99-4a68-4a26-9976-eed827329f8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-23T05:40:09.456Z_
+
+I can see some data. Now I need to find the specific per-seed values for 9-class, binary, scrambled, and MLM on both DD and AA OOD Full. Let me search more specifically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04f0245b-1d3c-48a7-bae2-71c3fe0636bf",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxrN4biPiJD9L4Zf83E",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6fb769d6-ca00-4758-9fde-a7bc8554cfb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyWsvSW9QbtVQskaaQmWbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7705,
+      "cache_read_input_tokens": 44051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7705,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T05:40:17.726Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QScGXBREaZH7TDU7MmzVrm`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Now look specifically for plan_006 (scrambled) full per-seed data, and look at AA (ActorAttack) for all plans\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for plan_006 cross_attack_clean with full seeds data\n        if 'plan_006_cross_attack_clean' in msg:\n            # Get a big chunk around this\n            pos = msg.find('plan_006_cross_attack_clean')\n            region = msg[pos:pos+5000]\n            if 'seeds' in region:\n                print(f'=== LINE {i}, plan_006_cross_attack_clean ===')\n                print(region[:3000])\n                print()\n\" 2>&1 | head -200",
+  "description": "Find plan_006 scrambled cross-attack per-seed data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fb769d6-ca00-4758-9fde-a7bc8554cfb2",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxrN4biPiJD9L4Zf83E",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "be23a75a-b731-4066-bf1d-12be4fbd2b92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VyWsvSW9QbtVQskaaQmWbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7705,
+      "cache_read_input_tokens": 44051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7705,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T05:40:18.191Z_
+
+<details><summary>↩ Tool result · `toolu_01QScGXBREaZH7TDU7MmzVrm`</summary>
+
+```text
+=== LINE 1410, plan_006_cross_attack_clean ===
+plan_006_cross_attack_clean\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 35, \\\"total\\\": 35, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3386}}\"}"}]}, "uuid": "447e4cd4-5fc4-4594-a71e-7883559681b0", "timestamp": "2026-05-22T06:31:17.780Z", "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp46_inference_efficiency\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T06:14:50.840Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:25:23.827Z\\\", \\\"hypothesis\\\": \\\"DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-judge (Qwen3-8B 3-shot) with comparable or better OOD detection, because the encoder pipeline processes fixed-length embeddings per turn rather than generating full-sequence autoregressive outputs. This quantifies the practical deployment advantage.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"disped_latency_ms\\\": 13.12, \\\"disped_latency_std\\\": 1.61, \\\"disped_throughput_conv_s\\\": 76.19, \\\"disped_gpu_mem_MB\\\": 868, \\\"disped_params_M\\\": 186.73, \\\"qwen3_latency_ms\\\": 318.53, \\\"qwen3_latency_std\\\": 26.8, \\\"qwen3_throughput_conv_s\\\": 3.14, \\\"qwen3_gpu_mem_MB\\\": 16096, \\\"qwen3_params_B\\\": 8.19, \\\"speedup_factor\\\": 24.3, \\\"memory_ratio\\\": 18.5, \\\"test_conversations\\\": 100, \\\"gpu\\\": \\\"RTX PRO 6000 Blackwell\\\"}}, \\\"exp48_ensemble_mlm_9class\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-22T06:14:53.259Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:14:54.020Z\\\", \\\"hypothesis\\\": \\\"Ensembling JB-MLM (strongest on ToxicChat F1=0.837) and 9-class (strongest on synthetic OOD) will outperform either individual model across all benchmarks, because their error patterns are complementary: MLM captures general linguistic anomaly while 9-class captures persuasion-strategy-specific features.\\\", \\\"parent\\\": \\\"exp42_ood_benign_mixed\\\"}, \\\"exp36_frozen_mlm_probing\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T20:31:39.154Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:31:47.291Z\\\", \\\"hypothesis\\\": \\\"\u51bb\u7ed3 MLM DAPT encoder \u7684 probing \u6027\u80fd\u5c06\u4f4e\u4e8e\u51bb\u7ed3 9-class encoder (exp26: DD=0.997, AA=0.972)\uff0c\u56e0\u4e3a classification DAPT \u901a\u8fc7\u663e\u5f0f\u7b56\u7565\u5206\u7c7b\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u66f4\u76f4\u63a5\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\uff0c\u800c MLM \u4ec5\u5b66\u4e60\u901a\u7528\u8bed\u8a00\u6a21\u5f0f\uff0c\u4e0d\u4ea7\u751f OOD \u6cdb\u5316\u6240\u9700\u7684\u653b\u51fb-\u7b56\u7565\u5bf9\u9f50\u8868\u5f81\u3002\\\", \\\"parent\\\": \\\"exp26_frozen_probing\\\"}, \\\"exp13_meanpool_multiseed\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T23:35:41.779Z\\\", \\\"updated_at\\\": \\\"2026-05-20T12:24:21.733Z\\\", \\\"hypothes
+
+=== LINE 1883, plan_006_cross_attack_clean ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_018_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:01:23.658Z\", \"updated_at\": \"2026-05-18T07:01:23.658Z\"}, \"plan_018_wiki_mlm_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:59:27.345Z\", \"updated_at\": \"2026-05-18T06:59:27.345Z\"}, \"plan_018_wiki_mlm_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:48:17.310Z\", \"updated_at\": \"2026-05-18T06:57:27.849Z\"}, \"plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparabl
+
+=== LINE 2418, plan_006_cross_attack_clean ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_018_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:01:23.658Z\", \"updated_at\": \"2026-05-18T07:01:23.658Z\"}, \"plan_018_wiki_mlm_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:59:27.345Z\", \"updated_at\": \"2026-05-18T06:59:27.345Z\"}, \"plan_018_wiki_mlm_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:48:17.310Z\", \"updated_at\": \"2026-05-18T06:57:27.849Z\"}, \"plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparabl
+
+=== LINE 2727, plan_006_cross_attack_clean ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_018_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:01:23.658Z\", \"updated_at\": \"2026-05-18T07:01:23.658Z\"}, \"plan_018_wiki_mlm_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:59:27.345Z\", \"updated_at\": \"2026-05-18T06:59:27.345Z\"}, \"plan_018_wiki_mlm_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:48:17.310Z\", \"updated_at\": \"2026-05-18T06:57:27.849Z\"}, \"plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparabl
+
+=== LINE 5608, plan_006_cross_attack_clean ===
+plan_006_cross_attack_clean\\\", \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 34, \\\"total\\\": 34, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3587}}\"}"}]}, "uuid": "9ec23e16-dc41-4501-bd74-0836f0e612a8", "timestamp": "2026-05-22T21:29:19.030Z", "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp46_inference_efficiency\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:14:50.840Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:25:23.827Z\\\", \\\"hypothesis\\\": \\\"DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-judge (Qwen3-8B 3-shot) with comparable or better OOD detection, because the encoder pipeline processes fixed-length embeddings per turn rather than generating full-sequence autoregressive outputs. This quantifies the practical deployment advantage.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"disped_latency_ms\\\": 13.12, \\\"disped_latency_std\\\": 1.61, \\\"disped_throughput_conv_s\\\": 76.19, \\\"disped_gpu_mem_MB\\\": 868, \\\"disped_params_M\\\": 186.73, \\\"qwen3_latency_ms\\\": 318.53, \\\"qwen3_latency_std\\\": 26.8, \\\"qwen3_throughput_conv_s\\\": 3.14, \\\"qwen3_gpu_mem_MB\\\": 16096, \\\"qwen3_params_B\\\": 8.19, \\\"speedup_factor\\\": 24.3, \\\"memory_ratio\\\": 18.5, \\\"test_conversations\\\": 100, \\\"gpu\\\": \\\"RTX PRO 6000 Blackwell\\\"}}, \\\"exp36_frozen_mlm_probing\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:31:39.154Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:31:47.291Z\\\", \\\"hypothesis\\\": \\\"\u51bb\u7ed3 MLM DAPT encoder \u7684 probing \u6027\u80fd\u5c06\u4f4e\u4e8e\u51bb\u7ed3 9-class encoder (exp26: DD=0.997, AA=0.972)\uff0c\u56e0\u4e3a classification DAPT \u901a\u8fc7\u663e\u5f0f\u7b56\u7565\u5206\u7c7b\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u66f4\u76f4\u63a5\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\uff0c\u800c MLM \u4ec5\u5b66\u4e60\u901a\u7528\u8bed\u8a00\u6a21\u5f0f\uff0c\u4e0d\u4ea7\u751f OOD \u6cdb\u5316\u6240\u9700\u7684\u653b\u51fb-\u7b56\u7565\u5bf9\u9f50\u8868\u5f81\u3002\\\", \\\"parent\\\": \\\"exp26_frozen_probing\\\"}, \\\"exp13_meanpool_multiseed\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T23:35:41.779Z\\\", \\\"updated_at\\\": \\\"2026-05-20T12:24:21.733Z\\\", \\\"hypothesis\\\": \\\"Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary \u2014 cross-validating shuffle ablation results\\\", \\\"parent\\\": \\\"plan_015_dd_eval\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/meanpool_multiseed.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/plan_002_spli
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be23a75a-b731-4066-bf1d-12be4fbd2b92",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "df4723fc-7019-495e-9d0c-75be893bee57",
+  "sourceToolAssistantUUID": "be23a75a-b731-4066-bf1d-12be4fbd2b92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-23T05:40:23.610Z_
+
+I notice that `plan_006_cross_attack_clean` seems to be the MLM control, not the scrambled experiment. Let me find the actual scrambled and binary cross-attack (AA OOD) results, and also get 9-class AA per-seed data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df4723fc-7019-495e-9d0c-75be893bee57",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxsHwaVaGy6QH5LiLSt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a02261fd-79bb-4df4-9c55-02c0afe9ac07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3T2WXRiznATdRbxVRSDyq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7775,
+      "cache_read_input_tokens": 51756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7775,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T05:40:33.440Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ErP345hcEpdZpAuz3bHqBL`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for AA OOD / ActorAttack per-seed values across all model variants\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for aa_ood with seeds\n        if 'aa_ood' in msg.lower() and ('seed' in msg.lower()):\n            # Find all aa_ood_f1 patterns with seed data\n            matches = list(re.finditer(r'aa_ood[^}]*seeds[^}]*\\}', msg, re.IGNORECASE))\n            for m in matches:\n                start = max(0, m.start()-100)\n                end = min(len(msg), m.end()+20)\n                context = msg[start:end]\n                print(f'=== LINE {i} ===')\n                print(context[:500])\n                print()\n\" 2>&1 | head -200",
+  "description": "Search for AA OOD per-seed values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a02261fd-79bb-4df4-9c55-02c0afe9ac07",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxsHwaVaGy6QH5LiLSt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5ee8723a-b064-44cf-b878-e26ff38adbd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3T2WXRiznATdRbxVRSDyq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7775,
+      "cache_read_input_tokens": 51756,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7775
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 51756,
+          "cache_creation_input_tokens": 7775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7775,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T05:40:33.998Z_
+
+<details><summary>↩ Tool result · `toolu_01ErP345hcEpdZpAuz3bHqBL`</summary>
+
+```text
+=== LINE 503 ===
+747\u503c\u4f4e\u4e8e vanilla\uff09\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\n\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\n- **\u
+
+=== LINE 658 ===
+\u503c\u4f4e\u4e8e vanilla\uff09\\\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\\\n\\\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.
+
+=== LINE 658 ===
+\u503c\u4f4e\u4e8e vanilla\uff09\\\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\\\n\\\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.
+
+=== LINE 658 ===
+47\u503c\u4f4e\u4e8e vanilla\uff09\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\n\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\\n-
+
+=== LINE 661 ===
+747\u503c\u4f4e\u4e8e vanilla\uff09\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\n\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\n- **\u
+
+=== LINE 1935 ===
+\u503c\u4f4e\u4e8e vanilla\uff09\\\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\\\n\\\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.
+
+=== LINE 1935 ===
+\u503c\u4f4e\u4e8e vanilla\uff09\\\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\\\n\\\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.
+
+=== LINE 1935 ===
+47\u503c\u4f4e\u4e8e vanilla\uff09\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\n\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\\n-
+
+=== LINE 1940 ===
+747\u503c\u4f4e\u4e8e vanilla\uff09\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\n\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\n- **\u
+
+=== LINE 2257 ===
+\u503c\u4f4e\u4e8e vanilla\uff09\\\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\\\n\\\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.
+
+=== LINE 2257 ===
+\u503c\u4f4e\u4e8e vanilla\uff09\\\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\\\n\\\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.
+
+=== LINE 2257 ===
+47\u503c\u4f4e\u4e8e vanilla\uff09\\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\\n\\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\\n-
+
+=== LINE 2260 ===
+747\u503c\u4f4e\u4e8e vanilla\uff09\n- **OOD \u4ecd\u5f31**: \u5373\u4f7f 9-class\uff0cdd_ood .422, aa_ood .217, llama_aa .124\n\n### \u26a0\ufe0f Frozen probing: DAPT \u7c7b\u578b\u95f4\u8868\u5f81\u8d28\u91cf\u5dee\u5f02\u5c0f (2026-05-20, exp26+exp36)\n- **\u53d1\u73b0**\uff1a\u51bb\u7ed3 9-class (exp26) vs \u51bb\u7ed3 MLM (exp36) \u7684 probing \u6027\u80fd\u5dee\u8ddd\u4ec5 3.1pp AA OOD (0.972 vs 0.941)\n- **\u4e24\u79cd DAPT \u90fd\u8fdc\u8d85 vanilla** (exp20: DD=0.318, AA=0.275)\n- **\u
+
+=== LINE 4488 ===
+ + 75 benign = 155\\\", \\\"IID:    150\\\", \\\"  dd_ood: F1=0.9484  P=0.9518  R=0.9500\\\", \\\"  aa_ood: F1=0.9742  P=0.9747  R=0.9750\\\", \\\"  iid: F1=1.0000  P=1.0000  R=1.0000\\\", \\\"\\\", \\\"Results saved to /root/persuasion_turn_jailbreak_detect/results/exp59_seed456.json\\\", \\\"Done seed 456: Fri May 22 22:51:24 CST 2026\\\", \\\"\\\", \\\"==========================================\\\", \\\"All seeds complete: Fri May 22 22:51:24 CST 2026\\\", \\\"================================
+
+=== LINE 4488 ===
+ + 75 benign = 155\\\", \\\"IID:    150\\\", \\\"  dd_ood: F1=0.9484  P=0.9518  R=0.9500\\\", \\\"  aa_ood: F1=0.9742  P=0.9747  R=0.9750\\\", \\\"  iid: F1=1.0000  P=1.0000  R=1.0000\\\", \\\"\\\", \\\"Results saved to /root/persuasion_turn_jailbreak_detect/results/exp59_seed456.json\\\", \\\"Done seed 456: Fri May 22 22:51:24 CST 2026\\\", \\\"\\\", \\\"==========================================\\\", \\\"All seeds complete: Fri May 22 22:51:24 CST 2026\\\", \\\"================================
+
+=== LINE 4488 ===
+80 jailbreak + 75 benign = 155\", \"IID:    150\", \"  dd_ood: F1=0.9484  P=0.9518  R=0.9500\", \"  aa_ood: F1=0.9742  P=0.9747  R=0.9750\", \"  iid: F1=1.0000  P=1.0000  R=1.0000\", \"\", \"Results saved to /root/persuasion_turn_jailbreak_detect/results/exp59_seed456.json\", \"Done seed 456: Fri May 22 22:51:24 CST 2026\", \"\", \"==========================================\", \"All seeds complete: Fri May 22 22:51:24 CST 2026\", \"==========================================\", \"Aggregate result
+
+=== LINE 4497 ===
+": {"exp_id": "exp59_resample_350", "field": "metrics", "value": {"dd_ood_f1": "0.887\u00b10.086", "aa_ood_f1": "0.883\u00b10.091", "iid_f1": "0.998\u00b10.003", "dd_seeds": [0.765, 0.948, 0.948], "aa_seeds": [0.758, 0.916, 0.974], "iid_seeds": [1, 0.993, 1]}, "project": "persua
+
+=== LINE 4500 ===
+conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_f1\\\": \\\"0.887\u00b10.086\\\", \\\"aa_ood_f1\\\": \\\"0.883\u00b10.091\\\", \\\"iid_f1\\\": \\\"0.998\u00b10.003\\\", \\\"dd_seeds\\\": [0.765, 0.948, 0.948], \\\"aa_seeds\\\": [0.758, 0.916, 0.974], \\\"iid_seeds\\\": [1, 0.993, 1]}}}, \\\"error\\\": n
+
+=== LINE 4500 ===
+conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_f1\\\": \\\"0.887\u00b10.086\\\", \\\"aa_ood_f1\\\": \\\"0.883\u00b10.091\\\", \\\"iid_f1\\\": \\\"0.998\u00b10.003\\\", \\\"dd_seeds\\\": [0.765, 0.948, 0.948], \\\"aa_seeds\\\": [0.758, 0.916, 0.974], \\\"iid_seeds\\\": [1, 0.993, 1]}}}, \\\"error\\\": n
+
+=== LINE 4500 ===
+n sample count\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_f1\": \"0.887\u00b10.086\", \"aa_ood_f1\": \"0.883\u00b10.091\", \"iid_f1\": \"0.998\u00b10.003\", \"dd_seeds\": [0.765, 0.948, 0.948], \"aa_seeds\": [0.758, 0.916, 0.974], \"iid_seeds\": [1, 0.993, 1]}}}, \"error\": null,
+
+=== LINE 4503 ===
+conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_f1\\\": \\\"0.887\u00b10.086\\\", \\\"aa_ood_f1\\\": \\\"0.883\u00b10.091\\\", \\\"iid_f1\\\": \\\"0.998\u00b10.003\\\", \\\"dd_seeds\\\": [0.765, 0.948, 0.948], \\\"aa_seeds\\\": [0.758, 0.916, 0.974], \\\"iid_seeds\\\": [1, 0.993, 1]}, \\\"completed_at\\
+
+=== LINE 4503 ===
+conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_f1\\\": \\\"0.887\u00b10.086\\\", \\\"aa_ood_f1\\\": \\\"0.883\u00b10.091\\\", \\\"iid_f1\\\": \\\"0.998\u00b10.003\\\", \\\"dd_seeds\\\": [0.765, 0.948, 0.948], \\\"aa_seeds\\\": [0.758, 0.916, 0.974], \\\"iid_seeds\\\": [1, 0.993, 1]}, \\\"completed_at\\
+
+=== LINE 4503 ===
+n sample count\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_f1\": \"0.887\u00b10.086\", \"aa_ood_f1\": \"0.883\u00b10.091\", \"iid_f1\": \"0.998\u00b10.003\", \"dd_seeds\": [0.765, 0.948, 0.948], \"aa_seeds\": [0.758, 0.916, 0.974], \"iid_seeds\": [1, 0.993, 1]}, \"completed_at\": 
+
+=== LINE 4945 ===
+conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_f1\\\": \\\"0.887\u00b10.086\\\", \\\"aa_ood_f1\\\": \\\"0.883\u00b10.091\\\", \\\"iid_f1\\\": \\\"0.998\u00b10.003\\\", \\\"dd_seeds\\\": [0.765, 0.948, 0.948], \\\"aa_seeds\\\": [0.758, 0.916, 0.974], \\\"iid_seeds\\\": [1, 0.993, 1]}, \\\"completed_at\\
+
+=== LINE 4945 ===
+conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_f1\\\": \\\"0.887\u00b10.086\\\", \\\"aa_ood_f1\\\": \\\"0.883\u00b10.091\\\", \\\"iid_f1\\\": \\\"0.998\u00b10.003\\\", \\\"dd_seeds\\\": [0.765, 0.948, 0.948], \\\"aa_seeds\\\": [0.758, 0.916, 0.974], \\\"iid_seeds\\\": [1, 0.993, 1]}, \\\"completed_at\\
+
+=== LINE 4945 ===
+n sample count\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_f1\": \"0.887\u00b10.086\", \"aa_ood_f1\": \"0.883\u00b10.091\", \"iid_f1\": \"0.998\u00b10.003\", \"dd_seeds\": [0.765, 0.948, 0.948], \"aa_seeds\": [0.758, 0.916, 0.974], \"iid_seeds\": [1, 0.993, 1]}, \"completed_at\":
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ee8723a-b064-44cf-b878-e26ff38adbd4",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "05f1b396-cc1e-4dbb-a78b-0c7813c6e255",
+  "sourceToolAssistantUUID": "5ee8723a-b064-44cf-b878-e26ff38adbd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-23T05:40:37.374Z_
+
+Now let me find the specific experiments for 9-class, binary, scrambled on ActorAttack, and the MLM AA results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05f1b396-cc1e-4dbb-a78b-0c7813c6e255",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxtTaYH4vk84NxF3kFV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a7ae0b8e-c5ab-451d-8e7b-fc83792bb83e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTKoKfNLJi8ybYpT6vquoJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7274,
+      "cache_read_input_tokens": 59531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7274,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T05:40:49.621Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018yzHFYYvrQCuZXgBSfhow1`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for the multi-seed evaluation results with ActorAttack (AA) for each model variant\n# Look for exp39 which had 5-seed TOST, and the original 3-seed cross-attack eval\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for cross_attack evaluation results with per-seed data\n        for pattern in ['exp39', 'cross_attack', 'plan_006.*aa', 'plan_013.*aa', 'plan_002.*aa', 'plan_017.*aa']:\n            matches = list(re.finditer(r'(9.class|binary|scrambled|mlm|jb.mlm).*aa.*?(0\\.\\d{2,4})', msg, re.IGNORECASE))\n            if matches and ('seed' in msg.lower() or 'per.seed' in msg.lower()):\n                for m in matches:\n                    context = msg[max(0,m.start()-50):min(len(msg),m.end()+200)]\n                    if 'ood' in context.lower() or 'full' in context.lower() or 'aa' in context.lower():\n                        print(f'LINE {i}: {context[:300]}')\n                        print()\n                break\n\" 2>&1 | head -200",
+  "description": "Search for per-model AA OOD F1 with seed data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7ae0b8e-c5ab-451d-8e7b-fc83792bb83e",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJxtTaYH4vk84NxF3kFV",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "99ced9e5-2a3d-42d1-aa41-8ebdd9be38d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTKoKfNLJi8ybYpT6vquoJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7274,
+      "cache_read_input_tokens": 59531,
+      "output_tokens": 555,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7274
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 555,
+          "cache_read_input_tokens": 59531,
+          "cache_creation_input_tokens": 7274,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7274,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T05:42:50.078Z_
+
+<details><summary>↩ Tool result · `toolu_018yzHFYYvrQCuZXgBSfhow1`</summary>
+
+```text
+Command running in background with ID: b63q5z9t1. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/85e3b989-c20f-497d-8ff6-585a23797fb3/tasks/b63q5z9t1.output
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99ced9e5-2a3d-42d1-aa41-8ebdd9be38d9",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "ea91239c-74cf-4927-bef1-f0c3fbf4e898",
+  "sourceToolAssistantUUID": "99ced9e5-2a3d-42d1-aa41-8ebdd9be38d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T05:42:57.629Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016ETECp4K4uPLG8iMiodkGQ`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Let me try a more targeted approach - look for the appendix table or evidence hierarchy table which has per-seed data\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for the evidence_hierarchy or main results table with per-seed breakdown\n        if 'evidence_hierarchy' in msg or 'tab:main_results' in msg or 'per_seed' in msg or 'per-seed' in msg:\n            if 'content' in obj.get('message', {}):\n                content = str(obj['message']['content'])\n                if ('per.seed' in content.lower() or 'per_seed' in content.lower()) and ('f1' in content.lower()):\n                    lines = content.split('\\\\n')\n                    for j, l in enumerate(lines):\n                        if 'per' in l.lower() and 'seed' in l.lower():\n                            # Print surrounding context\n                            for k in range(max(0,j-2), min(len(lines), j+10)):\n                                print(f'LINE {i}, subline {k}: {lines[k][:300]}')\n                            print()\n\" 2>&1 | head -200",
+  "description": "Search for per-seed evidence hierarchy table data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea91239c-74cf-4927-bef1-f0c3fbf4e898",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy4VMUeXTc9paVaWCw5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b841b116-850a-4e21-8bd9-551ba00b90a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SSMNLo1vC5VZ4LXKsYHDwb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 66805,
+      "output_tokens": 488,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 666
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 488,
+          "cache_read_input_tokens": 66805,
+          "cache_creation_input_tokens": 666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 666,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T05:42:58.492Z_
+
+<details><summary>↩ Tool result · `toolu_016ETECp4K4uPLG8iMiodkGQ`</summary>
+
+```text
+LINE 418, subline 0: [{'tool_use_id': 'toolu_01XrCUB8A2ERSEBBUJYd8H1N', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:27:42.
+
+LINE 463, subline 0: [{'tool_use_id': 'toolu_01B3shaJGXC8aGp77UkMeDbD', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"202
+
+LINE 783, subline 0: [{'tool_use_id': 'toolu_015ncXjhRBRwfXhLE133UGxE', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp42b_balanced_ratio_ablation\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T04:17:59.853Z\\", \\"upd
+
+LINE 5196, subline 0: [{'type': 'tool_use', 'id': 'toolu_015bDMFLf4t9H152hipbqH6v', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'code:exp63_toxicchat_fpfn', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '## 任务：EXP-D ToxicChat FP/FN Decomposition\n\n在 westd-33183 服务器上运行 ToxicChat
+
+LINE 6710, subline 0: [{'tool_use_id': 'toolu_01BvZeSSxuoexaJwnQsPdtEN', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp65_svd_necessity_ablation\\": {\\"status\\": \\"DONE\\", \\"created_at\\": \\"2026-05-22T23:38:51.306Z\\", \\"updated_at\\": \\"2026-05-22T23:
+
+LINE 7074, subline 0: [{'type': 'tool_use', 'id': 'toolu_01LKaj3VyHe7JdHT9hhTYGi4', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'paper:seed_level_fill', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '## 任务：填充 appendix.tex 中 seed-level F1 占位符表格\n\nappendix.tex 的 seed-level 表格（lab
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b841b116-850a-4e21-8bd9-551ba00b90a8",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "e87a6438-3a8a-4d40-bd76-118245bdef12",
+  "sourceToolAssistantUUID": "b841b116-850a-4e21-8bd9-551ba00b90a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-23T05:43:01.109Z_
+
+Line 7074 is about filling seed-level F1 placeholders in appendix.tex. Let me look at that and also find the actual appendix table content.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e87a6438-3a8a-4d40-bd76-118245bdef12",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy57JCkrjFdNb3F8JKG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bb38c0d2-c0b2-46ce-8da5-f1d074fbb349",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqShEwtgsKGXck7nRoVF6C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1424,
+      "cache_read_input_tokens": 67471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1424,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T05:43:06.829Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014Zj3apcBV1athTk8VqEoeG`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\npython3 -c \"\nimport json\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i >= 7074 and i <= 7078:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Print relevant portions\n            if 'seed' in msg.lower() and 'f1' in msg.lower():\n                print(f'=== LINE {i} (first 5000 chars) ===')\n                print(msg[:5000])\n                print('...')\n                print()\n\" 2>&1",
+  "description": "Read lines 7074-7078 for seed-level F1 data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb38c0d2-c0b2-46ce-8da5-f1d074fbb349",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy57JCkrjFdNb3F8JKG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ad82aed8-2b0b-4e5f-8c34-ca6c113974a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqShEwtgsKGXck7nRoVF6C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1424,
+      "cache_read_input_tokens": 67471,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1424,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T05:43:07.186Z_
+
+<details><summary>↩ Tool result · `toolu_014Zj3apcBV1athTk8VqEoeG`</summary>
+
+````text
+=== LINE 7074 (first 5000 chars) ===
+{"parentUuid": "d31c6a75-049a-4b9a-9d31-cc56279a9452", "isSidechain": false, "message": {"model": "claude-opus-4-6", "id": "msg_015NTeVNe615j9rMd1v3b6sU", "type": "message", "role": "assistant", "content": [{"type": "tool_use", "id": "toolu_01LKaj3VyHe7JdHT9hhTYGi4", "name": "mcp__agent-ml-research__spawn_worker", "input": {"task_type": "paper:seed_level_fill", "project": "persuasion_turn_jailbreak_detect", "task_prompt": "## \u4efb\u52a1\uff1a\u586b\u5145 appendix.tex \u4e2d seed-level F1 \u5360\u4f4d\u7b26\u8868\u683c\n\nappendix.tex \u7684 seed-level \u8868\u683c\uff08label: `app:seed_level`\uff09\u5168\u90e8\u6570\u503c\u4e3a \"--\" \u5360\u4f4d\u7b26\u3002\u4e3b\u6587\u58f0\u79f0 \"Seed-level F1 values confirm all pairwise conclusions hold at every seed\"\uff0c\u4f46\u8868\u683c\u662f\u7a7a\u7684\u3002**\u63d0\u4ea4\u963b\u65ad\u6027\u95ee\u9898\uff0c\u5fc5\u987b\u4fee\u590d\u3002**\n\n### Step 1: \u5b9a\u4f4d\u8868\u683c\n\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper\ngrep -n \"seed_level\\|Seed.level\\|Placeholder\" appendix.tex\n```\n\nRead \u8be5\u8868\u683c\u6240\u5728\u533a\u57df\uff08\u00b130 \u884c\uff09\uff0c\u7406\u89e3\u8868\u683c\u7ed3\u6784\uff08\u54ea\u4e9b variant \u00d7 \u54ea\u4e9b attack family \u00d7 3 seeds\uff09\u3002\n\n### Step 2: \u4ece registry \u63d0\u53d6\u6570\u636e\n\n\u7528 `read_registry` \u63d0\u53d6\u6bcf\u4e2a variant \u7684 per-seed F1 \u6570\u636e\u3002\u5173\u952e\u5b9e\u9a8c\uff1a\n- \u4e3b\u5b9e\u9a8c\uff08plan_002 checkpoints\uff09\u7684 per-seed \u7ed3\u679c\n- exp9_bootstrap_ci \u4e5f\u6709 per-seed \u6570\u636e\n\n\u641c\u7d22\u65b9\u6cd5\uff1a\n```bash\n# \u5728 transcript \u4e2d\u641c\u7d22 seed-level \u6570\u636e\ngrep -i \"seed.*f1\\|per.seed\\|seed_0\\|seed_1\\|seed_2\" /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl | head -50\n```\n\n\u4e5f\u53ef\u4ee5\u4ece registry \u4e2d\u67e5\u627e\uff1a\n```bash\n# \u627e\u6240\u6709 conclusion=success \u7684\u5b9e\u9a8c\uff0c\u770b metrics \u4e2d\u6709\u6ca1\u6709 per-seed \u6570\u636e\n```\n\n### Step 3: \u5df2\u77e5\u6570\u636e\u53c2\u8003\n\n\u4ece\u8bba\u6587\u4e3b\u6587\u548c appendix \u5176\u4ed6\u8868\u683c\u53ef\u4ee5\u63d0\u53d6\u4e00\u4e9b\u6570\u636e\u70b9\uff1a\n- 9-class: DD IID=1.000, DD OOD=0.997\u00b10.005, FITD=1.000, AA=0.972\u00b10.026\n- Binary: \u7c7b\u4f3c\u7684 IID=1.000, OOD \u7ed3\u679c\n- Scrambled: \u7c7b\u4f3c\n- Vanilla: DD OOD=0.312\u00b10.077, AA=0.258\u00b10.058\n- JB-MLM / MLM-only: DD OOD \u9ad8\u4f46 AA \u4e0d\u7a33\u5b9a\n- Topic: DD OOD=0.541\u00b10.207\n\n\u8fd9\u4e9b mean\u00b1std \u662f 3 seeds \u7684\u7edf\u8ba1\u91cf\uff0cper-seed \u503c = \u5404 seed \u7684\u5355\u72ec F1\u3002\n\n### Step 4: \u586b\u5145\u8868\u683c\n\n\u7528 Edit \u5de5\u5177\u9010\u4e00\u66ff\u6362 \"--\" \u4e3a\u5b9e\u9645\u6570\u503c\uff08\u4fdd\u7559 3 \u4f4d\u5c0f\u6570\uff09\u3002\u5220\u9664\u4efb\u4f55 \"Placeholder\" \u6ce8\u91ca\u3002\n\n### Step 5: \u9a8c\u8bc1\n\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper\nlatexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5\n```\n\n### \u6587\u4ef6\u8def\u5f84\n- appendix.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex`\n- registry: \u7528 read_registry \u5de5\u5177\n- transcript: `/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl`", "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep"], "tool_groups": ["registry"]}, "caller": {"type": "direct"}}], "stop_reason": "tool_use", "stop_sequence": null, "stop_details": null, "usage": {"input_tokens": 1, "cache_creation_input_tokens": 682, "cache_read_input_tokens": 135612, "output_tokens": 3823, "server_tool_use": {"web_search_requests": 0, "web_fetch_requests": 0}, "service_tier": "standard", "cache_creation": {"ephemeral_1h_input_tokens": 682, "ephemeral_5m_input_tokens": 0}, "inference_geo": "", "iterations": [{"input_tokens": 1, "output_tokens": 3823, "cache_read_input_tokens": 135612, "cache_creation_input_tokens": 682, "cache_creation": {"ephemeral_5m_input_tokens": 0, "ephemeral_1h_input_tokens": 682}, "type": "message"}], "speed": "standard"}, "diagnostics": null}, "requestId": "req_011CbJxMStkVpXMwNqxeV481", "type": "assistant", "uuid": "deaf2b74-aa23-40b2-81db-2f4c6e47c486", "timestamp": "2026-05-23T05:34:12.345Z", "userType": "external", "entrypoint": "sdk-cli", "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7", "sessionId": "234452d8-90ad-444a-9761-3138a730f6bb", "version": "2.1.126", "gitBranch
+...
+
+=== LINE 7076 (first 5000 chars) ===
+{"parentUuid": "8714bcfc-c77f-4a2f-b899-b2ced786b5b2", "isSidechain": false, "message": {"model": "claude-opus-4-6", "id": "msg_015NTeVNe615j9rMd1v3b6sU", "type": "message", "role": "assistant", "content": [{"type": "tool_use", "id": "toolu_01QaN2fXgB9oufo5gDhTAApg", "name": "mcp__agent-ml-research__spawn_worker", "input": {"task_type": "paper:maintext_recovery_BCD", "project": "persuasion_turn_jailbreak_detect", "task_prompt": "## \u4efb\u52a1\uff1a\u6062\u590d\u88ab\u8986\u76d6\u7684\u4e3b\u6587 .tex \u7f16\u8f91\uff08B+C+D \u9879\uff09\n\nWorker \u610f\u5916\u8986\u76d6\u4e86 docs/paper/ \u4e0b .tex \u6587\u4ef6\u4e3a\u65e7\u7248\u672c\u3002appendix.tex \u5df2\u7531\u53e6\u4e00\u4e2a Worker \u6062\u590d\u3002\u672c\u4efb\u52a1\u6062\u590d\u4e3b\u6587\u6587\u4ef6\u7684\u7f16\u8f91\u3002\n\n**\u7981\u6b62\u4fee\u6539 appendix.tex \u548c figures/ \u76ee\u5f55\u3002**\n\n### \u53c2\u8003\u6765\u6e90\n\nConversation transcript\uff08JSONL \u683c\u5f0f\uff0c\u53ef\u641c\u7d22\u5177\u4f53 diff\uff09\uff1a\n`/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl`\n\n### B. \u4e3b\u6587\u7f16\u8f91\u6062\u590d\n\n#### B1. \u672f\u8bed\u7edf\u4e00\uff08\u5168\u6587 replace_all\uff09\n\u5728\u4ee5\u4e0b\u6587\u4ef6\u4e2d\u5c06 \"structurally complex\" \u66ff\u6362\u4e3a \"strategy-diverse\"\uff1a\n- abstract.tex\n- experiments.tex\n- conclusion.tex\n\uff08appendix.tex \u7531\u53e6\u4e00\u4e2a Worker \u5904\u7406\uff0c\u4e0d\u8981\u78b0\uff09\n\n\u540c\u7406\u5c06 \"complexity-dependent\" \u66ff\u6362\u4e3a \"strategy-dependent\"\uff0c\"attack-complexity-dependent\" \u66ff\u6362\u4e3a \"strategy-dependent\"\u3002\n\n#### B2. abstract.tex \u4fee\u6539\n1. \u5220\u9664 \"A surprising finding emerges:\" \u524d\u7f00\uff08\u5982\u679c\u5b58\u5728\uff09\n2. \u7ea6\u7b2c 7 \u884c\u7684 ~70 \u8bcd\u957f\u53e5\u62c6\u5206\u4e3a 3 \u53e5\uff1a\n```latex\nClassification-based domain adaptation recovers OOD detection on synthetic data (F1\\,=\\,0.97--1.0 vs.\\ vanilla 0.26--0.31; attack-side OOD, benign IID) while unsupervised pretraining collapses.\nUnder mixed-LLM training, template attacks remain detectable but strategy-diverse ActorAttack degrades (F1\\,=\\,0.504).\nThese findings derive from synthetic data from a single LLM; the evidence hierarchy reverses on human-authored single-turn data, indicating condition-specific rather than universal mechanisms.\n```\n3. \u5220\u9664 \"(Section~4.6)\" \u5f15\u7528\uff08\u5982\u679c\u5b58\u5728\uff09\n\n#### B3. introduction.tex \u4fee\u6539\nContribution 2\uff08\u7ea6 L26\uff09\u52a0\u5165 SVD partial necessity\uff1a\n- \u5e94\u5305\u542b\uff1a\"domain-relevant partitioning is necessary (topic labels fail) and compression localizes to 3 SVD dimensions in layers 8--12. A probe over these dimensions confirms sufficiency; removing them degrades DD by 17\\,pp while FITD is unaffected (partial necessity; Appendix~\\ref{app:discriminative_probe}).\"\n\n\u5148 Read introduction.tex \u627e\u5230 Contribution 2 \u7684\u4f4d\u7f6e\uff0c\u7136\u540e\u68c0\u67e5\u662f\u5426\u5df2\u6709\u7c7b\u4f3c\u5185\u5bb9\uff0c\u6ca1\u6709\u5219\u6dfb\u52a0\u3002\n\n#### B4. conclusion.tex \u4fee\u6539\n1. Discussion \u00a7Evidence consistent with discriminative compression: \"necessity\" \u2192 \"partial necessity\"\uff0c\u52a0\u5165 \"their removal degrades DD by 17\\,pp while FITD is unaffected (partial necessity\"\n2. \u00a7Boundaries: FPR \u7bad\u5934\u6539\u4e3a \"WildChat FPR 48.1\\% (vanilla) to 68.1\\% (9-class)\"\n3. Conclusion \u53e5\u672b\u52a0 \"; the hierarchy reverses on human data, confirming condition specificity\"\n4. Limitations: \u52a0 dual-OOD \u5f15\u7528 \"estimated dual-OOD F1 drops 12--14\\,pp without adaptation but recovers within 0.3\\,pp after few-shot adaptation (Appendix~\\ref{app:dual_ood})\"\n\n\u5148 Read conclusion.tex \u68c0\u67e5\u5f53\u524d\u5185\u5bb9\u518d\u4fee\u6539\u3002\n\n#### B5. experiments.tex \u4fee\u6539\n1. TOST \u7ed3\u679c\uff08\u7ea6 L114\uff09\u957f\u53e5\u62c6\u5206\u4e3a 2 \u53e5\uff1a\n```latex\nExtended to $n$\\,=\\,10 seeds, TOST (margin = 5\\,pp) confirms equivalence on DD ($p < 10^{-8}$, $d$\\,=\\,$-$0.14; Table~\\ref{tab:tost_sensitivity}) and FITD ($p < 10^{-8}$, $d \\approx 0$). An observed difficulty gradient emerges: template attacks show full equivalence ($d < 0.1$), while strategy-diverse ActorAttack retains moderate label sensitivity ($d$\\,=\\,0.44, $p$\\,=\\,0.183).\n```\n2. Summary paragraph \u538b\u7f29\uff08\u7ea6 100\u219250 \u8bcd\uff09\n3. Table 2 \u548c Table 3 \u52a0 `\\resizebox{\\columnwidth}{!}{...}` \u4fee\u590d overfull hbox \u2014\u2014 \u627e\u5230\u8fd9\u4e24\u4e2a\u8868\u7684 `\\begin{tabular}` \u5e76\u5728\u5916\u5c42\u5305\u88f9 `\\resizebox{\\columnwidth}{!}{...}`\n4. Metrics paragraph \u548c Training paragraph \u62c6\u5206\uff08\u5982\u679c\u5f53\u524d\u662f\u4e00\u6b
+...
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad82aed8-2b0b-4e5f-8c34-ca6c113974a3",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "e35b11a3-1f54-42b6-a553-79f6cffcf5c3",
+  "sourceToolAssistantUUID": "ad82aed8-2b0b-4e5f-8c34-ca6c113974a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T05:43:19.423Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014dexjXNz7mJu7P6anWNf49`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Now look at registry in detail for all experiment plans with ActorAttack per-seed data\n# Also search for exp9 bootstrap CI and the main multi-seed eval results\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for exp9 or exp39 or any experiment with ActorAttack per-seed F1\n        if 'exp9' in msg and 'bootstrap' in msg.lower() and 'aa' in msg.lower():\n            if 'content' in obj.get('message', {}):\n                content = str(obj['message']['content'])\n                if 'aa' in content.lower() and 'seed' in content.lower():\n                    # Find the per-seed AA data\n                    lines = content.split('\\\\n')\n                    for j, l in enumerate(lines):\n                        if ('aa' in l.lower() and 'seed' in l.lower()) or ('actorattack' in l.lower() and ('0.9' in l or '0.8' in l)):\n                            for k in range(max(0,j-3), min(len(lines), j+5)):\n                                print(f'LINE {i}, sub {k}: {lines[k][:400]}')\n                            print()\n\" 2>&1 | head -100",
+  "description": "Search for exp9 bootstrap CI with AA per-seed data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e35b11a3-1f54-42b6-a553-79f6cffcf5c3",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy5kX59248b6ZhbrdRn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a51acab-ef24-4fd8-bb57-5ff411252153",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014nY52cuQhqbfNSgKTfU1aW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5434,
+      "cache_read_input_tokens": 68895,
+      "output_tokens": 518,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5434
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 518,
+          "cache_read_input_tokens": 68895,
+          "cache_creation_input_tokens": 5434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5434,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T05:43:20.338Z_
+
+<details><summary>↩ Tool result · `toolu_014dexjXNz7mJu7P6anWNf49`</summary>
+
+```text
+LINE 1410, sub 0: [{'tool_use_id': 'toolu_01GoR8Cje2NhS5nvdDaQYKyp', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp46_inference_efficiency\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T06:14:50.840Z\\", \\"updated_at\\": \\"2026-05-22T06:25:23.827Z\\", \\"hypothesis\\": \\"DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-jud
+
+LINE 3977, sub 0: [{'tool_use_id': 'toolu_01EudHefpA9rVJ5C7TRTuAWq', 'type': 'tool_result', 'content': '&lt;persisted-output>\nOutput too large (22KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb/tool-results/toolu_01EudHefpA9rVJ5C7TRTuAWq.txt\
+
+LINE 5608, sub 0: [{'tool_use_id': 'toolu_015nPUn6kZXGmVeFoZhUycYw', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp46_inference_efficiency\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T06:14:50.840Z\\", \\"updated_at\\": \\"2026-05-22T06:25:23.827Z\\", \\"hypothesis\\": \\"DisPeD (DeBERTa+BiGRU) achieves 100x+ s
+
+LINE 6203, sub 0: [{'tool_use_id': 'toolu_013TsN3inxA9EcVJY49uN6Xh', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp36_frozen_mlm_
+
+LINE 6710, sub 0: [{'tool_use_id': 'toolu_01BvZeSSxuoexaJwnQsPdtEN', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp65_svd_necessity_ablation\\": {\\"status\\": \\"DONE\\", \\"created_at\\": \\"2026-05-22T23:38:51.306Z\\", \\"updated_at\\": \\"2026-05-22T23:43:00.021Z\\", \\"hypothesis\\": \\"Removing top-3 SVD directions from 9-class CLS embeddings will s
+
+LINE 6713, sub 0: [{'tool_use_id': 'toolu_01HexhqFQWNgVgFLe5rSPb81', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp36_frozen_mlm_
+
+LINE 6742, sub 0: [{'tool_use_id': 'toolu_01GZXM6MgfNsWtyqbG3gavCM', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\", \\"content\\": \\"# Handover — 2026-05-22\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp36_frozen_mlm_
+
+LINE 7074, sub 0: [{'type': 'tool_use', 'id': 'toolu_01LKaj3VyHe7JdHT9hhTYGi4', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'paper:seed_level_fill', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '## 任务：填充 appendix.tex 中 seed-level F1 占位符表格\n\nappendix.tex 的 seed-level 表格（label: `app:seed_level`）全部数值为 "--" 占位符。主文声称 "Seed-level F1 values confirm all pairwise conclusions hold
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a51acab-ef24-4fd8-bb57-5ff411252153",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "5db8e1ea-2c6f-4c0b-8c5e-e49afc99d600",
+  "sourceToolAssistantUUID": "8a51acab-ef24-4fd8-bb57-5ff411252153",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-23T05:43:31.422Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01W9bMGM4jrnZ39a8VZHNoVE`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Look for the exp9 bootstrap CI results and the cross-attack eval results for each model variant\n# Also search for plan_002 (9-class), plan_006 (scrambled), plan_013 (binary) AA OOD specifically\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for the evidence hierarchy table or comprehensive summary with all model variants' AA results  \n        if 'exp9_bootstrap' in msg:\n            if 'aa' in msg.lower() and 'f1' in msg.lower():\n                # Find exp9 data\n                pos = msg.find('exp9_bootstrap')\n                region = msg[pos:pos+3000]\n                if 'seed' in region.lower() or 'aa' in region.lower():\n                    print(f'=== LINE {i}, exp9_bootstrap ===')\n                    print(region[:2000])\n                    print()\n\" 2>&1 | head -200",
+  "description": "Search for exp9 bootstrap CI with AA data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5db8e1ea-2c6f-4c0b-8c5e-e49afc99d600",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy6iiCwegNsUVjJGvzd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "db052c48-8adf-444a-a028-630dcb654f06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fiomKfRrkCE4HcAv33aUV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2146,
+      "cache_read_input_tokens": 74329,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2146
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 74329,
+          "cache_creation_input_tokens": 2146,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2146,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T05:43:32.197Z_
+
+<details><summary>↩ Tool result · `toolu_01W9bMGM4jrnZ39a8VZHNoVE`</summary>
+
+````text
+=== LINE 5608, exp9_bootstrap ===
+exp9_bootstrap_ci\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/tost_equivalence.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"results/exp9_bootstrap_ci.json (per-seed predictions)\\\", \\\"data_count\\\": 236, \\\"model_name\\\": \\\"DeBERTa-v3-base variants\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"results/tost_equivalence.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_full\\\": {\\\"9class_vs_scrambled\\\": {\\\"mean_diff\\\": 0, \\\"ci_90\\\": [-0.016, 0.016], \\\"p_tost\\\": 0.006, \\\"equivalent\\\": true, \\\"ci_within_margin\\\": true}, \\\"9class_vs_binary\\\": {\\\"mean_diff\\\": -0.0032, \\\"ci_90\\\": [-0.013, 0.006], \\\"p_tost\\\": 0.002, \\\"equivalent\\\": true, \\\"ci_within_margin\\\": true}, \\\"9class_vs_jb_mlm\\\": {\\\"mean_diff\\\": 0.083, \\\"ci_90\\\": [-0.145, 0.311], \\\"p_tost\\\": 0.643, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"scrambled_vs_binary\\\": {\\\"mean_diff\\\": -0.0032, \\\"ci_90\\\": [-0.013, 0.006], \\\"p_tost\\\": 0.002, \\\"equivalent\\\": true, \\\"ci_within_margin\\\": true}}, \\\"actorattack_full\\\": {\\\"9class_vs_scrambled\\\": {\\\"mean_diff\\\": 0.0209, \\\"ci_90\\\": [-0.109, 0.151], \\\"p_tost\\\": 0.29, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"9class_vs_binary\\\": {\\\"mean_diff\\\": -0.0185, \\\"ci_90\\\": [-0.075, 0.038], \\\"p_tost\\\": 0.122, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"9class_vs_jb_mlm\\\": {\\\"mean_diff\\\": 0.0784, \\\"ci_90\\\": [-0.109, 0.266], \\\"p_tost\\\": 0.65, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"scrambled_vs_binary\\\": {\\\"mean_diff\\\": -0.0394, \\\"ci_90\\\": [-0.117, 0.038], \\\"p_tost\\\": 0.363, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}}, \\\"note\\\": \\\"DD OOD: 9class\u2248scrambled\u2248binary formally equivalent (TOST p<0
+
+=== LINE 6203, exp9_bootstrap ===
+exp9_bootstrap_ci\\\\n\\\\n## \u8d8b\u52bf\\\\n\u6210\u529f 74 / \u8d1f\u5411 28 / \u5931\u8d25 0 / \u5171 102\\\\n\\\\n## \u4e0b\u4e00\u6b65\\\\n\uff08\u65e0\u6d3b\u8dc3 idea\uff0c\u8bf7\u901a\u8fc7 ideas.md \u6dfb\u52a0\uff09\\\\n\\\\n## \u8d44\u6e90\u72b6\u6001\\\\nwestd-33183: \u65e0 GPU \u4fe1\u606f\\\\n\\\\n## \u544a\u8b66\\\\n\uff08\u65e0\uff09\\\\n\\\", \\\"total_chars\\\": 1932, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"}]}, "uuid": "ff01c992-c6d0-460b-a7e0-b0e8ba5cb9c9", "timestamp": "2026-05-22T23:56:17.550Z", "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\\", \\\"content\\\": \\\"# Handover \u2014 2026-05-22\\\\n\\\\n> \u7531 Agent \u751f\u6210\uff0c\u6bcf\u6b21\u72b6\u6001\u53d8\u66f4\u540e\u81ea\u52a8\u66f4\u65b0\u3002\u786c\u9650 150 \u884c\u3002\\\\n\\\\n## \u8fd0\u884c\u4e2d\\\\n\uff08\u65e0\uff09\\\\n\\\\n## \u5f85\u5904\u7406\\\\n- exp36_frozen_mlm_probing: \u51bb\u7ed3 MLM DAPT encoder \u7684 probing \u6027\u80fd\u5c06\u4f4e\u4e8e\u51bb\u7ed3 9-class encoder (exp26: DD=0.997, AA=0.972)\uff0c\u56e0\u4e3a classification DAPT \u901a\u8fc7\u663e\u5f0f\u7b56\u7565\u5206\u7c7b\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u66f4\u76f4\u63a5\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\uff0c\u800c MLM \u4ec5\u5b66\u4e60\u901a\u7528\u8bed\u8a00\u6a21\u5f0f\uff0c\u4e0d\u4ea7\u751f OOD \u6cdb\u5316\u6240\u9700\u7684\u653b\u51fb-\u7b56\u7565\u5bf9\u9f50\u8868\u5f81\u3002\uff08\u51c6\u5907\u4e2d\uff09\\\\n- exp13_meanpool_multiseed: Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary \u2014 cross-validating shuffle ablation results\uff08\u51c6\u5907\u4e2d\uff09\\\\n- exp16_9class_train\uf
+
+=== LINE 6713, exp9_bootstrap ===
+exp9_bootstrap_ci\\\\n\\\\n## \u8d8b\u52bf\\\\n\u6210\u529f 74 / \u8d1f\u5411 28 / \u5931\u8d25 0 / \u5171 102\\\\n\\\\n## \u4e0b\u4e00\u6b65\\\\n\uff08\u65e0\u6d3b\u8dc3 idea\uff0c\u8bf7\u901a\u8fc7 ideas.md \u6dfb\u52a0\uff09\\\\n\\\\n## \u8d44\u6e90\u72b6\u6001\\\\nwestd-33183: \u65e0 GPU \u4fe1\u606f\\\\n\\\\n## \u544a\u8b66\\\\n\uff08\u65e0\uff09\\\\n\\\", \\\"total_chars\\\": 1932, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"}]}, "uuid": "38af4d2e-6346-4ea4-b759-2a3b86285721", "timestamp": "2026-05-23T03:41:20.068Z", "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\\", \\\"content\\\": \\\"# Handover \u2014 2026-05-22\\\\n\\\\n> \u7531 Agent \u751f\u6210\uff0c\u6bcf\u6b21\u72b6\u6001\u53d8\u66f4\u540e\u81ea\u52a8\u66f4\u65b0\u3002\u786c\u9650 150 \u884c\u3002\\\\n\\\\n## \u8fd0\u884c\u4e2d\\\\n\uff08\u65e0\uff09\\\\n\\\\n## \u5f85\u5904\u7406\\\\n- exp36_frozen_mlm_probing: \u51bb\u7ed3 MLM DAPT encoder \u7684 probing \u6027\u80fd\u5c06\u4f4e\u4e8e\u51bb\u7ed3 9-class encoder (exp26: DD=0.997, AA=0.972)\uff0c\u56e0\u4e3a classification DAPT \u901a\u8fc7\u663e\u5f0f\u7b56\u7565\u5206\u7c7b\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u66f4\u76f4\u63a5\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\uff0c\u800c MLM \u4ec5\u5b66\u4e60\u901a\u7528\u8bed\u8a00\u6a21\u5f0f\uff0c\u4e0d\u4ea7\u751f OOD \u6cdb\u5316\u6240\u9700\u7684\u653b\u51fb-\u7b56\u7565\u5bf9\u9f50\u8868\u5f81\u3002\uff08\u51c6\u5907\u4e2d\uff09\\\\n- exp13_meanpool_multiseed: Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary \u2014 cross-validating shuffle ablation results\uff08\u51c6\u5907\u4e2d\uff09\\\\n- exp16_9class_train\uf
+
+=== LINE 6742, exp9_bootstrap ===
+exp9_bootstrap_ci\\\\n\\\\n## \u8d8b\u52bf\\\\n\u6210\u529f 74 / \u8d1f\u5411 28 / \u5931\u8d25 0 / \u5171 102\\\\n\\\\n## \u4e0b\u4e00\u6b65\\\\n\uff08\u65e0\u6d3b\u8dc3 idea\uff0c\u8bf7\u901a\u8fc7 ideas.md \u6dfb\u52a0\uff09\\\\n\\\\n## \u8d44\u6e90\u72b6\u6001\\\\nwestd-33183: \u65e0 GPU \u4fe1\u606f\\\\n\\\\n## \u544a\u8b66\\\\n\uff08\u65e0\uff09\\\\n\\\", \\\"total_chars\\\": 1932, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"}]}, "uuid": "c454dfef-348b-449b-8269-a3c155e0baad", "timestamp": "2026-05-23T03:42:03.008Z", "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\\\", \\\"content\\\": \\\"# Handover \u2014 2026-05-22\\\\n\\\\n> \u7531 Agent \u751f\u6210\uff0c\u6bcf\u6b21\u72b6\u6001\u53d8\u66f4\u540e\u81ea\u52a8\u66f4\u65b0\u3002\u786c\u9650 150 \u884c\u3002\\\\n\\\\n## \u8fd0\u884c\u4e2d\\\\n\uff08\u65e0\uff09\\\\n\\\\n## \u5f85\u5904\u7406\\\\n- exp36_frozen_mlm_probing: \u51bb\u7ed3 MLM DAPT encoder \u7684 probing \u6027\u80fd\u5c06\u4f4e\u4e8e\u51bb\u7ed3 9-class encoder (exp26: DD=0.997, AA=0.972)\uff0c\u56e0\u4e3a classification DAPT \u901a\u8fc7\u663e\u5f0f\u7b56\u7565\u5206\u7c7b\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u66f4\u76f4\u63a5\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\uff0c\u800c MLM \u4ec5\u5b66\u4e60\u901a\u7528\u8bed\u8a00\u6a21\u5f0f\uff0c\u4e0d\u4ea7\u751f OOD \u6cdb\u5316\u6240\u9700\u7684\u653b\u51fb-\u7b56\u7565\u5bf9\u9f50\u8868\u5f81\u3002\uff08\u51c6\u5907\u4e2d\uff09\\\\n- exp13_meanpool_multiseed: Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary \u2014 cross-validating shuffle ablation results\uff08\u51c6\u5907\u4e2d\uff09\\\\n- exp16_9class_train\uf
+
+=== LINE 7074, exp9_bootstrap ===
+exp9_bootstrap_ci \u4e5f\u6709 per-seed \u6570\u636e\n\n\u641c\u7d22\u65b9\u6cd5\uff1a\n```bash\n# \u5728 transcript \u4e2d\u641c\u7d22 seed-level \u6570\u636e\ngrep -i \"seed.*f1\\|per.seed\\|seed_0\\|seed_1\\|seed_2\" /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl | head -50\n```\n\n\u4e5f\u53ef\u4ee5\u4ece registry \u4e2d\u67e5\u627e\uff1a\n```bash\n# \u627e\u6240\u6709 conclusion=success \u7684\u5b9e\u9a8c\uff0c\u770b metrics \u4e2d\u6709\u6ca1\u6709 per-seed \u6570\u636e\n```\n\n### Step 3: \u5df2\u77e5\u6570\u636e\u53c2\u8003\n\n\u4ece\u8bba\u6587\u4e3b\u6587\u548c appendix \u5176\u4ed6\u8868\u683c\u53ef\u4ee5\u63d0\u53d6\u4e00\u4e9b\u6570\u636e\u70b9\uff1a\n- 9-class: DD IID=1.000, DD OOD=0.997\u00b10.005, FITD=1.000, AA=0.972\u00b10.026\n- Binary: \u7c7b\u4f3c\u7684 IID=1.000, OOD \u7ed3\u679c\n- Scrambled: \u7c7b\u4f3c\n- Vanilla: DD OOD=0.312\u00b10.077, AA=0.258\u00b10.058\n- JB-MLM / MLM-only: DD OOD \u9ad8\u4f46 AA \u4e0d\u7a33\u5b9a\n- Topic: DD OOD=0.541\u00b10.207\n\n\u8fd9\u4e9b mean\u00b1std \u662f 3 seeds \u7684\u7edf\u8ba1\u91cf\uff0cper-seed \u503c = \u5404 seed \u7684\u5355\u72ec F1\u3002\n\n### Step 4: \u586b\u5145\u8868\u683c\n\n\u7528 Edit \u5de5\u5177\u9010\u4e00\u66ff\u6362 \"--\" \u4e3a\u5b9e\u9645\u6570\u503c\uff08\u4fdd\u7559 3 \u4f4d\u5c0f\u6570\uff09\u3002\u5220\u9664\u4efb\u4f55 \"Placeholder\" \u6ce8\u91ca\u3002\n\n### Step 5: \u9a8c\u8bc1\n\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper\nlatexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5\n```\n\n### \u6587\u4ef6\u8def\u5f84\n- appendix.tex: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex`\n- registry: \u7528 read_registry \u5de5\u5177\n- transcript: `/home/ubuntu/.claude-account-1/pro
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db052c48-8adf-444a-a028-630dcb654f06",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "cc6183cc-b5d0-4e09-92a9-5e5cfeb2f4fa",
+  "sourceToolAssistantUUID": "db052c48-8adf-444a-a028-630dcb654f06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-23T05:43:34.759Z_
+
+Now I've found the exp9_bootstrap_ci data. Let me extract the complete per-seed F1 values and look for the specific experiment results files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc6183cc-b5d0-4e09-92a9-5e5cfeb2f4fa",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy7bSvmTXQJAXvra7tR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b51853a1-d0cc-4672-8d2b-5cf05088f89f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jrpz62cMaqQtbM5HPf8zV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 76475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6018,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T05:43:38.459Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TsuPMTGpNCeLzw4fmSgS3f`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Now extract the exp9_bootstrap_ci full data from line 5608 which has the most detail\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 5608:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            pos = msg.find('exp9_bootstrap_ci')\n            region = msg[pos:pos+6000]\n            print(region)\n\" 2>&1",
+  "description": "Extract full exp9_bootstrap_ci data from line 5608"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b51853a1-d0cc-4672-8d2b-5cf05088f89f",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy7bSvmTXQJAXvra7tR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5d4e28c6-6adf-410a-a9e4-628b453f426f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jrpz62cMaqQtbM5HPf8zV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 76475,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6018
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 76475,
+          "cache_creation_input_tokens": 6018,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6018,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T05:43:38.656Z_
+
+<details><summary>↩ Tool result · `toolu_01TsuPMTGpNCeLzw4fmSgS3f`</summary>
+
+```text
+exp9_bootstrap_ci\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/tost_equivalence.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"results/exp9_bootstrap_ci.json (per-seed predictions)\\\", \\\"data_count\\\": 236, \\\"model_name\\\": \\\"DeBERTa-v3-base variants\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis only)\\\", \\\"log_path\\\": \\\"results/tost_equivalence.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_full\\\": {\\\"9class_vs_scrambled\\\": {\\\"mean_diff\\\": 0, \\\"ci_90\\\": [-0.016, 0.016], \\\"p_tost\\\": 0.006, \\\"equivalent\\\": true, \\\"ci_within_margin\\\": true}, \\\"9class_vs_binary\\\": {\\\"mean_diff\\\": -0.0032, \\\"ci_90\\\": [-0.013, 0.006], \\\"p_tost\\\": 0.002, \\\"equivalent\\\": true, \\\"ci_within_margin\\\": true}, \\\"9class_vs_jb_mlm\\\": {\\\"mean_diff\\\": 0.083, \\\"ci_90\\\": [-0.145, 0.311], \\\"p_tost\\\": 0.643, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"scrambled_vs_binary\\\": {\\\"mean_diff\\\": -0.0032, \\\"ci_90\\\": [-0.013, 0.006], \\\"p_tost\\\": 0.002, \\\"equivalent\\\": true, \\\"ci_within_margin\\\": true}}, \\\"actorattack_full\\\": {\\\"9class_vs_scrambled\\\": {\\\"mean_diff\\\": 0.0209, \\\"ci_90\\\": [-0.109, 0.151], \\\"p_tost\\\": 0.29, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"9class_vs_binary\\\": {\\\"mean_diff\\\": -0.0185, \\\"ci_90\\\": [-0.075, 0.038], \\\"p_tost\\\": 0.122, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"9class_vs_jb_mlm\\\": {\\\"mean_diff\\\": 0.0784, \\\"ci_90\\\": [-0.109, 0.266], \\\"p_tost\\\": 0.65, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}, \\\"scrambled_vs_binary\\\": {\\\"mean_diff\\\": -0.0394, \\\"ci_90\\\": [-0.117, 0.038], \\\"p_tost\\\": 0.363, \\\"equivalent\\\": false, \\\"ci_within_margin\\\": false}}, \\\"note\\\": \\\"DD OOD: 9class\u2248scrambled\u2248binary formally equivalent (TOST p<0.05, 90% CI within \u00b10.05). ActorAttack: inconclusive due to n=3 + higher variance. jb_mlm clearly different from classification variants.\\\"}}, \\\"exp3_probing\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:41:50.785Z\\\", \\\"updated_at\\\": \\\"2026-05-18T11:28:57.785Z\\\", \\\"hypothesis\\\": \\\"9-class persuasion fine-tuned DeBERTa encodes richer discourse structure (turn position, escalation level, persuasion presence) than vanilla/MLM variants, as measured by linear probing accuracy and CKA divergence\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"linear_probing\\\": {\\\"turn_position\\\": {\\\"vanilla\\\": 0.787, \\\"mlm\\\": 0.792, \\\"9class\\\": 0.828}, \\\"escalation_level\\\": {\\\"vanilla\\\": 0.732, \\\"mlm\\\": 0.732, \\\"9class\\\": 0.782}, \\\"persuasion_presence\\\": {\\\"vanilla\\\": 0.938, \\\"mlm\\\": 0.943, \\\"9class\\\": 0.949}}, \\\"centered_cka\\\": {\\\"iid\\\": {\\\"vanilla_vs_mlm\\\": 0.442, \\\"vanilla_vs_9class\\\": 0.393, \\\"mlm_vs_9class\\\": 0.586}, \\\"dd_ood\\\": {\\\"vanilla_vs_mlm\\\": 0.797, \\\"vanilla_vs_9class\\\": 0.649, \\\"mlm_vs_9class\\\": 0.773}}, \\\"uncentered_cka\\\": {\\\"iid\\\": {\\\"vanilla_vs_mlm\\\": 0.9999869, \\\"vanilla_vs_9class\\\": 0.3668, \\\"mlm_vs_9class\\\": 0.3684}, \\\"dd_ood\\\": {\\\"vanilla_vs_mlm\\\": 1, \\\"vanilla_vs_9class\\\": 0.8849, \\\"mlm_vs_9class\\\": 0.8847}}, \\\"layer_divergence\\\": \\\"layers 11-12 only, concentrated at final layer\\\", \\\"cka_note\\\": \\\"CORRECTED: Uncentered CKA=1.0 for vanilla_vs_MLM was misleading. Centered CKA=0.442 shows MLM does change representations. Use centered CKA in paper.\\\"}}, \\\"exp1_roberta_vanilla\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:41:44.985Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:45:58.520Z\\\", \\\"hypothesis\\\": \\\"Off-the-shelf RoBERTa-base without any fine-tuning will show poor DD OOD performance, matching DeBERTa vanilla baseline pattern and confirming encoder-agnostic findings\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_full_f1_mean\\\": 0.9813, \\\"dd_ood_full_f1_std\\\": 0.0264, \\\"dd_ood_k1_mean\\\": 0.9127, \\\"dd_ood_k1_std\\\": 0.1028, \\\"dd_ood_k2_mean\\\": 0.9003, \\\"dd_ood_k2_std\\\": 0.1342, \\\"dd_ood_k3_mean\\\": 0.8976, \\\"dd_ood_k3_std\\\": 0.1381, \\\"dd_ood_k5_mean\\\": 0.9442, \\\"dd_ood_k5_std\\\": 0.0789, \\\"n_seeds\\\": 3, \\\"encoder\\\": \\\"roberta-base\\\", \\\"note\\\": \\\"seed42 underperforms (K1=0.77), high variance\\\"}}, \\\"exp1_roberta_mlm\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:41:42.648Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:45:55.269Z\\\", \\\"hypothesis\\\": \\\"RoBERTa-base with MLM-only continued pretraining will show intermediate DD OOD performance between vanilla and 9-class, matching DeBERTa's evidence hierarchy pattern\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_full_f1_mean\\\": 0.9874, \\\"dd_ood_full_f1_std\\\": 0.0178, \\\"dd_ood_k1_mean\\\": 0.9428, \\\"dd_ood_k1_std\\\": 0.0184, \\\"dd_ood_k2_mean\\\": 0.9747, \\\"dd_ood_k2_std\\\": 0.0232, \\\"dd_ood_k3_mean\\\": 0.9747, \\\"dd_ood_k3_std\\\": 0.0232, \\\"dd_ood_k5_mean\\\": 0.9841, \\\"dd_ood_k5_std\\\": 0.016, \\\"n_seeds\\\": 3, \\\"encoder\\\": \\\"roberta-base\\\"}}, \\\"exp1_roberta_9class\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:41:37.022Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:44:45.773Z\\\", \\\"hypothesis\\\": \\\"RoBERTa-base with 9-class persuasion multi-task fine-tuning will reproduce the DeBERTa evidence hierarchy (9-class >> vanilla), proving findings are encoder-agnostic\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"dd_ood_full_f1_mean\\\": 0.9936, \\\"dd_ood_full_f1_std\\\": 0.0045, \\\"dd_ood_k1_mean\\\": 0.9873, \\\"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d4e28c6-6adf-410a-a9e4-628b453f426f",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "0511fabf-5f90-41e0-a598-346645c8b915",
+  "sourceToolAssistantUUID": "5d4e28c6-6adf-410a-a9e4-628b453f426f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-23T05:43:41.706Z_
+
+Good - the exp9_bootstrap_ci has TOST statistics but not the raw per-seed F1 values. Let me now search for the actual per-seed F1 values from the cross-attack evaluations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0511fabf-5f90-41e0-a598-346645c8b915",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy8527yzEmJA7oX3HBx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6518d5b8-e279-4e77-8daa-c09a793ca384",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mhet8ytnTh4MPHZMLhUUnK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3167,
+      "cache_read_input_tokens": 82493,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3167,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T05:43:53.899Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AaYuxkAFyjWQy3PWHgM56X`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for raw evaluation outputs containing per-seed F1 for each model on DD and AA\n# The key experiments would be plan_002 cross-attack eval with seeds 42/123/456\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        # Look for raw eval output with seed-specific F1 values on DD and AA\n        # Try finding lines with three F1 values together (for 3 seeds)\n        if re.search(r'(9.class|binary|scrambled|jb.mlm)', msg, re.IGNORECASE):\n            # Look for patterns like seed 42: F1=X, seed 123: F1=Y\n            matches = list(re.finditer(r'(seed.{0,5}42|s42).*?(0\\.\\d{3,4}).*?(seed.{0,5}123|s123).*?(0\\.\\d{3,4}).*?(seed.{0,5}456|s456).*?(0\\.\\d{3,4})', msg, re.IGNORECASE))\n            for m in matches:\n                context = msg[max(0,m.start()-200):min(len(msg),m.end()+100)]\n                if 'dd' in context.lower() or 'aa' in context.lower() or 'ood' in context.lower():\n                    print(f'LINE {i}: {context[:600]}')\n                    print()\n\" 2>&1 | head -200",
+  "description": "Search for raw per-seed F1 values across model variants"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6518d5b8-e279-4e77-8daa-c09a793ca384",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJy8527yzEmJA7oX3HBx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d8d26d8-68d1-496b-960a-aa57f06fb17e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mhet8ytnTh4MPHZMLhUUnK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3167,
+      "cache_read_input_tokens": 82493,
+      "output_tokens": 612,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3167
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 612,
+          "cache_read_input_tokens": 82493,
+          "cache_creation_input_tokens": 3167,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3167,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T05:44:11.240Z_
+
+<details><summary>↩ Tool result · `toolu_01AaYuxkAFyjWQy3PWHgM56X`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (33.4KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/85e3b989-c20f-497d-8ff6-585a23797fb3/tool-results/bejviwacd.txt
+
+Preview (first 2KB):
+LINE 78: agraph{Metrics.}\n26\tF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\\ref{sec:full_prefix}).\n27\tOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456) for all variants; TOST equivalence tests for 9-class vs.\\ scrambled use 5 seeds (42, 123, 456, 789, 1000).\n28\tFor key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across 3 seeds; this assumes cross-seed independence and is exploratory) and paired permutation tests (10,000 permutations). Seed-lev
+
+LINE 418: \\", \\\"aa_ood\\\": \\\"0.975\u00b10.029\\\"}, \\\"N350\\\": {\\\"iid\\\": \\\"1.000\u00b10.000\\\", \\\"dd_ood\\\": \\\"0.978\u00b10.024\\\", \\\"aa_ood\\\": \\\"0.972\u00b10.027\\\"}}, \\\"vanilla_seed42\\\": {\\\"N50\\\": {\\\"iid\\\": 0.646, \\\"dd_ood\\\": 0.529, \\\"aa_ood\\\": 0.234}, \\\"N125\\\": {\\\"iid\\\": 0.532, \\\"dd_ood\\\": 0.244, \\\"aa_ood\\\": 0.244}, \\\"N250\\\": {\\\"iid\\\": 0.987, \\\"dd_ood\\\": 0.365, \\\"aa_ood\\\": 0.502}, \\\"N350\\\": {\\\"iid\\\": 1, \\\"dd_ood\\\": 0.36, \\\"aa_ood\\\": 0.489}}, \\\"note\\\": \\\"Complete data efficiency table. 9-class at N=5
+
+LINE 418: \\", \\\"aa_ood\\\": \\\"0.975\u00b10.029\\\"}, \\\"N350\\\": {\\\"iid\\\": \\\"1.000\u00b10.000\\\", \\\"dd_ood\\\": \\\"0.978\u00b10.024\\\", \\\"aa_ood\\\": \\\"0.972\u00b10.027\\\"}}, \\\"vanilla_seed42\\\": {\\\"N50\\\": {\\\"iid\\\": 0.646, \\\"dd_ood\\\": 0.529, \\\"aa_ood\\\": 0.234}, \\\"N125\\\": {\\\"iid\\\": 0.532, \\\"dd_ood\\\": 0.244, \\\"aa_ood\\\": 0.244}, \\\"N250\\\": {\\\"iid\\\": 0.987, \\\"dd_ood\\\": 0.365, \\\"aa_ood\\\": 0.502}, \\\"N350\\\": {\\\"iid\\\": 1, \\\"dd_ood\\\": 0.36, \\\"aa_ood\\\": 0.489}}, \\\"note\\\": \\\"Complete data efficiency table. 9-class at N=5
+
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d8d26d8-68d1-496b-960a-aa57f06fb17e",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "3c029fa4-9727-4fb6-afde-df03afd65be5",
+  "sourceToolAssistantUUID": "9d8d26d8-68d1-496b-960a-aa57f06fb17e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T05:44:13.659Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0159WRnBpfSHSSvxYMemkKmz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/85e3b989-c20f-497d-8ff6-585a23797fb3/tool-results/bejviwacd.txt",
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c029fa4-9727-4fb6-afde-df03afd65be5",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyAUKt6TvvN946nhczc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "83642610-27f1-47df-aac7-5848afed7ba8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T6bS14pR1eNqEPu78KdxAH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 85660,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1654
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 85660,
+          "cache_creation_input_tokens": 1654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1654,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T05:44:13.980Z_
+
+<details><summary>↩ Tool result · `toolu_0159WRnBpfSHSSvxYMemkKmz`</summary>
+
+```text
+1	LINE 78: agraph{Metrics.}\n26\tF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\\ref{sec:full_prefix}).\n27\tOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456) for all variants; TOST equivalence tests for 9-class vs.\\ scrambled use 5 seeds (42, 123, 456, 789, 1000).\n28\tFor key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across 3 seeds; this assumes cross-seed independence and is exploratory) and paired permutation tests (10,000 permutations). Seed-lev
+2	
+3	LINE 418: \\", \\\"aa_ood\\\": \\\"0.975\u00b10.029\\\"}, \\\"N350\\\": {\\\"iid\\\": \\\"1.000\u00b10.000\\\", \\\"dd_ood\\\": \\\"0.978\u00b10.024\\\", \\\"aa_ood\\\": \\\"0.972\u00b10.027\\\"}}, \\\"vanilla_seed42\\\": {\\\"N50\\\": {\\\"iid\\\": 0.646, \\\"dd_ood\\\": 0.529, \\\"aa_ood\\\": 0.234}, \\\"N125\\\": {\\\"iid\\\": 0.532, \\\"dd_ood\\\": 0.244, \\\"aa_ood\\\": 0.244}, \\\"N250\\\": {\\\"iid\\\": 0.987, \\\"dd_ood\\\": 0.365, \\\"aa_ood\\\": 0.502}, \\\"N350\\\": {\\\"iid\\\": 1, \\\"dd_ood\\\": 0.36, \\\"aa_ood\\\": 0.489}}, \\\"note\\\": \\\"Complete data efficiency table. 9-class at N=5
+4	
+5	LINE 418: \\", \\\"aa_ood\\\": \\\"0.975\u00b10.029\\\"}, \\\"N350\\\": {\\\"iid\\\": \\\"1.000\u00b10.000\\\", \\\"dd_ood\\\": \\\"0.978\u00b10.024\\\", \\\"aa_ood\\\": \\\"0.972\u00b10.027\\\"}}, \\\"vanilla_seed42\\\": {\\\"N50\\\": {\\\"iid\\\": 0.646, \\\"dd_ood\\\": 0.529, \\\"aa_ood\\\": 0.234}, \\\"N125\\\": {\\\"iid\\\": 0.532, \\\"dd_ood\\\": 0.244, \\\"aa_ood\\\": 0.244}, \\\"N250\\\": {\\\"iid\\\": 0.987, \\\"dd_ood\\\": 0.365, \\\"aa_ood\\\": 0.502}, \\\"N350\\\": {\\\"iid\\\": 1, \\\"dd_ood\\\": 0.36, \\\"aa_ood\\\": 0.489}}, \\\"note\\\": \\\"Complete data efficiency table. 9-class at N=5
+6	
+7	LINE 458: && DATA_DIR=\\\\\\\\$PROJ/data/mixed_llm && CKPT_DIR=\\\\\\\\$PROJ/checkpoints/exp16 && python src/train_deberta.py --train_data \\\\\\\\$DATA_DIR/train.jsonl --val_data \\\\\\\\$DATA_DIR/val.jsonl --seed 42 --output_dir \\\\\\\\$CKPT_DIR/9class_seed42 && python src/train_classifier.py --train_data \\\\\\\\$DATA_DIR/train.jsonl --val_data \\\\\\\\$DATA_DIR/val.jsonl --mode treatment --deberta_checkpoint \\\\\\\\$CKPT_DIR/9class_seed42/best --seed 42 --output_dir \\\\\\\\$CKPT_DIR/9class_gru_seed42 && python src/train_deberta.py --train_data \\\\\\\\$DATA_DIR/train.jsonl --val_data \\\\\\\\$DAT
+8	
+9	LINE 463: \\\"data_count\\\": \\\"226 WildChat benign + jailbreak test\\\", \\\"model_name\\\": \\\"plan_002 9-class DeBERTa+BiGRU\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"plan_002 seeds 42/123/456\\\", \\\"eval_data\\\": \\\"WildChat benign 226 (113 cal + 113 test) + IID/DD/AA/FITD jailbreak\\\"}, \\\"metrics\\\": {\\\"roc_auc\\\": {\\\"mean\\\": 0.7, \\\"std\\\": 0.054, \\\"per_seed\\\": {\\\"seed42\\\": 0.768, \\\"seed123\\\": 0.697, \\\"seed456\\\": 0.635}}, \\\"default_t05_fpr\\\": {\\\"mean\\\": 0.791, \\\"std\\\": 0.098}, \\\"threshold_calibration_he
+10	
+11	LINE 463: \\\"data_count\\\": \\\"226 WildChat benign + jailbreak test\\\", \\\"model_name\\\": \\\"plan_002 9-class DeBERTa+BiGRU\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"plan_002 seeds 42/123/456\\\", \\\"eval_data\\\": \\\"WildChat benign 226 (113 cal + 113 test) + IID/DD/AA/FITD jailbreak\\\"}, \\\"metrics\\\": {\\\"roc_auc\\\": {\\\"mean\\\": 0.7, \\\"std\\\": 0.054, \\\"per_seed\\\": {\\\"seed42\\\": 0.768, \\\"seed123\\\": 0.697, \\\"seed456\\\": 0.635}}, \\\"default_t05_fpr\\\": {\\\"mean\\\": 0.791, \\\"std\\\": 0.098}, \\\"threshold_calibration_he
+12	
+13	LINE 463: sonl + jailbreak test data\", \"data_count\": \"226 WildChat benign + jailbreak test\", \"model_name\": \"plan_002 9-class DeBERTa+BiGRU\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"plan_002 seeds 42/123/456\", \"eval_data\": \"WildChat benign 226 (113 cal + 113 test) + IID/DD/AA/FITD jailbreak\"}, \"metrics\": {\"roc_auc\": {\"mean\": 0.7, \"std\": 0.054, \"per_seed\": {\"seed42\": 0.768, \"seed123\": 0.697, \"seed456\": 0.635}}, \"default_t05_fpr\": {\"mean\": 0.791, \"std\": 0.098}, \"threshold_calibration_held_out\": {\"t
+14	
+15	LINE 783: ilbreak patterns removed\\\", \\\"train_size\\\": \\\"500 (350 orig + 150 WildChat benign)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42_mixed_seed{42,123,456}/\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp42_training.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T04:10:33.954Z\\\"}, \\\"exp41_tost_10seed\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:27:38.653Z\\\", \\\"updated_at\\\": \\\"2026-05-22T03:53:52.977Z\\\", 
+16	
+17	LINE 783: \"mean\\\": 0.987, \\\"std\\\": 0.005}, \\\"dd_ood_k5\\\": {\\\"mean\\\": 0.997, \\\"std\\\": 0.005}}, \\\"checkpoint_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/checkpoints/exp36_frozen_mlm_seed{42,123,456}/best.pt\\\", \\\"log_path\\\": \\\"/tmp/exp36.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T20:37:51.376Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 112, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3146}}\"}"}]}, "uuid": "39a4dec0-9dbb-4120-b18b-1b0fee93332a", "timestamp": "2026-05-22T04:20:09.006Z
+18	
+19	LINE 783: \"mean\\\": 0.987, \\\"std\\\": 0.005}, \\\"dd_ood_k5\\\": {\\\"mean\\\": 0.997, \\\"std\\\": 0.005}}, \\\"checkpoint_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/checkpoints/exp36_frozen_mlm_seed{42,123,456}/best.pt\\\", \\\"log_path\\\": \\\"/tmp/exp36.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T20:37:51.376Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 112, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3146}}\"}", "mcpMeta": {"structuredContent": {"result": "{\"success\": true, \"data\": {\"experiments
+20	
+21	LINE 1410: \": 0.2007, \\\"p\\\": 0.0001}}, \\\"metric\\\": \\\"f1_macro\\\", \\\"n_resamples\\\": 10000, \\\"note\\\": \\\"All permutation tests p<0.001. jb_mlm most stable (seed_std=0.015). wiki_mlm vs 9class seed42 marginal (p=0.057) but pooled significant.\\\"}}, \\\"exp11_tost_equivalence\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-18T20:55:11.384Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:55:29.568Z\\\", \\\"hypothesis\\\": \\\"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within \u0394=5pp margin), form
+22	
+23	LINE 1883: , \"n150\": {\"fpr\": 0, \"dd_f1\": 1, \"aa_f1\": 0.981, \"fitd_f1\": 1}}, \"key_finding\": \"FPR drops from 65.3% to 0% at N=10, all OOD F1 >= 0.953\", \"wildchat_eval_n\": 49, \"ood_eval_n\": 80, \"seed\": 42}}, \"exp46_inference_efficiency\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-22T06:14:50.840Z\", \"updated_at\": \"2026-05-22T06:25:23.827Z\", \"hypothesis\": \"DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-judge (Qwen3-8B 3-shot) with comparable or better OOD detection, because the encoder pipeline processes fixed-length embeddings per turn rather than generatin
+24	
+25	LINE 1883: u7ec3\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\u3002\", \"metrics\": {\"models\": [\"vanilla\", \"MLM\", \"9-class\"], \"seed\": 42, \"data\": {\"dd_jailbreak\": 80, \"aa_jailbreak\": 80, \"benign\": 38, \"total\": 198}, \"embedding_dim\": 768, \"methods\": [\"t-SNE (perplexity=30)\", \"UMAP (n_neighbors=15, min_dist=0.1)\"], \"output_files\": 15, \"note\": \"6 plots (3 models x 2 methods) + 3 NPZ coordinate files + summary JSON. Colors: jailbreak=red, benign=blue. Markers: DD=circle, AA=square, benign=triangle.\"},
+26	
+27	LINE 1883: note\": \"Used 3 seeds' best DAPT checkpoints (no intermediate epoch checkpoints saved). IID variance=0pp, AA OOD variance=1.3pp (<2pp), DD OOD variance=2.6pp (slightly above 2pp threshold, driven by seed42=0.900).\"}}, \"exp20_deepcontext_proxy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:46:28.570Z\", \"updated_at\": \"2026-05-20T13:52:58.190Z\", \"hypothesis\": \"BERT-base-uncased + BiGRU (frozen probing, no DAPT) as DeepContext proxy will substantially underperform DeBERTa-v3 9-class on OOD generalization, quantifying the contribution of task-specific DAPT vs generic pre-train
+28	
+29	LINE 1883: m_vs_9class\": {\"diff\": 0.2007, \"p\": 0.0001}}, \"metric\": \"f1_macro\", \"n_resamples\": 10000, \"note\": \"All permutation tests p<0.001. jb_mlm most stable (seed_std=0.015). wiki_mlm vs 9class seed42 marginal (p=0.057) but pooled significant.\"}}, \"exp11_tost_equivalence\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T20:55:11.384Z\", \"updated_at\": \"2026-05-18T20:55:29.568Z\", \"hypothesis\": \"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within \u0394=5pp margin), formally proving that persuasion label c
+30	
+31	LINE 1883: "clean_k3\": 0.2844, \"perturbed_k3\": 0.2574, \"delta_k3\": -0.027, \"clean_full\": 0.2575, \"perturbed_full\": 0.2482, \"delta_full\": -0.0093}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 2e-05, \"b\": 34, \"c\": 6}, \"seed123\": {\"p\": 1.9e-05, \"b\": 59, \"c\": 20}, \"seed456\": {\"p\": 0, \"b\": 72, \"c\": 19}}}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 44, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 75, \"c\": 4}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 24}}}, \"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\":
+32	
+33	LINE 1883: 32, \"k3_std\": 0.144, \"k5\": 0.466, \"k5_std\": 0.144, \"full\": 0.466, \"full_std\": 0.163}, \"n_samples\": 118, \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"}}, \"exp4_dd_ood_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:47:27.803Z\", \"updated_at\": \"2026-05-18T12:06:21.623Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on D
+34	
+35	LINE 1883: anilla vs MLM\", \"conclusion\": \"success\", \"metrics\": {\"vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.3
+36	
+37	LINE 1883: DONE\", \"created_at\": \"2026-05-18T09:11:45.083Z\", \"updated_at\": \"2026-05-18T11:04:38.928Z\", \"hypothesis\": \"Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"iid_full_f1\": 1, \"iid_k1_f1\": 1, \"iid_k2_f1\": 1, \"iid_k3_f1\": 1, \"iid_k5_f1\": 1, \"deberta_val_persuasion_acc\": 
+38	
+39	LINE 1883: at\": \"2026-05-18T09:11:49.552Z\", \"updated_at\": \"2026-05-18T09:54:22.058Z\", \"hypothesis\": \"Scrambled-label classification (seed=456) on plan_002_splits data will show DD OOD F1 comparable to seed=42 (0.990), confirming scrambled variant's performance and variance for reviewer MF1\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.99, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 0.698, \"seed\": 456}, \"conclusion\": \"success\"}, \"plan_003_scrambled_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T07:07:32.
+40	
+41	LINE 2418: , \"n150\": {\"fpr\": 0, \"dd_f1\": 1, \"aa_f1\": 0.981, \"fitd_f1\": 1}}, \"key_finding\": \"FPR drops from 65.3% to 0% at N=10, all OOD F1 >= 0.953\", \"wildchat_eval_n\": 49, \"ood_eval_n\": 80, \"seed\": 42}}, \"exp48_ensemble_mlm_9class\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:14:53.259Z\", \"updated_at\": \"2026-05-22T06:50:17.512Z\", \"hypothesis\": \"Ensembling JB-MLM (strongest on ToxicChat F1=0.837) and 9-class (strongest on synthetic OOD) will outperform either individual model across all benchmarks, because their error patterns are complementary: MLM captures gener
+42	
+43	LINE 2418: u7ec3\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\u3002\", \"metrics\": {\"models\": [\"vanilla\", \"MLM\", \"9-class\"], \"seed\": 42, \"data\": {\"dd_jailbreak\": 80, \"aa_jailbreak\": 80, \"benign\": 38, \"total\": 198}, \"embedding_dim\": 768, \"methods\": [\"t-SNE (perplexity=30)\", \"UMAP (n_neighbors=15, min_dist=0.1)\"], \"output_files\": 15, \"note\": \"6 plots (3 models x 2 methods) + 3 NPZ coordinate files + summary JSON. Colors: jailbreak=red, benign=blue. Markers: DD=circle, AA=square, benign=triangle.\"},
+44	
+45	LINE 2418: note\": \"Used 3 seeds' best DAPT checkpoints (no intermediate epoch checkpoints saved). IID variance=0pp, AA OOD variance=1.3pp (<2pp), DD OOD variance=2.6pp (slightly above 2pp threshold, driven by seed42=0.900).\"}}, \"exp20_deepcontext_proxy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:46:28.570Z\", \"updated_at\": \"2026-05-20T13:52:58.190Z\", \"hypothesis\": \"BERT-base-uncased + BiGRU (frozen probing, no DAPT) as DeepContext proxy will substantially underperform DeBERTa-v3 9-class on OOD generalization, quantifying the contribution of task-specific DAPT vs generic pre-train
+46	
+47	LINE 2418: m_vs_9class\": {\"diff\": 0.2007, \"p\": 0.0001}}, \"metric\": \"f1_macro\", \"n_resamples\": 10000, \"note\": \"All permutation tests p<0.001. jb_mlm most stable (seed_std=0.015). wiki_mlm vs 9class seed42 marginal (p=0.057) but pooled significant.\"}}, \"exp11_tost_equivalence\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T20:55:11.384Z\", \"updated_at\": \"2026-05-18T20:55:29.568Z\", \"hypothesis\": \"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within \u0394=5pp margin), formally proving that persuasion label c
+48	
+49	LINE 2418: "clean_k3\": 0.2844, \"perturbed_k3\": 0.2574, \"delta_k3\": -0.027, \"clean_full\": 0.2575, \"perturbed_full\": 0.2482, \"delta_full\": -0.0093}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 2e-05, \"b\": 34, \"c\": 6}, \"seed123\": {\"p\": 1.9e-05, \"b\": 59, \"c\": 20}, \"seed456\": {\"p\": 0, \"b\": 72, \"c\": 19}}}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 44, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 75, \"c\": 4}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 24}}}, \"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\":
+50	
+51	LINE 2418: 32, \"k3_std\": 0.144, \"k5\": 0.466, \"k5_std\": 0.144, \"full\": 0.466, \"full_std\": 0.163}, \"n_samples\": 118, \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"}}, \"exp4_dd_ood_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:47:27.803Z\", \"updated_at\": \"2026-05-18T12:06:21.623Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on D
+52	
+53	LINE 2418: anilla vs MLM\", \"conclusion\": \"success\", \"metrics\": {\"vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.3
+54	
+55	LINE 2418: DONE\", \"created_at\": \"2026-05-18T09:11:45.083Z\", \"updated_at\": \"2026-05-18T11:04:38.928Z\", \"hypothesis\": \"Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"iid_full_f1\": 1, \"iid_k1_f1\": 1, \"iid_k2_f1\": 1, \"iid_k3_f1\": 1, \"iid_k5_f1\": 1, \"deberta_val_persuasion_acc\": 
+56	
+57	LINE 2418: at\": \"2026-05-18T09:11:49.552Z\", \"updated_at\": \"2026-05-18T09:54:22.058Z\", \"hypothesis\": \"Scrambled-label classification (seed=456) on plan_002_splits data will show DD OOD F1 comparable to seed=42 (0.990), confirming scrambled variant's performance and variance for reviewer MF1\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.99, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 0.698, \"seed\": 456}, \"conclusion\": \"success\"}, \"plan_003_scrambled_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T07:07:32.
+58	
+59	LINE 2440: agraph{Metrics.}\n26\tF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\\ref{sec:full_prefix}).\n27\tOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456) for all variants; TOST equivalence tests for 9-class vs.\\ scrambled use 5 seeds (42, 123, 456, 789, 1000).\n28\tFor key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across 3 seeds; this assumes cross-seed independence and is exploratory) and paired permutation tests (10,000 permutations). Seed-lev
+60	
+61	LINE 2727: , \"n150\": {\"fpr\": 0, \"dd_f1\": 1, \"aa_f1\": 0.981, \"fitd_f1\": 1}}, \"key_finding\": \"FPR drops from 65.3% to 0% at N=10, all OOD F1 >= 0.953\", \"wildchat_eval_n\": 49, \"ood_eval_n\": 80, \"seed\": 42}}, \"exp48_ensemble_mlm_9class\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:14:53.259Z\", \"updated_at\": \"2026-05-22T06:50:17.512Z\", \"hypothesis\": \"Ensembling JB-MLM (strongest on ToxicChat F1=0.837) and 9-class (strongest on synthetic OOD) will outperform either individual model across all benchmarks, because their error patterns are complementary: MLM captures gener
+62	
+63	LINE 2727: u7ec3\u8feb\u4f7f\u7f16\u7801\u5668\u5b66\u4e60\u4e0e\u653b\u51fb\u610f\u56fe\u76f8\u5173\u7684\u5224\u522b\u6027\u7279\u5f81\u3002\", \"metrics\": {\"models\": [\"vanilla\", \"MLM\", \"9-class\"], \"seed\": 42, \"data\": {\"dd_jailbreak\": 80, \"aa_jailbreak\": 80, \"benign\": 38, \"total\": 198}, \"embedding_dim\": 768, \"methods\": [\"t-SNE (perplexity=30)\", \"UMAP (n_neighbors=15, min_dist=0.1)\"], \"output_files\": 15, \"note\": \"6 plots (3 models x 2 methods) + 3 NPZ coordinate files + summary JSON. Colors: jailbreak=red, benign=blue. Markers: DD=circle, AA=square, benign=triangle.\"},
+64	
+65	LINE 2727: note\": \"Used 3 seeds' best DAPT checkpoints (no intermediate epoch checkpoints saved). IID variance=0pp, AA OOD variance=1.3pp (<2pp), DD OOD variance=2.6pp (slightly above 2pp threshold, driven by seed42=0.900).\"}}, \"exp20_deepcontext_proxy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:46:28.570Z\", \"updated_at\": \"2026-05-20T13:52:58.190Z\", \"hypothesis\": \"BERT-base-uncased + BiGRU (frozen probing, no DAPT) as DeepContext proxy will substantially underperform DeBERTa-v3 9-class on OOD generalization, quantifying the contribution of task-specific DAPT vs generic pre-train
+66	
+67	LINE 2727: m_vs_9class\": {\"diff\": 0.2007, \"p\": 0.0001}}, \"metric\": \"f1_macro\", \"n_resamples\": 10000, \"note\": \"All permutation tests p<0.001. jb_mlm most stable (seed_std=0.015). wiki_mlm vs 9class seed42 marginal (p=0.057) but pooled significant.\"}}, \"exp11_tost_equivalence\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T20:55:11.384Z\", \"updated_at\": \"2026-05-18T20:55:29.568Z\", \"hypothesis\": \"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within \u0394=5pp margin), formally proving that persuasion label c
+68	
+69	LINE 2727: "clean_k3\": 0.2844, \"perturbed_k3\": 0.2574, \"delta_k3\": -0.027, \"clean_full\": 0.2575, \"perturbed_full\": 0.2482, \"delta_full\": -0.0093}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 2e-05, \"b\": 34, \"c\": 6}, \"seed123\": {\"p\": 1.9e-05, \"b\": 59, \"c\": 20}, \"seed456\": {\"p\": 0, \"b\": 72, \"c\": 19}}}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 44, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 75, \"c\": 4}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 24}}}, \"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\":
+70	
+71	LINE 2727: 32, \"k3_std\": 0.144, \"k5\": 0.466, \"k5_std\": 0.144, \"full\": 0.466, \"full_std\": 0.163}, \"n_samples\": 118, \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"}}, \"exp4_dd_ood_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:47:27.803Z\", \"updated_at\": \"2026-05-18T12:06:21.623Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on D
+72	
+73	LINE 2727: anilla vs MLM\", \"conclusion\": \"success\", \"metrics\": {\"vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.3
+74	
+75	LINE 2727: DONE\", \"created_at\": \"2026-05-18T09:11:45.083Z\", \"updated_at\": \"2026-05-18T11:04:38.928Z\", \"hypothesis\": \"Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"iid_full_f1\": 1, \"iid_k1_f1\": 1, \"iid_k2_f1\": 1, \"iid_k3_f1\": 1, \"iid_k5_f1\": 1, \"deberta_val_persuasion_acc\": 
+76	
+77	LINE 2727: at\": \"2026-05-18T09:11:49.552Z\", \"updated_at\": \"2026-05-18T09:54:22.058Z\", \"hypothesis\": \"Scrambled-label classification (seed=456) on plan_002_splits data will show DD OOD F1 comparable to seed=42 (0.990), confirming scrambled variant's performance and variance for reviewer MF1\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.99, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 0.698, \"seed\": 456}, \"conclusion\": \"success\"}, \"plan_003_scrambled_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T07:07:32.
+78	
+79	LINE 3050: ison between 9-class and scrambled to 5 seeds for TOST analysis.\n759\t\n760\t\\begin{table}[h]\n761\t\\centering\n762\t\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 0 at $n$=3).}\n763\t\\label{tab:seed_level}\n764\t\\resizebox{\\columnwidth}{!}{\n765\t\\begin{tabular}{@{}lccccccccc@{}}\n766\t\\toprule\n767\t& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n768\t\\cmidrule(lr){2-4} \\cmidr
+80	
+81	LINE 3531: \"2026-05-22T10:08:46.884Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:16:27.542Z\\\", \\\"hypothesis\\\": \\\"OASST2 benign adaptation with N=25 yields consistently low FPR (\u22645%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.\\\", \\\"parent\\\": \\\"exp51_lmsys_benign_ood\\\", \\\"metrics\\\": {\\\"seed_42\\\": {\\\"oasst2_fpr\\\": 0.015, \\\"iid_f1\\\": 1, \\\"aa_f1\\\": 0.953, \\\"dd_f1\\\": 1, \\\"fitd_f1\\\": 1}, \\\"seed_123\\\": {\\\"oasst2_fpr\\\": 0.005, \\\"iid_f1\\\": 1, \\\"aa_f1\\\": 0.917, \\\"dd_f1\\\": 1, \\\"fitd_f1\\\": 1}, \\
+82	
+83	LINE 3531: .000\u00b10.000\\\", \\\"iid_f1\\\": \\\"1.000\u00b10.000\\\", \\\"dd_f1\\\": \\\"1.000\u00b10.000\\\", \\\"aa_f1\\\": \\\"0.981\u00b10.016\\\", \\\"fitd_f1\\\": \\\"1.000\u00b10.000\\\"}, \\\"single_seed_42\\\": {\\\"n0_fpr\\\": 0.653, \\\"n5_fpr\\\": 0.163, \\\"n10_fpr\\\": 0, \\\"n25_fpr\\\": 0, \\\"n50_fpr\\\": 0, \\\"n100_fpr\\\": 0, \\\"n150_fpr\\\": 0}}}}, \\\"count\\\": 5, \\\"total\\\": 122, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3662}}\"}"}]}, "uuid": "2b64f024-2596-493c-acd8-0bd039e3ba29", "timestamp": "2026-05-22T10:17:52.234Z", 
+84	
+85	LINE 3531: .000\u00b10.000\\\", \\\"iid_f1\\\": \\\"1.000\u00b10.000\\\", \\\"dd_f1\\\": \\\"1.000\u00b10.000\\\", \\\"aa_f1\\\": \\\"0.981\u00b10.016\\\", \\\"fitd_f1\\\": \\\"1.000\u00b10.000\\\"}, \\\"single_seed_42\\\": {\\\"n0_fpr\\\": 0.653, \\\"n5_fpr\\\": 0.163, \\\"n10_fpr\\\": 0, \\\"n25_fpr\\\": 0, \\\"n50_fpr\\\": 0, \\\"n100_fpr\\\": 0, \\\"n150_fpr\\\": 0}}}}, \\\"count\\\": 5, \\\"total\\\": 122, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3662}}\"}", "mcpMeta": {"structuredContent": {"result": "{\"success\": true, \"data\": {\"experiments\":
+86	
+87	LINE 3829: ison between 9-class and scrambled to 5 seeds for TOST analysis.\n868\t\n869\t\\begin{table}[h]\n870\t\\centering\n871\t\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 0 at $n$=3).}\n872\t\\label{tab:seed_level}\n873\t\\resizebox{\\columnwidth}{!}{\n874\t\\begin{tabular}{@{}lccccccccc@{}}\n875\t\\toprule\n876\t& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n877\t\\cmidrule(lr){2-4} \\cmidr
+88	
+89	LINE 4082: \"2026-05-22T10:08:46.884Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:16:27.542Z\\\", \\\"hypothesis\\\": \\\"OASST2 benign adaptation with N=25 yields consistently low FPR (\u22645%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.\\\", \\\"parent\\\": \\\"exp51_lmsys_benign_ood\\\", \\\"metrics\\\": {\\\"seed_42\\\": {\\\"oasst2_fpr\\\": 0.015, \\\"iid_f1\\\": 1, \\\"aa_f1\\\": 0.953, \\\"dd_f1\\\": 1, \\\"fitd_f1\\\": 1}, \\\"seed_123\\\": {\\\"oasst2_fpr\\\": 0.005, \\\"iid_f1\\\": 1, \\\"aa_f1\\\": 0.917, \\\"dd_f1\\\": 1, \\\"fitd_f1\\\": 1}, \\
+90	
+91	LINE 4082: .000\u00b10.000\\\", \\\"iid_f1\\\": \\\"1.000\u00b10.000\\\", \\\"dd_f1\\\": \\\"1.000\u00b10.000\\\", \\\"aa_f1\\\": \\\"0.981\u00b10.016\\\", \\\"fitd_f1\\\": \\\"1.000\u00b10.000\\\"}, \\\"single_seed_42\\\": {\\\"n0_fpr\\\": 0.653, \\\"n5_fpr\\\": 0.163, \\\"n10_fpr\\\": 0, \\\"n25_fpr\\\": 0, \\\"n50_fpr\\\": 0, \\\"n100_fpr\\\": 0, \\\"n150_fpr\\\": 0}}}, \\\"exp49_representation_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T07:10:44.086Z\\\", \\\"updated_at\\\": \\\"2026-05-22T07:33:19.682Z\\\", \\\"hypothesis\\\": \\\"Classification-based DAPT (9-clas
+92	
+93	LINE 4082: .000\u00b10.000\\\", \\\"iid_f1\\\": \\\"1.000\u00b10.000\\\", \\\"dd_f1\\\": \\\"1.000\u00b10.000\\\", \\\"aa_f1\\\": \\\"0.981\u00b10.016\\\", \\\"fitd_f1\\\": \\\"1.000\u00b10.000\\\"}, \\\"single_seed_42\\\": {\\\"n0_fpr\\\": 0.653, \\\"n5_fpr\\\": 0.163, \\\"n10_fpr\\\": 0, \\\"n25_fpr\\\": 0, \\\"n50_fpr\\\": 0, \\\"n100_fpr\\\": 0, \\\"n150_fpr\\\": 0}}}, \\\"exp49_representation_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T07:10:44.086Z\\\", \\\"updated_at\\\": \\\"2026-05-22T07:33:19.682Z\\\", \\\"hypothesis\\\": \\\"Classification-based DAPT (9-clas
+94	
+95	LINE 4391: agraph{Metrics.}\n26\tF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\\ref{sec:full_prefix}).\n27\tOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456) for all variants; TOST equivalence tests for 9-class vs.\\ scrambled use 5 seeds (42, 123, 456, 789, 1000).\n28\tFor key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across 3 seeds; this assumes cross-seed independence and is exploratory) and paired permutation tests (10,000 permutations). Seed-lev
+96	
+97	LINE 4945: ata/llama_conversations/benign_llama_250.jsonl\\\", \\\"data_count\\\": 250, \\\"model_name\\\": \\\"microsoft/deberta-v3-base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan_002 (9-class, seed 42)\\\", \\\"eval_data\\\": \\\"Llama-benign 200 eval + cross_llm dd/aa/fitd_llama 50 each\\\", \\\"log_path\\\": \\\"/tmp/exp56_crossllm.log\\\", \\\"pid\\\": 10405, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp56_crossllm_n10_seed42\\\"}, \\\"metrics\\\": {\\\"baseline_fpr\\\": 0.945, \\\"baseline_aa_llama_recall\\\": 0.74, \\\"adaptation_cur
+98	
+99	LINE 4945:  1}, \\\"fpr_mean\\\": 0.01, \\\"fpr_std\\\": 0.005, \\\"fpr_range\\\": \\\"0.5%-1.5%\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp52_oasst2_n25_seed{42,123,456}/\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp52_seed{123,456}.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:16:27.542Z\\\"}, \\\"exp51_lmsys_benign_ood\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:58:59.398Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:53:42.
+100	
+101	LINE 4945:  1}, \\\"fpr_mean\\\": 0.01, \\\"fpr_std\\\": 0.005, \\\"fpr_range\\\": \\\"0.5%-1.5%\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp52_oasst2_n25_seed{42,123,456}/\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp52_seed{123,456}.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:16:27.542Z\\\"}, \\\"exp51_lmsys_benign_ood\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:58:59.398Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:53:42.
+102	
+103	LINE 5121:  {"role": "user", "content": [{"tool_use_id": "toolu_013sa7oPg5MkvYzEiqFYTrBp", "type": "tool_result", "content": "934\t\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 0 at $n$=3).}\n935\t\\label{tab:seed_level}\n936\t\\resizebox{\\columnwidth}{!}{\n937\t\\begin{tabular}{@{}lccccccccc@{}}\n938\t\\toprule\n939\t& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n940\t\\cmidrule(lr){2-4} \\cmidr
+104	
+105	LINE 5121: MLM across three attack families.}\n979\t\\label{tab:cross_hw}\n980\t\\resizebox{\\columnwidth}{!}{\n981\t\\begin{tabular}{@{}llcccccc@{}}\n982\t\\toprule\n983\t\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n984\t\\midrule\n985\tIID & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n986\tIID & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n987\t\\midrule\n988\tDD & 9-class  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n989\tDD & JB-MLM   & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.00
+106	
+107	LINE 5608: && DATA_DIR=\\\\\\\\$PROJ/data/mixed_llm && CKPT_DIR=\\\\\\\\$PROJ/checkpoints/exp16 && python src/train_deberta.py --train_data \\\\\\\\$DATA_DIR/train.jsonl --val_data \\\\\\\\$DATA_DIR/val.jsonl --seed 42 --output_dir \\\\\\\\$CKPT_DIR/9class_seed42 && python src/train_classifier.py --train_data \\\\\\\\$DATA_DIR/train.jsonl --val_data \\\\\\\\$DATA_DIR/val.jsonl --mode treatment --deberta_checkpoint \\\\\\\\$CKPT_DIR/9class_seed42/best --seed 42 --output_dir \\\\\\\\$CKPT_DIR/9class_gru_seed42 && python src/train_deberta.py --train_data \\\\\\\\$DATA_DIR/train.jsonl --val_data \\\\\\\\$DAT
+108	
+109	LINE 5608: \": 0.2007, \\\"p\\\": 0.0001}}, \\\"metric\\\": \\\"f1_macro\\\", \\\"n_resamples\\\": 10000, \\\"note\\\": \\\"All permutation tests p<0.001. jb_mlm most stable (seed_std=0.015). wiki_mlm vs 9class seed42 marginal (p=0.057) but pooled significant.\\\"}}, \\\"exp11_tost_equivalence\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T20:55:11.384Z\\\", \\\"updated_at\\\": \\\"2026-05-18T20:55:29.568Z\\\", \\\"hypothesis\\\": \\\"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within 
+110	
+111	LINE 5704: agraph{Metrics.}\n26\tF1 for binary jailbreak detection at prefix $K$=2 and full conversations (full per-$K$ results in Appendix~\\ref{sec:full_prefix}).\n27\tOOD results report 3-seed mean$\\pm$std (seeds 42, 123, 456) for all variants; TOST equivalence tests for 9-class vs.\\ scrambled use 5 seeds (42, 123, 456, 789, 1000).\n28\tFor key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across 3 seeds; this assumes cross-seed independence and is exploratory) and paired permutation tests (10,000 permutations). Seed-lev
+112	
+113	LINE 6053: Id": "8d62ed12-861c-4fc7-b6aa-0db88ed6f88b", "type": "user", "message": {"role": "user", "content": [{"tool_use_id": "toolu_01LzHz9yTQnmfnCVsbRncWV9", "type": "tool_result", "content": "5710\t        seed42: 0.4118\n5711\t        seed123: 0.6897\n5712\t        seed456: 0.5833\n5713\t  exp65_svd_necessity_ablation:\n5714\t    status: DONE\n5715\t    retry_count: 0\n5716\t   
+114	
+115	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83642610-27f1-47df-aac7-5848afed7ba8",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "c8ac1a0e-a429-4372-a6d8-46274b9f6630",
+  "sourceToolAssistantUUID": "83642610-27f1-47df-aac7-5848afed7ba8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-23T05:44:17.593Z_
+
+Line 3050 and 5121 contain the actual seed-level table from appendix.tex. Let me read those in detail.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8ac1a0e-a429-4372-a6d8-46274b9f6630",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyAgDkY73U5HUVz4nbd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5ad1efa6-e2d2-488a-be61-65923c78adfe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V78PDPTznQiHQV7CiYNTm2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16214,
+      "cache_read_input_tokens": 87314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16214,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T05:44:24.169Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01D433fcj4foMvQWwFJ1VmtS`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Extract the seed-level table from line 3050 and 5121\npython3 -c \"\nimport json\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 3050 or i == 5121:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Find the seed_level table\n            pos = msg.find('seed_level')\n            if pos >= 0:\n                region = msg[pos:pos+5000]\n                print(f'=== LINE {i} ===')\n                print(region[:4000])\n                print()\n\" 2>&1",
+  "description": "Extract seed-level table content from lines 3050 and 5121"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ad1efa6-e2d2-488a-be61-65923c78adfe",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyAgDkY73U5HUVz4nbd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ae40a3bf-9648-4601-b526-d6ea4ce3ecf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V78PDPTznQiHQV7CiYNTm2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16214,
+      "cache_read_input_tokens": 87314,
+      "output_tokens": 364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 16214
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 364,
+          "cache_read_input_tokens": 87314,
+          "cache_creation_input_tokens": 16214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 16214,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T05:44:24.393Z_
+
+<details><summary>↩ Tool result · `toolu_01D433fcj4foMvQWwFJ1VmtS`</summary>
+
+```text
+=== LINE 3050 ===
+seed_level}\n757\t\n758\tTo verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consistent across all three seeds: classification-supervised variants (9-class, binary, scrambled) dominate MLM and vanilla at every seed, and no seed reverses the hierarchy established by the pooled analysis. Table~\\ref{tab:tost_5seed} extends the comparison between 9-class and scrambled to 5 seeds for TOST analysis.\n759\t\n760\t\\begin{table}[h]\n761\t\\centering\n762\t\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 0 at $n$=3).}\n763\t\\label{tab:seed_level}\n764\t\\resizebox{\\columnwidth}{!}{\n765\t\\begin{tabular}{@{}lccccccccc@{}}\n766\t\\toprule\n767\t& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n768\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \\cmidrule(lr){8-10}\n769\t\\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 & s42 & s123 & s456 \\\\\n770\t\\midrule\n771\t9-class   & 1.000 & 1.000 & .990 & .990 & .935 & .990 & 1.000 & 1.000 & 1.000 \\\\\n772\tBinary    & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n773\tScrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 & 1.000 & 1.000 & 1.000 \\\\\n774\tMLM+cls   & 1.000 & .990 & .751 & .971 & .925 & .784 & .961 & .432 & .729 \\\\\n775\tTopic     & .727 & .252 & .644 & .686 & .431 & .759 & .990 & .774 & .909 \\\\\n776\tVanilla   & .284 & .305 & .348 & .258 & .258 & .258 & .871 & .855 & .919 \\\\\n777\t\\bottomrule\n778\t\\end{tabular}}\n779\t\\vspace{-2pt}\n780\t{\\footnotesize Benign recall\\,=\\,1.000 for all DAPT variants across all seeds and OOD conditions (IID benign); OOD F1 variation is driven entirely by attack recall. Classification-supervised variants (9-class, binary, scrambled) achieve perfect or near-perfect F1 on FITD, confirming its non-discriminative nature.}\n781\t\\end{table}\n782\t\n783\t\\begin{table}[h]\n784\t\\centering\n785\t\\caption{5-seed OOD F1 (Full) for 9-class vs.\\ scrambled (seeds 42, 123, 456, 789, 1000). At $n$\\,=\\,10 (5 additional seeds; see text), TOST ($\\delta$=5\\,pp): DD $p < 10^{-8}$ \\checkmark; FITD $p < 10^{-8}$ \\checkmark; AA $p$\\,=\\,0.183 (non-equivalent). Cohen's $d$ at $n$\\,=\\,10: DD\\,$\\approx$\\,0; AA\\,=\\,0.44 (medium).}\n786\t\\label{tab:tost_5seed}\n787\t\\resizebox{\\columnwidth}{!}{\n788\t\\begin{tabular}{@{}llcccccc@{}}\n789\t\\toprule"}]}, "uuid": "af9f3b64-9b19-45fe-827b-39d79c607ef9", "timestamp": "2026-05-22T09:24:47.532Z", "toolUseResult": {"type": "text", "file": {"filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex", "content": "\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:ensemble} shows that majority vote never corrupts correct predictions (Broke\\,=\\,0 for all variants). MLM benefits most from ensembling (+8.6\\,pp DD, +6.0\\,pp AA), because its per-seed errors are complementary---each seed fails on different samples, and the majority corrects these. This further exposes MLM's seed instability: its individual seeds are unreliable, but their errors are uncorrelated. By contrast, 9-class seeds are already highly consistent (std\\,$\\leq$\\,0.026), leaving minimal room for ensemble improvement (+0.3--0.9\\,pp). Vanilla errors are systematic (all seeds fail on the same OOD samples), so ensembling provides no benefit.\n\n\\section{Seed-Level F1 Comparisons}\n\\label{app:seed_level}\n\nTo verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consisten
+
+=== LINE 5121 ===
+seed_level}\n936\t\\resizebox{\\columnwidth}{!}{\n937\t\\begin{tabular}{@{}lccccccccc@{}}\n938\t\\toprule\n939\t& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n940\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \\cmidrule(lr){8-10}\n941\t\\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 & s42 & s123 & s456 \\\\\n942\t\\midrule\n943\t9-class   & 1.000 & 1.000 & .990 & .990 & .935 & .990 & 1.000 & 1.000 & 1.000 \\\\\n944\tBinary    & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n945\tScrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 & 1.000 & 1.000 & 1.000 \\\\\n946\tMLM+cls   & 1.000 & .990 & .751 & .971 & .925 & .784 & .961 & .432 & .729 \\\\\n947\tTopic     & .727 & .252 & .644 & .686 & .431 & .759 & .990 & .774 & .909 \\\\\n948\tVanilla   & .284 & .305 & .348 & .258 & .258 & .258 & .871 & .855 & .919 \\\\\n949\t\\bottomrule\n950\t\\end{tabular}}\n951\t\\vspace{-2pt}\n952\t{\\footnotesize Benign recall\\,=\\,1.000 for all DAPT variants across all seeds and OOD conditions (IID benign); OOD F1 variation is driven entirely by attack recall. Classification-supervised variants (9-class, binary, scrambled) achieve perfect or near-perfect F1 on FITD, confirming its non-discriminative nature.}\n953\t\\end{table}\n954\t\n955\t\\begin{table}[h]\n956\t\\centering\n957\t\\caption{5-seed OOD F1 (Full) for 9-class vs.\\ scrambled (seeds 42, 123, 456, 789, 1000). At $n$\\,=\\,10 (5 additional seeds; see text), TOST ($\\delta$=5\\,pp): DD $p < 10^{-8}$ \\checkmark; FITD $p < 10^{-8}$ \\checkmark; AA $p$\\,=\\,0.183 (non-equivalent). Cohen's $d$ at $n$\\,=\\,10: DD\\,$\\approx$\\,0; AA\\,=\\,0.44 (medium).}\n958\t\\label{tab:tost_5seed}\n959\t\\resizebox{\\columnwidth}{!}{\n960\t\\begin{tabular}{@{}llcccccc@{}}\n961\t\\toprule\n962\t\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n963\t\\midrule\n964\tDD & 9-class   & 1.000 & 1.000 & .990 & 1.000 & 1.000 & .998$\\pm$.004 \\\\\n965\tDD & Scrambled  & .990 & 1.000 & 1.000 & 1.000 & 1.000 & .998$\\pm$.004 \\\\\n966\t\\midrule\n967\tAA & 9-class   & .990 & .935 & .990 & .972 & .972 & .972$\\pm$.021 \\\\\n968\tAA & Scrambled  & .891 & .990 & .971 & .990 & .990 & .966$\\pm$.040 \\\\\n969\t\\bottomrule\n970\t\\end{tabular}}\n971\t\\end{table}\n972\t\n973\t\\paragraph{Cross-hardware replication.}\n974\tTo assess hardware sensitivity, we independently retrained 9-class and JB-MLM from scratch on a different GPU (RTX PRO 6000 Blackwell, 5 seeds each). Table~\\ref{tab:cross_hw} reports OOD F1 on all three attack families. IID and FITD results are perfectly consistent (9-class: 5/5 seeds = 1.000 on both). On ActorAttack, 9-class outperforms MLM directionally ($\\Delta$\\,=\\,+1.7\\,pp) but the difference is not statistically significant (paired $t$-test $p$\\,=\\,0.246), reflecting the higher variance inherent to this structurally complex attack family; this is consistent with the complexity-dependent boundary reported in Section~\\ref{sec:decomposition}.\n975\t\n976\t\\begin{table}[h]\n977\t\\centering\n978\t\\caption{Cross-hardware 5-seed replication (RTX PRO 6000 Blackwell). OOD F1 (Full) for 9-class vs.\\ JB-MLM across three attack families.}\n979\t\\label{tab:cross_hw}\n980\t\\resizebox{\\columnwidth}{!}{\n981\t\\begin{tabular}{@{}llcccccc@{}}\n982\t\\toprule\n983\t\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n984\t\\midrule\n985\tIID & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n986\tIID & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n987\t\\midrule\n988\tDD & 9-class  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n989\tDD & JB-MLM   & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n990\t\\midrule\n991\tFITD & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n992\tFITD & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.00
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae40a3bf-9648-4601-b526-d6ea4ce3ecf1",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "ea7b6da7-0fef-4fec-8674-3b23ae3e5cbb",
+  "sourceToolAssistantUUID": "ae40a3bf-9648-4601-b526-d6ea4ce3ecf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-23T05:44:33.104Z_
+
+I found the complete seed-level table. Let me also verify the MLM-only (jb_mlm) AA values, which are labeled "MLM+cls" in the table (this appears to be the JB-MLM variant, not MLM-only). Let me check if there's a distinction between "MLM+cls" and "MLM-only" (jb_mlm).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea7b6da7-0fef-4fec-8674-3b23ae3e5cbb",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyBSexQhuqaJSqKUzMF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5e6404b2-7117-42f7-8f4c-27780fc03b91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQeoCZMEejCufdNYxkzmTJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3959,
+      "cache_read_input_tokens": 103528,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3959,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-23T05:44:42.093Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0199LhW7PzE5qRnr7hcojVBj`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Check what MLM+cls means vs jb_mlm vs mlm_only\npython3 -c \"\nimport json\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        if 'mlm+cls' in msg.lower() or 'mlm_only' in msg.lower() or 'jb_mlm' in msg.lower():\n            if 'content' in obj.get('message', {}):\n                content = str(obj['message']['content'])\n                if ('mlm+cls' in content.lower() or 'mlm_only' in content.lower() or 'jb_mlm' in content.lower()):\n                    # Find explanatory context\n                    lines = content.split('\\\\n')\n                    for j, l in enumerate(lines):\n                        if 'mlm' in l.lower() and ('cls' in l.lower() or 'only' in l.lower() or 'jb' in l.lower()):\n                            if 'label' in l.lower() or 'variant' in l.lower() or 'abbreviat' in l.lower() or 'refer' in l.lower() or 'plan_017' in l.lower() or 'means' in l.lower():\n                                print(f'LINE {i}: {l[:300]}')\n                                break\n\" 2>&1 | head -30",
+  "description": "Check what MLM+cls vs jb_mlm vs mlm_only means"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e6404b2-7117-42f7-8f4c-27780fc03b91",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyBSexQhuqaJSqKUzMF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7d06fdf7-d021-43ff-9293-9a50f1938c63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQeoCZMEejCufdNYxkzmTJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3959,
+      "cache_read_input_tokens": 103528,
+      "output_tokens": 621,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3959
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 621,
+          "cache_read_input_tokens": 103528,
+          "cache_creation_input_tokens": 3959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3959,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T05:44:43.620Z_
+
+<details><summary>↩ Tool result · `toolu_0199LhW7PzE5qRnr7hcojVBj`</summary>
+
+```text
+LINE 369: [{'tool_use_id': 'toolu_018pFZMUPzT6usZpzFaZ1sYB', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\
+LINE 418: [{'tool_use_id': 'toolu_01XrCUB8A2ERSEBBUJYd8H1N', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp41_tost_10seed\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T03:27:38.653Z\\", \\"updated_at\\": \\"2026-05-22T03:27:42.
+LINE 473: [{'tool_use_id': 'toolu_01DfDMVrTxqUqV4k2ADnCnvZ', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper_framing.md\\", \\"content\\": \\"# Paper Framing — persua
+LINE 475: [{'tool_use_id': 'toolu_01HaraZUAuDgE5YEUcLkT7zc', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\
+LINE 503: [{'type': 'tool_use', 'id': 'toolu_014TdriZXf2YWWfwgxd3fzom', 'name': 'mcp__agent-ml-research__save_project_file', 'input': {'project': 'persuasion_turn_jailbreak_detect', 'file': 'memory.md', 'content': '# Memory\n\n## 竞品实验参考\n（待填充：首次正式对标竞品时补充）\n\n## 关键决策记录\n\n### D001: 停止数据迭代 (2026-05-17)\n- **决策*
+LINE 658: [{'tool_use_id': 'toolu_01Ea3Qq9KYE1XpDBpGqyDhVo', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\
+LINE 661: [{'type': 'tool_use', 'id': 'toolu_01Gkq3UC8Z6wLbW8oPWLzuKU', 'name': 'mcp__agent-ml-research__save_project_file', 'input': {'project': 'persuasion_turn_jailbreak_detect', 'file': 'memory.md', 'content': '# Memory\n\n## 竞品实验参考\n（待填充：首次正式对标竞品时补充）\n\n## 关键决策记录\n\n### D001: 停止数据迭代 (2026-05-17)\n- **决策*
+LINE 922: [{'tool_use_id': 'toolu_01VMj3yQndhW9J6mLiWjeHjA', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"worker_id\\": \\"worker_code_exp43_mhj_human_eval_20260522T041327\\", \\"status\\": \\"done\\", \\"task_type\\": \\"code:exp43_mhj_human_eval\\", \\"project\\": \\"p
+LINE 933: [{'type': 'tool_use', 'id': 'toolu_01RejaLBGJfyqjDaSfBoB5Q8', 'name': 'mcp__agent-ml-research__main_agent_post_to_director', 'input': {'text': '[资源] GPU 1/1 (westd-33183 cuda:0 空闲) | Worker 0 (全部完成)\n\n## exp43 (MHJ human eval) 结果\n\n**MHJ 数据集 gated**：ScaleAI/mhj 需要 HuggingFace 申请权限，服务器无法直接下载。\n\n**
+LINE 1410: [{'tool_use_id': 'toolu_01GoR8Cje2NhS5nvdDaQYKyp', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp46_inference_efficiency\\": {\\"status\\": \\"PREPARING\\", \\"created_at\\": \\"2026-05-22T06:14:50.840Z\\", \\"updated_at\\": \\"2026-05-22T
+LINE 1906: [{'tool_use_id': 'toolu_01K66LzgEYHiVmGtg5N24uTD', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp48_ensemble_mlm_9class\\", \\"experiment\\": {\\"status\\": \\"RUNNING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T06:14:53.259Z\\", \
+LINE 1911: [{'tool_use_id': 'toolu_01LNH3fG1EXrBed5H6wCG632', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp48_ensemble_mlm_9class\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T06:14:53.259Z\\", \\"u
+LINE 1935: [{'tool_use_id': 'toolu_01XCHV2D1U9udRFNRcmkjDkm', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\
+LINE 1940: [{'type': 'tool_use', 'id': 'toolu_01BeYJSjeg1BzzDvRGQSvXHG', 'name': 'mcp__agent-ml-research__save_project_file', 'input': {'project': 'persuasion_turn_jailbreak_detect', 'file': 'memory.md', 'content': '# Memory\n\n## 竞品实验参考\n（待填充：首次正式对标竞品时补充）\n\n## 关键决策记录\n\n### D001: 停止数据迭代 (2026-05-17)\n- **决策*
+LINE 2168: [{'tool_use_id': 'toolu_019L2oPE3ZLM5R1F9PAF96Wv', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp49_representation_analysis\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T07:10:44.086Z\\", 
+LINE 2257: [{'tool_use_id': 'toolu_01MXwvazJhUDpiySEwG8SRwX', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"path\\": \\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\\", \\"content\\": \\"# Memory\\\\n\\\\n## 竞品实验参考\\\\
+LINE 2260: [{'type': 'tool_use', 'id': 'toolu_01KiiNAvyp3p2mwfNYZaJBEn', 'name': 'mcp__agent-ml-research__save_project_file', 'input': {'project': 'persuasion_turn_jailbreak_detect', 'file': 'memory.md', 'content': '# Memory\n\n## 竞品实验参考\n（待填充：首次正式对标竞品时补充）\n\n## 关键决策记录\n\n### D001: 停止数据迭代 (2026-05-17)\n- **决策*
+LINE 2905: [{'type': 'tool_use', 'id': 'toolu_01PSvS5kGDXwywvPxLqyDr8v', 'name': 'mcp__agent-ml-research__spawn_worker', 'input': {'task_type': 'code:exp50_layerwise', 'project': 'persuasion_turn_jailbreak_detect', 'task_prompt': '## 任务：Layer-wise 表征分析（exp50_layerwise_representation）\n\n### 目标\n分析 DeBERTa-v3-b
+LINE 2992: [{'type': 'tool_use', 'id': 'toolu_0195NSRqpK9FQyCWEZtMjjHS', 'name': 'mcp__agent-ml-research__update_registry', 'input': {'project': 'persuasion_turn_jailbreak_detect', 'exp_id': 'exp50_layerwise_representation', 'field': 'metrics', 'value': {'fisher_ratio_by_layer': {'layers_1_5': {'vanilla': '0.3
+LINE 2993: [{'tool_use_id': 'toolu_0195NSRqpK9FQyCWEZtMjjHS', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp50_layerwise_representation\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T08:58:57.759Z\\",
+LINE 3050: [{'tool_use_id': 'toolu_011KZzDrbyjokmmLngjsiGyT', 'type': 'tool_result', 'content': "750\t\\end{tabular}\n751\t\\end{table}\n752\t\n753\tTable~\\ref{tab:ensemble} shows that majority vote never corrupts correct predictions (Broke\\,=\\,0 for all variants). MLM benefits most from ensembling (+8.6\\,
+LINE 3531: [{'tool_use_id': 'toolu_01K4mpmkY5QAs4hdowrGjoWB', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp52_oasst2_n25_multiseed\\": {\\"status\\": \\"DONE\\", \\"created_at\\": \\"2026-05-22T10:08:46.884Z\\", \\"updated_at\\": \\"2026-05-22T10:16
+LINE 3829: [{'tool_use_id': 'toolu_019jnJwyzJgztFWrPU4VqYBL', 'type': 'tool_result', 'content': "855\t9-class & .997$\\to$\\textbf{1.000} & .972$\\to$\\textbf{.981} & 5 & 0 \\\\\n856\tMLM & .914$\\to$\\textbf{1.000} & .897$\\to$\\textbf{.953} & 26 & 0 \\\\\n857\tVanilla & .258$\\to$.258 & .258$\\to$.258 & 0 & 
+LINE 4082: [{'tool_use_id': 'toolu_01NMi1NJctA1ySnKsxVfbyae', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp53_llm_judge_prompt_opt\\": {\\"status\\": \\"DONE\\", \\"created_at\\": \\"2026-05-22T10:08:48.075Z\\", \\"updated_at\\": \\"2026-05-22T12:53
+LINE 5121: [{'tool_use_id': 'toolu_013sa7oPg5MkvYzEiqFYTrBp', 'type': 'tool_result', 'content': "934\t\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 
+LINE 5608: [{'tool_use_id': 'toolu_015nPUn6kZXGmVeFoZhUycYw', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": {\\"exp46_inference_efficiency\\": {\\"status\\": \\"PREPARING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-22T06:14:50.840Z\\", \\"updated
+LINE 5636: [{'tool_use_id': 'toolu_01YM8PKW2BoBgciZonkCrshV', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"worker_id\\": \\"worker_code_exp64_confidence_script_20260522T213004\\", \\"status\\": \\"done\\", \\"task_type\\": \\"code:exp64_confidence_script\\", \\"project\\"
+LINE 5656: [{'tool_use_id': 'toolu_016GnER7mowN4bNYGJUBfyun', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp11_tost_equivalence\\", \\"experiment\\": {\\"status\\": \\"QUEUED\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-18T20:55:11.384Z\\", \\"up
+LINE 5660: [{'tool_use_id': 'toolu_01H8rALA7e5UentSZ61znbAk', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp11_tost_equivalence\\", \\"experiment\\": {\\"status\\": \\"RUNNING\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-18T20:55:11.384Z\\", \\"u
+LINE 5662: [{'tool_use_id': 'toolu_014GnoYrEnE7BtrJn1XRWwGw', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"exp_id\\": \\"exp11_tost_equivalence\\", \\"experiment\\": {\\"status\\": \\"DONE\\", \\"retry_count\\": 0, \\"created_at\\": \\"2026-05-18T20:55:11.384Z\\", \\"upda
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d06fdf7-d021-43ff-9293-9a50f1938c63",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "a9346091-cfbf-433b-bea8-59ac5eac8ec5",
+  "sourceToolAssistantUUID": "7d06fdf7-d021-43ff-9293-9a50f1938c63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-23T05:44:48.418Z_
+
+I now have the complete data from the seed-level table in appendix.tex. The table at line 3050 (and confirmed at line 5121) contains all the per-seed F1 values. Let me also verify the MLM-only (jb_mlm) values by checking what "MLM+cls" in the table refers to.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9346091-cfbf-433b-bea8-59ac5eac8ec5",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyCrrGk6vL5sBcHJJSo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "422e174f-339d-43fd-bae7-12262dc8ff59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vJFLWu2endgB1Snq1TYF5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5153,
+      "cache_read_input_tokens": 107487,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5153,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T05:44:56.871Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Q7r1grboZMZsARBtq63snj`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Verify: is \"MLM+cls\" in the table the same as jb_mlm / MLM-only? \n# Also check plan_017 for the MLM-only DD values to confirm\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 1883:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Find plan_017_mlm_control with full metric detail including AA\n            pos = msg.find('plan_017_mlm_control')\n            if pos >= 0:\n                region = msg[pos:pos+4000]\n                print(f'=== LINE {i}, plan_017_mlm_control ===')\n                print(region[:3500])\n\" 2>&1",
+  "description": "Get full plan_017 MLM control metrics including AA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "422e174f-339d-43fd-bae7-12262dc8ff59",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyCrrGk6vL5sBcHJJSo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "427e68e0-1388-4b4d-aa52-7c58ac463079",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vJFLWu2endgB1Snq1TYF5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5153,
+      "cache_read_input_tokens": 107487,
+      "output_tokens": 451,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5153
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 451,
+          "cache_read_input_tokens": 107487,
+          "cache_creation_input_tokens": 5153,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5153,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T05:44:57.072Z_
+
+<details><summary>↩ Tool result · `toolu_01Q7r1grboZMZsARBtq63snj`</summary>
+
+```text
+=== LINE 1883, plan_017_mlm_control ===
+plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_018_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:02:13.081Z\", \"updated_at\": \"2026-05-18T07:02:13.081Z\"}, \"plan_017_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:43:04.262Z\", \"updated_at\": \"2026-05-18T07:02:09.688Z\", \"hypothesis\": \"MLM continued pretraining (no classification labels) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that classification supervision (not just text exposure) is necessary for cross-attack generalization\", \"parent\": \"plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_018_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:01:23.658Z\", \"updated_at\": \"2026-05-18T07:01:23.658Z\"}, \"plan_018_wiki_mlm_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:59:27.345Z\", \"updated_at\": \"2026-05-18T06:59:27.345Z\"}, \"plan_018_wiki_mlm_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:48:17.310Z\", \"updated_at\": \"2026-05-18T06:57:27.849Z\"}, \"plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothes
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "427e68e0-1388-4b4d-aa52-7c58ac463079",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "ab324b33-35c9-4a56-b434-13161bfca9cc",
+  "sourceToolAssistantUUID": "427e68e0-1388-4b4d-aa52-7c58ac463079",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-23T05:45:06.142Z_
+
+I notice something interesting. The plan_017_mlm_control has DD OOD per-seed values of {42: 1.000, 123: 0.9902, 456: 0.7512}, but the seed-level table shows "MLM+cls" DD as {s42: 1.000, s123: 0.990, s456: 0.751}. These match. But the user says "MLM-only DD-Full: s42=1.000, s123=0.990, s456=0.751" -- this matches. So "MLM+cls" in the table IS the jb_mlm / MLM-only variant. Note the table has "MLM+cls" meaning "MLM DAPT + classifier on top", as opposed to just MLM DAPT alone.
+
+Wait -- the plan_017_mlm_control registry only has DD OOD metrics, not AA OOD metrics. But the appendix table shows MLM+cls AA values as {s42: 0.971, s123: 0.925, s456: 0.784}. These AA values must come from a different experiment or an extended eval. Let me confirm that those values are correct by looking for the cross-attack eval of MLM.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab324b33-35c9-4a56-b434-13161bfca9cc",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyDrKoKQbcVKvvSZQ1t",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bfd79538-fb8a-44aa-a78c-06f10513e501",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0191ypizDGfCgedZ9gNrnpWT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2250,
+      "cache_read_input_tokens": 112640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2250,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-23T05:45:15.224Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018sb99saaE8cVcY5rPSaxDW`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for MLM AA OOD per-seed values (0.971, 0.925, 0.784)\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        if '0.925' in msg and ('mlm' in msg.lower() or 'jb_mlm' in msg.lower() or 'plan_017' in msg.lower()):\n            if 'aa' in msg.lower() or 'actor' in msg.lower():\n                if 'content' in obj.get('message', {}):\n                    content = str(obj['message']['content'])\n                    if '0.925' in content and ('aa' in content.lower() or 'actor' in content.lower()):\n                        lines = content.split('\\\\n')\n                        for j, l in enumerate(lines):\n                            if '0.925' in l and ('aa' in l.lower() or 'actor' in l.lower() or 'mlm' in l.lower()):\n                                for k in range(max(0,j-2), min(len(lines), j+5)):\n                                    print(f'LINE {i}, sub {k}: {lines[k][:400]}')\n                                print()\n                                break\n\" 2>&1 | head -60",
+  "description": "Search for MLM AA OOD per-seed values confirmation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfd79538-fb8a-44aa-a78c-06f10513e501",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyDrKoKQbcVKvvSZQ1t",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4ed91a99-ec6c-4419-9b95-c7d5be4ca648",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0191ypizDGfCgedZ9gNrnpWT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2250,
+      "cache_read_input_tokens": 112640,
+      "output_tokens": 808,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2250
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 808,
+          "cache_read_input_tokens": 112640,
+          "cache_creation_input_tokens": 2250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2250,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T05:45:16.151Z_
+
+<details><summary>↩ Tool result · `toolu_018sb99saaE8cVcY5rPSaxDW`</summary>
+
+```text
+LINE 487, sub 0: [{'tool_use_id': 'toolu_01HXuyu2YjMRELmE62htv2fs', 'type': 'tool_result', 'content': '{"result":"{\\"success\\": true, \\"data\\": {\\"experiments\\": [{\\"id\\": \\"plan_001\\", \\"name\\": \\"data_quality_fix\\", \\"claim\\": [1, 2, 3], \\"status\\": \\"planned\\", \\"description\\": \\"ABANDONED: TF-IDF lexical separability is inherent to persuasive jailbreak vs general conversation (confirmed
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ed91a99-ec6c-4419-9b95-c7d5be4ca648",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "101290a9-d8ba-43a1-b2be-0ca5b2a18d77",
+  "sourceToolAssistantUUID": "4ed91a99-ec6c-4419-9b95-c7d5be4ca648",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-23T05:45:19.288Z_
+
+Let me now also verify the 9-class DD OOD per-seed values in the table. The table shows 9-class DD: {s42: 1.000, s123: 1.000, s456: 0.990}. Let me verify against registry data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "101290a9-d8ba-43a1-b2be-0ca5b2a18d77",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyFFsvEvQKBwTNfpHRE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3552750c-6f0a-440f-b8c4-70dc150d7ed5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GezYrxATgKE8sw9gksz7XB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 114890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 981,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T05:45:24.734Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MUhV7fWxbYvu6SU9YoHRM1`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Look for 9-class DD OOD per-seed from plan_002 registry\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 1883:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Find plan_002_clean_training or plan_002 with DD OOD per-seed data\n            pos = msg.find('plan_002_clean_training')\n            if pos >= 0:\n                region = msg[pos:pos+3000]\n                print(f'=== plan_002_clean_training ===')\n                print(region[:2500])\n                print()\n            # Also find plan_002_seed123 and plan_002_seed456\n            for seed_exp in ['plan_002_seed123', 'plan_002_seed456']:\n                pos = msg.find(seed_exp)\n                if pos >= 0:\n                    region = msg[pos:pos+800]\n                    print(f'=== {seed_exp} ===')\n                    print(region[:800])\n                    print()\n\" 2>&1",
+  "description": "Get plan_002 (9-class) per-seed DD OOD values from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3552750c-6f0a-440f-b8c4-70dc150d7ed5",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyFFsvEvQKBwTNfpHRE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6254d355-27a5-4a77-9a28-406a6075f653",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GezYrxATgKE8sw9gksz7XB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 114890,
+      "output_tokens": 530,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 981
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 530,
+          "cache_read_input_tokens": 114890,
+          "cache_creation_input_tokens": 981,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 981,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T05:45:24.996Z_
+
+<details><summary>↩ Tool result · `toolu_01MUhV7fWxbYvu6SU9YoHRM1`</summary>
+
+```text
+=== plan_002_clean_training ===
+plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.9296, \"baseline_k2_f1\": 0.9589, \"baseline_k3_f1\": 0.9867, \"baseline_k5_f1\": 0.9867, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"deberta_best_epoch\": 2, \"deberta_persuasion_acc\": 0.8593, \"deberta_intent_acc\": 1, \"dd_ood_k1_f1\": 0.9715, \"dd_ood_k2_f1\": 0.9622, \"dd_ood_k3_f1\": 0.935, \"dd_ood_k5_f1\": 0.9904, \"dd_ood_full_f1\": 0.9904}}, \"plan_002_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:13:42.372Z\", \"updated_at\": \"2026-05-18T07:29:32.962Z\", \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_003_scrambled_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:03:06.735Z\", \"updated_at\": \"2026-05-18T07:03:38.880Z\"}, \"plan_018_wiki_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:56:00.484Z\", \"updated_at\": \"2026-05-18T07:03:28.615Z\", \"hypothesis\": \"If domain-specific text exposure drives OOD generalization (plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"
+
+=== plan_002_seed123 ===
+plan_002_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:13:42.372Z\", \"updated_at\": \"2026-05-18T07:29:32.962Z\", \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_003_scrambled_retrain\"
+
+=== plan_002_seed456 ===
+plan_002_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:12:15.664Z\", \"updated_at\": \"2026-05-18T07:29:36.322Z\", \"hypothesis\": \"Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.9296, \"baseline_k2_f1\": 0.9589, \"baseline_k3_f1\": 0.9867, \"baseline_k5_f1\": 0.9867, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"deberta_best_epoch\": 2, \"deberta_persuasion_acc\": 0.8593, \"deberta_intent_acc\": 1, \"dd_ood_k1_f1\": 0.9715, \"dd_ood_k2_f1\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6254d355-27a5-4a77-9a28-406a6075f653",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "f149a86d-212d-498b-9498-dca91b5fcdfa",
+  "sourceToolAssistantUUID": "6254d355-27a5-4a77-9a28-406a6075f653",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-23T05:45:29.273Z_
+
+Wait -- plan_002_clean_training (seed 42) has dd_ood_full_f1 = 0.9904, but the table shows 9-class s42 DD = 1.000. Let me check if there was a later evaluation that updated these values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f149a86d-212d-498b-9498-dca91b5fcdfa",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyFukEXRuDBN4r5szzY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bda428e5-3768-41c4-b497-17f2b81a7ddd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hzbJdKoKs1RS74eq2kUkr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2536,
+      "cache_read_input_tokens": 115871,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2536,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-23T05:45:39.900Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MNKggcQRr6t9SNASLfMnQC`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# The appendix table at line 3050/5121 is the authoritative source. Let me also check for the cross_attack eval \n# where all variants were evaluated on AA, which would have per-seed AA values\n# Look for exp5 or similar cross-attack experiment\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 1883:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Search for exp5 or plan_006_cross_attack  \n            for exp in ['exp5_aa', 'exp5_cross', 'plan_006_cross_attack', 'cross_attack_multiseed', 'aa_ood_multiseed']:\n                pos = msg.find(exp)\n                if pos >= 0:\n                    region = msg[pos:pos+2000]\n                    if 'seed' in region.lower() and ('0.99' in region or '0.97' in region or '0.93' in region or '0.89' in region):\n                        print(f'=== {exp} ===')\n                        print(region[:1500])\n                        print()\n                        break\n\" 2>&1",
+  "description": "Find cross-attack multi-seed eval with per-seed AA values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bda428e5-3768-41c4-b497-17f2b81a7ddd",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyFukEXRuDBN4r5szzY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "674683b4-6c1f-4bfd-af64-29577ba5a82d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011hzbJdKoKs1RS74eq2kUkr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2536,
+      "cache_read_input_tokens": 115871,
+      "output_tokens": 544,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2536
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 544,
+          "cache_read_input_tokens": 115871,
+          "cache_creation_input_tokens": 2536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2536,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T05:45:40.093Z_
+
+<details><summary>↩ Tool result · `toolu_01MNKggcQRr6t9SNASLfMnQC`</summary>
+
+```text
+=== plan_006_cross_attack ===
+plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches pe
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "674683b4-6c1f-4bfd-af64-29577ba5a82d",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "d6e0f09f-dae9-4627-bff8-ab23f696cc21",
+  "sourceToolAssistantUUID": "674683b4-6c1f-4bfd-af64-29577ba5a82d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-23T05:45:43.597Z_
+
+I see that plan_006_cross_attack_clean is the MLM control's cross-attack eval (not the scrambled). It only has DD OOD per-seed values, not AA. Let me find the actual ActorAttack evaluation that produced the per-seed values in the appendix table.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6e0f09f-dae9-4627-bff8-ab23f696cc21",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyH2Dwnd2BSFyZfiLNS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "788429d6-2fb2-4444-8c62-2a36555342f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBkGJmbBbABxnK9w2vJz9C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1372,
+      "cache_read_input_tokens": 118407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1372,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T05:45:52.245Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HVR9zgjPb7AVCgJcbpApFh`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# The appendix table at line 3050 is the definitive source. Let me also check the exp5 results\n# which is likely the cross-attack eval for all variants on AA\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 1883:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Find exp5_ entries\n            for pattern in ['exp5_']:\n                positions = [m.start() for m in re.finditer(pattern, msg)]\n                for pos in positions[:5]:\n                    region = msg[pos:pos+1500]\n                    if 'aa' in region.lower() and 'seed' in region.lower():\n                        print(f'=== exp5 at pos {pos} ===')\n                        print(region[:1200])\n                        print()\n\" 2>&1",
+  "description": "Find exp5 ActorAttack cross-attack results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "788429d6-2fb2-4444-8c62-2a36555342f5",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyH2Dwnd2BSFyZfiLNS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "99694fca-c0d0-44dd-8699-30ca82ded90a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GBkGJmbBbABxnK9w2vJz9C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1372,
+      "cache_read_input_tokens": 118407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1372,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T05:45:52.453Z_
+
+<details><summary>↩ Tool result · `toolu_01HVR9zgjPb7AVCgJcbpApFh`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "99694fca-c0d0-44dd-8699-30ca82ded90a",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "e2e7d3ae-90be-4767-85ef-cd1b16a126ec",
+  "sourceToolAssistantUUID": "99694fca-c0d0-44dd-8699-30ca82ded90a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T05:46:00.556Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Kp6RZ3Trs9qyELZDQ5cyCS`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Search for the experiment that generated ActorAttack per-seed data for all variants\n# The key values from the table are: 9-class AA: .990, .935, .990\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        obj = json.loads(line)\n        msg = json.dumps(obj)\n        if '0.935' in msg and ('9.class' in msg.lower() or '9class' in msg.lower()):\n            if 'aa' in msg.lower() or 'actor' in msg.lower():\n                # Find exact context\n                matches = list(re.finditer(r'0\\.935', msg))\n                for m in matches:\n                    context = msg[max(0,m.start()-300):min(len(msg),m.end()+300)]\n                    if ('9.class' in context.lower() or '9class' in context.lower()) and ('aa' in context.lower() or 'actor' in context.lower()):\n                        print(f'LINE {i}, pos {m.start()}: {context[:500]}')\n                        print()\n                        break\n\" 2>&1 | head -80",
+  "description": "Search for 9-class AA OOD seed 123 value 0.935"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2e7d3ae-90be-4767-85ef-cd1b16a126ec",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyHw4uvhTbzyYavh6So",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ff4ddcb2-3755-4984-990b-7337710f2456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMZrcxYEmfUxzZ1H9zbqGZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 483,
+      "cache_read_input_tokens": 119779,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 483
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 119779,
+          "cache_creation_input_tokens": 483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 483,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T05:46:01.376Z_
+
+<details><summary>↩ Tool result · `toolu_01Kp6RZ3Trs9qyELZDQ5cyCS`</summary>
+
+```text
+LINE 1883, pos 54386: aks.\", \"parent\": \"exp14_cross_llm_validation\", \"conclusion\": \"success\", \"metrics\": {\"dd_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.778, \"9class\": 1}, \"aa_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.903, \"9class\": 0.801}, \"dd_k1\": {\"vanilla\": 0.319, \"jb_mlm\": 0.965, \"9class\": 0.935}, \"dd_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.996, \"9class\": 0.977}, \"aa_k1\": {\"vanilla\": 0.443, \"jb_mlm\": 0.927, \"9class\": 0.832}, \"aa_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.988,
+
+LINE 2418, pos 55860: aks.\", \"parent\": \"exp14_cross_llm_validation\", \"conclusion\": \"success\", \"metrics\": {\"dd_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.778, \"9class\": 1}, \"aa_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.903, \"9class\": 0.801}, \"dd_k1\": {\"vanilla\": 0.319, \"jb_mlm\": 0.965, \"9class\": 0.935}, \"dd_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.996, \"9class\": 0.977}, \"aa_k1\": {\"vanilla\": 0.443, \"jb_mlm\": 0.927, \"9class\": 0.832}, \"aa_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.988,
+
+LINE 2727, pos 55860: aks.\", \"parent\": \"exp14_cross_llm_validation\", \"conclusion\": \"success\", \"metrics\": {\"dd_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.778, \"9class\": 1}, \"aa_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.903, \"9class\": 0.801}, \"dd_k1\": {\"vanilla\": 0.319, \"jb_mlm\": 0.965, \"9class\": 0.935}, \"dd_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.996, \"9class\": 0.977}, \"aa_k1\": {\"vanilla\": 0.443, \"jb_mlm\": 0.927, \"9class\": 0.832}, \"aa_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.988,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff4ddcb2-3755-4984-990b-7337710f2456",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "a811f3fb-3345-4e1a-8a47-2fee7d6f13f6",
+  "sourceToolAssistantUUID": "ff4ddcb2-3755-4984-990b-7337710f2456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-23T05:46:06.639Z_
+
+That 0.935 is from a different experiment (cross-LLM, not the main OOD eval). The appendix table's 9-class AA values (.990, .935, .990) come from the main single-source OOD evaluation. Let me confirm the table was populated by looking at the actual current appendix.tex file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a811f3fb-3345-4e1a-8a47-2fee7d6f13f6",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyJcHb5Pn2MpGUvEXwH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "41c57ef1-d42e-4925-a6c5-243c92f22b98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtdrqKNc3fDReECo2QrrGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1296,
+      "cache_read_input_tokens": 120262,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1296,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-23T05:46:07.339Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01YF6gNLgX8HUcissy66irRZ`</summary>
+
+```json
+{
+  "pattern": "**/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41c57ef1-d42e-4925-a6c5-243c92f22b98",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyJcHb5Pn2MpGUvEXwH",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "491ff7f0-9321-4eb4-86ab-4d964b3d277c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BtdrqKNc3fDReECo2QrrGD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1296,
+      "cache_read_input_tokens": 120262,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1296,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T05:46:07.372Z_
+
+<details><summary>↩ Tool result · `toolu_01YF6gNLgX8HUcissy66irRZ`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "491ff7f0-9321-4eb4-86ab-4d964b3d277c",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "12c3fb82-9603-4c7b-9207-6b00e99e8210",
+  "sourceToolAssistantUUID": "491ff7f0-9321-4eb4-86ab-4d964b3d277c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-23T05:46:09.313Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01DpW7ajQDxPXSx1gStc8tQx`</summary>
+
+```json
+{
+  "pattern": "**/persuasion_turn_jailbreak_detect/docs/**/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12c3fb82-9603-4c7b-9207-6b00e99e8210",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyK3Fm9uv9yVxidNMZX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "25015547-ec8b-4c79-b5f5-082431dface2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018D2zUpyhfiECM6D5cPD2eP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 166,
+      "cache_read_input_tokens": 121558,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 166
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 121558,
+          "cache_creation_input_tokens": 166,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 166,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-23T05:46:09.335Z_
+
+<details><summary>↩ Tool result · `toolu_01DpW7ajQDxPXSx1gStc8tQx`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25015547-ec8b-4c79-b5f5-082431dface2",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "02af5725-3436-4380-9ce1-e80f9d193d7a",
+  "sourceToolAssistantUUID": "25015547-ec8b-4c79-b5f5-082431dface2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-23T05:46:12.770Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019bEwXjZYmowUDZ3WR6DY7S`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/ 2>/dev/null || echo \"Directory not found\"",
+  "description": "Check paper directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02af5725-3436-4380-9ce1-e80f9d193d7a",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyKBFUDUhgTWvyJRYMn",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5c60253e-9c43-41e7-b5f6-a5e121fef94a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yRbEK3PGYyE4Aa4MLe6TH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 84,
+      "cache_read_input_tokens": 121724,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 84
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 121724,
+          "cache_creation_input_tokens": 84,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 84,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-23T05:46:12.835Z_
+
+<details><summary>↩ Tool result · `toolu_019bEwXjZYmowUDZ3WR6DY7S`</summary>
+
+```text
+abstract.tex
+acl.sty
+acl_natbib.bst
+appendix.tex
+checklist.tex
+conclusion.tex
+experiments.tex
+introduction.tex
+main.aux
+main.bbl
+main.blg
+main.fdb_latexmk
+main.fls
+main.log
+main.out
+main.pdf
+main.tex
+method.tex
+references.bib
+related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c60253e-9c43-41e7-b5f6-a5e121fef94a",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "befef18f-e51f-4655-9580-1aebe2b8861c",
+  "sourceToolAssistantUUID": "5c60253e-9c43-41e7-b5f6-a5e121fef94a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-23T05:46:16.951Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017JGca71447NW76JwPA99rF`</summary>
+
+```json
+{
+  "command": "grep -n \"seed_level\\|tab:seed_level\\|s42.*s123.*s456\\|9-class.*1.000.*1.000.*\\.990\\|MLM+cls\" /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex | head -30",
+  "description": "Find seed-level table in current appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "befef18f-e51f-4655-9580-1aebe2b8861c",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyKSDPN22kQB3FReiMQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d590630-5a78-4e97-97de-200cdcc4aff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TqaUUBJodhtjTVdrNa5JXX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 235,
+      "cache_read_input_tokens": 121808,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 235,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-23T05:46:17.017Z_
+
+<details><summary>↩ Tool result · `toolu_017JGca71447NW76JwPA99rF`</summary>
+
+```text
+909:\label{app:seed_level}
+911:To verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consistent across all three seeds: classification-supervised variants (9-class, binary, scrambled) dominate MLM and vanilla at every seed, and no seed reverses the hierarchy established by the pooled analysis.
+914:% \input{seed_level_table}
+919:\label{tab:seed_level}
+924:\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d590630-5a78-4e97-97de-200cdcc4aff2",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "964ebc26-1810-4841-82a9-d0bb690214c0",
+  "sourceToolAssistantUUID": "9d590630-5a78-4e97-97de-200cdcc4aff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-23T05:46:19.439Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WwHqqqgtFssXo3VueyvwiW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+  "offset": 910,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "964ebc26-1810-4841-82a9-d0bb690214c0",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyKkcRBVorx3iVPo4dq",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a76a9aed-9ed7-415b-bbef-95d6c5651225",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QuZuhQM96ANadbFhBnRJD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 361,
+      "cache_read_input_tokens": 122043,
+      "output_tokens": 128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 361
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 128,
+          "cache_read_input_tokens": 122043,
+          "cache_creation_input_tokens": 361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 361,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-23T05:46:19.448Z_
+
+<details><summary>↩ Tool result · `toolu_01WwHqqqgtFssXo3VueyvwiW`</summary>
+
+```text
+910	
+911	To verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consistent across all three seeds: classification-supervised variants (9-class, binary, scrambled) dominate MLM and vanilla at every seed, and no seed reverses the hierarchy established by the pooled analysis.
+912	
+913	% Placeholder: seed-level F1 table to be inserted when data available
+914	% \input{seed_level_table}
+915	\begin{table}[h]
+916	\centering
+917	\small
+918	\caption{Per-seed F1 on OOD Full for key variants (seeds 42, 123, 456). The relative ordering is consistent across seeds.}
+919	\label{tab:seed_level}
+920	\begin{tabular}{@{}lcccccc@{}}
+921	\toprule
+922	& \multicolumn{3}{c}{DD-Full} & \multicolumn{3}{c}{AA-Full} \\
+923	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+924	\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 \\
+925	\midrule
+926	9-class & -- & -- & -- & -- & -- & -- \\
+927	Binary & -- & -- & -- & -- & -- & -- \\
+928	Scrambled & -- & -- & -- & -- & -- & -- \\
+929	MLM-only & -- & -- & -- & -- & -- & -- \\
+930	Vanilla & -- & -- & -- & -- & -- & -- \\
+931	\bottomrule
+932	\end{tabular}
+933	\vspace{-2pt}
+934	{\footnotesize Placeholder: exact values to be filled from seed-level extraction.}
+935	\end{table}
+936	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a76a9aed-9ed7-415b-bbef-95d6c5651225",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "c234764d-871c-49cc-b411-3528419c23d2",
+  "sourceToolAssistantUUID": "a76a9aed-9ed7-415b-bbef-95d6c5651225",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-23T05:46:25.717Z_
+
+So the current appendix.tex has the seed-level table with "--" placeholders. But earlier in the transcript (line 3050 and 5121), there was a version of this table that had been filled in with actual values. That version had the data in a different format (9 columns: DD+AA+FITD). The current file has 6 columns (DD+AA only) and still has placeholders.
+
+The filled version from the transcript (line 3050, which is the authoritative content from within this session's history) has:
+
+Here are all the per-seed F1 values found in the transcript. Let me compile the complete answer.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c234764d-871c-49cc-b411-3528419c23d2",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyKvoqcLMENLrokQKbN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0e304679-47a9-4377-ace1-14f5b86a6f89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011nPehSC1RM4TZwm5pBeeVL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 122404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 647,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-23T05:46:33.463Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QPWumQgBkuPvNWeqLxpbpG`</summary>
+
+```json
+{
+  "command": "FPATH=\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-agent-f4f909a7/234452d8-90ad-444a-9761-3138a730f6bb.jsonl\"\n# Verify the Vanilla values are also consistent - known s42=0.285, s123=0.305, s456=0.348 for DD\n# Table at line 3050 shows Vanilla DD: .284, .305, .348 - close to 0.285 vs 0.284 \n# Let me double-check from the vanilla 3-seed DD OOD full results in the registry\npython3 -c \"\nimport json, re\nwith open('$FPATH') as f:\n    for i, line in enumerate(f):\n        if i == 1883:\n            obj = json.loads(line)\n            msg = json.dumps(obj)\n            # Find vanilla 3-seed DD OOD data\n            pos = msg.find('vanilla_3seed_dd_ood')\n            if pos >= 0:\n                region = msg[pos:pos+1000]\n                print(region[:800])\n\" 2>&1",
+  "description": "Verify vanilla DD OOD per-seed from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e304679-47a9-4377-ace1-14f5b86a6f89",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyKvoqcLMENLrokQKbN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6b7b9383-44fd-4f04-8414-b222e2fa50cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011nPehSC1RM4TZwm5pBeeVL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 122404,
+      "output_tokens": 539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 647
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 539,
+          "cache_read_input_tokens": 122404,
+          "cache_creation_input_tokens": 647,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 647,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T05:46:33.694Z_
+
+<details><summary>↩ Tool result · `toolu_01QPWumQgBkuPvNWeqLxpbpG`</summary>
+
+```text
+vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.36, \"mean\": 0.351, \"std\": 0.03}, \"full\": {\"seed42\": 0.285, \"seed123\": 0.305, \"seed456\": 0.348, \"mean\": 0.312, \"std\": 0.026}}, \"centered_cka_iid\": {\"vanilla_vs_mlm\": 0.442, \"vanilla_vs_9class\": 0.393, \"mlm_vs_9class\": 0.586}, \"centered_cka_dd_ood\": {\"vanilla_vs_mlm\": 0.797, \"vanilla_vs_9class\": 0.649, \"mlm_vs_9class\": 0.773}, \"uncentered_cka_iid\": {\"vanilla_vs_mlm\": 1,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b7b9383-44fd-4f04-8414-b222e2fa50cd",
+  "isSidechain": true,
+  "promptId": "d06ad003-311e-4ffd-8ed0-8548ce496a8b",
+  "agentId": "aeff3f1c4277ddacf",
+  "type": "user",
+  "uuid": "47ca188a-a5fd-43ae-b480-b7cad77b01aa",
+  "sourceToolAssistantUUID": "6b7b9383-44fd-4f04-8414-b222e2fa50cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-23T05:46:56.605Z_
+
+The registry confirms Vanilla DD Full: s42=0.285, s123=0.305, s456=0.348. The appendix table version at line 3050 shows `.284` for s42 -- slight rounding difference (0.2844 rounded to .284 vs 0.285). The user already knows these values.
+
+Now I have all the data from the filled appendix table at transcript line 3050. Let me compile the complete findings.
+
+Here are the per-seed F1 values extracted from the transcript, sourced from the filled seed-level table in `appendix.tex` (found at transcript lines 3050 and 5121):
+
+**Table: Per-seed OOD F1 (Full) -- from `tab:seed_level` in appendix.tex**
+
+| Variant   | DD s42 | DD s123 | DD s456 | AA s42 | AA s123 | AA s456 |
+|-----------|--------|---------|---------|--------|---------|---------|
+| 9-class   | 1.000  | 1.000   | .990    | .990   | .935    | .990    |
+| Binary    | 1.000  | 1.000   | 1.000   | .981   | .990    | 1.000   |
+| Scrambled | .990   | 1.000   | 1.000   | .891   | .990    | .971    |
+| MLM+cls   | 1.000  | .990    | .751    | .971   | .925    | .784    |
+| Topic     | .727   | .252    | .644    | .686   | .431    | .759    |
+| Vanilla   | .284   | .305    | .348    | .258   | .258    | .258    |
+
+Source context from transcript line 3050:
+```
+771  9-class   & 1.000 & 1.000 & .990 & .990 & .935 & .990 & 1.000 & 1.000 & 1.000 \\
+772  Binary    & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 & 1.000 & 1.000 & 1.000 \\
+773  Scrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 & 1.000 & 1.000 & 1.000 \\
+774  MLM+cls   & 1.000 & .990 & .751 & .971 & .925 & .784 & .961 & .432 & .729 \\
+775  Topic     & .727 & .252 & .644 & .686 & .431 & .759 & .990 & .774 & .909 \\
+776  Vanilla   & .284 & .305 & .348 & .258 & .258 & .258 & .871 & .855 & .919 \\
+```
+
+Specifically answering the missing values you requested:
+
+**9-class DD-Full per seed:** s42=1.000, s123=1.000, s456=0.990
+
+**9-class AA-Full per seed:** s42=0.990, s123=0.935, s456=0.990
+
+**Binary DD-Full per seed:** s42=1.000, s123=1.000, s456=1.000
+
+**Binary AA-Full per seed:** s42=0.981, s123=0.990, s456=1.000
+
+**Scrambled DD-Full per seed:** s42=0.990, s123=1.000, s456=1.000
+
+**MLM-only (MLM+cls / jb_mlm) AA-Full per seed:** s42=0.971, s123=0.925, s456=0.784
+
+Corroborating registry data found at transcript line 1883:
+- plan_017_mlm_control DD OOD Full per-seed: `{42: 1.0, 123: 0.9902, 456: 0.7512}` -- matches "MLM+cls" DD column
+- plan_002_seed123 dd_ood_full_f1: 1.0 -- matches 9-class s123 DD
+- plan_002_seed456 dd_ood_full_f1 is in the registry but was cut off in my extraction
+
+Note: The "MLM+cls" label in the table refers to the JB-MLM / MLM-only variant (plan_017) -- it means "MLM DAPT encoder + classifier head", distinguishing the full pipeline from just the DAPT encoder. The current `appendix.tex` on disk (line 926-930) still has "--" placeholders; the filled version existed in an earlier state of the file that was later overwritten and not yet re-populated.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47ca188a-a5fd-43ae-b480-b7cad77b01aa",
+  "isSidechain": true,
+  "agentId": "aeff3f1c4277ddacf",
+  "requestId": "req_011CbJyLyRspN3uHKNQeJbh7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4727a72f-673e-4460-97dd-d38edca4f0a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "sessionId": "85e3b989-c20f-497d-8ff6-585a23797fb3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PX1k5eAweW4XLyzsUSLUGn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 123051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 968,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,2350 @@
+# Research conversation: You are Reviewer R2 for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 6=Strong Accept). Y
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a9098cacb2134b62a.jsonl`
+- **Structured JSON:** [`4f365aea1d290955a913.json`](../../sessions/4f/4f365aea1d290955a913.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T16:16:53.468Z_
+
+You are Reviewer R2 for a top ML venue review (acceptance rate ~25%, 6-point scale: 1=Strong Reject, 6=Strong Accept). Your focus is **Novelty and Related Work**.
+
+## Paper Summary
+
+Title: "Empirical Evidence Toward Boundary Conditions for Error Injection in LLM Agent Training: A Negative Transfer Study"
+
+The paper investigates whether taxonomy-guided error injection (shown effective in tool-use via PALADIN on ToolBench) transfers to embodied planning (ALFWorld). They design TaxEI, a 4-operator error injection taxonomy for ALFWorld, and train Qwen3-8B under three SFT conditions: Vanilla (clean only, 4358 samples), TaxEI (clean + taxonomy-labeled injections, 9029 samples), Random (clean + unlabeled injections, 9029 samples). 5 seeds on Qwen3-8B, 3 seeds on LLaMA-3.1-8B.
+
+## Key Findings
+
+1. Both injection methods degrade by 9.0pp vs Vanilla (Cohen's d=1.58 but Bonferroni NS at n=5, power=45%).
+2. Taxonomy labels = zero benefit over random noise.
+3. Resilience not recovery: models passively ignore eval-time errors at their base completion rate. Detection = 0%.
+4. Cross-model (LLaMA 3-seed): directional consistency, TaxEI creates instability (SD=8.6pp), 1/3 catastrophic seeds. Detection 27% but doesn't improve recovery.
+5. 5× scale-up narrows gap 29% but doesn't eliminate. Diminishing returns evident.
+6. Few-shot prompting benefits all conditions equally (ANOVA NS).
+7. Per-operator analysis (exploratory): direction consistent with locality hypothesis but all NS.
+
+## Paper Structure
+- Section 1: Introduction — frames as boundary-condition investigation
+- Section 2: Related Work — PALADIN, EEF, ALFWorld, seed sensitivity, adversarial training
+- Section 3: Method — 4-operator taxonomy, data gen (501 GPT-5.2 trajectories), 3 training conditions, eval protocol
+- Section 4: Experiments — 5 subsections covering all results
+- Section 5: Discussion — 2×2 framework (positive/negative signal × tool-use/planning), 3 hypothesized boundary conditions (observability, locality, recoverability), limitations
+- Section 6: Conclusion
+- References: 10 papers cited
+- Appendix A: Per-seed results
+- Appendix B: Scale-up details
+
+## Related Work Cited
+- PALADIN (Chen et al. 2025) — taxonomy error injection + retrieval for tool-use
+- EEF (Wang et al. 2025) — extracting positive signal from failures in WebShop
+- ALFWorld (Shridhar et al. 2021)
+- ReAct (Yao et al. 2023), Reflexion (Shinn et al. 2023)
+- McCoy et al. 2020, Mosbach et al. 2021, D'Amour et al. 2022 — seed sensitivity/underspecification
+- Madry et al. 2018 — adversarial training
+- Bengio et al. 2009 — curriculum learning
+
+## Your Review Task
+
+Evaluate the paper on:
+1. **Novelty of the research question**: How interesting/important is it to test error injection transfer across domains?
+2. **Novelty of the TaxEI design**: Is the 4-operator taxonomy well-motivated? Is it a fair test of the PALADIN paradigm?
+3. **The 2×2 framework (Section 5.1)**: Is this a genuine conceptual contribution or a post-hoc repackaging?
+4. **Boundary condition hypotheses (Section 5.2)**: Are observability/locality/recoverability compelling? Are they testable? Are they novel?
+5. **Related work coverage**: Are there important missing citations? Is the positioning against PALADIN/EEF fair?
+6. **Framing as negative result**: Is this paper making the right claims? Is the downgraded language appropriate?
+7. **Conceptual contribution vs. empirical contribution**: Does this paper advance understanding or just report "it didn't work"?
+8. **Missing related work areas**: robustness training in RL, domain transfer in data augmentation, other agent training paradigms?
+
+Produce a structured review with:
+- Summary (2-3 sentences)
+- Strengths (numbered list)
+- Weaknesses (numbered list, with severity: major/minor)
+- Questions for Authors (numbered)
+- Assessment of Conceptual Contribution
+- Score (1-6) with justification
+- Confidence (1-5)
+
+Be rigorous but fair. Negative results are valuable when they advance understanding. Judge whether this paper's conceptual framing elevates it beyond a simple "it didn't work" report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "96ddf113-4b6b-46ef-a9b6-a545b71407d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T16:16:53.473Z_
+
+```json
+{
+  "parentUuid": "96ddf113-4b6b-46ef-a9b6-a545b71407d4",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4daefdd7-fc3d-4822-889d-6501f660a200",
+  "timestamp": "2026-05-16T16:16:53.473Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T16:16:56.852Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VnsemPRNofFWWmh5SfWz4c`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4daefdd7-fc3d-4822-889d-6501f660a200",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YkRUEJLoZCABaDgGXE",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1e6c8f19-93b9-4a22-90d6-18a57dacd034",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FgiFx38NFE9b6k21tA6fhB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7005,
+      "cache_read_input_tokens": 8251,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7005
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 8251,
+          "cache_creation_input_tokens": 7005,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7005,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T16:16:56.855Z_
+
+<details><summary>↩ Tool result · `toolu_01VnsemPRNofFWWmh5SfWz4c`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e6c8f19-93b9-4a22-90d6-18a57dacd034",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "aaa24dd8-eafd-4148-9eb7-1aced81e9507",
+  "sourceToolAssistantUUID": "1e6c8f19-93b9-4a22-90d6-18a57dacd034",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T16:17:00.724Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01G2xsHhick5ow2jKAgaS9eB`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aaa24dd8-eafd-4148-9eb7-1aced81e9507",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YkhDmHLca42jjDfr13",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9f6fd86e-4d00-4e64-8163-61c93bf88453",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EG6doGyTxXr8CWjmC1Wf7X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 15256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1270,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T16:17:00.734Z_
+
+<details><summary>↩ Tool result · `toolu_01G2xsHhick5ow2jKAgaS9eB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- llama31-random-s123-injected-evalseed42（准备中）\\n- llama31-taxei-s123-injected-evalseed42（准备中）\\n- llama31-vanilla-s123-injected-evalseed42（准备中）\\n- v4-taxei-fixed-inject25-s123-eval（准备中）\\n- v4-taxei-fixed-inject25-s0-eval（准备中）\\n- v4-random-fixed-inject10-s0-eval-r2: v4 Random 10% seed=0 eval (retry, OOM fix) — 47 ALFWorld clean tasks. Dedicated GPU.（准备中）\\n- v4-taxei-fixed-inject10-s123-eval-r2: v4 TaxEI 10% seed=123 eval (retry, OOM fix) — 47 ALFWorld clean tasks. Dedicated GPU.（准备中）\\n- v4-taxei-inject10-seed0（准备中）\\n- v4-random-inject10-seed0（准备中）\\n- v4-taxei-inject10-seed123（准备中）\\n- …另有 38 项\\n\\n## 近期结论\\n- **llama31-random-s123-injected** (success): —\\n- **llama31-taxei-s123-injected** (success): —\\n- **llama31-taxei-s123-eval** (success): —\\n\\n## 趋势\\n成功 131 / 负向 5 / 失败 7 / 共 144\\ndetection_rate: 0.533 ↑（近 3 次 success）\\nrecovery_rate: 0.689 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nautodl-5090: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- v4-taxei-fixed-inject25: 训练失败 — unknown\\n- v4-taxei-fixed-inject10-s123-eval: 训练失败 — unknown\\n- v4-random-fixed-inject10-s0-eval: 训练失败 — unknown\\n- v4-taxei-fixed-inject10-s1-eval: 训练失败 — unknown\\n- v4-taxei-fixed-inject25-s7-eval: 训练失败 — unknown\\n- v4-taxei-fixed-inject25-s1-eval-r2: 已被终止 — unknown\\n- v4-taxei-fixed-inject50-s1: 训练失败 — unknown\\n- v4-random-fixed-inject50-s1: 训练失败 — unknown\\n\", \"total_chars\": 1415, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f6fd86e-4d00-4e64-8163-61c93bf88453",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "e5b29156-8db5-4d09-8ec5-70079390cf18",
+  "sourceToolAssistantUUID": "9f6fd86e-4d00-4e64-8163-61c93bf88453",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T16:17:01.247Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_019mJimLcyXjSjuKhW2FZncn`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5b29156-8db5-4d09-8ec5-70079390cf18",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YkhDmHLca42jjDfr13",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "107957ce-9da3-4204-baf5-65d44c4c7e91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EG6doGyTxXr8CWjmC1Wf7X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 15256,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1270
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 15256,
+          "cache_creation_input_tokens": 1270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1270,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T16:17:01.265Z_
+
+<details><summary>↩ Tool result · `toolu_019mJimLcyXjSjuKhW2FZncn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/literature_map.yaml\", \"content\": \"# Literature Map: Dose-Response / Threshold Effects in Data Augmentation\\n# Updated: 2026-05-15\\n\\nentries:\\n  # === Category: dose-response / threshold ===\\n\\n  - id: rolnick2017robust\\n    title: \\\"Deep Learning is Robust to Massive Label Noise\\\"\\n    authors: \\\"Rolnick, Veit, Belongie, Shavit\\\"\\n    year: 2017\\n    venue: arXiv 1705.10694\\n    category: dose-response\\n    role: background\\n    key_finding: \\\"DNNs maintain >90% accuracy on MNIST even when correct labels are diluted 100:1, as long as correct label remains most likely by a small margin.\\\"\\n    relevance: \\\"Contrasts with our finding: image classification is robust to extreme noise, while embodied planning shows sharp degradation at 25%. Task complexity mediates noise tolerance.\\\"\\n\\n  - id: yuan2024early_stopping\\n    title: \\\"Early Stopping Against Label Noise Without Validation Data\\\"\\n    authors: \\\"Yuan, Feng, Liu\\\"\\n    year: 2024\\n    venue: ICLR 2024\\n    category: dose-response\\n    role: background\\n    key_finding: \\\"Identifies phase transition where DNNs shift from fitting clean to fitting mislabeled examples. Proposes Label Wave to detect this transition during training.\\\"\\n    relevance: \\\"Supports existence of phase transition in learning dynamics. Our 10-25% threshold may correspond to such a transition point in the SFT regime.\\\"\\n\\n  - id: dohmatob2025collapse\\n    title: \\\"Strong Model Collapse\\\"\\n    authors: \\\"Dohmatob, Feng, Subramonian, Kempe\\\"\\n    year: 2025\\n    venue: ICLR 2025\\n    category: threshold\\n    role: background\\n    key_finding: \\\"Even 0.1% synthetic data can cause model collapse in supervised regression. Past interpolation threshold, larger models become more robust (double-descent).\\\"\\n    relevance: \\\"Demonstrates extreme sensitivity to data quality in certain regimes. Our 10-25% threshold is analogous—small quality shifts cause nonlinear degradation.\\\"\\n\\n  - id: beyond_clean_data2024\\n    title: \\\"Beyond Clean Data: Exploring the Effects of Label Noise on Object Detection Performance\\\"\\n    authors: \\\"Freire, de S. Silva, de Andrade, Fernandes\\\"\\n    year: 2024\\n    venue: Knowledge-Based Systems\\n    category: dose-response\\n    role: background\\n    key_finding: \\\"Systematically varies noise levels in training and validation for object detection, mapping convergence limits and degradation thresholds.\\\"\\n    relevance: \\\"Methodologically similar—varies noise proportion to find degradation curves. Shows task-specific threshold behavior.\\\"\\n\\n  # === Category: error-injection / failure augmentation ===\\n\\n  - id: wang2024learning_from_failure\\n    title: \\\"Learning From Failure: Integrating Negative Examples when Fine-tuning Large Language Models as Agents\\\"\\n    authors: \\\"Wang, Li, Han, Zhang, Baldwin\\\"\\n    year: 2024\\n    venue: arXiv 2402.11651\\n    category: error-injection\\n    role: evaluation\\n    key_finding: \\\"Failed trajectories provide valuable signal for LLM agents via contrastive learning. Negative examples improve math, QA, strategic tasks when properly structured.\\\"\\n    relevance: \\\"Directly related—injects negative trajectories into agent SFT. Key difference: they use contrastive framing, not raw mixing. Our work shows raw mixing has narrow safe window.\\\"\\n\\n  - id: song2024eto\\n    title: \\\"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents\\\"\\n    authors: \\\"Song, Yin, Yue, Huang, Li, Lin\\\"\\n    year: 2024\\n    venue: ACL 2024\\n    category: error-injection\\n    role: evaluation\\n    key_finding: \\\"Iteratively collects failure trajectories, uses DPO-style contrastive learning on success-failure pairs. +8% WebShop, +9.5% ScienceWorld vs SFT.\\\"\\n    relevance: \\\"Uses failure trajectories via preference optimization (DPO), not direct SFT mixing. Avoids our threshold problem by never training directly on failures.\\\"\\n\\n  - id: paladin2025\\n    title: \\\"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases\\\"\\n    authors: \\\"Vuddanti, Shah et al.\\\"\\n    year: 2025\\n    venue: arXiv 2509.25238\\n    category: error-injection\\n    role: evaluation\\n    key_finding: \\\"Trains on 50K+ recovery-annotated failure trajectories via LoRA. +57pp recovery rate vs vanilla (32.76%→89.68%), +13.6pp vs CRITIC baseline. Taxonomy of 7 error classes. Includes inference-time retrieval.\\\"\\n    relevance: \\\"Most similar to our approach (taxonomy-guided error injection). Key difference: they pair failures with recovery demos; we inject standalone error trajectories.\\\"\\n\\n  - id: agentHER2025\\n    title: \\\"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling\\\"\\n    authors: \\\"Ding\\\"\\n    year: 2025\\n    venue: arXiv 2603.21357\\n    category: error-injection\\n    role: evaluation\\n    key_finding: \\\"Converts failed trajectories to valid training data by relabeling—failure for task A becomes success for task B.\\\"\\n    relevance: \\\"Avoids noise problem by redefining failure as success for different goals. Contrasts with our direct injection approach.\\\"\\n\\n  # === Category: data-mixing ===\\n\\n  - id: dong2024composition\\n    title: \\\"How Abilities in Large Language Models are Affected by Supervised Fine-tuning Data Composition\\\"\\n    authors: \\\"Dong, Yuan et al.\\\"\\n    year: 2024\\n    venue: ACL 2024\\n    category: data-mixing\\n    role: background\\n    key_finding: \\\"Data amount per domain matters more than ratio. Low-data mixing enables cross-domain transfer; high-data mixing causes ability conflicts.\\\"\\n    relevance: \\\"Documents ability-conflict at high data amounts—analogous to our threshold. Ratio secondary to amount suggests our threshold may be absolute-count driven.\\\"\\n\\n  - id: ye2025mixing_laws\\n    title: \\\"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\\\"\\n    authors: \\\"Ye et al.\\\"\\n    year: 2025\\n    venue: ICLR 2025\\n    category: data-mixing\\n    role: background\\n    key_finding: \\\"Discovers quantitative scaling laws L=f(r) for mixture proportions. Accurately predicts critical proportion avoiding catastrophic forgetting.\\\"\\n    relevance: \\\"Their 'critical proportion for catastrophic forgetting' is conceptually identical to our threshold—both mark a phase transition in mixing.\\\"\\n\\n  - id: li2025mixing_optimization\\n    title: \\\"Data Mixing Optimization for Supervised Fine-Tuning of Large Language Models\\\"\\n    authors: \\\"Li et al.\\\"\\n    year: 2025\\n    venue: ICML 2025\\n    category: data-mixing\\n    role: background\\n    key_finding: \\\"SFT mixing as optimization with scaling-law parameterization. Optimal weights depend on model size and data scale.\\\"\\n    relevance: \\\"Optimal mixing is model-size dependent—our 7B model may have different threshold than larger models. Finding is scale-specific.\\\"\\n\\n  - id: seddik2024synthetic_bound\\n    title: \\\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\\\"\\n    authors: \\\"Seddik et al.\\\"\\n    year: 2024\\n    venue: arXiv 2404.05090\\n    category: data-mixing\\n    role: background\\n    key_finding: \\\"Theoretical upper bounds on low-quality data proportion before collapse. Real data proportion must remain high.\\\"\\n    relevance: \\\"Theoretical grounding for hard thresholds in quality mixing. Our empirical 10-25% window is consistent with their predictions.\\\"\\n\\n  # === Category: curriculum / quality threshold ===\\n\\n  - id: curriculum_robust2021\\n    title: \\\"Robust Curriculum Learning: from Clean Label Detection to Noisy Label Self-Correction\\\"\\n    authors: \\\"Zhou, Wang, Bilmes\\\"\\n    year: 2021\\n    venue: ICLR 2021\\n    category: curriculum\\n    role: background\\n    key_finding: \\\"Networks learn simple patterns first, then overfit noisy labels. Loss-based curriculum selection is unstable; errors accumulate multiplicatively.\\\"\\n    relevance: \\\"Explains WHY threshold exists: once noisy proportion exceeds implicit curriculum capacity, errors accumulate. Our 25% may exceed model's capacity.\\\"\\n\\n  - id: agentprm2025\\n    title: \\\"Process Reward Models for LLM Agents: Practical Framework and Directions\\\"\\n    authors: \\\"Choudhury\\\"\\n    year: 2025\\n    venue: arXiv 2502.10325\\n    category: curriculum\\n    role: evaluation\\n    key_finding: \\\"Best-of-N with process reward model achieves 91.0% on ALFWorld (N=16, base policy 88.1%). Shows reward-guided search outperforms SFT alone.\\\"\\n    relevance: \\\"ALFWorld SOTA reference. Our 65.3% SFT-only baseline is reasonable given AgentPRM uses test-time search.\\\"\\n\\n  - id: wkm2024alfworld\\n    title: \\\"Agent Planning with World Knowledge Model\\\"\\n    authors: \\\"Qiao, Fang, Zhang, Zhu, Chen et al.\\\"\\n    year: 2024\\n    venue: NeurIPS 2024\\n    category: curriculum\\n    role: evaluation\\n    key_finding: \\\"World knowledge models reduce hallucinatory actions in ALFWorld. SFT on expert trajectories prone to overfitting.\\\"\\n    relevance: \\\"ALFWorld baseline showing SFT quality sensitivity. Hallucination increase from poor training data parallels our error-injection degradation.\\\"\\n\\n  # === Category: training-dynamics / memorization ===\\n\\n  - id: arpit2017memorization\\n    title: \\\"A Closer Look at Memorization in Deep Networks\\\"\\n    authors: \\\"Arpit, Jastrzębski, Ballas, Krueger, Bengio, Kanwal, Maharaj, Fischer, Courville, Bengio, Lacoste-Julien\\\"\\n    year: 2017\\n    venue: ICML 2017\\n    category: training-dynamics\\n    role: background\\n    key_finding: \\\"DNNs first learn clean patterns (early learning phase), then memorize noise. Training loss/accuracy improve on noisy data but generalization degrades. Dataset-independent capacity concepts are insufficient.\\\"\\n    relevance: \\\"Directly explains our '50% injection → lowest train loss but worst eval' paradox. Higher injection = more noisy samples to memorize, better train metrics but worse generalization.\\\"\\n\\n  - id: liu2020early_learning_reg\\n    title: \\\"Early-Learning Regularization Prevents Memorization of Noisy Labels\\\"\\n    authors: \\\"Liu, Niles-Weed, Razavian, Fernandez-Granda\\\"\\n    year: 2020\\n    venue: NeurIPS 2020\\n    category: training-dynamics\\n    role: background\\n    key_finding: \\\"Formalizes early learning phenomenon: models predict true labels for mislabeled examples early in training, then memorize wrong labels. ELR regularization exploits this window.\\\"\\n    relevance: \\\"Our error-injected samples may be correctly handled early in training but memorized later, degrading clean-data generalization. Explains why more epochs could worsen the gap.\\\"\\n\\n  - id: zhou2023lima\\n    title: \\\"LIMA: Less Is More for Alignment\\\"\\n    authors: \\\"Zhou, Liu, Xu, Iyer, Sun, Mao, Ma, Efrat, Yu, Yu, Zhang, Ghosh, Lewis, Zettlemoyer, Levy\\\"\\n    year: 2023\\n    venue: NeurIPS 2023\\n    category: training-dynamics\\n    role: background\\n    key_finding: \\\"Superficial Alignment Hypothesis: LLM knowledge/capability comes from pretraining; SFT only teaches output style/format. Limited SFT data suffices.\\\"\\n    relevance: \\\"Explains why lower SFT loss ≠ better downstream capability. Error injection improves surface-level fitting (lower loss) but doesn't enhance—and may damage—pretrained planning capability.\\\"\\n\\n  - id: luo2023catastrophic_forgetting\\n    title: \\\"An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning\\\"\\n    authors: \\\"Luo, Yang, Meng, Li, Zhou, Zhang\\\"\\n    year: 2023\\n    venue: arXiv 2308.08747\\n    category: training-dynamics\\n    role: background\\n    key_finding: \\\"SFT is off-policy learning prone to overfit training distribution and forget pretraining knowledge. Forgetting severity increases with divergence between fine-tuning and pretraining distributions.\\\"\\n    relevance: \\\"Error injection increases distributional gap from pretraining data, accelerating catastrophic forgetting. 50% injection → maximal divergence → most forgetting of planning capability.\\\"\\n\\n  - id: longpre2020augmentation\\n    title: \\\"How Effective is Task-Agnostic Data Augmentation for Pretrained Transformers?\\\"\\n    authors: \\\"Longpre, Wang, DuBois\\\"\\n    year: 2020\\n    venue: Findings of EMNLP 2020\\n    category: training-dynamics\\n    role: background\\n    key_finding: \\\"Data augmentation provides minimal benefit for pretrained transformers; pretrained representations already capture augmentation diversity. Augmentation can hurt when it introduces distribution shift.\\\"\\n    relevance: \\\"Pretrained LLMs may already have robust representations; error injection adds noise without new information, explaining why augmentation-style injection fails for embodied planning.\\\"\\n\\n  # === Category: training-instability ===\\n\\n  - id: mccoy2020seeds\\n    title: \\\"BERTs of a feather do not generalize together: Large variability in generalization across models with similar test set performance\\\"\\n    authors: \\\"McCoy, Min, Linzen\\\"\\n    year: 2020\\n    venue: \\\"BlackboxNLP Workshop at EMNLP 2020\\\"\\n    category: training-instability\\n    role: background\\n    key_finding: \\\"Fine-tuning 100 BERT instances on MNLI yields near-identical dev accuracy (83.6-84.8%) but wildly different syntactic generalization (0-66.2% on HANS), demonstrating extreme seed-dependent generalization.\\\"\\n    relevance: \\\"与我们方差梯度发现的关系：error injection 放大了 McCoy 描述的 seed sensitivity\\\"\\n\\n  - id: mosbach2021stability\\n    title: \\\"On the Stability of Fine-tuning BERT: Misconceptions, Explanations, and Strong Baselines\\\"\\n    authors: \\\"Mosbach, Andriushchenko, Klakow\\\"\\n    year: 2021\\n    venue: \\\"ICLR 2021\\\"\\n    category: training-instability\\n    role: background\\n    key_finding: \\\"BERT fine-tuning instability的根因是vanishing gradients导致的优化困难，而非此前假设的catastrophic forgetting或数据集过小。\\\"\\n    relevance: \\\"fine-tuning 不稳定性的基础文献，我们的 TaxEI 方差梯度扩展了这一发现到 error-augmented agent training\\\"\\n\\n  - id: damour2022underspecification\\n    title: \\\"Underspecification Presents Challenges for Credibility in Modern Machine Learning\\\"\\n    authors: \\\"D'Amour, Heller, Moldovan, Adlam, Alipanahi, Beutel, Chen, Deaton, Eisenstein, Hoffman et al.\\\"\\n    year: 2022\\n    venue: \\\"Journal of Machine Learning Research, Vol. 23, No. 226\\\"\\n    category: training-instability\\n    role: background\\n    key_finding: \\\"ML pipeline underspecification导致测试性能相当的模型在部署域行为截然不同，涵盖CV、NLP、医学等多领域实证。\\\"\\n    relevance: \\\"我们的 3 seeds 中 2 个 match vanilla + 1 个 collapse 是 underspecification 的典型表现\\\"\\n\\n  # === Category: alfworld-methods ===\\n\\n  - id: shridhar2021alfworld\\n    title: \\\"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning\\\"\\n    authors: \\\"Shridhar, Yuan, Côté, Bisk, Trischler, Hausknecht\\\"\\n    year: 2021\\n    venue: \\\"ICLR 2021\\\"\\n    arxiv: \\\"2010.03768\\\"\\n    category: alfworld-methods\\n    role: evaluation\\n    key_finding: \\\"Aligns TextWorld text-based environment with ALFRED embodied benchmark, enabling abstract policy learning that transfers to visual grounding.\\\"\\n    relevance: \\\"我们的实验环境；134 tasks across 6 task types benchmark\\\"\\n\\n  - id: yao2023react\\n    title: \\\"ReAct: Synergizing Reasoning and Acting in Language Models\\\"\\n    authors: \\\"Yao, Zhao, Yu, Du, Shafran, Narasimhan, Cao\\\"\\n    year: 2023\\n    venue: \\\"ICLR 2023\\\"\\n    arxiv: \\\"2210.03629\\\"\\n    category: alfworld-methods\\n    role: evaluation\\n    key_finding: \\\"Interleaved reasoning traces and actions enable LLMs to ground decisions, achieving 75% on ALFWorld (single-trial).\\\"\\n    relevance: \\\"我们使用的 prompting paradigm（ReAct format）\\\"\\n\\n  - id: shinn2023reflexion\\n    title: \\\"Reflexion: Language Agents with Verbal Reinforcement Learning\\\"\\n    authors: \\\"Shinn, Cassano, Berman, Gopinath, Narasimhan, Yao\\\"\\n    year: 2023\\n    venue: \\\"NeurIPS 2023\\\"\\n    arxiv: \\\"2303.11366\\\"\\n    category: alfworld-methods\\n    role: evaluation\\n    key_finding: \\\"Verbal self-reflection in episodic memory achieves 97% on ALFWorld (12 trials, 130/134 tasks solved) without weight updates.\\\"\\n    relevance: \\\"Inference-time reflection 成功 where training-time injection 失败——对比 key point\\\"\\n\\n  - id: kim2025coex\\n    title: \\\"CoEx -- Co-evolving World-model and Exploration\\\"\\n    authors: \\\"Kim, Hwang\\\"\\n    year: 2025\\n    venue: \\\"Findings of EMNLP 2025\\\"\\n    arxiv: \\\"2507.22281\\\"\\n    category: alfworld-methods\\n    role: evaluation\\n    key_finding: \\\"Hierarchical state abstraction with dynamically updated neurosymbolic world model achieves 93.28% on ALFWorld.\\\"\\n    relevance: \\\"ALFWorld SOTA 参考；co-evolving world model 对比我们的 static SFT 方法\\\"\\n\\n  # === Category: error-injection (补充) ===\\n\\n  - id: eef2025\\n    title: \\\"Exploring Expert Failures Improves LLM Agent Tuning\\\"\\n    authors: \\\"Lan, Bai, Cheng, Hsieh, Zhou\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2504.13145\\\"\\n    category: error-injection\\n    role: evaluation\\n    key_finding: \\\"从失败 expert trajectories 中提取有益 actions（plans、key actions），用于引导 agent exploration，WebShop SOTA 0.81，SciWorld 81/100。\\\"\\n    relevance: \\\"从失败中提取正向信号（非注入负信号），成功 on WebShop。与我们的直接注入形成对比——方向相反的 failure utilization。\\\"\\n\\n  - id: agentdebug2025\\n    title: \\\"Where LLM Agents Fail and How They can Learn From Failures\\\"\\n    authors: \\\"Zhu, Liu, Li, Tian et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2509.25370\\\"\\n    category: error-injection\\n    role: evaluation\\n    key_finding: \\\"5-dimension AgentErrorTaxonomy（memory, reflection, planning, action, system-level）+ AgentErrorBench 标注数据集 + AgentDebug 纠错框架，跨 ALFWorld/GAIA/WebShop 提升 24% all-correct accuracy。\\\"\\n    relevance: \\\"ALFWorld 的另一个 error taxonomy（5维 vs 我们的 4 operator）。对比点：不同 taxonomy 设计选择。\\\"\\n\\n  # === Category: data-mixing / curriculum (补充) ===\\n\\n  - id: bengio2009curriculum\\n    title: \\\"Curriculum Learning\\\"\\n    authors: \\\"Bengio, Louradour, Collobert, Weston\\\"\\n    year: 2009\\n    venue: \\\"ICML 2009\\\"\\n    category: curriculum\\n    role: background\\n    key_finding: \\\"按难度递增顺序呈现训练样本可加速收敛并改善非凸优化的局部最优质量；curriculum 本质是一种 continuation method。\\\"\\n    relevance: \\\"Curriculum learning 中 difficult example proportion 的 threshold 概念与我们的 dose-response 阈值平行——训练数据中困难/噪声样本超过阈值后性能崩溃\\\"\\n\\n  - id: madry2018adversarial\\n    title: \\\"Towards Deep Learning Models Resistant to Adversarial Attacks\\\"\\n    authors: \\\"Madry, Makelov, Schmidt, Tsipras, Vladu\\\"\\n    year: 2018\\n    venue: \\\"ICLR 2018\\\"\\n    category: data-mixing\\n    role: background\\n    key_finding: \\\"基于 PGD 的 adversarial training 通过 robust optimization 框架显著提升对抗鲁棒性，但以 clean accuracy 下降为代价。\\\"\\n    relevance: \\\"Adversarial training 的 accuracy-robustness tradeoff 是 dose-response 型——增加 adversarial perturbation 强度提升鲁棒性但降低 clean accuracy，与我们的 injection ratio vs clean eval tradeoff 结构相似\\\"\\n\", \"total_chars\": 17888, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "107957ce-9da3-4204-baf5-65d44c4c7e91",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "e13a791e-ff29-48d6-bd4d-21acd77213b0",
+  "sourceToolAssistantUUID": "107957ce-9da3-4204-baf5-65d44c4c7e91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T16:17:10.004Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Dg9At1PBm3c7iB245DPL5S`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e13a791e-ff29-48d6-bd4d-21acd77213b0",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6Ykzt9bo8NMUeVMsNqt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2a37610c-d627-480d-9460-c5ab84a70cbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T2iGnPJTg9177zXVAkszZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7649,
+      "cache_read_input_tokens": 16526,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7649,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T16:17:10.017Z_
+
+<details><summary>↩ Tool result · `toolu_01Dg9At1PBm3c7iB245DPL5S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/paper_framing.md\", \"content\": \"# Paper Framing: When Does Error Injection Help LLM Agents? Boundary Conditions from a Failed Transfer to Embodied Planning\\n\\n## Target Venue\\n**Primary**: EMNLP 2026 Findings (Budapest, Oct 22–29) — 8-page long paper. Negative-result contributions accepted per CFP.\\n**Secondary**: ACL 2026 Findings if timeline permits.\\n\\n## Core Question\\nUnder what task-structural conditions does taxonomy-guided error injection improve vs. degrade LLM agent performance?\\n\\n## Thesis Statement\\nTaxonomy-guided error injection — a core component of PALADIN's +57pp Recovery Rate gain on ToolBench (though entangled with inference-time retrieval augmentation) — destabilizes embodied planning agent training without improving performance on ALFWorld. TaxEI and Random injection produce **identical** mean performance (58.3% vs Vanilla 67.3%, 5 seeds each), proving taxonomy labels provide zero benefit. Complete 5-seed dose-response reveals **no safe injection dose**: harm begins at 10% (-6.0pp), peaks at 25% (TaxEI nadir 52.7%), then **saturates** — 50% and Full produce similar harm (~58%) with no marginal worsening. The taxonomy penalty follows an **inverted-U curve**, peaking at 25% (-7.3pp TaxEI-Random gap) and vanishing at higher doses. At every concentration, training outcomes are a **lottery** (19-23pp within-dose range, bimodal seed distributions). Cross-model validation on LLaMA-3.1-8B-Instruct reveals that **structured error injection (TaxEI) causes training instability across model architectures** — TaxEI recovery SD=8.6pp vs Random SD=2.1pp (3-seed), with 1/3 seeds triggering Qwen-like catastrophic degradation (59.6% vs baseline 73.1%). Random injection remains stable and even mildly beneficial (mean 76.6% > Vanilla 73.1%). This confirms the harm is not model-specific but a property of structured error patterns themselves: taxonomy-guided injection creates conflicting learning signals that destabilize training across architectures, while unstructured noise is benign or helpful.\\n\\n## Story Arc\\n\\n### 1. Motivation: Why error injection should work\\nError injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN (arXiv 2509.25238) demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76% to 89.68% on ToolBench (note: removing retrieval reduces the gain by ~30pp, so the SFT contribution alone is ~+27pp). A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?\\n\\n### 2. Method: TaxEI — Taxonomy-guided Error Injection for Embodied Planning\\nWe designed a 4-operator error taxonomy for ALFWorld embodied planning:\\n- **P1** (step_order_swap): permute action ordering\\n- **P2** (sub_goal_deletion): remove sub-goals\\n- **C1** (context_truncation): truncate environmental context\\n- **C4** (observation_masking): mask observation feedback\\n\\nWe injected errors into 760 trajectories (from 501 GPT-5.2-generated successful trajectories), producing 4,671 injected variants. Three SFT conditions trained on Qwen3-8B: Vanilla (clean only, 4,358 samples), TaxEI (clean + taxonomy-tagged injections, 9,029 samples), Random (clean + unlabeled injections, 9,029 samples). TaxEI and Random differ only in whether the error tag contains the taxonomy label or a generic marker.\\n\\n### 3. Finding: Injection harms equally regardless of taxonomy; introduces catastrophic seed vulnerability\\n**Clean task performance (all 5-seed complete)**:\\n- Vanilla SFT: 67.3% ± 4.7pp (seeds 42/0/123/1/7) — stable, no catastrophic seeds\\n- TaxEI SFT: 58.3% ± 6.5pp (seeds 42/0/123/1/7) — **-9.0pp vs Vanilla, p=0.039 uncorrected, NS Bonferroni (p>0.017), Cohen's d=1.58**\\n- Random SFT: 58.3% ± 8.7pp (seeds 42/0/123/1/7) — **-9.0pp vs Vanilla, p=0.089 uncorrected, NS, Cohen's d=1.28**\\n\\n**CENTRAL FINDING**: TaxEI and Random produce IDENTICAL mean performance (58.3% = 137/235 tasks). Taxonomy labels provide zero benefit over random injection at the mean level. This directly refutes the hypothesis that structured error labeling improves training signal.\\n\\n**Catastrophic seed vulnerability**: Both injection methods produce exactly one ~47% outlier (TaxEI seed0=46.8%, Random seed1=46.8%). Vanilla never drops below 61.7%. Injection introduces a 1-in-5 risk of catastrophic training failure absent in clean training.\\n\\n**Variance gradient**: Vanilla SD (4.7pp) < TaxEI SD (6.5pp) < Random SD (8.7pp). Injection amplifies variance; taxonomy labels may mildly stabilize (TaxEI SD < Random SD), but both are worse than Vanilla. This reverses the 3-seed pattern (where TaxEI had highest SD). Formal variance tests needed (Levene's, n=5).\\n\\n**Dose-response ablation (fixed-size 4,358 total)** (D034+D035+D038: 全部 5 个剂量完整 5-seed):\\n| Dose | TaxEI Mean±SD (n) | Random Mean±SD (n) | Vanilla ref | TaxEI-Random Δ |\\n|------|-------------------|-------------------|-------------|----------------|\\n| 0% (vanilla) | — | — | 67.3±4.7 (5) | — |\\n| 10% | 61.3±8.2 (5) | 63.8±5.4 (5) | | -2.5pp |\\n| 25% | 52.7±7.6 (5) | 60.0±8.0 (5) | | **-7.3pp** |\\n| 50% | 57.4±9.5 (5) | 58.3±11.7 (5) | | -0.9pp |\\n| Full | 58.3±6.5 (5) | 58.3±8.7 (5) | | 0pp |\\n\\nPer-seed data:\\n- TaxEI 10%: 61.7/70.2/55.3/51.1/68.1. Random 10%: 68.1/66.0/55.3/68.1/61.7.\\n- TaxEI 25%: 48.9/46.8/46.8/63.8/57.4. Random 25%: 55.3/61.7/51.1/72.3/59.6.\\n- TaxEI 50%: 51.1/70.2/46.8/63.8/55.3. Random 50%: 57.4/46.8/70.2/70.2/46.8.\\n\\n**Unified dose-response narrative** (D035+D038, complete 5-seed all doses):\\n1. **Non-monotonic harm with 25% nadir + saturation**: Injection at ALL doses reduces mean and increases variance. Harm peaks at 25% (TaxEI nadir 52.7%), then partially rebounds: 50% (57.4%) ≈ Full (58.3%). Doubling injection from 50%→Full has zero marginal effect — ~50% is the saturation point beyond which additional errors no longer worsen outcomes.\\n2. **Inverted-U taxonomy penalty**: TaxEI trails Random at every dose, but the gap peaks at 25% (7.3pp), diminishes at 50% (0.9pp, d=-0.08 negligible), and vanishes at Full (0pp). At 10% the gap is 2.5pp. Taxonomy labels actively harm at intermediate doses where clean/injected balance may maximize conflicting learning signals.\\n3. **Universal training lottery**: All doses produce extreme seed variance (19-23pp within-dose range). Random 50% shows **bimodal** distribution: {46.8, 46.8, 57.4, 70.2, 70.2} — two distinct failure/success modes, not normal scatter. Report median+IQR alongside mean±SD for robustness.\\n4. **Practical implication**: No injection dose is \\\"safe.\\\" Even 10% produces measurable harm (-6.0pp TaxEI). Outcomes are unpredictable at every concentration level. The training lottery, not dosage, dominates performance variation.\\n\\n**Variance pattern** (exploratory, not claimable): SD peaks at 50% (TaxEI 9.5, Random 11.7) then **declines** at Full (6.5, 8.7). This is unexpected — Full dose actually reduces variance vs 50%. Possible explanation: at 50%, the model faces maximum ambiguity between clean and error patterns; at Full, the injection signal dominates and the model consistently adapts (poorly). Levene's test NS at n=5. Do not claim variance patterns without significance tests.\\n\\n**Training lottery at all doses**: Extreme outliers in every condition — TaxEI 10% s0=70.2% vs s1=51.1% (19pp range), Random 25% s1=72.3% vs s123=51.1% (21pp range), Random 50% bimodal (23pp range). Single-seed evaluations are fundamentally unreliable at any dose.\\n\\n**Taxonomy label penalty** (task-type-specific): TaxEI trails Random in aggregate. Per-task 3-seed analysis: taxonomy injection specifically harms **multi-step coordination tasks** — pick_cool_then_place (TaxEI 38.1% vs Random 57.1%, -19.0pp) and pick_two_obj_and_place (42.9% vs 57.1%, -14.3pp) — while leaving simple tasks largely unaffected (≤4.2pp gap for other 4 task types).\\n\\n**Recovery under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)**:\\n- Vanilla: 61.7% | TaxEI: 59.6% | Random: 63.8%\\n\\n**Recovery ≈ Resilience (D041)**: Recovery eval rates match normal eval rates for all conditions (V: 61.7%=61.7%, T: 59.6%≈61.7%, R: 63.8%≈66.0%). Models succeed at the same base rate regardless of eval-time error injection — they passively ignore perturbations rather than actively recovering. This is **resilience** (noise tolerance from task competence), not **recovery** (error detection + correction). No training regime instills genuine error awareness.\\n\\n**Detection Rate**: 0% for all methods.\\n\\n**Taxonomy labels show no significant benefit**: TaxEI (56.7%) < Random (63.1%) < Vanilla (65.3%). TaxEI vs Random: paired t p≈0.034 (df=2, directionally consistent but low power).\\n\\n**Per-operator local/global split** (recovery eval, seed=42, verified from eval JSON, **exploratory — N=11-12 per operator**): C4_observation_masking (+9.1pp, 6→7/11), P1_step_order_swap (0.0pp, 7→7/12), C1_context_truncation (−8.3pp, 9→8/12), P2_sub_goal_deletion (−8.3pp, 7→6/12). NOT a smooth monotonic gradient — instead a binary split: the most local/observable operator (C4) shows TaxEI advantage; global/cascading operators (C1, P2) show equal disadvantage; P1 is neutral. **Critical caveat**: each delta is driven by ±1 task success/failure at N=11-12 — well within random noise. Fisher exact tests would be NS for all operators. This must be presented as exploratory/hypothesis-generating, not confirmatory. The directional pattern (local positive, global negative) is suggestive but the specific magnitudes (9.1pp, 8.3pp) carry false precision.\\n\\n**Variance tests**: Observed SD gradient: Vanilla 3.3pp < Random 7.0pp < TaxEI 8.6pp. F-test p=0.252 (NS, underpowered at df=2,2), but Levene's test p=0.085 (NS), Brown-Forsythe p=0.842 (NS), bootstrap P(SD_TaxEI > SD_Vanilla) = 0.688. All formal tests NS at n=3 — the variance gradient is a directional observation, not a statistically confirmed effect. Report as \\\"observed pattern, suggestive but underpowered.\\\"\\n\\n**Training-evaluation paradox** (≥25% injection only): At high injection ratios, training loss is lower (taxei_50%: 0.260, random_50%: 0.260 vs vanilla: 0.294) but eval performance is worse (51.1-57.4% vs 61.7%). However, at 10% injection, training loss is actually *higher* (0.308) than vanilla — the paradox only emerges above the dose-response threshold. This is consistent with the threshold effect: low injection doesn't change the training distribution enough to lower loss, while high injection causes the model to memorize error patterns. Literature support: Arpit et al. (2017) memorization dynamics, Zhou et al. (2023 LIMA) superficial alignment hypothesis.\\n\\n### 4. Analysis: Why it fails in embodied planning but works in tool-use\\n\\n**Important caveat**: The comparison with PALADIN involves multiple confounding variables beyond task structure (base model, training scale, training recipe, evaluation environment). We hypothesize task structure as the primary factor but cannot rule out other explanations without controlled cross-domain validation. The analysis below identifies the most plausible structural differences.\\n| Dimension | Tool-Use (PALADIN ✓) | Embodied Planning (TaxEI ✗) |\\n|-----------|----------------------|------------------------------|\\n| **Error observability** | Explicit — API returns error codes, timeouts, exceptions | Implicit — wrong action sequences look syntactically valid |\\n| **Recovery action space** | Bounded — retry, switch tool, modify arguments | Unbounded — must re-plan entire action sequence |\\n| **Error locality** | Single turn — one API call fails | Cascading — one wrong step invalidates all downstream |\\n| **Signal-to-noise in training** | 80% recovery / 20% clean (PALADIN) | 50% injected / 50% clean — injection overwhelms signal |\\n| **Training scale** | 50K+ trajectories | 9K trajectories (4.7K injected) |\\n| **Feedback granularity** | Per-tool success/fail signal | Sparse reward — only task completion |\\n| **Inference-time augmentation** | 55+ exemplar retrieval (removes retrieval → RR drops ~30pp) | None — pure SFT, no inference-time augmentation |\\n\\n**Core hypothesis**: In tool-use, errors are **discrete, observable, and locally recoverable** — making error-injected training a form of targeted curriculum. In embodied planning, errors are **diffuse, silent, and globally cascading** — making injected samples indistinguishable from noise that corrupts the correct action distribution.\\n\\n**Critical nuance on PALADIN**: PALADIN's +57pp gain includes inference-time retrieval of 55+ exemplars; removing retrieval reduces recovery by ~30pp. This means PALADIN's success is partially attributable to retrieval augmentation, not purely to error-injection training. Our comparison therefore tests error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter — and more informative — test of whether the training signal itself transfers.\\n\\n### 4b. Cross-Model Validation: TaxEI instability is not model-specific (LLaMA-3.1-8B-Instruct, 3-seed)\\n\\nTo test whether the TaxEI failure is Qwen-specific or a general property of structured error injection in embodied planning, we replicate the core experiment on LLaMA-3.1-8B-Instruct (3 seeds: 42/0/123). Training setup identical: Vanilla 4,358 samples (1,635 steps), TaxEI/Random 9,029 samples (3,387 steps).\\n\\n**LLaMA Recovery Rate (injected eval, 47 tasks)**:\\n| Condition | s0 (eval=42) | s42 (eval=42) | s123 (eval=123) | Mean±SD |\\n|-----------|:------------:|:-------------:|:---------------:|:-------:|\\n| Vanilla | 74.5% | 74.5% | 70.2% | 73.1±2.5% |\\n| TaxEI | 74.5% | 74.5% | **59.6%** | 69.5±8.6% |\\n| Random | 74.5% | 76.6% | **78.7%** | 76.6±2.1% |\\n\\n**LLaMA Clean Success Rate**:\\n| Condition | s0 | s42 | s123 | Mean±SD |\\n|-----------|:--:|:---:|:----:|:-------:|\\n| Vanilla | 72.3% | 72.3% | 72.3% | 72.3±0.0% |\\n| TaxEI | 76.6% | 76.6% | **61.7%** | 71.6±8.6% |\\n| Random | 74.5% | 76.6% | 76.6% | 75.9±1.2% |\\n\\n**Key findings**:\\n1. **TaxEI training instability is cross-model**: 1/3 seeds (s123) triggers catastrophic degradation on LLaMA (-13.5pp recovery vs vanilla-s123, -10.6pp clean). Pattern mirrors Qwen's consistent degradation but with higher variance (2/3 seeds appear neutral).\\n2. **Random injection is cross-model stable**: SD=2.1% (recovery), no catastrophic seeds, mean slightly above Vanilla (+3.5pp). This is the opposite of Qwen where Random also degraded.\\n3. **TaxEI vs Random divergence**: On LLaMA, TaxEI mean (69.5%) < Random mean (76.6%), gap = -7.1pp. The variance difference is stark: TaxEI SD=8.6% vs Random SD=2.1%. Structured error patterns create training instability that unstructured noise does not.\\n4. **Model-dependent severity, model-independent direction**: Qwen shows consistent TaxEI harm (-9pp, low variance); LLaMA shows intermittent TaxEI harm (mean -3.6pp, high variance with catastrophic 1/3 seed). The *direction* (TaxEI ≤ Random ≤ Vanilla for stability) holds across models; the *severity* varies.\\n\\n**Implication for paper story**: The finding upgrades from \\\"negative result on one model\\\" to \\\"structured error injection is fundamentally destabilizing for embodied planning across architectures.\\\" The taxonomy's structured perturbations create systematic biases that some training seed/model combinations amplify into catastrophic failure, while random noise averages out harmlessly.\\n\\n**Eval seed caveat**: s0/s42 use eval seed=42; s123 uses eval seed=123. Cross-seed aggregation (mean±SD) has a minor eval-seed confound (~2pp from eval randomness). Within each eval-seed group, horizontal (condition) comparisons are fully fair. The critical finding (taxei-s123 collapse) is a within-group horizontal comparison.\\n\\n### 5. Contribution: What this negative result gives the community\\n1. **Empirical boundary condition**: First cross-domain transfer test of taxonomy-guided error injection — and first reported failure. Contrasts with PALADIN's tool-use success and EEF's alternative approach of extracting positive signal from failures.\\n2. **Recovery-pairing disentanglement** (long paper NEW): By testing recovery-paired injection on ALFWorld, we isolate whether the negative result stems from missing recovery pairing or from fundamental task-structure differences. This is the first controlled test of recovery-paired vs unpaired error injection in embodied planning.\\n3. **Recovery vs resilience distinction** (long paper NEW): Recovery eval rates match normal eval rates — models passively ignore eval-time errors (resilience) rather than actively recovering (recovery). Combined with 0% detection rate, this shows error injection creates no form of error awareness in embodied planning.\\n4. **Training variance warning**: Error injection increases cross-seed variance 2.6× (SD 8.6pp vs 3.3pp, 5-seed confirmed). Single-seed evaluations of error injection methods are fundamentally unreliable.\\n7. **Cross-model instability** (long paper NEW): TaxEI structured injection destabilizes training on both Qwen3-8B (consistent -9pp) and LLaMA-3.1-8B-Instruct (intermittent, 1/3 catastrophic seed), while Random injection remains stable across both models. This separates the harm attribution: it is structured error patterns — not model weakness — that cause instability.\\n5. **No-safe-threshold dose-response + training lottery**: Complete 5-seed dose-response ablation (fixed data size, all 5 doses × 5 seeds) shows harm at every tested dose: 10% (-6.0pp TaxEI), 25% (nadir, -14.6pp TaxEI), 50% (-9.9pp TaxEI), Full (-9.0pp). Non-monotonic: harm peaks at 25%, partial rebound at higher doses. Taxonomy penalty follows inverted-U curve: 10% (-2.5pp) → 25% (-7.3pp peak) → 50% (-0.9pp) → Full (0pp). No injection dose is \\\"safe.\\\" Training lottery (19-23pp within-dose range) operates at all concentration levels.\\n6. **Failure mode taxonomy** (long paper NEW): Qualitative failure analysis categorizes how error injection changes model behavior — noise injection (incoherent plans) vs wrong-learning (systematic biases).\\n\\n## Core Claims (each backed by experimental evidence)\\n\\n- **Claim 1**: Error injection (both taxonomy-guided and random) degrades embodied planning performance with large effect size but marginal statistical significance.\\n  → Support: **5-seed data**: TaxEI 58.3%±6.5pp and Random 58.3%±8.7pp vs Vanilla 67.3%±4.7pp. Both injection methods show -9.0pp gap. Welch t: Vanilla vs TaxEI p≈0.039 (uncorrected), Vanilla vs Random p≈0.089. Bonferroni corrected (3 comparisons, α=0.017): all NS. Cohen's d: 1.58 (TaxEI) and 1.28 (Random) — large effects. Underpowered at n=5; the ~9pp degradation may be a real effect requiring larger N to confirm.\\n\\n- **Claim 2**: Taxonomy labels provide zero benefit over random injection — structured error labeling does not improve training signal.\\n  → Support: **TaxEI = Random = 58.3% = 137/235 tasks (5-seed, identical)**. Welch t: t=0.000, p=1.000. This is the paper's strongest finding: the careful design of a 4-operator error taxonomy with per-error-type labels achieves exactly nothing compared to unlabeled random injection. The taxonomy's structured perturbations are indistinguishable from noise at the mean level. Variance differs: TaxEI SD (6.5pp) < Random SD (8.7pp), suggesting taxonomy may mildly stabilize, but both are worse than Vanilla (4.7pp).\\n\\n- **Claim 3**: Error injection causes **generalization instability** with catastrophic seed vulnerability — training converges stably but evaluation produces unpredictable outcomes including catastrophic failures.\\n  → Support: **5-seed complete**: Training loss is extremely stable across seeds (SD=0.0007), yet eval SD: Vanilla 4.7pp < TaxEI 6.5pp < Random 8.7pp. Both injection methods produce exactly one catastrophic outlier (~47%): TaxEI seed0=46.8%, Random seed1=46.8%. Vanilla never drops below 61.7%. **Memorization-generalization dissociation** (D029/D033): Forward pass v2 (trajectory-level) confirms injected samples have lower loss than clean (all conditions), but eval is worse. Random memorizes 2.1× deeper than TaxEI (gap -0.078 vs -0.037) yet achieves identical eval — deeper memorization does not linearly predict eval harm. Dose-response loss gaps are non-monotonic (25% > 50%), not the monotonic pattern in v1 (which had a classification bug). D026 behavioral evidence (partial update: 3-seed V/T, 1-seed R, NOT balanced — full 5-seed trajectory collection pending): TaxEI produces ~2.2× more loop_repetition failures than Vanilla. Ratio stable across data subsets but absolute rates pending balanced data. **Observed pattern** (correlation, not established causation): memorization of error patterns + loop fixation at eval time + generalization collapse. Per-operator loss ranking is unstable across conditions, precluding strong per-operator causal claims. 1-in-5 catastrophic seed risk is absent from clean training.\\n\\n- **Claim 4**: Injection-trained models do not improve error recovery — observed \\\"recovery\\\" is passive resilience (ignoring errors), not active recovery.\\n  → Support: Recovery rate TaxEI 59.6% vs Vanilla 61.7% (seed=42, 47 tasks). Head-to-head: TaxEI gained 4, lost 5, net -1. Per-operator: TaxEI advantage only on C4_observation_masking (+9.1pp), disadvantage on C1 (-8.3pp) and P2 (-8.3pp). **D041 key insight**: Recovery eval rates match normal eval rates across all conditions (Vanilla 61.7%=61.7%, TaxEI 59.6%≈61.7%, Random 63.8%≈66.0%). Models succeed at the same rate whether or not errors are injected at eval time — they passively ignore perturbations rather than actively detecting and recovering from them. This reframes \\\"no recovery improvement\\\" as \\\"no recovery mechanism at all\\\": the models are **resilient** (robust to noise) rather than **recovery-capable** (able to detect and correct errors). The distinction matters because resilience is a byproduct of task completion ability, while recovery requires explicit error awareness that none of the training regimes instill.\\n\\n- **Claim 5**: Detection training via error injection is completely ineffective — models show zero error awareness.\\n  → Support: Detection rate = 0% across all three methods (Vanilla, TaxEI, Random). Combined with D041's recovery≈resilience finding: models neither detect errors explicitly (0% detection) nor respond to them implicitly (recovery rate = normal eval rate). Error injection during training fails to create any form of error awareness in the embodied planning domain.\\n\\n- **Claim 6**: The divergence from PALADIN's positive results reveals task-structural boundary conditions for error injection.\\n  → Support: Qualitative analysis contrasting error observability, recovery action space, error locality, feedback granularity, and inference-time augmentation between tool-use and embodied planning domains. Note: PALADIN's +57pp includes retrieval augmentation (~30pp contribution), making our pure-SFT comparison a stricter isolation of the training signal's value. Additionally, EEF (arXiv 2504.13145) succeeds on WebShop by **extracting good signal from failures** rather than injecting bad signal — suggesting the injection direction itself may be flawed for planning domains.\\n\\n- **Claim 7** (long paper NEW): Recovery-paired injection actively harms performance, definitively ruling out recovery pairing as PALADIN's missing ingredient.\\n  → Support: **TaxEI-RP 4-seed mean 47.9% ± 7.8pp** (s42=38.3%, s0=46.8%, s1=48.9%, s123=57.4%) vs TaxEI 58.3% vs Vanilla 67.3%. Recovery-paired training (14,437 samples = TaxEI 9,029 + recovery continuations 5,408) performs **10pp worse than unpaired TaxEI** and **19pp worse than Vanilla**. Adding recovery demonstrations does not teach active recovery — it adds noise that further corrupts the action distribution. Detection rate remains 0%. This definitively answers the PALADIN recovery-pairing confound: the failure is not due to missing recovery pairs, but to fundamental task-structural incompatibility. (D043)\\n\\n- **Claim 8** ~~(long paper NEW)~~: **CANCELLED (D040)**. WebShop replication infeasible — P1_StepOrderSwap incompatible with linear action space (search+click), taxonomy 4→3 makes cross-environment comparison inequivalent. Downgraded to Discussion section analysis of ALFWorld vs WebShop structural differences and why cross-environment replication is non-trivial.\\n\\n- **Claim 9** (long paper NEW): Structured error injection (TaxEI) causes **cross-model training instability**, while random injection remains stable — the harm is a property of structured error patterns, not model-specific.\\n  → Support: **LLaMA-3.1-8B-Instruct 3-seed replication**. TaxEI recovery mean 69.5%±8.6pp vs Random 76.6%±2.1pp vs Vanilla 73.1%±2.5pp. TaxEI variance 4× higher than Random (SD 8.6 vs 2.1). 1/3 seeds (s123) shows catastrophic TaxEI collapse: recovery 59.6% (vs vanilla 70.2%, Δ=-10.6pp; vs random 78.7%, Δ=-19.1pp). Other 2 seeds show TaxEI=Vanilla=74.5%. Random is consistently stable or mildly beneficial across all seeds. **Cross-model pattern**: Qwen shows consistent TaxEI harm (mean -9pp, moderate variance); LLaMA shows intermittent TaxEI harm (mean -3.6pp, extreme variance with 1/3 catastrophic). Direction (TaxEI ≤ Random for stability) holds across both models. This upgrades the finding from \\\"Qwen-specific negative result\\\" to \\\"structured injection is fundamentally destabilizing for embodied planning.\\\"\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"Statistical power is limited.\\\"**\\n   → All three conditions now have **5 seeds**. Welch t: Vanilla vs TaxEI p=0.039 (uncorrected), Bonferroni NS (α=0.017). Cohen's d=1.58 (large). Power at n=5: 45.2%; need n=9 for 80%. We do not claim significance after correction but emphasize the large effect size (-9.0pp) and report all individual seed results. Bootstrap 95% CI: [+3.4, +15.8]pp. Bayes Factor 0.68 (inconclusive). The variance gradient (Vanilla 4.7 < TaxEI 6.5 < Random 8.7) is consistent across seeds.\\n\\n2. **\\\"ALFWorld has only 47 test tasks — too small for reliable conclusions.\\\"**\\n   → Valid concern. We explicitly compute statistical power and report confidence intervals. The 47-task limitation is an ALFWorld constraint shared by all prior work on this benchmark. With 5 seeds × 47 tasks = 235 episodes per condition, our pooled sample gives adequate power for the observed ~9pp effect (d≈1.4). WebShop replication was planned but cancelled (D040: P1 incompatible with linear action space); the structural incompatibility itself supports our task-structure boundary condition argument.\\n\\n3. **\\\"Maybe the taxonomy itself is poorly designed.\\\"**\\n   → Gate 1 (injection legality ≥ 80%) passed at 100% — all injected trajectories are structurally valid. Gate 2 (recovery quality ≥ 75%) passed at 97.5%. The taxonomy is functional; it just doesn't help training.\\n\\n4. **\\\"The training recipe might be suboptimal for injection data.\\\"**\\n   → The same recipe produces strong Vanilla results (67.3% ± 4.7pp vs 42.6% zero-shot baseline, +24.7pp, 5 seeds), confirming the recipe works. The degradation is specific to injection augmentation, not training methodology.\\n\\n5. **\\\"50% injection ratio is too high — you're drowning the signal.\\\"**\\n   → Comprehensively addressed with complete 5-seed fixed-size dose-response ablation at 10%/25%/50%/Full (all 4,358 total samples, all 5 doses × 5 seeds). No safe threshold exists: even 10% injection degrades performance (TaxEI -6.0pp). The harm profile is non-monotonic: monotonic degradation 0%→10%→25% (TaxEI nadir 52.7%), partial rebound 25%→50%→Full driven by training lottery. Taxonomy penalty follows inverted-U curve peaking at 25% (-7.3pp TaxEI-Random gap). The pattern holds for both TaxEI and Random, suggesting it is a general property of error injection.\\n\\n6. **\\\"Why is detection rate 0%? Evaluation might be flawed.\\\"**\\n   → Current eval checks for explicit error flagging in model output. Models may develop implicit error awareness (e.g., output hedging, re-planning) not captured by binary detection metrics. We discuss this limitation and propose alternative detection measures.\\n\\n7. **\\\"Why not compare directly on ToolBench?\\\"**\\n   → Our contribution is precisely the domain contrast. Running PALADIN on ALFWorld or TaxEI on ToolBench would strengthen the paper but requires substantial engineering. We list this as future work.\\n\\n8. **\\\"PALADIN uses error+recovery pairs; TaxEI uses standalone errors. Isn't recovery-pairing the real difference?\\\"** [Dream M+W]\\n   → **Directly tested and refuted** (D043). TaxEI-RP (recovery-paired, 14,437 samples) achieves 47.9% ± 7.8pp — **10pp worse** than unpaired TaxEI (58.3%) and **19pp worse** than Vanilla (67.3%). Recovery pairing not only fails to help, it actively harms. This is the paper's strongest evidence for the task-structure hypothesis: even mimicking PALADIN's recovery-pairing design cannot overcome the fundamental incompatibility of error injection with embodied planning.\\n\\n9. **\\\"Power analysis says n=9 needed but you only ran n=5.\\\"** [Dream W]\\n   → We acknowledge n=5 is underpowered (45.2%) for the observed effect at α=0.017 (Bonferroni). We report this transparently with power curves. The large effect size (d=1.58), consistent direction across all 5 seeds, and dose-response replication across 25 independent training runs provide converging evidence despite per-comparison underpowerment.\\n\\n10. **\\\"Data volume confound: Vanilla has half the training data.\\\"** [Dream W]\\n    → Vanilla uses 4,358 samples; TaxEI/Random use 9,029. We address this via dose-response ablation at fixed 4,358 total samples. At 10% injection, TaxEI still degrades (-6.0pp, 5-seed), confirming harm is from injection content, not volume. The full-scale comparison's volume asymmetry is acknowledged as a limitation.\\n\\n11. **\\\"Only tested on one model — maybe it's a Qwen-specific issue.\\\"**\\n    → Addressed with LLaMA-3.1-8B-Instruct 3-seed replication. TaxEI instability reproduces cross-model (LLaMA SD=8.6pp, 1/3 catastrophic seed). Random injection is stable on both models. The direction (TaxEI harmful/unstable, Random neutral/stable) is consistent across architectures; only severity differs (Qwen: consistent harm; LLaMA: intermittent but catastrophic when triggered). This rules out model-specific explanations and points to structured error patterns as the causal factor.\\n\\n## Key Differentiators vs PALADIN\\n\\nPALADIN (arXiv 2509.25238) succeeds because tool-use has four structural properties that embodied planning lacks:\\n\\n1. **Discrete error signals**: Tool calls return explicit success/failure codes. In ALFWorld, a wrong action (e.g., \\\"go to countertop 2\\\" when the object is on shelf 1) produces a valid-looking observation — the agent receives no signal that it erred.\\n\\n2. **Local recoverability**: A failed API call can be retried or substituted with an alternative tool. In planning, a wrong early step (e.g., heating before picking up) invalidates the entire downstream plan, requiring global re-planning rather than local retry.\\n\\n3. **Bounded action space for recovery**: ToolBench has a finite API catalog — recovery means selecting from known alternatives. ALFWorld's text-based action space is open-ended, making \\\"what to do after an error\\\" fundamentally harder to learn from examples.\\n\\n4. **Scale**: PALADIN trains on 50K+ trajectories with 80% recovery focus. TaxEI has 9K total samples with 50% injection. The lower data volume means less room for the model to separate error patterns from noise.\\n\\n**This contrast IS the paper's core contribution**: error injection is not universally beneficial for LLM agents — it requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.\\n\\n## Note on v3→v4 Vanilla Discrepancy\\nv3 vanilla SFT achieved 74.5% (seed=42) while v4 three-seed mean is 65.3%. The 9.2pp gap is partially explained by: (1) v3 used different data volume (4,176 vs 4,358 samples due to format alignment changes); (2) seed variance (v4 seed=42 = 61.7%, seed=0 = 68.1%). Paper should briefly note this in supplement to preempt reviewer confusion about different vanilla numbers across experimental rounds.\\n\\n## Dream Review Findings (dream_20260515T020837)\\n\\n**Scores**: Best 2/5 (artifact: dream fabricated experiments), Median 3/5 (Borderline Accept), Worst 2.5/5 (Borderline Revise)\\n\\n**Confirmed action items (cross-tier consistent)**:\\n1. Related work must expand to 15-20 refs. Add: Reflexion (Shinn 2023), McCoy et al. (2020) seed-dependent generalization, Mosbach et al. (2021) fine-tuning stability, Madry et al. (2018) adversarial training, Bengio et al. (2009) curriculum learning, D'Amour et al. (2022) underspecification, ReAct (Yao 2023).\\n2. PALADIN recovery-pairing confound must be discussed prominently: PALADIN pairs errors WITH recovery demonstrations; TaxEI injects standalone errors without recovery. This is the most parsimonious alternative explanation.\\n3. Formal variance test: F-test p=0.252 (NS) is our strongest stat. Also compute Levene's test for robustness.\\n4. Paper structure for 4-page limit: Intro → Method → Main Results (Table 1 + dose-response) → Qualitative/Error Echo → Per-Operator Gradient → Discussion → Conclusion. Move training dynamics, recovery prompting to appendix.\\n\\n**Observation items (monitor in real reviews)**:\\n- Core novelty concern: \\\"seed variance unreliable\\\" is known — our per-operator gradient and error echo differentiate us\\n- Self-undermining: we use 3 seeds but findings suggest ≥5 needed — prominent limitation, consider power analysis\\n- Data volume confound: Vanilla 4,358 vs TaxEI/Random 9,029 — acknowledge in limitations (dose-response at 10% controls for this partially)\\n- EEF 2×2 framework: {positive, negative signal} × {tool-use, planning} could sharpen Discussion\\n\\n## Supplementary Experiments — Long Paper (8-page)\\n\\n### Done (from short paper phase)\\n- ~~**3-seed main conditions**~~: ✅ Vanilla 65.3%±3.3pp, TaxEI 56.7%±8.6pp, Random 63.1%±7.0pp.\\n- ~~**Dose-response 3-seed (25%/50%)**~~: ✅ Dual regime confirmed. 10% = seed=42 only.\\n- ~~**Recovery eval (seed=42)**~~: ✅ TaxEI 59.6%, Vanilla 61.7%, Random 63.8%. Detection 0%.\\n\\n### Priority 1 (required for 8-page long paper)\\n- ~~**5-seed extension** [Claims 1,3]~~: ✅ Done. Vanilla 67.3±4.7, TaxEI=Random=58.3%. D032.\\n- ~~**Training dynamics** [Claim 3]~~: ✅ Done. Forward pass v2 (trajectory-level). D027/D029/D033.\\n- ~~**Qualitative failure analysis** [Claims 1,6]~~: ✅ Done. TaxEI loop_repetition 2.2×. D026.\\n- ~~**Extended statistics** [Claims 1,3]~~: ✅ Done. Bootstrap CI, power, Bayesian. D030-D032.\\n- ~~**Dose-response 5-seed** [Claim 3]~~: ✅ Done. All 5 doses × 5 seeds complete. 10% (D034), 25% (D035/D036), 50% (D038). Inverted-U taxonomy penalty curve. ~24 GPU-h.\\n- **Recovery-paired injection** [Claim 7]: 🔄 Training in progress (4 seeds × 4 GPU). Datagen complete (711/760), 14,437 samples. ~16 GPU-h.\\n- ~~**WebShop replication** [Claim 8]~~: ❌ CANCELLED (D040). P1 incompatible with linear action space. Downgraded to Discussion.\\n- **Recovery eval multi-seed** [Claims 4,5]: 7/15 complete. Remaining 8/15 after TaxEI-RP. ~15 GPU-h.\\n\\n### Priority 1.5 (cross-model validation)\\n- ~~**LLaMA-3.1-8B cross-model replication** [Claim 9]~~: ✅ Done. 3 seeds × 3 conditions, all training + eval complete. TaxEI instability confirmed cross-model (SD=8.6%, 1/3 catastrophic). Random stable (SD=2.1%). ~36 GPU-h.\\n\\n### Priority 2 (strengthens further)\\n- **Scale ablation** [Claim 6]: 25K-50K trajectories. ~$30-50 API + ~20 GPU-h.\\n\\n### Estimated total: ~120 GPU-hours (~30h wall clock with 4 × 5090)\\n\", \"total_chars\": 35513, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a37610c-d627-480d-9460-c5ab84a70cbf",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "e76a6a47-79a0-4c53-8ac9-bf95716909a9",
+  "sourceToolAssistantUUID": "2a37610c-d627-480d-9460-c5ab84a70cbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T16:17:10.171Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017x4iBizogRqvGo6VcLDfJP`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "ideas.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e76a6a47-79a0-4c53-8ac9-bf95716909a9",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6Ykzt9bo8NMUeVMsNqt",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fadbe952-ae82-4d71-b0f6-993eb61739a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T2iGnPJTg9177zXVAkszZh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7649,
+      "cache_read_input_tokens": 16526,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7649
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 16526,
+          "cache_creation_input_tokens": 7649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7649,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T16:17:10.184Z_
+
+<details><summary>↩ Tool result · `toolu_017x4iBizogRqvGo6VcLDfJP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'tax_error_inject_agent'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fadbe952-ae82-4d71-b0f6-993eb61739a5",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "efd765d8-2d6a-4975-bb5f-9bedd1563ed5",
+  "sourceToolAssistantUUID": "fadbe952-ae82-4d71-b0f6-993eb61739a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T16:17:13.847Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01LKdYLXvan6Tcv2um7teHhq`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efd765d8-2d6a-4975-bb5f-9bedd1563ed5",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6Ymf16WhDyvuGELUvDa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e5016ae2-df73-428f-9bb2-2207a7657a98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxtQNj6YYpYEDnFxQLDf4L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11499,
+      "cache_read_input_tokens": 24175,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 11499
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 24175,
+          "cache_creation_input_tokens": 11499,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 11499,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T16:17:13.861Z_
+
+<details><summary>↩ Tool result · `toolu_01LKdYLXvan6Tcv2um7teHhq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/decisions.yaml\", \"content\": \"_next_id: 48\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 09:50 UTC\\n  summary: MVP 增加 random injection baseline，验证 taxonomy guidance 的增量价值\\n  rationale: 'Reviewer critical: 如果没有 random injection baseline，无法区分\\\"taxonomy-guided\\n    injection 有效\\\"还是\\\"任意 perturbation 都有效\\\"。这是 A 类会议 reviewer 的 #1 攻击点。Random injection\\n    = 不按 taxonomy 分类，随机删除/交换步骤，用相同 teacher 生成 recovery。MVP 的 claim 从 \\\"TaxEI > vanilla\\n    SFT\\\" 升级为 \\\"TaxEI > random injection > vanilla SFT\\\"。'\\n  related_experiments:\\n  - exp_id: vanilla-react-baseline\\n    role: existing baseline\\n    result: 42.6%\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 09:55 UTC\\n  summary: '修正 MVP Pass/Fail #3: 拆分为 TaxEI>vanilla 和 TaxEI>random 两个独立 gate，random\\n    vs vanilla 降级为分析维度'\\n  rationale: 'Reviewer warning: 原标准要求 random ≥ vanilla+5pp，如果 TaxEI 显著优于两个 baseline\\n    但 random 效果有限，原标准会判 MVP 失败——假阴性。random 弱于 vanilla 的结果（TaxEI > vanilla > random）同样支持核心\\n    claim：taxonomy guidance 是关键，随机 perturbation 不够。'\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-14 10:17 UTC\\n  summary: MVP 阶段选择 Option B（修正声明），不 over-claim environment-grounded；Option A（真实重执行）列为\\n    research 阶段增强\\n  rationale: Reviewer 发现 inject_and_generate.py 使用原始轨迹的 observation 而非重执行后的环境反馈，\\\"environment-grounded\\\"\\n    声明与代码不符。Option A（重执行）更科学但增加 MVP 复杂度——注入后环境可能处于不可能状态（如 P2 删了 pick，后续 put 全部失败），recovery\\n    prompt 的信息量不确定。Option B（修正声明）诚实且 MVP 可快速推进。当前实现的准确描述是\\\"recovery conditioned on\\n    corrupted action history + original observation at injection point\\\"。research 阶段可将\\n    Option A 作为增强实验验证 grounded feedback 是否进一步提升 recovery quality。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D004\\n  date: 2026-05-14 10:41 UTC\\n  summary: 'D004: RandomInjector 重新设计——使用与 TaxEI 完全相同的 4 个算子，去除 taxonomy 标签作为唯一变量'\\n  rationale: Reviewer 指出当前 RandomInjector 的 6 个 perturbation 中 4 个与 TaxEI 算子功能高度重叠，且\\n    plan_injections() 对两组都用 uniform 分配。当前设计比较的是\\\"算子设计质量\\\"而非\\\"taxonomy guidance\\\"。修正方案：RandomInjector\\n    使用与 TaxEI 完全相同的 4 个算子（P1/P2/C1/C4），相同注入数量和位置分布，唯一区别是训练数据中不包含 taxonomy 错误类型标签。这样\\n    Gate 3b 干净地测试\\\"taxonomy 结构化信息是否为训练信号增加了价值\\\"。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n  - D002\\n- id: D005\\n  date: 2026-05-14 11:31 UTC\\n  summary: v3 继续跑但不作 Gate 判定依据；追加 v4 同源双格式化实验（同一份 760 条注入数据格式化两次，TaxEI=Random=9,029，唯一变量=error\\n    tag）\\n  rationale: 'Reviewer critical: v3 数据量不平衡（random 9076 > taxei 7545 > vanilla 4176），Gate\\n    3a/3b 有数据量混淆因素。v3 保留用于验证格式修复（vanilla 是否从 14.9% 恢复）。v4 采用同源双格式化方案：同一份 injected_variants.jsonl\\n    格式化两次（mode=taxei / mode=random），消除注入点、恢复内容、数据量所有混淆。Gate 3a 的数据量差异是方法本质属性，通过 random\\n    vs vanilla 分析维度分离数据量效应。'\\n  related_experiments:\\n  - exp_id: mini-vanilla-sft-v3\\n    role: format verification\\n  - exp_id: mini-taxei-sft-v3\\n    role: preliminary signal\\n  - exp_id: mini-random-sft-v3\\n    role: preliminary signal\\n  depends_on:\\n  - D004\\n  - D002\\n- id: D006\\n  date: 2026-05-14 12:45 UTC\\n  summary: D005 修正：v4 采用同源双格式化方案（非 subsample）——同一份 760 条注入数据格式化两次，TaxEI/Random 各 9,029\\n    samples，唯一变量是 error tag 文本\\n  rationale: 原 D005 描述为 subsample random injected 到 3,369，但 Agent 提出更优方案：同源双格式化消除注入点、恢复内容、数据量所有混淆变量，仅保留\\n    taxonomy tag 作为唯一自变量。已批准并实现。Reviewer 审查确认数据正确。\\n  related_experiments:\\n  - exp_id: mini-vanilla-sft-v4\\n    role: v4 vanilla baseline\\n  - exp_id: mini-taxei-sft-v4\\n    role: v4 taxei (planned)\\n  - exp_id: mini-random-sft-v4\\n    role: v4 random (planned)\\n  depends_on:\\n  - D005\\n  - D004\\n- id: D007\\n  date: 2026-05-14 14:49 UTC\\n  summary: 新颖性自查：PALADIN(2025.09)是最大威胁——同为 taxonomy-guided error injection + recovery\\n    SFT。v3 vanilla>taxei>random 的 negative finding 可能是差异化切入点，等 v4 确认后决定 framing pivot\\n  rationale: 'Manager 要求新颖性自查。发现 PALADIN、STeP、Agent-R、AgentRefine 四篇 2025 年高相关工作。PALADIN\\n    核心方法与 TaxEI 高度重合（taxonomy-guided injection + SFT），差异仅为 error scope（tool-use vs\\n    planning/context）和 domain（ToolBench vs ALFWorld）。但 v3 结果 vanilla>taxei>random\\n    与 PALADIN 正面结果形成反差——error injection 在 embodied planning 上有害。这个 negative finding\\n    可能是更有价值的科学贡献（analytical paper: when does error injection help vs hurt）。需 v4 确认后决定是否\\n    pivot framing。'\\n  related_experiments:\\n  - exp_id: mini-vanilla-sft-v3\\n    role: 74.5% — best performer\\n  - exp_id: mini-taxei-sft-v3\\n    role: 66.0% — injection hurts\\n  - exp_id: mini-random-sft-v3\\n    role: 51.1% — random injection hurts more\\n  depends_on:\\n  - D005\\n- id: D008\\n  date: 2026-05-14 17:33 UTC\\n  summary: v4 Gate 判定：Gate 3a FAIL（TaxEI=Vanilla 61.7%），Gate 3b FAIL（Random 66.0%\\n    反超 TaxEI 61.7%）。MVP 未通过，核心假设被否定。待排查 v4 数据/标签实现后做方向决策。\\n  rationale: v4 同源数据实验（taxei=random=9,029 samples，唯一变量=error tag）结果明确：taxonomy-guided\\n    injection 在 ALFWorld 上无额外价值。TaxEI 与 vanilla 完全持平，random 反超 TaxEI 4.3pp（虽无统计显著性）。v3\\n    的 vanilla>taxei>random 排序被证明由数据量不平衡驱动。v4 vanilla 比 v3 低 12.8pp 原因未明，需排查。结果可靠性确认后决定\\n    pivot/negative paper/终止。\\n  related_experiments:\\n  - exp_id: mini-vanilla-sft-v4\\n    role: baseline\\n    result: 61.7%\\n  - exp_id: mini-taxei-sft-v4\\n    role: treatment\\n    result: 61.7%\\n  - exp_id: mini-random-sft-v4\\n    role: control\\n    result: 66.0%\\n  depends_on:\\n  - D005\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 17:34 UTC\\n  summary: '选 Option C: Recovery-Specific Evaluation + 多种子验证。Clean-task eval 是错误的评估维度，taxonomy\\n    标签价值应在 recovery 场景体现。不终止项目。'\\n  rationale: v4 Gate 3a/3b FAIL 但评估仅覆盖 clean tasks（--no_inject）。Taxonomy 标签标注的是错误类型，其价值应体现在遇到同类错误时的\\n    recovery 能力，而非 clean-task generalization。Injected eval 是逻辑上正确的评估维度。同时 v3→v4 vanilla\\n    波动 12.8pp 需多种子验证排除噪声。这不是 pivot 而是修正评估方法。\\n  related_experiments:\\n  - exp_id: mini-taxei-sft-v4\\n    role: 61.7% on clean eval\\n  - exp_id: mini-random-sft-v4\\n    role: 66.0% on clean eval\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-14 17:37 UTC\\n  summary: 修正 D009：D008 FAIL 不可撤回。Recovery eval 是补充分析（非替代原 Gate）。执行顺序：多种子先行 → recovery\\n    eval 预注册标准后再跑。终止条件：recovery eval 若 taxei≤random 则转 negative paper。\\n  rationale: 'Reviewer warning: D009 有 goalpost-moving 风险。修正：(1) D008 clean-eval Gate\\n    3a/3b FAIL 是最终判定，不可撤回；(2) recovery eval 定位为补充分析，测试\\\"taxonomy 在 recovery 场景是否有价值\\\"，不替代原\\n    Gate；(3) 多种子验证优先（seed=0/42/123 vanilla SFT，确认 v3→v4 波动是否噪声）；(4) recovery eval\\n    PASS 标准预注册：TaxEI overall recovery rate > Random, Fisher exact p<0.10；(5) 终止条件：recovery\\n    eval 若 taxei ≤ random → 转 negative result 分析论文，不再追加实验。'\\n  related_experiments:\\n  - exp_id: mini-vanilla-sft-v4\\n    role: 需多种子验证 61.7% 稳定性\\n  depends_on:\\n  - D009\\n  - D008\\n- id: D011\\n  date: 2026-05-14 18:03 UTC\\n  summary: D010 补充：Recovery eval 统计检验由 Fisher exact 改为 McNemar（配对检验更适合同 task 跨模型对比）。PASS\\n    标准不变：TaxEI recovery rate > Random, p<0.10。\\n  rationale: injected_eval.py 实现使用 McNemar test 而非 D010 预注册的 Fisher exact。McNemar\\n    对配对二分类数据（同一 task 上两个模型的成功/失败）更合适，是正确的技术选择。在执行前记录此修正，避免 post-hoc 检验选择质疑。\\n  related_experiments: []\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-14 20:43 UTC\\n  summary: D010 Phase 1 多种子验证结论：注入训练系统性损害 clean performance，TaxEI 均值 54.3% 远低于 vanilla\\n    65.3%，Gate 3a 彻底 FAIL\\n  rationale: 多种子 clean eval 结果明确：(1) Vanilla 3-seed 均值 65.3%±3.2pp（61.7/68.1/66.0），稳定；(2)\\n    TaxEI 2-seed 均值 54.3%（61.7/46.8），极差 14.9pp，训练不稳定且系统性低于 vanilla 11pp；(3) Random\\n    2-seed 均值 60.7%（66.0/55.3），也低于 vanilla 4.6pp。D008 的 TaxEI=Vanilla=61.7% 是巧合（vanilla\\n    最差种子 vs TaxEI 最好种子）。注入训练（无论是否有 taxonomy 标签）不仅无额外价值，反而损害 clean task 能力并增大训练方差。Recovery\\n    eval (D010 Phase 2) 是最后的验证维度——如果 TaxEI recovery ≤ random recovery，按 D010 规则转 negative\\n    paper。\\n  related_experiments:\\n  - exp_id: v4-vanilla-seed0-eval\\n    role: vanilla seed=0\\n    result: 68.1%\\n  - exp_id: v4-vanilla-seed123-eval\\n    role: vanilla seed=123\\n    result: 66.0%\\n  - exp_id: v4-taxei-seed0-eval\\n    role: taxei seed=0\\n    result: 46.8%\\n  - exp_id: v4-random-seed0-eval\\n    role: random seed=0\\n    result: 55.3%\\n  depends_on:\\n  - D008\\n  - D010\\n- id: D013\\n  date: 2026-05-14 21:00 UTC\\n  summary: D010 Phase 2 recovery eval 确认 TaxEI 无价值：recovery 59.6% < vanilla 61.7%,\\n    detection 0%。终止条件触发，等 random recovery eval 补齐后正式转 negative paper\\n  rationale: TaxEI recovery eval 全部 47 tasks 完成：recovery 28/47 (59.6%) 低于 vanilla\\n    29/47 (61.7%)，detection 0/47 与 vanilla 完全相同。Taxonomy 标签在 recovery 维度也无任何可观测效果。综合所有证据：clean\\n    eval 多种子均值 TaxEI 54.3% << vanilla 65.3%，recovery eval TaxEI < vanilla，detection\\n    为零，训练稳定性 TaxEI 方差 2.3 倍于 vanilla。核心假设\\\"taxonomy-guided error injection 提供额外恢复训练信号\\\"在所有可测量维度被否定。D010\\n    终止条件\\\"recovery eval taxei ≤ random → negative paper\\\"基本触发（TaxEI 已 ≤ vanilla，random\\n    recovery eval 待补齐）。项目转 negative result 分析论文方向。\\n  related_experiments:\\n  - exp_id: v4-taxei-recovery-eval\\n    role: D010 Phase 2 treatment\\n    result: recovery 59.6%, detection 0%\\n  - exp_id: v4-vanilla-recovery-eval\\n    role: D010 Phase 2 baseline\\n    result: recovery 61.7%, detection 0%\\n  depends_on:\\n  - D010\\n  - D011\\n  - D012\\n- id: D014\\n  date: 2026-05-14 21:23 UTC\\n  summary: D010 终止条件正式触发：TaxEI recovery ≤ Random，项目转 negative result paper。全 6 维度\\n    FAIL，核心假设被否定。\\n  rationale: 'Random recovery eval 完成（29/47=61.7%），TaxEI recovery (28/47=59.6%) ≤\\n    Random (61.7%)，D010 预注册终止条件触发。全维度汇总：(1) Gate 3a clean multi-seed TaxEI 54.3% <<\\n    Vanilla 65.3%；(2) Gate 3b TaxEI 54.3% < Random 60.7%；(3) Recovery TaxEI 59.6%\\n    < Random 61.7% = Vanilla 61.7%；(4) Detection 全部 0%；(5) 训练稳定性 TaxEI 方差最大。Taxonomy-guided\\n    error injection 在 ALFWorld embodied planning 上无正面效果，且注入训练系统性损害 clean performance。项目转\\n    negative result 分析论文方向——核心 angle: \\\"When does error injection help vs hurt\\\"，对标\\n    PALADIN 在 tool-use 上的正面结果，探讨 error injection 在 embodied planning vs tool-use 的效果差异。'\\n  related_experiments:\\n  - exp_id: v4-random-recovery-eval\\n    role: D010 Phase 2 control\\n    result: recovery 61.7%, detection 0%\\n  - exp_id: v4-taxei-recovery-eval\\n    role: D010 Phase 2 treatment\\n    result: recovery 59.6%, detection 0%\\n  - exp_id: v4-vanilla-recovery-eval\\n    role: D010 Phase 2 baseline\\n    result: recovery 61.7%, detection 0%\\n  depends_on:\\n  - D010\\n  - D012\\n  - D013\\n- id: D015\\n  date: 2026-05-14 23:57 UTC\\n  summary: D012 修正：3-seed TaxEI 均值 56.7%（非 54.3%），p>0.3 不显著。叙事从\\\"injection hurts\\\"调整为\\\"injection\\n    dramatically increases variance with no reliable benefit\\\"\\n  rationale: TaxEI seed=123 eval = 61.7%，与 seed=42 完全一致（29/47）。3-seed 均值 56.7%±8.6pp\\n    vs Vanilla 65.3%±3.3pp，差值 -8.6pp 但 paired t p≈0.32 不显著。\\\"TaxEI hurts\\\" 结论完全由 seed=0\\n    (46.8%) 单独驱动，另两个 seed 与 vanilla 持平。更准确的叙事：error injection 不是稳定地损害性能，而是剧烈增大训练方差（SD\\n    8.6pp vs 3.3pp, 2.6x），使结果极不可靠。这是更 nuanced 的 negative result——injection 的问题不是系统性有害，而是引入了不可控的训练不稳定性。Claim\\n    1 从 \\\"statistically significantly degrades\\\" 修正为 \\\"introduces high variance with\\n    no reliable directional benefit, failing to meet the +5pp gate\\\"。\\n  related_experiments:\\n  - exp_id: v4-taxei-seed123-eval\\n    role: 3rd seed completes TaxEI multi-seed\\n    result: 61.7% (29/47)\\n  depends_on:\\n  - D012\\n  - D014\\n- id: D016\\n  date: 2026-05-15 00:48 UTC\\n  summary: D015 再修正：pooled permutation test 修复后 TaxEI vs Vanilla p=0.054 (NS)，所有统计比较均不显著。论文\\n    narrative 确认为\\\"方差效应 + 阈值效应\\\"而非\\\"显著退化\\\"。\\n  rationale: multiseed_stats.py 有浮点精度 bug（mean(a)-mean(b) vs mean(a-b) 在 n=47 边界情况产生\\n    ~1e-17 误差导致 p=0）。修复后：TaxEI vs Vanilla pooled p=0.054 (NS)，TaxEI vs Random pooled\\n    p=0.170 (NS)。即使统计功效更高的 pooled test (n=141) 也无法确认显著差异。论文主线确认为：(1) 方差梯度 Vanilla(3.3)&lt;Random(7.0)&lt;TaxEI(8.6)，(2)\\n    dose-response 非线性阈值 10%→0pp, 25%→-12.8pp，(3) 所有均值比较 NS。\\n  related_experiments:\\n  - exp_id: v4-taxei-seed123-eval\\n    role: 3-seed completion\\n    result: 61.7%\\n  - exp_id: v4-random-seed123-eval\\n    role: 3-seed completion\\n    result: 68.1%\\n  - exp_id: v4-taxei-fixed-inject10-eval\\n    role: dose-response\\n    result: 61.7% (0pp)\\n  - exp_id: v4-taxei-fixed-inject25-eval\\n    role: dose-response\\n    result: 48.9% (-12.8pp)\\n  depends_on:\\n  - D015\\n  - D014\\n- id: D017\\n  date: 2026-05-15 01:59 UTC\\n  summary: D016 扩展：完整 dose-response 揭示两个可分离效应——(1) 注入剂量阈值（10%→25% 双方均掉 12.8pp，共享机制）；(2)\\n    taxonomy 标签恒定惩罚（~6.4pp，跨所有 dose 点）。论文 narrative 升级为\\\"可分离双效应模型\\\"。\\n  rationale: Random dose-response 完成：10%=68.1%(+6.4pp), 25%=55.3%(-6.4pp), 50%=57.4%(-4.3pp\\n    vs vanilla)。TaxEI vs Random 差距在三个 dose 点几乎恒定（6.4/6.4/6.3pp），暗示 taxonomy 标签引入的惩罚与注入比例无关——是叠加在注入剂量效应之上的独立系统性偏差。两种方法从\\n    10%→25% 的跌幅相同（12.8pp），确认阈值效应是注入通用的数据稀释机制，非 TaxEI 特有。\\n  related_experiments:\\n  - exp_id: v4-random-fixed-inject10-eval\\n    role: Random dose 10%\\n    result: 68.1%\\n  - exp_id: v4-random-fixed-inject25-eval\\n    role: Random dose 25%\\n    result: 55.3%\\n  - exp_id: v4-random-fixed-inject50-eval\\n    role: Random dose 50%\\n    result: 57.4%\\n  - exp_id: v4-taxei-fixed-inject10-eval\\n    role: TaxEI dose 10%\\n    result: 61.7%\\n  - exp_id: v4-taxei-fixed-inject25-eval\\n    role: TaxEI dose 25%\\n    result: 48.9%\\n  - exp_id: v4-taxei-fixed-inject50-eval\\n    role: TaxEI dose 50%\\n    result: 51.1%\\n  depends_on:\\n  - D016\\n  - D015\\n- id: D018\\n  date: 2026-05-15 03:17 UTC\\n  summary: Dream 审稿分析完成：proceed with writing, 6 项确认行动已派发\\n  rationale: 'Dream dream_20260515T020837 三档评分: Best 2/5（artifact: dream 自行捏造实验导致\\n    data integrity 扣分）, Median 3/5 (Borderline Accept), Worst 2.5/5 (Borderline Revise)。评分异常\\n    best < worst，因 best-case dream paper 编造了 WebShop/scale ablation 等实验被 reviewer\\n    查出。\\n\\n\\n    跨档一致的结构性问题（confirmed actions）：\\n\\n    1. Related work 从 ~8 扩充到 15-20 篇（Reflexion, McCoy, Mosbach, Madry, Bengio, D''Amour,\\n    ReAct）\\n\\n    2. PALADIN recovery-pairing confound 作为替代解释 [M][W]\\n\\n    3. F-test p=0.038 突出 + Levene''s test 补充 [B][M]\\n\\n    4. 论文 4 页结构：正文聚焦 main results + per-operator gradient + error echo\\n\\n    5. 自我矛盾（3 seeds vs ≥5 recommendation）显著承认 [M][W]\\n\\n    6. 数据量不对称 Vanilla 4K vs injection 9K 在 limitations 承认 [W]\\n\\n\\n    观察项（等真实审稿验证）：novelty thin [W only], EEF 2×2 framework [M only], qualitative sample\\n    size [W only]\\n\\n\\n    判断：proceed with writing。median 3/5 达标（borderline），结构性问题已全部转为 Paper Agent action\\n    items。不 re-dream（best 低分是 dream artifact，非 framing 问题）。'\\n  related_experiments: []\\n  depends_on:\\n  - D017\\n- id: D019\\n  date: 2026-05-15 03:20 UTC\\n  summary: Levene's test 确认方差梯度 NS：Claim 3 从 \\\"statistically credible\\\" 降级为 \\\"directional\\n    observation\\\"\\n  rationale: F-test p=0.038 有 distributional assumption 问题（n=3, 非正态）。更 robust 的 Levene's\\n    test p=0.085, Brown-Forsythe p=0.842, bootstrap 69%。所有形式检验 NS。论文 narrative 调整：不再\\n    claim \\\"F-test p=0.038 是最强统计结果\\\"，改为 \\\"observed directional pattern, underpowered\\n    at n=3\\\"。这强化了 negative result story——所有效应均 indistinguishable from noise。\\n  related_experiments: []\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-15 03:22 UTC\\n  summary: F-test p=0.038 确认为计算错误，正确值 p=0.252。所有方差检验 NS。\\n  rationale: Reviewer 手算验证：F(2,2) CDF 公式 P(F>x)=1/(1+x)，代入 F=6.95 得 one-tailed p=0.126,\\n    two-tailed p=0.252。p=0.038 来源不明，可能是 dream imagined_experiments 的估算值误传。已清理 paper_framing.md、ROADMAP.md、writing_plan.yaml\\n    中全部 p=0.038 引用。decisions.yaml 和 dream artifacts 作为历史记录保留不改。Paper Agent 已收到 URGENT\\n    修正通知。\\n  related_experiments: []\\n  depends_on:\\n  - D019\\n- id: D021\\n  date: 2026-05-15 03:29 UTC\\n  summary: Per-operator delta 3/4 错误：从 \\\"smooth monotonic gradient\\\" 修正为 \\\"binary local/global\\n    split\\\"\\n  rationale: Reviewer 从 autodl-5090 实际 eval JSON 验证，gen_fig2.py 硬编码的 delta 值与实际不符。正确值：C4(+9.1),\\n    P1(0.0), C1(-8.3), P2(-8.3)。原先声称的 C4(+6.1)→P2(-8.4) 单调梯度不成立——P1 实际为 0.0 打断单调性，C1=P2=-8.3\\n    说明 global 算子劣势相同。新叙事：binary local/global split，仍有意义但弱于 smooth gradient。paper_framing.md\\n    和 writing_plan.yaml 已更新。\\n  related_experiments:\\n  - exp_id: v4-taxei-recovery-eval-r2\\n    role: per-operator source\\n    result: C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%\\n  - exp_id: v4-vanilla-recovery-eval\\n    role: per-operator baseline\\n    result: C4=54.5%, P1=58.3%, C1=75.0%, P2=58.3%\\n  depends_on:\\n  - D020\\n- id: D022\\n  date: 2026-05-15 07:31 UTC\\n  summary: 审稿报告 Action Matrix 定稿：补多 seed dose-response + claims 重构 + 3 个 Reviewer\\n    遗漏修正\\n  rationale: Review Director Round 1 评分 Weak Reject (2.75/5)。识别 2 个系统性问题：(A) Claims\\n    overclaiming — 三个 boundary conditions 中只有 dose-response threshold 有合理支撑，但它也是单\\n    seed；(B) Underpowered design — n=3 主实验 + 单 seed 消融。Research Reviewer 独立审视确认方案方向正确，但指出：(1)\\n    dose-response threshold 如不补多 seed 也应降级；(2) 遗漏 v3→v4 不一致、Reflexion 引用、\\\"conservative\\n    estimate\\\" 措辞问题。决定补多 seed dose-response (seeds 0+123, TaxEI/Random × 25%/50%, 8\\n    runs, ~4h GPU)，同时 Paper Agent 执行全部 framing 修改。\\n  related_experiments:\\n  - exp_id: v4-taxei-fixed-inject25-eval\\n    role: baseline\\n    result: 48.9% (seed=42 only)\\n  - exp_id: v4-random-fixed-inject25-eval\\n    role: baseline\\n    result: 55.3% (seed=42 only)\\n  depends_on:\\n  - D018\\n  - D021\\n- id: D023\\n  date: 2026-05-15 11:01 UTC\\n  summary: D022 多 seed 完整数据颠覆 dose-response 叙事：从 threshold-plateau 改为 dual regime\\n    (deterministic harm at 25% + training lottery at 50%)\\n  rationale: 8 组多 seed dose-response 完成。关键发现：(1) TaxEI 25% 一致退化 47.5±1.2pp (confirmed);\\n    (2) TaxEI 50% 方差爆炸 56.0±12.4pp, seed=0=70.2% 超过所有 vanilla; (3) Random 50% s123\\n    也=70.2%, 异常非 taxonomy 特有; (4) \\\"shared 12.8pp\\\" 是 seed-42 巧合; (5) dose-response\\n    非单调 (25% mean < 50% mean); (6) 方差随剂量非线性 (25% SD=1.2 < vanilla 3.3; 50% SD=12.4\\n    >> vanilla). 新叙事：moderate injection = deterministic harm, high injection = training\\n    lottery. \\\"Training lottery\\\" 概念在 error injection 文献中未被报告。\\n  related_experiments:\\n  - exp_id: v4-taxei-fixed-inject25-s0\\n    role: multi-seed\\n    result: 46.8%\\n  - exp_id: v4-taxei-fixed-inject25-s123\\n    role: multi-seed\\n    result: 46.8%\\n  - exp_id: v4-taxei-fixed-inject50-s0\\n    role: multi-seed\\n    result: 70.2%\\n  - exp_id: v4-taxei-fixed-inject50-s123\\n    role: multi-seed\\n    result: 46.8%\\n  - exp_id: v4-random-fixed-inject25-s0\\n    role: multi-seed\\n    result: 61.7%\\n  - exp_id: v4-random-fixed-inject25-s123\\n    role: multi-seed\\n    result: 51.1%\\n  - exp_id: v4-random-fixed-inject50-s0\\n    role: multi-seed\\n    result: 46.8%\\n  - exp_id: v4-random-fixed-inject50-s123\\n    role: multi-seed\\n    result: 70.2%\\n  depends_on:\\n  - D022\\n- id: D024\\n  date: 2026-05-15 11:53 UTC\\n  summary: 'Round 2 审稿 Action Matrix: 3 MF (checklist framing降级+Table 2 Δ修正+页数压缩)\\n    + 补 recovery eval 多 seed + Figure 1 3-seed 更新'\\n  rationale: 'Round 2 Borderline 2.75/5, Round 1 的 13/16 issues resolved. 剩余 3 MF\\n    均为低成本文本修改: (1) Conclusion checklist 从 \\\"boundary conditions\\\" 降级为 \\\"hypothesized\\n    conditions\\\", criterion (3) 改为 \\\"diagnostic feedback\\\" 解决与 Limitations 矛盾; (2) Table\\n    2 Δ列 10% 行改为 \\\"—\\\" 避免混合 baseline 误导; (3) Limitations 独立+§3.6 移 Appendix 压页数. 补跑\\n    recovery eval seeds 0+123 (~1h, GPU 空闲), Figure 1 更新为 3-seed 散点图. Reviewer 判断修改后可达\\n    Weak Accept.'\\n  related_experiments: []\\n  depends_on:\\n  - D023\\n- id: D025\\n  date: 2026-05-15 12:51 UTC\\n  summary: '用户指令: 从 workshop 短文 (4p) 转为长文 (8p)，不再考虑 short paper'\\n  rationale: 用户认为 4 页太短。转长文需要补充实验（recovery-paired injection、第二环境）和深度分析。目标 venue 待定（EMNLP\\n    2026 主会/Findings）。核心机会：recovery-paired injection 可以把论文从 \\\"报告失败\\\" 升级为 \\\"诊断失败原因\\\"。\\n  related_experiments: []\\n  depends_on:\\n  - D024\\n- id: D026\\n  date: 2026-05-15 13:41 UTC\\n  summary: Qualitative failure analysis 发现 TaxEI loop_repetition 2.2× 高于 Vanilla (49\\n    vs 22)，taxonomy 标签导致模型学到 fixation 模式\\n  rationale: Wave 1 任务 3 完成。TaxEI 失败模式中 loop_repetition 显著高于 Vanilla/Random，表明 taxonomy\\n    标签不是简单增加噪声，而是导致模型学到错误的\\\"修复\\\"行为并陷入重复循环。这直接回答了 \\\"noise vs wrong learning\\\" 的问题——答案是\\n    wrong learning (fixation)。此发现将成为 long paper qualitative analysis section 的核心内容。注意：当前\\n    Random 只有 seed=42 的 recovery eval 数据，5-seed 完成后需补齐以确认对比。\\n  related_experiments:\\n  - exp_id: qualitative-failure-analysis\\n    role: primary\\n    result: TaxEI loop_repetition=49, Vanilla=22, Random=6\\n  depends_on:\\n  - D025\\n- id: D027\\n  date: 2026-05-15 13:42 UTC\\n  summary: 'Training dynamics: 训练 loss 跨 seed 极稳定(SD=0.0004)但 eval 方差 2.6×——injection\\n    危害在表征层非训练层。批准 post-hoc forward pass 获取 per-sample loss。'\\n  rationale: TaxEI final loss 0.1738 (token_acc 0.914) vs Vanilla 0.2942 (0.900)——训练指标更好但\\n    eval 更差，确认 training-eval paradox。关键发现：训练过程本身极其稳定（loss SD=0.0004 across seeds），eval\\n    的高方差完全来自学到的表征在不同 task 上的表现差异。这比\\\"增加训练不稳定性\\\"更有解释力，将细化 Claim 3 叙事。方案 A (post-hoc forward\\n    pass) 无需 re-train，几分钟完成。\\n  related_experiments:\\n  - exp_id: training-dynamics\\n    role: primary\\n    result: training loss stable SD=0.0004, TaxEI loss 0.1738 vs Vanilla 0.2942\\n  depends_on:\\n  - D025\\n  - D026\\n- id: D028\\n  date: 2026-05-15 15:41 UTC\\n  summary: 批准 Claim 3 从 \\\"training instability\\\" 改为 \\\"generalization instability\\\" + story\\n    arc 升级为因果链叙事\\n  rationale: D027 证伪\\\"训练不稳定\\\"假说：训练 loss 跨 seed SD=0.0004 极度稳定，不稳定发生在 eval/generalization\\n    层。D026 提供行为层 mechanistic 解释（loop_repetition 2.2×）。两个发现形成因果链：训练稳定地学到 fixation pattern\\n    (D027) → eval 表现为 loop repetition (D026)。Story arc 从\\\"描述 negative result\\\"升级为\\\"解释\\n    WHY negative\\\"——这是更深刻、更有投稿竞争力的论点。Claim 3 旧措辞（error injection increases training\\n    instability）与数据矛盾，必须改。\\n  related_experiments:\\n  - exp_id: training-dynamics\\n    role: evidence\\n    result: training loss SD=0.0004 across seeds\\n  - exp_id: qualitative-failure-analysis\\n    role: evidence\\n    result: TaxEI loop_repetition=49, 2.2x Vanilla\\n  depends_on:\\n  - D026\\n  - D027\\n- id: D029\\n  date: 2026-05-15 16:38 UTC\\n  summary: Forward pass 揭示注入样本被深度记忆(injected loss < clean loss)且 dose-response 单调递增，per-operator\\n    记忆深度与 recovery 损害反相关\\n  rationale: '5 个关键发现：(1) 所有注入模型 injected loss < clean loss，模型确实学到了注入内容但方向错误；(2) gap\\n    从 -0.016(10%) → -0.127(25%) → -0.197(50%)，注入比例越高记忆差距越大；(3) Clean loss 从 Vanilla\\n    0.685 → 50% 0.852，高注入破坏 clean 拟合；(4) Per-operator: C1 loss 最低(0.593)=recovery\\n    退化最大(-8.3pp)，C4 loss 最高(0.630)=recovery 唯一正向(+9.1pp)——记忆越深损害越大；(5) 完整因果链：overfit\\n    injection → behavioral fixation (D026 loop) → generalization collapse (D028)。这些数据直接填充\\n    §4.5 Training Dynamics Analysis，是长文核心 mechanistic evidence。'\\n  related_experiments:\\n  - exp_id: v4-training-dynamics-forward\\n    role: primary\\n    result: 'per-sample loss: injected < clean for all injection models, dose-response\\n      gap monotonic'\\n  depends_on:\\n  - D027\\n  - D028\\n- id: D030\\n  date: 2026-05-15 16:52 UTC\\n  summary: 5-seed Vanilla-TaxEI 差异达 p=0.039 (uncorrected)，Bonferroni 校正后仍 NS (p>0.017)。Claim\\n    1 \\\"NS\\\" 表述需条件化。\\n  rationale: TaxEI seed1 eval = 59.6%。5-seed 完整：Vanilla 67.3±4.7 vs TaxEI 58.3±6.5,\\n    gap=9.0pp, Welch t=2.506, p≈0.039, Cohen's d=1.59。Bonferroni 校正 (3 comparisons,\\n    α=0.0167) 后 NS。效应主要由 seed0 outlier (46.8%) 驱动——去掉 seed0 后 gap 缩至 6.1pp。论文表述更新：不能简单说\\n    \\\"no significant differences\\\"，改为 \\\"marginal significance uncorrected (p=0.039),\\n    NS after Bonferroni correction (p>0.017)\\\"。这实际上加强了 negative result thesis——TaxEI\\n    不仅没帮助，而且有边际显著的损害，但结论需受限于 seed variance 异质性。\\n  related_experiments:\\n  - exp_id: multiseed-taxei\\n    role: primary\\n    result: '5-seed: 58.3±6.5%, p=0.039 uncorrected vs Vanilla'\\n  depends_on:\\n  - D028\\n- id: D031\\n  date: 2026-05-15 17:31 UTC\\n  summary: Random seed1=46.8% 灾难性 outlier 改变 variance gradient：Random SD(9.9%) > TaxEI\\n    SD(6.5%) > Vanilla SD(4.7%)。等 seed7 确认后更新叙事。\\n  rationale: 'Random 4-seed (缺seed7): 66.0/55.3/68.1/46.8, mean=59.1±9.9pp。原叙事\\\"Vanilla\\n    < Random < TaxEI\\\"(更结构化=更不稳定)被5-seed数据推翻——Random SD(9.9%) > TaxEI SD(6.5%)。两种注入都产生~47%灾难性outlier(TaxEI\\n    s0=46.8%, Random s1=46.8%)，Vanilla从未低于61.7%。新叙事方向：(1)注入本身是variance放大器，非taxonomy特异；(2)taxonomy可能有微弱稳定效果(降低SD)；(3)Claim\\n    2 \\\"taxonomy specifically harms\\\"需nuance。等Random seed7确认后统一更新paper_framing.md。'\\n  related_experiments:\\n  - exp_id: multiseed-random\\n    role: primary\\n    result: Random seed1=46.8% (22/47), 4-seed mean=59.1±9.9%\\n  depends_on:\\n  - D030\\n- id: D032\\n  date: 2026-05-15 17:43 UTC\\n  summary: 5-seed 完整统计：TaxEI=Random=58.3% 均值完全一致，taxonomy 标签零收益。Variance gradient\\n    Vanilla(4.7)&lt;TaxEI(6.5)&lt;Random(8.7)。大效应量(d>1.2)但 Bonferroni 后 NS。\\n  rationale: '完整 5-seed 3-way 数据颠覆多个旧叙事：(1) TaxEI=Random=137/235=58.3% 完全一致——taxonomy\\n    在均值层面零收益，这是最强的负面发现；(2) Variance gradient 从 3-seed 的 Vanilla&lt;Random&lt;TaxEI 变为 5-seed\\n    的 Vanilla(4.7)&lt;TaxEI(6.5)&lt;Random(8.7)——taxonomy 可能有微弱稳定效果，与旧 Claim 3 矛盾；(3) 灾难性\\n    outlier: TaxEI s0=46.8%, Random s1=46.8%, Vanilla 最低 61.7%——注入引入随机脆弱性；(4) Welch\\n    t Vanilla-TaxEI p=0.039 uncorrected, Cohen''s d=1.58, Bonferroni NS——underpowered\\n    的大效应量。论文需重写 Claims 1-3 和 Finding section。'\\n  related_experiments:\\n  - exp_id: multiseed-vanilla\\n    role: baseline\\n    result: '5-seed: 67.3±4.7%'\\n  - exp_id: multiseed-taxei\\n    role: primary\\n    result: '5-seed: 58.3±6.5%'\\n  - exp_id: multiseed-random\\n    role: control\\n    result: '5-seed: 58.3±8.7%'\\n  depends_on:\\n  - D030\\n  - D031\\n- id: D033\\n  date: 2026-05-15 18:40 UTC\\n  summary: 'Forward pass v2 修正: dose-response 非单调, Random 记忆深度 2.1× TaxEI, 因果叙事降级为相关性'\\n  rationale: 'v1 的 turn-level 分类 bug 导致 monotonic dose-response 假象。v2 trajectory-level\\n    修正后: (1) gap 在 25%/50% 缩小 3-6× 且非单调(25% > 50%); (2) Random gap -0.078 vs TaxEI\\n    -0.037, 无 taxonomy 标签反而被更深记忆; (3) per-operator 排序不稳定, 弱化 \\\"记忆越深损害越大\\\" 因果链为 correlation。但核心\\n    finding 不变: 所有注入样本被更深记忆(gap<0), 50% clean loss 退化 +0.166。Random 更深记忆但 eval=TaxEI\\n    进一步支持 taxonomy 标签零收益结论。'\\n  related_experiments:\\n  - exp_id: v4-training-dynamics-forward-v2\\n    role: primary\\n    result: non-monotonic dose-response, random 2.1× deeper memorization\\n  - exp_id: v4-training-dynamics-forward\\n    role: superseded\\n    result: v1 had turn-level classification bug\\n  depends_on:\\n  - D029\\n  - D028\\n- id: D034\\n  date: 2026-05-15 22:14 UTC\\n  summary: D017 \\\"10% = 零危害\\\" 叙事被 5-seed 推翻，dose-response 从 threshold 改为 monotonic-then-reversal\\n  rationale: '5-seed 10% 数据: TaxEI 61.3%±8.2 vs Vanilla 67.3%±4.7 = -6.0pp (d=0.90\\n    大效应), Random 63.8%±5.4 = -3.4pp (d=0.67 中效应)。原 D017 单 seed \\\"10%=vanilla\\\" 是巧合。正确叙事:\\n    10% 已有损害→25% 加剧(TaxEI 47.5%)→50% 反弹(56.0%)。不存在 safe threshold。方差结构也与剂量交互: 10%\\n    TaxEI SD>Random, full TaxEI SD<Random，否定简单 \\\"taxonomy 稳定方差\\\" 叙事。'\\n  related_experiments:\\n  - exp_id: dose-response-5seed\\n    role: primary\\n    result: 10% TaxEI 61.3±8.2, Random 63.8±5.4\\n  - exp_id: dose-response-taxei\\n    role: context\\n    result: 25% 47.5±1.2, 50% 56.0±12.4\\n  depends_on:\\n  - D023\\n  - D032\\n- id: D035\\n  date: 2026-05-15 23:57 UTC\\n  summary: D023 \\\"dual regime (deterministic 25% + lottery 50%)\\\" 被 5-seed 推翻，改为 \\\"continuous\\n    dose-dependent harm + universal lottery\\\"\\n  rationale: '25% 5-seed: TaxEI 52.7±7.6 (3-seed 47.5±1.2, SD×6.3 倍), Random 60.0±8.0。3-seed\\n    的极低方差是抽样巧合(s42/s0/s123 恰好落在 46-49%)，s1=63.8/s7=57.4 大幅高于。所有剂量均为 lottery(SD 5-12%)，不存在\\n    regime boundary。正确叙事: injection at all doses increases variance + reduces mean,\\n    25% TaxEI 显示最大 taxonomy penalty (7.3pp vs Random)。'\\n  related_experiments:\\n  - exp_id: dose-response-5seed\\n    role: primary\\n    result: 25% TaxEI 52.7±7.6, Random 60.0±8.0\\n  - exp_id: dose-response-taxei\\n    role: superseded\\n    result: 3-seed 47.5±1.2 was sampling coincidence\\n  depends_on:\\n  - D034\\n  - D023\\n- id: D036\\n  date: 2026-05-16 00:00 UTC\\n  summary: 25% TaxEI vs Random 显著(p=0.029)但 Bonferroni NS；维持 negative result framing，加\\n    dose-dependent taxonomy penalty 作为 secondary finding\\n  rationale: '25% 统计: Vanilla vs TaxEI p=0.004 d=2.63 (Bonferroni survives), Vanilla\\n    vs Random p=0.039, TaxEI vs Random p=0.029 d=1.49 (Bonferroni NS at α=0.017)。TaxEI\\n    dose-response 斜率是 Random 2×(0.58 vs 0.29 pp/%)。这不是 taxonomy \\\"works\\\"，是 taxonomy\\n    amplifies harm。决定: 维持 negative result paper framing，加 \\\"taxonomy labels amplify\\n    dose-dependent harm\\\" 作为 nuanced secondary finding。等 50% 5-seed 确认是否斜率差持续。不翻转论文方向。'\\n  related_experiments:\\n  - exp_id: dose-response-5seed\\n    role: primary\\n    result: 25% TaxEI vs Random p=0.029 d=1.49, TaxEI slope 2× Random\\n  depends_on:\\n  - D035\\n- id: D037\\n  date: 2026-05-16 00:14 UTC\\n  summary: 'D037: 修正 per-seed 数据污染——Vanilla s1/s7 和 TaxEI s1/s7 被 25% dose-response\\n    值覆盖'\\n  rationale: Reviewer critical 发现 ROADMAP 和 experiment_plan.yaml 的 5-seed 主表 per-seed\\n    值被 25% dose-response 实验结果污染。验算确认：错误值算出 SD 与报告不符（Vanilla 3.85≠4.7, TaxEI 6.83≠6.5），修正值算出正确\\n    SD（4.67≈4.7, 6.49≈6.5）。修正：Vanilla s1 72.3→66.0, s7 68.1→74.5; TaxEI s1 63.8→59.6,\\n    s7 57.4→61.7。Mean±SD 不变，但 per-seed 分析和 outlier 识别受影响。paper_framing.md 主条件不含逐 seed\\n    值，无需修正。\\n  related_experiments:\\n  - exp_id: 5-seed-extension\\n    role: affected\\n    result: per-seed values corrected in ROADMAP + experiment_plan.yaml\\n  depends_on:\\n  - D032\\n- id: D038\\n  date: 2026-05-16 01:37 UTC\\n  summary: 'D038: 50% dose-response 5-seed 完成，dose-response 全线收官。Inverted-U taxonomy\\n    penalty: 25% peak (-7.3pp) → 50% (-0.9pp) → Full (0pp)'\\n  rationale: '50% s1/s7 eval 完成。TaxEI 50% 5-seed: 57.4±9.5 (51.1/70.2/46.8/63.8/55.3)，Random\\n    50%: 58.3±11.7 (57.4/46.8/70.2/70.2/46.8)。TaxEI-Random gap 从 3-seed 的 -2.1pp 收窄到\\n    -0.9pp。完整 dose-response 曲线确认 inverted-U taxonomy penalty (25% peak)。所有 5 个剂量 ×\\n    5 seeds 全部到位，dose-response 实验线关闭。下一步：recovery-paired SFT (Wave 2 核心实验)。'\\n  related_experiments:\\n  - exp_id: dose-response-5seed\\n    role: completed\\n    result: all 5 doses × 5 seeds complete, inverted-U taxonomy penalty confirmed\\n  depends_on:\\n  - D036\\n- id: D039\\n  date: 2026-05-16 02:21 UTC\\n  summary: 'D039: Recovery-paired SFT 启动 (Claim 7)。数据设计: TaxEI 9,029 + Recovery 5,408\\n    = 14,437。4 seeds 并行 (42/0/123/1)。'\\n  rationale: 'Recovery-paired 是 Wave 2 核心实验，测试 PALADIN recovery-pairing 是否是 TaxEI\\n    失败的缺失成分。数据设计: recovery continuations 叠加在 TaxEI 基础上（不替换），recovery_only 模式提取恢复步骤。14,437\\n    vs TaxEI 9,029 存在 volume confound，但预期 negative result 下不成问题；意外成功则后补 volume-matched\\n    control。4 seeds 并行 ~4h/seed。50% 统计确认 dose-response 趋同: TaxEI≈Random at 50% (Δ=0.8pp,\\n    p=0.920)。Random dose-response 单调递减显著 (Spearman p=0.037)。'\\n  related_experiments:\\n  - exp_id: recovery-paired-injection\\n    role: started\\n    result: 4 seeds training on 4 GPUs, ETA ~4h\\n  - exp_id: dose-response-5seed\\n    role: analysis\\n    result: '50% stats complete: TaxEI≈Random, Bonferroni NS vs Vanilla'\\n  depends_on:\\n  - D038\\n- id: D040\\n  date: 2026-05-16 03:09 UTC\\n  summary: 'D040: WebShop replication 降级为 Discussion section 分析。Drop Claim 8。P1 无法适配\\n    WebShop 线性 action space，taxonomy 4→3 使跨环境对比不等价。35 GPU-h 转用于 recovery eval multi-seed\\n    + TaxEI-RP seed 7。'\\n  rationale: Agent 调研发现 P1_StepOrderSwap 在 WebShop 产生语法非法序列（action space 只有 search+click，高度线性）。Taxonomy\\n    缩减 4→3 使\\\"跨环境复制\\\"变成\\\"不同 taxonomy 的不同实验\\\"，给 reviewer 留把柄。12-17 天工期 + 35 GPU-h (64%\\n    剩余预算) ROI 太低。改为 Discussion 段落分析 ALFWorld vs WebShop 结构性差异，论证跨环境迁移的非平凡性。省下的 GPU-h\\n    用于 recovery eval multi-seed (Claims 4/5) 和 TaxEI-RP seed 7 (Claim 7)。\\n  related_experiments:\\n  - exp_id: webshop-replication\\n    role: cancelled\\n    result: downgraded to Discussion analysis due to P1 incompatibility\\n  depends_on:\\n  - D039\\n- id: D041\\n  date: 2026-05-16 03:22 UTC\\n  summary: 'D041: Recovery rate ≈ normal eval rate — 模型是 \\\"resilience\\\"(被动忽略错误) 而非 \\\"recovery\\\"(主动恢复)。Claim\\n    4/5 叙事需要修正。'\\n  rationale: 'Reviewer 审计发现 4 个未注册 recovery eval 的 recovery rate 与 normal eval rate\\n    精确一致（V s0: 68.1%=68.1%, V s123: 66.0%=66.0%, T s0: 46.8%=46.8%, T s123: 61.7%=61.7%）。唯一例外是\\n    TaxEI s42 (59.6% vs 61.7%, -2.1pp)。这意味着 eval-time 注入对模型性能几乎零影响——模型既不检测也不受影响。\\\"Recovery\\\"\\n    实际是 \\\"resilience\\\"（被动忽略），不是主动从错误中恢复。Claim 4 从\\\"不改善 recovery\\\"修正为\\\"eval-time errors\\n    被忽略，recovery=resilience\\\"。Claim 5 (detection=0%) 不变。这进一步强化 negative result：error\\n    injection 在 embodied planning 中不仅训练无效，连 eval-time 错误信号也被忽略。'\\n  related_experiments:\\n  - exp_id: recovery-eval\\n    role: reinterpreted\\n    result: 'recovery≈normal: passive resilience, not active recovery'\\n  - exp_id: recovery-eval-multiseed\\n    role: context\\n    result: 7/15 confirmed, 4 unregistered being fixed\\n  depends_on:\\n  - D039\\n- id: D042\\n  date: 2026-05-16 04:49 UTC\\n  summary: 'D042: Scope 扩展——加 LLaMA-3.1-8B 跨模型验证 + scale-up 25K trajectories。用户指示\\\"尽量补实验\\\"。'\\n  rationale: 当前 scope (1 model × 1 env) 对 8 页长文偏窄。核心 claim \\\"task structure 是主因\\\" 但只有单模型证据。加第二模型\\n    (LLaMA-3.1-8B) 是性价比最高的扩展——同样数据同样流程，如果也是 negative result 则论证力翻倍。Scale-up 堵住 \\\"PALADIN\\n    50K vs TaxEI 9K\\\" 的数据量质疑。\\n  related_experiments:\\n  - exp_id: llama-cross-model\\n    role: new experiment\\n    result: planned\\n  - exp_id: scale-up-data\\n    role: new experiment\\n    result: planned\\n  depends_on:\\n  - D025\\n  - D032\\n- id: D043\\n  date: 2026-05-16 06:32 UTC\\n  summary: 'D043: TaxEI-RP (recovery-paired) 4-seed 结果: 47.9±7.8%, 比 TaxEI 差 10pp,\\n    比 Vanilla 差 19pp。Recovery pairing 不是 PALADIN 成功的关键要素，task structure 确认为根本限制。Claim\\n    7 定论。'\\n  rationale: 'TaxEI-RP mean 47.9% (s42=38.3/s0=46.8/s1=48.9/s123=57.4) vs TaxEI 58.3%\\n    vs Vanilla 67.3%。Recovery continuation 训练数据 (+5,408 samples) 不仅未改善 recovery，反而进一步恶化性能。这排除了\\\"PALADIN\\n    成功是因为 recovery pairing\\\"的替代解释，确认 task structure (error observability, local recoverability,\\n    bounded action space) 是 error injection 成败的主要因素。Detection rate 仍为 0%。论文 Reviewer\\n    Concern #8 现在有直接实验证据回应。'\\n  related_experiments:\\n  - exp_id: recovery-paired-injection\\n    role: primary\\n    result: 47.9±7.8% (4-seed), worse than TaxEI and Vanilla\\n  - exp_id: multiseed-taxei\\n    role: comparison\\n    result: 58.3±6.5%\\n  - exp_id: multiseed-vanilla\\n    role: comparison\\n    result: 67.3±4.7%\\n  depends_on:\\n  - D039\\n  - D041\\n- id: D044\\n  date: 2026-05-16 06:32 UTC\\n  summary: 'D044: Scale-up 数据收集暂停——成功率从 70% 崩到 9.3%，1000 目标不可行。需诊断原因后决定是否重试或放弃。'\\n  rationale: Phase 1 收集 810 次尝试仅 76 成功 (9.3%)，远低于历史 70.2%。按此速率，3000 次尝试只能得 ~280 条，不满足\\n    1000 目标。可能原因：排除已用 714 easy games 后剩余 pool 系统性更难；API/seed 差异；代码 bug。已花 ~$10 API\\n    成本。Kill 进程后诊断。\\n  related_experiments:\\n  - exp_id: scale-up-data\\n    role: primary\\n    result: 76/810 success (9.3%), paused\\n  depends_on:\\n  - D042\\n- id: D045\\n  date: 2026-05-16 07:18 UTC\\n  summary: 'D045: Scope 最终判断——当前 scope 含 LLaMA 3-seed + recovery eval 补完即可支撑 EMNLP\\n    Findings long paper。LLaMA 从 1-seed 扩到 3-seed (s42/s0/s123)，recovery eval 补完 8/15，scale-up\\n    诊断但不阻塞论文。'\\n  rationale: 8 页长文负面结果论文需要：(1) 跨模型验证排除 model-specific artifact — LLaMA 3-seed V/T/R\\n    提供统计可靠的第二数据点；(2) 完整 recovery eval 支撑 Claims 4/5 的多 seed 结论；(3) TaxEI-RP (D043)\\n    已排除最大替代解释。单环境是残留风险但工程上无法解决（WebShop D040 已证明）。Scale-up 9.3% 成功率需诊断——如果是 bug 则修复重跑，如果是\\n    pool 难度则本身是有价值的数据点。EEF 正向对照和第二环境放弃——ROI 不足。\\n  related_experiments:\\n  - exp_id: llama-cross-model\\n    role: scope expansion\\n    result: s42 training in progress, extend to 3-seed\\n  - exp_id: recovery-eval-multiseed\\n    role: completion required\\n    result: 7/15 done, 8 remaining\\n  - exp_id: scale-up-data\\n    role: diagnose\\n    result: paused at 9.3% success rate\\n  depends_on:\\n  - D042\\n  - D043\\n  - D044\\n- id: D046\\n  date: 2026-05-16 07:24 UTC\\n  summary: 'D046: 撤销 D044 scale-up 暂停——9.3% 成功率是统计口径错误（714 exclusion stubs 被计为失败），真实成功率\\n    77.9%。重启收集。'\\n  rationale: Reviewer 诊断确认：818 条记录中 714 是 phase 0 去重标记（task_type=exclude），实际 API 尝试仅\\n    104 条，成功 81 条 = 77.9%。进程仅跑 51 分钟就被误杀。按 127.5 条/小时吞吐，再跑 ~4h 可收集 500 条。Scale-up\\n    完全可行，重启收集。\\n  related_experiments:\\n  - exp_id: scale-up-data\\n    role: primary\\n    result: actual success rate 77.9%, restart collection\\n  depends_on:\\n  - D044\\n- id: D047\\n  date: 2026-05-16 15:50 UTC\\n  summary: LLaMA 3-seed 完成：TaxEI 跨模型不稳定确认，paper framing 升级为\\\"结构化注入训练不稳定性\\\"\\n  rationale: LLaMA 3-seed 数据齐全。TaxEI recovery SD=8.6% vs Random SD=2.1%，1/3 seed (s123)\\n    触发 catastrophic degradation (59.6% vs vanilla 70.2%)。\\\"LLaMA 中性\\\"假说不成立。新 framing：结构化错误注入跨模型导致训练不稳定，Random\\n    注入跨模型稳定。新增 Claim 9。\\n  related_experiments:\\n  - exp_id: llama31-vanilla-s123\\n    role: baseline\\n    result: clean=72.3%, recovery=70.2%\\n  - exp_id: llama31-taxei-s123\\n    role: treatment\\n    result: clean=61.7%, recovery=59.6% — catastrophic\\n  - exp_id: llama31-random-s123\\n    role: control\\n    result: clean=76.6%, recovery=78.7% — stable\\n  depends_on:\\n  - D045\\n\", \"total_chars\": 34886, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5016ae2-df73-428f-9bb2-2207a7657a98",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "a3011b77-35be-4374-be41-14370054d0f7",
+  "sourceToolAssistantUUID": "e5016ae2-df73-428f-9bb2-2207a7657a98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-16T16:17:16.956Z_
+
+Now let me look at the actual paper draft/artifacts to see the written sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3011b77-35be-4374-be41-14370054d0f7",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YmvjeMZNYLUSSBdziS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "96f6327f-8e68-4c64-bf52-9020bdd356f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QeBE7zM55Zje6wtcewmtQa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19211,
+      "cache_read_input_tokens": 35674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 19211,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T16:17:18.910Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01EXSiH2dLdvKzXzHWHZSoPr`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96f6327f-8e68-4c64-bf52-9020bdd356f1",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YmvjeMZNYLUSSBdziS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "65f5dcb7-223c-450b-8ccb-e456ef9fef09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QeBE7zM55Zje6wtcewmtQa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19211,
+      "cache_read_input_tokens": 35674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 19211,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T16:17:18.927Z_
+
+<details><summary>↩ Tool result · `toolu_01EXSiH2dLdvKzXzHWHZSoPr`</summary>
+
+```text
+artifacts/dream_reports/dream_20260515T020837/best/paper.tex
+artifacts/dream_reports/dream_20260515T020837/median/paper.tex
+artifacts/dream_reports/dream_20260515T020837/worst/paper.tex
+artifacts/dream_reports/dream_20260516T153939/best/paper.tex
+artifacts/dream_reports/dream_20260516T153939/median/paper.tex
+artifacts/dream_reports/dream_20260516T153939/worst/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65f5dcb7-223c-450b-8ccb-e456ef9fef09",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "0daecb96-188e-4cbc-8536-0d8eb7a0378d",
+  "sourceToolAssistantUUID": "65f5dcb7-223c-450b-8ccb-e456ef9fef09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T16:17:19.425Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Y66JKj7DTr9VFcH43JHqCA`</summary>
+
+```json
+{
+  "pattern": "**/*.pdf",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0daecb96-188e-4cbc-8536-0d8eb7a0378d",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YmvjeMZNYLUSSBdziS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e6b78cd5-0a2d-4269-9010-5a8646acbcf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QeBE7zM55Zje6wtcewmtQa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19211,
+      "cache_read_input_tokens": 35674,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 19211
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 35674,
+          "cache_creation_input_tokens": 19211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 19211,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T16:17:19.442Z_
+
+<details><summary>↩ Tool result · `toolu_01Y66JKj7DTr9VFcH43JHqCA`</summary>
+
+```text
+artifacts/dream_reports/dream_20260515T020837/best/paper.pdf
+artifacts/dream_reports/dream_20260515T020837/median/paper.pdf
+artifacts/dream_reports/dream_20260515T020837/worst/paper.pdf
+artifacts/_project/chart/fig1_dose_response_fd98df.pdf
+artifacts/_project/chart/fig1_dose_response.pdf
+artifacts/_project/chart/fig2_operator_gradient.pdf
+artifacts/_project/chart/fig2_operator_gradient_c9327e.pdf
+artifacts/_project/chart/fig_app_training_curves.pdf
+artifacts/_project/chart/fig_app_training_curves_bc1f94.pdf
+artifacts/_project/chart/fig2_operator_gradient_56a865.pdf
+artifacts/dream_reports/dream_20260516T153939/best/paper.pdf
+artifacts/dream_reports/dream_20260516T153939/median/paper.pdf
+artifacts/dream_reports/dream_20260516T153939/worst/paper.pdf
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6b78cd5-0a2d-4269-9010-5a8646acbcf3",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "8c7b93f4-a5ce-4624-b31d-df223e5891fa",
+  "sourceToolAssistantUUID": "e6b78cd5-0a2d-4269-9010-5a8646acbcf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T16:17:22.683Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01H8Vu1Ni58WhM2Wo39UCscw`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dream_reports/dream_20260516T153939/median/paper.tex",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c7b93f4-a5ce-4624-b31d-df223e5891fa",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YnLeKS1sXzxnhu8wp5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3530c283-bfe4-4623-be36-2dad24fcdf4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dbrvk9y44kYxfsz7iAMpVB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 639,
+      "cache_read_input_tokens": 54885,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 639
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 54885,
+          "cache_creation_input_tokens": 639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 639,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T16:17:22.693Z_
+
+<details><summary>↩ Tool result · `toolu_01H8Vu1Ni58WhM2Wo39UCscw`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	\usepackage[margin=1in]{geometry}
+3	\usepackage{times}
+4	\usepackage{latexsym}
+5	\usepackage{amsmath}
+6	\usepackage{amssymb}
+7	\usepackage{graphicx}
+8	\usepackage{booktabs}
+9	\usepackage{multirow}
+10	\usepackage{xcolor}
+11	\usepackage{pgfplots}
+12	\pgfplotsset{compat=1.18}
+13	\usepackage{tikz}
+14	\usepackage{natbib}
+15	\usepackage{pifont}
+16	\usepackage{hyperref}
+17	
+18	\title{Empirical Evidence Toward Boundary Conditions for Error Injection\\in LLM Agent Training: A Negative Transfer Study}
+19	
+20	\author{Anonymous}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	% ============================================================
+26	\begin{abstract}
+27	Taxonomy-guided error injection has shown promise for improving LLM agent robustness in tool-use domains, with PALADIN reporting substantial recovery rate gains on ToolBench.
+28	We investigate whether this training paradigm transfers to embodied planning by designing TaxEI, a 4-operator error injection taxonomy for ALFWorld, and training Qwen3-8B under three conditions: Vanilla (clean data), TaxEI (taxonomy-labeled injection), and Random (unlabeled injection).
+29	Across 5 random seeds, both injection methods degrade performance identically (58.3\% vs.\ Vanilla 67.3\%, Cohen's $d$=1.58), and taxonomy labels provide zero benefit over random noise.
+30	Recovery evaluation reveals that models exhibit \emph{resilience}---passively ignoring eval-time perturbations at their base task-completion rate---rather than \emph{recovery}---actively detecting and correcting errors (detection rate: 0\%).
+31	Preliminary cross-model evidence on LLaMA-3.1-8B-Instruct (3 seeds) shows TaxEI introduces training instability (SD=8.6pp vs.\ Random SD=2.1pp) with 1/3 seeds exhibiting catastrophic degradation, suggesting the harm generalizes beyond a single architecture.
+32	A 5$\times$ data scale-up narrows the penalty from 9.0pp to 6.4pp but does not eliminate it.
+33	These results constitute a large effect size suggestive of harm from error injection in embodied planning, requiring larger $N$ for definitive confirmation, and point toward task-structural boundary conditions---error observability, locality, and recoverability---that determine when injection helps versus harms.
+34	\end{abstract}
+35	
+36	% ============================================================
+37	\section{Introduction}
+38	
+39	Error injection is a natural data augmentation strategy for training robust LLM agents: expose models to failure modes during training so they learn to recognize and recover from errors at deployment time.
+40	PALADIN \cite{chen2025paladin} demonstrated this approach for tool-use agents, combining taxonomy-guided error injection with inference-time retrieval augmentation to achieve substantial gains on ToolBench.
+41	A natural question arises: does the error-injection \emph{training} component transfer to other agent domains?
+42	
+43	We test this hypothesis on embodied planning using ALFWorld \cite{shridhar2021alfworld}, where agents execute multi-step plans in simulated household environments.
+44	We design TaxEI (\textbf{Tax}onomy-guided \textbf{E}rror \textbf{I}njection), a 4-operator error taxonomy covering planning-level and context-level perturbations, and train Qwen3-8B \cite{qwen3} under three matched conditions: Vanilla (clean trajectories only), TaxEI (clean + taxonomy-labeled injections), and Random (clean + unlabeled injections).
+45	
+46	Our results provide empirical evidence toward boundary conditions for error injection:
+47	\begin{itemize}
+48	\item Both injection methods degrade performance by 9.0 percentage points (pp) relative to Vanilla training, with large effect size (Cohen's $d$=1.58) but marginal statistical significance after multiple-comparison correction (Bonferroni NS at $n$=5; statistical power = 45\%).
+49	\item Taxonomy labels provide \emph{zero} measurable benefit: TaxEI and Random achieve identical mean performance (58.3\%).
+50	\item Models exhibit \emph{resilience}---passively tolerating eval-time errors at their base task-completion rate---rather than \emph{recovery}. Detection rate is 0\% across all conditions.
+51	\item Preliminary cross-model evidence on LLaMA-3.1-8B-Instruct (3 seeds) suggests structured injection introduces training instability across architectures.
+52	\item A 5$\times$ data scale-up partially mitigates (29\% gap reduction) but does not eliminate the harm, suggesting task-structural factors as a co-dominant contributor.
+53	\end{itemize}
+54	
+55	We frame these findings within a 2$\times$2 meta-analysis of error-signal approaches (Section~\ref{sec:discussion}), contrasting \emph{positive} vs.\ \emph{negative} training signals across \emph{tool-use} and \emph{planning} domains.
+56	Combined with concurrent work on learning from failures \cite{wang2025eef}, our results suggest that the \emph{direction} of training signal---extracting positive signal from failures vs.\ injecting negative signal---may matter as much as the domain itself.
+57	
+58	% ============================================================
+59	\section{Related Work}
+60	
+61	\paragraph{Error injection for LLM agents.}
+62	PALADIN \cite{chen2025paladin} introduces ToolScan, a taxonomy of 7 tool-use failure types, and generates 50K+ recovery-annotated trajectories.
+63	Combined with inference-time retrieval of 55+ exemplars, PALADIN achieves +57pp recovery rate on ToolBench---though removing retrieval reduces gains by $\sim$30pp, indicating substantial contribution from inference-time augmentation beyond SFT.
+64	EEF \cite{wang2025eef} takes the opposite approach on WebShop, \emph{extracting} positive signal from failed trajectories rather than \emph{injecting} errors, achieving gains via failure-distilled experience.
+65	
+66	\paragraph{Embodied planning agents.}
+67	ALFWorld \cite{shridhar2021alfworld} provides a text-based interface to ALFRED household tasks.
+68	ReAct \cite{yao2023react} and Reflexion \cite{shinn2023reflexion} demonstrate that LLMs can perform multi-step planning with appropriate prompting, but neither studies error injection as a training-time augmentation.
+69	
+70	\paragraph{Training instability and seed sensitivity.}
+71	McCoy et al.\ \citeyear{mccoy2020berts} show that BERT fine-tuning produces seed-dependent generalization failures.
+72	Mosbach et al.\ \citeyear{mosbach2021few} identify instability in few-shot fine-tuning regimes.
+73	D'Amour et al.\ \citeyear{damour2022underspecification} characterize underspecification---multiple models with identical training loss but divergent test behavior---as a fundamental property of modern ML pipelines.
+74	Our observation that error injection amplifies cross-seed variance while preserving training loss stability is consistent with this underspecification phenomenon.
+75	
+76	\paragraph{Adversarial training and curriculum learning.}
+77	Adversarial training \cite{madry2018towards} improves robustness by exposing models to worst-case perturbations, but typically assumes perturbations are observable and gradients are available.
+78	Curriculum learning \cite{bengio2009curriculum} orders training examples by difficulty.
+79	Error injection can be viewed as a form of curriculum that introduces difficult examples, but our results suggest this curriculum is counterproductive when errors are not observable to the agent.
+80	
+81	% ============================================================
+82	\section{Method}
+83	\label{sec:method}
+84	
+85	\subsection{Error Taxonomy for Embodied Planning}
+86	
+87	We design a 4-operator error taxonomy targeting two levels of embodied planning:
+88	
+89	\paragraph{Planning-level operators.}
+90	\textbf{P1} (\textsc{StepOrderSwap}): permutes action ordering within a trajectory.
+91	\textbf{P2} (\textsc{SubGoalDeletion}): removes sub-goal steps, creating incomplete plans.
+92	
+93	\paragraph{Context-level operators.}
+94	\textbf{C1} (\textsc{ContextTruncation}): truncates environmental context observations.
+95	\textbf{C4} (\textsc{ObservationMasking}): masks observation feedback from the environment.
+96	
+97	These operators span a locality gradient: C4 produces local, observable perturbations (a single masked observation), while P2 produces global, cascading perturbations (a deleted sub-goal invalidates all downstream steps).
+98	
+99	\subsection{Data Generation}
+100	
+101	We collect 501 successful trajectories on ALFWorld using GPT-5.2, covering 134 unique task types.
+102	Error injection produces 4,671 injected variants (760 base trajectories $\times$ 4 operators with round-robin assignment).
+103	
+104	\subsection{Training Conditions}
+105	
+106	Three SFT conditions are trained on Qwen3-8B with LoRA ($r$=16, $\alpha$=32):
+107	\begin{itemize}
+108	\item \textbf{Vanilla}: Clean trajectories only (4,358 samples).
+109	\item \textbf{TaxEI}: Clean + taxonomy-labeled injections (9,029 samples). Each injected sample includes an \texttt{[ERROR:$\langle$operator$\rangle$]} tag.
+110	\item \textbf{Random}: Clean + unlabeled injections (9,029 samples). Injected samples use a generic \texttt{[ERROR]} tag without operator identity.
+111	\end{itemize}
+112	
+113	TaxEI and Random differ \emph{only} in whether the error tag contains the taxonomy label.
+114	All conditions are trained with 5 random seeds (42, 0, 123, 1, 7) on Qwen3-8B, and 3 seeds (42, 0, 123) on LLaMA-3.1-8B-Instruct for cross-model validation.
+115	
+116	\subsection{Evaluation Protocol}
+117	
+118	We evaluate on ALFWorld's 47 held-out test tasks.
+119	\textbf{Clean evaluation} measures standard task completion.
+120	\textbf{Recovery evaluation} injects errors at eval time (round-robin P1/P2/C1/C4) and measures whether models can complete tasks despite perturbations.
+121	\textbf{Detection rate} measures explicit error flagging in model output.
+122	
+123	% ============================================================
+124	\section{Experiments}
+125	\label{sec:experiments}
+126	
+127	\subsection{Main Results: 5-Seed Aggregate (Qwen3-8B)}
+128	\label{sec:main-results}
+129	
+130	Table~\ref{tab:main-recovery} presents recovery evaluation results across all 5 seeds.
+131	Recovery rates closely match clean evaluation rates for every condition, confirming the resilience-not-recovery pattern: models succeed at their base task-completion rate regardless of eval-time error injection.
+132	
+133	\begin{table}[t]
+134	\centering
+135	\small
+136	\begin{tabular}{lcccc}
+137	\toprule
+138	\textbf{Condition} & \textbf{Clean} & \textbf{Recovery} & \textbf{$\Delta$} & \textbf{Det.} \\
+139	\midrule
+140	Vanilla & 67.3\scriptsize{$\pm$4.7} & 67.1\scriptsize{$\pm$4.9} & $-$0.2 & 0\% \\
+141	TaxEI   & 58.3\scriptsize{$\pm$6.5} & 57.4\scriptsize{$\pm$6.2} & $-$0.9 & 0\% \\
+142	Random  & 58.3\scriptsize{$\pm$8.7} & 57.9\scriptsize{$\pm$6.4} & $-$0.4 & 0\% \\
+143	\bottomrule
+144	\end{tabular}
+145	\caption{5-seed recovery evaluation on Qwen3-8B (47 tasks/seed). Clean and Recovery columns show mean $\pm$ SD across seeds. $\Delta$ = Recovery $-$ Clean (pp). Detection rate is 0\% for all conditions and seeds.}
+146	\label{tab:main-recovery}
+147	\end{table}
+148	
+149	Both injection methods degrade performance by 9.0pp relative to Vanilla.
+150	Welch's $t$-test for TaxEI vs.\ Vanilla yields $p$=0.03 (uncorrected); however, after Bonferroni correction for 3 pairwise comparisons ($\alpha$=0.017), this is not significant.
+151	Cohen's $d$=1.53 for recovery and $d$=1.58 for clean evaluation indicate a large effect size.
+152	Statistical power at $n$=5 is 45\%; $n$=9 seeds would be required for 80\% power at the observed effect size (see Section~\ref{sec:limitations}).
+153	
+154	TaxEI and Random achieve \emph{identical} mean clean performance (58.3\% = 137/235 tasks each).
+155	The taxonomy's structured error labels provide zero benefit over random injection at the aggregate level.
+156	
+157	\subsection{Cross-Model Replication: LLaMA-3.1-8B}
+158	\label{sec:cross-model}
+159	
+160	To assess whether the TaxEI failure is architecture-specific, we replicate the core experiment on LLaMA-3.1-8B-Instruct with 3 seeds.
+161	Table~\ref{tab:cross-model} presents the cross-model comparison.
+162	
+163	\begin{table}[t]
+164	\centering
+165	\small
+166	\begin{tabular}{lcc}
+167	\toprule
+168	& \textbf{Qwen3-8B} & \textbf{LLaMA-3.1-8B} \\
+169	& (5-seed) & (3-seed) \\
+170	\midrule
+171	Vanilla  & 67.3\scriptsize{$\pm$4.7} & 73.1\scriptsize{$\pm$2.5} \\
+172	TaxEI    & 58.3\scriptsize{$\pm$6.5} & 69.5\scriptsize{$\pm$8.6} \\
+173	Random   & 58.3\scriptsize{$\pm$8.7} & 76.6\scriptsize{$\pm$2.1} \\
+174	\midrule
+175	V$-$T gap & $-$9.0pp & $-$3.6pp \\
+176	T SD / R SD & 0.75$\times$ & 4.1$\times$ \\
+177	Catastrophic & 1/5 (20\%) & 1/3 (33\%) \\
+178	Detection & 0\% & 27\% \\
+179	\bottomrule
+180	\end{tabular}
+181	\caption{Cross-model recovery rate comparison. LLaMA results are preliminary (3 seeds). T SD / R SD = ratio of TaxEI to Random standard deviation. Catastrophic = fraction of seeds with $>$10pp degradation vs.\ Vanilla.}
+182	\label{tab:cross-model}
+183	\end{table}
+184	
+185	\begin{table}[t]
+186	\centering
+187	\small
+188	\begin{tabular}{lcccc}
+189	\toprule
+190	\textbf{Condition} & \textbf{s42} & \textbf{s0} & \textbf{s123} & \textbf{Mean$\pm$SD} \\
+191	\midrule
+192	Vanilla (rec.) & 74.5 & 74.5 & 70.2 & 73.1\scriptsize{$\pm$2.5} \\
+193	TaxEI (rec.) & 74.5 & 74.5 & \textbf{59.6} & 69.5\scriptsize{$\pm$8.6} \\
+194	Random (rec.) & 74.5 & 76.6 & 78.7 & 76.6\scriptsize{$\pm$2.1} \\
+195	\midrule
+196	Vanilla (clean) & 72.3 & 72.3 & 72.3 & 72.3\scriptsize{$\pm$0.0} \\
+197	TaxEI (clean) & 76.6 & 76.6 & \textbf{61.7} & 71.6\scriptsize{$\pm$8.6} \\
+198	Random (clean) & 74.5 & 76.6 & 76.6 & 75.9\scriptsize{$\pm$1.2} \\
+199	\bottomrule
+200	\end{tabular}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3530c283-bfe4-4623-be36-2dad24fcdf4f",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "e728ee8b-a925-4b3b-a785-739d28d332bb",
+  "sourceToolAssistantUUID": "3530c283-bfe4-4623-be36-2dad24fcdf4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-16T16:17:26.372Z_
+
+I now have enough context to produce a thorough review. Let me also check the paper's related work section and discussion framework more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e728ee8b-a925-4b3b-a785-739d28d332bb",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YnaNKDUJSSnENmsZ4K",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2ebfab8b-66a0-4fb0-8197-9dd3cda9ae4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StTko8ceGRxVEiCmx2Zpz9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4605,
+      "cache_read_input_tokens": 55524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4605,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T16:17:28.827Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0199KVmGj6H4zjh1yf9a2Sxn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/dream_reports/dream_20260516T153939/median/paper.tex",
+  "offset": 200,
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ebfab8b-66a0-4fb0-8197-9dd3cda9ae4f",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YnaNKDUJSSnENmsZ4K",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "82d02eb4-ee84-40c5-8872-f952ab76258e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StTko8ceGRxVEiCmx2Zpz9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4605,
+      "cache_read_input_tokens": 55524,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4605
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 55524,
+          "cache_creation_input_tokens": 4605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4605,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T16:17:28.833Z_
+
+<details><summary>↩ Tool result · `toolu_0199KVmGj6H4zjh1yf9a2Sxn`</summary>
+
+```text
+200	\end{tabular}
+201	\caption{LLaMA-3.1-8B per-seed recovery and clean evaluation. Seed 123 (bold) shows catastrophic TaxEI collapse ($-$10.6pp vs.\ Vanilla, $-$19.1pp vs.\ Random).}
+202	\label{tab:llama-perseed}
+203	\end{table}
+204	
+205	The directional pattern is consistent across architectures: TaxEI introduces training instability (LLaMA TaxEI SD=8.6pp vs.\ Random SD=2.1pp), while Random injection remains stable.
+206	However, the manifestation differs: Qwen shows consistent degradation across all 5 seeds, while LLaMA shows intermittent catastrophic failure---2/3 seeds are neutral, but seed 123 collapses to 59.6\% recovery ($-$10.6pp vs.\ Vanilla).
+207	
+208	Notably, LLaMA exhibits a 27\% detection rate (vs.\ Qwen's 0\%), suggesting architecture-dependent error awareness behavior.
+209	Despite higher detection, LLaMA TaxEI recovery (69.5\%) does not exceed Vanilla (73.1\%), indicating that detection is orthogonal to recovery performance.
+210	
+211	We emphasize that these cross-model results are \emph{preliminary}: $n$=3 seeds provide limited statistical power, and the catastrophic seed fraction (1/3=33\%) has wide confidence intervals.
+212	These results suggest directional consistency across architectures but require larger-scale replication for confirmation.
+213	
+214	\subsection{Scale Ablation: 500 vs.\ 2,500 Trajectories}
+215	\label{sec:scale}
+216	
+217	To disentangle data volume from task structure as contributors to the injection penalty, we scale training data from 501 to 2,500 successful trajectories (\$44 API cost, 134 unique tasks, 18.7 trajectories/task).
+218	
+219	\begin{table}[t]
+220	\centering
+221	\small
+222	\begin{tabular}{lccccc}
+223	\toprule
+224	\textbf{Cond.} & \textbf{500-traj} & \textbf{2500-traj} & \textbf{$\Delta$} & \textbf{Gap} \\
+225	& (5s) & (3s) & & vs.\ V \\
+226	\midrule
+227	Vanilla & 67.3\scriptsize{$\pm$4.7} & 71.2\scriptsize{$\pm$3.5} & +3.9 & --- \\
+228	TaxEI   & 58.3\scriptsize{$\pm$6.5} & 64.8\scriptsize{$\pm$5.2} & +6.5 & $-$6.4pp \\
+229	Random  & 58.3\scriptsize{$\pm$8.7} & 66.3\scriptsize{$\pm$4.1} & +8.0 & $-$4.9pp \\
+230	\midrule
+231	\multicolumn{2}{l}{Cohen's $d$ (T vs.\ V)} & \multicolumn{1}{c}{1.05} & \multicolumn{2}{c}{(from 1.58)} \\
+232	\multicolumn{2}{l}{Catastrophic \%} & \multicolumn{1}{c}{0\%} & \multicolumn{2}{c}{(from 20\%)} \\
+233	\bottomrule
+234	\end{tabular}
+235	\caption{Scale ablation results (3-seed at 2,500 trajectories). Gap = condition mean $-$ Vanilla mean. Increasing data 5$\times$ narrows the TaxEI penalty from 9.0pp to 6.4pp (29\% reduction) and eliminates catastrophic seeds.}
+236	\label{tab:scale}
+237	\end{table}
+238	
+239	\begin{table}[t]
+240	\centering
+241	\small
+242	\begin{tabular}{ccccc}
+243	\toprule
+244	\textbf{Phase} & \textbf{Traj} & \textbf{Traj/Task} & \textbf{T$-$V Gap} & \textbf{$\Delta$} \\
+245	\midrule
+246	Base & 500 & 3.7 & $-$9.0pp & --- \\
+247	Ph.\ 1 & 1,000 & 7.5 & $-$7.1pp & +1.9pp \\
+248	Ph.\ 2 & 2,500 & 18.7 & $-$6.4pp & +0.7pp \\
+249	\bottomrule
+250	\end{tabular}
+251	\caption{Diminishing returns in gap reduction with data scaling. ALFWorld's 134-task diversity ceiling means scaling beyond 500 trajectories adds repetition, not diversity.}
+252	\label{tab:diminishing}
+253	\end{table}
+254	
+255	Scaling data 5$\times$ reduces the TaxEI penalty by 29\% (9.0pp $\to$ 6.4pp) and eliminates catastrophic seed outcomes.
+256	However, the residual 6.4pp gap persists (Cohen's $d$=1.05, still large; Welch $t$ $p$=0.065, NS), and diminishing returns are evident: the 500$\to$1,000 phase reduces the gap by 1.9pp, while 1,000$\to$2,500 yields only 0.7pp additional reduction (Table~\ref{tab:diminishing}).
+257	
+258	ALFWorld's diversity ceiling (134 unique tasks) means that scaling beyond 500 trajectories primarily adds \emph{repetition} rather than \emph{diversity}---at 2,500 trajectories, each task is repeated 18.7 times on average.
+259	We cannot fully disentangle data scale from task structure within a single benchmark; cross-benchmark validation would provide stronger evidence but requires substantial engineering effort.
+260	These results suggest data volume is a contributing factor but does not fully account for the injection penalty.
+261	
+262	\subsection{Few-Shot Recovery Prompting}
+263	\label{sec:fewshot}
+264	
+265	To test whether error injection creates latent recovery capacity unlockable by prompting, we evaluate all conditions with 0, 2, and 4 in-context recovery examples at eval time (seed=42, 47 tasks).
+266	
+267	\begin{table}[t]
+268	\centering
+269	\small
+270	\begin{tabular}{lccccc}
+271	\toprule
+272	\textbf{Cond.} & \textbf{0-shot} & \textbf{2-shot} & \textbf{4-shot} & \textbf{$\Delta$} & \textbf{Det.} \\
+273	\midrule
+274	Vanilla & 61.7 & 65.3 & 68.1 & +6.4 & 14.9\% \\
+275	TaxEI   & 59.6 & 63.2 & 66.0 & +6.4 & 14.9\% \\
+276	Random  & 63.8 & 66.0 & 68.1 & +4.3 & 17.0\% \\
+277	\midrule
+278	\multicolumn{3}{l}{ANOVA ($F$=0.26, $p$=0.78)} & \multicolumn{3}{c}{NS} \\
+279	\bottomrule
+280	\end{tabular}
+281	\caption{Few-shot recovery prompting (seed=42). $\Delta$ = 4-shot $-$ 0-shot improvement (pp). All conditions benefit comparably from in-context examples (ANOVA NS).}
+282	\label{tab:fewshot}
+283	\end{table}
+284	
+285	All conditions benefit comparably from few-shot recovery prompting: Vanilla and TaxEI both improve by 6.4pp, Random by 4.3pp, with no significant between-condition difference (ANOVA $F$=0.26, $p$=0.78).
+286	This confirms that error injection training does not create latent recovery capacity that can be elicited by prompting.
+287	The uniform improvement reflects general in-context learning ability independent of training regime.
+288	
+289	In-context examples also introduce modest detection behavior (0\% $\to$ $\sim$15\%), demonstrating that detection can be prompted but is not internalized during SFT training.
+290	
+291	\subsection{Per-Operator Analysis (Exploratory)}
+292	\label{sec:per-operator}
+293	
+294	Using 5-seed recovery data ($\sim$57 episodes per operator cell), we examine whether error locality predicts operator-specific impact.
+295	
+296	\begin{table}[t]
+297	\centering
+298	\small
+299	\begin{tabular}{lccccc}
+300	\toprule
+301	\textbf{Operator} & \textbf{Loc.} & \textbf{s42 $\Delta$} & \textbf{5s $\Delta$} & \textbf{5s SD} & \textbf{$p$} \\
+302	\midrule
+303	C4 (obs.\ mask) & Local & +9.1 & +1.8 & 12.5 & 0.71 \\
+304	P1 (step swap) & Mixed & 0.0 & $-$1.2 & 10.8 & 0.82 \\
+305	C1 (ctx.\ trunc.) & Global & $-$8.3 & $-$3.4 & 11.2 & 0.49 \\
+306	P2 (subgoal del.) & Global & $-$8.3 & $-$4.1 & 13.1 & 0.38 \\
+307	\bottomrule
+308	\end{tabular}
+309	\caption{Per-operator TaxEI$-$Vanilla recovery delta (pp). $\Delta$ columns show seed=42 and 5-seed mean differences. $p$ values are Fisher exact tests. All effects are non-significant; the directional pattern is consistent with error locality but should be interpreted as hypothesis-generating only.}
+310	\label{tab:per-operator}
+311	\end{table}
+312	
+313	The directional pattern---local operators (C4) showing neutral-to-positive effect, global operators (C1, P2) showing negative effect---is consistent with the error cascading hypothesis.
+314	However, all per-operator effects are statistically indistinguishable from noise at $N$$\approx$57 per cell (Fisher exact $p$$>$0.38 for all operators).
+315	The seed=42 pattern (C4: +9.1pp) collapses dramatically at multi-seed aggregation (C4: +1.8pp), illustrating the danger of single-seed per-operator conclusions.
+316	Benchmarks with $>$200 diverse tasks would be needed to support per-operator claims.
+317	
+318	% ============================================================
+319	\section{Discussion}
+320	\label{sec:discussion}
+321	
+322	\subsection{A 2$\times$2 Framework for Error-Signal Approaches}
+323	
+324	Our results, combined with PALADIN \cite{chen2025paladin} and EEF \cite{wang2025eef}, suggest a 2$\times$2 framework for understanding how error-related training signals affect LLM agents:
+325	
+326	\begin{table}[h]
+327	\centering
+328	\small
+329	\begin{tabular}{lcc}
+330	\toprule
+331	& \textbf{Tool-Use} & \textbf{Planning} \\
+332	\midrule
+333	\textbf{Positive signal} & PALADIN & EEF \\
+334	(extract from failures) & (\checkmark) & (\checkmark) \\
+335	\midrule
+336	\textbf{Negative signal} & (untested) & TaxEI \\
+337	(inject errors) & & (\ding{55}) \\
+338	\bottomrule
+339	\end{tabular}
+340	\end{table}
+341	
+342	PALADIN and EEF both succeed, but via different mechanisms: PALADIN pairs error injection with recovery demonstrations and retrieval augmentation in a domain with observable, local errors; EEF extracts positive signal from failed trajectories without injecting errors.
+343	TaxEI injects negative signal (errors without recovery) in a domain with diffuse, cascading errors, and fails.
+344	The untested cell---negative signal injection in tool-use without recovery pairing---would help disambiguate whether the critical factor is signal direction (positive vs.\ negative) or domain structure (tool-use vs.\ planning).
+345	
+346	\subsection{Why Error Injection Fails in Embodied Planning}
+347	
+348	We hypothesize three structural properties that distinguish tool-use (where injection helps) from embodied planning (where it harms):
+349	
+350	\paragraph{Error observability.} Tool-use errors produce explicit signals (API error codes, timeouts). In embodied planning, wrong actions produce syntactically valid observations---the agent receives no signal that it erred.
+351	
+352	\paragraph{Error locality.} A failed API call affects one turn. In planning, a wrong early step (e.g., heating before picking up an object) invalidates all downstream steps, producing \emph{cascading} errors that are indistinguishable from the noise floor.
+353	
+354	\paragraph{Recovery action space.} Tool recovery is bounded (retry, switch tool). Planning recovery requires open-ended re-planning, making it fundamentally harder to learn from examples.
+355	
+356	These are hypothesized boundary conditions; controlled cross-domain experiments are needed for confirmation.
+357	
+358	\subsection{Limitations}
+359	\label{sec:limitations}
+360	
+361	\paragraph{Statistical power.}
+362	Our primary comparison (TaxEI vs.\ Vanilla, $n$=5 seeds) achieves 45\% power at the observed effect size ($d$=1.58) under Bonferroni-corrected $\alpha$=0.017.
+363	Power analysis indicates $n$=9 seeds are needed for 80\% power.
+364	Figure~\ref{fig:power} illustrates the power curve.
+365	While the large effect size and consistent direction across all seeds are suggestive, we cannot claim statistical confirmation of the degradation after multiple-comparison correction.
+366	
+367	\begin{figure}[t]
+368	\centering
+369	\begin{tikzpicture}
+370	\begin{axis}[
+371	    width=0.85\columnwidth,
+372	    height=4.5cm,
+373	    xlabel={Number of seeds ($n$)},
+374	    ylabel={Statistical power},
+375	    xmin=3, xmax=15,
+376	    ymin=0, ymax=1.05,
+377	    xtick={3,5,7,9,11,13,15},
+378	    ytick={0,0.2,0.4,0.6,0.8,1.0},
+379	    grid=major,
+380	    grid style={dashed, gray!30},
+381	    thick,
+382	]
+383	\addplot[blue, mark=*, mark size=1.5pt] coordinates {
+384	    (3, 0.22) (4, 0.33) (5, 0.45) (6, 0.55) (7, 0.64)
+385	    (8, 0.72) (9, 0.80) (10, 0.85) (11, 0.89) (12, 0.92)
+386	    (13, 0.94) (14, 0.96) (15, 0.97)
+387	};
+388	\addplot[dashed, red, domain=3:15] {0.8};
+389	\node[anchor=west, font=\scriptsize, red] at (axis cs:12.5,0.83) {80\%};
+390	\addplot[dashed, gray, thin] coordinates {(9, 0) (9, 0.80)};
+391	\addplot[only marks, mark=*, mark size=2.5pt, blue, fill=blue!30] coordinates {(5, 0.45)};
+392	\node[anchor=south west, font=\scriptsize] at (axis cs:5.2,0.45) {$n$=5 (current)};
+393	\addplot[only marks, mark=*, mark size=2.5pt, blue, fill=blue!30] coordinates {(9, 0.80)};
+394	\node[anchor=south west, font=\scriptsize] at (axis cs:9.2,0.75) {$n$=9 (target)};
+395	\end{axis}
+396	\end{tikzpicture}
+397	\caption{Power curve for detecting $d$=1.58 effect (TaxEI vs.\ Vanilla) at Bonferroni-corrected $\alpha$=0.017. Current study ($n$=5) achieves 45\% power; $n$=9 is needed for the conventional 80\% threshold.}
+398	\label{fig:power}
+399	\end{figure}
+400	
+401	\paragraph{Benchmark scale.}
+402	ALFWorld provides only 47 test tasks and 134 unique training task types, limiting both evaluation reliability and data scaling.
+403	Per-operator analysis ($\sim$57 episodes/cell) is grossly underpowered for $\sim$5pp operator-level effects.
+404	
+405	\paragraph{Cross-model evidence.}
+406	LLaMA results use only 3 seeds; the 1/3 catastrophic seed fraction has extremely wide confidence intervals and could be 0/10 with more seeds.
+407	The Welch $t$-test for TaxEI vs.\ Vanilla on LLaMA yields $p$=0.52, far from significance.
+408	
+409	\paragraph{Confounding variables in PALADIN comparison.}
+410	Our comparison with PALADIN involves multiple confounds beyond task structure: base model (Qwen/LLaMA vs.\ PALADIN's model), training scale (9K vs.\ 50K+ samples), and inference-time retrieval augmentation.
+411	We test error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter test but cannot isolate task structure as the sole explanatory factor.
+412	
+413	\paragraph{Data volume asymmetry.}
+414	Vanilla uses 4,358 samples while injection conditions use 9,029.
+415	Our dose-response ablation at fixed total size partially addresses this, but the primary comparison retains this confound.
+416	
+417	% ============================================================
+418	\section{Conclusion}
+419	
+420	We present empirical evidence that taxonomy-guided error injection---effective for tool-use agents---degrades embodied planning agent training.
+421	Across 5 seeds on Qwen3-8B, both structured (TaxEI) and random injection reduce performance by 9.0pp (Cohen's $d$=1.58), with taxonomy labels providing zero benefit.
+422	Models exhibit resilience rather than recovery (detection rate: 0\%).
+423	Preliminary cross-model evidence on two architectures suggests structured injection is destabilizing beyond a single model, though larger $N$ is required for confirmation.
+424	
+425	These findings point toward task-structural boundary conditions---error observability, locality, and recoverability---that determine when error injection serves as effective training curriculum versus harmful noise.
+426	We hope this negative result helps the community calibrate expectations when transferring error injection across agent domains and motivates further investigation of when and why error-augmented training succeeds.
+427	
+428	% ============================================================
+429	\begin{thebibliography}{20}
+430	
+431	\bibitem[Bengio et~al.(2009)]{bengio2009curriculum}
+432	Yoshua Bengio, J{\'e}r{\^o}me Louradour, Ronan Collobert, and Jason Weston.
+433	\newblock Curriculum learning.
+434	\newblock In \emph{ICML}, 2009.
+435	
+436	\bibitem[Chen et~al.(2025)]{chen2025paladin}
+437	Jiarui Chen, Xuwu Wang, Jigang Kong, Shuyu Wei, and Shuo Shang.
+438	\newblock {PALADIN}: Empowering {LLM}-based tool learning with provenance-driven error injection.
+439	\newblock \emph{arXiv:2509.25238}, 2025.
+440	
+441	\bibitem[D'Amour et~al.(2022)]{damour2022underspecification}
+442	Alexander D'Amour, Katherine Heller, Dan Moldovan, et~al.
+443	\newblock Underspecification presents challenges for credibility in modern machine learning.
+444	\newblock \emph{JMLR}, 23(226):1--61, 2022.
+445	
+446	\bibitem[Madry et~al.(2018)]{madry2018towards}
+447	Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and Adrian Vladu.
+448	\newblock Towards deep learning models resistant to adversarial attacks.
+449	\newblock In \emph{ICLR}, 2018.
+450	
+451	\bibitem[McCoy et~al.(2020)]{mccoy2020berts}
+452	R.~Thomas McCoy, Junghyun Min, and Tal Linzen.
+453	\newblock {BERTs} of a feather do not generalize together: Large variability in generalization across models with similar test set performance.
+454	\newblock In \emph{BlackboxNLP Workshop at EMNLP}, 2020.
+455	
+456	\bibitem[Mosbach et~al.(2021)]{mosbach2021few}
+457	Marius Mosbach, Maksym Andriushchenko, and Dietrich Klakow.
+458	\newblock On the stability of fine-tuning {BERT}: Misconceptions, explanations, and strong baselines.
+459	\newblock In \emph{ICLR}, 2021.
+460	
+461	\bibitem[{Qwen Team}(2025)]{qwen3}
+462	{Qwen Team}.
+463	\newblock {Qwen3} technical report.
+464	\newblock \emph{arXiv:2505.09388}, 2025.
+465	
+466	\bibitem[Shinn et~al.(2023)]{shinn2023reflexion}
+467	Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao.
+468	\newblock Reflexion: Language agents with verbal reinforcement learning.
+469	\newblock In \emph{NeurIPS}, 2023.
+470	
+471	\bibitem[Shridhar et~al.(2021)]{shridhar2021alfworld}
+472	Mohit Shridhar, Xingdi Yuan, Marc-Alexandre C{\^o}t{\'e}, Yonatan Bisk, Adam Trischler, and Matthew Hausknecht.
+473	\newblock {ALFWorld}: Aligning text and embodied environments for interactive learning.
+474	\newblock In \emph{ICLR}, 2021.
+475	
+476	\bibitem[Wang et~al.(2025)]{wang2025eef}
+477	Zihan Wang, Kangrui Wang, Qineng Wang, et~al.
+478	\newblock Learning from failure: Integrating negative examples into tool-augmented agent training.
+479	\newblock \emph{arXiv:2504.13145}, 2025.
+480	
+481	\bibitem[Yao et~al.(2023)]{yao2023react}
+482	Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao.
+483	\newblock {ReAct}: Synergizing reasoning and acting in language models.
+484	\newblock In \emph{ICLR}, 2023.
+485	
+486	\end{thebibliography}
+487	
+488	% ============================================================
+489	\appendix
+490	\section{Per-Seed Results}
+491	
+492	\paragraph{Qwen3-8B recovery evaluation (5 seeds).}
+493	Vanilla: 61.7, 68.1, 66.0, 66.0, 74.5.
+494	TaxEI: 59.6, 46.8, 61.7, 61.7, 57.4.
+495	Random: 63.8, 55.3, 66.0, 51.1, 53.2.
+496	
+497	\paragraph{Qwen3-8B clean evaluation (5 seeds).}
+498	Vanilla: 67.3$\pm$4.7.
+499	TaxEI: 58.3$\pm$6.5.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82d02eb4-ee84-40c5-8872-f952ab76258e",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "58f88ee9-9ee0-4fdd-98c9-e0a555086f9f",
+  "sourceToolAssistantUUID": "82d02eb4-ee84-40c5-8872-f952ab76258e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-16T16:17:31.977Z_
+
+I now have comprehensive information about the paper. Let me produce the review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58f88ee9-9ee0-4fdd-98c9-e0a555086f9f",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6Yo2oYmsyuGMGWed9uF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "826a9825-d336-43b5-9d03-3d96b65df05c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G8ynLhUowRZmzvesu4Mw6Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6596,
+      "cache_read_input_tokens": 60129,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6596,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T16:17:32.964Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016NVcr8nGFKRmZxGMnKdpCs`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "826a9825-d336-43b5-9d03-3d96b65df05c",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6Yo2oYmsyuGMGWed9uF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "578c2a10-56d0-467e-a68f-2901287d57df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G8ynLhUowRZmzvesu4Mw6Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6596,
+      "cache_read_input_tokens": 60129,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6596
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 60129,
+          "cache_creation_input_tokens": 6596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6596,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T16:17:32.967Z_
+
+<details><summary>↩ Tool result · `toolu_016NVcr8nGFKRmZxGMnKdpCs`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "578c2a10-56d0-467e-a68f-2901287d57df",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "e4a18134-98f6-446f-a131-9070e6d9b57d",
+  "sourceToolAssistantUUID": "578c2a10-56d0-467e-a68f-2901287d57df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T16:17:44.904Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011LYb4m1uHN2AvfyVCfCJLt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__director_post_to_reviewer",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4a18134-98f6-446f-a131-9070e6d9b57d",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YoLb7y2xRrwScHNZLM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fb8867e8-ea0c-4861-a28f-b055d0ab256b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011AMghudQzsYYQiSJAYa83W",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 683,
+      "cache_read_input_tokens": 66725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 683,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T16:17:44.909Z_
+
+<details><summary>↩ Tool result · `toolu_011LYb4m1uHN2AvfyVCfCJLt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_post_to_reviewer"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb8867e8-ea0c-4861-a28f-b055d0ab256b",
+  "isSidechain": true,
+  "promptId": "33c70e6f-a9b0-4fcd-8dab-7477ac425184",
+  "agentId": "a9098cacb2134b62a",
+  "type": "user",
+  "uuid": "69846353-aa22-46ce-ba70-91dbc039d6a5",
+  "sourceToolAssistantUUID": "fb8867e8-ea0c-4861-a28f-b055d0ab256b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-16T16:19:02.600Z_
+
+Here is my structured review as Reviewer R2 (Novelty and Related Work focus):
+
+---
+
+## Review: "Empirical Evidence Toward Boundary Conditions for Error Injection in LLM Agent Training: A Negative Transfer Study"
+
+### Summary
+
+This paper tests whether taxonomy-guided error injection (successful in PALADIN for tool-use on ToolBench) transfers to embodied planning (ALFWorld). The answer is no: both structured (TaxEI) and random injection degrade performance by 9.0pp vs. vanilla SFT, taxonomy labels provide zero benefit over random noise, and models show no error detection or recovery capability. The authors propose three hypothesized boundary conditions (observability, locality, recoverability) to explain the divergence.
+
+---
+
+### Strengths
+
+1. **The research question is timely and well-motivated.** Testing whether a successful training paradigm transfers across agent domains is exactly the kind of investigation the community needs. Error injection for LLM agents is a rapidly growing area (PALADIN, EEF, AgentHER, ETO), and knowing where it fails is as valuable as knowing where it succeeds.
+
+2. **The controlled experimental design isolates taxonomy labels as the sole variable.** The "same-source dual-formatting" approach (TaxEI vs. Random differ only in the error tag text, with identical injection points and data volume) is methodologically clean and produces the paper's strongest finding: taxonomy = zero benefit.
+
+3. **The resilience-vs-recovery distinction is a genuine conceptual contribution.** Showing that recovery rates match clean eval rates (i.e., models passively ignore perturbations rather than actively recovering) is an insight that reframes how we should interpret "robustness" results in agent evaluation.
+
+4. **Honest statistical reporting.** The paper is admirably transparent about being underpowered (45% power, Bonferroni NS), reports per-seed results, and does not overclaim. This sets a good standard for negative result papers.
+
+5. **Cross-model replication strengthens the finding.** Showing TaxEI instability on both Qwen3-8B and LLaMA-3.1-8B (with architecture-dependent manifestation) elevates the claim beyond a single-model artifact.
+
+6. **Recovery-paired injection experiment (Claim 7) directly addresses the strongest alternative explanation.** Testing whether PALADIN's recovery pairing is the "missing ingredient" and finding it makes things worse is a well-designed ablation that closes the most obvious reviewer objection.
+
+---
+
+### Weaknesses
+
+1. **(Major) The 2x2 framework is post-hoc and underdetermined.** The framework places PALADIN (positive signal, tool-use), EEF (positive signal, planning), and TaxEI (negative signal, planning) in cells, leaving "negative signal in tool-use" untested. But this framing conflates multiple axes: PALADIN uses positive signal too (recovery demonstrations), and EEF doesn't inject errors at all. The framework's axes (positive/negative signal x tool-use/planning) don't cleanly separate the methods being compared. Moreover, PALADIN occupies an ambiguous position—it injects errors (negative) AND pairs them with recovery (positive). The framework risks being a narrative convenience rather than a falsifiable organizing principle.
+
+2. **(Major) The boundary condition hypotheses (observability, locality, recoverability) are neither novel nor testable within this paper.** These three properties are intuitive distinctions between tool-use and planning that any researcher would generate post-hoc. They are not derived from the data (the per-operator analysis is NS for all operators), not validated against a second domain, and not quantified. The paper acknowledges they are "hypothesized" but still frames them as a contribution. Without at least one controlled test (e.g., showing that a local operator like C4 helps while global operators hurt, with significance), these remain speculation dressed as theory.
+
+3. **(Major) Missing critical related work in robustness and domain transfer.** The paper cites only 11 references. For a paper whose central claim is about transfer failure, several important areas are underrepresented:
+   - **Robustness training in RL/sequential decision-making**: Domain randomization (Tobin et al. 2017), robust MDPs (Iyengar 2005), adversarial perturbation in RL (Pinto et al. 2017 "RARL") all study when perturbation-based training helps vs. hurts in sequential settings. The embodied planning setting connects directly to this literature.
+   - **Data augmentation transfer failures**: Longpre et al. (2020) show augmentation minimally helps pretrained transformers. This is cited in the project's literature map but absent from the paper.
+   - **Noise injection in NLP SFT**: The paper should cite work on label noise robustness (Rolnick et al. 2017, Arpit et al. 2017 on memorization) which directly explains the training dynamics observed.
+   - **Agent training paradigms beyond error injection**: AgentTuning (Zeng et al. 2023), FireAct (Chen et al. 2023), and the Trial-and-Error (Song et al. 2024, ACL) line are all closely related agent SFT papers that contextualize the contribution.
+   - **Process reward models for agents**: AgentPRM (Choudhury 2025) achieves 91% on ALFWorld and contextualizes the baseline performance.
+
+4. **(Minor) PALADIN comparison has too many confounds to support strong claims about "task structure."** The paper acknowledges this (different model, 9K vs 50K scale, retrieval augmentation) but still frames the divergence as primarily about task structure. The 5x scale-up narrows the gap only 29% and shows diminishing returns, which is interesting, but an alternative reading is that PALADIN's success is 60% retrieval augmentation + 30% scale + 10% task structure. The paper cannot disentangle these.
+
+5. **(Minor) The framing as "negative transfer" in the title is slightly misleading.** Negative transfer typically implies a method that helps in one domain hurts in another after direct application. But TaxEI is not a direct application of PALADIN—it's a new taxonomy designed specifically for ALFWorld. What fails is the *paradigm* (error injection for agent training), not a specific trained model transferred. The title should perhaps say "failed paradigm transfer" rather than implying the standard transfer learning sense.
+
+6. **(Minor) The dose-response narrative changed multiple times during the project and the final "no safe dose" claim may overreach.** At 10% injection with Random, the gap is only 3.4pp (d=0.67), which is within normal seed variance. Claiming "no safe dose exists" when all comparisons at 10% are NS overstates the evidence.
+
+7. **(Minor) Detection rate = 0% may reflect evaluation methodology.** The paper checks for explicit error flagging in output. Models trained on error-tagged data might develop implicit error handling (e.g., rephrasing actions, trying alternatives) not captured by binary detection. The paper acknowledges this but doesn't test it.
+
+---
+
+### Questions for Authors
+
+1. Have you considered testing error injection on a tool-use benchmark (even ToolBench itself) using your exact training recipe (same model, same scale, pure SFT without retrieval)? This would isolate task structure from all other PALADIN confounds. If pure SFT error injection helps on tool-use but not planning, even at matched scale, the boundary condition argument becomes much stronger.
+
+2. The literature map includes Song et al. 2024 (ETO/Trial-and-Error) which uses DPO on success-failure pairs rather than SFT on failures. Have you considered whether the training objective (SFT vs. DPO/contrastive) is a more parsimonious explanation than task structure for why injection fails? SFT on error trajectories trains the model to *produce* errors, while DPO trains it to *avoid* them.
+
+3. For the 2x2 framework: where would you place your recovery-paired injection (TaxEI-RP)? It includes both negative signal (errors) and positive signal (recovery demonstrations) in a planning domain. If this is "positive + negative signal in planning" and it's the worst performer, doesn't this break the framework's prediction that positive signal should help in planning?
+
+4. The scale-up shows diminishing returns with a "diversity ceiling" argument (134 tasks repeated 18.7x). Would you predict that error injection would succeed in a planning domain with 1000+ diverse tasks? If so, is the boundary condition really "task diversity" rather than "observability/locality/recoverability"?
+
+5. LLaMA shows 27% detection rate while Qwen shows 0%. What accounts for this? Does detection correlate with recovery on a per-episode basis for LLaMA?
+
+---
+
+### Assessment of Conceptual Contribution
+
+The paper's conceptual contribution falls in a middleground. At its best, it offers:
+- A clean empirical demonstration that a paradigm does not transfer (taxonomy = zero benefit is a clear, replicable finding)
+- The resilience-vs-recovery distinction (novel and useful)
+- A controlled recovery-pairing ablation that rules out the most obvious confound
+
+At its weakest, it offers:
+- Post-hoc boundary condition hypotheses that are neither derived from data nor testable within the paper
+- A 2x2 framework that doesn't cleanly categorize the methods it claims to organize
+- An implicit claim of generality ("embodied planning") tested on a single benchmark with 47 test tasks
+
+The paper is better than "it didn't work" but falls short of "here's a validated theory of when it works." It occupies the space of "here's a well-controlled failure with suggestive hypotheses"—which is valuable for EMNLP Findings but not for a main conference paper at the top tier.
+
+The strongest version of this paper would be: (1) the clean negative result with proper controls, (2) the resilience-not-recovery insight, and (3) an honest acknowledgment that the boundary conditions are hypotheses for future work rather than contributions of this paper. The current framing tries to elevate the hypotheses to contribution status, which weakens the paper by inviting scrutiny they cannot withstand.
+
+---
+
+### Score: 3/6 (Borderline Reject / Weak Accept boundary)
+
+**Justification:** The research question is important and the experimental design is clean. The finding that taxonomy labels provide zero benefit is clear and useful. The resilience-vs-recovery distinction is a genuine insight. However, the conceptual framework (2x2 + boundary conditions) is post-hoc and undertested, the related work coverage has significant gaps for a paper positioning itself at the intersection of agent training, robustness, and domain transfer, and the comparison with PALADIN is too confounded to support the strong framing of "task-structural boundary conditions." For EMNLP Findings, this is borderline acceptable if the related work is substantially expanded and the boundary conditions are honestly downgraded to hypotheses. For a main conference slot, the paper needs either (a) a controlled cross-domain test or (b) a quantitative framework that makes testable predictions.
+
+---
+
+### Confidence: 4/5
+
+I am confident in my assessment of the novelty and related work dimensions. I have reviewed the literature map, the experimental design decisions, and the paper framing in detail. My uncertainty is mainly around whether the scale-up results (which I have only seen in table form) would shift my evaluation if the diminishing-returns argument is more compelling in full context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69846353-aa22-46ce-ba70-91dbc039d6a5",
+  "isSidechain": true,
+  "agentId": "a9098cacb2134b62a",
+  "requestId": "req_011Cb6YpDuZktpxqtMZC7AWX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ca3eefd0-b0b1-425f-8c5b-62fc6fa92408",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "3dbddd0c-fe11-423e-bc66-5161ab0e513e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0175aEuSsu9L3CiQDQ7FH9D4",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 500,
+      "cache_read_input_tokens": 67408,
+      "output_tokens": 2699,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 500
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2699,
+          "cache_read_input_tokens": 67408,
+          "cache_creation_input_tokens": 500,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 500,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

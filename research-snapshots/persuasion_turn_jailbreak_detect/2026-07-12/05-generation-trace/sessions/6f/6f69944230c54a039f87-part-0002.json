@@ -1,0 +1,1298 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6f69944230c54a039f87",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T19:25:47.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0165cVt7syAmzEbGpRiqNpTZ",
+              "type": "tool_result",
+              "content": "=== exp51_lmsys_benign_ood ===\n{\n  \"baseline_fpr\": 0.575,\n  \"baseline_n\": 200,\n  \"data_source\": \"oasst2 (real crowdsourced human)\",\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.575\n    },\n    \"n10\": {\n      \"fpr\": 0.205,\n      \"dd_f1\": 1,\n      \"aa_f1\": 1,\n      \"fitd_f1\": 1\n    },\n    \"n25\": {\n      \"fpr\": 0.015,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.953,\n      \"fitd_f1\": 1\n    },\n    \"n50\": {\n      \"fpr\": 0.005,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.99,\n      \"fitd_f1\": 1\n    }\n  },\n  \"comparison_wildchat\": {\n    \"baseline_fpr\": 0.681,\n    \"n10_fpr\": 0,\n    \"n10_sufficient\": true\n  }\n}\n\n=== exp42_ood_benign_mixed ===\n{\n  \"wildchat_fpr_mean\": 0,\n  \"wildchat_fpr_std\": 0,\n  \"iid_f1_mean\": 1,\n  \"ood_dd_f1_mean\": 1,\n  \"ood_aa_f1_mean\": 0.956,\n  \"ood_fitd_f1_mean\": 1,\n  \"wildchat_eval_n\": 49,\n  \"data_filtered\": \"27/226 jailbreak patterns removed\",\n  \"train_size\": \"500 (350 orig + 150 WildChat benign)\"\n}\n\n=== exp15c_roberta_large_mlm ===\n{\n  \"dd_ood\": {\n    \"mlm\": {\n      \"k1\": 0.876,\n      \"k3\": 0.902,\n      \"full\": 0.884\n    },\n    \"vanilla_exp15\": {\n      \"k1\": 0.878,\n      \"k3\": 0.915,\n      \"full\": 0.927\n    },\n    \"9class_exp15\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"mlm\": {\n      \"k1\": 0.876,\n      \"k3\": 0.881,\n      \"full\": 0.874\n    },\n    \"vanilla_exp15\": {\n      \"k1\": 0.977,\n      \"k3\": 0.99,\n      \"full\": 1\n    },\n    \"9class_exp15\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\"\n}\n\n=== exp15b_roberta_large_lr ===\n{\n  \"dd_ood\": {\n    \"9class_lr1e5\": {\n      \"k1\": 0.899,\n      \"k3\": 0.851,\n      \"full\": 0.948\n    },\n    \"9class_lr2e5_exp15\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"9class_lr1e5\": {\n      \"k1\": 0.459,\n      \"k3\": 0.676,\n      \"full\": 0.781\n    },\n    \"9class_lr2e5_exp15\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact.\"\n}\n\n=== exp15_roberta_large ===\n{\n  \"dd_ood\": {\n    \"roberta_large_vanilla\": {\n      \"k1\": 0.878,\n      \"k3\": 0.915,\n      \"full\": 0.927\n    },\n    \"roberta_large_9class\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"roberta_large_vanilla\": {\n      \"k1\": 0.977,\n      \"k3\": 0.99,\n      \"full\": 1\n    },\n    \"roberta_large_9class\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927).\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfbc41dc-b6ec-4630-babe-8c65b7ab7ac7",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "2093ca93-30ee-4966-a919-d04c23ce92d5",
+            "toolUseResult": {
+              "stdout": "=== exp51_lmsys_benign_ood ===\n{\n  \"baseline_fpr\": 0.575,\n  \"baseline_n\": 200,\n  \"data_source\": \"oasst2 (real crowdsourced human)\",\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.575\n    },\n    \"n10\": {\n      \"fpr\": 0.205,\n      \"dd_f1\": 1,\n      \"aa_f1\": 1,\n      \"fitd_f1\": 1\n    },\n    \"n25\": {\n      \"fpr\": 0.015,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.953,\n      \"fitd_f1\": 1\n    },\n    \"n50\": {\n      \"fpr\": 0.005,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.99,\n      \"fitd_f1\": 1\n    }\n  },\n  \"comparison_wildchat\": {\n    \"baseline_fpr\": 0.681,\n    \"n10_fpr\": 0,\n    \"n10_sufficient\": true\n  }\n}\n\n=== exp42_ood_benign_mixed ===\n{\n  \"wildchat_fpr_mean\": 0,\n  \"wildchat_fpr_std\": 0,\n  \"iid_f1_mean\": 1,\n  \"ood_dd_f1_mean\": 1,\n  \"ood_aa_f1_mean\": 0.956,\n  \"ood_fitd_f1_mean\": 1,\n  \"wildchat_eval_n\": 49,\n  \"data_filtered\": \"27/226 jailbreak patterns removed\",\n  \"train_size\": \"500 (350 orig + 150 WildChat benign)\"\n}\n\n=== exp15c_roberta_large_mlm ===\n{\n  \"dd_ood\": {\n    \"mlm\": {\n      \"k1\": 0.876,\n      \"k3\": 0.902,\n      \"full\": 0.884\n    },\n    \"vanilla_exp15\": {\n      \"k1\": 0.878,\n      \"k3\": 0.915,\n      \"full\": 0.927\n    },\n    \"9class_exp15\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"mlm\": {\n      \"k1\": 0.876,\n      \"k3\": 0.881,\n      \"full\": 0.874\n    },\n    \"vanilla_exp15\": {\n      \"k1\": 0.977,\n      \"k3\": 0.99,\n      \"full\": 1\n    },\n    \"9class_exp15\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\"\n}\n\n=== exp15b_roberta_large_lr ===\n{\n  \"dd_ood\": {\n    \"9class_lr1e5\": {\n      \"k1\": 0.899,\n      \"k3\": 0.851,\n      \"full\": 0.948\n    },\n    \"9class_lr2e5_exp15\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"9class_lr1e5\": {\n      \"k1\": 0.459,\n      \"k3\": 0.676,\n      \"full\": 0.781\n    },\n    \"9class_lr2e5_exp15\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact.\"\n}\n\n=== exp15_roberta_large ===\n{\n  \"dd_ood\": {\n    \"roberta_large_vanilla\": {\n      \"k1\": 0.878,\n      \"k3\": 0.915,\n      \"full\": 0.927\n    },\n    \"roberta_large_9class\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"roberta_large_vanilla\": {\n      \"k1\": 0.977,\n      \"k3\": 0.99,\n      \"full\": 1\n    },\n    \"roberta_large_9class\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927).\"\n}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "bfbc41dc-b6ec-4630-babe-8c65b7ab7ac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T19:25:48.854Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JqVe47YfEe6PkYTekz5vvf",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp15* 2>/dev/null\nls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ | grep -i 'roberta_large\\|dual_ood\\|roberta-large'",
+                "description": "Search for RoBERTa-large artifact files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2093ca93-30ee-4966-a919-d04c23ce92d5",
+            "isSidechain": false,
+            "requestId": "req_011CbL3KqDTpR8h8VsKQmYbE",
+            "type": "assistant",
+            "uuid": "c2b3de1a-874e-46b3-bbb8-1c594db5d755",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SgpGro9qbu57VudFVk1J87",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6486,
+                "cache_read_input_tokens": 86600,
+                "output_tokens": 19954,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6486,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 19954,
+                    "cache_read_input_tokens": 86600,
+                    "cache_creation_input_tokens": 6486,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6486
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T19:25:48.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JqVe47YfEe6PkYTekz5vvf",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2b3de1a-874e-46b3-bbb8-1c594db5d755",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "f9b1727d-f84e-4885-b44c-6f89d9a7eb59",
+            "toolUseResult": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "returnCodeInterpretation": "No matches found",
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "c2b3de1a-874e-46b3-bbb8-1c594db5d755",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "f9b1727d-f84e-4885-b44c-6f89d9a7eb59",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify paper tables against experiment registry",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T19:26:08.004Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK, so for RoBERTa-large, the registry only has single-seed values (from exp15, exp15b, exp15c). No 3-seed data in the registry. But the paper reports 3-seed mean±std values. This is a traceability gap.\n\nAlso for the dual-OOD rows in Table 3:\n- \"9-class (no adapt)\": DD=.855, AA=.842\n- \"9-class (+10-shot)\": DD=.994, AA=.981\n\nThese are not directly traceable from the registry experiments I found. \n\nLooking at the registered experiments, exp42_ood_benign_mixed shows ood_dd_f1_mean=1.000 and exp45_benign_adaptation_curve has dd_f1=1.000 for n10, but neither matches the .994 value. The dual-OOD numbers likely come from a specific evaluation where WildChat benign replaces the IID benign test set, probably computed as part of the Section 5.6 analysis but stored in artifact files rather than registered as formal experiments.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9b1727d-f84e-4885-b44c-6f89d9a7eb59",
+            "isSidechain": false,
+            "requestId": "req_011CbL3pRKqAPpGBBRTPeqpS",
+            "type": "assistant",
+            "uuid": "48a5de6d-2767-48dc-ad98-587ff7836266",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToDkzJ9PaVqcmgZmpYByft",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21410,
+                "cache_read_input_tokens": 93086,
+                "output_tokens": 1231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 21410,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1231,
+                    "cache_read_input_tokens": 93086,
+                    "cache_creation_input_tokens": 21410,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 21410
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T19:26:09.416Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FNgPAB5mUpJxjZVLhLS561",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ | grep -iE 'dual|wildchat|benign_adapt|adapt_curve|roberta.large'",
+                "description": "Search for dual-OOD and RoBERTa-large artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48a5de6d-2767-48dc-ad98-587ff7836266",
+            "isSidechain": false,
+            "requestId": "req_011CbL3pRKqAPpGBBRTPeqpS",
+            "type": "assistant",
+            "uuid": "adadc050-54e7-4890-9439-495419c76034",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToDkzJ9PaVqcmgZmpYByft",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21410,
+                "cache_read_input_tokens": 93086,
+                "output_tokens": 1231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 21410,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1231,
+                    "cache_read_input_tokens": 93086,
+                    "cache_creation_input_tokens": 21410,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 21410
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T19:26:09.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FNgPAB5mUpJxjZVLhLS561",
+              "type": "tool_result",
+              "content": "exp19_wildchat_fpr\nexp45_benign_adaptation_curve\nexp51_adapt_curve\nexp66_sharegpt_benign_adaptation",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adadc050-54e7-4890-9439-495419c76034",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "5330b152-d9a9-4d81-90e5-9b73917ebbd6",
+            "toolUseResult": {
+              "stdout": "exp19_wildchat_fpr\nexp45_benign_adaptation_curve\nexp51_adapt_curve\nexp66_sharegpt_benign_adaptation",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "adadc050-54e7-4890-9439-495419c76034",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T19:26:23.111Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0151DhKRwSGJicXsy6vMWV5i",
+              "name": "Bash",
+              "input": {
+                "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexps = parsed['data']['experiments']\n\n# Search for exp with roberta large 3-seed or std values\nfor eid, exp in exps.items():\n    m = exp.get('metrics', {})\n    ms = json.dumps(m)\n    # Find any experiment with 'roberta' and 'large' and 'std' or '3seed' or multiple seeds\n    if 'roberta' in eid.lower() and 'large' in eid.lower():\n        print(f'{eid}: {ms[:200]}')\n    # Or any exp with roberta_large in metrics\n    if 'roberta_large' in ms.lower() or 'roberta-large' in ms.lower():\n        print(f'{eid}: {ms[:200]}')\n\nprint('---')\n# Check exp40 for Llama Guard pooled recall\nexp40 = exps.get('exp40_llama_guard_baseline', {})\nm40 = exp40.get('metrics', {})\n# Calculate pooled recall\ndd_rec = m40.get('ood_dd', {}).get('full', {}).get('rec_jb', 0)\naa_rec = m40.get('ood_aa', {}).get('full', {}).get('rec_jb', 0)\nfitd_rec = m40.get('ood_fitd', {}).get('full', {}).get('rec_jb', 0)\niid_rec = m40.get('iid_crescendo', {}).get('full', {}).get('rec_jb', 0)\nprint(f'Llama Guard recalls: DD={dd_rec}, AA={aa_rec}, FITD={fitd_rec}, IID={iid_rec}')\n# Pooled: total correct / total jailbreak\ntotal_correct = int(dd_rec*80) + int(aa_rec*80) + int(fitd_rec*80) + int(iid_rec*38)\ntotal_jb = 80 + 80 + 80 + 38\nprint(f'Pooled recall: {total_correct}/{total_jb} = {total_correct/total_jb:.3f} ({total_correct/total_jb*100:.1f}%)')\n\" 2>&1",
+                "description": "Search for RoBERTa-large 3-seed data and check Llama Guard pooled recall"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5330b152-d9a9-4d81-90e5-9b73917ebbd6",
+            "isSidechain": false,
+            "requestId": "req_011CbL3pRKqAPpGBBRTPeqpS",
+            "type": "assistant",
+            "uuid": "7f72d263-cb13-4340-8fef-2c9c13d88b31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ToDkzJ9PaVqcmgZmpYByft",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21410,
+                "cache_read_input_tokens": 93086,
+                "output_tokens": 1231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 21410,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1231,
+                    "cache_read_input_tokens": 93086,
+                    "cache_creation_input_tokens": 21410,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 21410
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T19:26:23.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0151DhKRwSGJicXsy6vMWV5i",
+              "type": "tool_result",
+              "content": "exp15c_roberta_large_mlm: {\"dd_ood\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.902, \"full\": 0.884}, \"vanilla_exp15\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"9class_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"ml\nexp15b_roberta_large_lr: {\"dd_ood\": {\"9class_lr1e5\": {\"k1\": 0.899, \"k3\": 0.851, \"full\": 0.948}, \"9class_lr2e5_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"9class_lr1e5\": {\"k1\": 0.459, \"k3\": 0.676, \"full\nexp15_roberta_large: {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977\nexp15_roberta_large: {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977\n---\nLlama Guard recalls: DD=0.0125, AA=0, FITD=0, IID=0.1053\nPooled recall: 5/278 = 0.018 (1.8%)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f72d263-cb13-4340-8fef-2c9c13d88b31",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "1877af1a-4707-4e7d-a12f-3a0daa3ff036",
+            "toolUseResult": {
+              "stdout": "exp15c_roberta_large_mlm: {\"dd_ood\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.902, \"full\": 0.884}, \"vanilla_exp15\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"9class_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"ml\nexp15b_roberta_large_lr: {\"dd_ood\": {\"9class_lr1e5\": {\"k1\": 0.899, \"k3\": 0.851, \"full\": 0.948}, \"9class_lr2e5_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"9class_lr1e5\": {\"k1\": 0.459, \"k3\": 0.676, \"full\nexp15_roberta_large: {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977\nexp15_roberta_large: {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977\n---\nLlama Guard recalls: DD=0.0125, AA=0, FITD=0, IID=0.1053\nPooled recall: 5/278 = 0.018 (1.8%)",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "7f72d263-cb13-4340-8fef-2c9c13d88b31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T19:26:55.029Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good findings:\n1. RoBERTa-large: only single-seed data in registry (exp15/15b/15c). No 3-seed experiments found. The paper reports std values, so 3-seed runs must exist somewhere (probably on the server) but aren't registered.\n\n2. Llama Guard pooled recall: 5/278 = 1.8% matches the paper text ✓ (DD: 1/80=0.0125, AA: 0/80, FITD: 0/80, IID: 4/38=0.1053 → total 5/278)\n\n\n3. The Dual-OOD values in Table 3 (.855/.842 and .994/.981) don't match exp45 or exp51 directly, so they likely come from a specific evaluation script that wasn't registered. I should check the adaptation curve experiments to see if those contain the matching values.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1877af1a-4707-4e7d-a12f-3a0daa3ff036",
+            "isSidechain": false,
+            "requestId": "req_011CbL3rwtfMCcUK8QoHtw2N",
+            "type": "assistant",
+            "uuid": "a14b5839-d3c1-49c0-b11e-6e624bf08262",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KoWEyk7ShPdAwR1KspDVXq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1846,
+                "cache_read_input_tokens": 114496,
+                "output_tokens": 665,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1846,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 665,
+                    "cache_read_input_tokens": 114496,
+                    "cache_creation_input_tokens": 1846,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1846
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T19:27:42.851Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WKb926nvPGvtB3mAekELhv",
+              "name": "Bash",
+              "input": {
+                "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexps = parsed['data']['experiments']\n\n# Check exp51_adapt_curve and exp56 for dual-OOD values\nfor eid in ['exp51_adapt_curve', 'exp56_crossllm_10shot', 'exp56_crossllm_10shot_adaptation', 'exp66_sharegpt_benign_adaptation', 'exp45', 'exp67_length_matching']:\n    if eid in exps:\n        exp = exps[eid]\n        print(f'=== {eid} ===')\n        print(json.dumps(exp.get('metrics', {}), indent=2, default=str)[:800])\n        print()\n    else:\n        print(f'{eid}: NOT FOUND')\n\" 2>&1",
+                "description": "Check adapt curve and dual-OOD experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a14b5839-d3c1-49c0-b11e-6e624bf08262",
+            "isSidechain": false,
+            "requestId": "req_011CbL3rwtfMCcUK8QoHtw2N",
+            "type": "assistant",
+            "uuid": "bf5c12aa-8fba-473e-8a36-9a7ad54f0fc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KoWEyk7ShPdAwR1KspDVXq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1846,
+                "cache_read_input_tokens": 114496,
+                "output_tokens": 665,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1846,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 665,
+                    "cache_read_input_tokens": 114496,
+                    "cache_creation_input_tokens": 1846,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1846
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T19:27:42.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WKb926nvPGvtB3mAekELhv",
+              "type": "tool_result",
+              "content": "exp51_adapt_curve: NOT FOUND\nexp56_crossllm_10shot: NOT FOUND\n=== exp56_crossllm_10shot_adaptation ===\n{\n  \"baseline_fpr\": 0.945,\n  \"baseline_aa_llama_recall\": 0.74,\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.945,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.99,\n      \"fitd_f1\": 1,\n      \"dd_llama_recall\": 1,\n      \"aa_llama_recall\": 0.74,\n      \"fitd_llama_recall\": 1\n    },\n    \"n5\": {\n      \"fpr\": 0.055,\n      \"dd_f1\": 0.694,\n      \"aa_f1\": 0.841,\n      \"fitd_f1\": 0.99,\n      \"dd_llama_recall\": 0.64,\n      \"aa_llama_recall\": 0.04,\n      \"fitd_llama_recall\": 0.76\n    },\n    \"n10\": {\n      \"fpr\": 0.03,\n      \"dd_f1\": 0.816,\n      \"aa_f1\": 0.601,\n      \"fitd_f1\": 1,\n      \"dd_llama_recall\": 0.6,\n      \"aa_llama_recall\": 0,\n      \"fitd_llama_recall\": 0.8\n    },\n    \"n25\": {\n      \"fpr\": 0.005,\n      \"dd_f1\": 0.556,\n      \"aa_f1\": 0.271,\n      \"fitd_f1\": 0.99,\n      \"dd_llama_recall\": 0.08,\n    \n\n=== exp66_sharegpt_benign_adaptation ===\n{\n  \"baseline_fpr\": 0.39,\n  \"baseline_n\": 200,\n  \"data_source\": \"ShareGPT (real user-ChatGPT conversations)\",\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.39\n    },\n    \"n5\": {\n      \"fpr\": 0.21,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.953,\n      \"aa_f1\": 0.891,\n      \"fitd_f1\": 1\n    },\n    \"n10\": {\n      \"fpr_mean\": 0.105,\n      \"fpr_seeds\": [\n        0.075,\n        0.155,\n        0.085\n      ],\n      \"iid_f1\": 0.987,\n      \"dd_f1_mean\": 0.906,\n      \"aa_f1_mean\": 0.852,\n      \"fitd_f1\": 1\n    },\n    \"n15\": {\n      \"fpr\": 0.095,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.917,\n      \"aa_f1\": 0.874,\n      \"fitd_f1\": 1\n    },\n    \"n20\": {\n      \"fpr\": 0.1,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.926,\n      \"aa_f1\": 0.858,\n      \"fitd_f1\": 1\n    },\n    \"n25\": {\n      \"fpr_mean\": 0.027,\n      \"fpr_see\n\nexp45: NOT FOUND\n=== exp67_length_matching ===\n{\n  \"dd_ood\": {\n    \"full_set_f1\": 0.887,\n    \"full_set_std\": 0.086,\n    \"range_matched_f1\": 0.88,\n    \"range_matched_std\": 0.094,\n    \"range_matched_delta\": -0.008,\n    \"bucket_matched_f1\": 0.913,\n    \"bucket_matched_std\": 0.079,\n    \"bucket_matched_delta\": 0.025,\n    \"jb_turns\": \"[6,10]\",\n    \"benign_turns\": \"[6,14]\",\n    \"overlap\": \"[6,10]\"\n  },\n  \"aa_ood\": {\n    \"full_set_f1\": 0.883,\n    \"full_set_std\": 0.091,\n    \"range_matched_f1\": 0.898,\n    \"range_matched_std\": 0.077,\n    \"range_matched_delta\": 0.015,\n    \"bucket_matched_f1\": 0.892,\n    \"bucket_matched_std\": 0.074,\n    \"bucket_matched_delta\": 0.009,\n    \"jb_turns\": \"[3,8]\",\n    \"benign_turns\": \"[6,14]\",\n    \"overlap\": \"[6,8]\",\n    \"jb_retained\": \"34/80\"\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf5c12aa-8fba-473e-8a36-9a7ad54f0fc3",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "5b3e7634-6357-470b-9dbb-24123419a73f",
+            "toolUseResult": {
+              "stdout": "exp51_adapt_curve: NOT FOUND\nexp56_crossllm_10shot: NOT FOUND\n=== exp56_crossllm_10shot_adaptation ===\n{\n  \"baseline_fpr\": 0.945,\n  \"baseline_aa_llama_recall\": 0.74,\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.945,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.99,\n      \"fitd_f1\": 1,\n      \"dd_llama_recall\": 1,\n      \"aa_llama_recall\": 0.74,\n      \"fitd_llama_recall\": 1\n    },\n    \"n5\": {\n      \"fpr\": 0.055,\n      \"dd_f1\": 0.694,\n      \"aa_f1\": 0.841,\n      \"fitd_f1\": 0.99,\n      \"dd_llama_recall\": 0.64,\n      \"aa_llama_recall\": 0.04,\n      \"fitd_llama_recall\": 0.76\n    },\n    \"n10\": {\n      \"fpr\": 0.03,\n      \"dd_f1\": 0.816,\n      \"aa_f1\": 0.601,\n      \"fitd_f1\": 1,\n      \"dd_llama_recall\": 0.6,\n      \"aa_llama_recall\": 0,\n      \"fitd_llama_recall\": 0.8\n    },\n    \"n25\": {\n      \"fpr\": 0.005,\n      \"dd_f1\": 0.556,\n      \"aa_f1\": 0.271,\n      \"fitd_f1\": 0.99,\n      \"dd_llama_recall\": 0.08,\n    \n\n=== exp66_sharegpt_benign_adaptation ===\n{\n  \"baseline_fpr\": 0.39,\n  \"baseline_n\": 200,\n  \"data_source\": \"ShareGPT (real user-ChatGPT conversations)\",\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.39\n    },\n    \"n5\": {\n      \"fpr\": 0.21,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.953,\n      \"aa_f1\": 0.891,\n      \"fitd_f1\": 1\n    },\n    \"n10\": {\n      \"fpr_mean\": 0.105,\n      \"fpr_seeds\": [\n        0.075,\n        0.155,\n        0.085\n      ],\n      \"iid_f1\": 0.987,\n      \"dd_f1_mean\": 0.906,\n      \"aa_f1_mean\": 0.852,\n      \"fitd_f1\": 1\n    },\n    \"n15\": {\n      \"fpr\": 0.095,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.917,\n      \"aa_f1\": 0.874,\n      \"fitd_f1\": 1\n    },\n    \"n20\": {\n      \"fpr\": 0.1,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.926,\n      \"aa_f1\": 0.858,\n      \"fitd_f1\": 1\n    },\n    \"n25\": {\n      \"fpr_mean\": 0.027,\n      \"fpr_see\n\nexp45: NOT FOUND\n=== exp67_length_matching ===\n{\n  \"dd_ood\": {\n    \"full_set_f1\": 0.887,\n    \"full_set_std\": 0.086,\n    \"range_matched_f1\": 0.88,\n    \"range_matched_std\": 0.094,\n    \"range_matched_delta\": -0.008,\n    \"bucket_matched_f1\": 0.913,\n    \"bucket_matched_std\": 0.079,\n    \"bucket_matched_delta\": 0.025,\n    \"jb_turns\": \"[6,10]\",\n    \"benign_turns\": \"[6,14]\",\n    \"overlap\": \"[6,10]\"\n  },\n  \"aa_ood\": {\n    \"full_set_f1\": 0.883,\n    \"full_set_std\": 0.091,\n    \"range_matched_f1\": 0.898,\n    \"range_matched_std\": 0.077,\n    \"range_matched_delta\": 0.015,\n    \"bucket_matched_f1\": 0.892,\n    \"bucket_matched_std\": 0.074,\n    \"bucket_matched_delta\": 0.009,\n    \"jb_turns\": \"[3,8]\",\n    \"benign_turns\": \"[6,14]\",\n    \"overlap\": \"[6,8]\",\n    \"jb_retained\": \"34/80\"\n  }\n}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "bf5c12aa-8fba-473e-8a36-9a7ad54f0fc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T19:27:57.536Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The dual-OOD values (.855/.842 for \"no adapt\" and .994/.981 for \"+10-shot\") don't directly match any single registry experiment. These values were likely computed in a specific evaluation that replaced IID benign with WildChat benign in the test set.\n\nFor \"no adapt\": Using the original 9-class model but evaluating with WildChat benign instead of IID benign. With 68.1% FPR on WildChat, the F1 would drop. The paper says DD=.855 and AA=.842.\n\n\nFor \"+10-shot\": After adapting with 10 WildChat examples, exp45 shows perfect DD F1 and 0.981 AA F1, but those might be computed against IID benign rather than WildChat benign. The dual-OOD metric would swap in WildChat benign instead. Looking at exp42b_balanced_ratio_ablation, I see OOD F1 values of 1.000 and 0.9905 that might be closer to what's being reported.\n\nThe \"+10-shot\" values don't exactly match the exp42 variants I'm finding, so these dual-OOD metrics might have been computed in a comprehensive evaluation script that isn't separately registered in the system. I should search for any analysis files or artifacts that might contain these calculations.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b3e7634-6357-470b-9dbb-24123419a73f",
+            "isSidechain": false,
+            "requestId": "req_011CbL3xpgFR8DK2qwLMj2hX",
+            "type": "assistant",
+            "uuid": "93e7d7e5-5f4a-49a5-ae7e-83d901072a94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BeYDXuhcdtUDJKnjAFSZEe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1939,
+                "cache_read_input_tokens": 116342,
+                "output_tokens": 739,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1939,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 739,
+                    "cache_read_input_tokens": 116342,
+                    "cache_creation_input_tokens": 1939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1939
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T19:27:59.107Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EuqiwNXT3NNbAAJC5tePLB",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ -name \"*.json\" | xargs grep -l \"0.855\\|dual.ood\\|no.adapt\" 2>/dev/null | head -5",
+                "description": "Search for dual-OOD result files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93e7d7e5-5f4a-49a5-ae7e-83d901072a94",
+            "isSidechain": false,
+            "requestId": "req_011CbL3xpgFR8DK2qwLMj2hX",
+            "type": "assistant",
+            "uuid": "95badba4-a6d6-44fa-b91b-89787f048592",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BeYDXuhcdtUDJKnjAFSZEe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1939,
+                "cache_read_input_tokens": 116342,
+                "output_tokens": 739,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1939,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 739,
+                    "cache_read_input_tokens": 116342,
+                    "cache_creation_input_tokens": 1939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1939
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T19:27:59.209Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EuqiwNXT3NNbAAJC5tePLB",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp2_actorattack_ood.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp12_toxicchat_bootstrap/exp12_toxicchat_bootstrap.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/EXP-2/data/exp2_actorattack_ood.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95badba4-a6d6-44fa-b91b-89787f048592",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "e5a52bea-face-4073-9bde-9b7118680eef",
+            "toolUseResult": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp2_actorattack_ood.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp12_toxicchat_bootstrap/exp12_toxicchat_bootstrap.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/EXP-2/data/exp2_actorattack_ood.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "95badba4-a6d6-44fa-b91b-89787f048592",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T19:28:00.424Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TFhsisxTQn5aVDhJD7rPpS",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ -name \"*.json\" -path \"*exp45*\" -o -name \"*.json\" -path \"*exp51*\" -o -name \"*.json\" -path \"*dual*\" -o -name \"*.json\" -path \"*wildchat*\" 2>/dev/null | head -10",
+                "description": "Find wildchat/dual-OOD JSON files in artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5a52bea-face-4073-9bde-9b7118680eef",
+            "isSidechain": false,
+            "requestId": "req_011CbL3xpgFR8DK2qwLMj2hX",
+            "type": "assistant",
+            "uuid": "15832b49-e2fd-47d0-ad03-502ccbdcc3a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BeYDXuhcdtUDJKnjAFSZEe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1939,
+                "cache_read_input_tokens": 116342,
+                "output_tokens": 739,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1939,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 739,
+                    "cache_read_input_tokens": 116342,
+                    "cache_creation_input_tokens": 1939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1939
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T19:28:00.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TFhsisxTQn5aVDhJD7rPpS",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45/data/multiseed_n10_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/multiseed_n10_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp51_adapt_curve/data/exp51_oasst2_adapt_curve.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15832b49-e2fd-47d0-ad03-502ccbdcc3a7",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "aadedb3a-1fe8-4499-a5d8-4fd3bede1b09",
+            "toolUseResult": {
+              "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45/data/multiseed_n10_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/multiseed_n10_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp51_adapt_curve/data/exp51_oasst2_adapt_curve.json",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "15832b49-e2fd-47d0-ad03-502ccbdcc3a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "aadedb3a-1fe8-4499-a5d8-4fd3bede1b09",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify paper tables against experiment registry",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-23T19:28:04.514Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gsc4VCLYfa9R43RuRCRDNw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/multiseed_n10_summary.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aadedb3a-1fe8-4499-a5d8-4fd3bede1b09",
+            "isSidechain": false,
+            "requestId": "req_011CbL3z7rPR7Y8y9Jsv859A",
+            "type": "assistant",
+            "uuid": "7853c38b-cb8d-4260-a366-ad57d3b4b640",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M6yWY2bLkJtrafQr2ZXvvV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1126,
+                "cache_read_input_tokens": 118281,
+                "output_tokens": 108,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1126,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 108,
+                    "cache_read_input_tokens": 118281,
+                    "cache_creation_input_tokens": 1126,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1126
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-23T19:28:04.520Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gsc4VCLYfa9R43RuRCRDNw",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"experiment\": \"exp45_benign_adaptation_curve\",\n3\t  \"description\": \"Multi-seed robustness check for N=10 benign adaptation\",\n4\t  \"n\": 10,\n5\t  \"seeds\": [42, 123, 456],\n6\t  \"per_seed\": {\n7\t    \"42\": {\n8\t      \"wildchat_fpr\": 0.0,\n9\t      \"iid_f1_macro\": 1.0,\n10\t      \"ood_dd_f1\": 1.0,\n11\t      \"ood_aa_f1\": 1.0,\n12\t      \"ood_fitd_f1\": 1.0,\n13\t      \"ood_aa_recall\": 1.0\n14\t    },\n15\t    \"123\": {\n16\t      \"wildchat_fpr\": 0.0,\n17\t      \"iid_f1_macro\": 1.0,\n18\t      \"ood_dd_f1\": 1.0,\n19\t      \"ood_aa_f1\": 0.9715,\n20\t      \"ood_fitd_f1\": 1.0,\n21\t      \"ood_aa_recall\": 0.9625\n22\t    },\n23\t    \"456\": {\n24\t      \"wildchat_fpr\": 0.0,\n25\t      \"iid_f1_macro\": 1.0,\n26\t      \"ood_dd_f1\": 1.0,\n27\t      \"ood_aa_f1\": 0.9715,\n28\t      \"ood_fitd_f1\": 1.0,\n29\t      \"ood_aa_recall\": 0.9625\n30\t    }\n31\t  },\n32\t  \"aggregated_mean_std\": {\n33\t    \"wildchat_fpr\": \"0.000 ± 0.000\",\n34\t    \"iid_f1_macro\": \"1.000 ± 0.000\",\n35\t    \"ood_dd_f1\": \"1.000 ± 0.000\",\n36\t    \"ood_aa_f1\": \"0.981 ± 0.016\",\n37\t    \"ood_fitd_f1\": \"1.000 ± 0.000\"\n38\t  }\n39\t}\n40\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7853c38b-cb8d-4260-a366-ad57d3b4b640",
+            "isSidechain": false,
+            "promptId": "66d17613-6c1f-4775-ab35-23b42e5db72e",
+            "type": "user",
+            "uuid": "ccc995e5-16fc-4b81-b389-b4b9bf961b68",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/multiseed_n10_summary.json",
+                "content": "{\n  \"experiment\": \"exp45_benign_adaptation_curve\",\n  \"description\": \"Multi-seed robustness check for N=10 benign adaptation\",\n  \"n\": 10,\n  \"seeds\": [42, 123, 456],\n  \"per_seed\": {\n    \"42\": {\n      \"wildchat_fpr\": 0.0,\n      \"iid_f1_macro\": 1.0,\n      \"ood_dd_f1\": 1.0,\n      \"ood_aa_f1\": 1.0,\n      \"ood_fitd_f1\": 1.0,\n      \"ood_aa_recall\": 1.0\n    },\n    \"123\": {\n      \"wildchat_fpr\": 0.0,\n      \"iid_f1_macro\": 1.0,\n      \"ood_dd_f1\": 1.0,\n      \"ood_aa_f1\": 0.9715,\n      \"ood_fitd_f1\": 1.0,\n      \"ood_aa_recall\": 0.9625\n    },\n    \"456\": {\n      \"wildchat_fpr\": 0.0,\n      \"iid_f1_macro\": 1.0,\n      \"ood_dd_f1\": 1.0,\n      \"ood_aa_f1\": 0.9715,\n      \"ood_fitd_f1\": 1.0,\n      \"ood_aa_recall\": 0.9625\n    }\n  },\n  \"aggregated_mean_std\": {\n    \"wildchat_fpr\": \"0.000 ± 0.000\",\n    \"iid_f1_macro\": \"1.000 ± 0.000\",\n    \"ood_dd_f1\": \"1.000 ± 0.000\",\n    \"ood_aa_f1\": \"0.981 ± 0.016\",\n    \"ood_fitd_f1\": \"1.000 ± 0.000\"\n  }\n}\n",
+                "numLines": 40,
+                "startLine": 1,
+                "totalLines": 40
+              }
+            },
+            "sourceToolAssistantUUID": "7853c38b-cb8d-4260-a366-ad57d3b4b640",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-23T19:28:04.565Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ccc995e5-16fc-4b81-b389-b4b9bf961b68",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "6d067656-5b80-4591-b268-a5ed5d4d4a62",
+                "timestamp": "2026-05-23T19:28:04.565Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-23T19:29:33.272Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK, so exp45 shows that with N=10 WildChat adaptation:\n- DD F1 = 1.000±0.000\n- AA F1 = 0.981±0.016\n\nBut the paper's dual-OOD row \"+10-shot\" shows DD=.994 and AA=.981.\n\nThe DD value in exp45 is 1.000, but paper says .994. This doesn't match.\n\nThe key difference must be the evaluation protocol: exp45 evaluates with IID benign (the original 38 test benign), while the \"dual-OOD\" evaluation replaces IID benign with WildChat benign in the test set.\n\n\nThe discrepancy between exp45's perfect 1.000 and the paper's .994 comes down to how the test set is constructed—exp45 uses the original IID benign samples, whereas the dual-OOD setup swaps in WildChat benign, which introduces occasional false positives that drag the score down. This means the dual-OOD results aren't directly stored in the registry but were computed by some untracked evaluation script, creating a gap in reproducibility.\n\nNow I'm noticing another inconsistency: Table 7 reports 9-class Clean Full as .994±.005, but Tables 2 and 3 show 9-class DD-Full as .997±.005 for the same evaluation setup. If they're both running on the same DD OOD test set of 118 samples, they should match exactly—the 0.003 difference suggests just one sample is being classified differently between the two runs.\n\nLooking at the perturbation experiment more carefully, I suspect the \"clean\" column might be evaluating on a slightly different version of the test set, or there's a per-seed variation where the three random seeds produce different F1 scores that average to the reported mean. The discrepancy might stem from the perturbation experiment using a different subset of data—perhaps some conversations couldn't be paraphrased and were excluded, making the \"clean\" evaluation set slightly different from the original. Or the perturbation process itself may have altered which samples were included in the evaluation, even though it should theoretically evaluate on the same underlying DD OOD test data.\n\nLet me dig into the registry data more carefully to understand whether these aggregated values are computed as per-seed means or pooled F1 scores across all seeds, since that distinction could explain the apparent inconsistencies. Looking at the standard deviations more carefully, the paper reports .005 for the clean full condition, and my calculation from the per-seed F1 values (1.000, 1.000, 0.9904) also yields approximately .005. This match in standard deviation is suspicious given that the means differ (.9968 vs .994), suggesting something about how the paper computed or reported these metrics doesn't align with what I'm calculating. So values of 0.990, 1.000, 0.990 give a mean around 0.9933 and a standard deviation of about 0.0047, which matches the 0.005 target.\n\nBut the main results show different per-seed values of 1.000, 1.000, 0.990, yielding a higher mean of 0.9968 and the same standard deviation. The discrepancy is that seed42 produces 1.000 in the main results but 0.990 in the perturbation table—this is a genuine inconsistency since the same model should give identical F1 scores on the same evaluation data. I'm considering what could explain this difference, with different evaluation pipelines or code being the most likely culprit.\n\nLet me also double-check the MLM-only IID numbers from the paper. The seed42 value from the control experiment is 0.9737, which rounds to 0.974 as reported in Table 2, so that checks out.\n\nNow looking at the Table 5 mixed_llm discrepancy where the registry shows MLM mixed_test at 0.975 but the paper reports 0.681±0.226, I notice the experiment notes mention that the Qwen test results were invalidated due to a data leak issue. The \"mixed_test\" value might be using a different test set composition than what the paper's \"Mixed\" column represents, so this could explain the significant difference. I'm realizing the distinction might be that \"mixed_test\" in the registry refers to the invalidated Qwen-only test set, while the paper's \"Mixed\" column represents the actual proper mixed Qwen+Llama evaluation. This would explain why MLM shows 0.975 in the registry but 0.681 in the paper—they're testing on different datasets. The 9class metric at 0.996 might align between them if it's from the correct mixed test set, but I need to clarify whether the registry's mixed_test values are actually from the leaked Qwen test or a proper mixed evaluation. invalidated) vs 9class on mixed test: 0.996 (paper) — coincidentally the same?\n- MLM on Qwen test: 0.975 (registry, invalidated) vs MLM on mixed test: 0.681 (paper) — very different because MLM can't generalize to Llama\n\nThis makes sense! The 9-class model generalizes to Llama data (since it uses classification supervision), so its performance is similar on both Qwen-only and mixed tests. But MLM doesn't generalize to Llama, so it drops dramatically on the mixed test.\n\nSo the registry's \"mixed_test\" is actually the Qwen-only test (mislabeled or from before the correction), and the paper's \"Mixed\" is the true mixed (Qwen+Llama) test. The registry value for MLM is stale/invalidated.\n\nI should flag this clearly in the report. But before I do, let me think about whether the paper's 9class mixed result of 0.996 with std=0.006 actually makes sense for a true mixed test. If the model performed perfectly on both Qwen and Llama separately, I'd expect 1.000, so 0.996 suggests a few misclassifications across the combined test set, which is plausible. I'm also noticing that exp44 and exp16 used different training compositions—exp44 mixed 175 Qwen jb, 175 Qwen bn, 164 Llama jb, and 150 WC bn, while exp16 used 250 Qwen and 250 Llama—so they're not directly comparable experiments.\n\nI need to stop chasing these details and just write the final report now, organizing by table and flagging all the issues I've found.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d067656-5b80-4591-b268-a5ed5d4d4a62",
+            "isSidechain": false,
+            "requestId": "req_011CbL3zR2VzBHjXioq9Gsix",
+            "type": "assistant",
+            "uuid": "e74ecc55-6577-49ae-84f2-bf995c300fbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LQfnZjSrZHLgtiRdvXscUH",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 815,
+                "cache_read_input_tokens": 119407,
+                "output_tokens": 11236,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 815,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11236,
+                    "cache_read_input_tokens": 119407,
+                    "cache_creation_input_tokens": 815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 815
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-23T19:31:18.545Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Let me write the comprehensive traceability report.\n\n## Table 数据溯源报告\n\n### Table 2 (main_results) — Cross-attack generalization, IID (Crescendo) / OOD (DD)\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class IID K=2 | 1.000±.000 | plan_002_* (treatment_k2_f1) | 1.000, 1.000, 1.000 → 1.000±.000 | ✅ |\n| 9-class IID Full | 1.000±.000 | plan_002_* (treatment_full_f1) | 1.000, 1.000, 1.000 → 1.000±.000 | ✅ |\n| 9-class OOD K=2 | .981±.013 | plan_006 + plan_002_{123,456} (dd_ood_k2) | 0.9904, 0.9904, 0.9622 → 0.981±.013 | ✅ |\n| 9-class OOD Full | .997±.005 | plan_006 + plan_002_{123,456} (dd_ood_full) | 1.000, 1.000, 0.9904 → 0.997±.005 | ✅ |\n| MLM IID K=2 | .974 | plan_017_mlm_control (iid_f1_k2 seed42) | 0.9737 → .974 | ✅ |\n| MLM IID Full | 1.000 | plan_017_mlm_control (iid_f1_full seed42) | 1.000 | ✅ |\n| MLM OOD K=2 | .993±.009 | plan_017_mlm_control (dd_ood_f1_k2) | mean=0.9934, std=0.0093 | ✅ |\n| MLM OOD Full | .914±.115 | plan_017_mlm_control (dd_ood_f1_full) | mean=0.9138, std=0.115 | ✅ |\n| Vanilla IID K=2 | .978±.016 | plan_002_* (baseline_k2) | 0.9867, 0.987, 0.9589 → mean=.978 | ⚠️ std |\n| Vanilla IID Full | 1.000±.000 | plan_002_* (baseline_full) | 1.000, 1.000, 1.000 | ✅ |\n| Vanilla OOD K=2 | .479±.038 | vanilla_multiseed_dd_ood (k2) | mean=0.479, std=0.038 | ✅ |\n| Vanilla OOD Full | .312±.026 | vanilla_multiseed_dd_ood (full) | mean=0.312, std=0.026 | ✅ |\n| TF-IDF IID K=2 | 1.000 | plan_002 (tfidf_all_k_f1) | 1.000 | ✅ |\n| TF-IDF IID Full | 1.000 | plan_002 (tfidf_all_k_f1) | 1.000 | ✅ |\n| TF-IDF OOD K=2 | 1.000 | exp7 (dd_ood k2) | 1.000 | ✅ |\n| TF-IDF OOD Full | .961 | exp7 (dd_ood full) | 0.961 | ✅ |\n\n---\n\n### Table 3 (evidence_hierarchy) — DD-Full, AA-Full, DD-K=2\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class DD-Full | .997±.005 | plan_006/plan_002 | 1.000, 1.000, 0.990 → .997±.005 | ✅ |\n| 9-class AA-Full | .972±.026 | exp2_actorattack_ood (deberta_9class) | full=0.972, std=0.026 | ✅ |\n| 9-class DD-K=2 | .981±.013 | plan_006/plan_002 | 0.990, 0.990, 0.962 → .981±.013 | ✅ |\n| Binary DD-Full | 1.000±.000 | mf1_binary_{123,456} + plan_013 (seed42) | seed123=1.000, seed456=1.000, seed42=0.990 → .997±.005 | ⚠️ 见下 |\n| Binary AA-Full | .990±.008 | exp2_actorattack_ood (deberta_binary) | full=0.990, std=0.008 | ✅ |\n| Binary DD-K=2 | .994±.009 | mf1_binary seeds k2 | seed123=1.000, seed456=1.000 | ⚠️ seed42缺失 |\n| Scrambled DD-Full | .997±.005 | mf1_scrambled_{123,456} | seed123=1.000, seed456=1.000 | ⚠️ seed42缺失 |\n| Scrambled AA-Full | .951±.043 | exp2_actorattack_ood (deberta_scrambled) | full=0.951, std=0.043 | ✅ |\n| Scrambled DD-K=2 | .981±.026 | mf1_scrambled seeds k2 | seed123=1.000, seed456=1.000 | ⚠️ seed42缺失 |\n| MLM DD-Full | .914±.115 | plan_017_mlm_control | mean=0.914, std=0.115 | ✅ |\n| MLM AA-Full | .893±.080 | exp2_actorattack_ood (deberta_mlm) | full=0.893, std=0.080 | ✅ |\n| MLM DD-K=2 | .993±.009 | plan_017_mlm_control | mean=0.993, std=0.009 | ✅ |\n| Mean pooling DD-Full | .991±.013 | exp13_meanpool_multiseed (dd_ood.full) | mean=0.9905, std=0.0134 | ✅ |\n| Mean pooling AA-Full | .962±.015 | exp13_meanpool_multiseed (actorattack.full) | mean=0.9623, std=0.0151 | ✅ |\n| Mean pooling DD-K=2 | **1.000** | exp27_mean_pooling (dd_ood_k2) | 1.000±0 | ⚠️ 见下 |\n| Topic DD-Full | .541±.207 | plan_016v2_topic_control | mean=0.5411, std=0.2069 | ✅ |\n| Topic AA-Full | .625±.141 | exp2_actorattack_ood (deberta_topic) | full=0.625, std=0.141 | ✅ |\n| Topic DD-K=2 | .593±.166 | plan_016v2_topic_control (k2) | mean=0.5926, std=0.1655 | ✅ |\n| Wiki-MLM DD-Full | .904±.115 | plan_018_wiki_mlm_control | mean=0.904, std=0.115 | ✅ |\n| Wiki-MLM AA-Full | .686±.297 | exp2_actorattack_ood (deberta_wiki_mlm) | full=0.686, std=0.297 | ✅ |\n| Wiki-MLM DD-K=2 | .911±.073 | plan_018_wiki_mlm_control (k2) | mean=0.911, std=0.073 | ✅ |\n| Vanilla DD-Full | .312±.026 | vanilla_multiseed_dd_ood | mean=0.312, std=0.026 | ✅ |\n| Vanilla AA-Full | .258±.000 | exp2_actorattack_ood (deberta_vanilla) | full=0.258, std=0 | ✅ |\n| Vanilla DD-K=2 | .479±.038 | vanilla_multiseed_dd_ood (k2) | mean=0.479, std=0.038 | ✅ |\n| TF-IDF DD-Full | .961 | exp7 (dd_ood full) | 0.961 | ✅ |\n| TF-IDF AA-Full | .261 | exp7 (actorattack full) | 0.2609 → .261 | ✅ |\n| TF-IDF DD-K=2 | 1.000 | exp7 (dd_ood k2) | 1.000 | ✅ |\n| Llama Guard DD-Full | .025 | exp40_llama_guard_baseline (ood_dd.full) | f1_jb=0.0244 → .025 | ⚠️ 指标不一致 |\n| Llama Guard AA-Full | .000 | exp40_llama_guard_baseline (ood_aa.full) | f1_jb=0 | ⚠️ 指标不一致 |\n| Dual-OOD no adapt DD | .855 | — | — | ❌ 无法溯源 |\n| Dual-OOD no adapt AA | .842 | — | — | ❌ 无法溯源 |\n| Dual-OOD +10-shot DD | .994 | — | — | ❌ 无法溯源 |\n| Dual-OOD +10-shot AA | .981 | exp45 (aa_f1 n10 multiseed) | 0.981±0.016 | ⚠️ 部分匹配 |\n\n---\n\n### Table 4 (cross_encoder) — DD / AA Full, 3-seed\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| DeBERTa Vanilla DD | .312±.026 | vanilla_multiseed_dd_ood | mean=0.312, std=0.026 | ✅ |\n| DeBERTa Vanilla AA | .258±.000 | exp2 (deberta_vanilla) | full=0.258, std=0 | ✅ |\n| DeBERTa MLM DD | .914±.115 | plan_017_mlm_control | mean=0.914, std=0.115 | ✅ |\n| DeBERTa MLM AA | .893±.080 | exp2 (deberta_mlm) | full=0.893, std=0.080 | ✅ |\n| DeBERTa 9-class DD | .997±.005 | plan_006/plan_002 | mean=0.997, std=0.005 | ✅ |\n| DeBERTa 9-class AA | .972±.026 | exp2 (deberta_9class) | full=0.972, std=0.026 | ✅ |\n| RoBERTa-base Vanilla DD | .981±.026 | exp1_roberta_vanilla | mean=0.9813, std=0.0264 | ✅ |\n| RoBERTa-base Vanilla AA | .466±.163 | exp2 (roberta_vanilla) | full=0.466, std=0.163 | ✅ |\n| RoBERTa-base MLM DD | .987±.018 | exp1_roberta_mlm | mean=0.9874, std=0.0178 | ✅ |\n| RoBERTa-base MLM AA | .730±.201 | exp2 (roberta_mlm) | full=0.730, std=0.201 | ✅ |\n| RoBERTa-base 9-class DD | .994±.005 | exp1_roberta_9class | mean=0.9936, std=0.0045 | ✅ |\n| RoBERTa-base 9-class AA | .939±.046 | exp2 (roberta_9class) | full=0.939, std=0.046 | ✅ |\n| RoBERTa-large Vanilla DD | .927±.036 | exp15 (roberta_large_vanilla) | full=0.927 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large Vanilla AA | 1.000±.000 | exp15 (roberta_large_vanilla) | full=1.000 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large MLM DD | .884±.065 | exp15c (mlm) | full=0.884 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large MLM AA | .874±.014 | exp15c (mlm) | full=0.874 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large 9-class DD | .987±.004 | exp15 (roberta_large_9class) | full=0.987 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large 9-class AA | .946±.057 | exp15 (roberta_large_9class) | full=0.946 (single seed) | ⚠️ 无std来源 |\n\n---\n\n### Table 5 (mixed_llm) — 250 Qwen + 250 Llama\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class Mixed | .996±.006 | exp16 (9class_mean.mixed_test) | 0.996 | ⚠️ std无来源 |\n| 9-class DD OOD | .818±.096 | exp16 (9class_mean.dd_ood) | 0.818, std=0.096 | ✅ |\n| 9-class AA OOD | .504±.107 | exp16 (9class_mean.aa_ood) | 0.504, std=0.107 | ✅ |\n| 9-class FITD OOD | .997±.005 | exp16 (9class_mean.fitd_ood) | 0.997, std=0.005 | ✅ |\n| 9-class ToxicChat | .550±.052 | exp16 (9class_mean.toxicchat_balanced) | 0.55, std=0.052 | ✅ |\n| MLM Mixed | .681±.226 | exp16 (mlm_mean.mixed_test) | **0.975** | ❌ 不一致 |\n| MLM DD OOD | .289±.101 | exp16 (mlm_mean.dd_ood) | 0.289, std=0.101 | ✅ |\n| MLM AA OOD | .258±.075 | exp16 (mlm_mean.aa_ood) | 0.258, std=0.075 | ✅ |\n| MLM FITD OOD | .679±.188 | exp16 (mlm_mean.fitd_ood) | 0.679, std=0.188 | ✅ |\n| MLM ToxicChat | .256±.053 | exp16 (mlm_mean.toxicchat_balanced) | 0.256, std=0.053 | ✅ |\n| Vanilla Mixed | .802±.010 | exp16 (vanilla_mean.mixed_test) | 0.802 | ⚠️ std无来源 |\n| Vanilla DD OOD | .291±.065 | exp16 (vanilla_mean.dd_ood) | 0.291, std=0.065 | ✅ |\n| Vanilla AA OOD | .389±.073 | exp16 (vanilla_mean.aa_ood) | 0.389, std=0.073 | ✅ |\n| Vanilla FITD OOD | .867±.022 | exp16 (vanilla_mean.fitd_ood) | 0.867, std=0.022 | ✅ |\n| Vanilla ToxicChat | .356±.009 | exp16 (vanilla_mean.toxicchat_balanced) | 0.356, std=0.009 | ✅ |\n\n---\n\n### Table 6 (human_data) — ToxicChat macro F1\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| JB-MLM | .837±.013 | exp8 (jb_mlm_macro_f1) | 0.837, std=0.013 | ✅ |\n| Wiki-MLM | .791±.093 | exp8 (wiki_mlm_macro_f1) | 0.791, std=0.093 | ✅ |\n| Binary | .705±.072 | exp8 (binary_macro_f1) | 0.705, std=0.072 | ✅ |\n| Scrambled | .616±.056 | exp8 (scrambled_macro_f1) | 0.616, std=0.056 | ✅ |\n| 9-class | .596±.087 | exp8 (9class_macro_f1) | 0.596, std=0.087 | ✅ |\n| Topic | .496±.042 | exp8 (topic_macro_f1) | 0.496, std=0.042 | ✅ |\n| Vanilla | .413±.021 | exp8 (vanilla_macro_f1) | 0.413, std=0.021 | ✅ |\n\n**Table 6 完全一致 ✅**\n\n---\n\n### Table 7 (ood_perturbation) — OOD DD, Clean/Perturbed Full, Δ\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class Clean Full | .994±.005 | exp4 (9class_3seed.clean_full) | 0.9968 (pooled) | ⚠️ .997 vs .994 |\n| 9-class Pert Full | 1.000±.000 | exp4 (9class_3seed.perturbed_full) | 1.000 | ✅ |\n| 9-class Δ Full | +0.6 | exp4 (delta_full) | +0.0032 → +0.3pp | ⚠️ +0.6 vs +0.3 |\n| 9-class Δ K=1 | +0.6 | exp4 (delta_k1) | +0.0063 → +0.6pp | ✅ |\n| Binary Clean Full | 1.000±.000 | exp4 (binary_3seed.clean_full) | 0.9968 | ⚠️ .997 vs 1.000 |\n| Binary Pert Full | 1.000±.000 | exp4 (binary_3seed.perturbed_full) | 1.000 | ✅ |\n| Binary Δ Full | 0.0 | exp4 | +0.0032 → +0.3pp | ⚠️ 0.0 vs +0.3 |\n| Binary Δ K=1 | +0.6 | exp4 (delta_k1) | +0.0064 → +0.6pp | ✅ |\n| Scrambled Clean Full | .994±.005 | exp4 (scrambled_3seed.clean_full) | 0.9968 | ⚠️ .997 vs .994 |\n| Scrambled Pert Full | 1.000±.000 | exp4 (perturbed_full) | 1.000 | ✅ |\n| JB MLM Clean Full | .914±.115 | exp4 (jb_mlm_3seed.clean_full) | 0.9138 | ✅ |\n| JB MLM Pert Full | .941 | exp4 (jb_mlm_3seed.perturbed_full) | 0.9409 → .941 | ✅ |\n| JB MLM Δ Full | +2.7 | exp4 (delta_full) | +0.0271 → +2.7pp | ✅ |\n| Wiki MLM Clean Full | .904±.115 | exp4 (wiki_mlm_3seed.clean_full) | 0.9042 | ✅ |\n| Wiki MLM Pert Full | .872 | exp4 (perturbed_full) | 0.8715 → .872 | ✅ |\n| Wiki MLM Δ Full | −3.3 | exp4 (delta_full) | −0.0327 → −3.3pp | ✅ |\n| Vanilla Clean Full | .312±.026 | exp4 (vanilla_3seed.clean_full) | 0.3123 → .312 | ✅ |\n| Vanilla Pert Full | .339±.055 | exp4 (perturbed_full) | 0.3394 → .339 | ✅ |\n| Vanilla Δ Full | +2.7 | exp4 (delta_full) | +0.0271 → +2.7pp | ✅ |\n| Vanilla Δ K=1 | −6.8±1.1 | exp4 (delta_k1) | −0.0681 → −6.8pp | ✅ |\n\n---\n\n### ⚠️ 不一致（需修复或解释）\n\n1. **Table 2 Vanilla IID K=2 std**: 论文 .016, 计算得 .013 (pop std, n=3). 论文声明使用 pop std (n divisor), 但 .016 匹配 Bessel-corrected std (n−1 divisor). 轻微不一致。\n\n2. **Table 3 Binary DD-Full**: 论文 1.000±.000, 但 registry seed42 (plan_013_none_collapse) dd_binary_full_f1=0.9904. 如果 seed42 确实为 0.990, 则 3-seed mean=.997±.005, 不是 1.000±.000。\n\n3. **Table 3 Mean pooling DD-K=2**: 论文 1.000, 但 exp13_meanpool_multiseed 报告 dd_ood.k2 mean=0.994±.009。论文使用了 exp27 (1.000±.000) 的值而非 exp13 的值, 两个实验结果不同 — 应统一使用同一组实验。\n\n4. **Table 3 Llama Guard 指标不一致**: 论文显示 DD=.025 / AA=.000, 这是 **jailbreak-class F1** (f1_jb), 而其他所有行使用 **macro F1**。如果使用 macro F1, Llama Guard DD 应为 .253。虽然 Llama Guard 几乎不检测任何 jailbreak, 但表内指标不统一。\n\n5. **Table 5 MLM Mixed**: 论文 .681±.226, registry exp16 mixed_test=0.975。差异巨大。可能原因: registry 存储的是 Qwen-only test 性能 (note 标注 \"qwen_test INVALIDATED\" 因 35.5% 数据泄漏), 而论文使用正确的 Qwen+Llama 混合测试集。但 registry 对应字段未更新。\n\n6. **Table 7 Clean Full vs Table 2/3**: 9-class clean DD-Full 在 Table 7 为 .994, 在 Table 2/3 为 .997。两表应评估同一模型在同一数据上的结果, 差异 0.003 表明可能使用了不同的 checkpoint 或不同的评估代码。Binary 同理 (Table 7=1.000 vs 实际应为 .997)。\n\n7. **Table 7 Δ Full 与 clean/pert 不一致**: 9-class clean=.994, pert=1.000, Δ 应为 +0.6pp; 但 exp4 pooled clean=0.9968 → per-seed 计算给出 Δ=+0.32pp, 不是 +0.6pp。Binary clean=1.000, pert=1.000, Δ 应为 0.0; exp4 pooled clean=0.9968 → Δ=+0.32pp。论文的 Δ 值基于四舍五入后的 .994 和 1.000 计算, 而非原始精度值。\n\n---\n\n### ❌ 无法溯源\n\n1. **Table 3 Dual-OOD \"no adapt\" DD=.855, AA=.842** — 未找到对应 registry 实验。这些值来自将 WildChat benign 替换 IID benign 进行测试, 但该评估结果未注册。\n\n2. **Table 3 Dual-OOD \"+10-shot\" DD=.994** — exp45 报告适配后 dd_f1=1.000 (使用 IID benign 测试), 与论文 .994 不符。.994 应来自以 WildChat benign 替换测试集的 dual-OOD 评估, 但该计算未注册。AA=.981 与 exp45 的 aa_f1=0.981 匹配, 但 DD 值不匹配。\n\n3. **Table 4 RoBERTa-large 所有 std 值** — registry 仅有单 seed 值 (exp15/15b/15c), 无 3-seed 数据。论文标题声明 \"3-seed mean±std\", mean 值与 registry 单 seed 值完全吻合, 但 std 来源不明 (未注册为 registry 实验)。\n\n4. **Table 3 Binary/Scrambled DD seed42** — mf1_binary 和 mf1_scrambled 系列仅有 seed123 和 seed456 数据。seed42 的 DD OOD 值需从 plan_013_none_collapse (binary) 推断, 但该实验可能使用不同数据版本 (v4c)。\n\n5. **Table 5 Mixed/Vanilla Mixed 列 std 值** — registry exp16 仅存储 mean, 无 std。论文的 .006 (9-class) 和 .010 (vanilla) 无 registry 来源。\n\n---\n\n### 总结\n\n- **完全一致**: Table 6 (human_data) 全部 7 行 ✅; Table 4 DeBERTa 和 RoBERTa-base 行 (12 cells) ✅; Table 2 大部分 cells ✅; Table 3 大部分 cells ✅\n- **轻微不一致**: 主要是 pop std vs Bessel std (Table 2 vanilla IID K=2), 以及 Table 7 的 clean baseline 与 Table 2/3 相差 0.003 (可能来自不同评估 pipeline)\n- **显著不一致**: Table 5 MLM Mixed (.681 vs registry 0.975); Table 3 Binary DD-Full (1.000 vs 计算应为 .997); Mean pooling DD-K=2 混用两组实验数据\n- **无法溯源**: RoBERTa-large 的全部 std 值; Dual-OOD 的 4 个 cells; Table 5 Mixed 列的 std 值"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e74ecc55-6577-49ae-84f2-bf995c300fbd",
+            "isSidechain": false,
+            "requestId": "req_011CbL3zR2VzBHjXioq9Gsix",
+            "type": "assistant",
+            "uuid": "d37d703c-0fb6-4f90-a26b-8a1bae3b5b53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LQfnZjSrZHLgtiRdvXscUH",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 815,
+                "cache_read_input_tokens": 119407,
+                "output_tokens": 11236,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 815,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11236,
+                    "cache_read_input_tokens": 119407,
+                    "cache_creation_input_tokens": 815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 815
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d37d703c-0fb6-4f90-a26b-8a1bae3b5b53",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify paper tables against experiment registry",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d37d703c-0fb6-4f90-a26b-8a1bae3b5b53",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify paper tables against experiment registry",
+                "sessionId": "a3b0276b-76a8-455b-9a2e-91310c9bfe46"
+              }
+            }
+          ],
+          "id": "event-000100"
+        }
+      ]
+    }
+  ]
+}

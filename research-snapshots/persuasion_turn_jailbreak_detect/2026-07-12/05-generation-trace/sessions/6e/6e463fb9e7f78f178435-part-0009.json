@@ -1,0 +1,1096 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6e463fb9e7f78f178435",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI and permutation test for jailbreak detection",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-18T17:38:30.720Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TcwwHUNCMVecfgbdzzc55r",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:16:19.153Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:38:30.608Z\\\", \\\"hypothesis\\\": \\\"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp9_bootstrap_ci.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"log_path\\\": \\\"results/exp9_run.log\\\", \\\"checkpoint_path\\\": \\\"results/exp9_bootstrap_ci.json\\\", \\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2666}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58967e74-13cc-405b-b2f1-ac44a4077cbf",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "0226ca0d-6361-464e-a1f3-0e2648efb506",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:16:19.153Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:38:30.608Z\\\", \\\"hypothesis\\\": \\\"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp9_bootstrap_ci.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"log_path\\\": \\\"results/exp9_run.log\\\", \\\"checkpoint_path\\\": \\\"results/exp9_bootstrap_ci.json\\\", \\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2666}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp9_bootstrap_ci\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:16:19.153Z\", \"updated_at\": \"2026-05-18T17:38:30.608Z\", \"hypothesis\": \"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\", \"spec\": {\"command\": \"python scripts/exp9_bootstrap_ci.py\", \"server\": \"westd-33183\", \"data_path\": \"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\", \"data_count\": 118, \"model_name\": \"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\", \"seed\": \"42,123,456\"}, \"log_path\": \"results/exp9_run.log\", \"checkpoint_path\": \"results/exp9_bootstrap_ci.json\", \"metrics\": {\"dd_ood_9class_full\": {\"mean\": 0.9968, \"ci\": [0.9426, 1]}, \"dd_ood_vanilla_full\": {\"mean\": 0.2698, \"ci\": [0.2017, 0.3414]}, \"actorattack_9class_full\": {\"mean\": 0.9718, \"ci\": [0.8554, 1]}, \"actorattack_vanilla_full\": {\"mean\": 0.2565, \"ci\": [0.2027, 0.3139]}, \"perm_9class_vs_vanilla_dd_full_p\": 0, \"perm_9class_vs_vanilla_aa_full_p\": 0, \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1, \"perm_9class_vs_scrambled_dd_full_max_p\": 1}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2666}}"
+              }
+            },
+            "sourceToolAssistantUUID": "58967e74-13cc-405b-b2f1-ac44a4077cbf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-18T17:38:33.956Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011kcbFFjjFBmdvQGjn6m457",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp9_bootstrap_ci",
+                "field": "status",
+                "value": "DONE",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0226ca0d-6361-464e-a1f3-0e2648efb506",
+            "isSidechain": false,
+            "requestId": "req_011CbASbFYF9tnAWZckvsx9C",
+            "type": "assistant",
+            "uuid": "41d78697-0343-4585-a4e8-147c338e0cb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D9P6wbtyts3AJMN4aCzjUm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1600,
+                "cache_read_input_tokens": 104173,
+                "output_tokens": 131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1600,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 131,
+                    "cache_read_input_tokens": 104173,
+                    "cache_creation_input_tokens": 1600,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1600
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-18T17:38:34.139Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011kcbFFjjFBmdvQGjn6m457",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1676}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41d78697-0343-4585-a4e8-147c338e0cb9",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "f589d2b7-6c60-4367-9807-f4c375b506a4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1676}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1676}}"
+              }
+            },
+            "sourceToolAssistantUUID": "41d78697-0343-4585-a4e8-147c338e0cb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-18T17:38:38.681Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EgLkFpXE7JEHYcENHLcepr",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp9_bootstrap_ci",
+                "field": "conclusion",
+                "value": "success",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f589d2b7-6c60-4367-9807-f4c375b506a4",
+            "isSidechain": false,
+            "requestId": "req_011CbASbaH85aSZ1bxr1bHRW",
+            "type": "assistant",
+            "uuid": "84997aea-f742-4ebb-8246-3959647fe8d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BQcZM2FY6fvSxnkrzTENgX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 200,
+                "cache_read_input_tokens": 105773,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 200,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 105773,
+                    "cache_creation_input_tokens": 200,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 200
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-18T17:38:38.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EgLkFpXE7JEHYcENHLcepr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:16:19.153Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:38:38.873Z\\\", \\\"hypothesis\\\": \\\"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp9_bootstrap_ci.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"log_path\\\": \\\"results/exp9_run.log\\\", \\\"checkpoint_path\\\": \\\"results/exp9_bootstrap_ci.json\\\", \\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.294}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84997aea-f742-4ebb-8246-3959647fe8d6",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "5425a548-e5a1-4250-8d9d-2e66e55979d0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:16:19.153Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:38:38.873Z\\\", \\\"hypothesis\\\": \\\"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp9_bootstrap_ci.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"log_path\\\": \\\"results/exp9_run.log\\\", \\\"checkpoint_path\\\": \\\"results/exp9_bootstrap_ci.json\\\", \\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.294}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp9_bootstrap_ci\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:16:19.153Z\", \"updated_at\": \"2026-05-18T17:38:38.873Z\", \"hypothesis\": \"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\", \"spec\": {\"command\": \"python scripts/exp9_bootstrap_ci.py\", \"server\": \"westd-33183\", \"data_path\": \"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\", \"data_count\": 118, \"model_name\": \"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\", \"seed\": \"42,123,456\"}, \"log_path\": \"results/exp9_run.log\", \"checkpoint_path\": \"results/exp9_bootstrap_ci.json\", \"metrics\": {\"dd_ood_9class_full\": {\"mean\": 0.9968, \"ci\": [0.9426, 1]}, \"dd_ood_vanilla_full\": {\"mean\": 0.2698, \"ci\": [0.2017, 0.3414]}, \"actorattack_9class_full\": {\"mean\": 0.9718, \"ci\": [0.8554, 1]}, \"actorattack_vanilla_full\": {\"mean\": 0.2565, \"ci\": [0.2027, 0.3139]}, \"perm_9class_vs_vanilla_dd_full_p\": 0, \"perm_9class_vs_vanilla_aa_full_p\": 0, \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1, \"perm_9class_vs_scrambled_dd_full_max_p\": 1}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.294}}"
+              }
+            },
+            "sourceToolAssistantUUID": "84997aea-f742-4ebb-8246-3959647fe8d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-18T17:38:38.989Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5425a548-e5a1-4250-8d9d-2e66e55979d0",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [
+                    {
+                      "content": "Write exp9_bootstrap_ci.py script",
+                      "status": "completed",
+                      "activeForm": "Writing exp9 bootstrap CI script"
+                    },
+                    {
+                      "content": "Run inference for all variants on DD OOD and ActorAttack OOD",
+                      "status": "in_progress",
+                      "activeForm": "Running inference for all variants on DD OOD and ActorAttack OOD"
+                    },
+                    {
+                      "content": "Compute BCa bootstrap CIs",
+                      "status": "pending",
+                      "activeForm": "Computing BCa bootstrap CIs"
+                    },
+                    {
+                      "content": "Compute paired permutation tests",
+                      "status": "pending",
+                      "activeForm": "Computing paired permutation tests"
+                    },
+                    {
+                      "content": "Save results and update registry",
+                      "status": "pending",
+                      "activeForm": "Saving results and updating registry"
+                    }
+                  ],
+                  "itemCount": 5
+                },
+                "type": "attachment",
+                "uuid": "1ddbd441-9bcf-4dc9-bf84-fd6cb4942f06",
+                "timestamp": "2026-05-18T17:38:38.989Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "sleepy-brewing-spark"
+              }
+            }
+          ],
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-18T17:38:42.321Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdqsbfiUAUuiFgmowPvATZ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp9_bootstrap_ci",
+                "field": "status",
+                "value": "DONE",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ddbd441-9bcf-4dc9-bf84-fd6cb4942f06",
+            "isSidechain": false,
+            "requestId": "req_011CbASbrrX1MJSpWibGwcZP",
+            "type": "assistant",
+            "uuid": "a1dc2c14-3033-4c39-a2fc-74eb2e2322c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M4RWjirVp7c2CnqwaY427n",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 989,
+                "cache_read_input_tokens": 105973,
+                "output_tokens": 131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 989,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 131,
+                    "cache_read_input_tokens": 105973,
+                    "cache_creation_input_tokens": 989,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 989
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-18T17:38:42.888Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MdqsbfiUAUuiFgmowPvATZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:16:19.153Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:38:42.488Z\\\", \\\"hypothesis\\\": \\\"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp9_bootstrap_ci.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"log_path\\\": \\\"results/exp9_run.log\\\", \\\"checkpoint_path\\\": \\\"results/exp9_bootstrap_ci.json\\\", \\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T17:38:42.488Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5582}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1dc2c14-3033-4c39-a2fc-74eb2e2322c6",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "513daa49-7afe-4ee4-9b99-d2ccf5ec649f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:16:19.153Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:38:42.488Z\\\", \\\"hypothesis\\\": \\\"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp9_bootstrap_ci.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"log_path\\\": \\\"results/exp9_run.log\\\", \\\"checkpoint_path\\\": \\\"results/exp9_bootstrap_ci.json\\\", \\\"metrics\\\": {\\\"dd_ood_9class_full\\\": {\\\"mean\\\": 0.9968, \\\"ci\\\": [0.9426, 1]}, \\\"dd_ood_vanilla_full\\\": {\\\"mean\\\": 0.2698, \\\"ci\\\": [0.2017, 0.3414]}, \\\"actorattack_9class_full\\\": {\\\"mean\\\": 0.9718, \\\"ci\\\": [0.8554, 1]}, \\\"actorattack_vanilla_full\\\": {\\\"mean\\\": 0.2565, \\\"ci\\\": [0.2027, 0.3139]}, \\\"perm_9class_vs_vanilla_dd_full_p\\\": 0, \\\"perm_9class_vs_vanilla_aa_full_p\\\": 0, \\\"perm_9class_vs_jb_mlm_dd_full_max_p\\\": 1, \\\"perm_9class_vs_scrambled_dd_full_max_p\\\": 1}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T17:38:42.488Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5582}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp9_bootstrap_ci\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:16:19.153Z\", \"updated_at\": \"2026-05-18T17:38:42.488Z\", \"hypothesis\": \"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\", \"spec\": {\"command\": \"python scripts/exp9_bootstrap_ci.py\", \"server\": \"westd-33183\", \"data_path\": \"data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl\", \"data_count\": 118, \"model_name\": \"DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)\", \"seed\": \"42,123,456\"}, \"log_path\": \"results/exp9_run.log\", \"checkpoint_path\": \"results/exp9_bootstrap_ci.json\", \"metrics\": {\"dd_ood_9class_full\": {\"mean\": 0.9968, \"ci\": [0.9426, 1]}, \"dd_ood_vanilla_full\": {\"mean\": 0.2698, \"ci\": [0.2017, 0.3414]}, \"actorattack_9class_full\": {\"mean\": 0.9718, \"ci\": [0.8554, 1]}, \"actorattack_vanilla_full\": {\"mean\": 0.2565, \"ci\": [0.2027, 0.3139]}, \"perm_9class_vs_vanilla_dd_full_p\": 0, \"perm_9class_vs_vanilla_aa_full_p\": 0, \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1, \"perm_9class_vs_scrambled_dd_full_max_p\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T17:38:42.488Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5582}}"
+              }
+            },
+            "sourceToolAssistantUUID": "a1dc2c14-3033-4c39-a2fc-74eb2e2322c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-18T17:38:48.892Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015RTB13cD4RwHCKwV75M535",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp9_bootstrap_ci_results",
+                "type": "data",
+                "description": "BCa bootstrap 95% CI (10K resamples) and paired permutation tests (10K perms) for all 10 model variants x 3 seeds x 5 K values on DD OOD and ActorAttack OOD datasets. Covers Table 1/3/4 in the paper.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp9_bootstrap_ci",
+                "source_path": "/root/persuasion_turn_jailbreak_detect/results/exp9_bootstrap_ci.json",
+                "tags": [
+                  "bootstrap",
+                  "confidence-interval",
+                  "permutation-test",
+                  "statistical-significance",
+                  "reviewer-response"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "513daa49-7afe-4ee4-9b99-d2ccf5ec649f",
+            "isSidechain": false,
+            "requestId": "req_011CbASc9aMSZLuxMPJtJg4B",
+            "type": "assistant",
+            "uuid": "3520da6e-9aa0-48c4-b715-f0957e92f76a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bg24i8Bfc2amtxwGFE5jkw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 854,
+                "cache_read_input_tokens": 106962,
+                "output_tokens": 307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 854,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 307,
+                    "cache_read_input_tokens": 106962,
+                    "cache_creation_input_tokens": 854,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 854
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-18T17:38:48.904Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015RTB13cD4RwHCKwV75M535",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp9_bootstrap_ci.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3520da6e-9aa0-48c4-b715-f0957e92f76a",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "badde67a-54a2-43b4-9c54-b5c4b0c8622d",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp9_bootstrap_ci.json\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp9_bootstrap_ci.json\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3520da6e-9aa0-48c4-b715-f0957e92f76a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-18T17:38:52.080Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not local. I need to use content instead. Let me read the JSON content from the remote and pass it.",
+              "signature": "EsgCClkIDRgCKkDCdl7GMzEqUVldRJzPjHoCdD0JgHQB+htEdc8B1Pp6YsygxOHzFAdFKg8vE38P1mBh+nm0JdrRVn4J5Pmv9aCzMg9jbGF1ZGUtb3B1cy00LTY4ABIM6MpWQmD33o4Tua97GgwDriv6zLR3SF7+3tkiMPlkVooHw8c0aPj5ovuzhsJRRrOC/opUF3rgwX+qxZhKarLBQljs+1L3WGTo5YZpISqcAXI9pik4eT23tYx65QARvnOyjOtbNc68DnaRLtrnFhUR2wCdKUrWlZXuL7FWqvIZLBWeezY/ce0L4oF134L2PPRpT8IiqSmz7+uuoFcqeCr5BJMhWXCefW55FzGrudYF8nmDK/6Ul5IrHO+TgI1Ly9Axwv3GqyIOShIoRAb4gMYrtpk1VMc/N9uD70mKPTJsuwJDcub8sJa1b9sZLBgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "badde67a-54a2-43b4-9c54-b5c4b0c8622d",
+            "isSidechain": false,
+            "requestId": "req_011CbAScbRrcD5a7aoFfWuin",
+            "type": "assistant",
+            "uuid": "1d2df599-48b4-4302-b7cf-4d6380f6a9c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NRRwMKJwBocHHF3BEr1NZ6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 379,
+                "cache_read_input_tokens": 107816,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 379,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 107816,
+                    "cache_creation_input_tokens": 379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 379
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-18T17:38:52.573Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The source path is on the remote server. Let me use content instead."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d2df599-48b4-4302-b7cf-4d6380f6a9c8",
+            "isSidechain": false,
+            "requestId": "req_011CbAScbRrcD5a7aoFfWuin",
+            "type": "assistant",
+            "uuid": "9ce3b02f-9460-4fa7-8848-fe8405c774f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NRRwMKJwBocHHF3BEr1NZ6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 379,
+                "cache_read_input_tokens": 107816,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 379,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 107816,
+                    "cache_creation_input_tokens": 379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 379
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-18T17:38:53.231Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VK7XjuUK6KDbod11KamuRn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-33183",
+                "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp9_bootstrap_ci.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ce3b02f-9460-4fa7-8848-fe8405c774f3",
+            "isSidechain": false,
+            "requestId": "req_011CbAScbRrcD5a7aoFfWuin",
+            "type": "assistant",
+            "uuid": "3255ba57-4314-4c22-9a2f-96ead2c0239a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NRRwMKJwBocHHF3BEr1NZ6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 379,
+                "cache_read_input_tokens": 107816,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 379,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 107816,
+                    "cache_creation_input_tokens": 379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 379
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "3255ba57-4314-4c22-9a2f-96ead2c0239a",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI and permutation test for jailbreak detection",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-18T17:38:53.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VK7XjuUK6KDbod11KamuRn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n    \\\\\\\"dd_ood\\\\\\\": {\\\\n      \\\\\\\"9class\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9188,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9807,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8837,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9713,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8266,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9426,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9426,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"binary\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9509,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9838,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9212,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"scrambled\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9367,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9811,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8817,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9747,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8481,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9533,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9966,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9422,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"jb_mlm\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9733,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9078,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9935,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9357,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9494,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9494,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9133,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6452,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"wiki_mlm\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9119,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.7166,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9098,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6943,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9913,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9356,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.7314,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9904,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9216,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6692,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9904,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9027,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5884,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9906,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"topic\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5896,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.2987,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7228,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5915,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.2471,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7427,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5677,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.234,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7303,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5723,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.2041,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 15622 字符] ...\\\\n\\\\nmlm\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.5798,\\\\n            0.0,\\\\n            0.9988\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0116,\\\\n            0.2601,\\\\n            -0.1387\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 0.9988,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.5262,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.9781,\\\\n            0.5008,\\\\n            1.0\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0887,\\\\n            0.0084,\\\\n            -0.0818\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.8263,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.9266,\\\\n            0.2687,\\\\n            1.0\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0589,\\\\n            0.0267,\\\\n            -0.0378\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.7318,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.5015,\\\\n            0.3086,\\\\n            0.0022\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            0.0008,\\\\n            0.0189,\\\\n            0.0896\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 0.5015,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.2708,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.4051,\\\\n            0.3086,\\\\n            0.0\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            0.0097,\\\\n            0.0189,\\\\n            0.2067\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 0.4051,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.2379,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        }\\\\n      },\\\\n      \\\\\\\"9class_vs_scrambled\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0,\\\\n            0.0009\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.1388,\\\\n            0.1978,\\\\n            0.0978\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.3336,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0005,\\\\n            0.0152\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0825,\\\\n            0.1146,\\\\n            0.051\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.3386,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0001,\\\\n            0.0162\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.114,\\\\n            0.1359,\\\\n            0.0623\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.3388,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0003,\\\\n            0.2475\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0643,\\\\n            0.1329,\\\\n            0.0187\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.4159,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.001,\\\\n            0.2475\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0554,\\\\n            0.0991,\\\\n            0.0189\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.4162,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_resamples\\\\\\\": 10000,\\\\n    \\\\\\\"n_permutations\\\\\\\": 10000,\\\\n    \\\\\\\"confidence\\\\\\\": 0.95,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"BCa_bootstrap\\\\\\\",\\\\n    \\\\\\\"metric\\\\\\\": \\\\\\\"f1_macro\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3255ba57-4314-4c22-9a2f-96ead2c0239a",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "b3ce85ec-4337-4464-9e38-a212e7ad5e49",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n    \\\\\\\"dd_ood\\\\\\\": {\\\\n      \\\\\\\"9class\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9905,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9188,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9807,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8837,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9713,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8266,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9426,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9426,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"binary\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9509,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9838,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9212,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_lower\\\\\\\": 1.0,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"scrambled\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9968,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9367,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9811,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8817,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9747,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.8481,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9533,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9966,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9422,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"jb_mlm\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9733,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9078,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9935,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9357,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9494,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9967,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9494,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9133,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6452,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"wiki_mlm\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9119,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.7166,\\\\n          \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9098,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6943,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9913,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9356,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.7314,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9904,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9216,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6692,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9904,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9027,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5884,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9906,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        }\\\\n      },\\\\n      \\\\\\\"topic\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5896,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.2987,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7228,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5915,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.2471,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7427,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5677,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.234,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7303,\\\\n          \\\\\\\"n_seeds\\\\\\\": 3\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5723,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.2041,\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 15622 字符] ...\\\\n\\\\nmlm\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.5798,\\\\n            0.0,\\\\n            0.9988\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0116,\\\\n            0.2601,\\\\n            -0.1387\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 0.9988,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.5262,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.9781,\\\\n            0.5008,\\\\n            1.0\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0887,\\\\n            0.0084,\\\\n            -0.0818\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.8263,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.9266,\\\\n            0.2687,\\\\n            1.0\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0589,\\\\n            0.0267,\\\\n            -0.0378\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.7318,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.5015,\\\\n            0.3086,\\\\n            0.0022\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            0.0008,\\\\n            0.0189,\\\\n            0.0896\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 0.5015,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.2708,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            0.4051,\\\\n            0.3086,\\\\n            0.0\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            0.0097,\\\\n            0.0189,\\\\n            0.2067\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 0.4051,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.2379,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        }\\\\n      },\\\\n      \\\\\\\"9class_vs_scrambled\\\\\\\": {\\\\n        \\\\\\\"k1\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0,\\\\n            0.0009\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.1388,\\\\n            0.1978,\\\\n            0.0978\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.3336,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k2\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0005,\\\\n            0.0152\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0825,\\\\n            0.1146,\\\\n            0.051\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.3386,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k3\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0001,\\\\n            0.0162\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.114,\\\\n            0.1359,\\\\n            0.0623\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.3388,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"k5\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.0003,\\\\n            0.2475\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0643,\\\\n            0.1329,\\\\n            0.0187\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.4159,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        },\\\\n        \\\\\\\"full\\\\\\\": {\\\\n          \\\\\\\"per_seed_p_values\\\\\\\": [\\\\n            1.0,\\\\n            0.001,\\\\n            0.2475\\\\n          ],\\\\n          \\\\\\\"per_seed_diffs\\\\\\\": [\\\\n            -0.0554,\\\\n            0.0991,\\\\n            0.0189\\\\n          ],\\\\n          \\\\\\\"max_p\\\\\\\": 1.0,\\\\n          \\\\\\\"mean_p\\\\\\\": 0.4162,\\\\n          \\\\\\\"seeds_used\\\\\\\": [\\\\n            \\\\\\\"123\\\\\\\",\\\\n            \\\\\\\"42\\\\\\\",\\\\n            \\\\\\\"456\\\\\\\"\\\\n          ]\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_resamples\\\\\\\": 10000,\\\\n    \\\\\\\"n_permutations\\\\\\\": 10000,\\\\n    \\\\\\\"confidence\\\\\\\": 0.95,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"BCa_bootstrap\\\\\\\",\\\\n    \\\\\\\"metric\\\\\\\": \\\\\\\"f1_macro\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bootstrap_ci\\\": {\\n    \\\"dd_ood\\\": {\\n      \\\"9class\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9905,\\n          \\\"ci_lower\\\": 0.9188,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9807,\\n          \\\"ci_lower\\\": 0.8837,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9713,\\n          \\\"ci_lower\\\": 0.8266,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.9968,\\n          \\\"ci_lower\\\": 0.9426,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.9968,\\n          \\\"ci_lower\\\": 0.9426,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        }\\n      },\\n      \\\"binary\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"ci_lower\\\": 1.0,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9968,\\n          \\\"ci_lower\\\": 0.9509,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9838,\\n          \\\"ci_lower\\\": 0.9212,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"ci_lower\\\": 1.0,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 1.0,\\n          \\\"ci_lower\\\": 1.0,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        }\\n      },\\n      \\\"scrambled\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9968,\\n          \\\"ci_lower\\\": 0.9367,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9811,\\n          \\\"ci_lower\\\": 0.8817,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9747,\\n          \\\"ci_lower\\\": 0.8481,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.9967,\\n          \\\"ci_lower\\\": 0.9533,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.9966,\\n          \\\"ci_lower\\\": 0.9422,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        }\\n      },\\n      \\\"jb_mlm\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9733,\\n          \\\"ci_lower\\\": 0.9078,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9935,\\n          \\\"ci_lower\\\": 0.9357,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9967,\\n          \\\"ci_lower\\\": 0.9494,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.9967,\\n          \\\"ci_lower\\\": 0.9494,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.9133,\\n          \\\"ci_lower\\\": 0.6452,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        }\\n      },\\n      \\\"wiki_mlm\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.9119,\\n          \\\"ci_lower\\\": 0.7166,\\n          \\\"ci_upper\\\": 1.0,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.9098,\\n          \\\"ci_lower\\\": 0.6943,\\n          \\\"ci_upper\\\": 0.9913,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.9356,\\n          \\\"ci_lower\\\": 0.7314,\\n          \\\"ci_upper\\\": 0.9904,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.9216,\\n          \\\"ci_lower\\\": 0.6692,\\n          \\\"ci_upper\\\": 0.9904,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"full\\\": {\\n          \\\"mean\\\": 0.9027,\\n          \\\"ci_lower\\\": 0.5884,\\n          \\\"ci_upper\\\": 0.9906,\\n          \\\"n_seeds\\\": 3\\n        }\\n      },\\n      \\\"topic\\\": {\\n        \\\"k1\\\": {\\n          \\\"mean\\\": 0.5896,\\n          \\\"ci_lower\\\": 0.2987,\\n          \\\"ci_upper\\\": 0.7228,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k2\\\": {\\n          \\\"mean\\\": 0.5915,\\n          \\\"ci_lower\\\": 0.2471,\\n          \\\"ci_upper\\\": 0.7427,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k3\\\": {\\n          \\\"mean\\\": 0.5677,\\n          \\\"ci_lower\\\": 0.234,\\n          \\\"ci_upper\\\": 0.7303,\\n          \\\"n_seeds\\\": 3\\n        },\\n        \\\"k5\\\": {\\n          \\\"mean\\\": 0.5723,\\n          \\\"ci_lower\\\": 0.2041,\\n  \\n\\n... [截断: 输出过长，省略 15622 字符] ...\\n\\nmlm\\\": {\\n        \\\"k1\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            0.5798,\\n            0.0,\\n            0.9988\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.0116,\\n            0.2601,\\n            -0.1387\\n          ],\\n          \\\"max_p\\\": 0.9988,\\n          \\\"mean_p\\\": 0.5262,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"k2\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            0.9781,\\n            0.5008,\\n            1.0\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.0887,\\n            0.0084,\\n            -0.0818\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.8263,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"k3\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            0.9266,\\n            0.2687,\\n            1.0\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.0589,\\n            0.0267,\\n            -0.0378\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.7318,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"k5\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            0.5015,\\n            0.3086,\\n            0.0022\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            0.0008,\\n            0.0189,\\n            0.0896\\n          ],\\n          \\\"max_p\\\": 0.5015,\\n          \\\"mean_p\\\": 0.2708,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"full\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            0.4051,\\n            0.3086,\\n            0.0\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            0.0097,\\n            0.0189,\\n            0.2067\\n          ],\\n          \\\"max_p\\\": 0.4051,\\n          \\\"mean_p\\\": 0.2379,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        }\\n      },\\n      \\\"9class_vs_scrambled\\\": {\\n        \\\"k1\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            1.0,\\n            0.0,\\n            0.0009\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.1388,\\n            0.1978,\\n            0.0978\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.3336,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"k2\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            1.0,\\n            0.0005,\\n            0.0152\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.0825,\\n            0.1146,\\n            0.051\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.3386,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"k3\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            1.0,\\n            0.0001,\\n            0.0162\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.114,\\n            0.1359,\\n            0.0623\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.3388,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"k5\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            1.0,\\n            0.0003,\\n            0.2475\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.0643,\\n            0.1329,\\n            0.0187\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.4159,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        },\\n        \\\"full\\\": {\\n          \\\"per_seed_p_values\\\": [\\n            1.0,\\n            0.001,\\n            0.2475\\n          ],\\n          \\\"per_seed_diffs\\\": [\\n            -0.0554,\\n            0.0991,\\n            0.0189\\n          ],\\n          \\\"max_p\\\": 1.0,\\n          \\\"mean_p\\\": 0.4162,\\n          \\\"seeds_used\\\": [\\n            \\\"123\\\",\\n            \\\"42\\\",\\n            \\\"456\\\"\\n          ]\\n        }\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"n_resamples\\\": 10000,\\n    \\\"n_permutations\\\": 10000,\\n    \\\"confidence\\\": 0.95,\\n    \\\"method\\\": \\\"BCa_bootstrap\\\",\\n    \\\"metric\\\": \\\"f1_macro\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3255ba57-4314-4c22-9a2f-96ead2c0239a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b3ce85ec-4337-4464-9e38-a212e7ad5e49",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI and permutation test for jailbreak detection",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-18T17:39:03.435Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QHxWpCqfkKc6zvyyjEqboJ",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp9_bootstrap_ci_results",
+                "type": "data",
+                "description": "BCa bootstrap 95% CI (10K resamples) and paired permutation tests (10K perms) for all 10 model variants x 3 seeds x 5 K values on DD OOD and ActorAttack OOD datasets. Covers Table 1/3/4 in the paper.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp9_bootstrap_ci",
+                "content_filename": "exp9_bootstrap_ci.json",
+                "tags": [
+                  "bootstrap",
+                  "confidence-interval",
+                  "permutation-test",
+                  "statistical-significance",
+                  "reviewer-response"
+                ],
+                "content": "See remote server westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp9_bootstrap_ci.json (23KB). Also per-sample predictions at results/per_sample_predictions/{dd_ood,actorattack}_per_sample.json."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3ce85ec-4337-4464-9e38-a212e7ad5e49",
+            "isSidechain": false,
+            "requestId": "req_011CbAScx8YqikZXLPaPhXBS",
+            "type": "assistant",
+            "uuid": "e62a1d9e-4375-4568-ac34-e2f21116017f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7h5Yrwn8WLZrDVMu7TzTj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4697,
+                "cache_read_input_tokens": 108195,
+                "output_tokens": 372,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4697,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 372,
+                    "cache_read_input_tokens": 108195,
+                    "cache_creation_input_tokens": 4697,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4697
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-18T17:39:03.549Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QHxWpCqfkKc6zvyyjEqboJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_186563\\\", \\\"name\\\": \\\"exp9_bootstrap_ci_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"BCa bootstrap 95% CI (10K resamples) and paired permutation tests (10K perms) for all 10 model variants x 3 seeds x 5 K values on DD OOD and ActorAttack OOD datasets. Covers Table 1/3/4 in the paper.\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp9_bootstrap_ci/data/exp9_bootstrap_ci.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T17:39:03.441753+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"confidence-interval\\\", \\\"permutation-test\\\", \\\"statistical-significance\\\", \\\"reviewer-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e62a1d9e-4375-4568-ac34-e2f21116017f",
+            "isSidechain": false,
+            "promptId": "8d242550-16f1-464f-8449-8b6cc51421a0",
+            "type": "user",
+            "uuid": "f22e5958-e6fe-4e1b-a290-faecc321d37d",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_186563\\\", \\\"name\\\": \\\"exp9_bootstrap_ci_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"BCa bootstrap 95% CI (10K resamples) and paired permutation tests (10K perms) for all 10 model variants x 3 seeds x 5 K values on DD OOD and ActorAttack OOD datasets. Covers Table 1/3/4 in the paper.\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp9_bootstrap_ci/data/exp9_bootstrap_ci.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp9_bootstrap_ci\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T17:39:03.441753+00:00\\\", \\\"tags\\\": [\\\"bootstrap\\\", \\\"confidence-interval\\\", \\\"permutation-test\\\", \\\"statistical-significance\\\", \\\"reviewer-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_186563\", \"name\": \"exp9_bootstrap_ci_results\", \"type\": \"data\", \"description\": \"BCa bootstrap 95% CI (10K resamples) and paired permutation tests (10K perms) for all 10 model variants x 3 seeds x 5 K values on DD OOD and ActorAttack OOD datasets. Covers Table 1/3/4 in the paper.\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/exp9_bootstrap_ci/data/exp9_bootstrap_ci.json\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"exp9_bootstrap_ci\", \"skill\": \"\", \"created_at\": \"2026-05-18T17:39:03.441753+00:00\", \"tags\": [\"bootstrap\", \"confidence-interval\", \"permutation-test\", \"statistical-significance\", \"reviewer-response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e62a1d9e-4375-4568-ac34-e2f21116017f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark"
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-18T17:39:24.028Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exp9 Bootstrap CI 完成。结果汇总：\n\n## Bootstrap 95% CI (BCa, 10K resamples)\n\n### DD OOD (Deceptive Delight)\n| Variant | K=1 | K=2 | K=3 | K=5 | Full |\n|---------|-----|-----|-----|-----|------|\n| 9class | .991 [.919,1.00] | .981 [.884,1.00] | .971 [.827,1.00] | .997 [.943,1.00] | .997 [.943,1.00] |\n| binary | 1.00 [1.00,1.00] | .997 [.951,1.00] | .984 [.921,1.00] | 1.00 [1.00,1.00] | 1.00 [1.00,1.00] |\n| scrambled | .997 [.937,1.00] | .981 [.882,1.00] | .975 [.848,1.00] | .997 [.953,1.00] | .997 [.942,1.00] |\n| jb_mlm | .973 [.908,1.00] | .994 [.936,1.00] | .997 [.949,1.00] | .997 [.949,1.00] | .913 [.645,1.00] |\n| wiki_mlm | .912 [.717,1.00] | .910 [.694,.991] | .936 [.731,.990] | .922 [.669,.990] | .903 [.588,.991] |\n| topic | .590 [.299,.723] | .592 [.247,.743] | .568 [.234,.730] | .572 [.204,.762] | .541 [.186,.737] |\n| vanilla | .441 [.258,.643] | .339 [.244,.532] | .296 [.236,.407] | .270 [.202,.341] | .270 [.202,.341] |\n\n### ActorAttack\n| Variant | K=1 | K=5 | Full |\n|---------|-----|-----|------|\n| 9class | .772 [.650,.863] | .966 [.840,1.00] | .972 [.855,1.00] |\n| binary | .735 [.542,.841] | .987 [.894,1.00] | .990 [.926,1.00] |\n| scrambled | .718 [.576,.921] | .936 [.757,.991] | .950 [.792,1.00] |\n| jb_mlm | .734 [.492,.960] | .928 [.831,.990] | .893 [.671,.980] |\n| vanilla | .336 [.226,.452] | .261 [.208,.325] | .257 [.203,.314] |\n\n### RoBERTa DD OOD\n| Variant | K=1 | Full |\n|---------|-----|------|\n| rob_9class | .987 [.885,1.00] | .994 [.943,1.00] |\n| rob_mlm | .796 [.615,1.00] | .906 [.784,1.00] |\n| rob_vanilla | .912 [.610,.991] | .981 [.883,1.00] |\n\n## Paired Permutation Tests (p-values)\n\n| Comparison | DD OOD (all K) | ActorAttack (all K) |\n|------------|---------------|---------------------|\n| **9class vs vanilla** | **p=0.0000** (all seeds, all K) | **p=0.0000** (all seeds, all K) |\n| 9class vs jb_mlm | max_p=1.0 (not significant) | max_p≥0.40 (not significant) |\n| 9class vs scrambled | max_p=1.0 (not significant) | max_p=1.0 (not significant) |\n\n**核心结论**：9class 显著优于 vanilla（p<0.0001），与 jb_mlm 和 scrambled 无显著差异。CIs 因小样本（n=118）较宽，但 9class 与 vanilla 的 CI 完全不重叠。结果已保存至 `results/exp9_bootstrap_ci.json`，registry 已更新为 DONE (success)。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f22e5958-e6fe-4e1b-a290-faecc321d37d",
+            "isSidechain": false,
+            "requestId": "req_011CbASdfsXa34nEMgsafJ44",
+            "type": "assistant",
+            "uuid": "ea7f6c9a-7b3d-4370-8990-f2d89216e145",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+            "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "sleepy-brewing-spark",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YUaPQ2rZmWDwsGYMrrQ3xY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 727,
+                "cache_read_input_tokens": 112892,
+                "output_tokens": 1146,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 727,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1146,
+                    "cache_read_input_tokens": 112892,
+                    "cache_creation_input_tokens": 727,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 727
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "ea7f6c9a-7b3d-4370-8990-f2d89216e145",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Bootstrap CI and permutation test for jailbreak detection",
+                "sessionId": "d61eff24-ab10-473c-84cf-a2baf4a979ee"
+              }
+            }
+          ],
+          "id": "event-001464"
+        }
+      ]
+    }
+  ]
+}

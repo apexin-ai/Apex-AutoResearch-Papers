@@ -1,0 +1,1884 @@
+{
+  "schema_version": "1.0",
+  "id": "6a8cb30df5214f1ca2f9",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-er",
+  "task_key": "agent-ab1ac2b63b3caff8d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ab1ac2b63b3caff8d.jsonl",
+    "occurrence": 1,
+    "bytes": 163433,
+    "sha256": "97df164317e80694cf86584e8f5077c78b75dd96e0b7984466b159f2a7655278"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T01:53:52.266Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt\n\nThis is a JSON file with schema: {result: string}. The \"result\" value is itself a JSON string that needs to be parsed.\n\nExtract ALL experiment entries. For each experiment, report:\n- id\n- status\n- conclusion (if any)\n- metrics (if any, especially accuracy)\n- description or tags that indicate what kind of experiment it is (vanilla/taxei/random, seed, dose-response inject ratio, eval type, etc.)\n\nGroup them logically:\n1. Multi-seed vanilla experiments (seed 42, 0, 123)\n2. Multi-seed TaxEI experiments (seed 42, 0, 123)\n3. Multi-seed Random experiments (seed 42, 0, 123)\n4. TaxEI dose-response experiments (inject10, inject25, inject50)\n5. Random dose-response experiments (inject10, inject25, inject50)\n6. Recovery eval experiments\n7. Any other experiments (v3, older versions, etc.)\n\nReport the EXACT experiment IDs as they appear in the registry. Be thorough - don't skip any entries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "909beb4b-59f3-4ceb-b069-402355b34f4e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T01:53:52.269Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "909beb4b-59f3-4ceb-b069-402355b34f4e",
+                "isSidechain": true,
+                "agentId": "ab1ac2b63b3caff8d",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5426756d-57bf-4bd5-b5da-8c40dfe76fe8",
+                "timestamp": "2026-05-15T01:53:52.269Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+                "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T01:53:58.590Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read the file first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5426756d-57bf-4bd5-b5da-8c40dfe76fe8",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X8VUx28hFnq3kvGp1U",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "022c4901-823e-4197-a70b-69a2ceb01f84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KtydzXf8dgzvrDUEgUK1EY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14445,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14445,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T01:53:59.676Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011sbTs89UvnocxXNs42Tfs3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "022c4901-823e-4197-a70b-69a2ceb01f84",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X8VUx28hFnq3kvGp1U",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12e21399-8dca-4946-b52b-a0975a683de6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KtydzXf8dgzvrDUEgUK1EY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14445,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14445,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T01:53:59.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (33616 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_011sbTs89UvnocxXNs42Tfs3"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12e21399-8dca-4946-b52b-a0975a683de6",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "aa540815-0c35-4b74-8773-891aa81ae354",
+            "toolUseResult": "Error: File content (33616 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "12e21399-8dca-4946-b52b-a0975a683de6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T01:54:02.642Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me read it in chunks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa540815-0c35-4b74-8773-891aa81ae354",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X94SLfJ8VCajoMiGtV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "36be4bda-58f3-41dd-9ed3-a63df110f0e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YGqwhZgVomq3UwQpsm9N9R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 14445,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1059,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T01:54:03.458Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Et4KXxP8v58h9A488FDJLq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt",
+                "limit": 500
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36be4bda-58f3-41dd-9ed3-a63df110f0e7",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X94SLfJ8VCajoMiGtV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fd039c90-80b7-48db-a899-de4faedecd4e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YGqwhZgVomq3UwQpsm9N9R",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1059,
+                "cache_read_input_tokens": 14445,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1059
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 14445,
+                    "cache_creation_input_tokens": 1059,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1059,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T01:54:03.791Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (33616 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01Et4KXxP8v58h9A488FDJLq"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd039c90-80b7-48db-a899-de4faedecd4e",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "dd4bbe46-5678-4dff-a998-f6b0f81e29a2",
+            "toolUseResult": "Error: File content (33616 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "fd039c90-80b7-48db-a899-de4faedecd4e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T01:54:07.328Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y8oPLMQRfHudbJbAeCRLcE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt",
+                "limit": 200,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd4bbe46-5678-4dff-a998-f6b0f81e29a2",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X9LfQNajDHSHm6QG1k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "00c483a1-5b9a-4512-ae02-e442042b6229",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AaPh6MvGZeNsLxGADMWJb4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 239,
+                "cache_read_input_tokens": 15504,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 239
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 15504,
+                    "cache_creation_input_tokens": 239,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 239,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T01:54:07.605Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (33616 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01Y8oPLMQRfHudbJbAeCRLcE"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00c483a1-5b9a-4512-ae02-e442042b6229",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "a3b2d0f2-2d77-4842-9ed0-af8894aff6b7",
+            "toolUseResult": "Error: File content (33616 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "00c483a1-5b9a-4512-ae02-e442042b6229",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T01:54:10.111Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try using bash to examine this file's structure and content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3b2d0f2-2d77-4842-9ed0-af8894aff6b7",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X9cwwXJhnYgNu1CKyR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9256db1b-c436-4c04-8336-c4fb4962518a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xo6SVx7pVft85dkARL61QG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 243,
+                "cache_read_input_tokens": 15743,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 243,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T01:54:11.355Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JUcqUXXFyv1eZR7VCWTgy8",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt",
+                "description": "Check file line count"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9256db1b-c436-4c04-8336-c4fb4962518a",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X9cwwXJhnYgNu1CKyR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24d3cd8f-af70-4305-8aac-a57baef6dc7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xo6SVx7pVft85dkARL61QG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 243,
+                "cache_read_input_tokens": 15743,
+                "output_tokens": 186,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 243
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 186,
+                    "cache_read_input_tokens": 15743,
+                    "cache_creation_input_tokens": 243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 243,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T01:54:11.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JUcqUXXFyv1eZR7VCWTgy8",
+              "type": "tool_result",
+              "content": "0 /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24d3cd8f-af70-4305-8aac-a57baef6dc7e",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "99c43cb8-9388-4c43-a5d3-8b37ed7fbb6c",
+            "sourceToolAssistantUUID": "24d3cd8f-af70-4305-8aac-a57baef6dc7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T01:54:13.983Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "It's a single line (JSON). Let me parse it properly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99c43cb8-9388-4c43-a5d3-8b37ed7fbb6c",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X9usvRcqJgdny58Jg4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1432b5ba-5725-4c34-8605-afdcadc99b1f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R4JD1YkyVV1JRL97CGS5kn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 296,
+                "cache_read_input_tokens": 15986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 296,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T01:54:18.393Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PcwgVjqMVwSvHm28gVXnTd",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# Print the top-level keys\nprint('Top-level keys:', list(result.keys()))\nprint()\n# Check experiments section\nif 'experiments' in result:\n    exps = result['experiments']\n    print(f'Number of experiments: {len(exps)}')\n    print()\n    for exp_id, exp_data in exps.items():\n        print(f'=== {exp_id} ===')\n        print(json.dumps(exp_data, indent=2, ensure_ascii=False))\n        print()\n\"",
+                "description": "Parse the JSON file and extract all experiment entries",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1432b5ba-5725-4c34-8605-afdcadc99b1f",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3X9usvRcqJgdny58Jg4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5ceb6ad2-8239-4e91-9cd4-12eca472b78c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R4JD1YkyVV1JRL97CGS5kn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 296,
+                "cache_read_input_tokens": 15986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 296,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T01:54:18.607Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PcwgVjqMVwSvHm28gVXnTd",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ceb6ad2-8239-4e91-9cd4-12eca472b78c",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "fd465461-2236-49ff-894c-e5e6bd2a5c0c",
+            "sourceToolAssistantUUID": "5ceb6ad2-8239-4e91-9cd4-12eca472b78c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T01:54:23.601Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WXgWLnPwyDhftNJzb8xHjs",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nprint('success:', result.get('success'))\nprint('error:', result.get('error'))\nprint('metadata:', result.get('metadata'))\nprint()\nd = result.get('data', {})\nprint('data keys:', list(d.keys()))\nprint()\n# Check if data itself is a string that needs parsing\nif isinstance(d, str):\n    d = json.loads(d)\n    print('data (parsed) keys:', list(d.keys()))\n\"",
+                "description": "Explore the nested JSON structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd465461-2236-49ff-894c-e5e6bd2a5c0c",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XAS38aENzUsFNdn41j",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f980eb02-67d7-45df-8e1f-55125e5ef2cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LZRiLtPjvYBDd7WYdRdGFR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 401,
+                "cache_read_input_tokens": 16282,
+                "output_tokens": 314,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 401
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 314,
+                    "cache_read_input_tokens": 16282,
+                    "cache_creation_input_tokens": 401,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 401,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T01:54:23.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WXgWLnPwyDhftNJzb8xHjs",
+              "type": "tool_result",
+              "content": "success: True\nerror: None\nmetadata: {'elapsed_seconds': 0.1791}\n\ndata keys: ['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f980eb02-67d7-45df-8e1f-55125e5ef2cd",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "acc4c710-0d14-478f-a3c9-c4f6f17dd250",
+            "sourceToolAssistantUUID": "f980eb02-67d7-45df-8e1f-55125e5ef2cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T01:54:33.343Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DnmUbwFqUR4TSxKPibzpoM",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nd = result['data']\nprint('count:', d.get('count'))\nprint('total:', d.get('total'))\nprint('baseline:', d.get('baseline'))\nprint()\nexps = d.get('experiments', {})\nprint(f'Number of experiment entries: {len(exps)}')\nprint()\nprint('Experiment IDs:')\nfor exp_id in exps.keys():\n    print(f'  {exp_id}')\n\"",
+                "description": "List all experiment IDs"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acc4c710-0d14-478f-a3c9-c4f6f17dd250",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XAogdYms3JjyaM1pG5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "608f8783-119b-4325-b2a3-52259d77d53e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ga3eDpp23mZ6dK9MdnSdcC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 366,
+                "cache_read_input_tokens": 16683,
+                "output_tokens": 313,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 366
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 313,
+                    "cache_read_input_tokens": 16683,
+                    "cache_creation_input_tokens": 366,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 366,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T01:54:33.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DnmUbwFqUR4TSxKPibzpoM",
+              "type": "tool_result",
+              "content": "count: 61\ntotal: 61\nbaseline: None\n\nNumber of experiment entries: 61\n\nExperiment IDs:\n  v4-random-fixed-inject25-eval\n  v4-random-fixed-inject50-eval\n  v4-random-fixed-inject25\n  v4-random-fixed-inject50\n  v4-random-fixed-inject10-eval\n  v4-taxei-fixed-inject50-eval\n  v4-random-fixed-inject10\n  v4-taxei-fixed-inject50\n  v4-random-seed123-eval\n  v4-taxei-fixed-inject25-eval\n  v4-taxei-fixed-inject10-eval\n  v4-taxei-seed123-eval\n  v4-random-seed123\n  v4-taxei-fixed-inject25-r2\n  v4-taxei-fixed-inject10\n  v4-taxei-fixed-inject25\n  v4-taxei-seed123\n  v4-fixed-inject25\n  v4-fixed-inject10\n  v4-random-recovery-eval\n  v4-taxei-recovery-eval-r2\n  v4-taxei-seed0-eval\n  v4-random-seed0-eval\n  v4-vanilla-recovery-eval\n  v4-taxei-recovery-eval\n  v4-vanilla-seed123-eval\n  v4-random-seed0\n  v4-taxei-seed0\n  v4-vanilla-seed0-eval\n  v4-vanilla-seed123\n  v4-vanilla-seed0\n  v4-vanilla-seed7\n  v4-recovery-eval-dev\n  v4-recovery-dryrun\n  v4-random-eval\n  v4-taxei-eval\n  traj_collect_500\n  v4-vanilla-eval-r3\n  v4-vanilla-eval-r2\n  v4-random-sft-r2\n  v4-taxei-sft-r2\n  v4-vanilla-eval\n  v3-random-eval\n  v3-taxei-eval\n  v4-random-sft-r3\n  v4-taxei-sft-r3\n  v4-random-sft\n  v4-taxei-sft\n  mini-vanilla-sft-v4\n  mini-random-sft-v3\n  mini-taxei-sft-v3\n  mini-vanilla-sft-v3\n  v3-vanilla-eval\n  v4-vanilla-sft\n  vanilla_sft_aligned_v2\n  vanilla_sft_aligned_v1\n  mini-vanilla-sft\n  mini-taxei-sft\n  vanilla-react-baseline\n  mini-pipeline-e2e\n  sft-dryrun-73",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "608f8783-119b-4325-b2a3-52259d77d53e",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "a5d52ec3-3efd-4268-a0a6-a406f904e8a4",
+            "sourceToolAssistantUUID": "608f8783-119b-4325-b2a3-52259d77d53e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T01:54:35.837Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the full details of each experiment. I'll process them in batches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5d52ec3-3efd-4268-a0a6-a406f904e8a4",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XBXPd3Xm8vbhC9FkLv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1c0fe13f-c691-4a42-9624-9acb82ed20e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01876LWD4Vf5DW1Ki315PY96",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 17049,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1001,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T01:54:38.339Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012WeiEePPoQubfHbS1X4KdR",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor exp_id, exp_data in list(exps.items())[:20]:\n    print(f'=== {exp_id} ===')\n    print(json.dumps(exp_data, indent=2, ensure_ascii=False))\n    print()\n\"",
+                "description": "Print first 20 experiments in detail",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c0fe13f-c691-4a42-9624-9acb82ed20e9",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XBXPd3Xm8vbhC9FkLv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "50e65f97-c29b-4d1a-b61f-fbdd42c8755b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01876LWD4Vf5DW1Ki315PY96",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 17049,
+                "output_tokens": 318,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1001
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 318,
+                    "cache_read_input_tokens": 17049,
+                    "cache_creation_input_tokens": 1001,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1001,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T01:54:38.423Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012WeiEePPoQubfHbS1X4KdR",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (32.3KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/bkcd8j1c7.txt\n\nPreview (first 2KB):\n=== v4-random-fixed-inject25-eval ===\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T01:48:25.777Z\",\n  \"updated_at\": \"2026-05-15T01:49:32.991Z\",\n  \"hypothesis\": \"v4 Random 25% injection fixed-size eval — 47 ALFWorld tasks (clean). 与 TaxEI 25% (48.9%) 对比。\",\n  \"parent\": \"v4-random-fixed-inject25\",\n  \"spec\": {\n    \"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25/v1-20260515-084707/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject25_eval.json --device cuda:0\",\n    \"server\": \"autodl-5090\",\n    \"parent\": \"v4-random-fixed-inject25\",\n    \"checkpoint_source\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25/v1-20260515-084707/checkpoint-1635\",\n    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n    \"data_path\": \"eval/alfworld_47_clean\",\n    \"data_count\": 47,\n    \"model_name\": \"Qwen3-8B + LoRA (random fixed inject25)\",\n    \"seed\": 42,\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"112516\",\n    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-eval.log\"\n  }\n}\n\n=== v4-random-fixed-inject50-eval ===\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T01:43:46.913Z\",\n  \"updated_at\": \"2026-05-15T01:48:24.916Z\",\n  \"hypothesis\": \"v4 Random 50% injection fixed-size eval — 47 tasks clean eval. 与 TaxEI 50% (51.1%) 对比。Random dose-response 最后一点。\",\n  \"spec\": {\n    \"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/random_fixed_inject50/v0-20260515-084528/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject50_eval.json --device cuda:0 --seed 42\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"111908\",\n    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject50-eval.log\",\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50e65f97-c29b-4d1a-b61f-fbdd42c8755b",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "020cf162-f4d0-4bfe-9e44-509c48cbb9e5",
+            "sourceToolAssistantUUID": "50e65f97-c29b-4d1a-b61f-fbdd42c8755b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T01:54:41.391Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xps5tkKEQcNJJiHfpcQsy2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/bkcd8j1c7.txt",
+                "limit": 800,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "020cf162-f4d0-4bfe-9e44-509c48cbb9e5",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XBtjGLLJtwFeuPS9sC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "46c2526a-fc85-42e7-954d-ffb8bf072154",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PautQbdrHCV9tH8CogGoew",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1281,
+                "cache_read_input_tokens": 18050,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1281
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 18050,
+                    "cache_creation_input_tokens": 1281,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1281,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T01:54:41.791Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xps5tkKEQcNJJiHfpcQsy2",
+              "type": "tool_result",
+              "content": "0\t=== v4-random-fixed-inject25-eval ===\n1\t{\n2\t  \"status\": \"RUNNING\",\n3\t  \"retry_count\": 0,\n4\t  \"created_at\": \"2026-05-15T01:48:25.777Z\",\n5\t  \"updated_at\": \"2026-05-15T01:49:32.991Z\",\n6\t  \"hypothesis\": \"v4 Random 25% injection fixed-size eval — 47 ALFWorld tasks (clean). 与 TaxEI 25% (48.9%) 对比。\",\n7\t  \"parent\": \"v4-random-fixed-inject25\",\n8\t  \"spec\": {\n9\t    \"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25/v1-20260515-084707/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject25_eval.json --device cuda:0\",\n10\t    \"server\": \"autodl-5090\",\n11\t    \"parent\": \"v4-random-fixed-inject25\",\n12\t    \"checkpoint_source\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25/v1-20260515-084707/checkpoint-1635\",\n13\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n14\t    \"data_path\": \"eval/alfworld_47_clean\",\n15\t    \"data_count\": 47,\n16\t    \"model_name\": \"Qwen3-8B + LoRA (random fixed inject25)\",\n17\t    \"seed\": 42,\n18\t    \"gpu\": [\n19\t      \"cuda:0\"\n20\t    ],\n21\t    \"pid\": \"112516\",\n22\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-eval.log\"\n23\t  }\n24\t}\n25\t\n26\t=== v4-random-fixed-inject50-eval ===\n27\t{\n28\t  \"status\": \"RUNNING\",\n29\t  \"retry_count\": 0,\n30\t  \"created_at\": \"2026-05-15T01:43:46.913Z\",\n31\t  \"updated_at\": \"2026-05-15T01:48:24.916Z\",\n32\t  \"hypothesis\": \"v4 Random 50% injection fixed-size eval — 47 tasks clean eval. 与 TaxEI 50% (51.1%) 对比。Random dose-response 最后一点。\",\n33\t  \"spec\": {\n34\t    \"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/random_fixed_inject50/v0-20260515-084528/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject50_eval.json --device cuda:0 --seed 42\",\n35\t    \"server\": \"autodl-5090\",\n36\t    \"gpu\": [\n37\t      \"cuda:1\"\n38\t    ],\n39\t    \"pid\": \"111908\",\n40\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject50-eval.log\",\n41\t    \"submitted_at\": \"2026-05-15T01:44:03.792Z\",\n42\t    \"submitted_via\": \"submit_training_job\",\n43\t    \"backend\": \"tmux\",\n44\t    \"account\": \"root\",\n45\t    \"parent\": \"v4-random-fixed-inject50\",\n46\t    \"checkpoint_source\": \"v4-random-fixed-inject50\",\n47\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n48\t    \"data_count\": 47,\n49\t    \"model_name\": \"Qwen3-8B + LoRA (random fixed inject50)\",\n50\t    \"data_path\": \"eval/alfworld_47_clean\",\n51\t    \"seed\": 42\n52\t  }\n53\t}\n54\t\n55\t=== v4-random-fixed-inject25 ===\n56\t{\n57\t  \"status\": \"DONE\",\n58\t  \"retry_count\": 0,\n59\t  \"created_at\": \"2026-05-15T00:25:44.436Z\",\n60\t  \"updated_at\": \"2026-05-15T01:48:07.606Z\",\n61\t  \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection (4,358 total). 与 TaxEI 25% (48.9%) 对比 taxonomy 标签在中等注入比例下是否有差异。\",\n62\t  \"spec\": {\n63\t    \"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --output_dir checkpoints/v4_random_fixed_inject25 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\",\n64\t    \"server\": \"autodl-5090\",\n65\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject25.jsonl\",\n66\t    \"data_count\": 4358,\n67\t    \"model_name\": \"Qwen3-8B\",\n68\t    \"seed\": 42,\n69\t    \"gpu\": \"cuda:1\",\n70\t    \"max_steps\": 1635,\n71\t    \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25/v1-20260515-084707/checkpoint-1635\",\n72\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25.log\"\n73\t  },\n74\t  \"reproduce\": {\n75\t    \"finished_at\": \"2026-05-15T01:43:59.432Z\"\n76\t  },\n77\t  \"extra\": {\n78\t    \"hook_events\": [\n79\t      {\n80\t        \"event\": \"on_complete\",\n81\t        \"action\": \"agent\",\n82\t        \"ts\": \"2026-05-15T01:44:03.491274+00:00\"\n83\t      }\n84\t    ]\n85\t  },\n86\t  \"conclusion\": \"success\",\n87\t  \"metrics\": {\n88\t    \"train_steps\": 1635,\n89\t    \"train_epochs\": 3,\n90\t    \"data_count\": 4358\n91\t  },\n92\t  \"completed_at\": \"2026-05-15T01:48:05.171Z\"\n93\t}\n94\t\n95\t=== v4-random-fixed-inject50 ===\n96\t{\n97\t  \"status\": \"DONE\",\n98\t  \"retry_count\": 0,\n99\t  \"created_at\": \"2026-05-15T00:45:08.375Z\",\n100\t  \"updated_at\": \"2026-05-15T01:43:35.237Z\",\n101\t  \"hypothesis\": \"v4 Random fixed-size ablation: 50% injection (4,358 total = 2,179 clean + 2,179 injected). 与 TaxEI 50% 对比 taxonomy 标签在高注入比例下是否有差异。\",\n102\t  \"spec\": {\n103\t    \"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject50.jsonl --output_dir checkpoints/random_fixed_inject50 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\",\n104\t    \"server\": \"autodl-5090\",\n105\t    \"gpu\": [\n106\t      \"cuda:3\"\n107\t    ],\n108\t    \"pid\": \"105879\",\n109\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject50.log\",\n110\t    \"submitted_at\": \"2026-05-15T00:45:22.505Z\",\n111\t    \"submitted_via\": \"submit_training_job\",\n112\t    \"backend\": \"tmux\",\n113\t    \"account\": \"root\",\n114\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject50.jsonl\",\n115\t    \"data_count\": 4358,\n116\t    \"model_name\": \"Qwen/Qwen3-8B\",\n117\t    \"seed\": 42,\n118\t    \"checkpoint_path\": \"checkpoints/random_fixed_inject50\",\n119\t    \"wall_clock_seconds\": 3492.7,\n120\t    \"gpu_hours\": 0.97\n121\t  },\n122\t  \"reproduce\": {\n123\t    \"finished_at\": \"2026-05-15T01:39:15.464Z\"\n124\t  },\n125\t  \"extra\": {\n126\t    \"hook_events\": [\n127\t      {\n128\t        \"event\": \"on_complete\",\n129\t        \"action\": \"agent\",\n130\t        \"ts\": \"2026-05-15T01:39:17.014804+00:00\"\n131\t      }\n132\t    ]\n133\t  },\n134\t  \"conclusion\": \"success\",\n135\t  \"metrics\": {\n136\t    \"train_steps\": 1635,\n137\t    \"train_epochs\": 3,\n138\t    \"data_count\": 4358\n139\t  },\n140\t  \"completed_at\": \"2026-05-15T01:43:35.237Z\"\n141\t}\n142\t\n143\t=== v4-random-fixed-inject10-eval ===\n144\t{\n145\t  \"status\": \"DONE\",\n146\t  \"retry_count\": 0,\n147\t  \"created_at\": \"2026-05-15T01:28:17.994Z\",\n148\t  \"updated_at\": \"2026-05-15T01:42:40.302Z\",\n149\t  \"hypothesis\": \"v4 Random 10% injection fixed-size eval — 47 ALFWorld tasks (clean). 与 TaxEI 10% (61.7%) 对比。\",\n150\t  \"spec\": {\n151\t    \"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10/v0-20260515-082828/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_fixed_inject10_eval.json --device cuda:2\",\n152\t    \"server\": \"autodl-5090\",\n153\t    \"gpu\": [\n154\t      \"cuda:2\"\n155\t    ],\n156\t    \"pid\": \"110187\",\n157\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-eval.log\",\n158\t    \"submitted_at\": \"2026-05-15T01:28:27.422Z\",\n159\t    \"submitted_via\": \"submit_training_job\",\n160\t    \"backend\": \"tmux\",\n161\t    \"account\": \"root\",\n162\t    \"parent\": \"v4-random-fixed-inject10\",\n163\t    \"checkpoint_source\": \"v4-random-fixed-inject10\",\n164\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n165\t    \"data_count\": 47,\n166\t    \"data_path\": \"eval/alfworld_47_clean\",\n167\t    \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10)\",\n168\t    \"seed\": 42,\n169\t    \"wall_clock_seconds\": 852.9,\n170\t    \"gpu_hours\": 0.24\n171\t  },\n172\t  \"parent\": \"v4-random-fixed-inject10\",\n173\t  \"metrics\": {\n174\t    \"eval_success_rate\": 0.681,\n175\t    \"eval_successes\": 32,\n176\t    \"eval_total\": 47,\n177\t    \"by_task\": {\n178\t      \"look_at_obj_in_light\": {\n179\t        \"total\": 6,\n180\t        \"success\": 5,\n181\t        \"rate\": 0.833\n182\t      },\n183\t      \"pick_and_place_simple\": {\n184\t        \"total\": 8,\n185\t        \"success\": 5,\n186\t        \"rate\": 0.625\n187\t      },\n188\t      \"pick_clean_then_place_in_recep\": {\n189\t        \"total\": 11,\n190\t        \"success\": 6,\n191\t        \"rate\": 0.545\n192\t      },\n193\t      \"pick_cool_then_place_in_recep\": {\n194\t        \"total\": 7,\n195\t        \"success\": 4,\n196\t        \"rate\": 0.571\n197\t      },\n198\t      \"pick_heat_then_place_in_recep\": {\n199\t        \"total\": 8,\n200\t        \"success\": 7,\n201\t        \"rate\": 0.875\n202\t      },\n203\t      \"pick_two_obj_and_place\": {\n204\t        \"total\": 7,\n205\t        \"success\": 5,\n206\t        \"rate\": 0.714\n207\t      }\n208\t    }\n209\t  },\n210\t  \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_eval.json\",\n211\t  \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-eval.log\",\n212\t  \"conclusion\": \"success\",\n213\t  \"completed_at\": \"2026-05-15T01:42:40.303Z\"\n214\t}\n215\t\n216\t=== v4-taxei-fixed-inject50-eval ===\n217\t{\n218\t  \"status\": \"DONE\",\n219\t  \"retry_count\": 0,\n220\t  \"created_at\": \"2026-05-15T01:28:14.823Z\",\n221\t  \"updated_at\": \"2026-05-15T01:38:54.383Z\",\n222\t  \"spec\": {\n223\t    \"command\": \"python eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject50/v0-20260515-082759/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --num_episodes 47 --output eval_results/v4_taxei_fixed_inject50_eval.json --device cuda:0 --seed 42\",\n224\t    \"server\": \"autodl-5090\",\n225\t    \"data_path\": \"ALFWorld valid_unseen\",\n226\t    \"data_count\": 47,\n227\t    \"model_name\": \"Qwen3-8B + LoRA (v4-taxei-fixed-inject50)\",\n228\t    \"seed\": 42,\n229\t    \"checkpoint_source\": \"checkpoints/v4_taxei_fixed_inject50/v0-20260515-082759/checkpoint-1635\",\n230\t    \"eval_data\": \"ALFWorld valid_unseen 47 tasks clean eval\"\n231\t  },\n232\t  \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection eval — 47 tasks clean eval. Dose-response 最后一个数据点。已有：0%=61.7%, 10%=61.7%, 25%=48.9%, 50%=待测。\",\n233\t  \"metrics\": {\n234\t    \"eval_success_rate\": 0.511,\n235\t    \"eval_successes\": 24,\n236\t    \"eval_total\": 47,\n237\t    \"vs_vanilla_seed42_pp\": -10.6\n238\t  },\n239\t  \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject50/v0-20260515-082759/checkpoint-1635\",\n240\t  \"log_path\": \"/tmp/eval_inject50.log\",\n241\t  \"conclusion\": \"negative\",\n242\t  \"completed_at\": \"2026-05-15T01:37:38.792Z\"\n243\t}\n244\t\n245\t=== v4-random-fixed-inject10 ===\n246\t{\n247\t  \"status\": \"DONE\",\n248\t  \"retry_count\": 0,\n249\t  \"created_at\": \"2026-05-15T00:25:41.996Z\",\n250\t  \"updated_at\": \"2026-05-15T01:31:01.715Z\",\n251\t  \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection (4,358 total). 与 TaxEI 10% (61.7%) 对比 taxonomy 标签在低注入比例下是否有差异。\",\n252\t  \"spec\": {\n253\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=2 && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --output_dir checkpoints/v4_random_fixed_inject10 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\",\n254\t    \"server\": \"autodl-5090\",\n255\t    \"gpu\": [\n256\t      \"cuda:2\"\n257\t    ],\n258\t    \"pid\": \"104655\",\n259\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10.log\",\n260\t    \"submitted_at\": \"2026-05-15T00:28:19.537Z\",\n261\t    \"submitted_via\": \"submit_training_job\",\n262\t    \"backend\": \"tmux\",\n263\t    \"account\": \"root\",\n264\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\",\n265\t    \"data_count\": 4358,\n266\t    \"model_name\": \"Qwen3-8B\",\n267\t    \"seed\": 42,\n268\t    \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10/v0-20260515-082828/checkpoint-1635\",\n269\t    \"wall_clock_seconds\": 3546.1,\n270\t    \"gpu_hours\": 0.99\n271\t  },\n272\t  \"reproduce\": {\n273\t    \"finished_at\": \"2026-05-15T01:26:29.568Z\"\n274\t  },\n275\t  \"extra\": {\n276\t    \"hook_events\": [\n277\t      {\n278\t        \"event\": \"on_complete\",\n279\t        \"action\": \"agent\",\n280\t        \"ts\": \"2026-05-15T01:26:31.003606+00:00\"\n281\t      }\n282\t    ]\n283\t  },\n284\t  \"conclusion\": \"success\",\n285\t  \"metrics\": {\n286\t    \"train_loss\": 0.4226,\n287\t    \"final_step_loss\": 0.3079,\n288\t    \"token_accuracy\": 0.9,\n289\t    \"train_steps\": 1635,\n290\t    \"train_epochs\": 3,\n291\t    \"train_duration_min\": 57\n292\t  },\n293\t  \"completed_at\": \"2026-05-15T01:27:25.646Z\",\n294\t  \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10/v0-20260515-082828/checkpoint-1635\",\n295\t  \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10.log\"\n296\t}\n297\t\n298\t=== v4-taxei-fixed-inject50 ===\n299\t{\n300\t  \"status\": \"DONE\",\n301\t  \"retry_count\": 0,\n302\t  \"created_at\": \"2026-05-15T00:25:38.284Z\",\n303\t  \"updated_at\": \"2026-05-15T01:25:47.611Z\",\n304\t  \"hypothesis\": \"v4 TaxEI fixed-size ablation: 50% injection ratio (4,358 total = 2,179 clean + 2,179 injected). Dose-response 最后一个点，完成后有完整曲线 0%→10%→25%→50%。\",\n305\t  \"spec\": {\n306\t    \"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject50.jsonl --lora_rank 16 --num_train_epochs 3 --seed 42 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --learning_rate 1e-4\",\n307\t    \"server\": \"autodl-5090\",\n308\t    \"gpu\": [\n309\t      \"cuda:0\"\n310\t    ],\n311\t    \"pid\": \"104236\",\n312\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject50.log\",\n313\t    \"submitted_at\": \"2026-05-15T00:27:51.219Z\",\n314\t    \"submitted_via\": \"submit_training_job\",\n315\t    \"backend\": \"tmux\",\n316\t    \"account\": \"root\",\n317\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject50.jsonl\",\n318\t    \"data_count\": 4358,\n319\t    \"model_name\": \"Qwen3-8B\",\n320\t    \"seed\": 42,\n321\t    \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject50/v0-20260515-082759/checkpoint-1635\",\n322\t    \"wall_clock_seconds\": 3476.4,\n323\t    \"gpu_hours\": 0.97\n324\t  },\n325\t  \"reproduce\": {\n326\t    \"finished_at\": \"2026-05-15T01:22:23.688Z\"\n327\t  },\n328\t  \"extra\": {\n329\t    \"hook_events\": [\n330\t      {\n331\t        \"event\": \"on_complete\",\n332\t        \"action\": \"agent\",\n333\t        \"ts\": \"2026-05-15T01:22:25.093365+00:00\"\n334\t      }\n335\t    ]\n336\t  },\n337\t  \"conclusion\": \"success\",\n338\t  \"metrics\": {\n339\t    \"final_loss\": 0.259,\n340\t    \"token_accuracy\": 0.911,\n341\t    \"train_steps\": 1635,\n342\t    \"train_epochs\": 3,\n343\t    \"train_duration_min\": 53.1\n344\t  },\n345\t  \"completed_at\": \"2026-05-15T01:25:47.611Z\"\n346\t}\n347\t\n348\t=== v4-random-seed123-eval ===\n349\t{\n350\t  \"status\": \"DONE\",\n351\t  \"retry_count\": 0,\n352\t  \"created_at\": \"2026-05-15T00:14:30.699Z\",\n353\t  \"updated_at\": \"2026-05-15T00:27:24.291Z\",\n354\t  \"hypothesis\": \"v4 Random SFT seed=123 eval — 47 tasks clean eval. Multi-seed: seed=42 66.0%, seed=0 55.3%, seed=123 待测。\",\n355\t  \"spec\": {\n356\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=1 && cd /root/autodl-tmp/tax_error_inject_agent && python eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed123/v0-20260515-055925/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_seed123_eval.json --device cuda:0\\\"\",\n357\t    \"server\": \"autodl-5090\",\n358\t    \"gpu\": \"cuda:1\",\n359\t    \"pid\": 102888,\n360\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-seed123-eval.log\",\n361\t    \"submitted_at\": \"2026-05-15T00:14:42.930Z\",\n362\t    \"submitted_via\": \"submit_training_job\",\n363\t    \"backend\": \"tmux\",\n364\t    \"account\": \"root\",\n365\t    \"data_path\": \"eval/eval_tasks_47.json\",\n366\t    \"data_count\": 47,\n367\t    \"model_name\": \"Qwen3-8B\",\n368\t    \"seed\": 123,\n369\t    \"checkpoint_source\": \"checkpoints/mini_random_sft_v4_seed123/v0-20260515-055925/checkpoint-3387\",\n370\t    \"eval_data\": \"47 tasks clean eval (no injection)\",\n371\t    \"parent\": \"v4-random-seed123\",\n372\t    \"tmux_session\": \"v4-random-seed123-eval\",\n373\t    \"log_file\": \"~/runs/tax_error_inject_agent/v4-random-seed123-eval.log\",\n374\t    \"wall_clock_seconds\": 740.0,\n375\t    \"gpu_hours\": 0.21\n376\t  },\n377\t  \"conclusion\": \"negative\",\n378\t  \"checkpoint_path\": \"checkpoints/mini_random_sft_v4_seed123/v0-20260515-055925/checkpoint-3387\",\n379\t  \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-seed123-eval.log\",\n380\t  \"completed_at\": \"2026-05-15T00:27:02.930Z\",\n381\t  \"metrics\": {\n382\t    \"eval_success_rate\": 0.681,\n383\t    \"eval_successes\": 32,\n384\t    \"eval_total\": 47,\n385\t    \"by_task\": {\n386\t      \"look_at_obj_in_light\": {\n387\t        \"total\": 6,\n388\t        \"success\": 5,\n389\t        \"rate\": 0.833\n390\t      },\n391\t      \"pick_and_place_simple\": {\n392\t        \"total\": 8,\n393\t        \"success\": 5,\n394\t        \"rate\": 0.625\n395\t      },\n396\t      \"pick_clean_then_place_in_recep\": {\n397\t        \"total\": 11,\n398\t        \"success\": 7,\n399\t        \"rate\": 0.636\n400\t      },\n401\t      \"pick_cool_then_place_in_recep\": {\n402\t        \"total\": 7,\n403\t        \"success\": 4,\n404\t        \"rate\": 0.571\n405\t      },\n406\t      \"pick_heat_then_place_in_recep\": {\n407\t        \"total\": 8,\n408\t        \"success\": 6,\n409\t        \"rate\": 0.75\n410\t      },\n411\t      \"pick_two_obj_and_place\": {\n412\t        \"total\": 7,\n413\t        \"success\": 5,\n414\t        \"rate\": 0.714\n415\t      }\n416\t    }\n417\t  }\n418\t}\n419\t\n420\t=== v4-taxei-fixed-inject25-eval ===\n421\t{\n422\t  \"status\": \"DONE\",\n423\t  \"retry_count\": 0,\n424\t  \"created_at\": \"2026-05-14T23:50:53.016Z\",\n425\t  \"updated_at\": \"2026-05-15T00:14:40.327Z\",\n426\t  \"hypothesis\": \"v4 TaxEI 25% injection fixed-size eval — 48.9% (23/47), 显著低于 vanilla baseline 65.3%（-16.4pp）。Dose-response 数据点。\",\n427\t  \"spec\": {\n428\t    \"command\": \"python3 eval/recovery.py --model_path output/v4-fixed-inject25/v0-20260515-063144/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_eval.json --device cuda:0\",\n429\t    \"server\": \"autodl-5090\",\n430\t    \"gpu\": \"cuda:3\",\n431\t    \"checkpoint_source\": \"output/v4-fixed-inject25/v0-20260515-063144/checkpoint-1635\",\n432\t    \"eval_data\": \"47 ALFWorld tasks (clean)\",\n433\t    \"parent\": \"v4-taxei-fixed-inject25-r2\",\n434\t    \"data_path\": \"eval/valid_unseen\",\n435\t    \"data_count\": 47,\n436\t    \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject25)\",\n437\t    \"seed\": 42\n438\t  },\n439\t  \"metrics\": {\n440\t    \"eval_success_rate\": 0.489,\n441\t    \"eval_successes\": 23,\n442\t    \"eval_total\": 47,\n443\t    \"by_task\": {\n444\t      \"look_at_obj_in_light\": {\n445\t        \"success\": 4,\n446\t        \"total\": 6,\n447\t        \"rate\": 0.667\n448\t      },\n449\t      \"pick_and_place_simple\": {\n450\t        \"success\": 3,\n451\t        \"total\": 8,\n452\t        \"rate\": 0.375\n453\t      },\n454\t      \"pick_clean_then_place_in_recep\": {\n455\t        \"success\": 5,\n456\t        \"total\": 11,\n457\t        \"rate\": 0.455\n458\t      },\n459\t      \"pick_cool_then_place_in_recep\": {\n460\t        \"success\": 2,\n461\t        \"total\": 7,\n462\t        \"rate\": 0.286\n463\t      },\n464\t      \"pick_heat_then_place_in_recep\": {\n465\t        \"success\": 5,\n466\t        \"total\": 8,\n467\t        \"rate\": 0.625\n468\t      },\n469\t      \"pick_two_obj_and_place\": {\n470\t        \"success\": 4,\n471\t        \"total\": 7,\n472\t        \"rate\": 0.571\n473\t      }\n474\t    }\n475\t  },\n476\t  \"checkpoint_path\": \"eval_results/v4_taxei_fixed_inject25_eval.json\",\n477\t  \"log_path\": \"/tmp/v4_taxei_fixed_inject25_eval.log\",\n478\t  \"conclusion\": \"success\",\n479\t  \"completed_at\": \"2026-05-15T00:14:30.429Z\"\n480\t}\n481\t\n482\t=== v4-taxei-fixed-inject10-eval ===\n483\t{\n484\t  \"status\": \"DONE\",\n485\t  \"retry_count\": 0,\n486\t  \"created_at\": \"2026-05-14T23:50:52.584Z\",\n487\t  \"updated_at\": \"2026-05-15T00:14:38.874Z\",\n488\t  \"hypothesis\": \"v4 TaxEI 10% injection fixed-size eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。Dose-response 数据点。\",\n489\t  \"spec\": {\n490\t    \"command\": \"python3 eval/recovery.py --model_path output/v4-fixed-inject10/v0-20260515-061243/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject10_eval.json --device cuda:0\",\n491\t    \"server\": \"autodl-5090\",\n492\t    \"gpu\": \"cuda:2\",\n493\t    \"tmux_session\": \"eval_inject10\",\n494\t    \"checkpoint_source\": \"output/v4-fixed-inject10/v0-20260515-061243/checkpoint-1635\",\n495\t    \"eval_data\": \"47 ALFWorld tasks (clean)\",\n496\t    \"parent\": \"v4-taxei-fixed-inject10\",\n497\t    \"data_path\": \"eval/valid_unseen\",\n498\t    \"data_count\": 47,\n499\t    \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10)\",\n500\t    \"seed\": 42,\n501\t    \"log_path\": \"/tmp/v4_taxei_fixed_inject10_eval.log\"\n502\t  },\n503\t  \"metrics\": {\n504\t    \"eval_success_rate\": 0.617,\n505\t    \"eval_successes\": 29,\n506\t    \"eval_total\": 47,\n507\t    \"by_task\": {\n508\t      \"look_at_obj_in_light\": {\n509\t        \"success\": 5,\n510\t        \"total\": 6,\n511\t        \"rate\": 0.833\n512\t      },\n513\t      \"pick_and_place_simple\": {\n514\t        \"success\": 5,\n515\t        \"total\": 8,\n516\t        \"rate\": 0.625\n517\t      },\n518\t      \"pick_clean_then_place_in_recep\": {\n519\t        \"success\": 5,\n520\t        \"total\": 11,\n521\t        \"rate\": 0.455\n522\t      },\n523\t      \"pick_cool_then_place_in_recep\": {\n524\t        \"success\": 4,\n525\t        \"total\": 7,\n526\t        \"rate\": 0.571\n527\t      },\n528\t      \"pick_heat_then_place_in_recep\": {\n529\t        \"success\": 6,\n530\t        \"total\": 8,\n531\t        \"rate\": 0.75\n532\t      },\n533\t      \"pick_two_obj_and_place\": {\n534\t        \"success\": 4,\n535\t        \"total\": 7,\n536\t        \"rate\": 0.571\n537\t      }\n538\t    }\n539\t  },\n540\t  \"checkpoint_path\": \"eval_results/v4_taxei_fixed_inject10_eval.json\",\n541\t  \"conclusion\": \"success\",\n542\t  \"completed_at\": \"2026-05-15T00:14:29.992Z\"\n543\t}\n544\t\n545\t=== v4-taxei-seed123-eval ===\n546\t{\n547\t  \"status\": \"DONE\",\n548\t  \"retry_count\": 0,\n549\t  \"created_at\": \"2026-05-14T23:44:07.489Z\",\n550\t  \"updated_at\": \"2026-05-15T00:14:37.513Z\",\n551\t  \"spec\": {\n552\t    \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v4_seed123/v0-20260515-055026/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_seed123_eval.json --device cuda:0\",\n553\t    \"server\": \"autodl-5090\",\n554\t    \"gpu\": \"cuda:0\",\n555\t    \"pid\": 100600,\n556\t    \"model_name\": \"Qwen3-8B + LoRA (taxei v4 seed=123)\",\n557\t    \"seed\": 123,\n558\t    \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4_seed123/v0-20260515-055026/checkpoint-3387\",\n559\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n560\t    \"parent\": \"v4-taxei-seed123\",\n561\t    \"checkpoint_path\": \"eval_results/v4_taxei_seed123_eval.json\",\n562\t    \"log_path\": \"/tmp/v4_taxei_seed123_eval.log\",\n563\t    \"data_path\": \"eval/valid_unseen\",\n564\t    \"data_count\": 47\n565\t  },\n566\t  \"hypothesis\": \"v4 TaxEI SFT seed=123 eval — 61.7% (29/47), 低于 vanilla baseline 65.3%（-3.6pp）。multi-seed verification, 9029 samples。\",\n567\t  \"metrics\": {\n568\t    \"eval_success_rate\": 0.617,\n569\t    \"eval_successes\": 29,\n570\t    \"eval_total\": 47,\n571\t    \"by_task\": {\n572\t      \"look_at_obj_in_light\": {\n573\t        \"success\": 5,\n574\t        \"total\": 6,\n575\t        \"rate\": 0.833\n576\t      },\n577\t      \"pick_and_place_simple\": {\n578\t        \"success\": 4,\n579\t        \"total\": 8,\n580\t        \"rate\": 0.5\n581\t      },\n582\t      \"pick_clean_then_place_in_recep\": {\n583\t        \"success\": 7,\n584\t        \"total\": 11,\n585\t        \"rate\": 0.636\n586\t      },\n587\t      \"pick_cool_then_place_in_recep\": {\n588\t        \"success\": 3,\n589\t        \"total\": 7,\n590\t        \"rate\": 0.429\n591\t      },\n592\t      \"pick_heat_then_place_in_recep\": {\n593\t        \"success\": 6,\n594\t        \"total\": 8,\n595\t        \"rate\": 0.75\n596\t      },\n597\t      \"pick_two_obj_and_place\": {\n598\t        \"success\": 4,\n599\t        \"total\": 7,\n600\t        \"rate\": 0.571\n601\t      }\n602\t    }\n603\t  },\n604\t  \"conclusion\": \"success\",\n605\t  \"completed_at\": \"2026-05-15T00:14:29.055Z\"\n606\t}\n607\t\n608\t=== v4-random-seed123 ===\n609\t{\n610\t  \"status\": \"DONE\",\n611\t  \"retry_count\": 0,\n612\t  \"created_at\": \"2026-05-14T21:49:34.441Z\",\n613\t  \"updated_at\": \"2026-05-14T23:52:15.056Z\",\n614\t  \"hypothesis\": \"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\",\n615\t  \"spec\": {\n616\t    \"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4.jsonl --seed 123 --lora_rank 16 --num_train_epochs 3\",\n617\t    \"server\": \"autodl-5090\",\n618\t    \"gpu\": \"cuda:1\",\n619\t    \"pid\": 93477,\n620\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-seed123.log\",\n621\t    \"submitted_at\": \"2026-05-14T21:59:16.545Z\",\n622\t    \"submitted_via\": \"submit_training_job\",\n623\t    \"backend\": \"tmux\",\n624\t    \"account\": \"root\",\n625\t    \"data_path\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_random_v4.jsonl\",\n626\t    \"data_count\": 9029,\n627\t    \"model_name\": \"Qwen3-8B\",\n628\t    \"seed\": 123,\n629\t    \"wall_clock_seconds\": 6778.5,\n630\t    \"gpu_hours\": 1.88\n631\t  },\n632\t  \"reproduce\": {\n633\t    \"finished_at\": \"2026-05-14T23:50:09.168Z\"\n634\t  },\n635\t  \"extra\": {\n636\t    \"hook_events\": [\n637\t      {\n638\t        \"event\": \"on_complete\",\n639\t        \"action\": \"agent\",\n640\t        \"ts\": \"2026-05-14T23:50:10.389568+00:00\"\n641\t      }\n642\t    ]\n643\t  },\n644\t  \"metrics\": {\n645\t    \"train_loss\": 0.35484016,\n646\t    \"final_loss\": 0.16766574,\n647\t    \"token_accuracy\": 0.94187103,\n648\t    \"avg_token_accuracy\": 0.90849673,\n649\t    \"train_steps\": 3387,\n650\t    \"train_epochs\": 3,\n651\t    \"train_runtime_sec\": 6609.3556,\n652\t    \"train_duration_min\": 110.2,\n653\t    \"train_samples_per_second\": 4.098,\n654\t    \"train_steps_per_second\": 0.512,\n655\t    \"train_speed_s_per_it\": 1.951,\n656\t    \"memory_gib\": 18.49\n657\t  },\n658\t  \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_random_sft_v4_seed123/v0-20260515-055925/checkpoint-3387\",\n659\t  \"conclusion\": \"success\",\n660\t  \"completed_at\": \"2026-05-14T23:52:15.056Z\"\n661\t}\n662\t\n663\t=== v4-taxei-fixed-inject25-r2 ===\n664\t{\n665\t  \"status\": \"DONE\",\n666\t  \"retry_count\": 0,\n667\t  \"created_at\": \"2026-05-14T22:32:41.837Z\",\n668\t  \"updated_at\": \"2026-05-14T23:50:46.230Z\",\n669\t  \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio retry (4,358 total = 3,268 clean + 1,090 injected). 修复 CUDA_VISIBLE_DEVICES，显式设 =3。\",\n670\t  \"spec\": {\n671\t    \"command\": \"export CUDA_VISIBLE_DEVICES=3 && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --output_dir checkpoints/taxei_fixed_inject25 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\",\n672\t    \"server\": \"autodl-5090\",\n673\t    \"gpu\": \"cuda:3\",\n674\t    \"pid\": 96835,\n675\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\",\n676\t    \"data_count\": 4358,\n677\t    \"model_name\": \"Qwen3-8B\",\n678\t    \"seed\": 42,\n679\t    \"injection_ratio\": 0.25,\n680\t    \"clean_count\": 3268,\n681\t    \"injected_count\": 1090,\n682\t    \"log_path\": \"/tmp/v4-fixed-inject25.log\",\n683\t    \"note\": \"manual tmux with explicit CUDA_VISIBLE_DEVICES=3, fixing r1 OOM\"\n684\t  },\n685\t  \"conclusion\": \"success\",\n686\t  \"checkpoint_path\": \"output/v4-fixed-inject25/v0-20260515-063144/checkpoint-1635\",\n687\t  \"metrics\": {\n688\t    \"final_loss\": 0.285,\n689\t    \"token_accuracy\": 0.893,\n690\t    \"train_steps\": 1635,\n691\t    \"train_epochs\": 3,\n692\t    \"train_duration_min\": 58\n693\t  },\n694\t  \"completed_at\": \"2026-05-14T23:50:46.230Z\"\n695\t}\n696\t\n697\t=== v4-taxei-fixed-inject10 ===\n698\t{\n699\t  \"status\": \"DONE\",\n700\t  \"retry_count\": 0,\n701\t  \"created_at\": \"2026-05-14T22:09:52.707Z\",\n702\t  \"updated_at\": \"2026-05-14T23:50:45.829Z\",\n703\t  \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio (4,358 total = 3,922 clean + 436 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\",\n704\t  \"spec\": {\n705\t    \"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --output_dir output/v4-fixed-inject10 --num_train_epochs 3 --learning_rate 1e-4 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --seed 42 --data_seed 42 --bf16 true --gradient_checkpointing true\",\n706\t    \"server\": \"autodl-5090\",\n707\t    \"gpu\": [\n708\t      \"cuda:2\"\n709\t    ],\n710\t    \"pid\": \"94635\",\n711\t    \"log_path\": \"/tmp/v4-fixed-inject10.log\",\n712\t    \"submitted_at\": \"2026-05-15T06:12:34Z\",\n713\t    \"submitted_via\": \"manual_tmux\",\n714\t    \"backend\": \"tmux\",\n715\t    \"account\": \"root\",\n716\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\",\n717\t    \"data_count\": 4358,\n718\t    \"model_name\": \"Qwen3-8B\",\n719\t    \"seed\": 42,\n720\t    \"injection_ratio\": 0.1,\n721\t    \"clean_count\": 3922,\n722\t    \"injected_count\": 436\n723\t  },\n724\t  \"conclusion\": \"success\",\n725\t  \"checkpoint_path\": \"output/v4-fixed-inject10/v0-20260515-061243/checkpoint-1635\",\n726\t  \"metrics\": {\n727\t    \"final_loss\": 0.308,\n728\t    \"token_accuracy\": 0.888,\n729\t    \"train_steps\": 1635,\n730\t    \"train_epochs\": 3,\n731\t    \"train_duration_min\": 58\n732\t  },\n733\t  \"completed_at\": \"2026-05-14T23:50:45.829Z\"\n734\t}\n735\t\n736\t=== v4-taxei-fixed-inject25 ===\n737\t{\n738\t  \"status\": \"DONE\",\n739\t  \"retry_count\": 0,\n740\t  \"created_at\": \"2026-05-14T22:09:53.209Z\",\n741\t  \"updated_at\": \"2026-05-14T23:45:26.890Z\",\n742\t  \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio (4,358 total = 3,268 clean + 1,090 injected). Fixed-size = vanilla 大小，控制数据量变量。Dose-response: 10%/25%/50%。\",\n743\t  \"spec\": {\n744\t    \"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset sft_taxei_v4_fixed_inject25.jsonl --output_dir output/v4-fixed-inject25 --num_train_epochs 3 --learning_rate 1e-4 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --seed 42 --data_seed 42 --bf16 true --gradient_checkpointing true\",\n745\t    \"server\": \"autodl-5090\",\n746\t    \"gpu\": [\n747\t      \"cuda:3\"\n748\t    ],\n749\t    \"pid\": \"96835\",\n750\t    \"log_path\": \"/tmp/v4-fixed-inject25.log\",\n751\t    \"submitted_at\": \"2026-05-15T06:31:44Z\",\n752\t    \"submitted_via\": \"manual_tmux\",\n753\t    \"backend\": \"tmux\",\n754\t    \"account\": \"root\",\n755\t    \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\",\n756\t    \"data_count\": 4358,\n757\t    \"model_name\": \"Qwen3-8B\",\n758\t    \"seed\": 42,\n759\t    \"injection_ratio\": 0.25,\n760\t    \"clean_count\": 3268,\n761\t    \"injected_count\": 1090,\n762\t    \"note\": \"r1 (PID 95170) OOM on cuda:0 — submit_training_job failed to pass CUDA_VISIBLE_DEVICES. Resubmitted manually via tmux with explicit export CUDA_VISIBLE_DEVICES=3.\"\n763\t  },\n764\t  \"conclusion\": \"failed\",\n765\t  \"failure_reason\": \"CUDA_VISIBLE_DEVICES 未生效，模型加载到 cuda:0 导致 OOM（与 seed123 训练冲突）\",\n766\t  \"completed_at\": \"2026-05-14T23:45:26.890Z\"\n767\t}\n768\t\n769\t=== v4-taxei-seed123 ===\n770\t{\n771\t  \"status\": \"DONE\",\n772\t  \"retry_count\": 0,\n773\t  \"created_at\": \"2026-05-14T21:49:34.191Z\",\n774\t  \"updated_at\": \"2026-05-14T23:43:38.819Z\",\n775\t  \"hypothesis\": \"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\",\n776\t  \"spec\": {\n777\t    \"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 123 --lora_rank 16 --num_train_epochs 3\",\n778\t    \"server\": \"autodl-5090\",\n779\t    \"gpu\": \"cuda:0\",\n780\t    \"pid\": 92263,\n781\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-seed123.log\",\n782\t    \"submitted_at\": \"2026-05-14T21:50:17.845Z\",\n783\t    \"submitted_via\": \"submit_training_job\",\n784\t    \"backend\": \"tmux\",\n785\t    \"account\": \"root\",\n786\t    \"data_path\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl\",\n787\t    \"data_count\": 9029,\n788\t    \"model_name\": \"Qwen3-8B\",\n789\t    \"seed\": 123,\n790\t    \"wall_clock_seconds\": 6801.0,\n791\t    \"gpu_hours\": 1.89\n792\t  },\n793\t  \"reproduce\": {\n794\t    \"finished_at\": \"2026-05-14T23:41:32.774Z\"\n795\t  },\n796\t  \"extra\": {\n797\t    \"hook_events\": [\n798\t      {\n799\t        \"event\": \"on_complete\","
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46c2526a-fc85-42e7-954d-ffb8bf072154",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "d2427bf4-caed-4571-af3f-3ee6af62aabc",
+            "sourceToolAssistantUUID": "46c2526a-fc85-42e7-954d-ffb8bf072154",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T01:54:46.010Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the remaining experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2427bf4-caed-4571-af3f-3ee6af62aabc",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XC9J7tJmCxoywXwKUP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d4247e06-ed91-4305-b66d-80df242ce821",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HTxMETYJLfB9KP5kHhZoqC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14306,
+                "cache_read_input_tokens": 19331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14306,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T01:54:52.183Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019tkzX9cPnUzV8WoTDHLdac",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor exp_id, exp_data in list(exps.items())[20:]:\n    print(f'=== {exp_id} ===')\n    print(json.dumps(exp_data, indent=2, ensure_ascii=False))\n    print()\n\" 2>&1 | head -3000",
+                "description": "Print remaining experiments (20-60) in detail",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4247e06-ed91-4305-b66d-80df242ce821",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XC9J7tJmCxoywXwKUP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e89d04c-3b7e-42fd-83e1-1e22b83bcc64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HTxMETYJLfB9KP5kHhZoqC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14306,
+                "cache_read_input_tokens": 19331,
+                "output_tokens": 320,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14306
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 320,
+                    "cache_read_input_tokens": 19331,
+                    "cache_creation_input_tokens": 14306,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14306,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T01:54:52.327Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019tkzX9cPnUzV8WoTDHLdac",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (49KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/b1iwd4c3n.txt\n\nPreview (first 2KB):\n=== v4-taxei-recovery-eval-r2 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T21:23:55.110Z\",\n  \"updated_at\": \"2026-05-14T21:46:19.993Z\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json\",\n    \"server\": \"autodl-5090\",\n    \"model_name\": \"Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\",\n    \"eval_data\": \"47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)\",\n    \"data_path\": \"eval/injected_eval.py\",\n    \"data_count\": 47,\n    \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.\",\n    \"pid\": 90519,\n    \"log_path\": \"/tmp/v4_taxei_recovery_eval_r2.log\"\n  },\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval_r2.json\",\n  \"completed_at\": \"2026-05-14T21:42:08.000Z\",\n  \"metrics\": {\n    \"recovery_rate\": 0.596,\n    \"detection_rate\": 0,\n    \"total_episodes\": 47,\n    \"per_operator\": {\n      \"C1_context_truncation\": {\n        \"recovered\": 8,\n        \"total\": 12,\n        \"rate\": 0.667\n      },\n      \"C4_observation_masking\": {\n        \"recovered\": 7,\n        \"total\": 11,\n        \"rate\": 0.636\n      },\n      \"P1_step_order_swap\": {\n        \"recovered\": 7,\n        \"total\": 12,\n        \"rate\": 0.583\n      },\n      \"P2_sub_goal_deletion\": {\n        \"recovered\": 6,\n        \"total\": 12,\n        \"rate\": 0.5\n      }\n    }\n  }\n}\n\n=== v4-taxei-seed0-eval ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e89d04c-3b7e-42fd-83e1-1e22b83bcc64",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "99dc471c-3da1-4b26-92ee-849618f4f61d",
+            "sourceToolAssistantUUID": "6e89d04c-3b7e-42fd-83e1-1e22b83bcc64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T01:54:55.642Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R9dnGbFXbdvgazXVmywYkp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/b1iwd4c3n.txt",
+                "limit": 800,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99dc471c-3da1-4b26-92ee-849618f4f61d",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XCvHoYT89vWBYSUVte",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1800a9d9-f1f4-4986-a575-b2d88bd2be47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H4yABPYBjKsUA1E9WdVShQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1246,
+                "cache_read_input_tokens": 33637,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1246
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 33637,
+                    "cache_creation_input_tokens": 1246,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1246,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T01:54:56.074Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R9dnGbFXbdvgazXVmywYkp",
+              "type": "tool_result",
+              "content": "0\t=== v4-taxei-recovery-eval-r2 ===\n1\t{\n2\t  \"status\": \"DONE\",\n3\t  \"retry_count\": 0,\n4\t  \"created_at\": \"2026-05-14T21:23:55.110Z\",\n5\t  \"updated_at\": \"2026-05-14T21:46:19.993Z\",\n6\t  \"spec\": {\n7\t    \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json\",\n8\t    \"server\": \"autodl-5090\",\n9\t    \"model_name\": \"Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)\",\n10\t    \"seed\": 42,\n11\t    \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\",\n12\t    \"eval_data\": \"47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)\",\n13\t    \"data_path\": \"eval/injected_eval.py\",\n14\t    \"data_count\": 47,\n15\t    \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.\",\n16\t    \"pid\": 90519,\n17\t    \"log_path\": \"/tmp/v4_taxei_recovery_eval_r2.log\"\n18\t  },\n19\t  \"conclusion\": \"success\",\n20\t  \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval_r2.json\",\n21\t  \"completed_at\": \"2026-05-14T21:42:08.000Z\",\n22\t  \"metrics\": {\n23\t    \"recovery_rate\": 0.596,\n24\t    \"detection_rate\": 0,\n25\t    \"total_episodes\": 47,\n26\t    \"per_operator\": {\n27\t      \"C1_context_truncation\": {\n28\t        \"recovered\": 8,\n29\t        \"total\": 12,\n30\t        \"rate\": 0.667\n31\t      },\n32\t      \"C4_observation_masking\": {\n33\t        \"recovered\": 7,\n34\t        \"total\": 11,\n35\t        \"rate\": 0.636\n36\t      },\n37\t      \"P1_step_order_swap\": {\n38\t        \"recovered\": 7,\n39\t        \"total\": 12,\n40\t        \"rate\": 0.583\n41\t      },\n42\t      \"P2_sub_goal_deletion\": {\n43\t        \"recovered\": 6,\n44\t        \"total\": 12,\n45\t        \"rate\": 0.5\n46\t      }\n47\t    }\n48\t  }\n49\t}\n50\t\n51\t=== v4-taxei-seed0-eval ===\n52\t{\n53\t  \"status\": \"DONE\",\n54\t  \"retry_count\": 0,\n55\t  \"created_at\": \"2026-05-14T18:30:26.278Z\",\n56\t  \"updated_at\": \"2026-05-14T21:21:53.154Z\",\n57\t  \"hypothesis\": \"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\",\n58\t  \"spec\": {\n59\t    \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_seed0_eval.json --device cuda:0\",\n60\t    \"server\": \"autodl-5090\",\n61\t    \"data_path\": \"eval/valid_unseen\",\n62\t    \"data_count\": 47,\n63\t    \"model_name\": \"Qwen3-8B + LoRA (taxei v4 seed=0)\",\n64\t    \"seed\": 0,\n65\t    \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\",\n66\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n67\t    \"parent\": \"v4-taxei-seed0\",\n68\t    \"checkpoint_path\": \"eval_results/v4_taxei_seed0_eval.json\",\n69\t    \"log_path\": \"eval_results/v4_taxei_seed0_eval.log\"\n70\t  },\n71\t  \"conclusion\": \"success\",\n72\t  \"metrics\": {\n73\t    \"eval_success_rate\": 0.468,\n74\t    \"eval_successes\": 22,\n75\t    \"eval_total\": 47,\n76\t    \"vs_seed42_pp\": -14.9\n77\t  },\n78\t  \"completed_at\": \"2026-05-14T21:20:13.351Z\"\n79\t}\n80\t\n81\t=== v4-random-seed0-eval ===\n82\t{\n83\t  \"status\": \"DONE\",\n84\t  \"retry_count\": 0,\n85\t  \"created_at\": \"2026-05-14T18:30:26.456Z\",\n86\t  \"updated_at\": \"2026-05-14T21:21:52.271Z\",\n87\t  \"hypothesis\": \"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\",\n88\t  \"spec\": {\n89\t    \"command\": \"CUDA_VISIBLE_DEVICES=2 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_seed0_eval.json --device cuda:0\",\n90\t    \"server\": \"autodl-5090\",\n91\t    \"data_path\": \"eval/valid_unseen\",\n92\t    \"data_count\": 47,\n93\t    \"model_name\": \"Qwen3-8B + LoRA (random v4 seed=0)\",\n94\t    \"seed\": 0,\n95\t    \"checkpoint_source\": \"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\",\n96\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n97\t    \"parent\": \"v4-random-seed0\",\n98\t    \"log_path\": \"eval_results/v4_random_seed0_eval.log\"\n99\t  },\n100\t  \"conclusion\": \"success\",\n101\t  \"metrics\": {\n102\t    \"eval_success_rate\": 0.553,\n103\t    \"eval_successes\": 26,\n104\t    \"eval_total\": 47,\n105\t    \"vs_seed42_pp\": -10.7\n106\t  },\n107\t  \"checkpoint_path\": \"eval_results/v4_random_seed0_eval.json\",\n108\t  \"completed_at\": \"2026-05-14T21:20:14.339Z\"\n109\t}\n110\t\n111\t=== v4-vanilla-recovery-eval ===\n112\t{\n113\t  \"status\": \"DONE\",\n114\t  \"retry_count\": 0,\n115\t  \"created_at\": \"2026-05-14T19:30:18.314Z\",\n116\t  \"updated_at\": \"2026-05-14T21:21:50.951Z\",\n117\t  \"spec\": {\n118\t    \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant vanilla --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_vanilla_recovery_eval.json\",\n119\t    \"server\": \"autodl-5090\",\n120\t    \"model_name\": \"Qwen3-8B + LoRA (vanilla v4 seed=42)\",\n121\t    \"checkpoint_source\": \"checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635\",\n122\t    \"eval_data\": \"47 ALFWorld tasks with error injection\",\n123\t    \"seed\": 42,\n124\t    \"parent\": \"mini-vanilla-sft-v4\",\n125\t    \"checkpoint_path\": \"eval_results/v4_vanilla_recovery_eval.json\",\n126\t    \"log_path\": \"eval_results/v4_vanilla_recovery_eval.json\"\n127\t  },\n128\t  \"hypothesis\": \"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\",\n129\t  \"conclusion\": \"success\",\n130\t  \"metrics\": {\n131\t    \"success_rate\": 0.617,\n132\t    \"successes\": 29,\n133\t    \"total\": 47,\n134\t    \"recovery_rate\": 0.617,\n135\t    \"detection_rate\": 0\n136\t  },\n137\t  \"completed_at\": \"2026-05-14T21:20:15.791Z\"\n138\t}\n139\t\n140\t=== v4-taxei-recovery-eval ===\n141\t{\n142\t  \"status\": \"DONE\",\n143\t  \"retry_count\": 0,\n144\t  \"created_at\": \"2026-05-14T20:40:41.154Z\",\n145\t  \"updated_at\": \"2026-05-14T21:20:17.664Z\",\n146\t  \"spec\": {\n147\t    \"hypothesis\": \"D010 Phase 2: Recovery eval with action injection on TaxEI seed=42 checkpoint — measuring TaxEI-trained model's recovery ability vs vanilla\",\n148\t    \"command\": \"CUDA_VISIBLE_DEVICES=3 python3 eval/injected_eval.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --device cuda:0 --seed 42 --output eval_results/v4_taxei_recovery_eval.json\",\n149\t    \"server\": \"autodl-5090\",\n150\t    \"gpu\": \"cuda:3\",\n151\t    \"pid\": 87614,\n152\t    \"data_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\",\n153\t    \"data_count\": 47,\n154\t    \"model_name\": \"Qwen3-8B + TaxEI LoRA v4 checkpoint-3387\",\n155\t    \"seed\": 42,\n156\t    \"checkpoint_source\": \"mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\",\n157\t    \"eval_data\": \"ALFWorld valid_unseen 47 tasks with action injection\",\n158\t    \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval.json\",\n159\t    \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-recovery-eval.log\"\n160\t  },\n161\t  \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\",\n162\t  \"reproduce\": {\n163\t    \"finished_at\": \"2026-05-14T20:58:38.335Z\"\n164\t  },\n165\t  \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\",\n166\t  \"conclusion\": \"negative\",\n167\t  \"completed_at\": \"2026-05-14T20:58:38.665Z\",\n168\t  \"extra\": {\n169\t    \"hook_events\": [\n170\t      {\n171\t        \"event\": \"on_failed\",\n172\t        \"action\": \"agent\",\n173\t        \"ts\": \"2026-05-14T20:58:39.601019+00:00\"\n174\t      }\n175\t    ]\n176\t  },\n177\t  \"metrics\": {\n178\t    \"success_rate\": 0.596,\n179\t    \"successes\": 28,\n180\t    \"total\": 47,\n181\t    \"recovery_rate\": 0.596,\n182\t    \"detection_rate\": 0\n183\t  }\n184\t}\n185\t\n186\t=== v4-vanilla-seed123-eval ===\n187\t{\n188\t  \"status\": \"DONE\",\n189\t  \"retry_count\": 0,\n190\t  \"created_at\": \"2026-05-14T18:30:26.635Z\",\n191\t  \"updated_at\": \"2026-05-14T20:43:48.780Z\",\n192\t  \"hypothesis\": \"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\",\n193\t  \"spec\": {\n194\t    \"command\": \"CUDA_VISIBLE_DEVICES=3 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_seed123_eval.json --device cuda:0\",\n195\t    \"server\": \"autodl-5090\",\n196\t    \"model_name\": \"Qwen3-8B + LoRA (vanilla v4 seed=123)\",\n197\t    \"seed\": 123,\n198\t    \"checkpoint_source\": \"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\",\n199\t    \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\",\n200\t    \"log_path\": \"/tmp/v4_vanilla_seed123_eval.log\",\n201\t    \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\",\n202\t    \"parent\": \"v4-vanilla-seed123\",\n203\t    \"data_path\": \"eval/valid_unseen\",\n204\t    \"data_count\": 47\n205\t  },\n206\t  \"conclusion\": \"success\",\n207\t  \"completed_at\": \"2026-05-14T20:37:11.382Z\",\n208\t  \"metrics\": {\n209\t    \"eval_success_rate\": 0.66,\n210\t    \"eval_successes\": 31,\n211\t    \"eval_total\": 47,\n212\t    \"vs_seed42_pp\": 4.3,\n213\t    \"vs_seed0_pp\": -2.1,\n214\t    \"per_task\": {\n215\t      \"look_at_obj_in_light\": {\n216\t        \"success\": 5,\n217\t        \"total\": 6,\n218\t        \"rate\": 0.833\n219\t      },\n220\t      \"pick_and_place_simple\": {\n221\t        \"success\": 6,\n222\t        \"total\": 8,\n223\t        \"rate\": 0.75\n224\t      },\n225\t      \"pick_clean_then_place_in_recep\": {\n226\t        \"success\": 5,\n227\t        \"total\": 11,\n228\t        \"rate\": 0.455\n229\t      },\n230\t      \"pick_cool_then_place_in_recep\": {\n231\t        \"success\": 4,\n232\t        \"total\": 7,\n233\t        \"rate\": 0.571\n234\t      },\n235\t      \"pick_heat_then_place_in_recep\": {\n236\t        \"success\": 7,\n237\t        \"total\": 8,\n238\t        \"rate\": 0.875\n239\t      },\n240\t      \"pick_two_obj_and_place\": {\n241\t        \"success\": 4,\n242\t        \"total\": 7,\n243\t        \"rate\": 0.571\n244\t      }\n245\t    }\n246\t  }\n247\t}\n248\t\n249\t=== v4-random-seed0 ===\n250\t{\n251\t  \"status\": \"DONE\",\n252\t  \"retry_count\": 0,\n253\t  \"created_at\": \"2026-05-14T17:42:03.440Z\",\n254\t  \"updated_at\": \"2026-05-14T19:36:31.263Z\",\n255\t  \"hypothesis\": \"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\",\n256\t  \"spec\": {\n257\t    \"data_path\": \"data/mini_pipeline_v4/sft_random_v4.jsonl\",\n258\t    \"data_count\": 9029,\n259\t    \"model_name\": \"Qwen3-8B\",\n260\t    \"seed\": 0,\n261\t    \"server\": \"autodl-5090\",\n262\t    \"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4.jsonl --seed 0\",\n263\t    \"gpu\": \"cuda:2\",\n264\t    \"pid\": 72303,\n265\t    \"log_path\": \"/root/runs/tax_error_inject_agent/v4-random-seed0.log\",\n266\t    \"checkpoint_path\": \"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\"\n267\t  },\n268\t  \"conclusion\": \"success\",\n269\t  \"metrics\": {\n270\t    \"final_loss\": 0.355,\n271\t    \"token_accuracy\": 0.912,\n272\t    \"train_steps\": 3387,\n273\t    \"train_epochs\": 3,\n274\t    \"train_duration_min\": 110\n275\t  },\n276\t  \"completed_at\": \"2026-05-14T19:35:39.420Z\"\n277\t}\n278\t\n279\t=== v4-taxei-seed0 ===\n280\t{\n281\t  \"status\": \"DONE\",\n282\t  \"retry_count\": 0,\n283\t  \"created_at\": \"2026-05-14T17:42:02.696Z\",\n284\t  \"updated_at\": \"2026-05-14T19:36:29.716Z\",\n285\t  \"hypothesis\": \"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\",\n286\t  \"spec\": {\n287\t    \"data_path\": \"data/mini_pipeline_v4/sft_taxei_v4.jsonl\",\n288\t    \"data_count\": 9029,\n289\t    \"model_name\": \"Qwen3-8B\",\n290\t    \"seed\": 0,\n291\t    \"server\": \"autodl-5090\",\n292\t    \"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 0\",\n293\t    \"gpu\": \"cuda:1\",\n294\t    \"pid\": 71822,\n295\t    \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-seed0.log\",\n296\t    \"checkpoint_path\": \"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\"\n297\t  },\n298\t  \"conclusion\": \"success\",\n299\t  \"metrics\": {\n300\t    \"final_loss\": 0.355,\n301\t    \"token_accuracy\": 0.917,\n302\t    \"train_steps\": 3387,\n303\t    \"train_epochs\": 3,\n304\t    \"train_duration_min\": 110\n305\t  },\n306\t  \"completed_at\": \"2026-05-14T19:35:37.503Z\"\n307\t}\n308\t\n309\t=== v4-vanilla-seed0-eval ===\n310\t{\n311\t  \"status\": \"DONE\",\n312\t  \"retry_count\": 0,\n313\t  \"created_at\": \"2026-05-14T18:30:26.093Z\",\n314\t  \"updated_at\": \"2026-05-14T19:30:45.170Z\",\n315\t  \"hypothesis\": \"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\",\n316\t  \"spec\": {\n317\t    \"checkpoint_path\": \"eval_results/v4_vanilla_seed0_eval.json\",\n318\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-seed0-eval.log\"\n319\t  },\n320\t  \"reproduce\": {\n321\t    \"finished_at\": \"2026-05-14T19:01:19.696Z\"\n322\t  },\n323\t  \"extra\": {\n324\t    \"hook_events\": [\n325\t      {\n326\t        \"event\": \"on_complete\",\n327\t        \"action\": \"agent\",\n328\t        \"ts\": \"2026-05-14T19:01:20.697938+00:00\"\n329\t      }\n330\t    ]\n331\t  },\n332\t  \"conclusion\": \"success\",\n333\t  \"metrics\": {\n334\t    \"eval_success_rate\": 0.681,\n335\t    \"eval_successes\": 32,\n336\t    \"eval_total\": 47,\n337\t    \"vs_seed42_pp\": 6.4,\n338\t    \"mcnemar_vs_seed42_p\": 0.375,\n339\t    \"discordant_pairs\": 5,\n340\t    \"per_task\": {\n341\t      \"look_at_obj_in_light\": \"5/6 (83.3%)\",\n342\t      \"pick_and_place_simple\": \"5/8 (62.5%)\",\n343\t      \"pick_clean_then_place\": \"6/11 (54.5%)\",\n344\t      \"pick_cool_then_place\": \"4/7 (57.1%)\",\n345\t      \"pick_heat_then_place\": \"7/8 (87.5%)\",\n346\t      \"pick_two_obj_and_place\": \"5/7 (71.4%)\"\n347\t    }\n348\t  },\n349\t  \"completed_at\": \"2026-05-14T19:29:37.198Z\"\n350\t}\n351\t\n352\t=== v4-vanilla-seed123 ===\n353\t{\n354\t  \"status\": \"DONE\",\n355\t  \"retry_count\": 0,\n356\t  \"created_at\": \"2026-05-14T17:45:23.836Z\",\n357\t  \"updated_at\": \"2026-05-14T19:29:24.021Z\",\n358\t  \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\",\n359\t  \"spec\": {\n360\t    \"command\": \"CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\",\n361\t    \"server\": \"autodl-5090\",\n362\t    \"gpu\": \"cuda:3\",\n363\t    \"pid\": 77937,\n364\t    \"log_path\": \"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/logging.jsonl\",\n365\t    \"submitted_at\": \"2026-05-14T18:20:42.388Z\",\n366\t    \"submitted_via\": \"submit_training_job\",\n367\t    \"backend\": \"tmux\",\n368\t    \"account\": \"root\",\n369\t    \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\",\n370\t    \"data_count\": 4358,\n371\t    \"model_name\": \"Qwen3-8B\",\n372\t    \"seed\": 123,\n373\t    \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed123\",\n374\t    \"note\": \"OOM on first attempt (v0), restarted as v1 with PID 77937\",\n375\t    \"wall_clock_seconds\": 3941.6,\n376\t    \"gpu_hours\": 1.09\n377\t  },\n378\t  \"reproduce\": {\n379\t    \"finished_at\": \"2026-05-14T19:26:23.312Z\"\n380\t  },\n381\t  \"failure_reason\": \"v0 OOM at model loading (GPU 3 occupied by another process, 18.21 GiB in use). v1 (PID 77937) actually completed 1635/1635 steps. Cron caught v0's EXIT_CODE=1. Verifying checkpoint validity...\",\n382\t  \"conclusion\": \"success\",\n383\t  \"completed_at\": \"2026-05-14T19:26:23.949Z\",\n384\t  \"extra\": {\n385\t    \"hook_events\": [\n386\t      {\n387\t        \"event\": \"on_failed\",\n388\t        \"action\": \"agent\",\n389\t        \"ts\": \"2026-05-14T19:26:24.909318+00:00\"\n390\t      }\n391\t    ]\n392\t  },\n393\t  \"metrics\": {\n394\t    \"final_loss\": 0.288,\n395\t    \"token_accuracy\": 0.903,\n396\t    \"train_steps\": 1635,\n397\t    \"train_epochs\": 3,\n398\t    \"train_duration_min\": 58.9\n399\t  }\n400\t}\n401\t\n402\t=== v4-vanilla-seed0 ===\n403\t{\n404\t  \"status\": \"DONE\",\n405\t  \"retry_count\": 0,\n406\t  \"created_at\": \"2026-05-14T17:42:01.929Z\",\n407\t  \"updated_at\": \"2026-05-14T18:46:58.919Z\",\n408\t  \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\",\n409\t  \"spec\": {\n410\t    \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\",\n411\t    \"data_count\": 4358,\n412\t    \"model_name\": \"Qwen3-8B\",\n413\t    \"seed\": 0,\n414\t    \"server\": \"autodl-5090\",\n415\t    \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed0 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 0 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\",\n416\t    \"gpu\": \"cuda:0\",\n417\t    \"pid\": 71959,\n418\t    \"log_path\": \"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/logging.jsonl\",\n419\t    \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635\"\n420\t  },\n421\t  \"reproduce\": {\n422\t    \"finished_at\": \"2026-05-14T18:42:56.365Z\"\n423\t  },\n424\t  \"extra\": {\n425\t    \"hook_events\": [\n426\t      {\n427\t        \"event\": \"on_complete\",\n428\t        \"action\": \"agent\",\n429\t        \"ts\": \"2026-05-14T18:42:57.338365+00:00\"\n430\t      }\n431\t    ]\n432\t  },\n433\t  \"conclusion\": \"success\",\n434\t  \"metrics\": {\n435\t    \"final_loss\": 0.297,\n436\t    \"avg_loss\": 0.416,\n437\t    \"token_accuracy\": 0.902,\n438\t    \"train_steps\": 1635,\n439\t    \"train_epochs\": 3,\n440\t    \"train_duration_min\": 58\n441\t  },\n442\t  \"completed_at\": \"2026-05-14T18:45:18.121Z\"\n443\t}\n444\t\n445\t=== v4-vanilla-seed7 ===\n446\t{\n447\t  \"status\": \"DONE\",\n448\t  \"retry_count\": 0,\n449\t  \"created_at\": \"2026-05-14T17:45:24.536Z\",\n450\t  \"updated_at\": \"2026-05-14T18:20:48.185Z\",\n451\t  \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\",\n452\t  \"spec\": {\n453\t    \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed7 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 7 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\",\n454\t    \"server\": \"autodl-5090\",\n455\t    \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\",\n456\t    \"data_count\": 4358,\n457\t    \"model_name\": \"Qwen3-8B\",\n458\t    \"seed\": 7,\n459\t    \"gpu\": \"cuda:3\",\n460\t    \"pid\": \"v4-vanilla-seed7\",\n461\t    \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed7\",\n462\t    \"log_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed7/train.log\"\n463\t  },\n464\t  \"conclusion\": \"killed\",\n465\t  \"completed_at\": \"2026-05-14T18:20:48.185Z\"\n466\t}\n467\t\n468\t=== v4-recovery-eval-dev ===\n469\t{\n470\t  \"status\": \"PREPARING\",\n471\t  \"retry_count\": 0,\n472\t  \"created_at\": \"2026-05-14T17:42:04.153Z\",\n473\t  \"updated_at\": \"2026-05-14T18:15:59.630Z\",\n474\t  \"hypothesis\": \"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\",\n475\t  \"conclusion\": \"success\",\n476\t  \"metrics\": {\n477\t    \"pipeline_files\": [\n478\t      \"eval/injected_eval.py\",\n479\t      \"scripts/run_injected_eval.sh\"\n480\t    ],\n481\t    \"injected_eval_lines\": 463,\n482\t    \"dryrun_result\": \"PASS\",\n483\t    \"dryrun_detail\": \"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\"\n484\t  }\n485\t}\n486\t\n487\t=== v4-recovery-dryrun ===\n488\t{\n489\t  \"status\": \"PREPARING\",\n490\t  \"retry_count\": 0,\n491\t  \"created_at\": \"2026-05-14T17:45:26.420Z\",\n492\t  \"updated_at\": \"2026-05-14T18:15:56.604Z\",\n493\t  \"hypothesis\": \"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\",\n494\t  \"conclusion\": \"success\"\n495\t}\n496\t\n497\t=== v4-random-eval ===\n498\t{\n499\t  \"status\": \"PREPARING\",\n500\t  \"retry_count\": 0,\n501\t  \"created_at\": \"2026-05-14T16:25:02.397Z\",\n502\t  \"updated_at\": \"2026-05-14T17:31:46.657Z\",\n503\t  \"spec\": {\n504\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 && test -f \\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\$CKPT && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_eval.json --device cuda:0\\\"\",\n505\t    \"server\": \"autodl-5090\",\n506\t    \"gpu\": [\n507\t      \"cuda:1\"\n508\t    ],\n509\t    \"pid\": \"67837\",\n510\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-eval.log\",\n511\t    \"submitted_at\": \"2026-05-14T16:25:02.357Z\",\n512\t    \"submitted_via\": \"submit_training_job\",\n513\t    \"backend\": \"tmux\",\n514\t    \"account\": \"root\"\n515\t  },\n516\t  \"hypothesis\": \"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\",\n517\t  \"conclusion\": \"negative\",\n518\t  \"metrics\": {\n519\t    \"eval_success_rate\": 0.66,\n520\t    \"eval_successes\": 31,\n521\t    \"eval_total\": 47,\n522\t    \"vs_vanilla_pp\": 4.3,\n523\t    \"vs_taxei_pp\": 4.3,\n524\t    \"mcnemar_vs_vanilla_p\": 0.754,\n525\t    \"per_task\": {\n526\t      \"look_at_obj_in_light\": \"6/6 (100%)\",\n527\t      \"pick_and_place_simple\": \"4/8 (50%)\",\n528\t      \"pick_clean_then_place\": \"6/11 (54.5%)\",\n529\t      \"pick_cool_then_place\": \"4/7 (57.1%)\",\n530\t      \"pick_heat_then_place\": \"7/8 (87.5%)\",\n531\t      \"pick_two_obj_and_place\": \"4/7 (57.1%)\"\n532\t    }\n533\t  }\n534\t}\n535\t\n536\t=== v4-taxei-eval ===\n537\t{\n538\t  \"status\": \"PREPARING\",\n539\t  \"retry_count\": 0,\n540\t  \"created_at\": \"2026-05-14T16:25:00.653Z\",\n541\t  \"updated_at\": \"2026-05-14T17:31:43.481Z\",\n542\t  \"spec\": {\n543\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 && test -f \\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\$CKPT && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_eval.json --device cuda:0\\\"\",\n544\t    \"server\": \"autodl-5090\",\n545\t    \"gpu\": [\n546\t      \"cuda:0\"\n547\t    ],\n548\t    \"pid\": \"67694\",\n549\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-eval.log\",\n550\t    \"submitted_at\": \"2026-05-14T16:25:00.616Z\",\n551\t    \"submitted_via\": \"submit_training_job\",\n552\t    \"backend\": \"tmux\",\n553\t    \"account\": \"root\"\n554\t  },\n555\t  \"hypothesis\": \"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\",\n556\t  \"conclusion\": \"negative\",\n557\t  \"metrics\": {\n558\t    \"eval_success_rate\": 0.617,\n559\t    \"eval_successes\": 29,\n560\t    \"eval_total\": 47,\n561\t    \"vs_vanilla_pp\": 0,\n562\t    \"vs_random_pp\": -4.3,\n563\t    \"mcnemar_vs_vanilla_p\": 1,\n564\t    \"mcnemar_vs_random_p\": 0.754,\n565\t    \"gate_3a\": \"FAIL\",\n566\t    \"gate_3b\": \"FAIL\",\n567\t    \"gate_4\": \"PASS\",\n568\t    \"per_task\": {\n569\t      \"look_at_obj_in_light\": \"6/6 (100%)\",\n570\t      \"pick_and_place_simple\": \"5/8 (62.5%)\",\n571\t      \"pick_clean_then_place\": \"6/11 (54.5%)\",\n572\t      \"pick_cool_then_place\": \"3/7 (42.9%)\",\n573\t      \"pick_heat_then_place\": \"7/8 (87.5%)\",\n574\t      \"pick_two_obj_and_place\": \"2/7 (28.6%)\"\n575\t    }\n576\t  }\n577\t}\n578\t\n579\t=== traj_collect_500 ===\n580\t{\n581\t  \"status\": \"DONE\",\n582\t  \"retry_count\": 0,\n583\t  \"created_at\": \"2026-05-14T06:45:21.504Z\",\n584\t  \"updated_at\": \"2026-05-14T16:28:02.238Z\",\n585\t  \"spec\": {\n586\t    \"command\": \"python collect_trajectories.py --target 500\",\n587\t    \"server\": \"autodl-5090\",\n588\t    \"data_path\": \"data/trajectories/\",\n589\t    \"data_count\": 575,\n590\t    \"model_name\": \"trajectory_collector\",\n591\t    \"seed\": 0,\n592\t    \"pid\": 11045,\n593\t    \"gpu\": \"none (CPU task)\",\n594\t    \"hypothesis\": \"GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）\"\n595\t  },\n596\t  \"metrics\": {\n597\t    \"successful_trajectories\": 501,\n598\t    \"failed_trajectories\": 213,\n599\t    \"total_attempts\": 714,\n600\t    \"success_rate\": 0.702,\n601\t    \"api_cost_usd\": 8.86,\n602\t    \"collection_time_sec\": 5245\n603\t  },\n604\t  \"conclusion\": \"negative\",\n605\t  \"checkpoint_path\": \"data/trajectories/successful_trajectories.jsonl\",\n606\t  \"log_path\": \"/tmp/collect_500.log\",\n607\t  \"completed_at\": \"2026-05-14T12:21:11.941Z\"\n608\t}\n609\t\n610\t=== v4-vanilla-eval-r3 ===\n611\t{\n612\t  \"status\": \"PREPARING\",\n613\t  \"retry_count\": 0,\n614\t  \"created_at\": \"2026-05-14T14:28:24.833Z\",\n615\t  \"updated_at\": \"2026-05-14T16:25:11.284Z\",\n616\t  \"spec\": {\n617\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && latest_run=\\\\$(ls -dt checkpoints/mini_vanilla_sft_v4/v0-*/ | head -1) && final_ckpt=\\\\$(ls -d \\\\\\\"\\\\${latest_run}\\\\\\\"checkpoint-* | sort -V | tail -1) && echo \\\\\\\"Using checkpoint: \\\\$final_ckpt\\\\\\\" && test -f \\\\\\\"\\\\${final_ckpt}/adapter_config.json\\\\\\\" && echo 'adapter_config.json OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$final_ckpt --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\"\",\n618\t    \"server\": \"autodl-5090\",\n619\t    \"gpu\": [\n620\t      \"cuda:0\"\n621\t    ],\n622\t    \"pid\": \"62340\",\n623\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval-r3.log\",\n624\t    \"submitted_at\": \"2026-05-14T14:28:24.797Z\",\n625\t    \"submitted_via\": \"submit_training_job\",\n626\t    \"backend\": \"tmux\",\n627\t    \"account\": \"root\"\n628\t  },\n629\t  \"hypothesis\": \"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\",\n630\t  \"conclusion\": \"success\",\n631\t  \"metrics\": {\n632\t    \"eval_success_rate\": 0.617,\n633\t    \"eval_successes\": 29,\n634\t    \"eval_total\": 47,\n635\t    \"per_task\": {\n636\t      \"look_at_obj_in_light\": \"5/6 (83.3%)\",\n637\t      \"pick_heat_then_place\": \"6/8 (75.0%)\",\n638\t      \"pick_and_place_simple\": \"5/8 (62.5%)\",\n639\t      \"pick_cool_then_place\": \"4/7 (57.1%)\",\n640\t      \"pick_two_obj_and_place\": \"4/7 (57.1%)\",\n641\t      \"pick_clean_then_place\": \"5/11 (45.5%)\"\n642\t    }\n643\t  }\n644\t}\n645\t\n646\t=== v4-vanilla-eval-r2 ===\n647\t{\n648\t  \"status\": \"PREPARING\",\n649\t  \"retry_count\": 0,\n650\t  \"created_at\": \"2026-05-14T14:24:25.560Z\",\n651\t  \"updated_at\": \"2026-05-14T14:28:40.995Z\",\n652\t  \"spec\": {\n653\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\"\",\n654\t    \"server\": \"autodl-5090\",\n655\t    \"gpu\": [\n656\t      \"cuda:0\"\n657\t    ],\n658\t    \"pid\": \"61793\",\n659\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval-r2.log\",\n660\t    \"submitted_at\": \"2026-05-14T14:24:25.523Z\",\n661\t    \"submitted_via\": \"submit_training_job\",\n662\t    \"backend\": \"tmux\",\n663\t    \"account\": \"root\"\n664\t  },\n665\t  \"hypothesis\": \"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\",\n666\t  \"conclusion\": \"failed\"\n667\t}\n668\t\n669\t=== v4-random-sft-r2 ===\n670\t{\n671\t  \"status\": \"PREPARING\",\n672\t  \"retry_count\": 0,\n673\t  \"created_at\": \"2026-05-14T13:30:55.117Z\",\n674\t  \"updated_at\": \"2026-05-14T14:24:56.155Z\",\n675\t  \"spec\": {\n676\t    \"pid\": \"58163\",\n677\t    \"actual_status\": \"training_in_progress\",\n678\t    \"gpu\": [\n679\t      \"cuda:3\"\n680\t    ],\n681\t    \"server\": \"autodl-5090\",\n682\t    \"data_path\": \"data/mini_pipeline_v4/sft_random_v4.jsonl\",\n683\t    \"data_count\": 9029,\n684\t    \"model_name\": \"Qwen3-8B\",\n685\t    \"seed\": 42\n686\t  },\n687\t  \"hypothesis\": \"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\",\n688\t  \"conclusion\": \"success\"\n689\t}\n690\t\n691\t=== v4-taxei-sft-r2 ===\n692\t{\n693\t  \"status\": \"PREPARING\",\n694\t  \"retry_count\": 0,\n695\t  \"created_at\": \"2026-05-14T13:30:52.865Z\",\n696\t  \"updated_at\": \"2026-05-14T14:24:54.288Z\",\n697\t  \"spec\": {\n698\t    \"pid\": \"58034\",\n699\t    \"actual_status\": \"training_in_progress\",\n700\t    \"gpu\": [\n701\t      \"cuda:2\"\n702\t    ],\n703\t    \"server\": \"autodl-5090\",\n704\t    \"data_path\": \"data/mini_pipeline_v4/sft_taxei_v4.jsonl\",\n705\t    \"data_count\": 9029,\n706\t    \"model_name\": \"Qwen3-8B\",\n707\t    \"seed\": 42\n708\t  },\n709\t  \"hypothesis\": \"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\",\n710\t  \"conclusion\": \"success\"\n711\t}\n712\t\n713\t=== v4-vanilla-eval ===\n714\t{\n715\t  \"status\": \"PREPARING\",\n716\t  \"retry_count\": 0,\n717\t  \"created_at\": \"2026-05-14T14:15:59.327Z\",\n718\t  \"updated_at\": \"2026-05-14T14:24:25.638Z\",\n719\t  \"spec\": {\n720\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=\\\\$(find checkpoints/mini_vanilla_sft_v4 -name 'checkpoint-*' -type d | sort -t- -k2 -n | tail -1) && echo \\\\\\\"Using checkpoint: \\\\$CKPT\\\\\\\" && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --gpu 0\\\"\",\n721\t    \"server\": \"autodl-5090\",\n722\t    \"gpu\": [\n723\t      \"cuda:0\"\n724\t    ],\n725\t    \"pid\": \"61138\",\n726\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval.log\",\n727\t    \"submitted_at\": \"2026-05-14T14:15:59.291Z\",\n728\t    \"submitted_via\": \"submit_training_job\",\n729\t    \"backend\": \"tmux\",\n730\t    \"account\": \"root\"\n731\t  },\n732\t  \"hypothesis\": \"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\",\n733\t  \"conclusion\": \"failed\"\n734\t}\n735\t\n736\t=== v3-random-eval ===\n737\t{\n738\t  \"status\": \"PREPARING\",\n739\t  \"retry_count\": 0,\n740\t  \"created_at\": \"2026-05-14T13:26:26.315Z\",\n741\t  \"updated_at\": \"2026-05-14T14:15:26.311Z\",\n742\t  \"spec\": {\n743\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v3/*/checkpoint-3405 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_random.json --device cuda:0\\\"\",\n744\t    \"server\": \"autodl-5090\",\n745\t    \"gpu\": [\n746\t      \"cuda:1\"\n747\t    ],\n748\t    \"pid\": \"55925\",\n749\t    \"log_path\": \"~/runs/tax_error_inject_agent/v3-random-eval.log\",\n750\t    \"submitted_at\": \"2026-05-14T13:26:53.024Z\",\n751\t    \"submitted_via\": \"submit_training_job\",\n752\t    \"backend\": \"tmux\",\n753\t    \"account\": \"root\"\n754\t  },\n755\t  \"hypothesis\": \"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\",\n756\t  \"metrics\": {\n757\t    \"eval_success_rate\": 0.511,\n758\t    \"eval_successes\": 24,\n759\t    \"eval_total\": 47,\n760\t    \"vs_baseline_pp\": 8.5,\n761\t    \"vs_vanilla_sft_pp\": -23.4\n762\t  },\n763\t  \"conclusion\": \"negative\"\n764\t}\n765\t\n766\t=== v3-taxei-eval ===\n767\t{\n768\t  \"status\": \"PREPARING\",\n769\t  \"retry_count\": 0,\n770\t  \"created_at\": \"2026-05-14T13:26:24.552Z\",\n771\t  \"updated_at\": \"2026-05-14T14:15:25.974Z\",\n772\t  \"spec\": {\n773\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v3/*/checkpoint-2832 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_taxei.json --device cuda:0\\\"\",\n774\t    \"server\": \"autodl-5090\",\n775\t    \"gpu\": [\n776\t      \"cuda:0\"\n777\t    ],\n778\t    \"pid\": \"55848\",\n779\t    \"log_path\": \"~/runs/tax_error_inject_agent/v3-taxei-eval.log\",\n780\t    \"submitted_at\": \"2026-05-14T13:26:51.905Z\",\n781\t    \"submitted_via\": \"submit_training_job\",\n782\t    \"backend\": \"tmux\",\n783\t    \"account\": \"root\"\n784\t  },\n785\t  \"hypothesis\": \"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\",\n786\t  \"metrics\": {\n787\t    \"eval_success_rate\": 0.66,\n788\t    \"eval_successes\": 31,\n789\t    \"eval_total\": 47,\n790\t    \"vs_baseline_pp\": 23.4,\n791\t    \"vs_vanilla_sft_pp\": -8.5,\n792\t    \"per_task\": {\n793\t      \"look_at_obj_in_light\": \"5/6 (83.3%)\",\n794\t      \"pick_clean_then_place\": \"8/11 (72.7%)\",\n795\t      \"pick_heat_then_place\": \"6/8 (75.0%)\",\n796\t      \"pick_and_place_simple\": \"5/8 (62.5%)\",\n797\t      \"pick_two_obj_and_place\": \"4/7 (57.1%)\",\n798\t      \"pick_cool_then_place\": \"3/7 (42.9%)\"\n799\t    }"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1800a9d9-f1f4-4986-a575-b2d88bd2be47",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "c385b0aa-8d02-4231-a30a-6d8b786c2509",
+            "sourceToolAssistantUUID": "1800a9d9-f1f4-4986-a575-b2d88bd2be47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T01:55:02.385Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hc69szNFfNeaHgDFHPWGip",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/b1iwd4c3n.txt",
+                "limit": 800,
+                "offset": 800
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c385b0aa-8d02-4231-a30a-6d8b786c2509",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XDD76NhDC91SrnwV6C",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2e0ffc28-616e-458d-ad71-774cf0ab4854",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MhvzgB7FPfgT3CbvhQbe1d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15003,
+                "cache_read_input_tokens": 34883,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15003
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 34883,
+                    "cache_creation_input_tokens": 15003,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15003,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T01:55:02.400Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hc69szNFfNeaHgDFHPWGip",
+              "type": "tool_result",
+              "content": "800\t    }\n801\t  },\n802\t  \"conclusion\": \"negative\"\n803\t}\n804\t\n805\t=== v4-random-sft-r3 ===\n806\t{\n807\t  \"status\": \"PREPARING\",\n808\t  \"retry_count\": 0,\n809\t  \"created_at\": \"2026-05-14T13:32:26.753Z\",\n810\t  \"updated_at\": \"2026-05-14T13:32:36.181Z\",\n811\t  \"spec\": {\n812\t    \"command\": \"bash -c \\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n813\t    \"server\": \"autodl-5090\",\n814\t    \"gpu\": [\n815\t      \"cuda:3\"\n816\t    ],\n817\t    \"pid\": \"58826\",\n818\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-sft-r3.log\",\n819\t    \"submitted_at\": \"2026-05-14T13:32:26.722Z\",\n820\t    \"submitted_via\": \"submit_training_job\",\n821\t    \"backend\": \"tmux\",\n822\t    \"account\": \"root\"\n823\t  },\n824\t  \"hypothesis\": \"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"\n825\t}\n826\t\n827\t=== v4-taxei-sft-r3 ===\n828\t{\n829\t  \"status\": \"PREPARING\",\n830\t  \"retry_count\": 0,\n831\t  \"created_at\": \"2026-05-14T13:32:24.446Z\",\n832\t  \"updated_at\": \"2026-05-14T13:32:34.819Z\",\n833\t  \"spec\": {\n834\t    \"command\": \"bash -c \\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n835\t    \"server\": \"autodl-5090\",\n836\t    \"gpu\": [\n837\t      \"cuda:2\"\n838\t    ],\n839\t    \"pid\": \"58741\",\n840\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-sft-r3.log\",\n841\t    \"submitted_at\": \"2026-05-14T13:32:24.415Z\",\n842\t    \"submitted_via\": \"submit_training_job\",\n843\t    \"backend\": \"tmux\",\n844\t    \"account\": \"root\"\n845\t  },\n846\t  \"hypothesis\": \"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"\n847\t}\n848\t\n849\t=== v4-random-sft ===\n850\t{\n851\t  \"status\": \"PREPARING\",\n852\t  \"retry_count\": 0,\n853\t  \"created_at\": \"2026-05-14T13:26:31.864Z\",\n854\t  \"updated_at\": \"2026-05-14T13:31:19.378Z\",\n855\t  \"spec\": {\n856\t    \"pid\": \"56765\",\n857\t    \"gpu_memory_mib\": 19159,\n858\t    \"gpu_util_pct\": 60\n859\t  },\n860\t  \"hypothesis\": \"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\",\n861\t  \"conclusion\": \"failed\"\n862\t}\n863\t\n864\t=== v4-taxei-sft ===\n865\t{\n866\t  \"status\": \"PREPARING\",\n867\t  \"retry_count\": 0,\n868\t  \"created_at\": \"2026-05-14T13:26:29.177Z\",\n869\t  \"updated_at\": \"2026-05-14T13:31:18.431Z\",\n870\t  \"spec\": {\n871\t    \"pid\": \"56685\",\n872\t    \"gpu_memory_mib\": 30884,\n873\t    \"gpu_util_pct\": 94\n874\t  },\n875\t  \"hypothesis\": \"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\",\n876\t  \"conclusion\": \"failed\"\n877\t}\n878\t\n879\t=== mini-vanilla-sft-v4 ===\n880\t{\n881\t  \"status\": \"PREPARING\",\n882\t  \"retry_count\": 0,\n883\t  \"created_at\": \"2026-05-14T12:14:26.614Z\",\n884\t  \"updated_at\": \"2026-05-14T13:27:05.003Z\",\n885\t  \"hypothesis\": \"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\",\n886\t  \"spec\": {\n887\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n888\t    \"server\": \"autodl-5090\",\n889\t    \"gpu\": [\n890\t      \"cuda:3\"\n891\t    ],\n892\t    \"pid\": \"50537\",\n893\t    \"log_path\": \"~/runs/tax_error_inject_agent/mini-vanilla-sft-v4.log\",\n894\t    \"submitted_at\": \"2026-05-14T12:14:32.528Z\",\n895\t    \"submitted_via\": \"submit_training_job\",\n896\t    \"backend\": \"tmux\",\n897\t    \"account\": \"root\"\n898\t  },\n899\t  \"conclusion\": \"success\"\n900\t}\n901\t\n902\t=== mini-random-sft-v3 ===\n903\t{\n904\t  \"status\": \"PREPARING\",\n905\t  \"retry_count\": 0,\n906\t  \"created_at\": \"2026-05-14T11:13:19.635Z\",\n907\t  \"updated_at\": \"2026-05-14T13:27:04.310Z\",\n908\t  \"spec\": {\n909\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_random_aligned.jsonl --output_dir checkpoints/mini_random_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n910\t    \"server\": \"autodl-5090\",\n911\t    \"gpu\": [\n912\t      \"cuda:2\"\n913\t    ],\n914\t    \"pid\": \"45764\",\n915\t    \"log_path\": \"~/runs/tax_error_inject_agent/mini-random-sft-v3.log\",\n916\t    \"submitted_at\": \"2026-05-14T11:13:19.618Z\",\n917\t    \"submitted_via\": \"submit_training_job\",\n918\t    \"backend\": \"tmux\",\n919\t    \"account\": \"root\"\n920\t  },\n921\t  \"metrics\": {\n922\t    \"train_samples\": 9076,\n923\t    \"train_samples_clean\": 4176,\n924\t    \"train_samples_injected\": 4900,\n925\t    \"train_steps_total\": 3405,\n926\t    \"est_duration_min\": 110,\n927\t    \"format\": \"aligned_single_turn\"\n928\t  },\n929\t  \"conclusion\": \"success\"\n930\t}\n931\t\n932\t=== mini-taxei-sft-v3 ===\n933\t{\n934\t  \"status\": \"PREPARING\",\n935\t  \"retry_count\": 0,\n936\t  \"created_at\": \"2026-05-14T11:13:17.286Z\",\n937\t  \"updated_at\": \"2026-05-14T13:27:03.840Z\",\n938\t  \"spec\": {\n939\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_taxei_aligned.jsonl --output_dir checkpoints/mini_taxei_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n940\t    \"server\": \"autodl-5090\",\n941\t    \"gpu\": [\n942\t      \"cuda:1\"\n943\t    ],\n944\t    \"pid\": \"45621\",\n945\t    \"log_path\": \"~/runs/tax_error_inject_agent/mini-taxei-sft-v3.log\",\n946\t    \"submitted_at\": \"2026-05-14T11:13:17.271Z\",\n947\t    \"submitted_via\": \"submit_training_job\",\n948\t    \"backend\": \"tmux\",\n949\t    \"account\": \"root\"\n950\t  },\n951\t  \"metrics\": {\n952\t    \"train_samples\": 7545,\n953\t    \"train_samples_clean\": 4176,\n954\t    \"train_samples_injected\": 3369,\n955\t    \"train_steps_total\": 2832,\n956\t    \"est_duration_min\": 90,\n957\t    \"format\": \"aligned_single_turn\"\n958\t  },\n959\t  \"conclusion\": \"success\"\n960\t}\n961\t\n962\t=== mini-vanilla-sft-v3 ===\n963\t{\n964\t  \"status\": \"PREPARING\",\n965\t  \"retry_count\": 0,\n966\t  \"created_at\": \"2026-05-14T11:13:13.990Z\",\n967\t  \"updated_at\": \"2026-05-14T13:27:02.899Z\",\n968\t  \"spec\": {\n969\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_vanilla_aligned.jsonl --output_dir checkpoints/mini_vanilla_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n970\t    \"server\": \"autodl-5090\",\n971\t    \"gpu\": [\n972\t      \"cuda:0\"\n973\t    ],\n974\t    \"pid\": \"45478\",\n975\t    \"log_path\": \"~/runs/tax_error_inject_agent/mini-vanilla-sft-v3.log\",\n976\t    \"submitted_at\": \"2026-05-14T11:13:13.975Z\",\n977\t    \"submitted_via\": \"submit_training_job\",\n978\t    \"backend\": \"tmux\",\n979\t    \"account\": \"root\"\n980\t  },\n981\t  \"metrics\": {\n982\t    \"train_samples\": 4176,\n983\t    \"train_steps_total\": 1566,\n984\t    \"est_duration_min\": 58,\n985\t    \"format\": \"aligned_single_turn\"\n986\t  },\n987\t  \"conclusion\": \"success\"\n988\t}\n989\t\n990\t=== v3-vanilla-eval ===\n991\t{\n992\t  \"status\": \"PREPARING\",\n993\t  \"retry_count\": 0,\n994\t  \"created_at\": \"2026-05-14T12:22:10.941Z\",\n995\t  \"updated_at\": \"2026-05-14T13:27:01.957Z\",\n996\t  \"spec\": {\n997\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1566 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_vanilla.json --device cuda:0\\\"\",\n998\t    \"server\": \"autodl-5090\",\n999\t    \"gpu\": [\n1000\t      \"cuda:0\"\n1001\t    ],\n1002\t    \"pid\": \"51848\",\n1003\t    \"log_path\": \"~/runs/tax_error_inject_agent/v3-vanilla-eval.log\",\n1004\t    \"submitted_at\": \"2026-05-14T12:22:30.589Z\",\n1005\t    \"submitted_via\": \"submit_training_job\",\n1006\t    \"backend\": \"tmux\",\n1007\t    \"account\": \"root\"\n1008\t  },\n1009\t  \"conclusion\": \"success\",\n1010\t  \"metrics\": {\n1011\t    \"success_rate\": 0.745,\n1012\t    \"successes\": 35,\n1013\t    \"total\": 47,\n1014\t    \"vs_baseline_pp\": 31.9,\n1015\t    \"vs_baseline\": \"42.6% → 74.5%\"\n1016\t  }\n1017\t}\n1018\t\n1019\t=== v4-vanilla-sft ===\n1020\t{\n1021\t  \"status\": \"PREPARING\",\n1022\t  \"retry_count\": 0,\n1023\t  \"created_at\": \"2026-05-14T12:14:57.794Z\",\n1024\t  \"updated_at\": \"2026-05-14T12:22:10.869Z\",\n1025\t  \"spec\": {\n1026\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/v4_vanilla_sft/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\",\n1027\t    \"server\": \"autodl-5090\",\n1028\t    \"gpu\": [\n1029\t      \"cuda:3\"\n1030\t    ],\n1031\t    \"pid\": 50972,\n1032\t    \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-sft.log\",\n1033\t    \"submitted_at\": \"2026-05-14T12:14:57.755Z\",\n1034\t    \"submitted_via\": \"submit_training_job\",\n1035\t    \"backend\": \"tmux\",\n1036\t    \"account\": \"root\",\n1037\t    \"failure_reason\": \"OOM - CUDA_VISIBLE_DEVICES not set, ran on wrong GPU (cuda:0 instead of cuda:3)\"\n1038\t  },\n1039\t  \"conclusion\": \"failed\"\n1040\t}\n1041\t\n1042\t=== vanilla_sft_aligned_v2 ===\n1043\t{\n1044\t  \"status\": \"PREPARING\",\n1045\t  \"retry_count\": 0,\n1046\t  \"created_at\": \"2026-05-14T11:05:05.459Z\",\n1047\t  \"updated_at\": \"2026-05-14T11:05:05.459Z\",\n1048\t  \"spec\": {\n1049\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft \\\\\\n  --model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\\\\n  --dataset data/mini_pipeline/sft_vanilla_aligned.jsonl \\\\\\n  --lora_rank 16 \\\\\\n  --lora_alpha 32 \\\\\\n  --lora_dropout 0.05 \\\\\\n  --target_modules all-linear \\\\\\n  --num_train_epochs 1 \\\\\\n  --learning_rate 1e-4 \\\\\\n  --per_device_train_batch_size 1 \\\\\\n  --gradient_accumulation_steps 16 \\\\\\n  --warmup_ratio 0.05 \\\\\\n  --seed 42 \\\\\\n  --max_length 4096 \\\\\\n  --gradient_checkpointing true \\\\\\n  --output_dir checkpoints/vanilla_sft_aligned \\\\\\n  --logging_steps 5 \\\\\\n  --logging_first_step true \\\\\\n  --save_strategy epoch \\\\\\n  --bf16 true \\\\\\n  --weight_decay 0.1 \\\\\\n  --adam_beta1 0.9 \\\\\\n  --adam_beta2 0.95 \\\\\\n  --max_grad_norm 1.0 \\\\\\n  --lr_scheduler_type cosine \\\\\\n  --optim adamw_torch_fused 2>&1\\\"\",\n1050\t    \"server\": \"autodl-5090\",\n1051\t    \"gpu\": [\n1052\t      \"cuda:2\"\n1053\t    ],\n1054\t    \"pid\": \"44492\",\n1055\t    \"log_path\": \"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v2.log\",\n1056\t    \"submitted_at\": \"2026-05-14T11:05:05.434Z\",\n1057\t    \"submitted_via\": \"submit_training_job\",\n1058\t    \"backend\": \"tmux\",\n1059\t    \"account\": \"root\"\n1060\t  }\n1061\t}\n1062\t\n1063\t=== vanilla_sft_aligned_v1 ===\n1064\t{\n1065\t  \"status\": \"PREPARING\",\n1066\t  \"retry_count\": 0,\n1067\t  \"created_at\": \"2026-05-14T11:04:12.825Z\",\n1068\t  \"updated_at\": \"2026-05-14T11:04:12.825Z\",\n1069\t  \"spec\": {\n1070\t    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --config configs/sft_vanilla_aligned.yaml 2>&1\\\"\",\n1071\t    \"server\": \"autodl-5090\",\n1072\t    \"gpu\": [\n1073\t      \"cuda:2\"\n1074\t    ],\n1075\t    \"pid\": \"43894\",\n1076\t    \"log_path\": \"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v1.log\",\n1077\t    \"submitted_at\": \"2026-05-14T11:04:12.812Z\",\n1078\t    \"submitted_via\": \"submit_training_job\",\n1079\t    \"backend\": \"tmux\",\n1080\t    \"account\": \"root\"\n1081\t  }\n1082\t}\n1083\t\n1084\t=== mini-vanilla-sft ===\n1085\t{\n1086\t  \"status\": \"DONE\",\n1087\t  \"retry_count\": 0,\n1088\t  \"created_at\": \"2026-05-14T10:51:41.382Z\",\n1089\t  \"updated_at\": \"2026-05-14T10:54:48.860Z\",\n1090\t  \"hypothesis\": \"Vanilla trajectory SFT baseline for comparison with TaxEI\",\n1091\t  \"spec\": {\n1092\t    \"command\": \"python3 scripts/train_sft.py --data data/sft_data/vanilla_train.jsonl --output checkpoints/mini_vanilla_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\",\n1093\t    \"server\": \"autodl-5090\",\n1094\t    \"gpu\": \"cuda:1\",\n1095\t    \"pid\": \"41874\",\n1096\t    \"log_path\": \"eval_results/mini_vanilla_clean.json\",\n1097\t    \"submitted_at\": \"2026-05-14T10:54:31.029Z\",\n1098\t    \"submitted_via\": \"submit_training_job\",\n1099\t    \"backend\": \"tmux\",\n1100\t    \"account\": \"root\",\n1101\t    \"data_path\": \"data/sft_data/vanilla_train.jsonl\",\n1102\t    \"data_count\": 278,\n1103\t    \"model_name\": \"Qwen3-8B\",\n1104\t    \"seed\": 42,\n1105\t    \"hypothesis\": \"Vanilla SFT on clean trajectories as baseline for comparison\",\n1106\t    \"checkpoint_path\": \"checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54\",\n1107\t    \"wall_clock_seconds\": 17.8,\n1108\t    \"gpu_hours\": 0.0\n1109\t  },\n1110\t  \"conclusion\": \"negative\",\n1111\t  \"completed_at\": \"2026-05-14T10:54:20.210Z\",\n1112\t  \"metrics\": {\n1113\t    \"eval_success_rate\": 0.149,\n1114\t    \"eval_successes\": 7,\n1115\t    \"eval_total\": 47,\n1116\t    \"vs_baseline_pp\": -27.7,\n1117\t    \"per_task\": {\n1118\t      \"look_at_obj_in_light\": \"0/6 (0%)\",\n1119\t      \"pick_and_place_simple\": \"2/8 (25.0%)\",\n1120\t      \"pick_clean_then_place\": \"2/11 (18.2%)\",\n1121\t      \"pick_cool_then_place\": \"0/7 (0%)\",\n1122\t      \"pick_heat_then_place\": \"3/8 (37.5%)\",\n1123\t      \"pick_two_obj_and_place\": \"0/7 (0%)\"\n1124\t    },\n1125\t    \"train_steps\": 54,\n1126\t    \"train_duration_min\": 5\n1127\t  }\n1128\t}\n1129\t\n1130\t=== mini-taxei-sft ===\n1131\t{\n1132\t  \"status\": \"DONE\",\n1133\t  \"retry_count\": 0,\n1134\t  \"created_at\": \"2026-05-14T10:51:40.784Z\",\n1135\t  \"updated_at\": \"2026-05-14T10:54:46.174Z\",\n1136\t  \"hypothesis\": \"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\",\n1137\t  \"spec\": {\n1138\t    \"command\": \"python3 scripts/train_sft.py --data data/sft_data/taxei_train.jsonl --output checkpoints/mini_taxei_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\",\n1139\t    \"server\": \"autodl-5090\",\n1140\t    \"gpu\": \"cuda:0\",\n1141\t    \"pid\": \"41263\",\n1142\t    \"log_path\": \"eval_results/mini_taxei_clean.json\",\n1143\t    \"submitted_at\": \"2026-05-14T10:53:16.579Z\",\n1144\t    \"submitted_via\": \"submit_training_job\",\n1145\t    \"backend\": \"tmux\",\n1146\t    \"account\": \"root\",\n1147\t    \"data_path\": \"data/sft_data/taxei_train.jsonl\",\n1148\t    \"data_count\": 278,\n1149\t    \"model_name\": \"Qwen3-8B\",\n1150\t    \"seed\": 42,\n1151\t    \"checkpoint_path\": \"checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-195\",\n1152\t    \"hypothesis\": \"TaxEI error injection + recovery SFT improves over vanilla SFT and baseline\",\n1153\t    \"wall_clock_seconds\": 63.1,\n1154\t    \"gpu_hours\": 0.04\n1155\t  },\n1156\t  \"conclusion\": \"success\",\n1157\t  \"completed_at\": \"2026-05-14T10:54:19.721Z\",\n1158\t  \"metrics\": {\n1159\t    \"eval_success_rate\": 0.447,\n1160\t    \"eval_successes\": 21,\n1161\t    \"eval_total\": 47,\n1162\t    \"vs_baseline_pp\": 2.1,\n1163\t    \"per_task\": {\n1164\t      \"look_at_obj_in_light\": \"3/6 (50.0%)\",\n1165\t      \"pick_and_place_simple\": \"2/8 (25.0%)\",\n1166\t      \"pick_clean_then_place\": \"6/11 (54.5%)\",\n1167\t      \"pick_cool_then_place\": \"1/7 (14.3%)\",\n1168\t      \"pick_heat_then_place\": \"6/8 (75.0%)\",\n1169\t      \"pick_two_obj_and_place\": \"3/7 (42.9%)\"\n1170\t    },\n1171\t    \"train_steps\": 195,\n1172\t    \"train_duration_min\": 16.3\n1173\t  }\n1174\t}\n1175\t\n1176\t=== vanilla-react-baseline ===\n1177\t{\n1178\t  \"status\": \"DONE\",\n1179\t  \"retry_count\": 0,\n1180\t  \"created_at\": \"2026-05-14T08:20:00.119Z\",\n1181\t  \"updated_at\": \"2026-05-14T10:54:35.171Z\",\n1182\t  \"spec\": {\n1183\t    \"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --eval_split valid_unseen --no_inject (MAX_STEPS=50 hardcoded)\",\n1184\t    \"server\": \"autodl-5090\",\n1185\t    \"data_path\": \"ALFWorld valid_unseen (47/85 tasks, solvable=True filter, pick_and_place_with_movable_recep excluded 0/11)\",\n1186\t    \"data_count\": 47,\n1187\t    \"model_name\": \"Qwen3-8B (zero-shot, enable_thinking=False)\",\n1188\t    \"seed\": 42,\n1189\t    \"gpu\": \"cuda:1\",\n1190\t    \"hypothesis\": \"Qwen3-8B zero-shot ReAct 在 ALFWorld valid_unseen 的基线成功率，作为 SFT 对比的 lower bound\",\n1191\t    \"checkpoint_path\": \"N/A (zero-shot, no training)\",\n1192\t    \"log_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/vanilla_react_baseline.json\"\n1193\t  },\n1194\t  \"conclusion\": \"success\",\n1195\t  \"metrics\": {\n1196\t    \"overall_success_rate\": 0.426,\n1197\t    \"total_tasks\": 47,\n1198\t    \"successes\": 20,\n1199\t    \"per_task_type\": {\n1200\t      \"pick_heat_then_place\": {\n1201\t        \"success\": 5,\n1202\t        \"total\": 8,\n1203\t        \"rate\": 0.625\n1204\t      },\n1205\t      \"look_at_obj_in_light\": {\n1206\t        \"success\": 3,\n1207\t        \"total\": 6,\n1208\t        \"rate\": 0.5\n1209\t      },\n1210\t      \"pick_and_place_simple\": {\n1211\t        \"success\": 4,\n1212\t        \"total\": 8,\n1213\t        \"rate\": 0.5\n1214\t      },\n1215\t      \"pick_clean_then_place\": {\n1216\t        \"success\": 5,\n1217\t        \"total\": 11,\n1218\t        \"rate\": 0.455\n1219\t      },\n1220\t      \"pick_two_obj_and_place\": {\n1221\t        \"success\": 3,\n1222\t        \"total\": 7,\n1223\t        \"rate\": 0.429\n1224\t      },\n1225\t      \"pick_cool_then_place\": {\n1226\t        \"success\": 0,\n1227\t        \"total\": 7,\n1228\t        \"rate\": 0\n1229\t      }\n1230\t    }\n1231\t  },\n1232\t  \"completed_at\": \"2026-05-14T08:58:00.892Z\"\n1233\t}\n1234\t\n1235\t=== mini-pipeline-e2e ===\n1236\t{\n1237\t  \"status\": \"PREPARING\",\n1238\t  \"retry_count\": 0,\n1239\t  \"created_at\": \"2026-05-14T10:39:15.654Z\",\n1240\t  \"updated_at\": \"2026-05-14T10:39:15.654Z\",\n1241\t  \"conclusion\": \"failed\"\n1242\t}\n1243\t\n1244\t=== sft-dryrun-73 ===\n1245\t{\n1246\t  \"status\": \"DONE\",\n1247\t  \"retry_count\": 0,\n1248\t  \"created_at\": \"2026-05-14T08:19:34.694Z\",\n1249\t  \"updated_at\": \"2026-05-14T08:20:00.752Z\",\n1250\t  \"spec\": {\n1251\t    \"command\": \"swift sft --config configs/sft_vanilla.yaml (dry-run, 1 epoch, bs=1, max_length=2048)\",\n1252\t    \"server\": \"autodl-5090\",\n1253\t    \"data_path\": \"data/trajectories/ (124 successful trajectories)\",\n1254\t    \"data_count\": 124,\n1255\t    \"model_name\": \"Qwen3-8B\",\n1256\t    \"seed\": 42,\n1257\t    \"gpu\": \"cuda:0\",\n1258\t    \"hypothesis\": \"SFT pipeline 端到端验证：注入→格式化→训练流程是否正常工作\",\n1259\t    \"checkpoint_path\": \"checkpoints/dryrun_sft_v2/v0-20260514-161410/checkpoint-8/\",\n1260\t    \"log_path\": \"checkpoints/dryrun_sft_v2/v0-20260514-161410/\"\n1261\t  },\n1262\t  \"conclusion\": \"success\",\n1263\t  \"completed_at\": \"2026-05-14T08:19:52.165Z\",\n1264\t  \"metrics\": {\n1265\t    \"train_loss_init\": 2.436,\n1266\t    \"train_loss_final\": 1.543,\n1267\t    \"train_loss_avg\": 1.894,\n1268\t    \"peak_memory_gib\": 19.22,\n1269\t    \"steps\": 8,\n1270\t    \"duration_sec\": 42,\n1271\t    \"data_vanilla\": 124,\n1272\t    \"data_injected_dryrun\": 96,\n1273\t    \"injected_failed\": 4\n1274\t  }\n1275\t}\n1276\t\n1277\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e0ffc28-616e-458d-ad71-774cf0ab4854",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "e061b23f-8785-4fc7-a815-e1a5e6c6fd42",
+            "sourceToolAssistantUUID": "2e0ffc28-616e-458d-ad71-774cf0ab4854",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T01:55:06.629Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I also need the data for `v4-fixed-inject25`, `v4-fixed-inject10`, and `v4-random-recovery-eval`. Let me also check the entries I saw references to but haven't fully printed yet. Let me search for the missing ones."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e061b23f-8785-4fc7-a815-e1a5e6c6fd42",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XDfRdRHCvdHes8EmUT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e4cae757-d7a9-4697-b7b1-507c35f91d42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CN81YG6o3ckDkCBdrqTW6c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9444,
+                "cache_read_input_tokens": 49886,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T01:55:13.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P7KkLrY8MEoh2TqNTDxHps",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1/tool-results/mcp-agent-ml-research-read_registry-1778810017005.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Print specific experiments I need details on\nfor eid in ['v4-fixed-inject25', 'v4-fixed-inject10', 'v4-random-recovery-eval', 'v4-taxei-seed123']:\n    if eid in exps:\n        print(f'=== {eid} ===')\n        print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\n        print()\n    else:\n        print(f'{eid}: NOT FOUND')\n        print()\n\"",
+                "description": "Print specific experiment entries"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4cae757-d7a9-4697-b7b1-507c35f91d42",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XDfRdRHCvdHes8EmUT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ab015754-cc98-4e91-814b-551526e9a947",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CN81YG6o3ckDkCBdrqTW6c",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9444,
+                "cache_read_input_tokens": 49886,
+                "output_tokens": 404,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9444
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 404,
+                    "cache_read_input_tokens": 49886,
+                    "cache_creation_input_tokens": 9444,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9444,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T01:55:13.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P7KkLrY8MEoh2TqNTDxHps",
+              "type": "tool_result",
+              "content": "=== v4-fixed-inject25 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T22:09:23.317Z\",\n  \"updated_at\": \"2026-05-14T22:29:19.308Z\",\n  \"spec\": {\n    \"hypothesis\": \"Fixed-size ablation: 25% injection ratio (4,358 total samples, ~1,090 injected + ~3,269 clean). Tests intermediate injection ratio. Combined with 10%/50% results, reveals dose-response curve. Addresses Reviewer Concern #5.\",\n    \"parent\": \"v4-taxei-eval\",\n    \"plan_id\": \"fixed-size-ablation\",\n    \"reviewer_concern\": \"RC5\"\n  },\n  \"conclusion\": \"killed\",\n  \"failure_reason\": \"duplicate entry — active experiment is v4-taxei-fixed-inject25 (RUNNING)\"\n}\n\n=== v4-fixed-inject10 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T22:09:21.673Z\",\n  \"updated_at\": \"2026-05-14T22:29:18.354Z\",\n  \"spec\": {\n    \"hypothesis\": \"Fixed-size ablation: 10% injection ratio (4,358 total samples, ~436 injected + ~3,922 clean). Tests whether low injection ratio still harms clean performance. If yes → injection itself is harmful regardless of ratio. Addresses Reviewer Concern #5.\",\n    \"parent\": \"v4-taxei-eval\",\n    \"plan_id\": \"fixed-size-ablation\",\n    \"reviewer_concern\": \"RC5\"\n  },\n  \"conclusion\": \"killed\",\n  \"failure_reason\": \"duplicate entry — active experiment is v4-taxei-fixed-inject10 (RUNNING)\"\n}\n\n=== v4-random-recovery-eval ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T21:04:57.591Z\",\n  \"updated_at\": \"2026-05-14T22:00:43.285Z\",\n  \"hypothesis\": \"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_recovery_eval.json\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": \"cuda:0\",\n    \"pid\": 90124,\n    \"model_name\": \"Qwen3-8B + LoRA (random SFT v4)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387\",\n    \"eval_data\": \"valid_unseen (47 episodes)\",\n    \"log_path\": \"/tmp/v4_random_recovery_eval.log\",\n    \"output_path\": \"eval_results/v4_random_recovery_eval.json\",\n    \"data_path\": \"valid_unseen\",\n    \"data_count\": 47\n  },\n  \"conclusion\": \"success\",\n  \"checkpoint_path\": \"eval_results/v4_random_recovery_eval.json\",\n  \"completed_at\": \"2026-05-14T21:42:07.544Z\",\n  \"metrics\": {\n    \"recovery_rate\": 0.638,\n    \"detection_rate\": 0,\n    \"successes\": 30,\n    \"total\": 47,\n    \"source\": \"json-file-verified\",\n    \"note\": \"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\"\n  }\n}\n\n=== v4-taxei-seed123 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T21:49:34.191Z\",\n  \"updated_at\": \"2026-05-14T23:43:38.819Z\",\n  \"hypothesis\": \"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\",\n  \"spec\": {\n    \"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 123 --lora_rank 16 --num_train_epochs 3\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": \"cuda:0\",\n    \"pid\": 92263,\n    \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-seed123.log\",\n    \"submitted_at\": \"2026-05-14T21:50:17.845Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/tax_error_inject_agent/data/mini_pipeline_v4/sft_taxei_v4.jsonl\",\n    \"data_count\": 9029,\n    \"model_name\": \"Qwen3-8B\",\n    \"seed\": 123,\n    \"wall_clock_seconds\": 6801.0,\n    \"gpu_hours\": 1.89\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-14T23:41:32.774Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T23:41:33.984355+00:00\"\n      }\n    ]\n  },\n  \"metrics\": {\n    \"final_loss\": 0.35506879,\n    \"token_accuracy\": 0.89978214,\n    \"train_steps\": 3387,\n    \"train_epochs\": 3,\n    \"train_duration_min\": 109.2,\n    \"train_runtime_sec\": 6549.432,\n    \"train_speed_s_per_it\": 1.934,\n    \"memory_gib\": 18.49\n  },\n  \"checkpoint_path\": \"checkpoints/mini_taxei_sft_v4_seed123/v0-20260515-055026/checkpoint-3387\",\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-14T23:43:38.819Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab015754-cc98-4e91-814b-551526e9a947",
+            "isSidechain": true,
+            "promptId": "a87ffe9c-50b6-4695-890c-6f3e4186d1b8",
+            "agentId": "ab1ac2b63b3caff8d",
+            "type": "user",
+            "uuid": "2099f84e-a707-4002-8c1d-98dcdd93949c",
+            "sourceToolAssistantUUID": "ab015754-cc98-4e91-814b-551526e9a947",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T01:56:06.572Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all 61 experiments. Here is the complete organized report.\n\n---\n\n## Complete Experiment Registry: 61 Entries\n\n---\n\n### 1. Multi-seed Vanilla Experiments (Training + Eval)\n\n**Training:**\n\n| ID | Status | Conclusion | Seed | Data Count | Metrics |\n|---|---|---|---|---|---|\n| `mini-vanilla-sft-v4` | PREPARING | success | 42 | 4,358 | (no metrics recorded) |\n| `v4-vanilla-seed0` | DONE | success | 0 | 4,358 | final_loss=0.297, token_accuracy=0.902, 1635 steps, 58 min |\n| `v4-vanilla-seed123` | DONE | success | 123 | 4,358 | final_loss=0.288, token_accuracy=0.903, 1635 steps, 58.9 min |\n| `v4-vanilla-seed7` | DONE | killed | 7 | 4,358 | (no metrics) |\n\n**Eval:**\n\n| ID | Status | Conclusion | Seed | Success Rate | Successes/Total |\n|---|---|---|---|---|---|\n| `v4-vanilla-eval-r3` | PREPARING | success | 42 | 61.7% | 29/47 |\n| `v4-vanilla-eval-r2` | PREPARING | failed | 42 | -- | -- |\n| `v4-vanilla-eval` | PREPARING | failed | 42 | -- | -- |\n| `v4-vanilla-seed0-eval` | DONE | success | 0 | 68.1% | 32/47 |\n| `v4-vanilla-seed123-eval` | DONE | success | 123 | 66.0% | 31/47 |\n\n**Summary:** Vanilla seed=42 eval: 61.7%, seed=0: 68.1%, seed=123: 66.0%. Mean ~65.3%.\n\n---\n\n### 2. Multi-seed TaxEI Experiments (Training + Eval)\n\n**Training:**\n\n| ID | Status | Conclusion | Seed | Data Count | Metrics |\n|---|---|---|---|---|---|\n| `v4-taxei-sft-r2` | PREPARING | success | 42 | 9,029 | (training completed) |\n| `v4-taxei-seed0` | DONE | success | 0 | 9,029 | final_loss=0.355, token_accuracy=0.917, 3387 steps, 110 min |\n| `v4-taxei-seed123` | DONE | success | 123 | 9,029 | final_loss=0.355, token_accuracy=0.900, 3387 steps, 109.2 min |\n\n**Eval:**\n\n| ID | Status | Conclusion | Seed | Success Rate | Successes/Total |\n|---|---|---|---|---|---|\n| `v4-taxei-eval` | PREPARING | negative | 42 | 61.7% | 29/47 |\n| `v4-taxei-seed0-eval` | DONE | success | 0 | 46.8% | 22/47 |\n| `v4-taxei-seed123-eval` | DONE | success | 123 | 61.7% | 29/47 |\n\n**Additional metrics for `v4-taxei-eval`:** gate_3a=FAIL, gate_3b=FAIL, gate_4=PASS, mcnemar_vs_vanilla_p=1.0\n\n**Summary:** TaxEI seed=42 eval: 61.7%, seed=0: 46.8%, seed=123: 61.7%. Mean ~56.7%.\n\n---\n\n### 3. Multi-seed Random Experiments (Training + Eval)\n\n**Training:**\n\n| ID | Status | Conclusion | Seed | Data Count | Metrics |\n|---|---|---|---|---|---|\n| `v4-random-sft-r2` | PREPARING | success | 42 | 9,029 | (training completed) |\n| `v4-random-seed0` | DONE | success | 0 | 9,029 | final_loss=0.355, token_accuracy=0.912, 3387 steps, 110 min |\n| `v4-random-seed123` | DONE | success | 123 | 9,029 | train_loss=0.355, token_accuracy=0.942, 3387 steps, 110.2 min |\n\n**Eval:**\n\n| ID | Status | Conclusion | Seed | Success Rate | Successes/Total |\n|---|---|---|---|---|---|\n| `v4-random-eval` | PREPARING | negative | 42 | 66.0% | 31/47 |\n| `v4-random-seed0-eval` | DONE | success | 0 | 55.3% | 26/47 |\n| `v4-random-seed123-eval` | DONE | negative | 123 | 68.1% | 32/47 |\n\n**Summary:** Random seed=42 eval: 66.0%, seed=0: 55.3%, seed=123: 68.1%. Mean ~63.1%.\n\n---\n\n### 4. TaxEI Dose-Response Experiments (Fixed-Size Ablation)\n\n**Training:**\n\n| ID | Status | Conclusion | Inject Ratio | Data Count | Metrics |\n|---|---|---|---|---|---|\n| `v4-taxei-fixed-inject10` | DONE | success | 10% (436 injected + 3,922 clean) | 4,358 | final_loss=0.308, token_accuracy=0.888, 1635 steps, 58 min |\n| `v4-taxei-fixed-inject25-r2` | DONE | success | 25% (1,090 injected + 3,268 clean) | 4,358 | final_loss=0.285, token_accuracy=0.893, 1635 steps, 58 min |\n| `v4-taxei-fixed-inject25` | DONE | failed | 25% | 4,358 | CUDA_VISIBLE_DEVICES OOM failure |\n| `v4-taxei-fixed-inject50` | DONE | success | 50% (2,179 injected + 2,179 clean) | 4,358 | final_loss=0.259, token_accuracy=0.911, 1635 steps, 53.1 min |\n\n**Eval:**\n\n| ID | Status | Conclusion | Inject Ratio | Success Rate | Successes/Total |\n|---|---|---|---|---|---|\n| `v4-taxei-fixed-inject10-eval` | DONE | success | 10% | 61.7% | 29/47 |\n| `v4-taxei-fixed-inject25-eval` | DONE | success | 25% | 48.9% | 23/47 |\n| `v4-taxei-fixed-inject50-eval` | DONE | negative | 50% | 51.1% | 24/47 |\n\n**Placeholder/killed entries:**\n- `v4-fixed-inject10` | PREPARING | killed | duplicate of v4-taxei-fixed-inject10\n- `v4-fixed-inject25` | PREPARING | killed | duplicate of v4-taxei-fixed-inject25\n\n**Dose-response curve (TaxEI):** 0%=61.7% (vanilla baseline) -> 10%=61.7% -> 25%=48.9% -> 50%=51.1%\n\n---\n\n### 5. Random Dose-Response Experiments (Fixed-Size Ablation)\n\n**Training:**\n\n| ID | Status | Conclusion | Inject Ratio | Data Count | Metrics |\n|---|---|---|---|---|---|\n| `v4-random-fixed-inject10` | DONE | success | 10% | 4,358 | train_loss=0.423, token_accuracy=0.900, 1635 steps, 57 min |\n| `v4-random-fixed-inject25` | DONE | success | 25% | 4,358 | 1635 steps, 3 epochs |\n| `v4-random-fixed-inject50` | DONE | success | 50% | 4,358 | 1635 steps, 3 epochs |\n\n**Eval:**\n\n| ID | Status | Conclusion | Inject Ratio | Success Rate | Successes/Total |\n|---|---|---|---|---|---|\n| `v4-random-fixed-inject10-eval` | DONE | success | 10% | 68.1% | 32/47 |\n| `v4-random-fixed-inject25-eval` | RUNNING | -- | 25% | (in progress) | -- |\n| `v4-random-fixed-inject50-eval` | RUNNING | -- | 50% | (in progress) | -- |\n\n**Dose-response curve (Random, partial):** 10%=68.1%, 25%=TBD, 50%=TBD\n\n---\n\n### 6. Recovery Eval Experiments (Injected Error Eval)\n\n| ID | Status | Conclusion | Model Variant | Recovery Rate | Detection Rate | Successes/Total |\n|---|---|---|---|---|---|---|\n| `v4-vanilla-recovery-eval` | DONE | success | vanilla (seed=42) | 61.7% | 0% | 29/47 |\n| `v4-taxei-recovery-eval` | DONE | negative | taxei (seed=42) | 59.6% | 0% | 28/47 (process died 5x) |\n| `v4-taxei-recovery-eval-r2` | DONE | success | taxei (seed=42) | 59.6% | 0% | 28/47 (per-operator: C1=66.7%, C4=63.6%, P1=58.3%, P2=50.0%) |\n| `v4-random-recovery-eval` | DONE | success | random (seed=42) | 63.8% | 0% | 30/47 |\n| `v4-recovery-eval-dev` | PREPARING | success | -- | -- | -- | Pipeline development (dryrun pass) |\n| `v4-recovery-dryrun` | PREPARING | success | -- | -- | -- | Dryrun pass |\n\n---\n\n### 7. Other Experiments\n\n**v3 Training (format-aligned, pre-v4):**\n\n| ID | Status | Conclusion | Type | Data Count | Metrics |\n|---|---|---|---|---|---|\n| `mini-vanilla-sft-v3` | PREPARING | success | vanilla | 4,176 | 1566 steps |\n| `mini-taxei-sft-v3` | PREPARING | success | taxei | 7,545 (4,176 clean + 3,369 injected) | 2832 steps |\n| `mini-random-sft-v3` | PREPARING | success | random | 9,076 (4,176 clean + 4,900 injected) | 3405 steps |\n\n**v3 Eval:**\n\n| ID | Status | Conclusion | Type | Success Rate | Successes/Total |\n|---|---|---|---|---|---|\n| `v3-vanilla-eval` | PREPARING | success | vanilla | 74.5% | 35/47 |\n| `v3-taxei-eval` | PREPARING | negative | taxei | 66.0% | 31/47 |\n| `v3-random-eval` | PREPARING | negative | random | 51.1% | 24/47 |\n\n**v4 Training retries/failed/early:**\n\n| ID | Status | Conclusion | Notes |\n|---|---|---|---|\n| `v4-vanilla-sft` | PREPARING | failed | OOM, CUDA_VISIBLE_DEVICES not set |\n| `v4-taxei-sft` | PREPARING | failed | (early attempt) |\n| `v4-random-sft` | PREPARING | failed | (early attempt) |\n| `v4-taxei-sft-r3` | PREPARING | -- | retry with trap '' HUP |\n| `v4-random-sft-r3` | PREPARING | -- | retry with trap '' HUP |\n\n**Early/mini experiments:**\n\n| ID | Status | Conclusion | Type | Success Rate | Data Count |\n|---|---|---|---|---|---|\n| `mini-vanilla-sft` | DONE | negative | vanilla (mini) | 14.9% (7/47) | 278 |\n| `mini-taxei-sft` | DONE | success | taxei (mini) | 44.7% (21/47) | 278 |\n| `mini-pipeline-e2e` | PREPARING | failed | pipeline test | -- | -- |\n| `sft-dryrun-73` | DONE | success | dryrun | loss 2.436->1.543 | 124 |\n\n**Baseline & data collection:**\n\n| ID | Status | Conclusion | Metrics |\n|---|---|---|---|\n| `vanilla-react-baseline` | DONE | success | 42.6% (20/47), Qwen3-8B zero-shot ReAct |\n| `traj_collect_500` | DONE | negative | 501 successful / 714 total (70.2%), $8.86 API cost |\n\n**Unfinished/no-conclusion entries:**\n\n| ID | Status | Conclusion | Notes |\n|---|---|---|---|\n| `vanilla_sft_aligned_v1` | PREPARING | -- | config-based SFT attempt |\n| `vanilla_sft_aligned_v2` | PREPARING | -- | command-based SFT attempt |\n\n---\n\n### Key Accuracy Summary Table\n\n| Condition | Seed 42 | Seed 0 | Seed 123 | Mean |\n|---|---|---|---|---|\n| Vanilla (clean eval) | 61.7% | 68.1% | 66.0% | 65.3% |\n| TaxEI (clean eval) | 61.7% | 46.8% | 61.7% | 56.7% |\n| Random (clean eval) | 66.0% | 55.3% | 68.1% | 63.1% |\n| Zero-shot baseline | 42.6% | -- | -- | 42.6% |\n\n**TaxEI Dose-Response (clean eval):** 0%=61.7%, 10%=61.7%, 25%=48.9%, 50%=51.1%\n**Random Dose-Response (clean eval, partial):** 10%=68.1%, 25%=RUNNING, 50%=RUNNING\n\n**Recovery Eval (injected errors):** Vanilla=61.7%, TaxEI=59.6%, Random=63.8%. Detection rate=0% across all variants."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2099f84e-a707-4002-8c1d-98dcdd93949c",
+            "isSidechain": true,
+            "agentId": "ab1ac2b63b3caff8d",
+            "requestId": "req_011Cb3XEWhnQyispGewjPdox",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b659d0cf-9dc6-41a7-95b6-c4409475a890",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+            "sessionId": "91ba7eb1-f9a1-4a4e-9d7c-0ed39c6204d1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01REPCXSKZ5bwjpw5ZE57ZRF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2243,
+                "cache_read_input_tokens": 59330,
+                "output_tokens": 3687,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2243
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3687,
+                    "cache_read_input_tokens": 59330,
+                    "cache_creation_input_tokens": 2243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2243,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-file-at-home-ubuntu-claude-account-1-projects-home-ubuntu-agent-ml-re.md"
+}

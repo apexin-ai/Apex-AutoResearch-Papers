@@ -1,0 +1,5731 @@
+# Research conversation: <project_context> # 项目: tax_error_inject_agent ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_traini
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 103
+- **Recorded user turns:** 1
+- **Tool calls:** 28
+- **Original source:** `logs/chats/exported-trajectories/account-1/f233079e-2b3d-402c-bb6f-902039230613.jsonl`
+- **Structured JSON:** [`a10482a899ce5da2cd2a.json`](../../sessions/a1/a10482a899ce5da2cd2a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T22:36:35.564Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T22:36:35.564Z",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "content": "&lt;project_context>\n# 项目: tax_error_inject_agent\n\n## 运行环境\n- 服务器名: autodl-5090\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/tax_error_inject_agent\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: GPU 白名单：仅使用 autodl-5090 cuda:0-3，禁止使用其他服务器或 GPU（原因：本项目分配 4 张 RTX 5090，L1 红线要求明确 GPU 白名单）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n需要在 autodl-5090 上提交 25% injection 的 eval 实验，并恢复缺失的 eval 结果。\n\n## 任务 1: 查找 checkpoint 路径\n\nSSH 到 autodl-5090，找到以下训练的最终 checkpoint 路径：\n```bash\ncd /root/autodl-tmp/tax_error_inject_agent\nls -d checkpoints/v4_taxei_fixed_inject25_s1/*/checkpoint-* 2>/dev/null\nls -d checkpoints/v4_random_fixed_inject25_s1/*/checkpoint-* 2>/dev/null\n```\n\n如果找不到，也检查 output/ 目录：\n```bash\nls -d output/v4*inject25*s1*/*/checkpoint-* 2>/dev/null\n```\n\n## 任务 2: 恢复缺失的 TaxEI 25% s0/s123 eval 结果\n\nTaxEI 25% s0 和 s123 的 eval 已完成（conclusion=success）但 metrics 为空。检查 eval 结果文件和日志：\n```bash\n# 检查 eval 结果文件\nls eval_results/*inject25*s0* eval_results/*inject25*s123* 2>/dev/null\ncat eval_results/*taxei*inject25*s0*.json 2>/dev/null\ncat eval_results/*taxei*inject25*s123*.json 2>/dev/null\n\n# 检查 eval 日志\ntail -50 ~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s0-eval.log 2>/dev/null\ntail -50 ~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log 2>/dev/null\n```\n\n如果找到了结果，用 update_registry 更新 metrics（格式: {eval_success_rate: X, eval_successes: N, eval_total: 47, by_task: {...}}）。\n\n## 任务 3: 提交 s1 eval 实验\n\nv4-taxei-fixed-inject25-s1 和 v4-random-fixed-inject25-s1（后者刚完成，先确认 checkpoint 存在）。\n\nEval 命令格式（参考已完成的 10% eval）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path {CHECKPOINT_PATH} --num_episodes 47 --seed 42\n```\n\n提交步骤（对每个 eval）：\n1. 用 update_registry 创建实验（exp_id, field=\"status\", value=\"QUEUED\"），同时设置 hypothesis\n2. 用 update_registry 设置 hypothesis: \"v4 {TaxEI/Random} 25% seed={1} eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\"\n3. 用 submit_training_job 提交到 autodl-5090 的空闲 GPU\n\nGPU 分配：\n- cuda:0: v4-taxei-fixed-inject25-s1-eval\n- cuda:1: v4-random-fixed-inject25-s1-eval（如果 Random s1 checkpoint 存在）\n\n注意：Random-25%-s1（v4-random-fixed-inject25-s1）刚完成训练，可能 checkpoint 已存在。请先确认。\n\n## 产出\n\n汇报：\n1. 找到的 checkpoint 路径\n2. 恢复的 TaxEI s0/s123 eval 结果（如果有）\n3. 已提交的 eval 实验 ID 和 GPU\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T22:36:35.568Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T22:36:35.568Z",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+## Round 1
+
+101 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T22:36:35.606Z_
+
+&lt;project_context>
+# 项目: tax_error_inject_agent
+
+## 运行环境
+- 服务器名: autodl-5090
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/tax_error_inject_agent
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: GPU 白名单：仅使用 autodl-5090 cuda:0-3，禁止使用其他服务器或 GPU（原因：本项目分配 4 张 RTX 5090，L1 红线要求明确 GPU 白名单）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+需要在 autodl-5090 上提交 25% injection 的 eval 实验，并恢复缺失的 eval 结果。
+
+## 任务 1: 查找 checkpoint 路径
+
+SSH 到 autodl-5090，找到以下训练的最终 checkpoint 路径：
+```bash
+cd /root/autodl-tmp/tax_error_inject_agent
+ls -d checkpoints/v4_taxei_fixed_inject25_s1/*/checkpoint-* 2>/dev/null
+ls -d checkpoints/v4_random_fixed_inject25_s1/*/checkpoint-* 2>/dev/null
+```
+
+如果找不到，也检查 output/ 目录：
+```bash
+ls -d output/v4*inject25*s1*/*/checkpoint-* 2>/dev/null
+```
+
+## 任务 2: 恢复缺失的 TaxEI 25% s0/s123 eval 结果
+
+TaxEI 25% s0 和 s123 的 eval 已完成（conclusion=success）但 metrics 为空。检查 eval 结果文件和日志：
+```bash
+# 检查 eval 结果文件
+ls eval_results/*inject25*s0* eval_results/*inject25*s123* 2>/dev/null
+cat eval_results/*taxei*inject25*s0*.json 2>/dev/null
+cat eval_results/*taxei*inject25*s123*.json 2>/dev/null
+
+# 检查 eval 日志
+tail -50 ~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s0-eval.log 2>/dev/null
+tail -50 ~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log 2>/dev/null
+```
+
+如果找到了结果，用 update_registry 更新 metrics（格式: {eval_success_rate: X, eval_successes: N, eval_total: 47, by_task: {...}}）。
+
+## 任务 3: 提交 s1 eval 实验
+
+v4-taxei-fixed-inject25-s1 和 v4-random-fixed-inject25-s1（后者刚完成，先确认 checkpoint 存在）。
+
+Eval 命令格式（参考已完成的 10% eval）：
+```bash
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path {CHECKPOINT_PATH} --num_episodes 47 --seed 42
+```
+
+提交步骤（对每个 eval）：
+1. 用 update_registry 创建实验（exp_id, field="status", value="QUEUED"），同时设置 hypothesis
+2. 用 update_registry 设置 hypothesis: "v4 {TaxEI/Random} 25% seed={1} eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion."
+3. 用 submit_training_job 提交到 autodl-5090 的空闲 GPU
+
+GPU 分配：
+- cuda:0: v4-taxei-fixed-inject25-s1-eval
+- cuda:1: v4-random-fixed-inject25-s1-eval（如果 Random s1 checkpoint 存在）
+
+注意：Random-25%-s1（v4-random-fixed-inject25-s1）刚完成训练，可能 checkpoint 已存在。请先确认。
+
+## 产出
+
+汇报：
+1. 找到的 checkpoint 路径
+2. 恢复的 TaxEI s0/s123 eval 结果（如果有）
+3. 已提交的 eval 实验 ID 和 GPU
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "943a1a74-dd0f-4b88-956e-13c1cd5b71e7",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T22:36:35.605Z_
+
+```json
+{
+  "parentUuid": "943a1a74-dd0f-4b88-956e-13c1cd5b71e7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9f592149-42d2-476a-a249-9e20d29d72d3",
+  "timestamp": "2026-05-15T22:36:35.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T22:36:35.605Z_
+
+```json
+{
+  "parentUuid": "9f592149-42d2-476a-a249-9e20d29d72d3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "7cb63d73-4684-4efd-9eb1-98b780d68126",
+  "timestamp": "2026-05-15T22:36:35.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T22:36:35.605Z_
+
+```json
+{
+  "parentUuid": "7cb63d73-4684-4efd-9eb1-98b780d68126",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "92833793-71d1-4735-b250-4e0f6e4cb7f0",
+  "timestamp": "2026-05-15T22:36:35.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-15T22:36:35.605Z_
+
+```json
+{
+  "parentUuid": "92833793-71d1-4735-b250-4e0f6e4cb7f0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b4a941c2-c578-41a5-b9a7-3a438e5231f5",
+  "timestamp": "2026-05-15T22:36:35.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T22:36:38.280Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by executing the SSH commands to find checkpoints and check eval results. I'll do multiple things in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a941c2-c578-41a5-b9a7-3a438e5231f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb59tsn47XPqnBochdVwd",
+  "type": "assistant",
+  "uuid": "5f80dfae-4306-42f3-bc4b-51062d48888d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNMXWe4M5m2R3nWfTM7qTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12305,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12305,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12305,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12305
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-15T22:36:38.927Z_
+
+Let我先 SSH 到服务器查找 checkpoint 和 eval 结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f80dfae-4306-42f3-bc4b-51062d48888d",
+  "isSidechain": false,
+  "requestId": "req_011Cb59tsn47XPqnBochdVwd",
+  "type": "assistant",
+  "uuid": "50489c7d-743d-491b-bbd1-8e471dd3e330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNMXWe4M5m2R3nWfTM7qTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12305,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12305,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12305,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12305
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T22:36:40.614Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016PPoPWNVrks6qqKKdTgV1u`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50489c7d-743d-491b-bbd1-8e471dd3e330",
+  "isSidechain": false,
+  "requestId": "req_011Cb59tsn47XPqnBochdVwd",
+  "type": "assistant",
+  "uuid": "2d1ba1a6-e56b-4438-ad41-0a802fef5303",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNMXWe4M5m2R3nWfTM7qTf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12305,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12305,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12305,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12305
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T22:36:40.620Z_
+
+<details><summary>↩ Tool result · `toolu_016PPoPWNVrks6qqKKdTgV1u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d1ba1a6-e56b-4438-ad41-0a802fef5303",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "fac14d46-a6b1-4830-a327-13250aacf3b4",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "2d1ba1a6-e56b-4438-ad41-0a802fef5303",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-15T22:36:43.892Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run multiple SSH commands in parallel to gather information:
+1. Find checkpoints for inject25 s1
+2. Check eval results for inject25 s0/s123
+3. Check eval logs
+4. Check registry for existing experiments
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fac14d46-a6b1-4830-a327-13250aacf3b4",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "4fd5faee-6360-4685-b109-a284739eb74f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T22:36:45.003Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BRxTunLgGPNCXfwVTvvMvR`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -d /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/*/checkpoint-* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fd5faee-6360-4685-b109-a284739eb74f",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "7c9024e4-5b56-46fb-bfa0-0a1ffa5e4121",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T22:36:45.021Z_
+
+<details><summary>↩ Tool result · `toolu_01BRxTunLgGPNCXfwVTvvMvR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c9024e4-5b56-46fb-bfa0-0a1ffa5e4121",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "aacd85a2-cc00-4190-b5c8-c3d5dad3dacf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7c9024e4-5b56-46fb-bfa0-0a1ffa5e4121",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T22:36:45.930Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Zpk26rPp55SshPnrAdHJF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -d /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/*/checkpoint-* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aacd85a2-cc00-4190-b5c8-c3d5dad3dacf",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "ee9933c5-6b50-4443-96cc-b344222bd3fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T22:36:45.945Z_
+
+<details><summary>↩ Tool result · `toolu_011Zpk26rPp55SshPnrAdHJF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee9933c5-6b50-4443-96cc-b344222bd3fa",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "f82f4357-1f7a-4cb8-8412-008b0a7286e8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ee9933c5-6b50-4443-96cc-b344222bd3fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T22:36:46.972Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UdQDgcTFcSNqCJ3Z6b16Zr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -d /root/autodl-tmp/tax_error_inject_agent/output/v4*inject25*s1*/*/checkpoint-* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f82f4357-1f7a-4cb8-8412-008b0a7286e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "2ac29c65-e5a5-419b-85fc-11bee4c2c3fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T22:36:46.986Z_
+
+<details><summary>↩ Tool result · `toolu_01UdQDgcTFcSNqCJ3Z6b16Zr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ac29c65-e5a5-419b-85fc-11bee4c2c3fc",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "6f0190b4-a794-47ce-8b90-31660779dfe1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2ac29c65-e5a5-419b-85fc-11bee4c2c3fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T22:36:47.885Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JcQ2ypBH5qchWs266nmwdb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/eval_results/*inject25* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f0190b4-a794-47ce-8b90-31660779dfe1",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "607369dc-d295-4251-996b-1c7a7ff41ff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T22:36:47.900Z_
+
+<details><summary>↩ Tool result · `toolu_01JcQ2ypBH5qchWs266nmwdb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "607369dc-d295-4251-996b-1c7a7ff41ff2",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "385e99be-0e3d-4b29-8fe1-09d24fee4982",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "607369dc-d295-4251-996b-1c7a7ff41ff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T22:36:48.799Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NtSFm86f9WAVvfvZawM5X2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 /root/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s0-eval.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "385e99be-0e3d-4b29-8fe1-09d24fee4982",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "bae6c5f4-f0bc-480f-b2eb-be069979d1dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T22:36:48.808Z_
+
+<details><summary>↩ Tool result · `toolu_01NtSFm86f9WAVvfvZawM5X2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bae6c5f4-f0bc-480f-b2eb-be069979d1dd",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "5fc4ce39-bf98-4923-9712-5677417cf185",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bae6c5f4-f0bc-480f-b2eb-be069979d1dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T22:36:49.734Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012gh6rWiu7XAc3naQvnyEyJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 /root/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fc4ce39-bf98-4923-9712-5677417cf185",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "7c4d226b-bba7-4fc1-9fe0-b277b74db36c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T22:36:49.750Z_
+
+<details><summary>↩ Tool result · `toolu_012gh6rWiu7XAc3naQvnyEyJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c4d226b-bba7-4fc1-9fe0-b277b74db36c",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "681a4dd7-3e8e-48aa-bcce-b90dfff2384d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7c4d226b-bba7-4fc1-9fe0-b277b74db36c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T22:36:50.537Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014n9jmV4iSVD9ErCuVhQDDF`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "681a4dd7-3e8e-48aa-bcce-b90dfff2384d",
+  "isSidechain": false,
+  "requestId": "req_011Cb59uF8CVHMxfV3EGkZWx",
+  "type": "assistant",
+  "uuid": "ef989dbc-3c35-4eec-9e52-9a2dfb38f8a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wq5AAba4vNqSvWoFgJ4cnJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2302,
+      "cache_read_input_tokens": 23752,
+      "output_tokens": 942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 942,
+          "cache_read_input_tokens": 23752,
+          "cache_creation_input_tokens": 2302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ef989dbc-3c35-4eec-9e52-9a2dfb38f8a6",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T22:36:50.874Z_
+
+<details><summary>↩ Tool result · `toolu_014n9jmV4iSVD9ErCuVhQDDF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-taxei-fixed-inject25-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:12.446Z\", \"updated_at\": \"2026-05-15T22:33:00.087Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s7/v0-20260516-053222/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s7.log\"}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:32.348Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:36.683523+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4242, \"final_step_loss\": 0.2571, \"token_accuracy\": 0.904, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3430.48, \"train_duration_min\": 57.17, \"train_samples_per_second\": 3.811, \"train_steps_per_second\": 0.477, \"memory_gib\": 17.55, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:54.528Z\"}, \"v4-random-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:10.005Z\", \"updated_at\": \"2026-05-15T22:32:58.843Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1.log\"}, \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:26.273Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:28.937887+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4261, \"final_step_loss\": 0.2442, \"token_accuracy\": 0.9123, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3417.56, \"train_duration_min\": 56.96, \"train_samples_per_second\": 3.826, \"train_steps_per_second\": 0.478, \"memory_gib\": 18, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:56.713Z\"}, \"v4-taxei-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:29:07.506Z\", \"updated_at\": \"2026-05-15T22:29:56.310Z\", \"spec\": {\"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject25_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"199599\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1.log\", \"submitted_at\": \"2026-05-15T21:29:07.235Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\", \"wall_clock_seconds\": 3649.1, \"gpu_hours\": 1.01}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:27:46.845Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:27:49.896536+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4243, \"train_duration_min\": 57.5, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:29:56.310Z\"}, \"v4-random-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:57:41.705Z\", \"updated_at\": \"2026-05-15T22:15:41.386Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"202328\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:57:41.444Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"wall_clock_seconds\": 818, \"gpu_hours\": 0.23}, \"hypothesis\": \"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:12:57.609Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:12:59.982752+00:00\"}]}, \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:15:41.386Z\"}, \"v4-random-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:08.353Z\", \"updated_at\": \"2026-05-15T21:57:11.016Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 7}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:54:51.217Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:54:53.698171+00:00\"}]}, \"metrics\": {\"final_loss\": 0.2352, \"train_loss_avg\": 0.4209, \"final_token_acc\": 0.9066, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3511.93, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.148}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"conclusion\": \"success\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7.log\", \"completed_at\": \"2026-05-15T21:57:11.016Z\"}, \"v4-random-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:05:18.654Z\", \"updated_at\": \"2026-05-15T21:27:48.360Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"198045\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T21:05:18.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s1)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"wall_clock_seconds\": 1350.0, \"gpu_hours\": 0.37}, \"hypothesis\": \"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:25:33.786Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:25:36.468478+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 10, \"success\": 5, \"rate\": 0.5}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 6, \"rate\": 0.857}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:48.360Z\"}, \"v4-taxei-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:02:22.234Z\", \"updated_at\": \"2026-05-15T21:27:44.185Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"197555\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:02:21.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-taxei-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"wall_clock_seconds\": 1522.4, \"gpu_hours\": 0.42}, \"hypothesis\": \"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:19:30.996Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:19:33.518373+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s7_eval.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:44.185Z\"}, \"v4-taxei-fixed-inject10-s1-eval-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:54:05.248Z\", \"updated_at\": \"2026-05-15T21:06:11.418Z\", \"spec\": {\"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s1)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\"}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:04:33.190Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:04:36.432028+00:00\"}]}, \"metrics\": {\"success_rate\": 0.511, \"successes\": 24, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s1_eval.json\", \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval-r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:06:11.418Z\"}, \"v4-taxei-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:05.524Z\", \"updated_at\": \"2026-05-15T21:05:01.494Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"191997\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log\", \"submitted_at\": \"2026-05-15T20:01:19.314Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 7, \"wall_clock_seconds\": 3683.3, \"gpu_hours\": 1.02}, \"reproduce\": {\"finished_at\": \"2026-05-15T20:59:13.748Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:59:16.071667+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.237, \"train_loss_avg\": 0.4212, \"final_token_acc\": 0.905, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3437, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.102}, \"completed_at\": \"2026-05-15T21:02:42.621Z\"}, \"v4-random-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:07.390Z\", \"updated_at\": \"2026-05-15T21:04:23.738Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject10.jsonl --seed 1\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"192077\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T20:01:21.468Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"wall_clock_seconds\": 3782.3, \"gpu_hours\": 1.05}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:01:51.221Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:01:53.909162+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3096, \"train_loss_avg\": 0.4238, \"final_token_acc\": 0.8902, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3488, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.132}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:04:23.738Z\"}, \"v4-taxei-fixed-inject10-s123-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:05.773Z\", \"updated_at\": \"2026-05-15T20:54:14.378Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"194978\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:05.519Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s123)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 848.9, \"gpu_hours\": 0.24}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:16.884Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:19.215245+00:00\"}]}, \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:54:14.378Z\"}, \"v4-random-fixed-inject10-s0-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:07.402Z\", \"updated_at\": \"2026-05-15T20:52:32.204Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"195118\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:07.156Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s0)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 745.0, \"gpu_hours\": 0.21}, \"hypothesis\": \"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:22.439Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:26.585713+00:00\"}]}, \"metrics\": {\"success_rate\": 0.66, \"successes\": 31, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:52:32.204Z\"}, \"v4-random-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:43.603Z\", \"updated_at\": \"2026-05-15T20:04:12.753Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"188022\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:43.056Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_random_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3975.6, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:58.662Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:41.337Z\", \"updated_at\": \"2026-05-15T20:04:11.865Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"187785\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval.log\", \"submitted_at\": \"2026-05-15T18:57:40.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_taxei_fixed_inject10_s123\", \"seed\": 123, \"wall_clock_seconds\": 3977.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:57.889Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:45.002Z\", \"updated_at\": \"2026-05-15T20:04:10.985Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"188906\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T18:57:44.756Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 3927.9, \"gpu_hours\": 1.09}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T20:03:12.659Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-random-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:59:20.398Z\", \"updated_at\": \"2026-05-15T20:04:09.526Z\", \"hypothesis\": \"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\", \"parent\": \"v4-random-fixed-inject10-s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s123_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s123\", \"eval_data\": \"eval/eval_tasks_47.json\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123-eval.log\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_s123_eval.json\", \"completed_at\": \"2026-05-15T20:03:32.060Z\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}, \"v4-taxei-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:46.985Z\", \"updated_at\": \"2026-05-15T20:04:06.775Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"188410\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:46.725Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s0\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"model_name\": \"v4_taxei_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3970.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"completed_at\": \"2026-05-15T20:03:56.888Z\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 8, \"rate\": 0.727}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}}, \"v4-taxei-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:17.800Z\", \"updated_at\": \"2026-05-15T18:57:47.705Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject10_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"182703\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T17:54:17.595Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"wall_clock_seconds\": 3728.4, \"gpu_hours\": 1.04}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:53:12.812Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:53:14.974953+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3013, \"train_loss_avg\": 0.4225, \"final_token_acc\": 0.8947, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3469, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.121}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:25.993Z\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\"}, \"v4-random-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:20.390Z\", \"updated_at\": \"2026-05-15T18:57:42.428Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_random_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"182781\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:54:20.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 3802.4, \"gpu_hours\": 1.06}, \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:54:38.478Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:54:40.603963+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3124, \"train_loss_avg\": 0.4236, \"final_token_acc\": 0.8867, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3535.7, \"train_samples_per_second\": 3.698, \"train_steps_per_second\": 0.462, \"memory_gib\": 18.95}, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:57:42.428Z\"}, \"v4-taxei-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:48:24.290Z\", \"updated_at\": \"2026-05-15T18:56:29.231Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_taxei_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"180877\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:48:23.907Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"wall_clock_seconds\": 4085.3, \"gpu_hours\": 1.13}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:47:28.139Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:47:30.511963+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4234, \"final_loss\": 0.3097, \"final_token_acc\": 0.8882, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3497, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:29.231Z\"}}, \"count\": 20, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3244}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef989dbc-3c35-4eec-9e52-9a2dfb38f8a6",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "6439e548-2b70-42f5-a6c9-ccf2fd5fad96",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v4-taxei-fixed-inject25-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:32:12.446Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:33:00.087Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s7/v0-20260516-053222/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s7.log\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:30:32.348Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:30:36.683523+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4242, \\\"final_step_loss\\\": 0.2571, \\\"token_accuracy\\\": 0.904, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 3430.48, \\\"train_duration_min\\\": 57.17, \\\"train_samples_per_second\\\": 3.811, \\\"train_steps_per_second\\\": 0.477, \\\"memory_gib\\\": 17.55, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:32:54.528Z\\\"}, \\\"v4-random-fixed-inject25-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:32:10.005Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:32:58.843Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1.log\\\"}, \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:30:26.273Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:30:28.937887+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4261, \\\"final_step_loss\\\": 0.2442, \\\"token_accuracy\\\": 0.9123, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 3417.56, \\\"train_duration_min\\\": 56.96, \\\"train_samples_per_second\\\": 3.826, \\\"train_steps_per_second\\\": 0.478, \\\"memory_gib\\\": 18, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:32:56.713Z\\\"}, \\\"v4-taxei-fixed-inject25-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:29:07.506Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:29:56.310Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject25_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"199599\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:29:07.235Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 1, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 3649.1, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:27:46.845Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:27:49.896536+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4243, \\\"train_duration_min\\\": 57.5, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:29:56.310Z\\\"}, \\\"v4-random-fixed-inject10-s7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:57:41.705Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:15:41.386Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"202328\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:57:41.444Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s7)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s7\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 818, \\\"gpu_hours\\\": 0.23}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:12:57.609Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:12:59.982752+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:15:41.386Z\\\"}, \\\"v4-random-fixed-inject10-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:08.353Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:57:11.016Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s7)\\\", \\\"seed\\\": 7}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:54:51.217Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:54:53.698171+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.2352, \\\"train_loss_avg\\\": 0.4209, \\\"final_token_acc\\\": 0.9066, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3511.93, \\\"memory_gib\\\": 18.15, \\\"train_speed_s_per_it\\\": 2.148}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\\\", \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7.log\\\", \\\"completed_at\\\": \\\"2026-05-15T21:57:11.016Z\\\"}, \\\"v4-random-fixed-inject10-s1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:05:18.654Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:27:48.360Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"198045\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:05:18.393Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s1)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 1350.0, \\\"gpu_hours\\\": 0.37}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:25:33.786Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:25:36.468478+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.681, \\\"successes\\\": 32, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 10, \\\"success\\\": 5, \\\"rate\\\": 0.5}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 6, \\\"rate\\\": 0.857}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:27:48.360Z\\\"}, \\\"v4-taxei-fixed-inject10-s7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:02:22.234Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:27:44.185Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"197555\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:02:21.785Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject10 s7)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s7\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"wall_clock_seconds\\\": 1522.4, \\\"gpu_hours\\\": 0.42}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:19:30.996Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:19:33.518373+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.681, \\\"successes\\\": 32, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 7, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s7_eval.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:27:44.185Z\\\"}, \\\"v4-taxei-fixed-inject10-s1-eval-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:54:05.248Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:06:11.418Z\\\", \\\"spec\\\": {\\\"parent\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject10 s1)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:04:33.190Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:04:36.432028+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.511, \\\"successes\\\": 24, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 4, \\\"rate\\\": 0.667}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\", \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval-r2.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:06:11.418Z\\\"}, \\\"v4-taxei-fixed-inject10-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:05.524Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:05:01.494Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"191997\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:01:19.314Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 7, \\\"wall_clock_seconds\\\": 3683.3, \\\"gpu_hours\\\": 1.02}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:59:13.748Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:59:16.071667+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.237, \\\"train_loss_avg\\\": 0.4212, \\\"final_token_acc\\\": 0.905, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3437, \\\"memory_gib\\\": 18.15, \\\"train_speed_s_per_it\\\": 2.102}, \\\"completed_at\\\": \\\"2026-05-15T21:02:42.621Z\\\"}, \\\"v4-random-fixed-inject10-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:07.390Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:04:23.738Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject10.jsonl --seed 1\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"192077\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:01:21.468Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 1, \\\"wall_clock_seconds\\\": 3782.3, \\\"gpu_hours\\\": 1.05}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:01:51.221Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:01:53.909162+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3096, \\\"train_loss_avg\\\": 0.4238, \\\"final_token_acc\\\": 0.8902, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3488, \\\"memory_gib\\\": 18.13, \\\"train_speed_s_per_it\\\": 2.132}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:04:23.738Z\\\"}, \\\"v4-taxei-fixed-inject10-s123-eval-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:40:05.773Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:54:14.378Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"194978\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:40:05.519Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject10 s123)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"wall_clock_seconds\\\": 848.9, \\\"gpu_hours\\\": 0.24}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:50:16.884Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:50:19.215245+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\", \\\"completed_at\\\": \\\"2026-05-15T20:54:14.378Z\\\"}, \\\"v4-random-fixed-inject10-s0-eval-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:40:07.402Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:52:32.204Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"195118\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:40:07.156Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s0)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"wall_clock_seconds\\\": 745.0, \\\"gpu_hours\\\": 0.21}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:50:22.439Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:50:26.585713+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.66, \\\"successes\\\": 31, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\\\", \\\"completed_at\\\": \\\"2026-05-15T20:52:32.204Z\\\"}, \\\"v4-random-fixed-inject10-s0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:43.603Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:12.753Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"188022\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:43.056Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"eval_data\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"N/A\\\", \\\"model_name\\\": \\\"v4_random_fixed_inject10_s0\\\", \\\"seed\\\": 0, \\\"wall_clock_seconds\\\": 3975.6, \\\"gpu_hours\\\": 1.1}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"checkpoint_path\\\": \\\"N/A-OOM\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:58.662Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"CUDA OOM during model loading on GPU 0\\\"}}, \\\"v4-taxei-fixed-inject10-s123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:41.337Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:11.865Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"187785\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:40.646Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"eval_data\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"N/A\\\", \\\"model_name\\\": \\\"v4_taxei_fixed_inject10_s123\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 3977.2, \\\"gpu_hours\\\": 1.1}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=123 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"checkpoint_path\\\": \\\"N/A-OOM\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:57.889Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"CUDA OOM during model loading on GPU 0\\\"}}, \\\"v4-taxei-fixed-inject10-s1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:45.002Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:10.985Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"188906\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:44.756Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3927.9, \\\"gpu_hours\\\": 1.09}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:12.659Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"CUDA OOM during model loading on GPU 0\\\"}}, \\\"v4-random-fixed-inject10-s123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:59:20.398Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:09.526Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\\\", \\\"parent\\\": \\\"v4-random-fixed-inject10-s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s123_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s123\\\", \\\"eval_data\\\": \\\"eval/eval_tasks_47.json\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123-eval.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_s123_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:32.060Z\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}}, \\\"v4-taxei-fixed-inject10-s0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:46.985Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:06.775Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"188410\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s0-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:46.725Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s0\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s0\\\", \\\"eval_data\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"eval_results/v4_taxei_fixed_inject10_s0_eval.json\\\", \\\"model_name\\\": \\\"v4_taxei_fixed_inject10_s0\\\", \\\"seed\\\": 0, \\\"wall_clock_seconds\\\": 3970.2, \\\"gpu_hours\\\": 1.1}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s0_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:56.888Z\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.702, \\\"successes\\\": 33, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 8, \\\"rate\\\": 0.727}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}}, \\\"v4-taxei-fixed-inject10-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:54:17.800Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:57:47.705Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject10_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"182703\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:54:17.595Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 1, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 3728.4, \\\"gpu_hours\\\": 1.04}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:53:12.812Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:53:14.974953+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3013, \\\"train_loss_avg\\\": 0.4225, \\\"final_token_acc\\\": 0.8947, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3469, \\\"memory_gib\\\": 18.13, \\\"train_speed_s_per_it\\\": 2.121}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:56:25.993Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\\\"}, \\\"v4-random-fixed-inject10-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:54:20.390Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:57:42.428Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_random_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"182781\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:54:20.028Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 3802.4, \\\"gpu_hours\\\": 1.06}, \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:54:38.478Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:54:40.603963+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3124, \\\"train_loss_avg\\\": 0.4236, \\\"final_token_acc\\\": 0.8867, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3535.7, \\\"train_samples_per_second\\\": 3.698, \\\"train_steps_per_second\\\": 0.462, \\\"memory_gib\\\": 18.95}, \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:57:42.428Z\\\"}, \\\"v4-taxei-fixed-inject10-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:48:24.290Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:56:29.231Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_taxei_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"180877\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:48:23.907Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 4085.3, \\\"gpu_hours\\\": 1.13}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:47:28.139Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:47:30.511963+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4234, \\\"final_loss\\\": 0.3097, \\\"final_token_acc\\\": 0.8882, \\\"epochs\\\": 3, \\\"total_steps\\\": 1635, \\\"train_runtime_sec\\\": 3497, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:56:29.231Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 70, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3244}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"v4-taxei-fixed-inject25-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:12.446Z\", \"updated_at\": \"2026-05-15T22:33:00.087Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s7/v0-20260516-053222/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s7.log\"}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:32.348Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:36.683523+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4242, \"final_step_loss\": 0.2571, \"token_accuracy\": 0.904, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3430.48, \"train_duration_min\": 57.17, \"train_samples_per_second\": 3.811, \"train_steps_per_second\": 0.477, \"memory_gib\": 17.55, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:54.528Z\"}, \"v4-random-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:10.005Z\", \"updated_at\": \"2026-05-15T22:32:58.843Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1.log\"}, \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:26.273Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:28.937887+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4261, \"final_step_loss\": 0.2442, \"token_accuracy\": 0.9123, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3417.56, \"train_duration_min\": 56.96, \"train_samples_per_second\": 3.826, \"train_steps_per_second\": 0.478, \"memory_gib\": 18, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:56.713Z\"}, \"v4-taxei-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:29:07.506Z\", \"updated_at\": \"2026-05-15T22:29:56.310Z\", \"spec\": {\"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject25_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"199599\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1.log\", \"submitted_at\": \"2026-05-15T21:29:07.235Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\", \"wall_clock_seconds\": 3649.1, \"gpu_hours\": 1.01}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:27:46.845Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:27:49.896536+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4243, \"train_duration_min\": 57.5, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:29:56.310Z\"}, \"v4-random-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:57:41.705Z\", \"updated_at\": \"2026-05-15T22:15:41.386Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"202328\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:57:41.444Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"wall_clock_seconds\": 818, \"gpu_hours\": 0.23}, \"hypothesis\": \"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:12:57.609Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:12:59.982752+00:00\"}]}, \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:15:41.386Z\"}, \"v4-random-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:08.353Z\", \"updated_at\": \"2026-05-15T21:57:11.016Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 7}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:54:51.217Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:54:53.698171+00:00\"}]}, \"metrics\": {\"final_loss\": 0.2352, \"train_loss_avg\": 0.4209, \"final_token_acc\": 0.9066, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3511.93, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.148}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"conclusion\": \"success\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7.log\", \"completed_at\": \"2026-05-15T21:57:11.016Z\"}, \"v4-random-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:05:18.654Z\", \"updated_at\": \"2026-05-15T21:27:48.360Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"198045\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T21:05:18.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s1)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"wall_clock_seconds\": 1350.0, \"gpu_hours\": 0.37}, \"hypothesis\": \"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:25:33.786Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:25:36.468478+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 10, \"success\": 5, \"rate\": 0.5}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 6, \"rate\": 0.857}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:48.360Z\"}, \"v4-taxei-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:02:22.234Z\", \"updated_at\": \"2026-05-15T21:27:44.185Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"197555\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:02:21.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-taxei-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"wall_clock_seconds\": 1522.4, \"gpu_hours\": 0.42}, \"hypothesis\": \"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:19:30.996Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:19:33.518373+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s7_eval.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:44.185Z\"}, \"v4-taxei-fixed-inject10-s1-eval-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:54:05.248Z\", \"updated_at\": \"2026-05-15T21:06:11.418Z\", \"spec\": {\"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s1)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\"}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:04:33.190Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:04:36.432028+00:00\"}]}, \"metrics\": {\"success_rate\": 0.511, \"successes\": 24, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s1_eval.json\", \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval-r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:06:11.418Z\"}, \"v4-taxei-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:05.524Z\", \"updated_at\": \"2026-05-15T21:05:01.494Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"191997\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log\", \"submitted_at\": \"2026-05-15T20:01:19.314Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 7, \"wall_clock_seconds\": 3683.3, \"gpu_hours\": 1.02}, \"reproduce\": {\"finished_at\": \"2026-05-15T20:59:13.748Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:59:16.071667+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.237, \"train_loss_avg\": 0.4212, \"final_token_acc\": 0.905, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3437, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.102}, \"completed_at\": \"2026-05-15T21:02:42.621Z\"}, \"v4-random-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:07.390Z\", \"updated_at\": \"2026-05-15T21:04:23.738Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject10.jsonl --seed 1\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"192077\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T20:01:21.468Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"wall_clock_seconds\": 3782.3, \"gpu_hours\": 1.05}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:01:51.221Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:01:53.909162+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3096, \"train_loss_avg\": 0.4238, \"final_token_acc\": 0.8902, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3488, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.132}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:04:23.738Z\"}, \"v4-taxei-fixed-inject10-s123-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:05.773Z\", \"updated_at\": \"2026-05-15T20:54:14.378Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"194978\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:05.519Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s123)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 848.9, \"gpu_hours\": 0.24}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:16.884Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:19.215245+00:00\"}]}, \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:54:14.378Z\"}, \"v4-random-fixed-inject10-s0-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:07.402Z\", \"updated_at\": \"2026-05-15T20:52:32.204Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"195118\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:07.156Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s0)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 745.0, \"gpu_hours\": 0.21}, \"hypothesis\": \"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:22.439Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:26.585713+00:00\"}]}, \"metrics\": {\"success_rate\": 0.66, \"successes\": 31, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:52:32.204Z\"}, \"v4-random-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:43.603Z\", \"updated_at\": \"2026-05-15T20:04:12.753Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"188022\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:43.056Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_random_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3975.6, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:58.662Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:41.337Z\", \"updated_at\": \"2026-05-15T20:04:11.865Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"187785\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval.log\", \"submitted_at\": \"2026-05-15T18:57:40.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_taxei_fixed_inject10_s123\", \"seed\": 123, \"wall_clock_seconds\": 3977.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:57.889Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:45.002Z\", \"updated_at\": \"2026-05-15T20:04:10.985Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"188906\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T18:57:44.756Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 3927.9, \"gpu_hours\": 1.09}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T20:03:12.659Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-random-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:59:20.398Z\", \"updated_at\": \"2026-05-15T20:04:09.526Z\", \"hypothesis\": \"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\", \"parent\": \"v4-random-fixed-inject10-s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s123_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s123\", \"eval_data\": \"eval/eval_tasks_47.json\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123-eval.log\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_s123_eval.json\", \"completed_at\": \"2026-05-15T20:03:32.060Z\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}, \"v4-taxei-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:46.985Z\", \"updated_at\": \"2026-05-15T20:04:06.775Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"188410\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:46.725Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s0\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"model_name\": \"v4_taxei_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3970.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"completed_at\": \"2026-05-15T20:03:56.888Z\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 8, \"rate\": 0.727}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}}, \"v4-taxei-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:17.800Z\", \"updated_at\": \"2026-05-15T18:57:47.705Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject10_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"182703\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T17:54:17.595Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"wall_clock_seconds\": 3728.4, \"gpu_hours\": 1.04}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:53:12.812Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:53:14.974953+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3013, \"train_loss_avg\": 0.4225, \"final_token_acc\": 0.8947, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3469, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.121}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:25.993Z\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\"}, \"v4-random-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:20.390Z\", \"updated_at\": \"2026-05-15T18:57:42.428Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_random_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"182781\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:54:20.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 3802.4, \"gpu_hours\": 1.06}, \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:54:38.478Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:54:40.603963+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3124, \"train_loss_avg\": 0.4236, \"final_token_acc\": 0.8867, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3535.7, \"train_samples_per_second\": 3.698, \"train_steps_per_second\": 0.462, \"memory_gib\": 18.95}, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:57:42.428Z\"}, \"v4-taxei-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:48:24.290Z\", \"updated_at\": \"2026-05-15T18:56:29.231Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_taxei_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"180877\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:48:23.907Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"wall_clock_seconds\": 4085.3, \"gpu_hours\": 1.13}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:47:28.139Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:47:30.511963+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4234, \"final_loss\": 0.3097, \"final_token_acc\": 0.8882, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3497, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:29.231Z\"}}, \"count\": 20, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3244}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ef989dbc-3c35-4eec-9e52-9a2dfb38f8a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6439e548-2b70-42f5-a6c9-ccf2fd5fad96",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-15T22:36:58.318Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirect is blocked in ssh_read_only. Let me retry without the redirect. Also, from the registry I can see:
+
+1. **Checkpoint paths found from registry**:
+   - `v4-taxei-fixed-inject25-s1`: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635`
+   - `v4-random-fixed-inject25-s1`: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635`
+   
+Now I need to search the registry for the TaxEI 25% s0/s123 eval experiments, then check the eval result files on the server and verify GPU availability.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6439e548-2b70-42f5-a6c9-ccf2fd5fad96",
+  "isSidechain": false,
+  "requestId": "req_011Cb59v13PyXnX16Q8nmLtt",
+  "type": "assistant",
+  "uuid": "17f19562-3f3d-404d-afc7-8e69196fb907",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Usrx8D9nkUhTfvpJ1rPmUM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16405,
+      "cache_read_input_tokens": 26054,
+      "output_tokens": 674,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 674,
+          "cache_read_input_tokens": 26054,
+          "cache_creation_input_tokens": 16405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-15T22:36:59.547Z_
+
+ssh_read_only 不支持 `2>/dev/null` 重定向。从 registry 已拿到 checkpoint 路径。现在查 25% s0/s123 eval 实验和 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17f19562-3f3d-404d-afc7-8e69196fb907",
+  "isSidechain": false,
+  "requestId": "req_011Cb59v13PyXnX16Q8nmLtt",
+  "type": "assistant",
+  "uuid": "e0dd6d2d-e53e-4f24-bd0c-34c0024535d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Usrx8D9nkUhTfvpJ1rPmUM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16405,
+      "cache_read_input_tokens": 26054,
+      "output_tokens": 674,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 674,
+          "cache_read_input_tokens": 26054,
+          "cache_creation_input_tokens": 16405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T22:37:00.568Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_019ykb9BPGtF6fyRWNikJc2u`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0dd6d2d-e53e-4f24-bd0c-34c0024535d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb59v13PyXnX16Q8nmLtt",
+  "type": "assistant",
+  "uuid": "5ac03222-0901-49ed-a1e6-0bf236b8790d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Usrx8D9nkUhTfvpJ1rPmUM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16405,
+      "cache_read_input_tokens": 26054,
+      "output_tokens": 674,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 674,
+          "cache_read_input_tokens": 26054,
+          "cache_creation_input_tokens": 16405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T22:37:00.846Z_
+
+<details><summary>↩ Tool result · `toolu_019ykb9BPGtF6fyRWNikJc2u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-taxei-fixed-inject25-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:12.446Z\", \"updated_at\": \"2026-05-15T22:33:00.087Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s7/v0-20260516-053222/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s7.log\"}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:32.348Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:36.683523+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4242, \"final_step_loss\": 0.2571, \"token_accuracy\": 0.904, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3430.48, \"train_duration_min\": 57.17, \"train_samples_per_second\": 3.811, \"train_steps_per_second\": 0.477, \"memory_gib\": 17.55, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:54.528Z\"}, \"v4-random-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:10.005Z\", \"updated_at\": \"2026-05-15T22:32:58.843Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1.log\"}, \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:26.273Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:28.937887+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4261, \"final_step_loss\": 0.2442, \"token_accuracy\": 0.9123, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3417.56, \"train_duration_min\": 56.96, \"train_samples_per_second\": 3.826, \"train_steps_per_second\": 0.478, \"memory_gib\": 18, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:56.713Z\"}, \"v4-taxei-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:29:07.506Z\", \"updated_at\": \"2026-05-15T22:29:56.310Z\", \"spec\": {\"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject25_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"199599\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1.log\", \"submitted_at\": \"2026-05-15T21:29:07.235Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\", \"wall_clock_seconds\": 3649.1, \"gpu_hours\": 1.01}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:27:46.845Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:27:49.896536+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4243, \"train_duration_min\": 57.5, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:29:56.310Z\"}, \"v4-random-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:57:41.705Z\", \"updated_at\": \"2026-05-15T22:15:41.386Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"202328\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:57:41.444Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"wall_clock_seconds\": 818, \"gpu_hours\": 0.23}, \"hypothesis\": \"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:12:57.609Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:12:59.982752+00:00\"}]}, \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:15:41.386Z\"}, \"v4-random-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:08.353Z\", \"updated_at\": \"2026-05-15T21:57:11.016Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 7}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:54:51.217Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:54:53.698171+00:00\"}]}, \"metrics\": {\"final_loss\": 0.2352, \"train_loss_avg\": 0.4209, \"final_token_acc\": 0.9066, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3511.93, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.148}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"conclusion\": \"success\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7.log\", \"completed_at\": \"2026-05-15T21:57:11.016Z\"}, \"v4-random-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:05:18.654Z\", \"updated_at\": \"2026-05-15T21:27:48.360Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"198045\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T21:05:18.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s1)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"wall_clock_seconds\": 1350.0, \"gpu_hours\": 0.37}, \"hypothesis\": \"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:25:33.786Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:25:36.468478+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 10, \"success\": 5, \"rate\": 0.5}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 6, \"rate\": 0.857}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:48.360Z\"}, \"v4-taxei-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:02:22.234Z\", \"updated_at\": \"2026-05-15T21:27:44.185Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"197555\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:02:21.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-taxei-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"wall_clock_seconds\": 1522.4, \"gpu_hours\": 0.42}, \"hypothesis\": \"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:19:30.996Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:19:33.518373+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s7_eval.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:44.185Z\"}, \"v4-taxei-fixed-inject10-s1-eval-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:54:05.248Z\", \"updated_at\": \"2026-05-15T21:06:11.418Z\", \"spec\": {\"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s1)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\"}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:04:33.190Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:04:36.432028+00:00\"}]}, \"metrics\": {\"success_rate\": 0.511, \"successes\": 24, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s1_eval.json\", \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval-r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:06:11.418Z\"}, \"v4-taxei-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:05.524Z\", \"updated_at\": \"2026-05-15T21:05:01.494Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"191997\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log\", \"submitted_at\": \"2026-05-15T20:01:19.314Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 7, \"wall_clock_seconds\": 3683.3, \"gpu_hours\": 1.02}, \"reproduce\": {\"finished_at\": \"2026-05-15T20:59:13.748Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:59:16.071667+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.237, \"train_loss_avg\": 0.4212, \"final_token_acc\": 0.905, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3437, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.102}, \"completed_at\": \"2026-05-15T21:02:42.621Z\"}, \"v4-random-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:07.390Z\", \"updated_at\": \"2026-05-15T21:04:23.738Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject10.jsonl --seed 1\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"192077\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T20:01:21.468Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"wall_clock_seconds\": 3782.3, \"gpu_hours\": 1.05}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:01:51.221Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:01:53.909162+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3096, \"train_loss_avg\": 0.4238, \"final_token_acc\": 0.8902, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3488, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.132}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:04:23.738Z\"}, \"v4-taxei-fixed-inject10-s123-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:05.773Z\", \"updated_at\": \"2026-05-15T20:54:14.378Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"194978\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:05.519Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s123)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 848.9, \"gpu_hours\": 0.24}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:16.884Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:19.215245+00:00\"}]}, \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:54:14.378Z\"}, \"v4-random-fixed-inject10-s0-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:07.402Z\", \"updated_at\": \"2026-05-15T20:52:32.204Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"195118\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:07.156Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s0)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 745.0, \"gpu_hours\": 0.21}, \"hypothesis\": \"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:22.439Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:26.585713+00:00\"}]}, \"metrics\": {\"success_rate\": 0.66, \"successes\": 31, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:52:32.204Z\"}, \"v4-random-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:43.603Z\", \"updated_at\": \"2026-05-15T20:04:12.753Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"188022\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:43.056Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_random_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3975.6, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:58.662Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:41.337Z\", \"updated_at\": \"2026-05-15T20:04:11.865Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"187785\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval.log\", \"submitted_at\": \"2026-05-15T18:57:40.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_taxei_fixed_inject10_s123\", \"seed\": 123, \"wall_clock_seconds\": 3977.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:57.889Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:45.002Z\", \"updated_at\": \"2026-05-15T20:04:10.985Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"188906\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T18:57:44.756Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 3927.9, \"gpu_hours\": 1.09}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T20:03:12.659Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-random-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:59:20.398Z\", \"updated_at\": \"2026-05-15T20:04:09.526Z\", \"hypothesis\": \"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\", \"parent\": \"v4-random-fixed-inject10-s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s123_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s123\", \"eval_data\": \"eval/eval_tasks_47.json\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123-eval.log\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_s123_eval.json\", \"completed_at\": \"2026-05-15T20:03:32.060Z\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}, \"v4-taxei-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:46.985Z\", \"updated_at\": \"2026-05-15T20:04:06.775Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"188410\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:46.725Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s0\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"model_name\": \"v4_taxei_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3970.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"completed_at\": \"2026-05-15T20:03:56.888Z\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 8, \"rate\": 0.727}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}}, \"v4-taxei-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:17.800Z\", \"updated_at\": \"2026-05-15T18:57:47.705Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject10_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"182703\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T17:54:17.595Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"wall_clock_seconds\": 3728.4, \"gpu_hours\": 1.04}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:53:12.812Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:53:14.974953+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3013, \"train_loss_avg\": 0.4225, \"final_token_acc\": 0.8947, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3469, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.121}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:25.993Z\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\"}, \"v4-random-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:20.390Z\", \"updated_at\": \"2026-05-15T18:57:42.428Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_random_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"182781\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:54:20.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 3802.4, \"gpu_hours\": 1.06}, \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:54:38.478Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:54:40.603963+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3124, \"train_loss_avg\": 0.4236, \"final_token_acc\": 0.8867, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3535.7, \"train_samples_per_second\": 3.698, \"train_steps_per_second\": 0.462, \"memory_gib\": 18.95}, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:57:42.428Z\"}, \"v4-taxei-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:48:24.290Z\", \"updated_at\": \"2026-05-15T18:56:29.231Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_taxei_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"180877\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:48:23.907Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"wall_clock_seconds\": 4085.3, \"gpu_hours\": 1.13}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:47:28.139Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:47:30.511963+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4234, \"final_loss\": 0.3097, \"final_token_acc\": 0.8882, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3497, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:29.231Z\"}}, \"count\": 20, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2661}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ac03222-0901-49ed-a1e6-0bf236b8790d",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "1084abd9-f48e-4c25-9434-0f929e526073",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v4-taxei-fixed-inject25-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:32:12.446Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:33:00.087Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s7/v0-20260516-053222/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s7.log\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:30:32.348Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:30:36.683523+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4242, \\\"final_step_loss\\\": 0.2571, \\\"token_accuracy\\\": 0.904, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 3430.48, \\\"train_duration_min\\\": 57.17, \\\"train_samples_per_second\\\": 3.811, \\\"train_steps_per_second\\\": 0.477, \\\"memory_gib\\\": 17.55, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:32:54.528Z\\\"}, \\\"v4-random-fixed-inject25-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:32:10.005Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:32:58.843Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1.log\\\"}, \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:30:26.273Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:30:28.937887+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4261, \\\"final_step_loss\\\": 0.2442, \\\"token_accuracy\\\": 0.9123, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 3417.56, \\\"train_duration_min\\\": 56.96, \\\"train_samples_per_second\\\": 3.826, \\\"train_steps_per_second\\\": 0.478, \\\"memory_gib\\\": 18, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:32:56.713Z\\\"}, \\\"v4-taxei-fixed-inject25-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:29:07.506Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:29:56.310Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject25_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"199599\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:29:07.235Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 1, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 3649.1, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:27:46.845Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:27:49.896536+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4243, \\\"train_duration_min\\\": 57.5, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:29:56.310Z\\\"}, \\\"v4-random-fixed-inject10-s7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:57:41.705Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:15:41.386Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"202328\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:57:41.444Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s7)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s7\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 818, \\\"gpu_hours\\\": 0.23}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T22:12:57.609Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T22:12:59.982752+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T22:15:41.386Z\\\"}, \\\"v4-random-fixed-inject10-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:08.353Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:57:11.016Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s7)\\\", \\\"seed\\\": 7}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:54:51.217Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:54:53.698171+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.2352, \\\"train_loss_avg\\\": 0.4209, \\\"final_token_acc\\\": 0.9066, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3511.93, \\\"memory_gib\\\": 18.15, \\\"train_speed_s_per_it\\\": 2.148}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\\\", \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7.log\\\", \\\"completed_at\\\": \\\"2026-05-15T21:57:11.016Z\\\"}, \\\"v4-random-fixed-inject10-s1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:05:18.654Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:27:48.360Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"198045\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:05:18.393Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s1)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 1350.0, \\\"gpu_hours\\\": 0.37}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:25:33.786Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:25:36.468478+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.681, \\\"successes\\\": 32, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 10, \\\"success\\\": 5, \\\"rate\\\": 0.5}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 6, \\\"rate\\\": 0.857}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:27:48.360Z\\\"}, \\\"v4-taxei-fixed-inject10-s7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:02:22.234Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:27:44.185Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"197555\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:02:21.785Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject10 s7)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s7\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"wall_clock_seconds\\\": 1522.4, \\\"gpu_hours\\\": 0.42}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:19:30.996Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:19:33.518373+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.681, \\\"successes\\\": 32, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 7, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s7_eval.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:27:44.185Z\\\"}, \\\"v4-taxei-fixed-inject10-s1-eval-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:54:05.248Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:06:11.418Z\\\", \\\"spec\\\": {\\\"parent\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject10 s1)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:04:33.190Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:04:36.432028+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.511, \\\"successes\\\": 24, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 4, \\\"rate\\\": 0.667}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\", \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval-r2.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:06:11.418Z\\\"}, \\\"v4-taxei-fixed-inject10-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:05.524Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:05:01.494Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"191997\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:01:19.314Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 7, \\\"wall_clock_seconds\\\": 3683.3, \\\"gpu_hours\\\": 1.02}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:59:13.748Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:59:16.071667+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.237, \\\"train_loss_avg\\\": 0.4212, \\\"final_token_acc\\\": 0.905, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3437, \\\"memory_gib\\\": 18.15, \\\"train_speed_s_per_it\\\": 2.102}, \\\"completed_at\\\": \\\"2026-05-15T21:02:42.621Z\\\"}, \\\"v4-random-fixed-inject10-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:07.390Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:04:23.738Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject10.jsonl --seed 1\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"192077\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:01:21.468Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 1, \\\"wall_clock_seconds\\\": 3782.3, \\\"gpu_hours\\\": 1.05}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T21:01:51.221Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T21:01:53.909162+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3096, \\\"train_loss_avg\\\": 0.4238, \\\"final_token_acc\\\": 0.8902, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3488, \\\"memory_gib\\\": 18.13, \\\"train_speed_s_per_it\\\": 2.132}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T21:04:23.738Z\\\"}, \\\"v4-taxei-fixed-inject10-s123-eval-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:40:05.773Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:54:14.378Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"194978\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:40:05.519Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject10 s123)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"wall_clock_seconds\\\": 848.9, \\\"gpu_hours\\\": 0.24}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:50:16.884Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:50:19.215245+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\", \\\"completed_at\\\": \\\"2026-05-15T20:54:14.378Z\\\"}, \\\"v4-random-fixed-inject10-s0-eval-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:40:07.402Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:52:32.204Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"195118\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T20:40:07.156Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject10 s0)\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"wall_clock_seconds\\\": 745.0, \\\"gpu_hours\\\": 0.21}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:50:22.439Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:50:26.585713+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.66, \\\"successes\\\": 31, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\\\", \\\"completed_at\\\": \\\"2026-05-15T20:52:32.204Z\\\"}, \\\"v4-random-fixed-inject10-s0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:43.603Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:12.753Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"188022\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:43.056Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s0\\\", \\\"eval_data\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"N/A\\\", \\\"model_name\\\": \\\"v4_random_fixed_inject10_s0\\\", \\\"seed\\\": 0, \\\"wall_clock_seconds\\\": 3975.6, \\\"gpu_hours\\\": 1.1}, \\\"hypothesis\\\": \\\"v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"checkpoint_path\\\": \\\"N/A-OOM\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:58.662Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"CUDA OOM during model loading on GPU 0\\\"}}, \\\"v4-taxei-fixed-inject10-s123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:41.337Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:11.865Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"187785\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:40.646Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s123\\\", \\\"eval_data\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"N/A\\\", \\\"model_name\\\": \\\"v4_taxei_fixed_inject10_s123\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 3977.2, \\\"gpu_hours\\\": 1.1}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=123 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"checkpoint_path\\\": \\\"N/A-OOM\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:57.889Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"CUDA OOM during model loading on GPU 0\\\"}}, \\\"v4-taxei-fixed-inject10-s1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:45.002Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:10.985Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"188906\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:44.756Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3927.9, \\\"gpu_hours\\\": 1.09}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:12.659Z\\\", \\\"metrics\\\": {\\\"error\\\": \\\"CUDA OOM during model loading on GPU 0\\\"}}, \\\"v4-random-fixed-inject10-s123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:59:20.398Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:09.526Z\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\\\", \\\"parent\\\": \\\"v4-random-fixed-inject10-s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s123_eval.json\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject10-s123\\\", \\\"eval_data\\\": \\\"eval/eval_tasks_47.json\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123-eval.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_s123_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:32.060Z\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}}, \\\"v4-taxei-fixed-inject10-s0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:57:46.985Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:04:06.775Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"188410\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s0-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T18:57:46.725Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject10-s0\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject10-s0\\\", \\\"eval_data\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"eval_results/v4_taxei_fixed_inject10_s0_eval.json\\\", \\\"model_name\\\": \\\"v4_taxei_fixed_inject10_s0\\\", \\\"seed\\\": 0, \\\"wall_clock_seconds\\\": 3970.2, \\\"gpu_hours\\\": 1.1}, \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s0_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-15T20:03:56.888Z\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.702, \\\"successes\\\": 33, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 8, \\\"rate\\\": 0.727}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}}, \\\"v4-taxei-fixed-inject10-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:54:17.800Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:57:47.705Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject10_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"182703\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:54:17.595Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 1, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 3728.4, \\\"gpu_hours\\\": 1.04}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:53:12.812Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:53:14.974953+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3013, \\\"train_loss_avg\\\": 0.4225, \\\"final_token_acc\\\": 0.8947, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3469, \\\"memory_gib\\\": 18.13, \\\"train_speed_s_per_it\\\": 2.121}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:56:25.993Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\\\"}, \\\"v4-random-fixed-inject10-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:54:20.390Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:57:42.428Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_random_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"182781\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:54:20.028Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"wall_clock_seconds\\\": 3802.4, \\\"gpu_hours\\\": 1.06}, \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:54:38.478Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:54:40.603963+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.3124, \\\"train_loss_avg\\\": 0.4236, \\\"final_token_acc\\\": 0.8867, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3535.7, \\\"train_samples_per_second\\\": 3.698, \\\"train_steps_per_second\\\": 0.462, \\\"memory_gib\\\": 18.95}, \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:57:42.428Z\\\"}, \\\"v4-taxei-fixed-inject10-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:48:24.290Z\\\", \\\"updated_at\\\": \\\"2026-05-15T18:56:29.231Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_taxei_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"180877\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T17:48:23.907Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\", \\\"wall_clock_seconds\\\": 4085.3, \\\"gpu_hours\\\": 1.13}, \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T18:47:28.139Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T18:47:30.511963+00:00\\\"}]}, \\\"metrics\\\": {\\\"train_loss\\\": 0.4234, \\\"final_loss\\\": 0.3097, \\\"final_token_acc\\\": 0.8882, \\\"epochs\\\": 3, \\\"total_steps\\\": 1635, \\\"train_runtime_sec\\\": 3497, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T18:56:29.231Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 70, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2661}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"v4-taxei-fixed-inject25-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:12.446Z\", \"updated_at\": \"2026-05-15T22:33:00.087Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s7/v0-20260516-053222/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s7.log\"}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:32.348Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:36.683523+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4242, \"final_step_loss\": 0.2571, \"token_accuracy\": 0.904, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3430.48, \"train_duration_min\": 57.17, \"train_samples_per_second\": 3.811, \"train_steps_per_second\": 0.477, \"memory_gib\": 17.55, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:54.528Z\"}, \"v4-random-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:32:10.005Z\", \"updated_at\": \"2026-05-15T22:32:58.843Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1.log\"}, \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:30:26.273Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:30:28.937887+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4261, \"final_step_loss\": 0.2442, \"token_accuracy\": 0.9123, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3417.56, \"train_duration_min\": 56.96, \"train_samples_per_second\": 3.826, \"train_steps_per_second\": 0.478, \"memory_gib\": 18, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:32:56.713Z\"}, \"v4-taxei-fixed-inject25-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:29:07.506Z\", \"updated_at\": \"2026-05-15T22:29:56.310Z\", \"spec\": {\"command\": \"swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject25_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"199599\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1.log\", \"submitted_at\": \"2026-05-15T21:29:07.235Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject25.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\", \"wall_clock_seconds\": 3649.1, \"gpu_hours\": 1.01}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:27:46.845Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:27:49.896536+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4243, \"train_duration_min\": 57.5, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:29:56.310Z\"}, \"v4-random-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:57:41.705Z\", \"updated_at\": \"2026-05-15T22:15:41.386Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"202328\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:57:41.444Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"wall_clock_seconds\": 818, \"gpu_hours\": 0.23}, \"hypothesis\": \"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\", \"reproduce\": {\"finished_at\": \"2026-05-15T22:12:57.609Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:12:59.982752+00:00\"}]}, \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T22:15:41.386Z\"}, \"v4-random-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:08.353Z\", \"updated_at\": \"2026-05-15T21:57:11.016Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s7)\", \"seed\": 7}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:54:51.217Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:54:53.698171+00:00\"}]}, \"metrics\": {\"final_loss\": 0.2352, \"train_loss_avg\": 0.4209, \"final_token_acc\": 0.9066, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3511.93, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.148}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s7/v1-20260516-045440/checkpoint-1635\", \"conclusion\": \"success\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s7.log\", \"completed_at\": \"2026-05-15T21:57:11.016Z\"}, \"v4-random-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:05:18.654Z\", \"updated_at\": \"2026-05-15T21:27:48.360Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"198045\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T21:05:18.393Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s1)\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"wall_clock_seconds\": 1350.0, \"gpu_hours\": 0.37}, \"hypothesis\": \"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:25:33.786Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:25:36.468478+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 10, \"success\": 5, \"rate\": 0.5}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 6, \"rate\": 0.857}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:48.360Z\"}, \"v4-taxei-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:02:22.234Z\", \"updated_at\": \"2026-05-15T21:27:44.185Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"197555\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7-eval.log\", \"submitted_at\": \"2026-05-15T21:02:21.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s7)\", \"seed\": 42, \"checkpoint_source\": \"v4-taxei-fixed-inject10-s7\", \"eval_data\": \"eval_tasks_47.json\", \"wall_clock_seconds\": 1522.4, \"gpu_hours\": 0.42}, \"hypothesis\": \"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:19:30.996Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:19:33.518373+00:00\"}]}, \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s7_eval.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:27:44.185Z\"}, \"v4-taxei-fixed-inject10-s1-eval-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:54:05.248Z\", \"updated_at\": \"2026-05-15T21:06:11.418Z\", \"spec\": {\"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s1)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\"}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T21:04:33.190Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:04:36.432028+00:00\"}]}, \"metrics\": {\"success_rate\": 0.511, \"successes\": 24, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s1_eval.json\", \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval-r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:06:11.418Z\"}, \"v4-taxei-fixed-inject10-s7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:05.524Z\", \"updated_at\": \"2026-05-15T21:05:01.494Z\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4_fixed_inject10.jsonl --seed 7\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"191997\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s7.log\", \"submitted_at\": \"2026-05-15T20:01:19.314Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 7, \"wall_clock_seconds\": 3683.3, \"gpu_hours\": 1.02}, \"reproduce\": {\"finished_at\": \"2026-05-15T20:59:13.748Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:59:16.071667+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s7/v1-20260516-040128/checkpoint-1635\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.237, \"train_loss_avg\": 0.4212, \"final_token_acc\": 0.905, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3437, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.102}, \"completed_at\": \"2026-05-15T21:02:42.621Z\"}, \"v4-random-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:07.390Z\", \"updated_at\": \"2026-05-15T21:04:23.738Z\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"spec\": {\"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4_fixed_inject10.jsonl --seed 1\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"192077\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T20:01:21.468Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"wall_clock_seconds\": 3782.3, \"gpu_hours\": 1.05}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:01:51.221Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:01:53.909162+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3096, \"train_loss_avg\": 0.4238, \"final_token_acc\": 0.8902, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3488, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.132}, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s1/v1-20260516-040130/checkpoint-1635\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:04:23.738Z\"}, \"v4-taxei-fixed-inject10-s123-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:05.773Z\", \"updated_at\": \"2026-05-15T20:54:14.378Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"194978\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:05.519Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject10 s123)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 848.9, \"gpu_hours\": 0.24}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:16.884Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:19.215245+00:00\"}]}, \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:54:14.378Z\"}, \"v4-random-fixed-inject10-s0-eval-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:40:07.402Z\", \"updated_at\": \"2026-05-15T20:52:32.204Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"195118\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval-r3.log\", \"submitted_at\": \"2026-05-15T20:40:07.156Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random fixed inject10 s0)\", \"seed\": 42, \"data_path\": \"eval/eval_tasks_47.json\", \"wall_clock_seconds\": 745.0, \"gpu_hours\": 0.21}, \"hypothesis\": \"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:50:22.439Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:50:26.585713+00:00\"}]}, \"metrics\": {\"success_rate\": 0.66, \"successes\": 31, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\", \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\", \"completed_at\": \"2026-05-15T20:52:32.204Z\"}, \"v4-random-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:43.603Z\", \"updated_at\": \"2026-05-15T20:04:12.753Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"188022\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:43.056Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject10-s0\", \"checkpoint_source\": \"v4-random-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_random_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3975.6, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 Random 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:58.662Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:41.337Z\", \"updated_at\": \"2026-05-15T20:04:11.865Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"187785\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123-eval.log\", \"submitted_at\": \"2026-05-15T18:57:40.646Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s123\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s123\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"N/A\", \"model_name\": \"v4_taxei_fixed_inject10_s123\", \"seed\": 123, \"wall_clock_seconds\": 3977.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=123 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"checkpoint_path\": \"N/A-OOM\", \"completed_at\": \"2026-05-15T20:03:57.889Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-taxei-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:45.002Z\", \"updated_at\": \"2026-05-15T20:04:10.985Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_fixed_inject10_s1_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"188906\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1-eval.log\", \"submitted_at\": \"2026-05-15T18:57:44.756Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 3927.9, \"gpu_hours\": 1.09}, \"hypothesis\": \"v4 TaxEI 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T20:03:12.659Z\", \"metrics\": {\"error\": \"CUDA OOM during model loading on GPU 0\"}}, \"v4-random-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:59:20.398Z\", \"updated_at\": \"2026-05-15T20:04:09.526Z\", \"hypothesis\": \"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\", \"parent\": \"v4-random-fixed-inject10-s123\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --task_list eval/eval_tasks_47.json --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_fixed_inject10_s123_eval.json\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"data_path\": \"eval/eval_tasks_47.json\", \"data_count\": 47, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"v4-random-fixed-inject10-s123\", \"eval_data\": \"eval/eval_tasks_47.json\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123-eval.log\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_random_fixed_inject10_s123_eval.json\", \"completed_at\": \"2026-05-15T20:03:32.060Z\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}, \"v4-taxei-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:57:46.985Z\", \"updated_at\": \"2026-05-15T20:04:06.775Z\", \"spec\": {\"command\": \"eval\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"188410\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s0-eval.log\", \"submitted_at\": \"2026-05-15T18:57:46.725Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject10-s0\", \"checkpoint_source\": \"v4-taxei-fixed-inject10-s0\", \"eval_data\": \"valid_unseen\", \"data_count\": 47, \"data_path\": \"eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"model_name\": \"v4_taxei_fixed_inject10_s0\", \"seed\": 0, \"wall_clock_seconds\": 3970.2, \"gpu_hours\": 1.1}, \"hypothesis\": \"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject10_s0_eval.json\", \"completed_at\": \"2026-05-15T20:03:56.888Z\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 8, \"rate\": 0.727}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}}, \"v4-taxei-fixed-inject10-s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:17.800Z\", \"updated_at\": \"2026-05-15T18:57:47.705Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 1 --data_seed 1 --output_dir checkpoints/v4_taxei_fixed_inject10_s1 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"182703\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\", \"submitted_at\": \"2026-05-15T17:54:17.595Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 1, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"wall_clock_seconds\": 3728.4, \"gpu_hours\": 1.04}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:53:12.812Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:53:14.974953+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3013, \"train_loss_avg\": 0.4225, \"final_token_acc\": 0.8947, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3469, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.121}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:25.993Z\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s1/v0-20260516-015427/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s1.log\"}, \"v4-random-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:54:20.390Z\", \"updated_at\": \"2026-05-15T18:57:42.428Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_random_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"182781\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:54:20.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_random_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"wall_clock_seconds\": 3802.4, \"gpu_hours\": 1.06}, \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:54:38.478Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:54:40.603963+00:00\"}]}, \"metrics\": {\"final_loss\": 0.3124, \"train_loss_avg\": 0.4236, \"final_token_acc\": 0.8867, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3535.7, \"train_samples_per_second\": 3.698, \"train_steps_per_second\": 0.462, \"memory_gib\": 18.95}, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject10_s123/v0-20260516-015429/checkpoint-1635\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject10-s123.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:57:42.428Z\"}, \"v4-taxei-fixed-inject10-s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:48:24.290Z\", \"updated_at\": \"2026-05-15T18:56:29.231Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl --lora_rank 16 --num_train_epochs 3 --seed 123 --data_seed 123 --output_dir checkpoints/v4_taxei_fixed_inject10_s123 --gradient_accumulation_steps 8 --learning_rate 1e-4 --lr_scheduler_type cosine --gradient_checkpointing true --save_strategy epoch --logging_steps 5 --weight_decay 0.1 --adam_beta1 0.9 --adam_beta2 0.95\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"180877\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject10-s123.log\", \"submitted_at\": \"2026-05-15T17:48:23.907Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/ablation_fixed/sft_taxei_v4_fixed_inject10.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\", \"wall_clock_seconds\": 4085.3, \"gpu_hours\": 1.13}, \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\", \"reproduce\": {\"finished_at\": \"2026-05-15T18:47:28.139Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:47:30.511963+00:00\"}]}, \"metrics\": {\"train_loss\": 0.4234, \"final_loss\": 0.3097, \"final_token_acc\": 0.8882, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3497, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:56:29.231Z\"}}, \"count\": 20, \"total\": 70, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2661}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5ac03222-0901-49ed-a1e6-0bf236b8790d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T22:37:01.576Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JoBdfwA5u1G2RxD5pNDaxT`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/autodl-tmp/tax_error_inject_agent/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1084abd9-f48e-4c25-9434-0f929e526073",
+  "isSidechain": false,
+  "requestId": "req_011Cb59v13PyXnX16Q8nmLtt",
+  "type": "assistant",
+  "uuid": "8f809730-3e92-4073-8b90-4a38422a061c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Usrx8D9nkUhTfvpJ1rPmUM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16405,
+      "cache_read_input_tokens": 26054,
+      "output_tokens": 674,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 674,
+          "cache_read_input_tokens": 26054,
+          "cache_creation_input_tokens": 16405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T22:37:02.150Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H9RQ4rvtd4drwUNVaJYMwv`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f809730-3e92-4073-8b90-4a38422a061c",
+  "isSidechain": false,
+  "requestId": "req_011Cb59v13PyXnX16Q8nmLtt",
+  "type": "assistant",
+  "uuid": "8a66807e-cde6-4958-88e5-55bf9eeb3857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Usrx8D9nkUhTfvpJ1rPmUM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16405,
+      "cache_read_input_tokens": 26054,
+      "output_tokens": 674,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 674,
+          "cache_read_input_tokens": 26054,
+          "cache_creation_input_tokens": 16405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8a66807e-cde6-4958-88e5-55bf9eeb3857",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T22:37:02.708Z_
+
+<details><summary>↩ Tool result · `toolu_01JoBdfwA5u1G2RxD5pNDaxT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adapter_test.json\\ndryrun_injected_vanilla.json\\ndryrun_recovery.json\\nfailure_analysis.json\\ngate1_injection_validity.json\\ngate2_recovery_quality.json\\ngate3_judgment.json\\nmini_taxei_clean.json\\nmini_vanilla_clean.json\\npipeline_test.json\\nv3_random.json\\nv3_taxei.json\\nv3_vanilla.json\\nv4_random_eval.json\\nv4_random_fixed_inject10_eval.json\\nv4_random_fixed_inject10_s0_eval.json\\nv4_random_fixed_inject10_s123_eval.json\\nv4_random_fixed_inject10_s1_eval.json\\nv4_random_fixed_inject10_s7_eval.json\\nv4_random_fixed_inject25_eval.json\\nv4_random_fixed_inject25_s0_eval.json\\nv4_random_fixed_inject25_s123_eval.json\\nv4_random_fixed_inject50_eval.json\\nv4_random_fixed_inject50_s0_eval.json\\nv4_random_fixed_inject50_s123_eval.json\\nv4_random_recovery_eval.json\\nv4_random_seed0_eval.json\\nv4_random_seed123_eval.json\\nv4_random_seed1_eval.json\\nv4_random_seed7_eval.json\\nv4_taxei_eval.json\\nv4_taxei_fixed_inject10_eval.json\\nv4_taxei_fixed_inject10_s0_eval.json\\nv4_taxei_fixed_inject10_s123_eval.json\\nv4_taxei_fixed_inject10_s1_eval.json\\nv4_taxei_fixed_inject10_s7_eval.json\\nv4_taxei_fixed_inject25_eval.json\\nv4_taxei_fixed_inject25_s0_eval.json\\nv4_taxei_fixed_inject25_s123_eval.json\\nv4_taxei_fixed_inject50_eval.json\\nv4_taxei_fixed_inject50_s0_eval.json\\nv4_taxei_fixed_inject50_s123_eval.json\\nv4_taxei_recovery_eval.json\\nv4_taxei_recovery_eval_r2.json\\nv4_taxei_recovery_eval_s0.json\\nv4_taxei_recovery_eval_s123.json\\nv4_taxei_seed0_eval.json\\nv4_taxei_seed123_eval.json\\nv4_taxei_seed1_eval.json\\nv4_taxei_seed7_eval.json\\nv4_vanilla_eval.json\\nv4_vanilla_recovery_eval.json\\nv4_vanilla_recovery_eval_s0.json\\nv4_vanilla_recovery_eval_s123.json\\nv4_vanilla_seed0_eval.json\\nv4_vanilla_seed123_eval.json\\nv4_vanilla_seed1_eval.json\\nv4_vanilla_seed7_eval.json\\nvanilla_react_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f809730-3e92-4073-8b90-4a38422a061c",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "d1047445-7609-42b4-a110-b2b75767f921",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adapter_test.json\\\\ndryrun_injected_vanilla.json\\\\ndryrun_recovery.json\\\\nfailure_analysis.json\\\\ngate1_injection_validity.json\\\\ngate2_recovery_quality.json\\\\ngate3_judgment.json\\\\nmini_taxei_clean.json\\\\nmini_vanilla_clean.json\\\\npipeline_test.json\\\\nv3_random.json\\\\nv3_taxei.json\\\\nv3_vanilla.json\\\\nv4_random_eval.json\\\\nv4_random_fixed_inject10_eval.json\\\\nv4_random_fixed_inject10_s0_eval.json\\\\nv4_random_fixed_inject10_s123_eval.json\\\\nv4_random_fixed_inject10_s1_eval.json\\\\nv4_random_fixed_inject10_s7_eval.json\\\\nv4_random_fixed_inject25_eval.json\\\\nv4_random_fixed_inject25_s0_eval.json\\\\nv4_random_fixed_inject25_s123_eval.json\\\\nv4_random_fixed_inject50_eval.json\\\\nv4_random_fixed_inject50_s0_eval.json\\\\nv4_random_fixed_inject50_s123_eval.json\\\\nv4_random_recovery_eval.json\\\\nv4_random_seed0_eval.json\\\\nv4_random_seed123_eval.json\\\\nv4_random_seed1_eval.json\\\\nv4_random_seed7_eval.json\\\\nv4_taxei_eval.json\\\\nv4_taxei_fixed_inject10_eval.json\\\\nv4_taxei_fixed_inject10_s0_eval.json\\\\nv4_taxei_fixed_inject10_s123_eval.json\\\\nv4_taxei_fixed_inject10_s1_eval.json\\\\nv4_taxei_fixed_inject10_s7_eval.json\\\\nv4_taxei_fixed_inject25_eval.json\\\\nv4_taxei_fixed_inject25_s0_eval.json\\\\nv4_taxei_fixed_inject25_s123_eval.json\\\\nv4_taxei_fixed_inject50_eval.json\\\\nv4_taxei_fixed_inject50_s0_eval.json\\\\nv4_taxei_fixed_inject50_s123_eval.json\\\\nv4_taxei_recovery_eval.json\\\\nv4_taxei_recovery_eval_r2.json\\\\nv4_taxei_recovery_eval_s0.json\\\\nv4_taxei_recovery_eval_s123.json\\\\nv4_taxei_seed0_eval.json\\\\nv4_taxei_seed123_eval.json\\\\nv4_taxei_seed1_eval.json\\\\nv4_taxei_seed7_eval.json\\\\nv4_vanilla_eval.json\\\\nv4_vanilla_recovery_eval.json\\\\nv4_vanilla_recovery_eval_s0.json\\\\nv4_vanilla_recovery_eval_s123.json\\\\nv4_vanilla_seed0_eval.json\\\\nv4_vanilla_seed123_eval.json\\\\nv4_vanilla_seed1_eval.json\\\\nv4_vanilla_seed7_eval.json\\\\nvanilla_react_baseline.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"adapter_test.json\\ndryrun_injected_vanilla.json\\ndryrun_recovery.json\\nfailure_analysis.json\\ngate1_injection_validity.json\\ngate2_recovery_quality.json\\ngate3_judgment.json\\nmini_taxei_clean.json\\nmini_vanilla_clean.json\\npipeline_test.json\\nv3_random.json\\nv3_taxei.json\\nv3_vanilla.json\\nv4_random_eval.json\\nv4_random_fixed_inject10_eval.json\\nv4_random_fixed_inject10_s0_eval.json\\nv4_random_fixed_inject10_s123_eval.json\\nv4_random_fixed_inject10_s1_eval.json\\nv4_random_fixed_inject10_s7_eval.json\\nv4_random_fixed_inject25_eval.json\\nv4_random_fixed_inject25_s0_eval.json\\nv4_random_fixed_inject25_s123_eval.json\\nv4_random_fixed_inject50_eval.json\\nv4_random_fixed_inject50_s0_eval.json\\nv4_random_fixed_inject50_s123_eval.json\\nv4_random_recovery_eval.json\\nv4_random_seed0_eval.json\\nv4_random_seed123_eval.json\\nv4_random_seed1_eval.json\\nv4_random_seed7_eval.json\\nv4_taxei_eval.json\\nv4_taxei_fixed_inject10_eval.json\\nv4_taxei_fixed_inject10_s0_eval.json\\nv4_taxei_fixed_inject10_s123_eval.json\\nv4_taxei_fixed_inject10_s1_eval.json\\nv4_taxei_fixed_inject10_s7_eval.json\\nv4_taxei_fixed_inject25_eval.json\\nv4_taxei_fixed_inject25_s0_eval.json\\nv4_taxei_fixed_inject25_s123_eval.json\\nv4_taxei_fixed_inject50_eval.json\\nv4_taxei_fixed_inject50_s0_eval.json\\nv4_taxei_fixed_inject50_s123_eval.json\\nv4_taxei_recovery_eval.json\\nv4_taxei_recovery_eval_r2.json\\nv4_taxei_recovery_eval_s0.json\\nv4_taxei_recovery_eval_s123.json\\nv4_taxei_seed0_eval.json\\nv4_taxei_seed123_eval.json\\nv4_taxei_seed1_eval.json\\nv4_taxei_seed7_eval.json\\nv4_vanilla_eval.json\\nv4_vanilla_recovery_eval.json\\nv4_vanilla_recovery_eval_s0.json\\nv4_vanilla_recovery_eval_s123.json\\nv4_vanilla_seed0_eval.json\\nv4_vanilla_seed123_eval.json\\nv4_vanilla_seed1_eval.json\\nv4_vanilla_seed7_eval.json\\nvanilla_react_baseline.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f809730-3e92-4073-8b90-4a38422a061c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T22:37:03.166Z_
+
+<details><summary>↩ Tool result · `toolu_01H9RQ4rvtd4drwUNVaJYMwv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 32607 MiB\\n1, 0 %, 0 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 61 %, 18587 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a66807e-cde6-4958-88e5-55bf9eeb3857",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "76ea828f-299a-4566-a8e8-ec98f916ab61",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 32607 MiB\\\\n1, 0 %, 0 MiB, 32607 MiB\\\\n2, 0 %, 0 MiB, 32607 MiB\\\\n3, 61 %, 18587 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 32607 MiB\\n1, 0 %, 0 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 61 %, 18587 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8a66807e-cde6-4958-88e5-55bf9eeb3857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42 · 2026-05-15T22:37:03.170Z_
+
+```json
+{
+  "parentUuid": "76ea828f-299a-4566-a8e8-ec98f916ab61",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "80fdbf33-0744-4abd-a833-e24d0c4f33d8",
+  "timestamp": "2026-05-15T22:37:03.170Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T22:37:11.857Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+
+1. **Checkpoint paths from registry**:
+   - `v4-taxei-fixed-inject25-s1`: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635`
+   - `v4-random-fixed-inject25-s1`: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635`
+   
+2. **Eval result files and GPU status**: The eval result files for TaxEI 25% s0 and s123 are available on the server, and I have three free GPUs to work with while cuda:3 is currently occupied. Now I need to load those eval results to recover the metrics and locate the corresponding experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80fdbf33-0744-4abd-a833-e24d0c4f33d8",
+  "isSidechain": false,
+  "requestId": "req_011Cb59vuWniAEes6xdV6Xf8",
+  "type": "assistant",
+  "uuid": "560be82c-ceb6-4165-99b5-9f23e25ec1fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gs9P5G6nvgok9BpBTKpMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16649,
+      "cache_read_input_tokens": 42459,
+      "output_tokens": 784,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16649,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 784,
+          "cache_read_input_tokens": 42459,
+          "cache_creation_input_tokens": 16649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16649
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-15T22:37:12.523Z_
+
+GPU 0-2 空闲，cuda:3 在用。eval_results 目录有 s0/s123 文件。读取结果文件并查找 registry 中的 25% eval 实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "560be82c-ceb6-4165-99b5-9f23e25ec1fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb59vuWniAEes6xdV6Xf8",
+  "type": "assistant",
+  "uuid": "d553bbec-9241-45ae-82b6-3ae10662e739",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gs9P5G6nvgok9BpBTKpMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16649,
+      "cache_read_input_tokens": 42459,
+      "output_tokens": 784,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16649,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 784,
+          "cache_read_input_tokens": 42459,
+          "cache_creation_input_tokens": 16649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16649
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T22:37:13.539Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A5Ucc5YCAL2SE8tJprpWsh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject25_s0_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d553bbec-9241-45ae-82b6-3ae10662e739",
+  "isSidechain": false,
+  "requestId": "req_011Cb59vuWniAEes6xdV6Xf8",
+  "type": "assistant",
+  "uuid": "d11db821-40b4-43b4-a550-9cb2c306ab13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gs9P5G6nvgok9BpBTKpMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16649,
+      "cache_read_input_tokens": 42459,
+      "output_tokens": 784,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16649,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 784,
+          "cache_read_input_tokens": 42459,
+          "cache_creation_input_tokens": 16649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16649
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T22:37:13.910Z_
+
+<details><summary>↩ Tool result · `toolu_01A5Ucc5YCAL2SE8tJprpWsh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635\\\",\\n  \\\"eval_split\\\": \\\"valid_unseen\\\",\\n  \\\"inject\\\": false,\\n  \\\"inject_mode\\\": \\\"none\\\",\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.468,\\n  \\\"timestamp\\\": \\\"2026-05-15T09:29:19.372664+00:00\\\",\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 4,\\n      \\\"rate\\\": 0.667\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 2,\\n      \\\"rate\\\": 0.25\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 5,\\n      \\\"rate\\\": 0.455\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 2,\\n      \\\"rate\\\": 0.286\\n    },\\n    \\\"pick_heat_then_place_in_recep\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 6,\\n      \\\"rate\\\": 0.75\\n    },\\n    \\\"pick_two_obj_and_place\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 3,\\n      \\\"rate\\\": 0.429\\n    }\\n  },\\n  \\\"episodes\\\": [\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Hold the clock and turn on the lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a book by the light of a lamp.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Bowl-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"turn on a lamp while holding a bowl\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-CD-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"examine a CD with a lamp\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 7,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Mug-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a mug in lamp light.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 9,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Pencil-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Examine a pencil under a lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 9,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Mug-None-Desk-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Move a mug from the shelves to the desk.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Pencil-None-Shelf-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Take the pencil from the desk, put it back on the desk\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Put a salt shaker in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-SaltShaker-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Place the salt shaker in the cabinet beside the fridge.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n  \\n\\n... [截断: 输出过长，省略 7902 字符] ...\\n\\nt-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Warm up the cup inside the cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 11,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Egg-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated egg in a bin\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated mug in a cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a warmed mug in a coffee machine.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Potato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat up a potato and put it in the trash.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 12,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat a tomato and place in a bin. \\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 12,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-CD-None-Safe-308\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Secure two discs in a bedroom safe.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 11,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-KeyChain-None-Safe-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"put two sets of keys inside safe\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two shakers in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-Pillow-None-Sofa-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two pillows on the sofa.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 20,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two bars of soap in the cabinet.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-GarbageCan-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Throw two bars of soap in the trash bin.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 8,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-ToiletPaper-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put toilet paper rolls in a cabinet under the sink.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d11db821-40b4-43b4-a550-9cb2c306ab13",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "fa03c541-bce3-4f80-a00d-d73b01c799bb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635\\\\\\\",\\\\n  \\\\\\\"eval_split\\\\\\\": \\\\\\\"valid_unseen\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": false,\\\\n  \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"total_episodes\\\\\\\": 47,\\\\n  \\\\\\\"success_rate\\\\\\\": 0.468,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-15T09:29:19.372664+00:00\\\\\\\",\\\\n  \\\\\\\"by_task_type\\\\\\\": {\\\\n    \\\\\\\"look_at_obj_in_light\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 6,\\\\n      \\\\\\\"success\\\\\\\": 4,\\\\n      \\\\\\\"rate\\\\\\\": 0.667\\\\n    },\\\\n    \\\\\\\"pick_and_place_simple\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 8,\\\\n      \\\\\\\"success\\\\\\\": 2,\\\\n      \\\\\\\"rate\\\\\\\": 0.25\\\\n    },\\\\n    \\\\\\\"pick_clean_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 11,\\\\n      \\\\\\\"success\\\\\\\": 5,\\\\n      \\\\\\\"rate\\\\\\\": 0.455\\\\n    },\\\\n    \\\\\\\"pick_cool_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"success\\\\\\\": 2,\\\\n      \\\\\\\"rate\\\\\\\": 0.286\\\\n    },\\\\n    \\\\\\\"pick_heat_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 8,\\\\n      \\\\\\\"success\\\\\\\": 6,\\\\n      \\\\\\\"rate\\\\\\\": 0.75\\\\n    },\\\\n    \\\\\\\"pick_two_obj_and_place\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"success\\\\\\\": 3,\\\\n      \\\\\\\"rate\\\\\\\": 0.429\\\\n    }\\\\n  },\\\\n  \\\\\\\"episodes\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Hold the clock and turn on the lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 5,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Look at a book by the light of a lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Bowl-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"turn on a lamp while holding a bowl\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-CD-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"examine a CD with a lamp\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 7,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Mug-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Look at a mug in lamp light.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 9,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Pencil-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Examine a pencil under a lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 9,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-Mug-None-Desk-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Move a mug from the shelves to the desk.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 5,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-Pencil-None-Shelf-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Take the pencil from the desk, put it back on the desk\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-PepperShaker-None-Drawer-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put a salt shaker in a drawer.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-SaltShaker-None-Cabinet-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place the salt shaker in the cabinet beside the fridge.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 7902 字符] ...\\\\n\\\\nt-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Warm up the cup inside the cabinet.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 11,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Egg-None-GarbageCan-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place a heated egg in a bin\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Mug-None-Cabinet-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place a heated mug in a cabinet.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 6,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place a warmed mug in a coffee machine.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 6,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Potato-None-GarbageCan-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Heat up a potato and put it in the trash.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 12,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Heat a tomato and place in a bin. \\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 12,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-CD-None-Safe-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Secure two discs in a bedroom safe.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 11,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-KeyChain-None-Safe-219\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"put two sets of keys inside safe\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-PepperShaker-None-Drawer-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put two shakers in a drawer.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-Pillow-None-Sofa-219\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put two pillows on the sofa.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 20,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-SoapBar-None-Cabinet-424\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put two bars of soap in the cabinet.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-SoapBar-None-GarbageCan-424\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Throw two bars of soap in the trash bin.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 8,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-ToiletPaper-None-Cabinet-424\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put toilet paper rolls in a cabinet under the sink.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635\\\",\\n  \\\"eval_split\\\": \\\"valid_unseen\\\",\\n  \\\"inject\\\": false,\\n  \\\"inject_mode\\\": \\\"none\\\",\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.468,\\n  \\\"timestamp\\\": \\\"2026-05-15T09:29:19.372664+00:00\\\",\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 4,\\n      \\\"rate\\\": 0.667\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 2,\\n      \\\"rate\\\": 0.25\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 5,\\n      \\\"rate\\\": 0.455\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 2,\\n      \\\"rate\\\": 0.286\\n    },\\n    \\\"pick_heat_then_place_in_recep\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 6,\\n      \\\"rate\\\": 0.75\\n    },\\n    \\\"pick_two_obj_and_place\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 3,\\n      \\\"rate\\\": 0.429\\n    }\\n  },\\n  \\\"episodes\\\": [\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Hold the clock and turn on the lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a book by the light of a lamp.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Bowl-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"turn on a lamp while holding a bowl\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-CD-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"examine a CD with a lamp\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 7,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Mug-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a mug in lamp light.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 9,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Pencil-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Examine a pencil under a lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 9,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Mug-None-Desk-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Move a mug from the shelves to the desk.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Pencil-None-Shelf-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Take the pencil from the desk, put it back on the desk\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Put a salt shaker in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-SaltShaker-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Place the salt shaker in the cabinet beside the fridge.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n  \\n\\n... [截断: 输出过长，省略 7902 字符] ...\\n\\nt-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Warm up the cup inside the cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 11,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Egg-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated egg in a bin\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated mug in a cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a warmed mug in a coffee machine.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Potato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat up a potato and put it in the trash.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 12,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat a tomato and place in a bin. \\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 12,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-CD-None-Safe-308\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Secure two discs in a bedroom safe.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 11,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-KeyChain-None-Safe-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"put two sets of keys inside safe\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two shakers in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-Pillow-None-Sofa-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two pillows on the sofa.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 20,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two bars of soap in the cabinet.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-GarbageCan-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Throw two bars of soap in the trash bin.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 8,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-ToiletPaper-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put toilet paper rolls in a cabinet under the sink.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d11db821-40b4-43b4-a550-9cb2c306ab13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T22:37:14.485Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V26NeNJ4d5h2n9zUEHfn9Z`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/autodl-tmp/tax_error_inject_agent/eval_results/v4_taxei_fixed_inject25_s123_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa03c541-bce3-4f80-a00d-d73b01c799bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb59vuWniAEes6xdV6Xf8",
+  "type": "assistant",
+  "uuid": "74425c89-9bd0-4179-88a6-d9316277c276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gs9P5G6nvgok9BpBTKpMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16649,
+      "cache_read_input_tokens": 42459,
+      "output_tokens": 784,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16649,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 784,
+          "cache_read_input_tokens": 42459,
+          "cache_creation_input_tokens": 16649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16649
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T22:37:14.853Z_
+
+<details><summary>↩ Tool result · `toolu_01V26NeNJ4d5h2n9zUEHfn9Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635\\\",\\n  \\\"eval_split\\\": \\\"valid_unseen\\\",\\n  \\\"inject\\\": false,\\n  \\\"inject_mode\\\": \\\"none\\\",\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.468,\\n  \\\"timestamp\\\": \\\"2026-05-15T09:29:23.639032+00:00\\\",\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 4,\\n      \\\"rate\\\": 0.667\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 3,\\n      \\\"rate\\\": 0.375\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 5,\\n      \\\"rate\\\": 0.455\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 1,\\n      \\\"rate\\\": 0.143\\n    },\\n    \\\"pick_heat_then_place_in_recep\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 6,\\n      \\\"rate\\\": 0.75\\n    },\\n    \\\"pick_two_obj_and_place\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 3,\\n      \\\"rate\\\": 0.429\\n    }\\n  },\\n  \\\"episodes\\\": [\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Hold the clock and turn on the lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a book by the light of a lamp.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Bowl-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"turn on a lamp while holding a bowl\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-CD-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"examine a CD with a lamp\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 15,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Mug-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a mug in lamp light.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Pencil-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Examine a pencil under a lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 9,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Mug-None-Desk-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Move a mug from the shelves to the desk.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Pencil-None-Shelf-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Take the pencil from the desk, put it back on the desk\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Put a salt shaker in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-SaltShaker-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Place the salt shaker in the cabinet beside the fridge.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    \\n\\n... [截断: 输出过长，省略 7904 字符] ...\\n\\nt-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Warm up the cup inside the cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 10,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Egg-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated egg in a bin\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated mug in a cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a warmed mug in a coffee machine.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 4,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Potato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat up a potato and put it in the trash.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 11,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat a tomato and place in a bin. \\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 15,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-CD-None-Safe-308\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Secure two discs in a bedroom safe.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 12,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-KeyChain-None-Safe-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"put two sets of keys inside safe\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two shakers in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-Pillow-None-Sofa-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two pillows on the sofa.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 22,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two bars of soap in the cabinet.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-GarbageCan-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Throw two bars of soap in the trash bin.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 8,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-ToiletPaper-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put toilet paper rolls in a cabinet under the sink.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74425c89-9bd0-4179-88a6-d9316277c276",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "ffffa4a6-0dd4-44fe-a55a-729e98ed3b24",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635\\\\\\\",\\\\n  \\\\\\\"eval_split\\\\\\\": \\\\\\\"valid_unseen\\\\\\\",\\\\n  \\\\\\\"inject\\\\\\\": false,\\\\n  \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"total_episodes\\\\\\\": 47,\\\\n  \\\\\\\"success_rate\\\\\\\": 0.468,\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-15T09:29:23.639032+00:00\\\\\\\",\\\\n  \\\\\\\"by_task_type\\\\\\\": {\\\\n    \\\\\\\"look_at_obj_in_light\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 6,\\\\n      \\\\\\\"success\\\\\\\": 4,\\\\n      \\\\\\\"rate\\\\\\\": 0.667\\\\n    },\\\\n    \\\\\\\"pick_and_place_simple\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 8,\\\\n      \\\\\\\"success\\\\\\\": 3,\\\\n      \\\\\\\"rate\\\\\\\": 0.375\\\\n    },\\\\n    \\\\\\\"pick_clean_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 11,\\\\n      \\\\\\\"success\\\\\\\": 5,\\\\n      \\\\\\\"rate\\\\\\\": 0.455\\\\n    },\\\\n    \\\\\\\"pick_cool_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"success\\\\\\\": 1,\\\\n      \\\\\\\"rate\\\\\\\": 0.143\\\\n    },\\\\n    \\\\\\\"pick_heat_then_place_in_recep\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 8,\\\\n      \\\\\\\"success\\\\\\\": 6,\\\\n      \\\\\\\"rate\\\\\\\": 0.75\\\\n    },\\\\n    \\\\\\\"pick_two_obj_and_place\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 7,\\\\n      \\\\\\\"success\\\\\\\": 3,\\\\n      \\\\\\\"rate\\\\\\\": 0.429\\\\n    }\\\\n  },\\\\n  \\\\\\\"episodes\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Hold the clock and turn on the lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 5,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Look at a book by the light of a lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Bowl-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"turn on a lamp while holding a bowl\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-CD-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"examine a CD with a lamp\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 15,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Mug-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Look at a mug in lamp light.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 6,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"look_at_obj_in_light-Pencil-None-DeskLamp-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Examine a pencil under a lamp.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 9,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-Mug-None-Desk-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Move a mug from the shelves to the desk.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 5,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-Pencil-None-Shelf-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Take the pencil from the desk, put it back on the desk\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-PepperShaker-None-Drawer-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put a salt shaker in a drawer.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_and_place_simple-SaltShaker-None-Cabinet-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_and_place_simple\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place the salt shaker in the cabinet beside the fridge.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 7904 字符] ...\\\\n\\\\nt-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Warm up the cup inside the cabinet.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 10,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Egg-None-GarbageCan-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place a heated egg in a bin\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Mug-None-Cabinet-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place a heated mug in a cabinet.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 6,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Place a warmed mug in a coffee machine.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 4,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Potato-None-GarbageCan-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Heat up a potato and put it in the trash.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 11,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_heat_then_place_in_recep\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Heat a tomato and place in a bin. \\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 15,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-CD-None-Safe-308\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Secure two discs in a bedroom safe.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 12,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-KeyChain-None-Safe-219\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"put two sets of keys inside safe\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-PepperShaker-None-Drawer-10\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put two shakers in a drawer.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-Pillow-None-Sofa-219\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put two pillows on the sofa.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 22,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-SoapBar-None-Cabinet-424\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put two bars of soap in the cabinet.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-SoapBar-None-GarbageCan-424\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Throw two bars of soap in the trash bin.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": true,\\\\n      \\\\\\\"steps\\\\\\\": 8,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_name\\\\\\\": \\\\\\\"pick_two_obj_and_place-ToiletPaper-None-Cabinet-424\\\\\\\",\\\\n      \\\\\\\"task_type\\\\\\\": \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n      \\\\\\\"task_desc\\\\\\\": \\\\\\\"Put toilet paper rolls in a cabinet under the sink.\\\\\\\",\\\\n      \\\\\\\"success\\\\\\\": false,\\\\n      \\\\\\\"steps\\\\\\\": 50,\\\\n      \\\\\\\"injected\\\\\\\": false,\\\\n      \\\\\\\"operator\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n      \\\\\\\"inject_mode\\\\\\\": \\\\\\\"none\\\\\\\"\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635\\\",\\n  \\\"eval_split\\\": \\\"valid_unseen\\\",\\n  \\\"inject\\\": false,\\n  \\\"inject_mode\\\": \\\"none\\\",\\n  \\\"total_episodes\\\": 47,\\n  \\\"success_rate\\\": 0.468,\\n  \\\"timestamp\\\": \\\"2026-05-15T09:29:23.639032+00:00\\\",\\n  \\\"by_task_type\\\": {\\n    \\\"look_at_obj_in_light\\\": {\\n      \\\"total\\\": 6,\\n      \\\"success\\\": 4,\\n      \\\"rate\\\": 0.667\\n    },\\n    \\\"pick_and_place_simple\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 3,\\n      \\\"rate\\\": 0.375\\n    },\\n    \\\"pick_clean_then_place_in_recep\\\": {\\n      \\\"total\\\": 11,\\n      \\\"success\\\": 5,\\n      \\\"rate\\\": 0.455\\n    },\\n    \\\"pick_cool_then_place_in_recep\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 1,\\n      \\\"rate\\\": 0.143\\n    },\\n    \\\"pick_heat_then_place_in_recep\\\": {\\n      \\\"total\\\": 8,\\n      \\\"success\\\": 6,\\n      \\\"rate\\\": 0.75\\n    },\\n    \\\"pick_two_obj_and_place\\\": {\\n      \\\"total\\\": 7,\\n      \\\"success\\\": 3,\\n      \\\"rate\\\": 0.429\\n    }\\n  },\\n  \\\"episodes\\\": [\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Hold the clock and turn on the lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Book-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a book by the light of a lamp.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Bowl-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"turn on a lamp while holding a bowl\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-CD-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"examine a CD with a lamp\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 15,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Mug-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Look at a mug in lamp light.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"look_at_obj_in_light-Pencil-None-DeskLamp-308\\\",\\n      \\\"task_type\\\": \\\"look_at_obj_in_light\\\",\\n      \\\"task_desc\\\": \\\"Examine a pencil under a lamp.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 9,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Mug-None-Desk-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Move a mug from the shelves to the desk.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 5,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-Pencil-None-Shelf-308\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Take the pencil from the desk, put it back on the desk\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Put a salt shaker in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_and_place_simple-SaltShaker-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_and_place_simple\\\",\\n      \\\"task_desc\\\": \\\"Place the salt shaker in the cabinet beside the fridge.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    \\n\\n... [截断: 输出过长，省略 7904 字符] ...\\n\\nt-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Warm up the cup inside the cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 10,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Egg-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated egg in a bin\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-Cabinet-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a heated mug in a cabinet.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 6,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Mug-None-CoffeeMachine-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Place a warmed mug in a coffee machine.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 4,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Potato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat up a potato and put it in the trash.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 11,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_heat_then_place_in_recep-Tomato-None-GarbageCan-10\\\",\\n      \\\"task_type\\\": \\\"pick_heat_then_place_in_recep\\\",\\n      \\\"task_desc\\\": \\\"Heat a tomato and place in a bin. \\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 15,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-CD-None-Safe-308\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Secure two discs in a bedroom safe.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 12,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-KeyChain-None-Safe-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"put two sets of keys inside safe\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-PepperShaker-None-Drawer-10\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two shakers in a drawer.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-Pillow-None-Sofa-219\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two pillows on the sofa.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 22,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put two bars of soap in the cabinet.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-SoapBar-None-GarbageCan-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Throw two bars of soap in the trash bin.\\\",\\n      \\\"success\\\": true,\\n      \\\"steps\\\": 8,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    },\\n    {\\n      \\\"task_name\\\": \\\"pick_two_obj_and_place-ToiletPaper-None-Cabinet-424\\\",\\n      \\\"task_type\\\": \\\"pick_two_obj_and_place\\\",\\n      \\\"task_desc\\\": \\\"Put toilet paper rolls in a cabinet under the sink.\\\",\\n      \\\"success\\\": false,\\n      \\\"steps\\\": 50,\\n      \\\"injected\\\": false,\\n      \\\"operator\\\": \\\"none\\\",\\n      \\\"inject_mode\\\": \\\"none\\\"\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "74425c89-9bd0-4179-88a6-d9316277c276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T22:37:15.253Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LD4kBXnpA3mbzNuSMaLz6F`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "filters": {
+    "conclusion": "success"
+  },
+  "fields": [
+    "status",
+    "conclusion",
+    "metrics",
+    "hypothesis"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffffa4a6-0dd4-44fe-a55a-729e98ed3b24",
+  "isSidechain": false,
+  "requestId": "req_011Cb59vuWniAEes6xdV6Xf8",
+  "type": "assistant",
+  "uuid": "9c2b54f7-c11e-4073-8be3-fb14ab7fa40a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017gs9P5G6nvgok9BpBTKpMM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16649,
+      "cache_read_input_tokens": 42459,
+      "output_tokens": 784,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16649,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 784,
+          "cache_read_input_tokens": 42459,
+          "cache_creation_input_tokens": 16649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16649
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "9c2b54f7-c11e-4073-8be3-fb14ab7fa40a",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T22:37:15.571Z_
+
+<details><summary>↩ Tool result · `toolu_01LD4kBXnpA3mbzNuSMaLz6F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-random-fixed-inject25-s0\": {\"status\": \"QUEUED\", \"hypothesis\": \"D022 multi-seed dose-response: Random 25% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 55.3%。\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s123\": {\"status\": \"QUEUED\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 48.9%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4253, \"train_duration_min\": 55.9, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}, \"v4-taxei-fixed-inject25-s0\": {\"status\": \"QUEUED\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 25% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 48.9%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4258, \"train_duration_min\": 56.1, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}, \"v4-taxei-fixed-inject25-s7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"metrics\": {\"train_loss\": 0.4242, \"final_step_loss\": 0.2571, \"token_accuracy\": 0.904, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3430.48, \"train_duration_min\": 57.17, \"train_samples_per_second\": 3.811, \"train_steps_per_second\": 0.477, \"memory_gib\": 17.55, \"data_count\": 4358}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject25-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"metrics\": {\"train_loss\": 0.4261, \"final_step_loss\": 0.2442, \"token_accuracy\": 0.9123, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3417.56, \"train_duration_min\": 56.96, \"train_samples_per_second\": 3.826, \"train_steps_per_second\": 0.478, \"memory_gib\": 18, \"data_count\": 4358}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"metrics\": {\"train_loss\": 0.4243, \"train_duration_min\": 57.5, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\", \"metrics\": {\"final_loss\": 0.2352, \"train_loss_avg\": 0.4209, \"final_token_acc\": 0.9066, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3511.93, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.148}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 10, \"success\": 5, \"rate\": 0.5}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 6, \"rate\": 0.857}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s1-eval-r2\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\", \"metrics\": {\"success_rate\": 0.511, \"successes\": 24, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.237, \"train_loss_avg\": 0.4212, \"final_token_acc\": 0.905, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3437, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.102}}, \"v4-random-fixed-inject10-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"metrics\": {\"final_loss\": 0.3096, \"train_loss_avg\": 0.4238, \"final_token_acc\": 0.8902, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3488, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.132}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s123-eval-r3\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s0-eval-r3\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"metrics\": {\"success_rate\": 0.66, \"successes\": 31, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}, \"v4-taxei-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 8, \"rate\": 0.727}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}}, \"v4-taxei-fixed-inject10-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"metrics\": {\"final_loss\": 0.3013, \"train_loss_avg\": 0.4225, \"final_token_acc\": 0.8947, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3469, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.121}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s123\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\", \"metrics\": {\"final_loss\": 0.3124, \"train_loss_avg\": 0.4236, \"final_token_acc\": 0.8867, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3535.7, \"train_samples_per_second\": 3.698, \"train_steps_per_second\": 0.462, \"memory_gib\": 18.95}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s123\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\", \"metrics\": {\"train_loss\": 0.4234, \"final_loss\": 0.3097, \"final_token_acc\": 0.8882, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3497, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\"}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s0\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=0 (4,358 total). Dose-response 5-seed expansion — 与 TaxEI 10% 对比 taxonomy 标签效果。\", \"metrics\": {\"train_loss\": 0.4227, \"final_loss\": 0.276, \"final_token_acc\": 0.9067, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3531, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\"}, \"conclusion\": \"success\"}, \"v4-training-dynamics-forward-v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"subsets_computed\": [\"vanilla_full\", \"taxei_full\", \"random_full\", \"taxei_inject10\", \"taxei_inject25\", \"taxei_inject50\"], \"taxei_inject50_injected_mean_loss\": 0.8185, \"taxei_inject50_clean_mean_loss\": 0.8514, \"per_operator\": {\"C1_ContextTruncation\": {\"mean\": 0.6489, \"n\": 101}, \"C4_ObservationMasking\": {\"mean\": 0.6782, \"n\": 92}, \"P1_StepOrderSwap\": {\"mean\": 0.6374, \"n\": 89}, \"P2_SubGoalDeletion\": {\"mean\": 0.6542, \"n\": 88}}, \"plots\": [\"subset_comparison\", \"operator_breakdown\", \"dose_response\"], \"output_dir\": \"/root/autodl-tmp/tax_error_inject_agent/artifacts/training_dynamics_v2/\"}}, \"v4-taxei-fixed-inject10-s0\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=0 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 10% 是最薄弱环节，仅有 seed=42 一个数据点。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4238, \"final_loss\": 0.3102, \"final_token_acc\": 0.8822, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3494, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s0/v0-20260516-005247/checkpoint-1635\"}}, \"v4-random-seed7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion ← 基于 v4-random-seed7\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 6, \"rate\": 0.545}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"conclusion\": \"success\"}, \"v4-random-seed1-eval\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 2, \"total\": 8, \"rate\": 0.25}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 2, \"total\": 7, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"pick_two_obj_and_place\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}}}, \"conclusion\": \"success\"}, \"v4-random-seed7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random SFT seed=7 (5-seed expansion) — 9,029 samples, LoRA rank=16, 3 epochs\", \"metrics\": {\"final_loss\": 0.173, \"final_token_acc\": 0.935, \"initial_loss\": 4.017, \"total_steps\": 3387, \"epochs\": 3, \"total_flos\": 697192362530058200, \"train_runtime_sec\": 6672, \"memory_gib\": 18.49}, \"conclusion\": \"success\"}, \"v4-random-seed1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.167, \"final_token_acc\": 0.938, \"initial_loss\": 4.017, \"total_steps\": 3387, \"epochs\": 3, \"total_flos\": 697000000000000000}}, \"v4-taxei-seed1-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.596, \"successes\": 28, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 5, \"rate\": 0.714}}}}, \"v4-vanilla-seed1-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Vanilla SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_seed42_pp\": 4.3}}, \"v4-taxei-seed7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task\": {\"look_at_obj_in_light\": \"4/6 (0.667)\", \"pick_and_place_simple\": \"5/8 (0.625)\", \"pick_clean_then_place_in_recep\": \"5/11 (0.455)\", \"pick_cool_then_place_in_recep\": \"4/7 (0.571)\", \"pick_heat_then_place_in_recep\": \"7/8 (0.875)\", \"pick_two_obj_and_place\": \"4/7 (0.571)\"}}}, \"v4-training-dynamics-forward\": {\"status\": \"DONE\", \"hypothesis\": \"D027 Training Dynamics: Post-hoc forward pass on seed=42 checkpoints (Vanilla/TaxEI/Random + dose-response 10%/25%/50%) — compute per-subset loss (clean vs injected) and per-operator loss (P1/P2/C1/C4). Key finding: training loss SD=0.0004 across seeds but eval SD=8.6pp — memorization-generalization dissociation.\", \"metrics\": {\"vanilla_full\": {\"clean_loss\": 0.6853, \"clean_n\": 4358}, \"taxei_full\": {\"clean_loss\": 0.7712, \"injected_loss\": 0.6139, \"clean_n\": 8269, \"injected_n\": 760, \"per_operator\": {\"P1_StepOrderSwap\": 0.6165, \"P2_SubGoalDeletion\": 0.6161, \"C1_ContextTruncation\": 0.5932, \"C4_ObservationMasking\": 0.6298}}, \"random_full\": {\"clean_loss\": 0.7354, \"injected_loss\": 0.5902, \"clean_n\": 8269, \"injected_n\": 760}, \"dose_response\": {\"taxei_10pct\": {\"clean_loss\": 0.6628, \"injected_loss\": 0.6464, \"gap\": -0.0164, \"injected_n\": 70}, \"taxei_25pct\": {\"clean_loss\": 0.701, \"injected_loss\": 0.574, \"gap\": -0.127, \"injected_n\": 168}, \"taxei_50pct\": {\"clean_loss\": 0.8516, \"injected_loss\": 0.6547, \"gap\": -0.1969, \"injected_n\": 370}}, \"key_findings\": \"Clear dose-response: injected-clean gap widens from -0.016 (10%) to -0.127 (25%) to -0.197 (50%). TaxEI operators C1_ContextTruncation consistently lowest loss. Higher injection rates also degrade clean sample loss (0.663→0.701→0.852).\"}, \"conclusion\": \"success\"}, \"qualitative-failure-analysis\": {\"status\": \"PREPARING\", \"hypothesis\": \"D026 Qualitative Failure Analysis: Extract failure patterns from existing eval logs. Key finding: TaxEI loop_repetition rate 17.4% vs Vanilla 7.8% vs Random 3.2%. TaxEI models exhibit fixation behavior (repeated action loops) especially on multi-step tasks under P1/P2 operators.\", \"conclusion\": \"success\", \"metrics\": {\"data_source\": \"eval_results/failure_analysis.json\", \"taxei_loop_repetition_rate\": 0.174, \"vanilla_loop_repetition_rate\": 0.078, \"random_loop_repetition_rate\": 0.032, \"taxei_loop_count\": 49, \"vanilla_loop_count\": 22, \"random_loop_count\": 6, \"per_operator\": {\"P1\": 15, \"P2\": 14, \"C1\": 11, \"C4\": 9}, \"note\": \"Random data only from seed=42 recovery eval + 3-seed clean eval (188 episodes vs 282). Rates to be updated after 5-seed completion.\"}}, \"v4-taxei-seed1\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.1667, \"avg_loss\": 0.3561, \"token_accuracy\": 0.915, \"final_token_acc\": 0.942, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 108.9, \"memory_gib\": 18.49, \"checkpoint_path\": \"checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387\"}, \"conclusion\": \"success\"}, \"v4-taxei-seed7\": {\"status\": \"DONE\", \"metrics\": {\"current_step\": 3387, \"total_steps\": 3387, \"progress_pct\": 100, \"train_loss\": 0.3568, \"final_step_loss\": 0.1753, \"token_acc\": 0.9009, \"final_token_acc\": 0.9328, \"train_runtime_s\": 6591.9, \"epochs\": 3, \"peak_memory_gib\": 18.49, \"gpu\": \"cuda:3\", \"pid\": 155145}, \"conclusion\": \"success\"}, \"v4-vanilla-seed7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Vanilla SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.745, \"eval_successes\": 35, \"eval_total\": 47, \"vs_seed42_pp\": 12.8}}, \"v4-vanilla-seed1\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.292, \"avg_loss\": 0.416, \"token_accuracy\": 0.903, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58.8, \"memory_gib\": 17.63, \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635\"}, \"conclusion\": \"success\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=1 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\"}, \"v4-vanilla-seed7\": {\"status\": \"DONE\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.295, \"avg_loss\": 0.415, \"token_accuracy\": 0.898, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 59.4, \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed7/v0-20260515-214031/checkpoint-1635\"}}, \"v4-random-fixed-inject50-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47}}, \"v4-random-fixed-inject50-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47}}, \"v4-taxei-fixed-inject50-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47}}, \"v4-taxei-fixed-inject50-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.702, \"eval_successes\": 33, \"eval_total\": 47}}, \"v4-random-fixed-inject25-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.511, \"total\": 47, \"successes\": 24, \"by_task\": {\"look_at_obj_in_light\": 0.667, \"pick_and_place_simple\": 0.375, \"pick_clean_then_place_in_recep\": 0.545, \"pick_cool_then_place_in_recep\": 0.143, \"pick_heat_then_place_in_recep\": 0.75, \"pick_two_obj_and_place\": 0.571}}}, \"v4-random-fixed-inject25-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"total\": 47, \"successes\": 29, \"by_task\": {\"look_at_obj_in_light\": 0.667, \"pick_and_place_simple\": 0.625, \"pick_clean_then_place_in_recep\": 0.455, \"pick_cool_then_place_in_recep\": 0.571, \"pick_heat_then_place_in_recep\": 0.75, \"pick_two_obj_and_place\": 0.714}}}, \"v4-random-fixed-inject25-s123\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: Random 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 55.3%。\", \"conclusion\": \"success\"}, \"v4-random-fixed-inject50-s123\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: Random 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 57.4%。\", \"conclusion\": \"success\"}, \"v4-random-fixed-inject50-s0\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: Random 50% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 57.4%。\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject50-s123\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 51.1%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4348, \"train_duration_min\": 52.9, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}, \"v4-taxei-fixed-inject50-s0\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 50% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 51.1%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4342, \"train_duration_min\": 52.4, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}}, \"count\": 50, \"total\": 88, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3056}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c2b54f7-c11e-4073-8be3-fb14ab7fa40a",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "8ad2e44f-caa5-47b5-95fb-91684b3138b6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v4-random-fixed-inject25-s0\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: Random 25% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 55.3%。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject25-s123\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: TaxEI 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 48.9%。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4253, \\\"train_duration_min\\\": 55.9, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}}, \\\"v4-taxei-fixed-inject25-s0\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: TaxEI 25% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 48.9%。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4258, \\\"train_duration_min\\\": 56.1, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}}, \\\"v4-taxei-fixed-inject25-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4242, \\\"final_step_loss\\\": 0.2571, \\\"token_accuracy\\\": 0.904, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 3430.48, \\\"train_duration_min\\\": 57.17, \\\"train_samples_per_second\\\": 3.811, \\\"train_steps_per_second\\\": 0.477, \\\"memory_gib\\\": 17.55, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject25-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4261, \\\"final_step_loss\\\": 0.2442, \\\"token_accuracy\\\": 0.9123, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_runtime_sec\\\": 3417.56, \\\"train_duration_min\\\": 56.96, \\\"train_samples_per_second\\\": 3.826, \\\"train_steps_per_second\\\": 0.478, \\\"memory_gib\\\": 18, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject25-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4243, \\\"train_duration_min\\\": 57.5, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.2352, \\\"train_loss_avg\\\": 0.4209, \\\"final_token_acc\\\": 0.9066, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3511.93, \\\"memory_gib\\\": 18.15, \\\"train_speed_s_per_it\\\": 2.148}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.681, \\\"successes\\\": 32, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 10, \\\"success\\\": 5, \\\"rate\\\": 0.5}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 6, \\\"rate\\\": 0.857}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject10-s7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.681, \\\"successes\\\": 32, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 7, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject10-s1-eval-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.511, \\\"successes\\\": 24, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 4, \\\"rate\\\": 0.667}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject10-s7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.237, \\\"train_loss_avg\\\": 0.4212, \\\"final_token_acc\\\": 0.905, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3437, \\\"memory_gib\\\": 18.15, \\\"train_speed_s_per_it\\\": 2.102}}, \\\"v4-random-fixed-inject10-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.3096, \\\"train_loss_avg\\\": 0.4238, \\\"final_token_acc\\\": 0.8902, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3488, \\\"memory_gib\\\": 18.13, \\\"train_speed_s_per_it\\\": 2.132}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject10-s123-eval-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s0-eval-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.66, \\\"successes\\\": 31, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}}, \\\"v4-taxei-fixed-inject10-s0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.702, \\\"successes\\\": 33, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 8, \\\"rate\\\": 0.727}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 4, \\\"rate\\\": 0.571}}}}, \\\"v4-taxei-fixed-inject10-s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.3013, \\\"train_loss_avg\\\": 0.4225, \\\"final_token_acc\\\": 0.8947, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3469, \\\"memory_gib\\\": 18.13, \\\"train_speed_s_per_it\\\": 2.121}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.3124, \\\"train_loss_avg\\\": 0.4236, \\\"final_token_acc\\\": 0.8867, \\\"total_steps\\\": 1635, \\\"epochs\\\": 3, \\\"train_runtime_sec\\\": 3535.7, \\\"train_samples_per_second\\\": 3.698, \\\"train_steps_per_second\\\": 0.462, \\\"memory_gib\\\": 18.95}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject10-s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4234, \\\"final_loss\\\": 0.3097, \\\"final_token_acc\\\": 0.8882, \\\"epochs\\\": 3, \\\"total_steps\\\": 1635, \\\"train_runtime_sec\\\": 3497, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject10-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random fixed-size ablation: 10% injection ratio seed=0 (4,358 total). Dose-response 5-seed expansion — 与 TaxEI 10% 对比 taxonomy 标签效果。\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4227, \\\"final_loss\\\": 0.276, \\\"final_token_acc\\\": 0.9067, \\\"epochs\\\": 3, \\\"total_steps\\\": 1635, \\\"train_runtime_sec\\\": 3531, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-training-dynamics-forward-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"subsets_computed\\\": [\\\"vanilla_full\\\", \\\"taxei_full\\\", \\\"random_full\\\", \\\"taxei_inject10\\\", \\\"taxei_inject25\\\", \\\"taxei_inject50\\\"], \\\"taxei_inject50_injected_mean_loss\\\": 0.8185, \\\"taxei_inject50_clean_mean_loss\\\": 0.8514, \\\"per_operator\\\": {\\\"C1_ContextTruncation\\\": {\\\"mean\\\": 0.6489, \\\"n\\\": 101}, \\\"C4_ObservationMasking\\\": {\\\"mean\\\": 0.6782, \\\"n\\\": 92}, \\\"P1_StepOrderSwap\\\": {\\\"mean\\\": 0.6374, \\\"n\\\": 89}, \\\"P2_SubGoalDeletion\\\": {\\\"mean\\\": 0.6542, \\\"n\\\": 88}}, \\\"plots\\\": [\\\"subset_comparison\\\", \\\"operator_breakdown\\\", \\\"dose_response\\\"], \\\"output_dir\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/artifacts/training_dynamics_v2/\\\"}}, \\\"v4-taxei-fixed-inject10-s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI fixed-size ablation: 10% injection ratio seed=0 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 10% 是最薄弱环节，仅有 seed=42 一个数据点。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4238, \\\"final_loss\\\": 0.3102, \\\"final_token_acc\\\": 0.8822, \\\"epochs\\\": 3, \\\"total_steps\\\": 1635, \\\"train_runtime_sec\\\": 3494, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s0/v0-20260516-005247/checkpoint-1635\\\"}}, \\\"v4-random-seed7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion ← 基于 v4-random-seed7\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.553, \\\"successes\\\": 26, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 6, \\\"rate\\\": 0.545}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 5, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-seed1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 2, \\\"total\\\": 8, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 2, \\\"total\\\": 7, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=7 (5-seed expansion) — 9,029 samples, LoRA rank=16, 3 epochs\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.173, \\\"final_token_acc\\\": 0.935, \\\"initial_loss\\\": 4.017, \\\"total_steps\\\": 3387, \\\"epochs\\\": 3, \\\"total_flos\\\": 697192362530058200, \\\"train_runtime_sec\\\": 6672, \\\"memory_gib\\\": 18.49}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.167, \\\"final_token_acc\\\": 0.938, \\\"initial_loss\\\": 4.017, \\\"total_steps\\\": 3387, \\\"epochs\\\": 3, \\\"total_flos\\\": 697000000000000000}}, \\\"v4-taxei-seed1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.596, \\\"successes\\\": 28, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 5, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 4, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 7, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 5, \\\"rate\\\": 0.714}}}}, \\\"v4-vanilla-seed1-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 4.3}}, \\\"v4-taxei-seed7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": \\\"4/6 (0.667)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (0.625)\\\", \\\"pick_clean_then_place_in_recep\\\": \\\"5/11 (0.455)\\\", \\\"pick_cool_then_place_in_recep\\\": \\\"4/7 (0.571)\\\", \\\"pick_heat_then_place_in_recep\\\": \\\"7/8 (0.875)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (0.571)\\\"}}}, \\\"v4-training-dynamics-forward\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D027 Training Dynamics: Post-hoc forward pass on seed=42 checkpoints (Vanilla/TaxEI/Random + dose-response 10%/25%/50%) — compute per-subset loss (clean vs injected) and per-operator loss (P1/P2/C1/C4). Key finding: training loss SD=0.0004 across seeds but eval SD=8.6pp — memorization-generalization dissociation.\\\", \\\"metrics\\\": {\\\"vanilla_full\\\": {\\\"clean_loss\\\": 0.6853, \\\"clean_n\\\": 4358}, \\\"taxei_full\\\": {\\\"clean_loss\\\": 0.7712, \\\"injected_loss\\\": 0.6139, \\\"clean_n\\\": 8269, \\\"injected_n\\\": 760, \\\"per_operator\\\": {\\\"P1_StepOrderSwap\\\": 0.6165, \\\"P2_SubGoalDeletion\\\": 0.6161, \\\"C1_ContextTruncation\\\": 0.5932, \\\"C4_ObservationMasking\\\": 0.6298}}, \\\"random_full\\\": {\\\"clean_loss\\\": 0.7354, \\\"injected_loss\\\": 0.5902, \\\"clean_n\\\": 8269, \\\"injected_n\\\": 760}, \\\"dose_response\\\": {\\\"taxei_10pct\\\": {\\\"clean_loss\\\": 0.6628, \\\"injected_loss\\\": 0.6464, \\\"gap\\\": -0.0164, \\\"injected_n\\\": 70}, \\\"taxei_25pct\\\": {\\\"clean_loss\\\": 0.701, \\\"injected_loss\\\": 0.574, \\\"gap\\\": -0.127, \\\"injected_n\\\": 168}, \\\"taxei_50pct\\\": {\\\"clean_loss\\\": 0.8516, \\\"injected_loss\\\": 0.6547, \\\"gap\\\": -0.1969, \\\"injected_n\\\": 370}}, \\\"key_findings\\\": \\\"Clear dose-response: injected-clean gap widens from -0.016 (10%) to -0.127 (25%) to -0.197 (50%). TaxEI operators C1_ContextTruncation consistently lowest loss. Higher injection rates also degrade clean sample loss (0.663→0.701→0.852).\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"qualitative-failure-analysis\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"D026 Qualitative Failure Analysis: Extract failure patterns from existing eval logs. Key finding: TaxEI loop_repetition rate 17.4% vs Vanilla 7.8% vs Random 3.2%. TaxEI models exhibit fixation behavior (repeated action loops) especially on multi-step tasks under P1/P2 operators.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"data_source\\\": \\\"eval_results/failure_analysis.json\\\", \\\"taxei_loop_repetition_rate\\\": 0.174, \\\"vanilla_loop_repetition_rate\\\": 0.078, \\\"random_loop_repetition_rate\\\": 0.032, \\\"taxei_loop_count\\\": 49, \\\"vanilla_loop_count\\\": 22, \\\"random_loop_count\\\": 6, \\\"per_operator\\\": {\\\"P1\\\": 15, \\\"P2\\\": 14, \\\"C1\\\": 11, \\\"C4\\\": 9}, \\\"note\\\": \\\"Random data only from seed=42 recovery eval + 3-seed clean eval (188 episodes vs 282). Rates to be updated after 5-seed completion.\\\"}}, \\\"v4-taxei-seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.1667, \\\"avg_loss\\\": 0.3561, \\\"token_accuracy\\\": 0.915, \\\"final_token_acc\\\": 0.942, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 108.9, \\\"memory_gib\\\": 18.49, \\\"checkpoint_path\\\": \\\"checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"current_step\\\": 3387, \\\"total_steps\\\": 3387, \\\"progress_pct\\\": 100, \\\"train_loss\\\": 0.3568, \\\"final_step_loss\\\": 0.1753, \\\"token_acc\\\": 0.9009, \\\"final_token_acc\\\": 0.9328, \\\"train_runtime_s\\\": 6591.9, \\\"epochs\\\": 3, \\\"peak_memory_gib\\\": 18.49, \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 155145}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-vanilla-seed7-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.745, \\\"eval_successes\\\": 35, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 12.8}}, \\\"v4-vanilla-seed1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.292, \\\"avg_loss\\\": 0.416, \\\"token_accuracy\\\": 0.903, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58.8, \\\"memory_gib\\\": 17.63, \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=1 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\"}, \\\"v4-vanilla-seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.295, \\\"avg_loss\\\": 0.415, \\\"token_accuracy\\\": 0.898, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 59.4, \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed7/v0-20260515-214031/checkpoint-1635\\\"}}, \\\"v4-random-fixed-inject50-s123-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.702, \\\"successes\\\": 33, \\\"total\\\": 47}}, \\\"v4-random-fixed-inject50-s0-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47}}, \\\"v4-taxei-fixed-inject50-s123-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.468, \\\"eval_successes\\\": 22, \\\"eval_total\\\": 47}}, \\\"v4-taxei-fixed-inject50-s0-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.702, \\\"eval_successes\\\": 33, \\\"eval_total\\\": 47}}, \\\"v4-random-fixed-inject25-s123-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.511, \\\"total\\\": 47, \\\"successes\\\": 24, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": 0.667, \\\"pick_and_place_simple\\\": 0.375, \\\"pick_clean_then_place_in_recep\\\": 0.545, \\\"pick_cool_then_place_in_recep\\\": 0.143, \\\"pick_heat_then_place_in_recep\\\": 0.75, \\\"pick_two_obj_and_place\\\": 0.571}}}, \\\"v4-random-fixed-inject25-s0-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"total\\\": 47, \\\"successes\\\": 29, \\\"by_task\\\": {\\\"look_at_obj_in_light\\\": 0.667, \\\"pick_and_place_simple\\\": 0.625, \\\"pick_clean_then_place_in_recep\\\": 0.455, \\\"pick_cool_then_place_in_recep\\\": 0.571, \\\"pick_heat_then_place_in_recep\\\": 0.75, \\\"pick_two_obj_and_place\\\": 0.714}}}, \\\"v4-random-fixed-inject25-s123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: Random 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 55.3%。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject50-s123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: Random 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 57.4%。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-fixed-inject50-s0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: Random 50% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 57.4%。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject25-s123-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject25-s0-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-fixed-inject50-s123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: TaxEI 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 51.1%。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4348, \\\"train_duration_min\\\": 52.9, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}}, \\\"v4-taxei-fixed-inject50-s0\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"D022 multi-seed dose-response: TaxEI 50% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 51.1%。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.4342, \\\"train_duration_min\\\": 52.4, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"data_count\\\": 4358}}}, \\\"count\\\": 50, \\\"total\\\": 88, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3056}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"v4-random-fixed-inject25-s0\": {\"status\": \"QUEUED\", \"hypothesis\": \"D022 multi-seed dose-response: Random 25% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 55.3%。\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s123\": {\"status\": \"QUEUED\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 48.9%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4253, \"train_duration_min\": 55.9, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}, \"v4-taxei-fixed-inject25-s0\": {\"status\": \"QUEUED\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 25% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 48.9%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4258, \"train_duration_min\": 56.1, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}, \"v4-taxei-fixed-inject25-s7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=7 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"metrics\": {\"train_loss\": 0.4242, \"final_step_loss\": 0.2571, \"token_accuracy\": 0.904, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3430.48, \"train_duration_min\": 57.17, \"train_samples_per_second\": 3.811, \"train_steps_per_second\": 0.477, \"memory_gib\": 17.55, \"data_count\": 4358}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject25-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"metrics\": {\"train_loss\": 0.4261, \"final_step_loss\": 0.2442, \"token_accuracy\": 0.9123, \"train_steps\": 1635, \"train_epochs\": 3, \"train_runtime_sec\": 3417.56, \"train_duration_min\": 56.96, \"train_samples_per_second\": 3.826, \"train_steps_per_second\": 0.478, \"memory_gib\": 18, \"data_count\": 4358}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 25% injection ratio seed=1 (4,358 total = 3,269 clean + 1,089 injected). Dose-response 5-seed expansion.\", \"metrics\": {\"train_loss\": 0.4243, \"train_duration_min\": 57.5, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion. 最后一个 10% eval。\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion — 最后一个 10% 训练。\", \"metrics\": {\"final_loss\": 0.2352, \"train_loss_avg\": 0.4209, \"final_token_acc\": 0.9066, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3511.93, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.148}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s1-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random 10% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 10, \"success\": 5, \"rate\": 0.5}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 6, \"rate\": 0.857}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=7 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"metrics\": {\"success_rate\": 0.681, \"successes\": 32, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 7, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s1-eval-r2\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=1 eval (r2, dedicated GPU) — 47 ALFWorld clean tasks.\", \"metrics\": {\"success_rate\": 0.511, \"successes\": 24, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=7 (4,358 total). Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.237, \"train_loss_avg\": 0.4212, \"final_token_acc\": 0.905, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3437, \"memory_gib\": 18.15, \"train_speed_s_per_it\": 2.102}}, \"v4-random-fixed-inject10-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"metrics\": {\"final_loss\": 0.3096, \"train_loss_avg\": 0.4238, \"final_token_acc\": 0.8902, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3488, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.132}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s123-eval-r3\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=123 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s0-eval-r3\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random 10% seed=0 eval (r3, dedicated GPU) — 47 ALFWorld clean tasks.\", \"metrics\": {\"success_rate\": 0.66, \"successes\": 31, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"success\": 7, \"total\": 11, \"rate\": 0.636}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s123-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size 10% injection seed=123 eval — 47 ALFWorld tasks, dose-response 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}, \"v4-taxei-fixed-inject10-s0-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI 10% seed=0 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 8, \"rate\": 0.727}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 4, \"rate\": 0.571}}}}, \"v4-taxei-fixed-inject10-s1\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=1 (4,358 total). Dose-response 5-seed expansion.\", \"metrics\": {\"final_loss\": 0.3013, \"train_loss_avg\": 0.4225, \"final_token_acc\": 0.8947, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3469, \"memory_gib\": 18.13, \"train_speed_s_per_it\": 2.121}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s123\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=123 (4,358 total). Dose-response 5-seed expansion.\", \"metrics\": {\"final_loss\": 0.3124, \"train_loss_avg\": 0.4236, \"final_token_acc\": 0.8867, \"total_steps\": 1635, \"epochs\": 3, \"train_runtime_sec\": 3535.7, \"train_samples_per_second\": 3.698, \"train_steps_per_second\": 0.462, \"memory_gib\": 18.95}, \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject10-s123\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=123 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 补齐 10% 数据点。\", \"metrics\": {\"train_loss\": 0.4234, \"final_loss\": 0.3097, \"final_token_acc\": 0.8882, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3497, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s123/v0-20260516-014833/checkpoint-1635\"}, \"conclusion\": \"success\"}, \"v4-random-fixed-inject10-s0\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random fixed-size ablation: 10% injection ratio seed=0 (4,358 total). Dose-response 5-seed expansion — 与 TaxEI 10% 对比 taxonomy 标签效果。\", \"metrics\": {\"train_loss\": 0.4227, \"final_loss\": 0.276, \"final_token_acc\": 0.9067, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3531, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject10_s0/v0-20260516-014835/checkpoint-1635\"}, \"conclusion\": \"success\"}, \"v4-training-dynamics-forward-v2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"subsets_computed\": [\"vanilla_full\", \"taxei_full\", \"random_full\", \"taxei_inject10\", \"taxei_inject25\", \"taxei_inject50\"], \"taxei_inject50_injected_mean_loss\": 0.8185, \"taxei_inject50_clean_mean_loss\": 0.8514, \"per_operator\": {\"C1_ContextTruncation\": {\"mean\": 0.6489, \"n\": 101}, \"C4_ObservationMasking\": {\"mean\": 0.6782, \"n\": 92}, \"P1_StepOrderSwap\": {\"mean\": 0.6374, \"n\": 89}, \"P2_SubGoalDeletion\": {\"mean\": 0.6542, \"n\": 88}}, \"plots\": [\"subset_comparison\", \"operator_breakdown\", \"dose_response\"], \"output_dir\": \"/root/autodl-tmp/tax_error_inject_agent/artifacts/training_dynamics_v2/\"}}, \"v4-taxei-fixed-inject10-s0\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI fixed-size ablation: 10% injection ratio seed=0 (4,358 total = 3,922 clean + 436 injected). Dose-response 5-seed expansion — 10% 是最薄弱环节，仅有 seed=42 一个数据点。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4238, \"final_loss\": 0.3102, \"final_token_acc\": 0.8822, \"epochs\": 3, \"total_steps\": 1635, \"train_runtime_sec\": 3494, \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject10_s0/v0-20260516-005247/checkpoint-1635\"}}, \"v4-random-seed7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion ← 基于 v4-random-seed7\", \"metrics\": {\"success_rate\": 0.553, \"successes\": 26, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 6, \"rate\": 0.545}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 5, \"rate\": 0.625}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}, \"conclusion\": \"success\"}, \"v4-random-seed1-eval\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 2, \"total\": 8, \"rate\": 0.25}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 2, \"total\": 7, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"pick_two_obj_and_place\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}}}, \"conclusion\": \"success\"}, \"v4-random-seed7\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Random SFT seed=7 (5-seed expansion) — 9,029 samples, LoRA rank=16, 3 epochs\", \"metrics\": {\"final_loss\": 0.173, \"final_token_acc\": 0.935, \"initial_loss\": 4.017, \"total_steps\": 3387, \"epochs\": 3, \"total_flos\": 697192362530058200, \"train_runtime_sec\": 6672, \"memory_gib\": 18.49}, \"conclusion\": \"success\"}, \"v4-random-seed1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.167, \"final_token_acc\": 0.938, \"initial_loss\": 4.017, \"total_steps\": 3387, \"epochs\": 3, \"total_flos\": 697000000000000000}}, \"v4-taxei-seed1-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.596, \"successes\": 28, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 5, \"rate\": 0.833}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 4, \"rate\": 0.5}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 7, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 5, \"rate\": 0.714}}}}, \"v4-vanilla-seed1-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Vanilla SFT seed=1 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_seed42_pp\": 4.3}}, \"v4-taxei-seed7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 TaxEI SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"by_task\": {\"look_at_obj_in_light\": \"4/6 (0.667)\", \"pick_and_place_simple\": \"5/8 (0.625)\", \"pick_clean_then_place_in_recep\": \"5/11 (0.455)\", \"pick_cool_then_place_in_recep\": \"4/7 (0.571)\", \"pick_heat_then_place_in_recep\": \"7/8 (0.875)\", \"pick_two_obj_and_place\": \"4/7 (0.571)\"}}}, \"v4-training-dynamics-forward\": {\"status\": \"DONE\", \"hypothesis\": \"D027 Training Dynamics: Post-hoc forward pass on seed=42 checkpoints (Vanilla/TaxEI/Random + dose-response 10%/25%/50%) — compute per-subset loss (clean vs injected) and per-operator loss (P1/P2/C1/C4). Key finding: training loss SD=0.0004 across seeds but eval SD=8.6pp — memorization-generalization dissociation.\", \"metrics\": {\"vanilla_full\": {\"clean_loss\": 0.6853, \"clean_n\": 4358}, \"taxei_full\": {\"clean_loss\": 0.7712, \"injected_loss\": 0.6139, \"clean_n\": 8269, \"injected_n\": 760, \"per_operator\": {\"P1_StepOrderSwap\": 0.6165, \"P2_SubGoalDeletion\": 0.6161, \"C1_ContextTruncation\": 0.5932, \"C4_ObservationMasking\": 0.6298}}, \"random_full\": {\"clean_loss\": 0.7354, \"injected_loss\": 0.5902, \"clean_n\": 8269, \"injected_n\": 760}, \"dose_response\": {\"taxei_10pct\": {\"clean_loss\": 0.6628, \"injected_loss\": 0.6464, \"gap\": -0.0164, \"injected_n\": 70}, \"taxei_25pct\": {\"clean_loss\": 0.701, \"injected_loss\": 0.574, \"gap\": -0.127, \"injected_n\": 168}, \"taxei_50pct\": {\"clean_loss\": 0.8516, \"injected_loss\": 0.6547, \"gap\": -0.1969, \"injected_n\": 370}}, \"key_findings\": \"Clear dose-response: injected-clean gap widens from -0.016 (10%) to -0.127 (25%) to -0.197 (50%). TaxEI operators C1_ContextTruncation consistently lowest loss. Higher injection rates also degrade clean sample loss (0.663→0.701→0.852).\"}, \"conclusion\": \"success\"}, \"qualitative-failure-analysis\": {\"status\": \"PREPARING\", \"hypothesis\": \"D026 Qualitative Failure Analysis: Extract failure patterns from existing eval logs. Key finding: TaxEI loop_repetition rate 17.4% vs Vanilla 7.8% vs Random 3.2%. TaxEI models exhibit fixation behavior (repeated action loops) especially on multi-step tasks under P1/P2 operators.\", \"conclusion\": \"success\", \"metrics\": {\"data_source\": \"eval_results/failure_analysis.json\", \"taxei_loop_repetition_rate\": 0.174, \"vanilla_loop_repetition_rate\": 0.078, \"random_loop_repetition_rate\": 0.032, \"taxei_loop_count\": 49, \"vanilla_loop_count\": 22, \"random_loop_count\": 6, \"per_operator\": {\"P1\": 15, \"P2\": 14, \"C1\": 11, \"C4\": 9}, \"note\": \"Random data only from seed=42 recovery eval + 3-seed clean eval (188 episodes vs 282). Rates to be updated after 5-seed completion.\"}}, \"v4-taxei-seed1\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.1667, \"avg_loss\": 0.3561, \"token_accuracy\": 0.915, \"final_token_acc\": 0.942, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 108.9, \"memory_gib\": 18.49, \"checkpoint_path\": \"checkpoints/mini_taxei_sft_v4_seed1/v0-20260515-214035/checkpoint-3387\"}, \"conclusion\": \"success\"}, \"v4-taxei-seed7\": {\"status\": \"DONE\", \"metrics\": {\"current_step\": 3387, \"total_steps\": 3387, \"progress_pct\": 100, \"train_loss\": 0.3568, \"final_step_loss\": 0.1753, \"token_acc\": 0.9009, \"final_token_acc\": 0.9328, \"train_runtime_s\": 6591.9, \"epochs\": 3, \"peak_memory_gib\": 18.49, \"gpu\": \"cuda:3\", \"pid\": 155145}, \"conclusion\": \"success\"}, \"v4-vanilla-seed7-eval\": {\"status\": \"DONE\", \"hypothesis\": \"v4 Vanilla SFT seed=7 eval — 47 ALFWorld tasks, 5-seed expansion\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.745, \"eval_successes\": 35, \"eval_total\": 47, \"vs_seed42_pp\": 12.8}}, \"v4-vanilla-seed1\": {\"status\": \"DONE\", \"metrics\": {\"final_loss\": 0.292, \"avg_loss\": 0.416, \"token_accuracy\": 0.903, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58.8, \"memory_gib\": 17.63, \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed1/v0-20260515-214031/checkpoint-1635\"}, \"conclusion\": \"success\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=1 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\"}, \"v4-vanilla-seed7\": {\"status\": \"DONE\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.295, \"avg_loss\": 0.415, \"token_accuracy\": 0.898, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 59.4, \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed7/v0-20260515-214031/checkpoint-1635\"}}, \"v4-random-fixed-inject50-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.702, \"successes\": 33, \"total\": 47}}, \"v4-random-fixed-inject50-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47}}, \"v4-taxei-fixed-inject50-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47}}, \"v4-taxei-fixed-inject50-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.702, \"eval_successes\": 33, \"eval_total\": 47}}, \"v4-random-fixed-inject25-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.511, \"total\": 47, \"successes\": 24, \"by_task\": {\"look_at_obj_in_light\": 0.667, \"pick_and_place_simple\": 0.375, \"pick_clean_then_place_in_recep\": 0.545, \"pick_cool_then_place_in_recep\": 0.143, \"pick_heat_then_place_in_recep\": 0.75, \"pick_two_obj_and_place\": 0.571}}}, \"v4-random-fixed-inject25-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"total\": 47, \"successes\": 29, \"by_task\": {\"look_at_obj_in_light\": 0.667, \"pick_and_place_simple\": 0.625, \"pick_clean_then_place_in_recep\": 0.455, \"pick_cool_then_place_in_recep\": 0.571, \"pick_heat_then_place_in_recep\": 0.75, \"pick_two_obj_and_place\": 0.714}}}, \"v4-random-fixed-inject25-s123\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: Random 25% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 55.3%。\", \"conclusion\": \"success\"}, \"v4-random-fixed-inject50-s123\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: Random 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 57.4%。\", \"conclusion\": \"success\"}, \"v4-random-fixed-inject50-s0\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: Random 50% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 57.4%。\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s123-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject25-s0-eval\": {\"status\": \"PREPARING\", \"conclusion\": \"success\"}, \"v4-taxei-fixed-inject50-s123\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 50% injection, seed=123 (fixed 4,358 total). 对标 seed=42 的 51.1%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4348, \"train_duration_min\": 52.9, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}, \"v4-taxei-fixed-inject50-s0\": {\"status\": \"PREPARING\", \"hypothesis\": \"D022 multi-seed dose-response: TaxEI 50% injection, seed=0 (fixed 4,358 total). 对标 seed=42 的 51.1%。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.4342, \"train_duration_min\": 52.4, \"train_steps\": 1635, \"train_epochs\": 3, \"data_count\": 4358}}}, \"count\": 50, \"total\": 88, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3056}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9c2b54f7-c11e-4073-8be3-fb14ab7fa40a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8ad2e44f-caa5-47b5-95fb-91684b3138b6",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-15T22:37:28.985Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me summarize:
+
+**Task 1: Checkpoint paths found from registry**
+- `v4-taxei-fixed-inject25-s1`: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635`
+
+
+- `v4-random-fixed-inject25-s1`: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635`
+
+**Task 2: Recover TaxEI 25% eval results**
+I'm pulling the evaluation metrics from the JSON files—the TaxEI model with 25% injection shows a 0.468 success rate across both the s0 and s123 variants, with 22 out of 47 successful runs. Looking at the breakdown for s123, I'm getting the same total of 22 successes across all task types. Both configurations show identical success rates and counts, so now I need to update the registry with these results.
+
+I'm also going to load the submit_training_job tool so I can create and submit the s1 eval experiments next.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ad2e44f-caa5-47b5-95fb-91684b3138b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb59wpcdz3hSPkJEMKRqy",
+  "type": "assistant",
+  "uuid": "3689fc8e-3005-4aee-ae23-b9b78794e482",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yBYSbAMKTxFnmVkWiV5D8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20665,
+      "cache_read_input_tokens": 59108,
+      "output_tokens": 1568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1568,
+          "cache_read_input_tokens": 59108,
+          "cache_creation_input_tokens": 20665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-15T22:37:29.711Z_
+
+找到了所有数据。现在：
+1. 恢复 TaxEI 25% s0/s123 的 eval metrics 到 registry
+2. 准备提交 s1 eval
+
+先加载 submit_training_job 工具，同时更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3689fc8e-3005-4aee-ae23-b9b78794e482",
+  "isSidechain": false,
+  "requestId": "req_011Cb59wpcdz3hSPkJEMKRqy",
+  "type": "assistant",
+  "uuid": "a6343126-3ba4-40b5-b817-b34e0ecf69cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yBYSbAMKTxFnmVkWiV5D8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20665,
+      "cache_read_input_tokens": 59108,
+      "output_tokens": 1568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1568,
+          "cache_read_input_tokens": 59108,
+          "cache_creation_input_tokens": 20665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T22:37:30.655Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MqvyTbiZBteTeazUsPtZuo`</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6343126-3ba4-40b5-b817-b34e0ecf69cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb59wpcdz3hSPkJEMKRqy",
+  "type": "assistant",
+  "uuid": "28874821-0578-4578-a5c4-c1a3f41f27db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yBYSbAMKTxFnmVkWiV5D8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20665,
+      "cache_read_input_tokens": 59108,
+      "output_tokens": 1568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1568,
+          "cache_read_input_tokens": 59108,
+          "cache_creation_input_tokens": 20665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T22:37:30.675Z_
+
+<details><summary>↩ Tool result · `toolu_01MqvyTbiZBteTeazUsPtZuo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28874821-0578-4578-a5c4-c1a3f41f27db",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "9ef1c71a-4425-47a6-ac88-16adc14732a9",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job",
+      "CronDelete",
+      "CronCreate"
+    ],
+    "query": "submit training job",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "28874821-0578-4578-a5c4-c1a3f41f27db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T22:37:34.060Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Wi9VohCV4TrVGveMatosQ8`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject25-s0-eval",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.468,
+    "successes": 22,
+    "total": 47,
+    "by_task_type": {
+      "look_at_obj_in_light": {
+        "total": 6,
+        "success": 4,
+        "rate": 0.667
+      },
+      "pick_and_place_simple": {
+        "total": 8,
+        "success": 2,
+        "rate": 0.25
+      },
+      "pick_clean_then_place_in_recep": {
+        "total": 11,
+        "success": 5,
+        "rate": 0.455
+      },
+      "pick_cool_then_place_in_recep": {
+        "total": 7,
+        "success": 2,
+        "rate": 0.286
+      },
+      "pick_heat_then_place_in_recep": {
+        "total": 8,
+        "success": 6,
+        "rate": 0.75
+      },
+      "pick_two_obj_and_place": {
+        "total": 7,
+        "success": 3,
+        "rate": 0.429
+      }
+    }
+  },
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ef1c71a-4425-47a6-ac88-16adc14732a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb59wpcdz3hSPkJEMKRqy",
+  "type": "assistant",
+  "uuid": "4c614e40-5177-4bf9-9629-f90f064cbb3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yBYSbAMKTxFnmVkWiV5D8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20665,
+      "cache_read_input_tokens": 59108,
+      "output_tokens": 1568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1568,
+          "cache_read_input_tokens": 59108,
+          "cache_creation_input_tokens": 20665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T22:37:34.928Z_
+
+<details><summary>↩ Tool result · `toolu_01Wi9VohCV4TrVGveMatosQ8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s0-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:21:04.275Z\", \"updated_at\": \"2026-05-15T22:37:34.634Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_s0_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"132601\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s0-eval.log\", \"submitted_at\": \"2026-05-15T09:21:04.135Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47}}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 2, \"rate\": 0.25}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.845}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c614e40-5177-4bf9-9629-f90f064cbb3f",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "421bc0ef-0c93-4e4a-aed9-791162f7edac",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject25-s0-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:21:04.275Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:37:34.634Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_s0_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"132601\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s0-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:21:04.135Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.468, \\\"eval_successes\\\": 22, \\\"eval_total\\\": 47}}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 4, \\\"rate\\\": 0.667}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 2, \\\"rate\\\": 0.25}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 2, \\\"rate\\\": 0.286}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.845}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s0-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:21:04.275Z\", \"updated_at\": \"2026-05-15T22:37:34.634Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s0/v0-20260515-153729/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_s0_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"132601\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s0-eval.log\", \"submitted_at\": \"2026-05-15T09:21:04.135Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47}}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 2, \"rate\": 0.25}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 2, \"rate\": 0.286}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.845}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4c614e40-5177-4bf9-9629-f90f064cbb3f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T22:37:35.995Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017js3rN6c3gVWP1QxztXPNB`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject25-s123-eval",
+  "field": "metrics",
+  "value": {
+    "success_rate": 0.468,
+    "successes": 22,
+    "total": 47,
+    "by_task_type": {
+      "look_at_obj_in_light": {
+        "total": 6,
+        "success": 4,
+        "rate": 0.667
+      },
+      "pick_and_place_simple": {
+        "total": 8,
+        "success": 3,
+        "rate": 0.375
+      },
+      "pick_clean_then_place_in_recep": {
+        "total": 11,
+        "success": 5,
+        "rate": 0.455
+      },
+      "pick_cool_then_place_in_recep": {
+        "total": 7,
+        "success": 1,
+        "rate": 0.143
+      },
+      "pick_heat_then_place_in_recep": {
+        "total": 8,
+        "success": 6,
+        "rate": 0.75
+      },
+      "pick_two_obj_and_place": {
+        "total": 7,
+        "success": 3,
+        "rate": 0.429
+      }
+    }
+  },
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "421bc0ef-0c93-4e4a-aed9-791162f7edac",
+  "isSidechain": false,
+  "requestId": "req_011Cb59wpcdz3hSPkJEMKRqy",
+  "type": "assistant",
+  "uuid": "96d922ca-38bd-4c7d-970c-5f5bb03aa86e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019yBYSbAMKTxFnmVkWiV5D8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20665,
+      "cache_read_input_tokens": 59108,
+      "output_tokens": 1568,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20665,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1568,
+          "cache_read_input_tokens": 59108,
+          "cache_creation_input_tokens": 20665,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20665
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T22:37:36.479Z_
+
+<details><summary>↩ Tool result · `toolu_017js3rN6c3gVWP1QxztXPNB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s123-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:21:06.936Z\", \"updated_at\": \"2026-05-15T22:37:36.286Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_s123_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"132743\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log\", \"submitted_at\": \"2026-05-15T09:21:06.806Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47}}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 3, \"rate\": 0.375}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 1, \"rate\": 0.143}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4696}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96d922ca-38bd-4c7d-970c-5f5bb03aa86e",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "5070924d-8de1-4bde-aa13-ccc455d7f072",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject25-s123-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:21:06.936Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:37:36.286Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_s123_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"132743\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:21:06.806Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.468, \\\"eval_successes\\\": 22, \\\"eval_total\\\": 47}}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.468, \\\"successes\\\": 22, \\\"total\\\": 47, \\\"by_task_type\\\": {\\\"look_at_obj_in_light\\\": {\\\"total\\\": 6, \\\"success\\\": 4, \\\"rate\\\": 0.667}, \\\"pick_and_place_simple\\\": {\\\"total\\\": 8, \\\"success\\\": 3, \\\"rate\\\": 0.375}, \\\"pick_clean_then_place_in_recep\\\": {\\\"total\\\": 11, \\\"success\\\": 5, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"total\\\": 7, \\\"success\\\": 1, \\\"rate\\\": 0.143}, \\\"pick_heat_then_place_in_recep\\\": {\\\"total\\\": 8, \\\"success\\\": 6, \\\"rate\\\": 0.75}, \\\"pick_two_obj_and_place\\\": {\\\"total\\\": 7, \\\"success\\\": 3, \\\"rate\\\": 0.429}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4696}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s123-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:21:06.936Z\", \"updated_at\": \"2026-05-15T22:37:36.286Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s123/v0-20260515-153732/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_fixed_inject25_s123_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"132743\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s123-eval.log\", \"submitted_at\": \"2026-05-15T09:21:06.806Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47}}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.468, \"successes\": 22, \"total\": 47, \"by_task_type\": {\"look_at_obj_in_light\": {\"total\": 6, \"success\": 4, \"rate\": 0.667}, \"pick_and_place_simple\": {\"total\": 8, \"success\": 3, \"rate\": 0.375}, \"pick_clean_then_place_in_recep\": {\"total\": 11, \"success\": 5, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"total\": 7, \"success\": 1, \"rate\": 0.143}, \"pick_heat_then_place_in_recep\": {\"total\": 8, \"success\": 6, \"rate\": 0.75}, \"pick_two_obj_and_place\": {\"total\": 7, \"success\": 3, \"rate\": 0.429}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4696}}"
+    }
+  },
+  "sourceToolAssistantUUID": "96d922ca-38bd-4c7d-970c-5f5bb03aa86e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-15T22:37:39.686Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Registry updated for s0 and s123 eval. Now I need to submit the s1 eval jobs. I don't have `submit_training_job` tool - it wasn't in the search results. Let me search for it specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5070924d-8de1-4bde-aa13-ccc455d7f072",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yN1JK8QCLvR3xJZcp",
+  "type": "assistant",
+  "uuid": "8374b262-1614-47a2-a976-f7884b4c7ef1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDUFGv2idT8zuEKfF2xDPb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4581,
+      "cache_read_input_tokens": 79773,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 79773,
+          "cache_creation_input_tokens": 4581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-15T22:37:40.179Z_
+
+Registry 已更新。没找到 submit_training_job 工具，搜一下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8374b262-1614-47a2-a976-f7884b4c7ef1",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yN1JK8QCLvR3xJZcp",
+  "type": "assistant",
+  "uuid": "a87d0ac2-8fc3-46c0-ac4d-74e83d4e8f2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDUFGv2idT8zuEKfF2xDPb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4581,
+      "cache_read_input_tokens": 79773,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 79773,
+          "cache_creation_input_tokens": 4581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T22:37:40.404Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017SUtpsgMDSU7m29zfnSx1a`</summary>
+
+```json
+{
+  "query": "+submit",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a87d0ac2-8fc3-46c0-ac4d-74e83d4e8f2c",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yN1JK8QCLvR3xJZcp",
+  "type": "assistant",
+  "uuid": "840d3e1d-476c-40d2-8d5c-30cea9c0cdeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MDUFGv2idT8zuEKfF2xDPb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4581,
+      "cache_read_input_tokens": 79773,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 79773,
+          "cache_creation_input_tokens": 4581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T22:37:40.410Z_
+
+<details><summary>↩ Tool result · `toolu_017SUtpsgMDSU7m29zfnSx1a`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "840d3e1d-476c-40d2-8d5c-30cea9c0cdeb",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "7f4bf8de-f1fe-4bcc-9d4e-6c70a129162a",
+  "toolUseResult": {
+    "matches": [],
+    "query": "+submit",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "840d3e1d-476c-40d2-8d5c-30cea9c0cdeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67 · 2026-05-15T22:37:40.472Z_
+
+```json
+{
+  "parentUuid": "7f4bf8de-f1fe-4bcc-9d4e-6c70a129162a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9cf1865a-4737-48a7-930f-b325f90c8126",
+  "timestamp": "2026-05-15T22:37:40.472Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-15T22:37:51.054Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+submit_training_job is not available as a tool. I'll need to use ssh_execute to submit the jobs manually via tmux/nohup, and then register them in the registry manually.
+
+Let me set up the eval experiments. I need to:
+
+1. Create registry entries for the two eval experiments
+2. SSH execute the eval commands on the server
+
+GPU allocation:
+- cuda:0: v4-taxei-fixed-inject25-s1-eval
+- cuda:1: v4-random-fixed-inject25-s1-eval
+- cuda:3 is busy
+
+Checkpoint paths:
+- TaxEI s1: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635`
+
+
+- Random s1: `/root/autodl-tmp/tax_error_inject_agent/checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635`
+
+I'll construct the eval commands using the working format from previous evals, which activates the conda environment, navigates to the project directory, and runs the recovery evaluation script with the checkpoint path, episode count, and seed. Now I need to create both tmux sessions with nohup to run these jobs in the background.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cf1865a-4737-48a7-930f-b325f90c8126",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yf7wXz34MvSzpUWbq",
+  "type": "assistant",
+  "uuid": "8c21ae1c-8f92-4ffb-9243-c5e87675fe66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVxEsT3FvgCS3Y4UGiPHPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 84354,
+      "output_tokens": 675,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 675,
+          "cache_read_input_tokens": 84354,
+          "cache_creation_input_tokens": 290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-15T22:37:51.056Z_
+
+没有 submit_training_job 工具，用 ssh_execute + tmux 手动提交。先创建 registry 条目，再提交两个 eval 任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c21ae1c-8f92-4ffb-9243-c5e87675fe66",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yf7wXz34MvSzpUWbq",
+  "type": "assistant",
+  "uuid": "e2ef332c-738a-4fc4-977d-2aeb5394b457",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVxEsT3FvgCS3Y4UGiPHPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 84354,
+      "output_tokens": 675,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 675,
+          "cache_read_input_tokens": 84354,
+          "cache_creation_input_tokens": 290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-15T22:37:51.694Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016w3G9NxRtr1ARkzGbN2nrU`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject25-s1-eval",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2ef332c-738a-4fc4-977d-2aeb5394b457",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yf7wXz34MvSzpUWbq",
+  "type": "assistant",
+  "uuid": "84620a06-a8be-4b91-aac2-473041225f66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVxEsT3FvgCS3Y4UGiPHPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 84354,
+      "output_tokens": 675,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 675,
+          "cache_read_input_tokens": 84354,
+          "cache_creation_input_tokens": 290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T22:37:52.188Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LtiUqwfA5j8YhvnvQZkQ6J`</summary>
+
+```json
+{
+  "exp_id": "v4-random-fixed-inject25-s1-eval",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84620a06-a8be-4b91-aac2-473041225f66",
+  "isSidechain": false,
+  "requestId": "req_011Cb59yf7wXz34MvSzpUWbq",
+  "type": "assistant",
+  "uuid": "db93c801-6c66-40a2-9abe-5f29c7f261db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RVxEsT3FvgCS3Y4UGiPHPF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 84354,
+      "output_tokens": 675,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 675,
+          "cache_read_input_tokens": 84354,
+          "cache_creation_input_tokens": 290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "db93c801-6c66-40a2-9abe-5f29c7f261db",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T22:37:52.626Z_
+
+<details><summary>↩ Tool result · `toolu_016w3G9NxRtr1ARkzGbN2nrU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:57.410Z\", \"updated_at\": \"2026-05-15T22:37:51.982Z\", \"hypothesis\": \"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-taxei-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.916}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84620a06-a8be-4b91-aac2-473041225f66",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "d371dff3-168b-4808-9e0f-2a38b985cea4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject25-s1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:34:57.410Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:37:51.982Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject25-s1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.916}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:57.410Z\", \"updated_at\": \"2026-05-15T22:37:51.982Z\", \"hypothesis\": \"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-taxei-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.916}}"
+    }
+  },
+  "sourceToolAssistantUUID": "84620a06-a8be-4b91-aac2-473041225f66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-15T22:37:53.645Z_
+
+<details><summary>↩ Tool result · `toolu_01LtiUqwfA5j8YhvnvQZkQ6J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-random-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:59.280Z\", \"updated_at\": \"2026-05-15T22:37:52.922Z\", \"hypothesis\": \"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-random-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0045}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db93c801-6c66-40a2-9abe-5f29c7f261db",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "4d13b6db-4724-4aad-b1d2-8d6a90cd8080",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-fixed-inject25-s1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:34:59.280Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:37:52.922Z\\\", \\\"hypothesis\\\": \\\"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"parent\\\": \\\"v4-random-fixed-inject25-s1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0045}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-random-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:59.280Z\", \"updated_at\": \"2026-05-15T22:37:52.922Z\", \"hypothesis\": \"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-random-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0045}}"
+    }
+  },
+  "sourceToolAssistantUUID": "db93c801-6c66-40a2-9abe-5f29c7f261db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-15T22:37:57.199Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me set up the hypothesis and submit the actual eval jobs via ssh_execute.
+
+I'll use tmux sessions for each eval:
+- `v4-taxei-fixed-inject25-s1-eval` on cuda:0
+- `v4-random-fixed-inject25-s1-eval` on cuda:1
+
+Let me submit both.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d13b6db-4724-4aad-b1d2-8d6a90cd8080",
+  "isSidechain": false,
+  "requestId": "req_011Cb59zdQ2yCXQpK5Yz5D2K",
+  "type": "assistant",
+  "uuid": "efd847b4-c6c0-41ab-a34a-37d9c4d84730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VoPsK21385BE5VNzGP2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 84644,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 84644,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-15T22:37:57.683Z_
+
+设置 hypothesis 并提交 eval 到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efd847b4-c6c0-41ab-a34a-37d9c4d84730",
+  "isSidechain": false,
+  "requestId": "req_011Cb59zdQ2yCXQpK5Yz5D2K",
+  "type": "assistant",
+  "uuid": "a4da91cc-dd77-4b26-8b7a-111d18190019",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VoPsK21385BE5VNzGP2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 84644,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 84644,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-15T22:37:58.629Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019c6qmGpvMsoXRA6NdeejRu`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject25-s1-eval",
+  "field": "hypothesis",
+  "value": "v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.",
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4da91cc-dd77-4b26-8b7a-111d18190019",
+  "isSidechain": false,
+  "requestId": "req_011Cb59zdQ2yCXQpK5Yz5D2K",
+  "type": "assistant",
+  "uuid": "55aa82f0-daa0-48ce-9692-53066f7987bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VoPsK21385BE5VNzGP2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 84644,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 84644,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T22:37:59.097Z_
+
+<details><summary>↩ Tool result · `toolu_019c6qmGpvMsoXRA6NdeejRu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:57.410Z\", \"updated_at\": \"2026-05-15T22:37:58.906Z\", \"hypothesis\": \"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-taxei-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4581}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55aa82f0-daa0-48ce-9692-53066f7987bb",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "eb67ffe4-5ad6-4fce-a744-64838d6c1b72",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject25-s1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:34:57.410Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:37:58.906Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject25-s1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4581}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:57.410Z\", \"updated_at\": \"2026-05-15T22:37:58.906Z\", \"hypothesis\": \"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-taxei-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4581}}"
+    }
+  },
+  "sourceToolAssistantUUID": "55aa82f0-daa0-48ce-9692-53066f7987bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-15T22:37:59.547Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01G9TE3hZU4fWhaSGkLEzHAq`</summary>
+
+```json
+{
+  "exp_id": "v4-random-fixed-inject25-s1-eval",
+  "field": "hypothesis",
+  "value": "v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.",
+  "project": "tax_error_inject_agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb67ffe4-5ad6-4fce-a744-64838d6c1b72",
+  "isSidechain": false,
+  "requestId": "req_011Cb59zdQ2yCXQpK5Yz5D2K",
+  "type": "assistant",
+  "uuid": "110f8777-7af8-4879-8f28-b288f6fa45be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VoPsK21385BE5VNzGP2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 84644,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 84644,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-15T22:38:00.047Z_
+
+<details><summary>↩ Tool result · `toolu_01G9TE3hZU4fWhaSGkLEzHAq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-random-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:59.280Z\", \"updated_at\": \"2026-05-15T22:37:59.851Z\", \"hypothesis\": \"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-random-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4904}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "110f8777-7af8-4879-8f28-b288f6fa45be",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "04a1ece0-0115-4fd5-bfdb-fe1bcefecec2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-fixed-inject25-s1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:34:59.280Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:37:59.851Z\\\", \\\"hypothesis\\\": \\\"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"parent\\\": \\\"v4-random-fixed-inject25-s1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4904}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-random-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:59.280Z\", \"updated_at\": \"2026-05-15T22:37:59.851Z\", \"hypothesis\": \"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-random-fixed-inject25-s1\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4904}}"
+    }
+  },
+  "sourceToolAssistantUUID": "110f8777-7af8-4879-8f28-b288f6fa45be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-15T22:38:02.124Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Wkinh45mEvXgGfNytrznx1`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux new-session -d -s v4-taxei-fixed-inject25-s1-eval \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635 --num_episodes 47 --seed 42 2>&1 | tee ~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1-eval.log'\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04a1ece0-0115-4fd5-bfdb-fe1bcefecec2",
+  "isSidechain": false,
+  "requestId": "req_011Cb59zdQ2yCXQpK5Yz5D2K",
+  "type": "assistant",
+  "uuid": "ffcc5fe6-bd9a-494f-9b67-11ae03e03c7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VoPsK21385BE5VNzGP2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 84644,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 84644,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-15T22:38:02.443Z_
+
+<details><summary>↩ Tool result · `toolu_01Wkinh45mEvXgGfNytrznx1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffcc5fe6-bd9a-494f-9b67-11ae03e03c7a",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "90dec59d-8ff4-4784-a8fa-0bdfcf36cdaf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ffcc5fe6-bd9a-494f-9b67-11ae03e03c7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-15T22:38:03.588Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AUwJZNv6WrCbEVAmdpbape`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux new-session -d -s v4-random-fixed-inject25-s1-eval \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635 --num_episodes 47 --seed 42 2>&1 | tee ~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1-eval.log'\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90dec59d-8ff4-4784-a8fa-0bdfcf36cdaf",
+  "isSidechain": false,
+  "requestId": "req_011Cb59zdQ2yCXQpK5Yz5D2K",
+  "type": "assistant",
+  "uuid": "25dd668c-5ab4-4421-906a-9f93d46fed45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F2VoPsK21385BE5VNzGP2m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1143,
+      "cache_read_input_tokens": 84644,
+      "output_tokens": 936,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 936,
+          "cache_read_input_tokens": 84644,
+          "cache_creation_input_tokens": 1143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T22:38:03.924Z_
+
+<details><summary>↩ Tool result · `toolu_01AUwJZNv6WrCbEVAmdpbape`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25dd668c-5ab4-4421-906a-9f93d46fed45",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "658ee9b0-8b4a-4e00-9e58-b1f1ac40f453",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "25dd668c-5ab4-4421-906a-9f93d46fed45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-15T22:38:06.810Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both tmux sessions created successfully. Now let me verify they're running and update registry to RUNNING with spec metadata.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "658ee9b0-8b4a-4e00-9e58-b1f1ac40f453",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1PLyR9w1kFJSV26Lk",
+  "type": "assistant",
+  "uuid": "ca6e67dc-7656-4f8b-b15b-26a6c4f3515b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8rvdvbiggKFq4GG2ewM52",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 85787,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1596,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 85787,
+          "cache_creation_input_tokens": 1596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1596
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-15T22:38:07.762Z_
+
+验证 tmux session 是否启动成功，然后更新 registry 为 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca6e67dc-7656-4f8b-b15b-26a6c4f3515b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1PLyR9w1kFJSV26Lk",
+  "type": "assistant",
+  "uuid": "db83dcfb-6b13-4c5b-8300-7bc36c884a39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8rvdvbiggKFq4GG2ewM52",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 85787,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1596,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 85787,
+          "cache_creation_input_tokens": 1596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1596
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-15T22:38:08.248Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0137ErEQS3jcky9Ji7Mj7hqh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux list-sessions",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db83dcfb-6b13-4c5b-8300-7bc36c884a39",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1PLyR9w1kFJSV26Lk",
+  "type": "assistant",
+  "uuid": "70df7c86-73fd-478b-be3f-fcc17e9171d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8rvdvbiggKFq4GG2ewM52",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 85787,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1596,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 85787,
+          "cache_creation_input_tokens": 1596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1596
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-15T22:38:08.295Z_
+
+<details><summary>↩ Tool result · `toolu_0137ErEQS3jcky9Ji7Mj7hqh`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70df7c86-73fd-478b-be3f-fcc17e9171d3",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "37a7c984-bfc4-4be7-a5ab-e540adf64759",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "70df7c86-73fd-478b-be3f-fcc17e9171d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-15T22:38:08.990Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0182iVVcyavn2gDq86feZqhD`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37a7c984-bfc4-4be7-a5ab-e540adf64759",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1PLyR9w1kFJSV26Lk",
+  "type": "assistant",
+  "uuid": "18f686aa-b172-4863-8e88-595c6ca9bfb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8rvdvbiggKFq4GG2ewM52",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 85787,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1596,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 85787,
+          "cache_creation_input_tokens": 1596,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1596
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T22:38:09.432Z_
+
+<details><summary>↩ Tool result · `toolu_0182iVVcyavn2gDq86feZqhD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 15 %, 14945 MiB, 32607 MiB\\n1, 15 %, 14945 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 95 %, 18587 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18f686aa-b172-4863-8e88-595c6ca9bfb6",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "14e0310a-865a-4e96-8389-df32a023107b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 15 %, 14945 MiB, 32607 MiB\\\\n1, 15 %, 14945 MiB, 32607 MiB\\\\n2, 0 %, 0 MiB, 32607 MiB\\\\n3, 95 %, 18587 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 15 %, 14945 MiB, 32607 MiB\\n1, 15 %, 14945 MiB, 32607 MiB\\n2, 0 %, 0 MiB, 32607 MiB\\n3, 95 %, 18587 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  },
+  "sourceToolAssistantUUID": "18f686aa-b172-4863-8e88-595c6ca9bfb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92 · 2026-05-15T22:38:09.440Z_
+
+```json
+{
+  "parentUuid": "14e0310a-865a-4e96-8389-df32a023107b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "75fbb9cc-cb0c-4ddb-af17-dffa51107268",
+  "timestamp": "2026-05-15T22:38:09.440Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-15T22:38:13.144Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both GPUs are now active:
+- cuda:0: 15%, 14945 MiB — v4-taxei-fixed-inject25-s1-eval running
+- cuda:1: 15%, 14945 MiB — v4-random-fixed-inject25-s1-eval running
+- cuda:2: 0%, idle
+- cuda:3: 95%, 18587 MiB — something else running (was already busy)
+
+Now update registry to RUNNING with spec.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75fbb9cc-cb0c-4ddb-af17-dffa51107268",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1nxY1nuTU6CZicySc",
+  "type": "assistant",
+  "uuid": "a3a6e674-ecd5-4b5d-9482-b53c9369cd0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ap8YjhDmg3VUXDCuHW58UL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 87383,
+      "output_tokens": 993,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 993,
+          "cache_read_input_tokens": 87383,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-15T22:38:13.547Z_
+
+cuda:0 和 cuda:1 各占用 ~15GB，eval 已启动。更新 registry 为 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3a6e674-ecd5-4b5d-9482-b53c9369cd0b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1nxY1nuTU6CZicySc",
+  "type": "assistant",
+  "uuid": "68761430-8756-4e1f-90b0-a0dd683bd417",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ap8YjhDmg3VUXDCuHW58UL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 87383,
+      "output_tokens": 993,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 993,
+          "cache_read_input_tokens": 87383,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T22:38:18.877Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01R3kBu35XDyp7cGShqRn4W8`</summary>
+
+```json
+{
+  "exp_id": "v4-taxei-fixed-inject25-s1-eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "tax_error_inject_agent",
+  "spec": {
+    "command": "python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635 --num_episodes 47 --seed 42",
+    "server": "autodl-5090",
+    "gpu": [
+      "cuda:0"
+    ],
+    "log_path": "~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1-eval.log",
+    "backend": "tmux",
+    "account": "root",
+    "parent": "v4-taxei-fixed-inject25-s1",
+    "checkpoint_source": "v4-taxei-fixed-inject25-s1",
+    "eval_data": "eval_tasks_47.json",
+    "data_count": 47,
+    "data_path": "eval/eval_tasks_47.json",
+    "model_name": "Qwen3-8B + LoRA (taxei fixed inject25 s1)",
+    "seed": 42,
+    "checkpoint_path": "checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68761430-8756-4e1f-90b0-a0dd683bd417",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1nxY1nuTU6CZicySc",
+  "type": "assistant",
+  "uuid": "f0082475-61ef-423c-9455-60eb12e8c1ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ap8YjhDmg3VUXDCuHW58UL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 87383,
+      "output_tokens": 993,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 993,
+          "cache_read_input_tokens": 87383,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T22:38:19.779Z_
+
+<details><summary>↩ Tool result · `toolu_01R3kBu35XDyp7cGShqRn4W8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:57.410Z\", \"updated_at\": \"2026-05-15T22:38:19.164Z\", \"hypothesis\": \"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-taxei-fixed-inject25-s1\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1-eval.log\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject25-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject25-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject25 s1)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8918}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0082475-61ef-423c-9455-60eb12e8c1ce",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "f342b928-bf01-4e07-a84d-9776a51a7fd7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-taxei-fixed-inject25-s1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:34:57.410Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:38:19.164Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject25-s1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1-eval.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-taxei-fixed-inject25-s1\\\", \\\"checkpoint_source\\\": \\\"v4-taxei-fixed-inject25-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei fixed inject25 s1)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8918}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-taxei-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:57.410Z\", \"updated_at\": \"2026-05-15T22:38:19.164Z\", \"hypothesis\": \"v4 TaxEI 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-taxei-fixed-inject25-s1\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-fixed-inject25-s1-eval.log\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-taxei-fixed-inject25-s1\", \"checkpoint_source\": \"v4-taxei-fixed-inject25-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B + LoRA (taxei fixed inject25 s1)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8918}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f0082475-61ef-423c-9455-60eb12e8c1ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-15T22:38:21.634Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012nD6J6Z17BhDy3RsKLZPB7`</summary>
+
+```json
+{
+  "exp_id": "v4-random-fixed-inject25-s1-eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "tax_error_inject_agent",
+  "spec": {
+    "command": "python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635 --num_episodes 47 --seed 42",
+    "server": "autodl-5090",
+    "gpu": [
+      "cuda:1"
+    ],
+    "log_path": "~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1-eval.log",
+    "backend": "tmux",
+    "account": "root",
+    "parent": "v4-random-fixed-inject25-s1",
+    "checkpoint_source": "v4-random-fixed-inject25-s1",
+    "eval_data": "eval_tasks_47.json",
+    "data_count": 47,
+    "data_path": "eval/eval_tasks_47.json",
+    "model_name": "Qwen3-8B + LoRA (random fixed inject25 s1)",
+    "seed": 42,
+    "checkpoint_path": "checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f342b928-bf01-4e07-a84d-9776a51a7fd7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A1nxY1nuTU6CZicySc",
+  "type": "assistant",
+  "uuid": "f7108b58-478a-4a0f-b3be-4267c776357a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ap8YjhDmg3VUXDCuHW58UL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 87383,
+      "output_tokens": 993,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 993,
+          "cache_read_input_tokens": 87383,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f7108b58-478a-4a0f-b3be-4267c776357a",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T22:38:22.568Z_
+
+<details><summary>↩ Tool result · `toolu_012nD6J6Z17BhDy3RsKLZPB7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"v4-random-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:59.280Z\", \"updated_at\": \"2026-05-15T22:38:21.921Z\", \"hypothesis\": \"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-random-fixed-inject25-s1\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1-eval.log\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject25-s1\", \"checkpoint_source\": \"v4-random-fixed-inject25-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B + LoRA (random fixed inject25 s1)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9231}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7108b58-478a-4a0f-b3be-4267c776357a",
+  "isSidechain": false,
+  "promptId": "611ba96a-d3e1-4309-a27e-ab1faf564cc5",
+  "type": "user",
+  "uuid": "dc7dfea9-340a-4725-b481-484b47a098ba",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"v4-random-fixed-inject25-s1-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:34:59.280Z\\\", \\\"updated_at\\\": \\\"2026-05-15T22:38:21.921Z\\\", \\\"hypothesis\\\": \\\"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\\\", \\\"parent\\\": \\\"v4-random-fixed-inject25-s1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635 --num_episodes 47 --seed 42\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1-eval.log\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"parent\\\": \\\"v4-random-fixed-inject25-s1\\\", \\\"checkpoint_source\\\": \\\"v4-random-fixed-inject25-s1\\\", \\\"eval_data\\\": \\\"eval_tasks_47.json\\\", \\\"data_count\\\": 47, \\\"data_path\\\": \\\"eval/eval_tasks_47.json\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random fixed inject25 s1)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9231}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"v4-random-fixed-inject25-s1-eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:34:59.280Z\", \"updated_at\": \"2026-05-15T22:38:21.921Z\", \"hypothesis\": \"v4 Random 25% seed=1 eval — 47 ALFWorld clean tasks. Dose-response 5-seed expansion.\", \"parent\": \"v4-random-fixed-inject25-s1\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635 --num_episodes 47 --seed 42\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-fixed-inject25-s1-eval.log\", \"backend\": \"tmux\", \"account\": \"root\", \"parent\": \"v4-random-fixed-inject25-s1\", \"checkpoint_source\": \"v4-random-fixed-inject25-s1\", \"eval_data\": \"eval_tasks_47.json\", \"data_count\": 47, \"data_path\": \"eval/eval_tasks_47.json\", \"model_name\": \"Qwen3-8B + LoRA (random fixed inject25 s1)\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9231}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f7108b58-478a-4a0f-b3be-4267c776357a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-15T22:38:30.707Z_
+
+全部完成。汇总：
+
+## 1. Checkpoint 路径
+
+| 实验 | Checkpoint |
+|------|-----------|
+| v4-taxei-fixed-inject25-s1 | `checkpoints/v4_taxei_fixed_inject25_s1/v0-20260516-052917/checkpoint-1635` |
+| v4-random-fixed-inject25-s1 | `checkpoints/v4_random_fixed_inject25_s1/v0-20260516-053219/checkpoint-1635` |
+
+## 2. 恢复的 TaxEI 25% eval 结果
+
+| 实验 | Success Rate | Successes/Total |
+|------|-------------|----------------|
+| v4-taxei-fixed-inject25-s0-eval | **46.8%** | 22/47 |
+| v4-taxei-fixed-inject25-s123-eval | **46.8%** | 22/47 |
+
+两个实验的 by_task_type 详细数据已从服务器 JSON 文件恢复写入 registry。
+
+## 3. 已提交的 eval 实验
+
+| Exp ID | GPU | Status |
+|--------|-----|--------|
+| `v4-taxei-fixed-inject25-s1-eval` | cuda:0 | RUNNING (14.9 GB loaded) |
+| `v4-random-fixed-inject25-s1-eval` | cuda:1 | RUNNING (14.9 GB loaded) |
+
+预计每个 eval 约 15-25 分钟完成。cuda:2 空闲，cuda:3 被其他任务占用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc7dfea9-340a-4725-b481-484b47a098ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb5A2m3iTsAv9kghPc1S5",
+  "type": "assistant",
+  "uuid": "6a6bd870-8ef4-4198-92e7-a6ac8d393fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgRKdVY6keDXbiQPTLQfye",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2065,
+      "cache_read_input_tokens": 88094,
+      "output_tokens": 425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 425,
+          "cache_read_input_tokens": 88094,
+          "cache_creation_input_tokens": 2065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6a6bd870-8ef4-4198-92e7-a6ac8d393fb1",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Submit 25% injection eval and restore missing metrics",
+  "sessionId": "f233079e-2b3d-402c-bb6f-902039230613"
+}
+```
+
+---

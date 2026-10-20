@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "903426e3d579aeb0d8fa",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: tax_error_inject_agent ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_traini",
+  "task_key": "846958f8-c569-4ef2-80ff-42324c45d987",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/846958f8-c569-4ef2-80ff-42324c45d987.jsonl",
+    "occurrence": 1,
+    "bytes": 1308205,
+    "sha256": "cb9aa8d9851e304b928ba719052763645678fdc4fcd91fac5abc20921e828b04"
+  },
+  "statistics": {
+    "messages": 433,
+    "user_turns": 1,
+    "tool_calls": 186,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 25,
+      "tool_call": 186,
+      "tool_result": 186
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "903426e3d579aeb0d8fa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 431,
+      "chunks": [
+        {
+          "path": "903426e3d579aeb0d8fa-part-0001.json",
+          "message_count": 131
+        },
+        {
+          "path": "903426e3d579aeb0d8fa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "903426e3d579aeb0d8fa-part-0003.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-tax-error-inject-agent-autodl-5090-ssh-root-ssh-execute-submit-copy-242.md"
+}

@@ -1,0 +1,2280 @@
+# Research conversation: <project_context> # 项目: tax_error_inject_agent ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_traini
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-1/0553cac9-bdbc-431a-b7d1-40e87437f6c8.jsonl`
+- **Structured JSON:** [`3b28be05d0889ff984aa.json`](../../sessions/3b/3b28be05d0889ff984aa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T22:03:11.485Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T22:03:11.485Z",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "content": "&lt;project_context>\n# 项目: tax_error_inject_agent\n\n## 运行环境\n- 服务器名: autodl-5090\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/tax_error_inject_agent\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: GPU 白名单：仅使用 autodl-5090 cuda:0-3，禁止使用其他服务器或 GPU（原因：本项目分配 4 张 RTX 5090，L1 红线要求明确 GPU 白名单）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：编写 experiment_plan.yaml\n\n### 背景\n项目 tax_error_inject_agent 已转向 negative result paper，paper_framing.md 已定稿。现在需要基于 framing 的 Supplementary Experiments 部分编写结构化的实验计划。\n\n### 你要做的\n\n1. 读取 paper_framing.md：`read_project_file(project=\"tax_error_inject_agent\", file=\"paper_framing.md\")`\n2. 读取 ROADMAP.md：`read_project_file(project=\"tax_error_inject_agent\", file=\"ROADMAP.md\")`\n3. 读取 registry 了解已完成的实验：`read_registry(project=\"tax_error_inject_agent\")`\n4. 读取 memory.md 了解约束：`read_project_file(project=\"tax_error_inject_agent\", file=\"memory.md\")`\n\n### experiment_plan.yaml 格式\n\n```yaml\n# experiment_plan.yaml — tax_error_inject_agent\n# 基于 paper_framing.md 的 Supplementary Experiments\n\nexperiments:\n  - id: \"exp-id\"\n    name: \"实验名称\"\n    priority: P1/P2/P3\n    category: \"multi-seed/ablation/analysis/environment/...\"\n    hypothesis: \"一句话假设\"\n    method: \"简述实验方法\"\n    data: \"数据来源和数量\"\n    gpu: \"预计 GPU 需求和时长\"\n    depends_on: [\"前置实验 ID\"]  # 可选\n    status: \"planned/running/done\"\n    registry_id: \"对应 registry 中的 exp_id\"  # 如果已有\n    supports_claim: [\"Claim 1\", \"Claim 2\"]  # 支撑哪些 claims\n```\n\n### 需要包含的实验（按 paper_framing.md）\n\n**P1 必须做（投稿前必须完成）:**\n1. **multi-seed 补齐** — TaxEI seed=123, Random seed=123（已在跑，标记 running）\n2. **multi-seed eval** — 上面两组训练完成后的 clean eval\n3. **injection ratio ablation** — 10%/25%/50% fixed-size, TaxEI + Random 各 3 组 = 6 组训练 + 6 组 eval\n4. **training dynamics** — loss 曲线分析（可能不需要新训练，从现有 log 提取）\n\n**P2 强化:**\n5. **第二环境 (WebShop)** — 如果做的话需要新的 pipeline\n6. **定性 failure 分析** — 20+ TaxEI failure cases 手动分析\n\n**P3 锦上添花:**\n7. **scale ablation** — 25K/50K trajectories\n8. **few-shot recovery** — in-context 而非 SFT\n9. **per-operator deep dive** — 更多 seed 的 recovery eval\n\n### 注意事项\n- 已完成的实验标记 done 并填 registry_id\n- 正在跑的标记 running\n- P1 实验应该有明确的 GPU 分配计划（4 卡如何排班）\n- 每个实验必须关联到至少一个 Claim\n\n### 保存\n用 save_project_file(project=\"tax_error_inject_agent\", file=\"experiment_plan.yaml\", content=...) 保存"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T22:03:11.488Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T22:03:11.488Z",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+## Round 1
+
+41 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T22:03:11.516Z_
+
+&lt;project_context>
+# 项目: tax_error_inject_agent
+
+## 运行环境
+- 服务器名: autodl-5090
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh autodl-5090  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/tax_error_inject_agent
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: GPU 白名单：仅使用 autodl-5090 cuda:0-3，禁止使用其他服务器或 GPU（原因：本项目分配 4 张 RTX 5090，L1 红线要求明确 GPU 白名单）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：编写 experiment_plan.yaml
+
+### 背景
+项目 tax_error_inject_agent 已转向 negative result paper，paper_framing.md 已定稿。现在需要基于 framing 的 Supplementary Experiments 部分编写结构化的实验计划。
+
+### 你要做的
+
+1. 读取 paper_framing.md：`read_project_file(project="tax_error_inject_agent", file="paper_framing.md")`
+2. 读取 ROADMAP.md：`read_project_file(project="tax_error_inject_agent", file="ROADMAP.md")`
+3. 读取 registry 了解已完成的实验：`read_registry(project="tax_error_inject_agent")`
+4. 读取 memory.md 了解约束：`read_project_file(project="tax_error_inject_agent", file="memory.md")`
+
+### experiment_plan.yaml 格式
+
+```yaml
+# experiment_plan.yaml — tax_error_inject_agent
+# 基于 paper_framing.md 的 Supplementary Experiments
+
+experiments:
+  - id: "exp-id"
+    name: "实验名称"
+    priority: P1/P2/P3
+    category: "multi-seed/ablation/analysis/environment/..."
+    hypothesis: "一句话假设"
+    method: "简述实验方法"
+    data: "数据来源和数量"
+    gpu: "预计 GPU 需求和时长"
+    depends_on: ["前置实验 ID"]  # 可选
+    status: "planned/running/done"
+    registry_id: "对应 registry 中的 exp_id"  # 如果已有
+    supports_claim: ["Claim 1", "Claim 2"]  # 支撑哪些 claims
+```
+
+### 需要包含的实验（按 paper_framing.md）
+
+**P1 必须做（投稿前必须完成）:**
+1. **multi-seed 补齐** — TaxEI seed=123, Random seed=123（已在跑，标记 running）
+2. **multi-seed eval** — 上面两组训练完成后的 clean eval
+3. **injection ratio ablation** — 10%/25%/50% fixed-size, TaxEI + Random 各 3 组 = 6 组训练 + 6 组 eval
+4. **training dynamics** — loss 曲线分析（可能不需要新训练，从现有 log 提取）
+
+**P2 强化:**
+5. **第二环境 (WebShop)** — 如果做的话需要新的 pipeline
+6. **定性 failure 分析** — 20+ TaxEI failure cases 手动分析
+
+**P3 锦上添花:**
+7. **scale ablation** — 25K/50K trajectories
+8. **few-shot recovery** — in-context 而非 SFT
+9. **per-operator deep dive** — 更多 seed 的 recovery eval
+
+### 注意事项
+- 已完成的实验标记 done 并填 registry_id
+- 正在跑的标记 running
+- P1 实验应该有明确的 GPU 分配计划（4 卡如何排班）
+- 每个实验必须关联到至少一个 Claim
+
+### 保存
+用 save_project_file(project="tax_error_inject_agent", file="experiment_plan.yaml", content=...) 保存
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "3e74cdc5-1807-4081-8a0e-84525e25af14",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T22:03:11.516Z_
+
+```json
+{
+  "parentUuid": "3e74cdc5-1807-4081-8a0e-84525e25af14",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "92daa5f0-eb22-4e87-b7cb-5c12ca87fb72",
+  "timestamp": "2026-05-14T22:03:11.516Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T22:03:11.516Z_
+
+```json
+{
+  "parentUuid": "92daa5f0-eb22-4e87-b7cb-5c12ca87fb72",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a8984bf8-0ee2-4eac-8769-30dfffb8564f",
+  "timestamp": "2026-05-14T22:03:11.516Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T22:03:11.516Z_
+
+```json
+{
+  "parentUuid": "a8984bf8-0ee2-4eac-8769-30dfffb8564f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "92d65dfc-25ed-46b2-8e05-5c25051823cc",
+  "timestamp": "2026-05-14T22:03:11.516Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure experiment plan for negative result paper",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T22:03:13.896Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the required files to understand the project context before writing the experiment plan.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92d65dfc-25ed-46b2-8e05-5c25051823cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYEFyaJjHQEa1f8dBs",
+  "type": "assistant",
+  "uuid": "fbf83a03-6604-4f8d-a1f8-3c6c9318bdce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMjEYsJ83nBrtYjqdMSnHb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11821,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T22:03:14.362Z_
+
+读取项目文件和 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbf83a03-6604-4f8d-a1f8-3c6c9318bdce",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYEFyaJjHQEa1f8dBs",
+  "type": "assistant",
+  "uuid": "ac66aa89-bb6d-491b-93e3-ab5887289a34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMjEYsJ83nBrtYjqdMSnHb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11821,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T22:03:15.398Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01L7h4QZ2cyLjw8zsNJUELho`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac66aa89-bb6d-491b-93e3-ab5887289a34",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYEFyaJjHQEa1f8dBs",
+  "type": "assistant",
+  "uuid": "5a48f14d-925a-46de-8de0-a2bf021ac2ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TMjEYsJ83nBrtYjqdMSnHb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11821,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T22:03:15.404Z_
+
+<details><summary>↩ Tool result · `toolu_01L7h4QZ2cyLjw8zsNJUELho`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a48f14d-925a-46de-8de0-a2bf021ac2ac",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "4d6d84e5-14bd-4482-9c2b-83ad892374cd",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "5a48f14d-925a-46de-8de0-a2bf021ac2ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T22:03:18.147Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01XTV9bV4GFNHcbS1RhESqed`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d6d84e5-14bd-4482-9c2b-83ad892374cd",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYX5Wb1jxKBjXm7aR5",
+  "type": "assistant",
+  "uuid": "80672a88-8800-435f-8d55-d46b30876df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZhz2Ftt5jC2ipkyHmumpk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 23662,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 23662,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T22:03:18.158Z_
+
+<details><summary>↩ Tool result · `toolu_01XTV9bV4GFNHcbS1RhESqed`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/paper_framing.md\", \"content\": \"# Paper Framing: Error Injection Helps Tool-Use but Hurts Planning — Boundary Conditions for Failure-Augmented Agent Training\\n\\n## Target Venue\\n**Primary**: Insights from Negative Results in NLP @ EMNLP 2026 (Budapest, Oct 22–29) — short paper track, purpose-built for rigorous negative findings.\\n**Backup**: EMNLP 2026 Findings (main conference accepts negative-result contributions per CFP).\\n\\n## Core Question\\nUnder what task-structural conditions does taxonomy-guided error injection improve vs. degrade LLM agent performance?\\n\\n## Thesis Statement\\nTaxonomy-guided error injection — a core component of PALADIN's +57pp Recovery Rate gain on ToolBench (though entangled with inference-time retrieval augmentation) — actively degrades embodied planning agents (-11pp clean accuracy on ALFWorld, p=0.03), suggesting that **task structure** may be the primary factor determining whether failure-augmented training transfers.\\n\\n## Story Arc\\n\\n### 1. Motivation: Why error injection should work\\nError injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN (arXiv 2509.25238) demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76% to 89.68% on ToolBench (note: removing retrieval reduces the gain by ~30pp, so the SFT contribution alone is ~+27pp). A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?\\n\\n### 2. Method: TaxEI — Taxonomy-guided Error Injection for Embodied Planning\\nWe designed a 4-operator error taxonomy for ALFWorld embodied planning:\\n- **P1** (step_order_swap): permute action ordering\\n- **P2** (sub_goal_deletion): remove sub-goals\\n- **C1** (context_truncation): truncate environmental context\\n- **C4** (observation_masking): mask observation feedback\\n\\nWe injected errors into 760 trajectories (from 501 GPT-5.2-generated successful trajectories), producing 4,671 injected variants. Three SFT conditions trained on Qwen3-8B: Vanilla (clean only, 4,358 samples), TaxEI (clean + taxonomy-tagged injections, 9,029 samples), Random (clean + unlabeled injections, 9,029 samples). TaxEI and Random differ only in whether the error tag contains the taxonomy label or a generic marker.\\n\\n### 3. Finding: Comprehensive failure across all dimensions\\n**Clean task performance (multi-seed)**:\\n- Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)\\n- Random SFT: 60.7% ± 7.6pp (seeds 42/0)\\n- TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0) — **11pp worse than vanilla**\\n\\n**Recovery under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)**:\\n- Vanilla: 61.7% | TaxEI: 59.6% | Random: 61.7%\\n\\n**Detection Rate**: 0% for all methods.\\n\\n**Taxonomy labels show no statistically significant benefit over random**: TaxEI (54.3%) < Random (60.7%), p=0.2436; both worse than Vanilla (65.3%), with TaxEI vs Vanilla reaching significance at p=0.0317.\\n\\n### 4. Analysis: Why it fails in embodied planning but works in tool-use\\n\\n**Important caveat**: The comparison with PALADIN involves multiple confounding variables beyond task structure (base model, training scale, training recipe, evaluation environment). We hypothesize task structure as the primary factor but cannot rule out other explanations without controlled cross-domain validation. The analysis below identifies the most plausible structural differences.\\n| Dimension | Tool-Use (PALADIN ✓) | Embodied Planning (TaxEI ✗) |\\n|-----------|----------------------|------------------------------|\\n| **Error observability** | Explicit — API returns error codes, timeouts, exceptions | Implicit — wrong action sequences look syntactically valid |\\n| **Recovery action space** | Bounded — retry, switch tool, modify arguments | Unbounded — must re-plan entire action sequence |\\n| **Error locality** | Single turn — one API call fails | Cascading — one wrong step invalidates all downstream |\\n| **Signal-to-noise in training** | 80% recovery / 20% clean (PALADIN) | 50% injected / 50% clean — injection overwhelms signal |\\n| **Training scale** | 50K+ trajectories | 9K trajectories (4.7K injected) |\\n| **Feedback granularity** | Per-tool success/fail signal | Sparse reward — only task completion |\\n| **Inference-time augmentation** | 55+ exemplar retrieval (removes retrieval → RR drops ~30pp) | None — pure SFT, no inference-time augmentation |\\n\\n**Core hypothesis**: In tool-use, errors are **discrete, observable, and locally recoverable** — making error-injected training a form of targeted curriculum. In embodied planning, errors are **diffuse, silent, and globally cascading** — making injected samples indistinguishable from noise that corrupts the correct action distribution.\\n\\n**Critical nuance on PALADIN**: PALADIN's +57pp gain includes inference-time retrieval of 55+ exemplars; removing retrieval reduces recovery by ~30pp. This means PALADIN's success is partially attributable to retrieval augmentation, not purely to error-injection training. Our comparison therefore tests error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter — and more informative — test of whether the training signal itself transfers.\\n\\n### 5. Contribution: What this negative result gives the community\\n1. **Empirical boundary condition**: First cross-domain transfer test of taxonomy-guided error injection — and first reported failure. Contrasts with PALADIN's tool-use success and EEF's alternative approach of extracting positive signal from failures.\\n2. **Cost savings**: Prevents the community from pursuing error-injection approaches in ALFWorld-style domains without addressing the structural prerequisites we identify.\\n3. **Training variance warning**: Error injection increases cross-seed variance 3.3× (SD 10.5pp vs 3.2pp), making results unreliable even when a single seed looks promising.\\n4. **Methodological reflection**: 50% injection ratio may systematically corrupt SFT signal — future work should ablate this before assuming injection helps.\\n\\n## Core Claims (each backed by experimental evidence)\\n\\n- **Claim 1**: Taxonomy-guided error injection **statistically significantly** degrades clean task performance on ALFWorld.\\n  → Support: TaxEI 54.3% vs Vanilla 65.3%, **-11pp, p=0.0317** (paired permutation test). Multi-seed: seeds 42/0 for TaxEI, seeds 42/0/123 for Vanilla. Gate 3a FAIL. Degradation concentrated in complex multi-step tasks (pick_cool -21.3pp, pick_two_obj -26.1pp); simple tasks relatively unaffected.\\n\\n- **Claim 2**: We found no statistically significant benefit of taxonomy labels over random (unlabeled) injection.\\n  → Support: TaxEI 54.3% vs Random 60.7%, -6.4pp, **p=0.2436 (not significant)**. Gate 3b FAIL. In recovery eval, TaxEI 59.6% ≤ Random 61.7%. Direction consistent but underpowered with 2 seeds.\\n\\n- **Claim 3**: Error injection increases training instability disproportionately.\\n  → Support: TaxEI cross-seed SD = 10.5pp vs Vanilla SD = 3.2pp (3.3× ratio). Random SD = 7.6pp also elevated.\\n\\n- **Claim 4**: Injection-trained models do not improve error recovery.\\n  → Support: Recovery rate TaxEI 59.6% vs Vanilla 61.7% (seed=42, 47 tasks). Head-to-head: TaxEI gained 4, lost 5, net -1. Per-operator: TaxEI advantage only on C4_observation_masking (+9.1pp), disadvantage on C1 (-8.3pp) and P2 (-8.3pp).\\n\\n- **Claim 5**: Detection training via error injection is completely ineffective in this setup.\\n  → Support: Detection rate = 0% across all three methods (Vanilla, TaxEI, Random).\\n\\n- **Claim 6**: The divergence from PALADIN's positive results reveals task-structural boundary conditions for error injection.\\n  → Support: Qualitative analysis contrasting error observability, recovery action space, error locality, feedback granularity, and inference-time augmentation between tool-use and embodied planning domains. Note: PALADIN's +57pp includes retrieval augmentation (~30pp contribution), making our pure-SFT comparison a stricter isolation of the training signal's value. Additionally, EEF (arXiv 2504.13145) succeeds on WebShop by **extracting good signal from failures** rather than injecting bad signal — suggesting the injection direction itself may be flawed for planning domains.\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"Only 2 seeds for TaxEI/Random — insufficient statistical power.\\\"**\\n   → Acknowledged. With n=47 tasks, binomial std ≈ 6.8pp at p=0.65. The 11pp TaxEI-vs-Vanilla gap exceeds 1 SD but is based on 2 seeds. We report all individual seed results transparently and propose supplementary seeds. The directional consistency across both seeds (both show TaxEI ≤ Vanilla) provides qualitative support.\\n\\n2. **\\\"ALFWorld has only 47 test tasks — too small for reliable conclusions.\\\"**\\n   → Valid concern. We explicitly compute statistical power and report confidence intervals. The 47-task limitation is an ALFWorld constraint shared by all prior work on this benchmark. We propose a second environment (WebShop) for supplementary validation.\\n\\n3. **\\\"Maybe the taxonomy itself is poorly designed.\\\"**\\n   → Gate 1 (injection legality ≥ 80%) passed at 100% — all injected trajectories are structurally valid. Gate 2 (recovery quality ≥ 75%) passed at 97.5%. The taxonomy is functional; it just doesn't help training.\\n\\n4. **\\\"The training recipe might be suboptimal for injection data.\\\"**\\n   → The same recipe produces strong Vanilla results (65.3% vs 42.6% baseline, +22.7pp), confirming the recipe works. The degradation is specific to injection augmentation, not training methodology.\\n\\n5. **\\\"50% injection ratio is too high — you're drowning the signal.\\\"**\\n   → This is a key point we plan to address with injection ratio ablation (10%, 25%, 50%). PALADIN used 80% recovery / 20% clean but at 5× our scale (50K vs 9K). The interaction of ratio × scale is an open question.\\n\\n6. **\\\"Why is detection rate 0%? Evaluation might be flawed.\\\"**\\n   → Current eval checks for explicit error flagging in model output. Models may develop implicit error awareness (e.g., output hedging, re-planning) not captured by binary detection metrics. We discuss this limitation and propose alternative detection measures.\\n\\n7. **\\\"Why not compare directly on ToolBench?\\\"**\\n   → Our contribution is precisely the domain contrast. Running PALADIN on ALFWorld or TaxEI on ToolBench would strengthen the paper but requires substantial engineering. We list this as future work.\\n\\n## Key Differentiators vs PALADIN\\n\\nPALADIN (arXiv 2509.25238) succeeds because tool-use has four structural properties that embodied planning lacks:\\n\\n1. **Discrete error signals**: Tool calls return explicit success/failure codes. In ALFWorld, a wrong action (e.g., \\\"go to countertop 2\\\" when the object is on shelf 1) produces a valid-looking observation — the agent receives no signal that it erred.\\n\\n2. **Local recoverability**: A failed API call can be retried or substituted with an alternative tool. In planning, a wrong early step (e.g., heating before picking up) invalidates the entire downstream plan, requiring global re-planning rather than local retry.\\n\\n3. **Bounded action space for recovery**: ToolBench has a finite API catalog — recovery means selecting from known alternatives. ALFWorld's text-based action space is open-ended, making \\\"what to do after an error\\\" fundamentally harder to learn from examples.\\n\\n4. **Scale**: PALADIN trains on 50K+ trajectories with 80% recovery focus. TaxEI has 9K total samples with 50% injection. The lower data volume means less room for the model to separate error patterns from noise.\\n\\n**This contrast IS the paper's core contribution**: error injection is not universally beneficial for LLM agents — it requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.\\n\\n## Note on v3→v4 Vanilla Discrepancy\\nv3 vanilla SFT achieved 74.5% (seed=42) while v4 three-seed mean is 65.3%. The 9.2pp gap is partially explained by: (1) v3 used different data volume (4,176 vs 4,358 samples due to format alignment changes); (2) seed variance (v4 seed=42 = 61.7%, seed=0 = 68.1%). Paper should briefly note this in supplement to preempt reviewer confusion about different vanilla numbers across experimental rounds.\\n\\n## Supplementary Experiments Needed\\n\\n### Priority 1 (required for submission)\\n- **More seeds**: At least 3 seeds per method (currently: Vanilla=3, TaxEI=2, Random=2). Run TaxEI seed=123 and Random seed=123 to match Vanilla coverage.\\n- **Injection ratio ablation**: Train TaxEI/Random at 10%, 25%, 50% injection ratios (currently only 50%). If lower ratios mitigate degradation, this directly supports the \\\"noise overwhelms signal\\\" hypothesis.\\n- **Training dynamics analysis**: Plot training loss curves for clean vs. injected samples across epochs. Do injected samples have systematically higher loss? Does the model learn clean patterns before injection patterns corrupt them?\\n\\n### Priority 2 (strengthens paper significantly)\\n- **Second environment**: WebShop or ScienceWorld to test whether the negative result generalizes beyond ALFWorld. If error injection also fails there, the boundary condition claim is stronger.\\n- **Qualitative failure analysis**: Manually examine 20+ TaxEI failure cases — does the model produce incoherent plans, or does it simply choose wrong actions at similar rates? This informs the \\\"noise vs. wrong learning\\\" distinction.\\n\\n### Priority 3 (nice to have)\\n- **Scale ablation**: Does TaxEI improve if we scale to 25K or 50K trajectories (matching PALADIN's scale)?\\n- **Explicit recovery prompting**: Instead of SFT, test whether in-context recovery examples (few-shot) help — this isolates whether the issue is training signal vs. knowledge.\\n- **Per-operator deep dive**: Run more seeds on recovery eval to determine if C4 (observation masking) is genuinely easier for TaxEI or if the +9.1pp advantage is noise.\\n\", \"total_chars\": 13993, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80672a88-8800-435f-8d55-d46b30876df2",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "7a340b7f-cead-45bd-b55d-04de49acf1d6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Error Injection Helps Tool-Use but Hurts Planning — Boundary Conditions for Failure-Augmented Agent Training\\\\n\\\\n## Target Venue\\\\n**Primary**: Insights from Negative Results in NLP @ EMNLP 2026 (Budapest, Oct 22–29) — short paper track, purpose-built for rigorous negative findings.\\\\n**Backup**: EMNLP 2026 Findings (main conference accepts negative-result contributions per CFP).\\\\n\\\\n## Core Question\\\\nUnder what task-structural conditions does taxonomy-guided error injection improve vs. degrade LLM agent performance?\\\\n\\\\n## Thesis Statement\\\\nTaxonomy-guided error injection — a core component of PALADIN's +57pp Recovery Rate gain on ToolBench (though entangled with inference-time retrieval augmentation) — actively degrades embodied planning agents (-11pp clean accuracy on ALFWorld, p=0.03), suggesting that **task structure** may be the primary factor determining whether failure-augmented training transfers.\\\\n\\\\n## Story Arc\\\\n\\\\n### 1. Motivation: Why error injection should work\\\\nError injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN (arXiv 2509.25238) demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76% to 89.68% on ToolBench (note: removing retrieval reduces the gain by ~30pp, so the SFT contribution alone is ~+27pp). A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?\\\\n\\\\n### 2. Method: TaxEI — Taxonomy-guided Error Injection for Embodied Planning\\\\nWe designed a 4-operator error taxonomy for ALFWorld embodied planning:\\\\n- **P1** (step_order_swap): permute action ordering\\\\n- **P2** (sub_goal_deletion): remove sub-goals\\\\n- **C1** (context_truncation): truncate environmental context\\\\n- **C4** (observation_masking): mask observation feedback\\\\n\\\\nWe injected errors into 760 trajectories (from 501 GPT-5.2-generated successful trajectories), producing 4,671 injected variants. Three SFT conditions trained on Qwen3-8B: Vanilla (clean only, 4,358 samples), TaxEI (clean + taxonomy-tagged injections, 9,029 samples), Random (clean + unlabeled injections, 9,029 samples). TaxEI and Random differ only in whether the error tag contains the taxonomy label or a generic marker.\\\\n\\\\n### 3. Finding: Comprehensive failure across all dimensions\\\\n**Clean task performance (multi-seed)**:\\\\n- Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)\\\\n- Random SFT: 60.7% ± 7.6pp (seeds 42/0)\\\\n- TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0) — **11pp worse than vanilla**\\\\n\\\\n**Recovery under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)**:\\\\n- Vanilla: 61.7% | TaxEI: 59.6% | Random: 61.7%\\\\n\\\\n**Detection Rate**: 0% for all methods.\\\\n\\\\n**Taxonomy labels show no statistically significant benefit over random**: TaxEI (54.3%) < Random (60.7%), p=0.2436; both worse than Vanilla (65.3%), with TaxEI vs Vanilla reaching significance at p=0.0317.\\\\n\\\\n### 4. Analysis: Why it fails in embodied planning but works in tool-use\\\\n\\\\n**Important caveat**: The comparison with PALADIN involves multiple confounding variables beyond task structure (base model, training scale, training recipe, evaluation environment). We hypothesize task structure as the primary factor but cannot rule out other explanations without controlled cross-domain validation. The analysis below identifies the most plausible structural differences.\\\\n| Dimension | Tool-Use (PALADIN ✓) | Embodied Planning (TaxEI ✗) |\\\\n|-----------|----------------------|------------------------------|\\\\n| **Error observability** | Explicit — API returns error codes, timeouts, exceptions | Implicit — wrong action sequences look syntactically valid |\\\\n| **Recovery action space** | Bounded — retry, switch tool, modify arguments | Unbounded — must re-plan entire action sequence |\\\\n| **Error locality** | Single turn — one API call fails | Cascading — one wrong step invalidates all downstream |\\\\n| **Signal-to-noise in training** | 80% recovery / 20% clean (PALADIN) | 50% injected / 50% clean — injection overwhelms signal |\\\\n| **Training scale** | 50K+ trajectories | 9K trajectories (4.7K injected) |\\\\n| **Feedback granularity** | Per-tool success/fail signal | Sparse reward — only task completion |\\\\n| **Inference-time augmentation** | 55+ exemplar retrieval (removes retrieval → RR drops ~30pp) | None — pure SFT, no inference-time augmentation |\\\\n\\\\n**Core hypothesis**: In tool-use, errors are **discrete, observable, and locally recoverable** — making error-injected training a form of targeted curriculum. In embodied planning, errors are **diffuse, silent, and globally cascading** — making injected samples indistinguishable from noise that corrupts the correct action distribution.\\\\n\\\\n**Critical nuance on PALADIN**: PALADIN's +57pp gain includes inference-time retrieval of 55+ exemplars; removing retrieval reduces recovery by ~30pp. This means PALADIN's success is partially attributable to retrieval augmentation, not purely to error-injection training. Our comparison therefore tests error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter — and more informative — test of whether the training signal itself transfers.\\\\n\\\\n### 5. Contribution: What this negative result gives the community\\\\n1. **Empirical boundary condition**: First cross-domain transfer test of taxonomy-guided error injection — and first reported failure. Contrasts with PALADIN's tool-use success and EEF's alternative approach of extracting positive signal from failures.\\\\n2. **Cost savings**: Prevents the community from pursuing error-injection approaches in ALFWorld-style domains without addressing the structural prerequisites we identify.\\\\n3. **Training variance warning**: Error injection increases cross-seed variance 3.3× (SD 10.5pp vs 3.2pp), making results unreliable even when a single seed looks promising.\\\\n4. **Methodological reflection**: 50% injection ratio may systematically corrupt SFT signal — future work should ablate this before assuming injection helps.\\\\n\\\\n## Core Claims (each backed by experimental evidence)\\\\n\\\\n- **Claim 1**: Taxonomy-guided error injection **statistically significantly** degrades clean task performance on ALFWorld.\\\\n  → Support: TaxEI 54.3% vs Vanilla 65.3%, **-11pp, p=0.0317** (paired permutation test). Multi-seed: seeds 42/0 for TaxEI, seeds 42/0/123 for Vanilla. Gate 3a FAIL. Degradation concentrated in complex multi-step tasks (pick_cool -21.3pp, pick_two_obj -26.1pp); simple tasks relatively unaffected.\\\\n\\\\n- **Claim 2**: We found no statistically significant benefit of taxonomy labels over random (unlabeled) injection.\\\\n  → Support: TaxEI 54.3% vs Random 60.7%, -6.4pp, **p=0.2436 (not significant)**. Gate 3b FAIL. In recovery eval, TaxEI 59.6% ≤ Random 61.7%. Direction consistent but underpowered with 2 seeds.\\\\n\\\\n- **Claim 3**: Error injection increases training instability disproportionately.\\\\n  → Support: TaxEI cross-seed SD = 10.5pp vs Vanilla SD = 3.2pp (3.3× ratio). Random SD = 7.6pp also elevated.\\\\n\\\\n- **Claim 4**: Injection-trained models do not improve error recovery.\\\\n  → Support: Recovery rate TaxEI 59.6% vs Vanilla 61.7% (seed=42, 47 tasks). Head-to-head: TaxEI gained 4, lost 5, net -1. Per-operator: TaxEI advantage only on C4_observation_masking (+9.1pp), disadvantage on C1 (-8.3pp) and P2 (-8.3pp).\\\\n\\\\n- **Claim 5**: Detection training via error injection is completely ineffective in this setup.\\\\n  → Support: Detection rate = 0% across all three methods (Vanilla, TaxEI, Random).\\\\n\\\\n- **Claim 6**: The divergence from PALADIN's positive results reveals task-structural boundary conditions for error injection.\\\\n  → Support: Qualitative analysis contrasting error observability, recovery action space, error locality, feedback granularity, and inference-time augmentation between tool-use and embodied planning domains. Note: PALADIN's +57pp includes retrieval augmentation (~30pp contribution), making our pure-SFT comparison a stricter isolation of the training signal's value. Additionally, EEF (arXiv 2504.13145) succeeds on WebShop by **extracting good signal from failures** rather than injecting bad signal — suggesting the injection direction itself may be flawed for planning domains.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n1. **\\\\\\\"Only 2 seeds for TaxEI/Random — insufficient statistical power.\\\\\\\"**\\\\n   → Acknowledged. With n=47 tasks, binomial std ≈ 6.8pp at p=0.65. The 11pp TaxEI-vs-Vanilla gap exceeds 1 SD but is based on 2 seeds. We report all individual seed results transparently and propose supplementary seeds. The directional consistency across both seeds (both show TaxEI ≤ Vanilla) provides qualitative support.\\\\n\\\\n2. **\\\\\\\"ALFWorld has only 47 test tasks — too small for reliable conclusions.\\\\\\\"**\\\\n   → Valid concern. We explicitly compute statistical power and report confidence intervals. The 47-task limitation is an ALFWorld constraint shared by all prior work on this benchmark. We propose a second environment (WebShop) for supplementary validation.\\\\n\\\\n3. **\\\\\\\"Maybe the taxonomy itself is poorly designed.\\\\\\\"**\\\\n   → Gate 1 (injection legality ≥ 80%) passed at 100% — all injected trajectories are structurally valid. Gate 2 (recovery quality ≥ 75%) passed at 97.5%. The taxonomy is functional; it just doesn't help training.\\\\n\\\\n4. **\\\\\\\"The training recipe might be suboptimal for injection data.\\\\\\\"**\\\\n   → The same recipe produces strong Vanilla results (65.3% vs 42.6% baseline, +22.7pp), confirming the recipe works. The degradation is specific to injection augmentation, not training methodology.\\\\n\\\\n5. **\\\\\\\"50% injection ratio is too high — you're drowning the signal.\\\\\\\"**\\\\n   → This is a key point we plan to address with injection ratio ablation (10%, 25%, 50%). PALADIN used 80% recovery / 20% clean but at 5× our scale (50K vs 9K). The interaction of ratio × scale is an open question.\\\\n\\\\n6. **\\\\\\\"Why is detection rate 0%? Evaluation might be flawed.\\\\\\\"**\\\\n   → Current eval checks for explicit error flagging in model output. Models may develop implicit error awareness (e.g., output hedging, re-planning) not captured by binary detection metrics. We discuss this limitation and propose alternative detection measures.\\\\n\\\\n7. **\\\\\\\"Why not compare directly on ToolBench?\\\\\\\"**\\\\n   → Our contribution is precisely the domain contrast. Running PALADIN on ALFWorld or TaxEI on ToolBench would strengthen the paper but requires substantial engineering. We list this as future work.\\\\n\\\\n## Key Differentiators vs PALADIN\\\\n\\\\nPALADIN (arXiv 2509.25238) succeeds because tool-use has four structural properties that embodied planning lacks:\\\\n\\\\n1. **Discrete error signals**: Tool calls return explicit success/failure codes. In ALFWorld, a wrong action (e.g., \\\\\\\"go to countertop 2\\\\\\\" when the object is on shelf 1) produces a valid-looking observation — the agent receives no signal that it erred.\\\\n\\\\n2. **Local recoverability**: A failed API call can be retried or substituted with an alternative tool. In planning, a wrong early step (e.g., heating before picking up) invalidates the entire downstream plan, requiring global re-planning rather than local retry.\\\\n\\\\n3. **Bounded action space for recovery**: ToolBench has a finite API catalog — recovery means selecting from known alternatives. ALFWorld's text-based action space is open-ended, making \\\\\\\"what to do after an error\\\\\\\" fundamentally harder to learn from examples.\\\\n\\\\n4. **Scale**: PALADIN trains on 50K+ trajectories with 80% recovery focus. TaxEI has 9K total samples with 50% injection. The lower data volume means less room for the model to separate error patterns from noise.\\\\n\\\\n**This contrast IS the paper's core contribution**: error injection is not universally beneficial for LLM agents — it requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.\\\\n\\\\n## Note on v3→v4 Vanilla Discrepancy\\\\nv3 vanilla SFT achieved 74.5% (seed=42) while v4 three-seed mean is 65.3%. The 9.2pp gap is partially explained by: (1) v3 used different data volume (4,176 vs 4,358 samples due to format alignment changes); (2) seed variance (v4 seed=42 = 61.7%, seed=0 = 68.1%). Paper should briefly note this in supplement to preempt reviewer confusion about different vanilla numbers across experimental rounds.\\\\n\\\\n## Supplementary Experiments Needed\\\\n\\\\n### Priority 1 (required for submission)\\\\n- **More seeds**: At least 3 seeds per method (currently: Vanilla=3, TaxEI=2, Random=2). Run TaxEI seed=123 and Random seed=123 to match Vanilla coverage.\\\\n- **Injection ratio ablation**: Train TaxEI/Random at 10%, 25%, 50% injection ratios (currently only 50%). If lower ratios mitigate degradation, this directly supports the \\\\\\\"noise overwhelms signal\\\\\\\" hypothesis.\\\\n- **Training dynamics analysis**: Plot training loss curves for clean vs. injected samples across epochs. Do injected samples have systematically higher loss? Does the model learn clean patterns before injection patterns corrupt them?\\\\n\\\\n### Priority 2 (strengthens paper significantly)\\\\n- **Second environment**: WebShop or ScienceWorld to test whether the negative result generalizes beyond ALFWorld. If error injection also fails there, the boundary condition claim is stronger.\\\\n- **Qualitative failure analysis**: Manually examine 20+ TaxEI failure cases — does the model produce incoherent plans, or does it simply choose wrong actions at similar rates? This informs the \\\\\\\"noise vs. wrong learning\\\\\\\" distinction.\\\\n\\\\n### Priority 3 (nice to have)\\\\n- **Scale ablation**: Does TaxEI improve if we scale to 25K or 50K trajectories (matching PALADIN's scale)?\\\\n- **Explicit recovery prompting**: Instead of SFT, test whether in-context recovery examples (few-shot) help — this isolates whether the issue is training signal vs. knowledge.\\\\n- **Per-operator deep dive**: Run more seeds on recovery eval to determine if C4 (observation masking) is genuinely easier for TaxEI or if the +9.1pp advantage is noise.\\\\n\\\", \\\"total_chars\\\": 13993, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/paper_framing.md\", \"content\": \"# Paper Framing: Error Injection Helps Tool-Use but Hurts Planning — Boundary Conditions for Failure-Augmented Agent Training\\n\\n## Target Venue\\n**Primary**: Insights from Negative Results in NLP @ EMNLP 2026 (Budapest, Oct 22–29) — short paper track, purpose-built for rigorous negative findings.\\n**Backup**: EMNLP 2026 Findings (main conference accepts negative-result contributions per CFP).\\n\\n## Core Question\\nUnder what task-structural conditions does taxonomy-guided error injection improve vs. degrade LLM agent performance?\\n\\n## Thesis Statement\\nTaxonomy-guided error injection — a core component of PALADIN's +57pp Recovery Rate gain on ToolBench (though entangled with inference-time retrieval augmentation) — actively degrades embodied planning agents (-11pp clean accuracy on ALFWorld, p=0.03), suggesting that **task structure** may be the primary factor determining whether failure-augmented training transfers.\\n\\n## Story Arc\\n\\n### 1. Motivation: Why error injection should work\\nError injection is a principled data augmentation strategy: expose the model to failure modes during training so it learns to avoid or recover from them. PALADIN (arXiv 2509.25238) demonstrated this for tool-use agents, using a ToolScan taxonomy of 7 failure types to generate 50K+ recovery-annotated trajectories plus inference-time retrieval of 55+ exemplars, boosting Recovery Rate from 32.76% to 89.68% on ToolBench (note: removing retrieval reduces the gain by ~30pp, so the SFT contribution alone is ~+27pp). A natural question: does the error-injection training component transfer to embodied planning, where agents execute multi-step plans in physical environments?\\n\\n### 2. Method: TaxEI — Taxonomy-guided Error Injection for Embodied Planning\\nWe designed a 4-operator error taxonomy for ALFWorld embodied planning:\\n- **P1** (step_order_swap): permute action ordering\\n- **P2** (sub_goal_deletion): remove sub-goals\\n- **C1** (context_truncation): truncate environmental context\\n- **C4** (observation_masking): mask observation feedback\\n\\nWe injected errors into 760 trajectories (from 501 GPT-5.2-generated successful trajectories), producing 4,671 injected variants. Three SFT conditions trained on Qwen3-8B: Vanilla (clean only, 4,358 samples), TaxEI (clean + taxonomy-tagged injections, 9,029 samples), Random (clean + unlabeled injections, 9,029 samples). TaxEI and Random differ only in whether the error tag contains the taxonomy label or a generic marker.\\n\\n### 3. Finding: Comprehensive failure across all dimensions\\n**Clean task performance (multi-seed)**:\\n- Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)\\n- Random SFT: 60.7% ± 7.6pp (seeds 42/0)\\n- TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0) — **11pp worse than vanilla**\\n\\n**Recovery under injected errors (seed=42, 47 tasks, round-robin P1/P2/C1/C4)**:\\n- Vanilla: 61.7% | TaxEI: 59.6% | Random: 61.7%\\n\\n**Detection Rate**: 0% for all methods.\\n\\n**Taxonomy labels show no statistically significant benefit over random**: TaxEI (54.3%) < Random (60.7%), p=0.2436; both worse than Vanilla (65.3%), with TaxEI vs Vanilla reaching significance at p=0.0317.\\n\\n### 4. Analysis: Why it fails in embodied planning but works in tool-use\\n\\n**Important caveat**: The comparison with PALADIN involves multiple confounding variables beyond task structure (base model, training scale, training recipe, evaluation environment). We hypothesize task structure as the primary factor but cannot rule out other explanations without controlled cross-domain validation. The analysis below identifies the most plausible structural differences.\\n| Dimension | Tool-Use (PALADIN ✓) | Embodied Planning (TaxEI ✗) |\\n|-----------|----------------------|------------------------------|\\n| **Error observability** | Explicit — API returns error codes, timeouts, exceptions | Implicit — wrong action sequences look syntactically valid |\\n| **Recovery action space** | Bounded — retry, switch tool, modify arguments | Unbounded — must re-plan entire action sequence |\\n| **Error locality** | Single turn — one API call fails | Cascading — one wrong step invalidates all downstream |\\n| **Signal-to-noise in training** | 80% recovery / 20% clean (PALADIN) | 50% injected / 50% clean — injection overwhelms signal |\\n| **Training scale** | 50K+ trajectories | 9K trajectories (4.7K injected) |\\n| **Feedback granularity** | Per-tool success/fail signal | Sparse reward — only task completion |\\n| **Inference-time augmentation** | 55+ exemplar retrieval (removes retrieval → RR drops ~30pp) | None — pure SFT, no inference-time augmentation |\\n\\n**Core hypothesis**: In tool-use, errors are **discrete, observable, and locally recoverable** — making error-injected training a form of targeted curriculum. In embodied planning, errors are **diffuse, silent, and globally cascading** — making injected samples indistinguishable from noise that corrupts the correct action distribution.\\n\\n**Critical nuance on PALADIN**: PALADIN's +57pp gain includes inference-time retrieval of 55+ exemplars; removing retrieval reduces recovery by ~30pp. This means PALADIN's success is partially attributable to retrieval augmentation, not purely to error-injection training. Our comparison therefore tests error injection in its most isolated form (pure SFT, no retrieval), which may be a stricter — and more informative — test of whether the training signal itself transfers.\\n\\n### 5. Contribution: What this negative result gives the community\\n1. **Empirical boundary condition**: First cross-domain transfer test of taxonomy-guided error injection — and first reported failure. Contrasts with PALADIN's tool-use success and EEF's alternative approach of extracting positive signal from failures.\\n2. **Cost savings**: Prevents the community from pursuing error-injection approaches in ALFWorld-style domains without addressing the structural prerequisites we identify.\\n3. **Training variance warning**: Error injection increases cross-seed variance 3.3× (SD 10.5pp vs 3.2pp), making results unreliable even when a single seed looks promising.\\n4. **Methodological reflection**: 50% injection ratio may systematically corrupt SFT signal — future work should ablate this before assuming injection helps.\\n\\n## Core Claims (each backed by experimental evidence)\\n\\n- **Claim 1**: Taxonomy-guided error injection **statistically significantly** degrades clean task performance on ALFWorld.\\n  → Support: TaxEI 54.3% vs Vanilla 65.3%, **-11pp, p=0.0317** (paired permutation test). Multi-seed: seeds 42/0 for TaxEI, seeds 42/0/123 for Vanilla. Gate 3a FAIL. Degradation concentrated in complex multi-step tasks (pick_cool -21.3pp, pick_two_obj -26.1pp); simple tasks relatively unaffected.\\n\\n- **Claim 2**: We found no statistically significant benefit of taxonomy labels over random (unlabeled) injection.\\n  → Support: TaxEI 54.3% vs Random 60.7%, -6.4pp, **p=0.2436 (not significant)**. Gate 3b FAIL. In recovery eval, TaxEI 59.6% ≤ Random 61.7%. Direction consistent but underpowered with 2 seeds.\\n\\n- **Claim 3**: Error injection increases training instability disproportionately.\\n  → Support: TaxEI cross-seed SD = 10.5pp vs Vanilla SD = 3.2pp (3.3× ratio). Random SD = 7.6pp also elevated.\\n\\n- **Claim 4**: Injection-trained models do not improve error recovery.\\n  → Support: Recovery rate TaxEI 59.6% vs Vanilla 61.7% (seed=42, 47 tasks). Head-to-head: TaxEI gained 4, lost 5, net -1. Per-operator: TaxEI advantage only on C4_observation_masking (+9.1pp), disadvantage on C1 (-8.3pp) and P2 (-8.3pp).\\n\\n- **Claim 5**: Detection training via error injection is completely ineffective in this setup.\\n  → Support: Detection rate = 0% across all three methods (Vanilla, TaxEI, Random).\\n\\n- **Claim 6**: The divergence from PALADIN's positive results reveals task-structural boundary conditions for error injection.\\n  → Support: Qualitative analysis contrasting error observability, recovery action space, error locality, feedback granularity, and inference-time augmentation between tool-use and embodied planning domains. Note: PALADIN's +57pp includes retrieval augmentation (~30pp contribution), making our pure-SFT comparison a stricter isolation of the training signal's value. Additionally, EEF (arXiv 2504.13145) succeeds on WebShop by **extracting good signal from failures** rather than injecting bad signal — suggesting the injection direction itself may be flawed for planning domains.\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"Only 2 seeds for TaxEI/Random — insufficient statistical power.\\\"**\\n   → Acknowledged. With n=47 tasks, binomial std ≈ 6.8pp at p=0.65. The 11pp TaxEI-vs-Vanilla gap exceeds 1 SD but is based on 2 seeds. We report all individual seed results transparently and propose supplementary seeds. The directional consistency across both seeds (both show TaxEI ≤ Vanilla) provides qualitative support.\\n\\n2. **\\\"ALFWorld has only 47 test tasks — too small for reliable conclusions.\\\"**\\n   → Valid concern. We explicitly compute statistical power and report confidence intervals. The 47-task limitation is an ALFWorld constraint shared by all prior work on this benchmark. We propose a second environment (WebShop) for supplementary validation.\\n\\n3. **\\\"Maybe the taxonomy itself is poorly designed.\\\"**\\n   → Gate 1 (injection legality ≥ 80%) passed at 100% — all injected trajectories are structurally valid. Gate 2 (recovery quality ≥ 75%) passed at 97.5%. The taxonomy is functional; it just doesn't help training.\\n\\n4. **\\\"The training recipe might be suboptimal for injection data.\\\"**\\n   → The same recipe produces strong Vanilla results (65.3% vs 42.6% baseline, +22.7pp), confirming the recipe works. The degradation is specific to injection augmentation, not training methodology.\\n\\n5. **\\\"50% injection ratio is too high — you're drowning the signal.\\\"**\\n   → This is a key point we plan to address with injection ratio ablation (10%, 25%, 50%). PALADIN used 80% recovery / 20% clean but at 5× our scale (50K vs 9K). The interaction of ratio × scale is an open question.\\n\\n6. **\\\"Why is detection rate 0%? Evaluation might be flawed.\\\"**\\n   → Current eval checks for explicit error flagging in model output. Models may develop implicit error awareness (e.g., output hedging, re-planning) not captured by binary detection metrics. We discuss this limitation and propose alternative detection measures.\\n\\n7. **\\\"Why not compare directly on ToolBench?\\\"**\\n   → Our contribution is precisely the domain contrast. Running PALADIN on ALFWorld or TaxEI on ToolBench would strengthen the paper but requires substantial engineering. We list this as future work.\\n\\n## Key Differentiators vs PALADIN\\n\\nPALADIN (arXiv 2509.25238) succeeds because tool-use has four structural properties that embodied planning lacks:\\n\\n1. **Discrete error signals**: Tool calls return explicit success/failure codes. In ALFWorld, a wrong action (e.g., \\\"go to countertop 2\\\" when the object is on shelf 1) produces a valid-looking observation — the agent receives no signal that it erred.\\n\\n2. **Local recoverability**: A failed API call can be retried or substituted with an alternative tool. In planning, a wrong early step (e.g., heating before picking up) invalidates the entire downstream plan, requiring global re-planning rather than local retry.\\n\\n3. **Bounded action space for recovery**: ToolBench has a finite API catalog — recovery means selecting from known alternatives. ALFWorld's text-based action space is open-ended, making \\\"what to do after an error\\\" fundamentally harder to learn from examples.\\n\\n4. **Scale**: PALADIN trains on 50K+ trajectories with 80% recovery focus. TaxEI has 9K total samples with 50% injection. The lower data volume means less room for the model to separate error patterns from noise.\\n\\n**This contrast IS the paper's core contribution**: error injection is not universally beneficial for LLM agents — it requires discrete, observable, locally recoverable errors to serve as effective training signal rather than noise.\\n\\n## Note on v3→v4 Vanilla Discrepancy\\nv3 vanilla SFT achieved 74.5% (seed=42) while v4 three-seed mean is 65.3%. The 9.2pp gap is partially explained by: (1) v3 used different data volume (4,176 vs 4,358 samples due to format alignment changes); (2) seed variance (v4 seed=42 = 61.7%, seed=0 = 68.1%). Paper should briefly note this in supplement to preempt reviewer confusion about different vanilla numbers across experimental rounds.\\n\\n## Supplementary Experiments Needed\\n\\n### Priority 1 (required for submission)\\n- **More seeds**: At least 3 seeds per method (currently: Vanilla=3, TaxEI=2, Random=2). Run TaxEI seed=123 and Random seed=123 to match Vanilla coverage.\\n- **Injection ratio ablation**: Train TaxEI/Random at 10%, 25%, 50% injection ratios (currently only 50%). If lower ratios mitigate degradation, this directly supports the \\\"noise overwhelms signal\\\" hypothesis.\\n- **Training dynamics analysis**: Plot training loss curves for clean vs. injected samples across epochs. Do injected samples have systematically higher loss? Does the model learn clean patterns before injection patterns corrupt them?\\n\\n### Priority 2 (strengthens paper significantly)\\n- **Second environment**: WebShop or ScienceWorld to test whether the negative result generalizes beyond ALFWorld. If error injection also fails there, the boundary condition claim is stronger.\\n- **Qualitative failure analysis**: Manually examine 20+ TaxEI failure cases — does the model produce incoherent plans, or does it simply choose wrong actions at similar rates? This informs the \\\"noise vs. wrong learning\\\" distinction.\\n\\n### Priority 3 (nice to have)\\n- **Scale ablation**: Does TaxEI improve if we scale to 25K or 50K trajectories (matching PALADIN's scale)?\\n- **Explicit recovery prompting**: Instead of SFT, test whether in-context recovery examples (few-shot) help — this isolates whether the issue is training signal vs. knowledge.\\n- **Per-operator deep dive**: Run more seeds on recovery eval to determine if C4 (observation masking) is genuinely easier for TaxEI or if the +9.1pp advantage is noise.\\n\", \"total_chars\": 13993, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "80672a88-8800-435f-8d55-d46b30876df2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T22:03:19.089Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01V2dP61LopCR4q2ATRpnk9H`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a340b7f-cead-45bd-b55d-04de49acf1d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYX5Wb1jxKBjXm7aR5",
+  "type": "assistant",
+  "uuid": "45983201-78a5-4b39-afaa-59f08ab52246",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZhz2Ftt5jC2ipkyHmumpk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 23662,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 23662,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T22:03:19.097Z_
+
+<details><summary>↩ Tool result · `toolu_01V2dP61LopCR4q2ATRpnk9H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/ROADMAP.md\", \"content\": \"# tax_error_inject_agent — Research Dashboard\\n\\n> 最后更新: 2026-05-14 22:00 UTC | 更新原因: 修正 Random recovery 数据 (61.7%→63.8%)、更新 paper_framing 进展、当前训练状态\\n\\n## 核心方向\\n**Negative result paper: \\\"When does error injection help vs hurt in LLM agents?\\\"**\\n\\n核心假设（taxonomy-guided injection 优于 random/vanilla）在所有可测量维度被否定（D014）。对标 PALADIN 在 tool-use 上的正面结果，探讨 task structure 对 error injection 效果的决定性影响。\\n\\n## 阶段\\n**MVP FAIL → Negative Result Paper（补充实验进行中）**\\n\\n## 全维度结果汇总\\n\\n### Clean Eval（多种子）\\n| 方法 | seed=42 | seed=0 | seed=123 | 均值±SD |\\n|------|---------|--------|----------|---------|\\n| Vanilla | 61.7% | 68.1% | 66.0% | **65.3%±3.2pp** |\\n| TaxEI | 61.7% | 46.8% | 训练中 | **54.3%±10.5pp** (2 seeds) |\\n| Random | 66.0% | 55.3% | 训练中 | **60.7%±7.6pp** (2 seeds) |\\n\\n统计显著性：TaxEI vs Vanilla **p=0.0317** (paired permutation); TaxEI vs Random p=0.2436 (NS)\\n\\n### Recovery Eval（seed=42, 47 tasks, round-robin injection）\\n| 指标 | Vanilla | TaxEI | Random |\\n|------|---------|-------|--------|\\n| Recovery | 61.7% | 59.6% | **63.8%** (30/47, 修正自 61.7%) |\\n| Detection | 0% | 0% | 0% |\\n\\n注：Random recovery 存在 ±2pp run-to-run variance (r1=61.7%, r2=63.8%)\\n\\n### Gate 判定\\n全 FAIL（见 D008/D012/D013/D014）\\n\\n## Paper Framing\\n已完成 paper_framing.md（审阅通过，4 处修正已入）：\\n- 角度 1 主线：\\\"When does error injection help vs hurt\\\"\\n- 6 条 Claims + 7 条 Reviewer Concerns\\n- PALADIN 引用已验证（arXiv 2509.25238, +57pp 准确）\\n- Venue: Insights from Negative Results @ EMNLP 2026\\n\\n## 当前训练状态\\n| GPU | 实验 | 进度 | ETA |\\n|-----|------|------|-----|\\n| cuda:0 | v4-taxei-seed123 | ~15% | ~100min |\\n| cuda:1 | v4-random-seed123 | ~15% | ~100min |\\n| cuda:2 | 空闲（待消融训练） | — | — |\\n| cuda:3 | 空闲（待消融训练） | — | — |\\n\\n## 近期任务\\n- [x] paper_framing.md 初稿 + 审阅修正\\n- [x] PALADIN 引用验证\\n- [x] 多种子统计分析（含 bootstrap CI, permutation test）\\n- [ ] seed=123 训练完成 → eval → 3-seed 统计更新\\n- [ ] Fixed-size ablation 数据生成（控制数据量混淆）\\n- [ ] Injection ratio 消融训练（10%/25%/50%, additive + fixed-size）\\n- [ ] experiment_plan.yaml\\n- [ ] 修复 multiseed_stats.py permutation test bug\\n- [ ] dream_simulate 评估投稿可行性\\n\\n## GPU 预算\\nautodl-5090 cuda:0-3，当前 2/4 在跑 seed=123 训练，2 卡待消融实验\\n\\n## 关键观察\\n- TaxEI vs Vanilla **p=0.0317**——统计显著的负面效果\\n- 退化集中在复杂多步任务（pick_cool -21.3pp, pick_two_obj -26.1pp），简单任务不受影响\\n- 注入样本占训练数据 ~50%（4,671/9,029），可能作为噪声严重干扰学习信号\\n- TaxEI 训练方差（10.5pp）是 vanilla（3.2pp）的 3.3 倍——注入导致训练不稳定\\n- Detection rate 全 0%——模型未学到显式错误感知能力\\n- Random recovery 存在 ±2pp run-to-run variance（eval 非确定性）\\n- ALFWorld 47 tasks 的统计功效有限（binomial std ≈6.8pp at p=0.65）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D014 | 2026-05-14 | D010 终止条件正式触发：TaxEI recovery ≤ Random，项目转 negative | v4-random-recovery-eval, v4-taxei-recovery-eval, v4-vanilla-recovery-eval |\\n| D013 | 2026-05-14 | D010 Phase 2 recovery eval 确认 TaxEI 无价值：recovery 5 | v4-taxei-recovery-eval, v4-vanilla-recovery-eval |\\n| D012 | 2026-05-14 | D010 Phase 1 多种子验证结论：注入训练系统性损害 clean performance，T | v4-vanilla-seed0-eval, v4-vanilla-seed123-eval, v4-taxei-seed0-eval, v4-random-seed0-eval |\\n| D011 | 2026-05-14 | D010 补充：Recovery eval 统计检验由 Fisher exact 改为 McNema | — |\\n| D010 | 2026-05-14 | 修正 D009：D008 FAIL 不可撤回。Recovery eval 是补充分析（非替代原 Ga | mini-vanilla-sft-v4 |\\n| D009 | 2026-05-14 | 选 Option C: Recovery-Specific Evaluation + 多种子验证。C | mini-taxei-sft-v4, mini-random-sft-v4 |\\n| D008 | 2026-05-14 | v4 Gate 判定：Gate 3a FAIL（TaxEI=Vanilla 61.7%），Gate  | mini-vanilla-sft-v4, mini-taxei-sft-v4, mini-random-sft-v4 |\\n| D007 | 2026-05-14 | 新颖性自查：PALADIN(2025.09)是最大威胁——同为 taxonomy-guided er | mini-vanilla-sft-v3, mini-taxei-sft-v3, mini-random-sft-v3 |\\n| D006 | 2026-05-14 | D005 修正：v4 采用同源双格式化方案（非 subsample）——同一份 760 条注入数据格 | mini-vanilla-sft-v4, mini-taxei-sft-v4, mini-random-sft-v4 |\\n| D005 | 2026-05-14 | v3 继续跑但不作 Gate 判定依据；追加 v4 同源双格式化实验（同一份 760 条注入数据格式 | mini-vanilla-sft-v3, mini-taxei-sft-v3, mini-random-sft-v3 |\\n\\n\\n\\n\", \"total_chars\": 3757, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45983201-78a5-4b39-afaa-59f08ab52246",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "fa818c3e-8044-428a-b7f1-8d88fd2f0caa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/ROADMAP.md\\\", \\\"content\\\": \\\"# tax_error_inject_agent — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 22:00 UTC | 更新原因: 修正 Random recovery 数据 (61.7%→63.8%)、更新 paper_framing 进展、当前训练状态\\\\n\\\\n## 核心方向\\\\n**Negative result paper: \\\\\\\"When does error injection help vs hurt in LLM agents?\\\\\\\"**\\\\n\\\\n核心假设（taxonomy-guided injection 优于 random/vanilla）在所有可测量维度被否定（D014）。对标 PALADIN 在 tool-use 上的正面结果，探讨 task structure 对 error injection 效果的决定性影响。\\\\n\\\\n## 阶段\\\\n**MVP FAIL → Negative Result Paper（补充实验进行中）**\\\\n\\\\n## 全维度结果汇总\\\\n\\\\n### Clean Eval（多种子）\\\\n| 方法 | seed=42 | seed=0 | seed=123 | 均值±SD |\\\\n|------|---------|--------|----------|---------|\\\\n| Vanilla | 61.7% | 68.1% | 66.0% | **65.3%±3.2pp** |\\\\n| TaxEI | 61.7% | 46.8% | 训练中 | **54.3%±10.5pp** (2 seeds) |\\\\n| Random | 66.0% | 55.3% | 训练中 | **60.7%±7.6pp** (2 seeds) |\\\\n\\\\n统计显著性：TaxEI vs Vanilla **p=0.0317** (paired permutation); TaxEI vs Random p=0.2436 (NS)\\\\n\\\\n### Recovery Eval（seed=42, 47 tasks, round-robin injection）\\\\n| 指标 | Vanilla | TaxEI | Random |\\\\n|------|---------|-------|--------|\\\\n| Recovery | 61.7% | 59.6% | **63.8%** (30/47, 修正自 61.7%) |\\\\n| Detection | 0% | 0% | 0% |\\\\n\\\\n注：Random recovery 存在 ±2pp run-to-run variance (r1=61.7%, r2=63.8%)\\\\n\\\\n### Gate 判定\\\\n全 FAIL（见 D008/D012/D013/D014）\\\\n\\\\n## Paper Framing\\\\n已完成 paper_framing.md（审阅通过，4 处修正已入）：\\\\n- 角度 1 主线：\\\\\\\"When does error injection help vs hurt\\\\\\\"\\\\n- 6 条 Claims + 7 条 Reviewer Concerns\\\\n- PALADIN 引用已验证（arXiv 2509.25238, +57pp 准确）\\\\n- Venue: Insights from Negative Results @ EMNLP 2026\\\\n\\\\n## 当前训练状态\\\\n| GPU | 实验 | 进度 | ETA |\\\\n|-----|------|------|-----|\\\\n| cuda:0 | v4-taxei-seed123 | ~15% | ~100min |\\\\n| cuda:1 | v4-random-seed123 | ~15% | ~100min |\\\\n| cuda:2 | 空闲（待消融训练） | — | — |\\\\n| cuda:3 | 空闲（待消融训练） | — | — |\\\\n\\\\n## 近期任务\\\\n- [x] paper_framing.md 初稿 + 审阅修正\\\\n- [x] PALADIN 引用验证\\\\n- [x] 多种子统计分析（含 bootstrap CI, permutation test）\\\\n- [ ] seed=123 训练完成 → eval → 3-seed 统计更新\\\\n- [ ] Fixed-size ablation 数据生成（控制数据量混淆）\\\\n- [ ] Injection ratio 消融训练（10%/25%/50%, additive + fixed-size）\\\\n- [ ] experiment_plan.yaml\\\\n- [ ] 修复 multiseed_stats.py permutation test bug\\\\n- [ ] dream_simulate 评估投稿可行性\\\\n\\\\n## GPU 预算\\\\nautodl-5090 cuda:0-3，当前 2/4 在跑 seed=123 训练，2 卡待消融实验\\\\n\\\\n## 关键观察\\\\n- TaxEI vs Vanilla **p=0.0317**——统计显著的负面效果\\\\n- 退化集中在复杂多步任务（pick_cool -21.3pp, pick_two_obj -26.1pp），简单任务不受影响\\\\n- 注入样本占训练数据 ~50%（4,671/9,029），可能作为噪声严重干扰学习信号\\\\n- TaxEI 训练方差（10.5pp）是 vanilla（3.2pp）的 3.3 倍——注入导致训练不稳定\\\\n- Detection rate 全 0%——模型未学到显式错误感知能力\\\\n- Random recovery 存在 ±2pp run-to-run variance（eval 非确定性）\\\\n- ALFWorld 47 tasks 的统计功效有限（binomial std ≈6.8pp at p=0.65）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D014 | 2026-05-14 | D010 终止条件正式触发：TaxEI recovery ≤ Random，项目转 negative | v4-random-recovery-eval, v4-taxei-recovery-eval, v4-vanilla-recovery-eval |\\\\n| D013 | 2026-05-14 | D010 Phase 2 recovery eval 确认 TaxEI 无价值：recovery 5 | v4-taxei-recovery-eval, v4-vanilla-recovery-eval |\\\\n| D012 | 2026-05-14 | D010 Phase 1 多种子验证结论：注入训练系统性损害 clean performance，T | v4-vanilla-seed0-eval, v4-vanilla-seed123-eval, v4-taxei-seed0-eval, v4-random-seed0-eval |\\\\n| D011 | 2026-05-14 | D010 补充：Recovery eval 统计检验由 Fisher exact 改为 McNema | — |\\\\n| D010 | 2026-05-14 | 修正 D009：D008 FAIL 不可撤回。Recovery eval 是补充分析（非替代原 Ga | mini-vanilla-sft-v4 |\\\\n| D009 | 2026-05-14 | 选 Option C: Recovery-Specific Evaluation + 多种子验证。C | mini-taxei-sft-v4, mini-random-sft-v4 |\\\\n| D008 | 2026-05-14 | v4 Gate 判定：Gate 3a FAIL（TaxEI=Vanilla 61.7%），Gate  | mini-vanilla-sft-v4, mini-taxei-sft-v4, mini-random-sft-v4 |\\\\n| D007 | 2026-05-14 | 新颖性自查：PALADIN(2025.09)是最大威胁——同为 taxonomy-guided er | mini-vanilla-sft-v3, mini-taxei-sft-v3, mini-random-sft-v3 |\\\\n| D006 | 2026-05-14 | D005 修正：v4 采用同源双格式化方案（非 subsample）——同一份 760 条注入数据格 | mini-vanilla-sft-v4, mini-taxei-sft-v4, mini-random-sft-v4 |\\\\n| D005 | 2026-05-14 | v3 继续跑但不作 Gate 判定依据；追加 v4 同源双格式化实验（同一份 760 条注入数据格式 | mini-vanilla-sft-v3, mini-taxei-sft-v3, mini-random-sft-v3 |\\\\n\\\\n\\\\n\\\\n\\\", \\\"total_chars\\\": 3757, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/ROADMAP.md\", \"content\": \"# tax_error_inject_agent — Research Dashboard\\n\\n> 最后更新: 2026-05-14 22:00 UTC | 更新原因: 修正 Random recovery 数据 (61.7%→63.8%)、更新 paper_framing 进展、当前训练状态\\n\\n## 核心方向\\n**Negative result paper: \\\"When does error injection help vs hurt in LLM agents?\\\"**\\n\\n核心假设（taxonomy-guided injection 优于 random/vanilla）在所有可测量维度被否定（D014）。对标 PALADIN 在 tool-use 上的正面结果，探讨 task structure 对 error injection 效果的决定性影响。\\n\\n## 阶段\\n**MVP FAIL → Negative Result Paper（补充实验进行中）**\\n\\n## 全维度结果汇总\\n\\n### Clean Eval（多种子）\\n| 方法 | seed=42 | seed=0 | seed=123 | 均值±SD |\\n|------|---------|--------|----------|---------|\\n| Vanilla | 61.7% | 68.1% | 66.0% | **65.3%±3.2pp** |\\n| TaxEI | 61.7% | 46.8% | 训练中 | **54.3%±10.5pp** (2 seeds) |\\n| Random | 66.0% | 55.3% | 训练中 | **60.7%±7.6pp** (2 seeds) |\\n\\n统计显著性：TaxEI vs Vanilla **p=0.0317** (paired permutation); TaxEI vs Random p=0.2436 (NS)\\n\\n### Recovery Eval（seed=42, 47 tasks, round-robin injection）\\n| 指标 | Vanilla | TaxEI | Random |\\n|------|---------|-------|--------|\\n| Recovery | 61.7% | 59.6% | **63.8%** (30/47, 修正自 61.7%) |\\n| Detection | 0% | 0% | 0% |\\n\\n注：Random recovery 存在 ±2pp run-to-run variance (r1=61.7%, r2=63.8%)\\n\\n### Gate 判定\\n全 FAIL（见 D008/D012/D013/D014）\\n\\n## Paper Framing\\n已完成 paper_framing.md（审阅通过，4 处修正已入）：\\n- 角度 1 主线：\\\"When does error injection help vs hurt\\\"\\n- 6 条 Claims + 7 条 Reviewer Concerns\\n- PALADIN 引用已验证（arXiv 2509.25238, +57pp 准确）\\n- Venue: Insights from Negative Results @ EMNLP 2026\\n\\n## 当前训练状态\\n| GPU | 实验 | 进度 | ETA |\\n|-----|------|------|-----|\\n| cuda:0 | v4-taxei-seed123 | ~15% | ~100min |\\n| cuda:1 | v4-random-seed123 | ~15% | ~100min |\\n| cuda:2 | 空闲（待消融训练） | — | — |\\n| cuda:3 | 空闲（待消融训练） | — | — |\\n\\n## 近期任务\\n- [x] paper_framing.md 初稿 + 审阅修正\\n- [x] PALADIN 引用验证\\n- [x] 多种子统计分析（含 bootstrap CI, permutation test）\\n- [ ] seed=123 训练完成 → eval → 3-seed 统计更新\\n- [ ] Fixed-size ablation 数据生成（控制数据量混淆）\\n- [ ] Injection ratio 消融训练（10%/25%/50%, additive + fixed-size）\\n- [ ] experiment_plan.yaml\\n- [ ] 修复 multiseed_stats.py permutation test bug\\n- [ ] dream_simulate 评估投稿可行性\\n\\n## GPU 预算\\nautodl-5090 cuda:0-3，当前 2/4 在跑 seed=123 训练，2 卡待消融实验\\n\\n## 关键观察\\n- TaxEI vs Vanilla **p=0.0317**——统计显著的负面效果\\n- 退化集中在复杂多步任务（pick_cool -21.3pp, pick_two_obj -26.1pp），简单任务不受影响\\n- 注入样本占训练数据 ~50%（4,671/9,029），可能作为噪声严重干扰学习信号\\n- TaxEI 训练方差（10.5pp）是 vanilla（3.2pp）的 3.3 倍——注入导致训练不稳定\\n- Detection rate 全 0%——模型未学到显式错误感知能力\\n- Random recovery 存在 ±2pp run-to-run variance（eval 非确定性）\\n- ALFWorld 47 tasks 的统计功效有限（binomial std ≈6.8pp at p=0.65）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D014 | 2026-05-14 | D010 终止条件正式触发：TaxEI recovery ≤ Random，项目转 negative | v4-random-recovery-eval, v4-taxei-recovery-eval, v4-vanilla-recovery-eval |\\n| D013 | 2026-05-14 | D010 Phase 2 recovery eval 确认 TaxEI 无价值：recovery 5 | v4-taxei-recovery-eval, v4-vanilla-recovery-eval |\\n| D012 | 2026-05-14 | D010 Phase 1 多种子验证结论：注入训练系统性损害 clean performance，T | v4-vanilla-seed0-eval, v4-vanilla-seed123-eval, v4-taxei-seed0-eval, v4-random-seed0-eval |\\n| D011 | 2026-05-14 | D010 补充：Recovery eval 统计检验由 Fisher exact 改为 McNema | — |\\n| D010 | 2026-05-14 | 修正 D009：D008 FAIL 不可撤回。Recovery eval 是补充分析（非替代原 Ga | mini-vanilla-sft-v4 |\\n| D009 | 2026-05-14 | 选 Option C: Recovery-Specific Evaluation + 多种子验证。C | mini-taxei-sft-v4, mini-random-sft-v4 |\\n| D008 | 2026-05-14 | v4 Gate 判定：Gate 3a FAIL（TaxEI=Vanilla 61.7%），Gate  | mini-vanilla-sft-v4, mini-taxei-sft-v4, mini-random-sft-v4 |\\n| D007 | 2026-05-14 | 新颖性自查：PALADIN(2025.09)是最大威胁——同为 taxonomy-guided er | mini-vanilla-sft-v3, mini-taxei-sft-v3, mini-random-sft-v3 |\\n| D006 | 2026-05-14 | D005 修正：v4 采用同源双格式化方案（非 subsample）——同一份 760 条注入数据格 | mini-vanilla-sft-v4, mini-taxei-sft-v4, mini-random-sft-v4 |\\n| D005 | 2026-05-14 | v3 继续跑但不作 Gate 判定依据；追加 v4 同源双格式化实验（同一份 760 条注入数据格式 | mini-vanilla-sft-v3, mini-taxei-sft-v3, mini-random-sft-v3 |\\n\\n\\n\\n\", \"total_chars\": 3757, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "45983201-78a5-4b39-afaa-59f08ab52246",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T22:03:19.560Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014dYwHB5CGrv86n2DW6Ag8U`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa818c3e-8044-428a-b7f1-8d88fd2f0caa",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYX5Wb1jxKBjXm7aR5",
+  "type": "assistant",
+  "uuid": "71a95e7b-38ed-4799-abd8-c059d1afb1e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZhz2Ftt5jC2ipkyHmumpk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 23662,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 23662,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T22:03:20.039Z_
+
+<details><summary>↩ Tool result · `toolu_01WGPrVREDMCLV4qjy4pyFzT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/memory.md\", \"content\": \"# Memory — tax_error_inject_agent\\n\\n## 关键发现\\n\\n- **v4 正式判定: Gate 3a FAIL, Gate 3b FAIL**: TaxEI 61.7% = vanilla 61.7%, random 66.0% 反超。Taxonomy 标签在 clean-task eval 上无额外价值。所有 McNemar 检验无显著性（n=47, discordant=10）。\\n- **Recovery eval 同样 FAIL**: TaxEI 59.6% ≤ Vanilla 61.7%，head-to-head gained 4 lost 5 net -1。Taxonomy 标签在 recovery 场景也无系统性优势。\\n- **Detection rate 全 0%**: 所有模型（vanilla/taxei/random）detection_rate=0。当前 eval 框架只检查最终任务成功，没有机制捕捉\\\"模型是否意识到错误发生\\\"。Detection 指标在当前框架下无意义——这是 eval 设计局限，不是模型能力结论。\\n- **C4 observation_masking 是 TaxEI 唯一正向 operator (+9.1pp)**: 暗示 taxonomy 标签可能只在信息缺失类错误上有微弱价值，但在 step 重排/删除类错误上反而有害。这个 pattern 值得在 negative paper 中讨论。\\n- **注入 50% 比例可能是核心噪声来源**: 4,671/9,029 注入样本与 clean 样本 1:1 混合，可能严重稀释正确 action pattern 信号。降低注入比例是潜在消融实验方向。\\n- **TaxEI 训练方差 3.3× vanilla** (SD=10.5pp vs 3.2pp): 注入导致训练极不稳定。这本身就是 negative finding——即使平均效果为零，高方差也意味着不可靠。\\n- **D012 \\\"系统性损害\\\" 结论 premature**: 方法差异与 seed 高度交互（seed=42 注入≈vanilla，seed=0 注入大幅下降）。不是稳定主效应，而是 noise-dominated。这对 paper framing 重要——不能说 \\\"systematically harms\\\"，应说 \\\"does not reliably improve and increases variance\\\"。\\n- **统计功效严重不足**: n=47 的 McNemar 需要 ~17pp 才有 power，而观察效应 (11pp 均值差) 与跨 seed 噪声 (10-15pp) 在同一量级。补充实验需要更多 seed 或更大 eval set。\\n- **TaxEI pick_two_obj 严重退化**: 28.6% vs vanilla/random 57.1%，完全抵消其他维度的微弱优势。\\n- **v3 vs v4 趋势不一致**: v3 vanilla>taxei>random, v4 random>taxei=vanilla。说明 v3 数据不平衡确实是混淆变量。\\n- **格式对齐修复有效**: v3-vanilla SFT 74.5% vs baseline 42.6%，+31.9pp。v1 的 14.9% 崩溃是训练/eval 格式不匹配。\\n- **GPT-5.2 ALFWorld 成功率 ~70%** (501/714)。\\n- **TaxEI v1 的\\\"保护效应\\\"是假象**: build_recovery_prompt() 恰好用了类似 eval 的格式。\\n\\n## 文献调研关键洞察 (2026-05-14)\\n\\n- **PALADIN 数字已验证**: 32.76% → 89.68% RR (Gemma-3-12B) 准确。但 PALADIN 不是纯 SFT — 包含 inference-time retrieval (55+ exemplars)，去掉 retrieval 后 RR 降 ~30pp。当前 paper_framing 未充分讨论此 confound。\\n- **PALADIN 没有多 seed 验证**: 只用 bootstrap N=1000 做统计检验，无跨 random seed variance。我们的多 seed 设计反而是方法论贡献。\\n- **PALADIN 用 80/20 ratio at 50K scale**: 比我们的 50/50 at 9K 更激进但规模大 5.5×。injection ratio × scale 的交互是关键未解问题。\\n- **ALFWorld SOTA**: CoEx 93.28% (EMNLP Findings 2025), AgentPRM 91.0% (2025), Reflexion+GPT-4 ~97% (multi-trial)。我们的 65.3% 在 SFT-only 8B 范畴合理。\\n- **EEF (arXiv 2504.13145) 是重要对比**: 从失败中提取好 signal 而非注入坏 signal，在 WebShop 上成功。这是关键 contrast — injection 方向可能根本错误。\\n- **AgentDebug (arXiv 2509.25370) 有 ALFWorld error taxonomy**: 5 维 (memory/reflection/planning/action/system)，比我们的 4 operators 更全面但方法论不同 (debugging vs augmentation)。\\n- **除 PALADIN 外无其他 taxonomy-guided error injection 工作** — 我们是第一个跨域迁移尝试。\\n\\n## 设计决策\\n\\n- **D004 RandomInjector**: 使用与 TaxEI 完全相同的 4 个算子，唯一区别是 `[Error Type: P1_xxx]` → `[Error occurred]`。\\n- **D005/D006 v4 同源方案**: 同一份 760 条 injected_variants 格式化两次，TaxEI=Random=9,029 samples，唯一变量是 error tag 文本。\\n- **D009/D010 Option C (Recovery Eval + 多种子验证)**: Gate FAIL 不可撤回。Recovery eval 是补充分析（非替代 Gate）。\\n- **D014 项目转向**: 全维度否定后转 negative result paper。对标 PALADIN (tool-use 正面) vs TaxEI (embodied planning 负面)。\\n- **核心对比维度 (negative paper)**: embodied planning (ALFWorld, long-horizon, spatial) vs tool-use (ToolBench, API call, discrete)。Error injection 可能只在 action space 离散且可枚举的场景有效。\\n\\n## 约束\\n\\n- **submit_training_job 必须 bash -c 包装**: tmux 用 sh，不包装会 EXIT_CODE=127。\\n- **必须显式 CUDA_VISIBLE_DEVICES**: 不设会跑到错误 GPU。\\n- **eval 参数: `--device cuda:0`（不是 `--gpu 0`）**。\\n- **checkpoint 查找必须用 `sort -V`**: `ls -dt .../v0-*/ | head -1` 选最新 run，`ls -d checkpoint-* | sort -V | tail -1` 选最大 step。不要硬编码路径。\\n- **轨迹收集**: `export TMPDIR=/root/autodl-tmp/tmp` 防 /tmp 满。已完成 501 条。\\n- **SIGHUP 误杀**: Worker 执行 `tmux kill-session` 前必须先确认进程异常。\\n\\n## 模型版本\\n\\n- **ms-swift**: 4.2.0\\n- **Qwen3-8B**: /root/autodl-tmp/models/Qwen/Qwen3-8B\\n- **GPT-5.2**: trajectory collection + recovery demo generation\\n\", \"total_chars\": 3639, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6805bb12-7406-472c-aa3f-62491b769e3a",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "c79aa2b7-6f87-4d8b-9d93-41d3e19c066b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/memory.md\\\", \\\"content\\\": \\\"# Memory — tax_error_inject_agent\\\\n\\\\n## 关键发现\\\\n\\\\n- **v4 正式判定: Gate 3a FAIL, Gate 3b FAIL**: TaxEI 61.7% = vanilla 61.7%, random 66.0% 反超。Taxonomy 标签在 clean-task eval 上无额外价值。所有 McNemar 检验无显著性（n=47, discordant=10）。\\\\n- **Recovery eval 同样 FAIL**: TaxEI 59.6% ≤ Vanilla 61.7%，head-to-head gained 4 lost 5 net -1。Taxonomy 标签在 recovery 场景也无系统性优势。\\\\n- **Detection rate 全 0%**: 所有模型（vanilla/taxei/random）detection_rate=0。当前 eval 框架只检查最终任务成功，没有机制捕捉\\\\\\\"模型是否意识到错误发生\\\\\\\"。Detection 指标在当前框架下无意义——这是 eval 设计局限，不是模型能力结论。\\\\n- **C4 observation_masking 是 TaxEI 唯一正向 operator (+9.1pp)**: 暗示 taxonomy 标签可能只在信息缺失类错误上有微弱价值，但在 step 重排/删除类错误上反而有害。这个 pattern 值得在 negative paper 中讨论。\\\\n- **注入 50% 比例可能是核心噪声来源**: 4,671/9,029 注入样本与 clean 样本 1:1 混合，可能严重稀释正确 action pattern 信号。降低注入比例是潜在消融实验方向。\\\\n- **TaxEI 训练方差 3.3× vanilla** (SD=10.5pp vs 3.2pp): 注入导致训练极不稳定。这本身就是 negative finding——即使平均效果为零，高方差也意味着不可靠。\\\\n- **D012 \\\\\\\"系统性损害\\\\\\\" 结论 premature**: 方法差异与 seed 高度交互（seed=42 注入≈vanilla，seed=0 注入大幅下降）。不是稳定主效应，而是 noise-dominated。这对 paper framing 重要——不能说 \\\\\\\"systematically harms\\\\\\\"，应说 \\\\\\\"does not reliably improve and increases variance\\\\\\\"。\\\\n- **统计功效严重不足**: n=47 的 McNemar 需要 ~17pp 才有 power，而观察效应 (11pp 均值差) 与跨 seed 噪声 (10-15pp) 在同一量级。补充实验需要更多 seed 或更大 eval set。\\\\n- **TaxEI pick_two_obj 严重退化**: 28.6% vs vanilla/random 57.1%，完全抵消其他维度的微弱优势。\\\\n- **v3 vs v4 趋势不一致**: v3 vanilla>taxei>random, v4 random>taxei=vanilla。说明 v3 数据不平衡确实是混淆变量。\\\\n- **格式对齐修复有效**: v3-vanilla SFT 74.5% vs baseline 42.6%，+31.9pp。v1 的 14.9% 崩溃是训练/eval 格式不匹配。\\\\n- **GPT-5.2 ALFWorld 成功率 ~70%** (501/714)。\\\\n- **TaxEI v1 的\\\\\\\"保护效应\\\\\\\"是假象**: build_recovery_prompt() 恰好用了类似 eval 的格式。\\\\n\\\\n## 文献调研关键洞察 (2026-05-14)\\\\n\\\\n- **PALADIN 数字已验证**: 32.76% → 89.68% RR (Gemma-3-12B) 准确。但 PALADIN 不是纯 SFT — 包含 inference-time retrieval (55+ exemplars)，去掉 retrieval 后 RR 降 ~30pp。当前 paper_framing 未充分讨论此 confound。\\\\n- **PALADIN 没有多 seed 验证**: 只用 bootstrap N=1000 做统计检验，无跨 random seed variance。我们的多 seed 设计反而是方法论贡献。\\\\n- **PALADIN 用 80/20 ratio at 50K scale**: 比我们的 50/50 at 9K 更激进但规模大 5.5×。injection ratio × scale 的交互是关键未解问题。\\\\n- **ALFWorld SOTA**: CoEx 93.28% (EMNLP Findings 2025), AgentPRM 91.0% (2025), Reflexion+GPT-4 ~97% (multi-trial)。我们的 65.3% 在 SFT-only 8B 范畴合理。\\\\n- **EEF (arXiv 2504.13145) 是重要对比**: 从失败中提取好 signal 而非注入坏 signal，在 WebShop 上成功。这是关键 contrast — injection 方向可能根本错误。\\\\n- **AgentDebug (arXiv 2509.25370) 有 ALFWorld error taxonomy**: 5 维 (memory/reflection/planning/action/system)，比我们的 4 operators 更全面但方法论不同 (debugging vs augmentation)。\\\\n- **除 PALADIN 外无其他 taxonomy-guided error injection 工作** — 我们是第一个跨域迁移尝试。\\\\n\\\\n## 设计决策\\\\n\\\\n- **D004 RandomInjector**: 使用与 TaxEI 完全相同的 4 个算子，唯一区别是 `[Error Type: P1_xxx]` → `[Error occurred]`。\\\\n- **D005/D006 v4 同源方案**: 同一份 760 条 injected_variants 格式化两次，TaxEI=Random=9,029 samples，唯一变量是 error tag 文本。\\\\n- **D009/D010 Option C (Recovery Eval + 多种子验证)**: Gate FAIL 不可撤回。Recovery eval 是补充分析（非替代 Gate）。\\\\n- **D014 项目转向**: 全维度否定后转 negative result paper。对标 PALADIN (tool-use 正面) vs TaxEI (embodied planning 负面)。\\\\n- **核心对比维度 (negative paper)**: embodied planning (ALFWorld, long-horizon, spatial) vs tool-use (ToolBench, API call, discrete)。Error injection 可能只在 action space 离散且可枚举的场景有效。\\\\n\\\\n## 约束\\\\n\\\\n- **submit_training_job 必须 bash -c 包装**: tmux 用 sh，不包装会 EXIT_CODE=127。\\\\n- **必须显式 CUDA_VISIBLE_DEVICES**: 不设会跑到错误 GPU。\\\\n- **eval 参数: `--device cuda:0`（不是 `--gpu 0`）**。\\\\n- **checkpoint 查找必须用 `sort -V`**: `ls -dt .../v0-*/ | head -1` 选最新 run，`ls -d checkpoint-* | sort -V | tail -1` 选最大 step。不要硬编码路径。\\\\n- **轨迹收集**: `export TMPDIR=/root/autodl-tmp/tmp` 防 /tmp 满。已完成 501 条。\\\\n- **SIGHUP 误杀**: Worker 执行 `tmux kill-session` 前必须先确认进程异常。\\\\n\\\\n## 模型版本\\\\n\\\\n- **ms-swift**: 4.2.0\\\\n- **Qwen3-8B**: /root/autodl-tmp/models/Qwen/Qwen3-8B\\\\n- **GPT-5.2**: trajectory collection + recovery demo generation\\\\n\\\", \\\"total_chars\\\": 3639, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/memory.md\", \"content\": \"# Memory — tax_error_inject_agent\\n\\n## 关键发现\\n\\n- **v4 正式判定: Gate 3a FAIL, Gate 3b FAIL**: TaxEI 61.7% = vanilla 61.7%, random 66.0% 反超。Taxonomy 标签在 clean-task eval 上无额外价值。所有 McNemar 检验无显著性（n=47, discordant=10）。\\n- **Recovery eval 同样 FAIL**: TaxEI 59.6% ≤ Vanilla 61.7%，head-to-head gained 4 lost 5 net -1。Taxonomy 标签在 recovery 场景也无系统性优势。\\n- **Detection rate 全 0%**: 所有模型（vanilla/taxei/random）detection_rate=0。当前 eval 框架只检查最终任务成功，没有机制捕捉\\\"模型是否意识到错误发生\\\"。Detection 指标在当前框架下无意义——这是 eval 设计局限，不是模型能力结论。\\n- **C4 observation_masking 是 TaxEI 唯一正向 operator (+9.1pp)**: 暗示 taxonomy 标签可能只在信息缺失类错误上有微弱价值，但在 step 重排/删除类错误上反而有害。这个 pattern 值得在 negative paper 中讨论。\\n- **注入 50% 比例可能是核心噪声来源**: 4,671/9,029 注入样本与 clean 样本 1:1 混合，可能严重稀释正确 action pattern 信号。降低注入比例是潜在消融实验方向。\\n- **TaxEI 训练方差 3.3× vanilla** (SD=10.5pp vs 3.2pp): 注入导致训练极不稳定。这本身就是 negative finding——即使平均效果为零，高方差也意味着不可靠。\\n- **D012 \\\"系统性损害\\\" 结论 premature**: 方法差异与 seed 高度交互（seed=42 注入≈vanilla，seed=0 注入大幅下降）。不是稳定主效应，而是 noise-dominated。这对 paper framing 重要——不能说 \\\"systematically harms\\\"，应说 \\\"does not reliably improve and increases variance\\\"。\\n- **统计功效严重不足**: n=47 的 McNemar 需要 ~17pp 才有 power，而观察效应 (11pp 均值差) 与跨 seed 噪声 (10-15pp) 在同一量级。补充实验需要更多 seed 或更大 eval set。\\n- **TaxEI pick_two_obj 严重退化**: 28.6% vs vanilla/random 57.1%，完全抵消其他维度的微弱优势。\\n- **v3 vs v4 趋势不一致**: v3 vanilla>taxei>random, v4 random>taxei=vanilla。说明 v3 数据不平衡确实是混淆变量。\\n- **格式对齐修复有效**: v3-vanilla SFT 74.5% vs baseline 42.6%，+31.9pp。v1 的 14.9% 崩溃是训练/eval 格式不匹配。\\n- **GPT-5.2 ALFWorld 成功率 ~70%** (501/714)。\\n- **TaxEI v1 的\\\"保护效应\\\"是假象**: build_recovery_prompt() 恰好用了类似 eval 的格式。\\n\\n## 文献调研关键洞察 (2026-05-14)\\n\\n- **PALADIN 数字已验证**: 32.76% → 89.68% RR (Gemma-3-12B) 准确。但 PALADIN 不是纯 SFT — 包含 inference-time retrieval (55+ exemplars)，去掉 retrieval 后 RR 降 ~30pp。当前 paper_framing 未充分讨论此 confound。\\n- **PALADIN 没有多 seed 验证**: 只用 bootstrap N=1000 做统计检验，无跨 random seed variance。我们的多 seed 设计反而是方法论贡献。\\n- **PALADIN 用 80/20 ratio at 50K scale**: 比我们的 50/50 at 9K 更激进但规模大 5.5×。injection ratio × scale 的交互是关键未解问题。\\n- **ALFWorld SOTA**: CoEx 93.28% (EMNLP Findings 2025), AgentPRM 91.0% (2025), Reflexion+GPT-4 ~97% (multi-trial)。我们的 65.3% 在 SFT-only 8B 范畴合理。\\n- **EEF (arXiv 2504.13145) 是重要对比**: 从失败中提取好 signal 而非注入坏 signal，在 WebShop 上成功。这是关键 contrast — injection 方向可能根本错误。\\n- **AgentDebug (arXiv 2509.25370) 有 ALFWorld error taxonomy**: 5 维 (memory/reflection/planning/action/system)，比我们的 4 operators 更全面但方法论不同 (debugging vs augmentation)。\\n- **除 PALADIN 外无其他 taxonomy-guided error injection 工作** — 我们是第一个跨域迁移尝试。\\n\\n## 设计决策\\n\\n- **D004 RandomInjector**: 使用与 TaxEI 完全相同的 4 个算子，唯一区别是 `[Error Type: P1_xxx]` → `[Error occurred]`。\\n- **D005/D006 v4 同源方案**: 同一份 760 条 injected_variants 格式化两次，TaxEI=Random=9,029 samples，唯一变量是 error tag 文本。\\n- **D009/D010 Option C (Recovery Eval + 多种子验证)**: Gate FAIL 不可撤回。Recovery eval 是补充分析（非替代 Gate）。\\n- **D014 项目转向**: 全维度否定后转 negative result paper。对标 PALADIN (tool-use 正面) vs TaxEI (embodied planning 负面)。\\n- **核心对比维度 (negative paper)**: embodied planning (ALFWorld, long-horizon, spatial) vs tool-use (ToolBench, API call, discrete)。Error injection 可能只在 action space 离散且可枚举的场景有效。\\n\\n## 约束\\n\\n- **submit_training_job 必须 bash -c 包装**: tmux 用 sh，不包装会 EXIT_CODE=127。\\n- **必须显式 CUDA_VISIBLE_DEVICES**: 不设会跑到错误 GPU。\\n- **eval 参数: `--device cuda:0`（不是 `--gpu 0`）**。\\n- **checkpoint 查找必须用 `sort -V`**: `ls -dt .../v0-*/ | head -1` 选最新 run，`ls -d checkpoint-* | sort -V | tail -1` 选最大 step。不要硬编码路径。\\n- **轨迹收集**: `export TMPDIR=/root/autodl-tmp/tmp` 防 /tmp 满。已完成 501 条。\\n- **SIGHUP 误杀**: Worker 执行 `tmux kill-session` 前必须先确认进程异常。\\n\\n## 模型版本\\n\\n- **ms-swift**: 4.2.0\\n- **Qwen3-8B**: /root/autodl-tmp/models/Qwen/Qwen3-8B\\n- **GPT-5.2**: trajectory collection + recovery demo generation\\n\", \"total_chars\": 3639, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6805bb12-7406-472c-aa3f-62491b769e3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T22:03:19.948Z_
+
+<details><summary>↩ Tool result · `toolu_014dYwHB5CGrv86n2DW6Ag8U`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (51.6KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/0553cac9-bdbc-431a-b7d1-40e87437f6c8/tool-results/toolu_014dYwHB5CGrv86n2DW6Ag8U.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-random-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:57.591Z\", \"updated_at\": \"2026-05-14T22:00:43.285Z\", \"hypothesis\": \"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_recovery_eval.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": 90124, \"model_name\": \"Qwen3-8B + LoRA (random SFT v4)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387\", \"eval_data\": \"valid_unseen (47 episodes)\", \"log_path\": \"/tmp/v4_random_recovery_eval.log\", \"output_path\": \"eval_results/v4_random_recovery_eval.json\", \"data_path\": \"valid_unseen\", \"data_count\": 47}, \"conclusion\": \"success\", \"checkpoint_path\": \"eval_results/v4_random_recovery_eval.json\", \"completed_at\": \"2026-05-14T21:42:07.544Z\", \"metrics\": {\"recovery_rate\": 0.638, \"detection_rate\": 0, \"successes\": 30, \"total\": 47, \"source\": \"json-file-verified\", \"note\": \"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\"}}, \"v4-random-seed123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:49:34.441Z\", \"updated_at\": \"2026-05-14T21:59:16.615Z\", \"hypothesis\": \"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /roo
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71a95e7b-38ed-4799-abd8-c059d1afb1e3",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "f573bd3e-9898-4e54-ad89-d862d9d94721",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v4-random-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:04:57.591Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:00:43.285Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_recovery_eval.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 90124, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random SFT v4)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387\\\", \\\"eval_data\\\": \\\"valid_unseen (47 episodes)\\\", \\\"log_path\\\": \\\"/tmp/v4_random_recovery_eval.log\\\", \\\"output_path\\\": \\\"eval_results/v4_random_recovery_eval.json\\\", \\\"data_path\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_random_recovery_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-14T21:42:07.544Z\\\", \\\"metrics\\\": {\\\"recovery_rate\\\": 0.638, \\\"detection_rate\\\": 0, \\\"successes\\\": 30, \\\"total\\\": 47, \\\"source\\\": \\\"json-file-verified\\\", \\\"note\\\": \\\"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\\\"}}, \\\"v4-random-seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:49:34.441Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:59:16.615Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"93312\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T21:59:16.545Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"v4-taxei-seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:49:34.191Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:50:17.921Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"92108\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T21:50:17.845Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"v4-taxei-recovery-eval-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:23:55.110Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:46:19.993Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\", \\\"eval_data\\\": \\\"47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)\\\", \\\"data_path\\\": \\\"eval/injected_eval.py\\\", \\\"data_count\\\": 47, \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.\\\", \\\"pid\\\": 90519, \\\"log_path\\\": \\\"/tmp/v4_taxei_recovery_eval_r2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_taxei_recovery_eval_r2.json\\\", \\\"completed_at\\\": \\\"2026-05-14T21:42:08.000Z\\\", \\\"metrics\\\": {\\\"recovery_rate\\\": 0.596, \\\"detection_rate\\\": 0, \\\"total_episodes\\\": 47, \\\"per_operator\\\": {\\\"C1_context_truncation\\\": {\\\"recovered\\\": 8, \\\"total\\\": 12, \\\"rate\\\": 0.667}, \\\"C4_observation_masking\\\": {\\\"recovered\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"P1_step_order_swap\\\": {\\\"recovered\\\": 7, \\\"total\\\": 12, \\\"rate\\\": 0.583}, \\\"P2_sub_goal_deletion\\\": {\\\"recovered\\\": 6, \\\"total\\\": 12, \\\"rate\\\": 0.5}}}}, \\\"v4-taxei-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.278Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:53.154Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_seed0_eval.json --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"eval/valid_unseen\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei v4 seed=0)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks (clean, no injection)\\\", \\\"parent\\\": \\\"v4-taxei-seed0\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_taxei_seed0_eval.json\\\", \\\"log_path\\\": \\\"eval_results/v4_taxei_seed0_eval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.468, \\\"eval_successes\\\": 22, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": -14.9}, \\\"completed_at\\\": \\\"2026-05-14T21:20:13.351Z\\\"}, \\\"v4-random-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.456Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:52.271Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_seed0_eval.json --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"eval/valid_unseen\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random v4 seed=0)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks (clean, no injection)\\\", \\\"parent\\\": \\\"v4-random-seed0\\\", \\\"log_path\\\": \\\"eval_results/v4_random_seed0_eval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.553, \\\"eval_successes\\\": 26, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": -10.7}, \\\"checkpoint_path\\\": \\\"eval_results/v4_random_seed0_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-14T21:20:14.339Z\\\"}, \\\"v4-vanilla-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:30:18.314Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:50.951Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant vanilla --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_vanilla_recovery_eval.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (vanilla v4 seed=42)\\\", \\\"checkpoint_source\\\": \\\"checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks with error injection\\\", \\\"seed\\\": 42, \\\"parent\\\": \\\"mini-vanilla-sft-v4\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_vanilla_recovery_eval.json\\\", \\\"log_path\\\": \\\"eval_results/v4_vanilla_recovery_eval.json\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"recovery_rate\\\": 0.617, \\\"detection_rate\\\": 0}, \\\"completed_at\\\": \\\"2026-05-14T21:20:15.791Z\\\"}, \\\"v4-taxei-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:40:41.154Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:20:17.664Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D010 Phase 2: Recovery eval with action injection on TaxEI seed=42 checkpoint — measuring TaxEI-trained model's recovery ability vs vanilla\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 eval/injected_eval.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --device cuda:0 --seed 42 --output eval_results/v4_taxei_recovery_eval.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 87614, \\\"data_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + TaxEI LoRA v4 checkpoint-3387\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\", \\\"eval_data\\\": \\\"ALFWorld valid_unseen 47 tasks with action injection\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_taxei_recovery_eval.json\\\", \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-taxei-recovery-eval.log\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T20:58:38.335Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T20:58:38.665Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T20:58:39.601019+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.596, \\\"successes\\\": 28, \\\"total\\\": 47, \\\"recovery_rate\\\": 0.596, \\\"detection_rate\\\": 0}}, \\\"v4-vanilla-seed123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:43:48.780Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_seed123_eval.json --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (vanilla v4 seed=123)\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\\\", \\\"log_path\\\": \\\"/tmp/v4_vanilla_seed123_eval.log\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks (clean, no injection)\\\", \\\"parent\\\": \\\"v4-vanilla-seed123\\\", \\\"data_path\\\": \\\"eval/valid_unseen\\\", \\\"data_count\\\": 47}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T20:37:11.382Z\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 4.3, \\\"vs_seed0_pp\\\": -2.1, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 6, \\\"total\\\": 8, \\\"rate\\\": 0.75}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}}, \\\"v4-random-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:03.440Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:36:31.263Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_random_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_random_v4.jsonl --seed 0\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 72303, \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-random-seed0.log\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.355, \\\"token_accuracy\\\": 0.912, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 110}, \\\"completed_at\\\": \\\"2026-05-14T19:35:39.420Z\\\"}, \\\"v4-taxei-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:02.696Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:36:29.716Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_taxei_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 0\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 71822, \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-taxei-seed0.log\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.355, \\\"token_accuracy\\\": 0.917, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 110}, \\\"completed_at\\\": \\\"2026-05-14T19:35:37.503Z\\\"}, \\\"v4-vanilla-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.093Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:30:45.170Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"eval_results/v4_vanilla_seed0_eval.json\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-seed0-eval.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:01:19.696Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:01:20.697938+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.681, \\\"eval_successes\\\": 32, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 6.4, \\\"mcnemar_vs_seed42_p\\\": 0.375, \\\"discordant_pairs\\\": 5, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"5/7 (71.4%)\\\"}}, \\\"completed_at\\\": \\\"2026-05-14T19:29:37.198Z\\\"}, \\\"v4-vanilla-seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:45:23.836Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:29:24.021Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 77937, \\\"log_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/logging.jsonl\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:20:42.388Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed123\\\", \\\"note\\\": \\\"OOM on first attempt (v0), restarted as v1 with PID 77937\\\", \\\"wall_clock_seconds\\\": 3941.6, \\\"gpu_hours\\\": 1.09}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:26:23.312Z\\\"}, \\\"failure_reason\\\": \\\"v0 OOM at model loading (GPU 3 occupied by another process, 18.21 GiB in use). v1 (PID 77937) actually completed 1635/1635 steps. Cron caught v0's EXIT_CODE=1. Verifying checkpoint validity...\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T19:26:23.949Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:26:24.909318+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.288, \\\"token_accuracy\\\": 0.903, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58.9}}, \\\"v4-vanilla-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:01.929Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:46:58.919Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed0 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 0 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 71959, \\\"log_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/logging.jsonl\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T18:42:56.365Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T18:42:57.338365+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.297, \\\"avg_loss\\\": 0.416, \\\"token_accuracy\\\": 0.902, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58}, \\\"completed_at\\\": \\\"2026-05-14T18:45:18.121Z\\\"}, \\\"v4-vanilla-seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:45:24.536Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:20:48.185Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed7 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 7 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 7, \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"v4-vanilla-seed7\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed7\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed7/train.log\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T18:20:48.185Z\\\"}, \\\"v4-recovery-eval-dev\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:04.153Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:59.630Z\\\", \\\"hypothesis\\\": \\\"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pipeline_files\\\": [\\\"eval/injected_eval.py\\\", \\\"scripts/run_injected_eval.sh\\\"], \\\"injected_eval_lines\\\": 463, \\\"dryrun_result\\\": \\\"PASS\\\", \\\"dryrun_detail\\\": \\\"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\\\"}}, \\\"v4-recovery-dryrun\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:45:26.420Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:56.604Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:25:02.397Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:31:46.657Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 && test -f \\\\\\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\\\\\$CKPT && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path \\\\\\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67837\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T16:25:02.357Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_vanilla_pp\\\": 4.3, \\\"vs_taxei_pp\\\": 4.3, \\\"mcnemar_vs_vanilla_p\\\": 0.754, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"6/6 (100%)\\\", \\\"pick_and_place_simple\\\": \\\"4/8 (50%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\"}}}, \\\"v4-taxei-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:25:00.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:31:43.481Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 && test -f \\\\\\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\\\\\$CKPT && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\\\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"67694\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T16:25:00.616Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"vs_vanilla_pp\\\": 0, \\\"vs_random_pp\\\": -4.3, \\\"mcnemar_vs_vanilla_p\\\": 1, \\\"mcnemar_vs_random_p\\\": 0.754, \\\"gate_3a\\\": \\\"FAIL\\\", \\\"gate_3b\\\": \\\"FAIL\\\", \\\"gate_4\\\": \\\"PASS\\\", \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"6/6 (100%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"3/7 (42.9%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"2/7 (28.6%)\\\"}}}, \\\"traj_collect_500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:45:21.504Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:28:02.238Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python collect_trajectories.py --target 500\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/trajectories/\\\", \\\"data_count\\\": 575, \\\"model_name\\\": \\\"trajectory_collector\\\", \\\"seed\\\": 0, \\\"pid\\\": 11045, \\\"gpu\\\": \\\"none (CPU task)\\\", \\\"hypothesis\\\": \\\"GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）\\\"}, \\\"metrics\\\": {\\\"successful_trajectories\\\": 501, \\\"failed_trajectories\\\": 213, \\\"total_attempts\\\": 714, \\\"success_rate\\\": 0.702, \\\"api_cost_usd\\\": 8.86, \\\"collection_time_sec\\\": 5245}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"data/trajectories/successful_trajectories.jsonl\\\", \\\"log_path\\\": \\\"/tmp/collect_500.log\\\", \\\"completed_at\\\": \\\"2026-05-14T12:21:11.941Z\\\"}, \\\"v4-vanilla-eval-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:28:24.833Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:25:11.284Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && latest_run=\\\\\\\\$(ls -dt checkpoints/mini_vanilla_sft_v4/v0-*/ | head -1) && final_ckpt=\\\\\\\\$(ls -d \\\\\\\\\\\\\\\"\\\\\\\\${latest_run}\\\\\\\\\\\\\\\"checkpoint-* | sort -V | tail -1) && echo \\\\\\\\\\\\\\\"Using checkpoint: \\\\\\\\$final_ckpt\\\\\\\\\\\\\\\" && test -f \\\\\\\\\\\\\\\"\\\\\\\\${final_ckpt}/adapter_config.json\\\\\\\\\\\\\\\" && echo 'adapter_config.json OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\\\\\$final_ckpt --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"62340\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-eval-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:28:24.797Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_clean_then_place\\\": \\\"5/11 (45.5%)\\\"}}}, \\\"v4-vanilla-eval-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:24:25.560Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:28:40.995Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"61793\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-eval-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:24:25.523Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-random-sft-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:30:55.117Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:56.155Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"58163\\\", \\\"actual_status\\\": \\\"training_in_progress\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_random_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-sft-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:30:52.865Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:54.288Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"58034\\\", \\\"actual_status\\\": \\\"training_in_progress\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_taxei_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-vanilla-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:15:59.327Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:25.638Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=\\\\\\\\$(find checkpoints/mini_vanilla_sft_v4 -name 'checkpoint-*' -type d | sort -t- -k2 -n | tail -1) && echo \\\\\\\\\\\\\\\"Using checkpoint: \\\\\\\\$CKPT\\\\\\\\\\\\\\\" && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\\\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"61138\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:15:59.291Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v3-random-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:26.315Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:15:26.311Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v3/*/checkpoint-3405 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_random.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"55925\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v3-random-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:26:53.024Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.511, \\\"eval_successes\\\": 24, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 8.5, \\\"vs_vanilla_sft_pp\\\": -23.4}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v3-taxei-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:24.552Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:15:25.974Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v3/*/checkpoint-2832 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_taxei.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"55848\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v3-taxei-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:26:51.905Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 23.4, \\\"vs_vanilla_sft_pp\\\": -8.5, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_clean_then_place\\\": \\\"8/11 (72.7%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_cool_then_place\\\": \\\"3/7 (42.9%)\\\"}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v4-random-sft-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:32:26.753Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:32:36.181Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"58826\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-sft-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:32:26.722Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\\\"}, \\\"v4-taxei-sft-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:32:24.446Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:32:34.819Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"58741\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-sft-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:32:24.415Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\\\"}, \\\"v4-random-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:31.864Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:31:19.378Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"56765\\\", \\\"gpu_memory_mib\\\": 19159, \\\"gpu_util_pct\\\": 60}, \\\"hypothesis\\\": \\\"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-taxei-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:29.177Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:31:18.431Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"56685\\\", \\\"gpu_memory_mib\\\": 30884, \\\"gpu_util_pct\\\": 94}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mini-vanilla-sft-v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:14:26.614Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:05.003Z\\\", \\\"hypothesis\\\": \\\"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"50537\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-vanilla-sft-v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:14:32.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-random-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:13:19.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:04.310Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_random_aligned.jsonl --output_dir checkpoints/mini_random_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"45764\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-random-sft-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:13:19.618Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"train_samples\\\": 9076, \\\"train_samples_clean\\\": 4176, \\\"train_samples_injected\\\": 4900, \\\"train_steps_total\\\": 3405, \\\"est_duration_min\\\": 110, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-taxei-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:13:17.286Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:03.840Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_taxei_aligned.jsonl --output_dir checkpoints/mini_taxei_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"45621\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-taxei-sft-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:13:17.271Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"train_samples\\\": 7545, \\\"train_samples_clean\\\": 4176, \\\"train_samples_injected\\\": 3369, \\\"train_steps_total\\\": 2832, \\\"est_duration_min\\\": 90, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-vanilla-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:13:13.990Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:02.899Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_vanilla_aligned.jsonl --output_dir checkpoints/mini_vanilla_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"45478\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-vanilla-sft-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:13:13.975Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"train_samples\\\": 4176, \\\"train_steps_total\\\": 1566, \\\"est_duration_min\\\": 58, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v3-vanilla-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:22:10.941Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:01.957Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1566 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_vanilla.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"51848\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v3-vanilla-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:22:30.589Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.745, \\\"successes\\\": 35, \\\"total\\\": 47, \\\"vs_baseline_pp\\\": 31.9, \\\"vs_baseline\\\": \\\"42.6% → 74.5%\\\"}}, \\\"v4-vanilla-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:14:57.794Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:22:10.869Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/v4_vanilla_sft/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": 50972, \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-sft.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:14:57.755Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"failure_reason\\\": \\\"OOM - CUDA_VISIBLE_DEVICES not set, ran on wrong GPU (cuda:0 instead of cuda:3)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"vanilla_sft_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:05:05.459Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:05:05.459Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft \\\\\\\\\\\\n  --model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\\\\\\\\\\n  --dataset data/mini_pipeline/sft_vanilla_aligned.jsonl \\\\\\\\\\\\n  --lora_rank 16 \\\\\\\\\\\\n  --lora_alpha 32 \\\\\\\\\\\\n  --lora_dropout 0.05 \\\\\\\\\\\\n  --target_modules all-linear \\\\\\\\\\\\n  --num_train_epochs 1 \\\\\\\\\\\\n  --learning_rate 1e-4 \\\\\\\\\\\\n  --per_device_train_batch_size 1 \\\\\\\\\\\\n  --gradient_accumulation_steps 16 \\\\\\\\\\\\n  --warmup_ratio 0.05 \\\\\\\\\\\\n  --seed 42 \\\\\\\\\\\\n  --max_length 4096 \\\\\\\\\\\\n  --gradient_checkpointing true \\\\\\\\\\\\n  --output_dir checkpoints/vanilla_sft_aligned \\\\\\\\\\\\n  --logging_steps 5 \\\\\\\\\\\\n  --logging_first_step true \\\\\\\\\\\\n  --save_strategy epoch \\\\\\\\\\\\n  --bf16 true \\\\\\\\\\\\n  --weight_decay 0.1 \\\\\\\\\\\\n  --adam_beta1 0.9 \\\\\\\\\\\\n  --adam_beta2 0.95 \\\\\\\\\\\\n  --max_grad_norm 1.0 \\\\\\\\\\\\n  --lr_scheduler_type cosine \\\\\\\\\\\\n  --optim adamw_torch_fused 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"44492\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:05:05.434Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"vanilla_sft_aligned_v1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:04:12.825Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:04:12.825Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --config configs/sft_vanilla_aligned.yaml 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"43894\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:04:12.812Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"mini-vanilla-sft\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:51:41.382Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:48.860Z\\\", \\\"hypothesis\\\": \\\"Vanilla trajectory SFT baseline for comparison with TaxEI\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/train_sft.py --data data/sft_data/vanilla_train.jsonl --output checkpoints/mini_vanilla_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"41874\\\", \\\"log_path\\\": \\\"eval_results/mini_vanilla_clean.json\\\", \\\"submitted_at\\\": \\\"2026-05-14T10:54:31.029Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/sft_data/vanilla_train.jsonl\\\", \\\"data_count\\\": 278, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Vanilla SFT on clean trajectories as baseline for comparison\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54\\\", \\\"wall_clock_seconds\\\": 17.8, \\\"gpu_hours\\\": 0.0}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T10:54:20.210Z\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.149, \\\"eval_successes\\\": 7, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": -27.7, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"0/6 (0%)\\\", \\\"pick_and_place_simple\\\": \\\"2/8 (25.0%)\\\", \\\"pick_clean_then_place\\\": \\\"2/11 (18.2%)\\\", \\\"pick_cool_then_place\\\": \\\"0/7 (0%)\\\", \\\"pick_heat_then_place\\\": \\\"3/8 (37.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"0/7 (0%)\\\"}, \\\"train_steps\\\": 54, \\\"train_duration_min\\\": 5}}, \\\"mini-taxei-sft\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:51:40.784Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:46.174Z\\\", \\\"hypothesis\\\": \\\"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/train_sft.py --data data/sft_data/taxei_train.jsonl --output checkpoints/mini_taxei_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"41263\\\", \\\"log_path\\\": \\\"eval_results/mini_taxei_clean.json\\\", \\\"submitted_at\\\": \\\"2026-05-14T10:53:16.579Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/sft_data/taxei_train.jsonl\\\", \\\"data_count\\\": 278, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-195\\\", \\\"hypothesis\\\": \\\"TaxEI error injection + recovery SFT improves over vanilla SFT and baseline\\\", \\\"wall_clock_seconds\\\": 63.1, \\\"gpu_hours\\\": 0.04}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T10:54:19.721Z\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.447, \\\"eval_successes\\\": 21, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 2.1, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"3/6 (50.0%)\\\", \\\"pick_and_place_simple\\\": \\\"2/8 (25.0%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"1/7 (14.3%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_two_obj_and_place\\\": \\\"3/7 (42.9%)\\\"}, \\\"train_steps\\\": 195, \\\"train_duration_min\\\": 16.3}}, \\\"vanilla-react-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T08:20:00.119Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:35.171Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --eval_split valid_unseen --no_inject (MAX_STEPS=50 hardcoded)\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"ALFWorld valid_unseen (47/85 tasks, solvable=True filter, pick_and_place_with_movable_recep excluded 0/11)\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B (zero-shot, enable_thinking=False)\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:1\\\", \\\"hypothesis\\\": \\\"Qwen3-8B zero-shot ReAct 在 ALFWorld valid_unseen 的基线成功率，作为 SFT 对比的 lower bound\\\", \\\"checkpoint_path\\\": \\\"N/A (zero-shot, no training)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/vanilla_react_baseline.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.426, \\\"total_tasks\\\": 47, \\\"successes\\\": 20, \\\"per_task_type\\\": {\\\"pick_heat_then_place\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"look_at_obj_in_light\\\": {\\\"success\\\": 3, \\\"total\\\": 6, \\\"rate\\\": 0.5}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}, \\\"pick_cool_then_place\\\": {\\\"success\\\": 0, \\\"total\\\": 7, \\\"rate\\\": 0}}}, \\\"completed_at\\\": \\\"2026-05-14T08:58:00.892Z\\\"}, \\\"mini-pipeline-e2e\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:39:15.654Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:39:15.654Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sft-dryrun-73\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T08:19:34.694Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:20:00.752Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --config configs/sft_vanilla.yaml (dry-run, 1 epoch, bs=1, max_length=2048)\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/trajectories/ (124 successful trajectories)\\\", \\\"data_count\\\": 124, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"hypothesis\\\": \\\"SFT pipeline 端到端验证：注入→格式化→训练流程是否正常工作\\\", \\\"checkpoint_path\\\": \\\"checkpoints/dryrun_sft_v2/v0-20260514-161410/checkpoint-8/\\\", \\\"log_path\\\": \\\"checkpoints/dryrun_sft_v2/v0-20260514-161410/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T08:19:52.165Z\\\", \\\"metrics\\\": {\\\"train_loss_init\\\": 2.436, \\\"train_loss_final\\\": 1.543, \\\"train_loss_avg\\\": 1.894, \\\"peak_memory_gib\\\": 19.22, \\\"steps\\\": 8, \\\"duration_sec\\\": 42, \\\"data_vanilla\\\": 124, \\\"data_injected_dryrun\\\": 96, \\\"injected_failed\\\": 4}}}, \\\"count\\\": 44, \\\"total\\\": 44, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0777}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"v4-random-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:57.591Z\", \"updated_at\": \"2026-05-14T22:00:43.285Z\", \"hypothesis\": \"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_recovery_eval.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": 90124, \"model_name\": \"Qwen3-8B + LoRA (random SFT v4)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387\", \"eval_data\": \"valid_unseen (47 episodes)\", \"log_path\": \"/tmp/v4_random_recovery_eval.log\", \"output_path\": \"eval_results/v4_random_recovery_eval.json\", \"data_path\": \"valid_unseen\", \"data_count\": 47}, \"conclusion\": \"success\", \"checkpoint_path\": \"eval_results/v4_random_recovery_eval.json\", \"completed_at\": \"2026-05-14T21:42:07.544Z\", \"metrics\": {\"recovery_rate\": 0.638, \"detection_rate\": 0, \"successes\": 30, \"total\": 47, \"source\": \"json-file-verified\", \"note\": \"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\"}}, \"v4-random-seed123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:49:34.441Z\", \"updated_at\": \"2026-05-14T21:59:16.615Z\", \"hypothesis\": \"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"93312\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-seed123.log\", \"submitted_at\": \"2026-05-14T21:59:16.545Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"v4-taxei-seed123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:49:34.191Z\", \"updated_at\": \"2026-05-14T21:50:17.921Z\", \"hypothesis\": \"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"92108\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-seed123.log\", \"submitted_at\": \"2026-05-14T21:50:17.845Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"v4-taxei-recovery-eval-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:23:55.110Z\", \"updated_at\": \"2026-05-14T21:46:19.993Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json\", \"server\": \"autodl-5090\", \"model_name\": \"Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\", \"eval_data\": \"47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)\", \"data_path\": \"eval/injected_eval.py\", \"data_count\": 47, \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.\", \"pid\": 90519, \"log_path\": \"/tmp/v4_taxei_recovery_eval_r2.log\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval_r2.json\", \"completed_at\": \"2026-05-14T21:42:08.000Z\", \"metrics\": {\"recovery_rate\": 0.596, \"detection_rate\": 0, \"total_episodes\": 47, \"per_operator\": {\"C1_context_truncation\": {\"recovered\": 8, \"total\": 12, \"rate\": 0.667}, \"C4_observation_masking\": {\"recovered\": 7, \"total\": 11, \"rate\": 0.636}, \"P1_step_order_swap\": {\"recovered\": 7, \"total\": 12, \"rate\": 0.583}, \"P2_sub_goal_deletion\": {\"recovered\": 6, \"total\": 12, \"rate\": 0.5}}}}, \"v4-taxei-seed0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.278Z\", \"updated_at\": \"2026-05-14T21:21:53.154Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_seed0_eval.json --device cuda:0\", \"server\": \"autodl-5090\", \"data_path\": \"eval/valid_unseen\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei v4 seed=0)\", \"seed\": 0, \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\", \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\", \"parent\": \"v4-taxei-seed0\", \"checkpoint_path\": \"eval_results/v4_taxei_seed0_eval.json\", \"log_path\": \"eval_results/v4_taxei_seed0_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47, \"vs_seed42_pp\": -14.9}, \"completed_at\": \"2026-05-14T21:20:13.351Z\"}, \"v4-random-seed0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.456Z\", \"updated_at\": \"2026-05-14T21:21:52.271Z\", \"hypothesis\": \"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_seed0_eval.json --device cuda:0\", \"server\": \"autodl-5090\", \"data_path\": \"eval/valid_unseen\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random v4 seed=0)\", \"seed\": 0, \"checkpoint_source\": \"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\", \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\", \"parent\": \"v4-random-seed0\", \"log_path\": \"eval_results/v4_random_seed0_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.553, \"eval_successes\": 26, \"eval_total\": 47, \"vs_seed42_pp\": -10.7}, \"checkpoint_path\": \"eval_results/v4_random_seed0_eval.json\", \"completed_at\": \"2026-05-14T21:20:14.339Z\"}, \"v4-vanilla-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:30:18.314Z\", \"updated_at\": \"2026-05-14T21:21:50.951Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant vanilla --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_vanilla_recovery_eval.json\", \"server\": \"autodl-5090\", \"model_name\": \"Qwen3-8B + LoRA (vanilla v4 seed=42)\", \"checkpoint_source\": \"checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635\", \"eval_data\": \"47 ALFWorld tasks with error injection\", \"seed\": 42, \"parent\": \"mini-vanilla-sft-v4\", \"checkpoint_path\": \"eval_results/v4_vanilla_recovery_eval.json\", \"log_path\": \"eval_results/v4_vanilla_recovery_eval.json\"}, \"hypothesis\": \"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"recovery_rate\": 0.617, \"detection_rate\": 0}, \"completed_at\": \"2026-05-14T21:20:15.791Z\"}, \"v4-taxei-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:40:41.154Z\", \"updated_at\": \"2026-05-14T21:20:17.664Z\", \"spec\": {\"hypothesis\": \"D010 Phase 2: Recovery eval with action injection on TaxEI seed=42 checkpoint — measuring TaxEI-trained model's recovery ability vs vanilla\", \"command\": \"CUDA_VISIBLE_DEVICES=3 python3 eval/injected_eval.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --device cuda:0 --seed 42 --output eval_results/v4_taxei_recovery_eval.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"pid\": 87614, \"data_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + TaxEI LoRA v4 checkpoint-3387\", \"seed\": 42, \"checkpoint_source\": \"mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\", \"eval_data\": \"ALFWorld valid_unseen 47 tasks with action injection\", \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval.json\", \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-recovery-eval.log\"}, \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\", \"reproduce\": {\"finished_at\": \"2026-05-14T20:58:38.335Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T20:58:38.665Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T20:58:39.601019+00:00\"}]}, \"metrics\": {\"success_rate\": 0.596, \"successes\": 28, \"total\": 47, \"recovery_rate\": 0.596, \"detection_rate\": 0}}, \"v4-vanilla-seed123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.635Z\", \"updated_at\": \"2026-05-14T20:43:48.780Z\", \"hypothesis\": \"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_seed123_eval.json --device cuda:0\", \"server\": \"autodl-5090\", \"model_name\": \"Qwen3-8B + LoRA (vanilla v4 seed=123)\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\", \"log_path\": \"/tmp/v4_vanilla_seed123_eval.log\", \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\", \"parent\": \"v4-vanilla-seed123\", \"data_path\": \"eval/valid_unseen\", \"data_count\": 47}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T20:37:11.382Z\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_seed42_pp\": 4.3, \"vs_seed0_pp\": -2.1, \"per_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}}, \"v4-random-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:03.440Z\", \"updated_at\": \"2026-05-14T19:36:31.263Z\", \"hypothesis\": \"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/sft_random_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 0, \"server\": \"autodl-5090\", \"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4.jsonl --seed 0\", \"gpu\": \"cuda:2\", \"pid\": 72303, \"log_path\": \"/root/runs/tax_error_inject_agent/v4-random-seed0.log\", \"checkpoint_path\": \"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.912, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}, \"completed_at\": \"2026-05-14T19:35:39.420Z\"}, \"v4-taxei-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:02.696Z\", \"updated_at\": \"2026-05-14T19:36:29.716Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/sft_taxei_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 0, \"server\": \"autodl-5090\", \"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 0\", \"gpu\": \"cuda:1\", \"pid\": 71822, \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-seed0.log\", \"checkpoint_path\": \"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.917, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}, \"completed_at\": \"2026-05-14T19:35:37.503Z\"}, \"v4-vanilla-seed0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.093Z\", \"updated_at\": \"2026-05-14T19:30:45.170Z\", \"hypothesis\": \"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"spec\": {\"checkpoint_path\": \"eval_results/v4_vanilla_seed0_eval.json\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-seed0-eval.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T19:01:19.696Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:01:20.697938+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.681, \"eval_successes\": 32, \"eval_total\": 47, \"vs_seed42_pp\": 6.4, \"mcnemar_vs_seed42_p\": 0.375, \"discordant_pairs\": 5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"5/7 (71.4%)\"}}, \"completed_at\": \"2026-05-14T19:29:37.198Z\"}, \"v4-vanilla-seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:45:23.836Z\", \"updated_at\": \"2026-05-14T19:29:24.021Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"pid\": 77937, \"log_path\": \"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/logging.jsonl\", \"submitted_at\": \"2026-05-14T18:20:42.388Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed123\", \"note\": \"OOM on first attempt (v0), restarted as v1 with PID 77937\", \"wall_clock_seconds\": 3941.6, \"gpu_hours\": 1.09}, \"reproduce\": {\"finished_at\": \"2026-05-14T19:26:23.312Z\"}, \"failure_reason\": \"v0 OOM at model loading (GPU 3 occupied by another process, 18.21 GiB in use). v1 (PID 77937) actually completed 1635/1635 steps. Cron caught v0's EXIT_CODE=1. Verifying checkpoint validity...\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:26:23.949Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:26:24.909318+00:00\"}]}, \"metrics\": {\"final_loss\": 0.288, \"token_accuracy\": 0.903, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58.9}}, \"v4-vanilla-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:01.929Z\", \"updated_at\": \"2026-05-14T18:46:58.919Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 0, \"server\": \"autodl-5090\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed0 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 0 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\", \"gpu\": \"cuda:0\", \"pid\": 71959, \"log_path\": \"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/logging.jsonl\", \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T18:42:56.365Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:42:57.338365+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.297, \"avg_loss\": 0.416, \"token_accuracy\": 0.902, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}, \"completed_at\": \"2026-05-14T18:45:18.121Z\"}, \"v4-vanilla-seed7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:45:24.536Z\", \"updated_at\": \"2026-05-14T18:20:48.185Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed7 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 7 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\", \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 7, \"gpu\": \"cuda:3\", \"pid\": \"v4-vanilla-seed7\", \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed7\", \"log_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed7/train.log\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T18:20:48.185Z\"}, \"v4-recovery-eval-dev\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:04.153Z\", \"updated_at\": \"2026-05-14T18:15:59.630Z\", \"hypothesis\": \"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\", \"conclusion\": \"success\", \"metrics\": {\"pipeline_files\": [\"eval/injected_eval.py\", \"scripts/run_injected_eval.sh\"], \"injected_eval_lines\": 463, \"dryrun_result\": \"PASS\", \"dryrun_detail\": \"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\"}}, \"v4-recovery-dryrun\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:45:26.420Z\", \"updated_at\": \"2026-05-14T18:15:56.604Z\", \"hypothesis\": \"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\", \"conclusion\": \"success\"}, \"v4-random-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:25:02.397Z\", \"updated_at\": \"2026-05-14T17:31:46.657Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 && test -f \\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\$CKPT && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"67837\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-eval.log\", \"submitted_at\": \"2026-05-14T16:25:02.357Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_vanilla_pp\": 4.3, \"vs_taxei_pp\": 4.3, \"mcnemar_vs_vanilla_p\": 0.754, \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"4/8 (50%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\"}}}, \"v4-taxei-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:25:00.653Z\", \"updated_at\": \"2026-05-14T17:31:43.481Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 && test -f \\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\$CKPT && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"67694\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-eval.log\", \"submitted_at\": \"2026-05-14T16:25:00.616Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"vs_vanilla_pp\": 0, \"vs_random_pp\": -4.3, \"mcnemar_vs_vanilla_p\": 1, \"mcnemar_vs_random_p\": 0.754, \"gate_3a\": \"FAIL\", \"gate_3b\": \"FAIL\", \"gate_4\": \"PASS\", \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"2/7 (28.6%)\"}}}, \"traj_collect_500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:45:21.504Z\", \"updated_at\": \"2026-05-14T16:28:02.238Z\", \"spec\": {\"command\": \"python collect_trajectories.py --target 500\", \"server\": \"autodl-5090\", \"data_path\": \"data/trajectories/\", \"data_count\": 575, \"model_name\": \"trajectory_collector\", \"seed\": 0, \"pid\": 11045, \"gpu\": \"none (CPU task)\", \"hypothesis\": \"GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）\"}, \"metrics\": {\"successful_trajectories\": 501, \"failed_trajectories\": 213, \"total_attempts\": 714, \"success_rate\": 0.702, \"api_cost_usd\": 8.86, \"collection_time_sec\": 5245}, \"conclusion\": \"negative\", \"checkpoint_path\": \"data/trajectories/successful_trajectories.jsonl\", \"log_path\": \"/tmp/collect_500.log\", \"completed_at\": \"2026-05-14T12:21:11.941Z\"}, \"v4-vanilla-eval-r3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:28:24.833Z\", \"updated_at\": \"2026-05-14T16:25:11.284Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && latest_run=\\\\$(ls -dt checkpoints/mini_vanilla_sft_v4/v0-*/ | head -1) && final_ckpt=\\\\$(ls -d \\\\\\\"\\\\${latest_run}\\\\\\\"checkpoint-* | sort -V | tail -1) && echo \\\\\\\"Using checkpoint: \\\\$final_ckpt\\\\\\\" && test -f \\\\\\\"\\\\${final_ckpt}/adapter_config.json\\\\\\\" && echo 'adapter_config.json OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$final_ckpt --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"62340\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval-r3.log\", \"submitted_at\": \"2026-05-14T14:28:24.797Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_clean_then_place\": \"5/11 (45.5%)\"}}}, \"v4-vanilla-eval-r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:24:25.560Z\", \"updated_at\": \"2026-05-14T14:28:40.995Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"61793\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval-r2.log\", \"submitted_at\": \"2026-05-14T14:24:25.523Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\", \"conclusion\": \"failed\"}, \"v4-random-sft-r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:30:55.117Z\", \"updated_at\": \"2026-05-14T14:24:56.155Z\", \"spec\": {\"pid\": \"58163\", \"actual_status\": \"training_in_progress\", \"gpu\": [\"cuda:3\"], \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/sft_random_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"hypothesis\": \"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-taxei-sft-r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:30:52.865Z\", \"updated_at\": \"2026-05-14T14:24:54.288Z\", \"spec\": {\"pid\": \"58034\", \"actual_status\": \"training_in_progress\", \"gpu\": [\"cuda:2\"], \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/sft_taxei_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"hypothesis\": \"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-vanilla-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:15:59.327Z\", \"updated_at\": \"2026-05-14T14:24:25.638Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=\\\\$(find checkpoints/mini_vanilla_sft_v4 -name 'checkpoint-*' -type d | sort -t- -k2 -n | tail -1) && echo \\\\\\\"Using checkpoint: \\\\$CKPT\\\\\\\" && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --gpu 0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"61138\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval.log\", \"submitted_at\": \"2026-05-14T14:15:59.291Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\", \"conclusion\": \"failed\"}, \"v3-random-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:26.315Z\", \"updated_at\": \"2026-05-14T14:15:26.311Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v3/*/checkpoint-3405 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_random.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"55925\", \"log_path\": \"~/runs/tax_error_inject_agent/v3-random-eval.log\", \"submitted_at\": \"2026-05-14T13:26:53.024Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.511, \"eval_successes\": 24, \"eval_total\": 47, \"vs_baseline_pp\": 8.5, \"vs_vanilla_sft_pp\": -23.4}, \"conclusion\": \"negative\"}, \"v3-taxei-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:24.552Z\", \"updated_at\": \"2026-05-14T14:15:25.974Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v3/*/checkpoint-2832 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_taxei.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"55848\", \"log_path\": \"~/runs/tax_error_inject_agent/v3-taxei-eval.log\", \"submitted_at\": \"2026-05-14T13:26:51.905Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_baseline_pp\": 23.4, \"vs_vanilla_sft_pp\": -8.5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_clean_then_place\": \"8/11 (72.7%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\"}}, \"conclusion\": \"negative\"}, \"v4-random-sft-r3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:32:26.753Z\", \"updated_at\": \"2026-05-14T13:32:36.181Z\", \"spec\": {\"command\": \"bash -c \\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"58826\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-sft-r3.log\", \"submitted_at\": \"2026-05-14T13:32:26.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-taxei-sft-r3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:32:24.446Z\", \"updated_at\": \"2026-05-14T13:32:34.819Z\", \"spec\": {\"command\": \"bash -c \\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"58741\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-sft-r3.log\", \"submitted_at\": \"2026-05-14T13:32:24.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-random-sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:31.864Z\", \"updated_at\": \"2026-05-14T13:31:19.378Z\", \"spec\": {\"pid\": \"56765\", \"gpu_memory_mib\": 19159, \"gpu_util_pct\": 60}, \"hypothesis\": \"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\", \"conclusion\": \"failed\"}, \"v4-taxei-sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:29.177Z\", \"updated_at\": \"2026-05-14T13:31:18.431Z\", \"spec\": {\"pid\": \"56685\", \"gpu_memory_mib\": 30884, \"gpu_util_pct\": 94}, \"hypothesis\": \"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\", \"conclusion\": \"failed\"}, \"mini-vanilla-sft-v4\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:14:26.614Z\", \"updated_at\": \"2026-05-14T13:27:05.003Z\", \"hypothesis\": \"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"50537\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-vanilla-sft-v4.log\", \"submitted_at\": \"2026-05-14T12:14:32.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\"}, \"mini-random-sft-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:13:19.635Z\", \"updated_at\": \"2026-05-14T13:27:04.310Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_random_aligned.jsonl --output_dir checkpoints/mini_random_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"45764\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-random-sft-v3.log\", \"submitted_at\": \"2026-05-14T11:13:19.618Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"train_samples\": 9076, \"train_samples_clean\": 4176, \"train_samples_injected\": 4900, \"train_steps_total\": 3405, \"est_duration_min\": 110, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-taxei-sft-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:13:17.286Z\", \"updated_at\": \"2026-05-14T13:27:03.840Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_taxei_aligned.jsonl --output_dir checkpoints/mini_taxei_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"45621\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-taxei-sft-v3.log\", \"submitted_at\": \"2026-05-14T11:13:17.271Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"train_samples\": 7545, \"train_samples_clean\": 4176, \"train_samples_injected\": 3369, \"train_steps_total\": 2832, \"est_duration_min\": 90, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-vanilla-sft-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:13:13.990Z\", \"updated_at\": \"2026-05-14T13:27:02.899Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_vanilla_aligned.jsonl --output_dir checkpoints/mini_vanilla_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"45478\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-vanilla-sft-v3.log\", \"submitted_at\": \"2026-05-14T11:13:13.975Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"train_samples\": 4176, \"train_steps_total\": 1566, \"est_duration_min\": 58, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"v3-vanilla-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:22:10.941Z\", \"updated_at\": \"2026-05-14T13:27:01.957Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1566 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_vanilla.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"51848\", \"log_path\": \"~/runs/tax_error_inject_agent/v3-vanilla-eval.log\", \"submitted_at\": \"2026-05-14T12:22:30.589Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.745, \"successes\": 35, \"total\": 47, \"vs_baseline_pp\": 31.9, \"vs_baseline\": \"42.6% → 74.5%\"}}, \"v4-vanilla-sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:14:57.794Z\", \"updated_at\": \"2026-05-14T12:22:10.869Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/v4_vanilla_sft/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": 50972, \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-sft.log\", \"submitted_at\": \"2026-05-14T12:14:57.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"failure_reason\": \"OOM - CUDA_VISIBLE_DEVICES not set, ran on wrong GPU (cuda:0 instead of cuda:3)\"}, \"conclusion\": \"failed\"}, \"vanilla_sft_aligned_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:05:05.459Z\", \"updated_at\": \"2026-05-14T11:05:05.459Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft \\\\\\n  --model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\\\\n  --dataset data/mini_pipeline/sft_vanilla_aligned.jsonl \\\\\\n  --lora_rank 16 \\\\\\n  --lora_alpha 32 \\\\\\n  --lora_dropout 0.05 \\\\\\n  --target_modules all-linear \\\\\\n  --num_train_epochs 1 \\\\\\n  --learning_rate 1e-4 \\\\\\n  --per_device_train_batch_size 1 \\\\\\n  --gradient_accumulation_steps 16 \\\\\\n  --warmup_ratio 0.05 \\\\\\n  --seed 42 \\\\\\n  --max_length 4096 \\\\\\n  --gradient_checkpointing true \\\\\\n  --output_dir checkpoints/vanilla_sft_aligned \\\\\\n  --logging_steps 5 \\\\\\n  --logging_first_step true \\\\\\n  --save_strategy epoch \\\\\\n  --bf16 true \\\\\\n  --weight_decay 0.1 \\\\\\n  --adam_beta1 0.9 \\\\\\n  --adam_beta2 0.95 \\\\\\n  --max_grad_norm 1.0 \\\\\\n  --lr_scheduler_type cosine \\\\\\n  --optim adamw_torch_fused 2>&1\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"44492\", \"log_path\": \"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v2.log\", \"submitted_at\": \"2026-05-14T11:05:05.434Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"vanilla_sft_aligned_v1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:04:12.825Z\", \"updated_at\": \"2026-05-14T11:04:12.825Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --config configs/sft_vanilla_aligned.yaml 2>&1\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"43894\", \"log_path\": \"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v1.log\", \"submitted_at\": \"2026-05-14T11:04:12.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mini-vanilla-sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:51:41.382Z\", \"updated_at\": \"2026-05-14T10:54:48.860Z\", \"hypothesis\": \"Vanilla trajectory SFT baseline for comparison with TaxEI\", \"spec\": {\"command\": \"python3 scripts/train_sft.py --data data/sft_data/vanilla_train.jsonl --output checkpoints/mini_vanilla_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"pid\": \"41874\", \"log_path\": \"eval_results/mini_vanilla_clean.json\", \"submitted_at\": \"2026-05-14T10:54:31.029Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/sft_data/vanilla_train.jsonl\", \"data_count\": 278, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"hypothesis\": \"Vanilla SFT on clean trajectories as baseline for comparison\", \"checkpoint_path\": \"checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54\", \"wall_clock_seconds\": 17.8, \"gpu_hours\": 0.0}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T10:54:20.210Z\", \"metrics\": {\"eval_success_rate\": 0.149, \"eval_successes\": 7, \"eval_total\": 47, \"vs_baseline_pp\": -27.7, \"per_task\": {\"look_at_obj_in_light\": \"0/6 (0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"2/11 (18.2%)\", \"pick_cool_then_place\": \"0/7 (0%)\", \"pick_heat_then_place\": \"3/8 (37.5%)\", \"pick_two_obj_and_place\": \"0/7 (0%)\"}, \"train_steps\": 54, \"train_duration_min\": 5}}, \"mini-taxei-sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:51:40.784Z\", \"updated_at\": \"2026-05-14T10:54:46.174Z\", \"hypothesis\": \"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\", \"spec\": {\"command\": \"python3 scripts/train_sft.py --data data/sft_data/taxei_train.jsonl --output checkpoints/mini_taxei_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": \"41263\", \"log_path\": \"eval_results/mini_taxei_clean.json\", \"submitted_at\": \"2026-05-14T10:53:16.579Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/sft_data/taxei_train.jsonl\", \"data_count\": 278, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-195\", \"hypothesis\": \"TaxEI error injection + recovery SFT improves over vanilla SFT and baseline\", \"wall_clock_seconds\": 63.1, \"gpu_hours\": 0.04}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T10:54:19.721Z\", \"metrics\": {\"eval_success_rate\": 0.447, \"eval_successes\": 21, \"eval_total\": 47, \"vs_baseline_pp\": 2.1, \"per_task\": {\"look_at_obj_in_light\": \"3/6 (50.0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"1/7 (14.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_two_obj_and_place\": \"3/7 (42.9%)\"}, \"train_steps\": 195, \"train_duration_min\": 16.3}}, \"vanilla-react-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:20:00.119Z\", \"updated_at\": \"2026-05-14T10:54:35.171Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --eval_split valid_unseen --no_inject (MAX_STEPS=50 hardcoded)\", \"server\": \"autodl-5090\", \"data_path\": \"ALFWorld valid_unseen (47/85 tasks, solvable=True filter, pick_and_place_with_movable_recep excluded 0/11)\", \"data_count\": 47, \"model_name\": \"Qwen3-8B (zero-shot, enable_thinking=False)\", \"seed\": 42, \"gpu\": \"cuda:1\", \"hypothesis\": \"Qwen3-8B zero-shot ReAct 在 ALFWorld valid_unseen 的基线成功率，作为 SFT 对比的 lower bound\", \"checkpoint_path\": \"N/A (zero-shot, no training)\", \"log_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/vanilla_react_baseline.json\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.426, \"total_tasks\": 47, \"successes\": 20, \"per_task_type\": {\"pick_heat_then_place\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"look_at_obj_in_light\": {\"success\": 3, \"total\": 6, \"rate\": 0.5}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_two_obj_and_place\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}, \"pick_cool_then_place\": {\"success\": 0, \"total\": 7, \"rate\": 0}}}, \"completed_at\": \"2026-05-14T08:58:00.892Z\"}, \"mini-pipeline-e2e\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:39:15.654Z\", \"updated_at\": \"2026-05-14T10:39:15.654Z\", \"conclusion\": \"failed\"}, \"sft-dryrun-73\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:19:34.694Z\", \"updated_at\": \"2026-05-14T08:20:00.752Z\", \"spec\": {\"command\": \"swift sft --config configs/sft_vanilla.yaml (dry-run, 1 epoch, bs=1, max_length=2048)\", \"server\": \"autodl-5090\", \"data_path\": \"data/trajectories/ (124 successful trajectories)\", \"data_count\": 124, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"hypothesis\": \"SFT pipeline 端到端验证：注入→格式化→训练流程是否正常工作\", \"checkpoint_path\": \"checkpoints/dryrun_sft_v2/v0-20260514-161410/checkpoint-8/\", \"log_path\": \"checkpoints/dryrun_sft_v2/v0-20260514-161410/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T08:19:52.165Z\", \"metrics\": {\"train_loss_init\": 2.436, \"train_loss_final\": 1.543, \"train_loss_avg\": 1.894, \"peak_memory_gib\": 19.22, \"steps\": 8, \"duration_sec\": 42, \"data_vanilla\": 124, \"data_injected_dryrun\": 96, \"injected_failed\": 4}}}, \"count\": 44, \"total\": 44, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0777}}"
+    }
+  },
+  "sourceToolAssistantUUID": "71a95e7b-38ed-4799-abd8-c059d1afb1e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T22:03:20.032Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01WGPrVREDMCLV4qjy4pyFzT`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f573bd3e-9898-4e54-ad89-d862d9d94721",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYX5Wb1jxKBjXm7aR5",
+  "type": "assistant",
+  "uuid": "6805bb12-7406-472c-aa3f-62491b769e3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZhz2Ftt5jC2ipkyHmumpk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 23662,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 23662,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c79aa2b7-6f87-4d8b-9d93-41d3e19c066b",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure experiment plan for negative result paper",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-14T22:03:22.602Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the full registry output to understand all experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c79aa2b7-6f87-4d8b-9d93-41d3e19c066b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYrv7rYNLjK3xGiLDg",
+  "type": "assistant",
+  "uuid": "eec3ad2c-bdcf-4dad-b24a-a921314bb809",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFXApHciyYBtVKVk8Kbj1R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10090,
+      "cache_read_input_tokens": 24753,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 24753,
+          "cache_creation_input_tokens": 10090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-14T22:03:23.091Z_
+
+读取完整 registry 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eec3ad2c-bdcf-4dad-b24a-a921314bb809",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYrv7rYNLjK3xGiLDg",
+  "type": "assistant",
+  "uuid": "c55f9dd7-f7ee-4a1e-a37a-bddd08f5fb07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFXApHciyYBtVKVk8Kbj1R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10090,
+      "cache_read_input_tokens": 24753,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 24753,
+          "cache_creation_input_tokens": 10090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T22:03:27.324Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GUQucxPWUfqmrUihe2SDbQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/0553cac9-bdbc-431a-b7d1-40e87437f6c8/tool-results/toolu_014dYwHB5CGrv86n2DW6Ag8U.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c55f9dd7-f7ee-4a1e-a37a-bddd08f5fb07",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DYrv7rYNLjK3xGiLDg",
+  "type": "assistant",
+  "uuid": "9e5eac54-f5cc-45f0-a6c2-33d92ef4a36e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WFXApHciyYBtVKVk8Kbj1R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10090,
+      "cache_read_input_tokens": 24753,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 24753,
+          "cache_creation_input_tokens": 10090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T22:03:27.593Z_
+
+<details><summary>↩ Tool result · `toolu_01GUQucxPWUfqmrUihe2SDbQ`</summary>
+
+```text
+1	{"result":"{\"success\": true, \"data\": {\"experiments\": {\"v4-random-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:57.591Z\", \"updated_at\": \"2026-05-14T22:00:43.285Z\", \"hypothesis\": \"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_recovery_eval.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": 90124, \"model_name\": \"Qwen3-8B + LoRA (random SFT v4)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387\", \"eval_data\": \"valid_unseen (47 episodes)\", \"log_path\": \"/tmp/v4_random_recovery_eval.log\", \"output_path\": \"eval_results/v4_random_recovery_eval.json\", \"data_path\": \"valid_unseen\", \"data_count\": 47}, \"conclusion\": \"success\", \"checkpoint_path\": \"eval_results/v4_random_recovery_eval.json\", \"completed_at\": \"2026-05-14T21:42:07.544Z\", \"metrics\": {\"recovery_rate\": 0.638, \"detection_rate\": 0, \"successes\": 30, \"total\": 47, \"source\": \"json-file-verified\", \"note\": \"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\"}}, \"v4-random-seed123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:49:34.441Z\", \"updated_at\": \"2026-05-14T21:59:16.615Z\", \"hypothesis\": \"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"93312\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-seed123.log\", \"submitted_at\": \"2026-05-14T21:59:16.545Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"v4-taxei-seed123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:49:34.191Z\", \"updated_at\": \"2026-05-14T21:50:17.921Z\", \"hypothesis\": \"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"92108\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-seed123.log\", \"submitted_at\": \"2026-05-14T21:50:17.845Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"v4-taxei-recovery-eval-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:23:55.110Z\", \"updated_at\": \"2026-05-14T21:46:19.993Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json\", \"server\": \"autodl-5090\", \"model_name\": \"Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\", \"eval_data\": \"47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)\", \"data_path\": \"eval/injected_eval.py\", \"data_count\": 47, \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.\", \"pid\": 90519, \"log_path\": \"/tmp/v4_taxei_recovery_eval_r2.log\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval_r2.json\", \"completed_at\": \"2026-05-14T21:42:08.000Z\", \"metrics\": {\"recovery_rate\": 0.596, \"detection_rate\": 0, \"total_episodes\": 47, \"per_operator\": {\"C1_context_truncation\": {\"recovered\": 8, \"total\": 12, \"rate\": 0.667}, \"C4_observation_masking\": {\"recovered\": 7, \"total\": 11, \"rate\": 0.636}, \"P1_step_order_swap\": {\"recovered\": 7, \"total\": 12, \"rate\": 0.583}, \"P2_sub_goal_deletion\": {\"recovered\": 6, \"total\": 12, \"rate\": 0.5}}}}, \"v4-taxei-seed0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.278Z\", \"updated_at\": \"2026-05-14T21:21:53.154Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_seed0_eval.json --device cuda:0\", \"server\": \"autodl-5090\", \"data_path\": \"eval/valid_unseen\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (taxei v4 seed=0)\", \"seed\": 0, \"checkpoint_source\": \"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\", \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\", \"parent\": \"v4-taxei-seed0\", \"checkpoint_path\": \"eval_results/v4_taxei_seed0_eval.json\", \"log_path\": \"eval_results/v4_taxei_seed0_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.468, \"eval_successes\": 22, \"eval_total\": 47, \"vs_seed42_pp\": -14.9}, \"completed_at\": \"2026-05-14T21:20:13.351Z\"}, \"v4-random-seed0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.456Z\", \"updated_at\": \"2026-05-14T21:21:52.271Z\", \"hypothesis\": \"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_seed0_eval.json --device cuda:0\", \"server\": \"autodl-5090\", \"data_path\": \"eval/valid_unseen\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + LoRA (random v4 seed=0)\", \"seed\": 0, \"checkpoint_source\": \"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\", \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\", \"parent\": \"v4-random-seed0\", \"log_path\": \"eval_results/v4_random_seed0_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.553, \"eval_successes\": 26, \"eval_total\": 47, \"vs_seed42_pp\": -10.7}, \"checkpoint_path\": \"eval_results/v4_random_seed0_eval.json\", \"completed_at\": \"2026-05-14T21:20:14.339Z\"}, \"v4-vanilla-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:30:18.314Z\", \"updated_at\": \"2026-05-14T21:21:50.951Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant vanilla --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_vanilla_recovery_eval.json\", \"server\": \"autodl-5090\", \"model_name\": \"Qwen3-8B + LoRA (vanilla v4 seed=42)\", \"checkpoint_source\": \"checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635\", \"eval_data\": \"47 ALFWorld tasks with error injection\", \"seed\": 42, \"parent\": \"mini-vanilla-sft-v4\", \"checkpoint_path\": \"eval_results/v4_vanilla_recovery_eval.json\", \"log_path\": \"eval_results/v4_vanilla_recovery_eval.json\"}, \"hypothesis\": \"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.617, \"successes\": 29, \"total\": 47, \"recovery_rate\": 0.617, \"detection_rate\": 0}, \"completed_at\": \"2026-05-14T21:20:15.791Z\"}, \"v4-taxei-recovery-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:40:41.154Z\", \"updated_at\": \"2026-05-14T21:20:17.664Z\", \"spec\": {\"hypothesis\": \"D010 Phase 2: Recovery eval with action injection on TaxEI seed=42 checkpoint — measuring TaxEI-trained model's recovery ability vs vanilla\", \"command\": \"CUDA_VISIBLE_DEVICES=3 python3 eval/injected_eval.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --device cuda:0 --seed 42 --output eval_results/v4_taxei_recovery_eval.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"pid\": 87614, \"data_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\", \"data_count\": 47, \"model_name\": \"Qwen3-8B + TaxEI LoRA v4 checkpoint-3387\", \"seed\": 42, \"checkpoint_source\": \"mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\", \"eval_data\": \"ALFWorld valid_unseen 47 tasks with action injection\", \"checkpoint_path\": \"eval_results/v4_taxei_recovery_eval.json\", \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-recovery-eval.log\"}, \"hypothesis\": \"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\", \"reproduce\": {\"finished_at\": \"2026-05-14T20:58:38.335Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T20:58:38.665Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T20:58:39.601019+00:00\"}]}, \"metrics\": {\"success_rate\": 0.596, \"successes\": 28, \"total\": 47, \"recovery_rate\": 0.596, \"detection_rate\": 0}}, \"v4-vanilla-seed123-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.635Z\", \"updated_at\": \"2026-05-14T20:43:48.780Z\", \"hypothesis\": \"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_seed123_eval.json --device cuda:0\", \"server\": \"autodl-5090\", \"model_name\": \"Qwen3-8B + LoRA (vanilla v4 seed=123)\", \"seed\": 123, \"checkpoint_source\": \"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\", \"checkpoint_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\", \"log_path\": \"/tmp/v4_vanilla_seed123_eval.log\", \"eval_data\": \"47 ALFWorld tasks (clean, no injection)\", \"parent\": \"v4-vanilla-seed123\", \"data_path\": \"eval/valid_unseen\", \"data_count\": 47}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T20:37:11.382Z\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_seed42_pp\": 4.3, \"vs_seed0_pp\": -2.1, \"per_task\": {\"look_at_obj_in_light\": {\"success\": 5, \"total\": 6, \"rate\": 0.833}, \"pick_and_place_simple\": {\"success\": 6, \"total\": 8, \"rate\": 0.75}, \"pick_clean_then_place_in_recep\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_cool_then_place_in_recep\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}, \"pick_heat_then_place_in_recep\": {\"success\": 7, \"total\": 8, \"rate\": 0.875}, \"pick_two_obj_and_place\": {\"success\": 4, \"total\": 7, \"rate\": 0.571}}}}, \"v4-random-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:03.440Z\", \"updated_at\": \"2026-05-14T19:36:31.263Z\", \"hypothesis\": \"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/sft_random_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 0, \"server\": \"autodl-5090\", \"command\": \"swift sft --model Qwen3-8B --dataset sft_random_v4.jsonl --seed 0\", \"gpu\": \"cuda:2\", \"pid\": 72303, \"log_path\": \"/root/runs/tax_error_inject_agent/v4-random-seed0.log\", \"checkpoint_path\": \"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.912, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}, \"completed_at\": \"2026-05-14T19:35:39.420Z\"}, \"v4-taxei-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:02.696Z\", \"updated_at\": \"2026-05-14T19:36:29.716Z\", \"hypothesis\": \"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/sft_taxei_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 0, \"server\": \"autodl-5090\", \"command\": \"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 0\", \"gpu\": \"cuda:1\", \"pid\": 71822, \"log_path\": \"/root/runs/tax_error_inject_agent/v4-taxei-seed0.log\", \"checkpoint_path\": \"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.355, \"token_accuracy\": 0.917, \"train_steps\": 3387, \"train_epochs\": 3, \"train_duration_min\": 110}, \"completed_at\": \"2026-05-14T19:35:37.503Z\"}, \"v4-vanilla-seed0-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:30:26.093Z\", \"updated_at\": \"2026-05-14T19:30:45.170Z\", \"hypothesis\": \"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\", \"spec\": {\"checkpoint_path\": \"eval_results/v4_vanilla_seed0_eval.json\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-seed0-eval.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T19:01:19.696Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:01:20.697938+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.681, \"eval_successes\": 32, \"eval_total\": 47, \"vs_seed42_pp\": 6.4, \"mcnemar_vs_seed42_p\": 0.375, \"discordant_pairs\": 5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"5/7 (71.4%)\"}}, \"completed_at\": \"2026-05-14T19:29:37.198Z\"}, \"v4-vanilla-seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:45:23.836Z\", \"updated_at\": \"2026-05-14T19:29:24.021Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"pid\": 77937, \"log_path\": \"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/logging.jsonl\", \"submitted_at\": \"2026-05-14T18:20:42.388Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 123, \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed123\", \"note\": \"OOM on first attempt (v0), restarted as v1 with PID 77937\", \"wall_clock_seconds\": 3941.6, \"gpu_hours\": 1.09}, \"reproduce\": {\"finished_at\": \"2026-05-14T19:26:23.312Z\"}, \"failure_reason\": \"v0 OOM at model loading (GPU 3 occupied by another process, 18.21 GiB in use). v1 (PID 77937) actually completed 1635/1635 steps. Cron caught v0's EXIT_CODE=1. Verifying checkpoint validity...\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T19:26:23.949Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:26:24.909318+00:00\"}]}, \"metrics\": {\"final_loss\": 0.288, \"token_accuracy\": 0.903, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58.9}}, \"v4-vanilla-seed0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:01.929Z\", \"updated_at\": \"2026-05-14T18:46:58.919Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"spec\": {\"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 0, \"server\": \"autodl-5090\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed0 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 0 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\", \"gpu\": \"cuda:0\", \"pid\": 71959, \"log_path\": \"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/logging.jsonl\", \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T18:42:56.365Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:42:57.338365+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.297, \"avg_loss\": 0.416, \"token_accuracy\": 0.902, \"train_steps\": 1635, \"train_epochs\": 3, \"train_duration_min\": 58}, \"completed_at\": \"2026-05-14T18:45:18.121Z\"}, \"v4-vanilla-seed7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:45:24.536Z\", \"updated_at\": \"2026-05-14T18:20:48.185Z\", \"hypothesis\": \"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed7 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 7 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\", \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\", \"data_count\": 4358, \"model_name\": \"Qwen3-8B\", \"seed\": 7, \"gpu\": \"cuda:3\", \"pid\": \"v4-vanilla-seed7\", \"checkpoint_path\": \"checkpoints/mini_vanilla_sft_v4_seed7\", \"log_path\": \"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed7/train.log\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T18:20:48.185Z\"}, \"v4-recovery-eval-dev\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:42:04.153Z\", \"updated_at\": \"2026-05-14T18:15:59.630Z\", \"hypothesis\": \"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\", \"conclusion\": \"success\", \"metrics\": {\"pipeline_files\": [\"eval/injected_eval.py\", \"scripts/run_injected_eval.sh\"], \"injected_eval_lines\": 463, \"dryrun_result\": \"PASS\", \"dryrun_detail\": \"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\"}}, \"v4-recovery-dryrun\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:45:26.420Z\", \"updated_at\": \"2026-05-14T18:15:56.604Z\", \"hypothesis\": \"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\", \"conclusion\": \"success\"}, \"v4-random-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:25:02.397Z\", \"updated_at\": \"2026-05-14T17:31:46.657Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 && test -f \\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\$CKPT && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"67837\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-eval.log\", \"submitted_at\": \"2026-05-14T16:25:02.357Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_vanilla_pp\": 4.3, \"vs_taxei_pp\": 4.3, \"mcnemar_vs_vanilla_p\": 0.754, \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"4/8 (50%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\"}}}, \"v4-taxei-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:25:00.653Z\", \"updated_at\": \"2026-05-14T17:31:43.481Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 && test -f \\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\$CKPT && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"67694\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-eval.log\", \"submitted_at\": \"2026-05-14T16:25:00.616Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\", \"conclusion\": \"negative\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"vs_vanilla_pp\": 0, \"vs_random_pp\": -4.3, \"mcnemar_vs_vanilla_p\": 1, \"mcnemar_vs_random_p\": 0.754, \"gate_3a\": \"FAIL\", \"gate_3b\": \"FAIL\", \"gate_4\": \"PASS\", \"per_task\": {\"look_at_obj_in_light\": \"6/6 (100%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\", \"pick_heat_then_place\": \"7/8 (87.5%)\", \"pick_two_obj_and_place\": \"2/7 (28.6%)\"}}}, \"traj_collect_500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:45:21.504Z\", \"updated_at\": \"2026-05-14T16:28:02.238Z\", \"spec\": {\"command\": \"python collect_trajectories.py --target 500\", \"server\": \"autodl-5090\", \"data_path\": \"data/trajectories/\", \"data_count\": 575, \"model_name\": \"trajectory_collector\", \"seed\": 0, \"pid\": 11045, \"gpu\": \"none (CPU task)\", \"hypothesis\": \"GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）\"}, \"metrics\": {\"successful_trajectories\": 501, \"failed_trajectories\": 213, \"total_attempts\": 714, \"success_rate\": 0.702, \"api_cost_usd\": 8.86, \"collection_time_sec\": 5245}, \"conclusion\": \"negative\", \"checkpoint_path\": \"data/trajectories/successful_trajectories.jsonl\", \"log_path\": \"/tmp/collect_500.log\", \"completed_at\": \"2026-05-14T12:21:11.941Z\"}, \"v4-vanilla-eval-r3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:28:24.833Z\", \"updated_at\": \"2026-05-14T16:25:11.284Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && latest_run=\\\\$(ls -dt checkpoints/mini_vanilla_sft_v4/v0-*/ | head -1) && final_ckpt=\\\\$(ls -d \\\\\\\"\\\\${latest_run}\\\\\\\"checkpoint-* | sort -V | tail -1) && echo \\\\\\\"Using checkpoint: \\\\$final_ckpt\\\\\\\" && test -f \\\\\\\"\\\\${final_ckpt}/adapter_config.json\\\\\\\" && echo 'adapter_config.json OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$final_ckpt --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"62340\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval-r3.log\", \"submitted_at\": \"2026-05-14T14:28:24.797Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\", \"conclusion\": \"success\", \"metrics\": {\"eval_success_rate\": 0.617, \"eval_successes\": 29, \"eval_total\": 47, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_cool_then_place\": \"4/7 (57.1%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_clean_then_place\": \"5/11 (45.5%)\"}}}, \"v4-vanilla-eval-r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:24:25.560Z\", \"updated_at\": \"2026-05-14T14:28:40.995Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"61793\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval-r2.log\", \"submitted_at\": \"2026-05-14T14:24:25.523Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\", \"conclusion\": \"failed\"}, \"v4-random-sft-r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:30:55.117Z\", \"updated_at\": \"2026-05-14T14:24:56.155Z\", \"spec\": {\"pid\": \"58163\", \"actual_status\": \"training_in_progress\", \"gpu\": [\"cuda:3\"], \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/sft_random_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"hypothesis\": \"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-taxei-sft-r2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:30:52.865Z\", \"updated_at\": \"2026-05-14T14:24:54.288Z\", \"spec\": {\"pid\": \"58034\", \"actual_status\": \"training_in_progress\", \"gpu\": [\"cuda:2\"], \"server\": \"autodl-5090\", \"data_path\": \"data/mini_pipeline_v4/sft_taxei_v4.jsonl\", \"data_count\": 9029, \"model_name\": \"Qwen3-8B\", \"seed\": 42}, \"hypothesis\": \"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\", \"conclusion\": \"success\"}, \"v4-vanilla-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T14:15:59.327Z\", \"updated_at\": \"2026-05-14T14:24:25.638Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=\\\\$(find checkpoints/mini_vanilla_sft_v4 -name 'checkpoint-*' -type d | sort -t- -k2 -n | tail -1) && echo \\\\\\\"Using checkpoint: \\\\$CKPT\\\\\\\" && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --gpu 0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"61138\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-eval.log\", \"submitted_at\": \"2026-05-14T14:15:59.291Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\", \"conclusion\": \"failed\"}, \"v3-random-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:26.315Z\", \"updated_at\": \"2026-05-14T14:15:26.311Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v3/*/checkpoint-3405 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_random.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"55925\", \"log_path\": \"~/runs/tax_error_inject_agent/v3-random-eval.log\", \"submitted_at\": \"2026-05-14T13:26:53.024Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.511, \"eval_successes\": 24, \"eval_total\": 47, \"vs_baseline_pp\": 8.5, \"vs_vanilla_sft_pp\": -23.4}, \"conclusion\": \"negative\"}, \"v3-taxei-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:24.552Z\", \"updated_at\": \"2026-05-14T14:15:25.974Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v3/*/checkpoint-2832 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_taxei.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"55848\", \"log_path\": \"~/runs/tax_error_inject_agent/v3-taxei-eval.log\", \"submitted_at\": \"2026-05-14T13:26:51.905Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\", \"metrics\": {\"eval_success_rate\": 0.66, \"eval_successes\": 31, \"eval_total\": 47, \"vs_baseline_pp\": 23.4, \"vs_vanilla_sft_pp\": -8.5, \"per_task\": {\"look_at_obj_in_light\": \"5/6 (83.3%)\", \"pick_clean_then_place\": \"8/11 (72.7%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_and_place_simple\": \"5/8 (62.5%)\", \"pick_two_obj_and_place\": \"4/7 (57.1%)\", \"pick_cool_then_place\": \"3/7 (42.9%)\"}}, \"conclusion\": \"negative\"}, \"v4-random-sft-r3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:32:26.753Z\", \"updated_at\": \"2026-05-14T13:32:36.181Z\", \"spec\": {\"command\": \"bash -c \\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"58826\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-random-sft-r3.log\", \"submitted_at\": \"2026-05-14T13:32:26.722Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-taxei-sft-r3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:32:24.446Z\", \"updated_at\": \"2026-05-14T13:32:34.819Z\", \"spec\": {\"command\": \"bash -c \\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"58741\", \"log_path\": \"~/runs/tax_error_inject_agent/v4-taxei-sft-r3.log\", \"submitted_at\": \"2026-05-14T13:32:24.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\"}, \"v4-random-sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:31.864Z\", \"updated_at\": \"2026-05-14T13:31:19.378Z\", \"spec\": {\"pid\": \"56765\", \"gpu_memory_mib\": 19159, \"gpu_util_pct\": 60}, \"hypothesis\": \"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\", \"conclusion\": \"failed\"}, \"v4-taxei-sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:26:29.177Z\", \"updated_at\": \"2026-05-14T13:31:18.431Z\", \"spec\": {\"pid\": \"56685\", \"gpu_memory_mib\": 30884, \"gpu_util_pct\": 94}, \"hypothesis\": \"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\", \"conclusion\": \"failed\"}, \"mini-vanilla-sft-v4\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:14:26.614Z\", \"updated_at\": \"2026-05-14T13:27:05.003Z\", \"hypothesis\": \"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": \"50537\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-vanilla-sft-v4.log\", \"submitted_at\": \"2026-05-14T12:14:32.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\"}, \"mini-random-sft-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:13:19.635Z\", \"updated_at\": \"2026-05-14T13:27:04.310Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_random_aligned.jsonl --output_dir checkpoints/mini_random_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"45764\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-random-sft-v3.log\", \"submitted_at\": \"2026-05-14T11:13:19.618Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"train_samples\": 9076, \"train_samples_clean\": 4176, \"train_samples_injected\": 4900, \"train_steps_total\": 3405, \"est_duration_min\": 110, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-taxei-sft-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:13:17.286Z\", \"updated_at\": \"2026-05-14T13:27:03.840Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_taxei_aligned.jsonl --output_dir checkpoints/mini_taxei_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:1\"], \"pid\": \"45621\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-taxei-sft-v3.log\", \"submitted_at\": \"2026-05-14T11:13:17.271Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"train_samples\": 7545, \"train_samples_clean\": 4176, \"train_samples_injected\": 3369, \"train_steps_total\": 2832, \"est_duration_min\": 90, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"mini-vanilla-sft-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:13:13.990Z\", \"updated_at\": \"2026-05-14T13:27:02.899Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_vanilla_aligned.jsonl --output_dir checkpoints/mini_vanilla_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"45478\", \"log_path\": \"~/runs/tax_error_inject_agent/mini-vanilla-sft-v3.log\", \"submitted_at\": \"2026-05-14T11:13:13.975Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"metrics\": {\"train_samples\": 4176, \"train_steps_total\": 1566, \"est_duration_min\": 58, \"format\": \"aligned_single_turn\"}, \"conclusion\": \"success\"}, \"v3-vanilla-eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:22:10.941Z\", \"updated_at\": \"2026-05-14T13:27:01.957Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1566 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_vanilla.json --device cuda:0\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:0\"], \"pid\": \"51848\", \"log_path\": \"~/runs/tax_error_inject_agent/v3-vanilla-eval.log\", \"submitted_at\": \"2026-05-14T12:22:30.589Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.745, \"successes\": 35, \"total\": 47, \"vs_baseline_pp\": 31.9, \"vs_baseline\": \"42.6% → 74.5%\"}}, \"v4-vanilla-sft\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:14:57.794Z\", \"updated_at\": \"2026-05-14T12:22:10.869Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/v4_vanilla_sft/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:3\"], \"pid\": 50972, \"log_path\": \"~/runs/tax_error_inject_agent/v4-vanilla-sft.log\", \"submitted_at\": \"2026-05-14T12:14:57.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"failure_reason\": \"OOM - CUDA_VISIBLE_DEVICES not set, ran on wrong GPU (cuda:0 instead of cuda:3)\"}, \"conclusion\": \"failed\"}, \"vanilla_sft_aligned_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:05:05.459Z\", \"updated_at\": \"2026-05-14T11:05:05.459Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft \\\\\\n  --model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\\\\n  --dataset data/mini_pipeline/sft_vanilla_aligned.jsonl \\\\\\n  --lora_rank 16 \\\\\\n  --lora_alpha 32 \\\\\\n  --lora_dropout 0.05 \\\\\\n  --target_modules all-linear \\\\\\n  --num_train_epochs 1 \\\\\\n  --learning_rate 1e-4 \\\\\\n  --per_device_train_batch_size 1 \\\\\\n  --gradient_accumulation_steps 16 \\\\\\n  --warmup_ratio 0.05 \\\\\\n  --seed 42 \\\\\\n  --max_length 4096 \\\\\\n  --gradient_checkpointing true \\\\\\n  --output_dir checkpoints/vanilla_sft_aligned \\\\\\n  --logging_steps 5 \\\\\\n  --logging_first_step true \\\\\\n  --save_strategy epoch \\\\\\n  --bf16 true \\\\\\n  --weight_decay 0.1 \\\\\\n  --adam_beta1 0.9 \\\\\\n  --adam_beta2 0.95 \\\\\\n  --max_grad_norm 1.0 \\\\\\n  --lr_scheduler_type cosine \\\\\\n  --optim adamw_torch_fused 2>&1\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"44492\", \"log_path\": \"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v2.log\", \"submitted_at\": \"2026-05-14T11:05:05.434Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"vanilla_sft_aligned_v1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:04:12.825Z\", \"updated_at\": \"2026-05-14T11:04:12.825Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --config configs/sft_vanilla_aligned.yaml 2>&1\\\"\", \"server\": \"autodl-5090\", \"gpu\": [\"cuda:2\"], \"pid\": \"43894\", \"log_path\": \"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v1.log\", \"submitted_at\": \"2026-05-14T11:04:12.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"mini-vanilla-sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:51:41.382Z\", \"updated_at\": \"2026-05-14T10:54:48.860Z\", \"hypothesis\": \"Vanilla trajectory SFT baseline for comparison with TaxEI\", \"spec\": {\"command\": \"python3 scripts/train_sft.py --data data/sft_data/vanilla_train.jsonl --output checkpoints/mini_vanilla_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"pid\": \"41874\", \"log_path\": \"eval_results/mini_vanilla_clean.json\", \"submitted_at\": \"2026-05-14T10:54:31.029Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/sft_data/vanilla_train.jsonl\", \"data_count\": 278, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"hypothesis\": \"Vanilla SFT on clean trajectories as baseline for comparison\", \"checkpoint_path\": \"checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54\", \"wall_clock_seconds\": 17.8, \"gpu_hours\": 0.0}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T10:54:20.210Z\", \"metrics\": {\"eval_success_rate\": 0.149, \"eval_successes\": 7, \"eval_total\": 47, \"vs_baseline_pp\": -27.7, \"per_task\": {\"look_at_obj_in_light\": \"0/6 (0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"2/11 (18.2%)\", \"pick_cool_then_place\": \"0/7 (0%)\", \"pick_heat_then_place\": \"3/8 (37.5%)\", \"pick_two_obj_and_place\": \"0/7 (0%)\"}, \"train_steps\": 54, \"train_duration_min\": 5}}, \"mini-taxei-sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:51:40.784Z\", \"updated_at\": \"2026-05-14T10:54:46.174Z\", \"hypothesis\": \"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\", \"spec\": {\"command\": \"python3 scripts/train_sft.py --data data/sft_data/taxei_train.jsonl --output checkpoints/mini_taxei_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"pid\": \"41263\", \"log_path\": \"eval_results/mini_taxei_clean.json\", \"submitted_at\": \"2026-05-14T10:53:16.579Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/sft_data/taxei_train.jsonl\", \"data_count\": 278, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-195\", \"hypothesis\": \"TaxEI error injection + recovery SFT improves over vanilla SFT and baseline\", \"wall_clock_seconds\": 63.1, \"gpu_hours\": 0.04}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T10:54:19.721Z\", \"metrics\": {\"eval_success_rate\": 0.447, \"eval_successes\": 21, \"eval_total\": 47, \"vs_baseline_pp\": 2.1, \"per_task\": {\"look_at_obj_in_light\": \"3/6 (50.0%)\", \"pick_and_place_simple\": \"2/8 (25.0%)\", \"pick_clean_then_place\": \"6/11 (54.5%)\", \"pick_cool_then_place\": \"1/7 (14.3%)\", \"pick_heat_then_place\": \"6/8 (75.0%)\", \"pick_two_obj_and_place\": \"3/7 (42.9%)\"}, \"train_steps\": 195, \"train_duration_min\": 16.3}}, \"vanilla-react-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:20:00.119Z\", \"updated_at\": \"2026-05-14T10:54:35.171Z\", \"spec\": {\"command\": \"python3 eval/recovery.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --eval_split valid_unseen --no_inject (MAX_STEPS=50 hardcoded)\", \"server\": \"autodl-5090\", \"data_path\": \"ALFWorld valid_unseen (47/85 tasks, solvable=True filter, pick_and_place_with_movable_recep excluded 0/11)\", \"data_count\": 47, \"model_name\": \"Qwen3-8B (zero-shot, enable_thinking=False)\", \"seed\": 42, \"gpu\": \"cuda:1\", \"hypothesis\": \"Qwen3-8B zero-shot ReAct 在 ALFWorld valid_unseen 的基线成功率，作为 SFT 对比的 lower bound\", \"checkpoint_path\": \"N/A (zero-shot, no training)\", \"log_path\": \"/root/autodl-tmp/tax_error_inject_agent/eval_results/vanilla_react_baseline.json\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.426, \"total_tasks\": 47, \"successes\": 20, \"per_task_type\": {\"pick_heat_then_place\": {\"success\": 5, \"total\": 8, \"rate\": 0.625}, \"look_at_obj_in_light\": {\"success\": 3, \"total\": 6, \"rate\": 0.5}, \"pick_and_place_simple\": {\"success\": 4, \"total\": 8, \"rate\": 0.5}, \"pick_clean_then_place\": {\"success\": 5, \"total\": 11, \"rate\": 0.455}, \"pick_two_obj_and_place\": {\"success\": 3, \"total\": 7, \"rate\": 0.429}, \"pick_cool_then_place\": {\"success\": 0, \"total\": 7, \"rate\": 0}}}, \"completed_at\": \"2026-05-14T08:58:00.892Z\"}, \"mini-pipeline-e2e\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:39:15.654Z\", \"updated_at\": \"2026-05-14T10:39:15.654Z\", \"conclusion\": \"failed\"}, \"sft-dryrun-73\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:19:34.694Z\", \"updated_at\": \"2026-05-14T08:20:00.752Z\", \"spec\": {\"command\": \"swift sft --config configs/sft_vanilla.yaml (dry-run, 1 epoch, bs=1, max_length=2048)\", \"server\": \"autodl-5090\", \"data_path\": \"data/trajectories/ (124 successful trajectories)\", \"data_count\": 124, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"hypothesis\": \"SFT pipeline 端到端验证：注入→格式化→训练流程是否正常工作\", \"checkpoint_path\": \"checkpoints/dryrun_sft_v2/v0-20260514-161410/checkpoint-8/\", \"log_path\": \"checkpoints/dryrun_sft_v2/v0-20260514-161410/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T08:19:52.165Z\", \"metrics\": {\"train_loss_init\": 2.436, \"train_loss_final\": 1.543, \"train_loss_avg\": 1.894, \"peak_memory_gib\": 19.22, \"steps\": 8, \"duration_sec\": 42, \"data_vanilla\": 124, \"data_injected_dryrun\": 96, \"injected_failed\": 4}}}, \"count\": 44, \"total\": 44, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0777}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e5eac54-f5cc-45f0-a6c2-33d92ef4a36e",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "f19f581b-fe53-4fa5-ab15-435b6d1e9893",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-tax-error-inject-agent/0553cac9-bdbc-431a-b7d1-40e87437f6c8/tool-results/toolu_014dYwHB5CGrv86n2DW6Ag8U.txt",
+      "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"v4-random-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:04:57.591Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:00:43.285Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla/taxei recovery eval.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant random --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_random_recovery_eval.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 90124, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random SFT v4)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387\\\", \\\"eval_data\\\": \\\"valid_unseen (47 episodes)\\\", \\\"log_path\\\": \\\"/tmp/v4_random_recovery_eval.log\\\", \\\"output_path\\\": \\\"eval_results/v4_random_recovery_eval.json\\\", \\\"data_path\\\": \\\"valid_unseen\\\", \\\"data_count\\\": 47}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_random_recovery_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-14T21:42:07.544Z\\\", \\\"metrics\\\": {\\\"recovery_rate\\\": 0.638, \\\"detection_rate\\\": 0, \\\"successes\\\": 30, \\\"total\\\": 47, \\\"source\\\": \\\"json-file-verified\\\", \\\"note\\\": \\\"r1=29/47, r2=30/47, ±2pp run-to-run variance on P1 non-determinism\\\"}}, \\\"v4-random-seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:49:34.441Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:59:16.615Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"93312\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T21:59:16.545Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"v4-taxei-seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:49:34.191Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:50:17.921Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=123 (P1 multi-seed补齐) — 9,029 samples, same hyperparams as seed=42/0, 配齐3-seed统计分析\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"92108\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-seed123.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T21:50:17.845Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"v4-taxei-recovery-eval-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:23:55.110Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:46:19.993Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 eval/injected_eval.py --model_path checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_taxei_recovery_eval_r2.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (mini_taxei_sft_v4 checkpoint-3387)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\", \\\"eval_data\\\": \\\"47 episodes with error injection (4 operators: C1_context_truncation, C4_observation_masking, P1_step_order_swap, P2_sub_goal_deletion)\\\", \\\"data_path\\\": \\\"eval/injected_eval.py\\\", \\\"data_count\\\": 47, \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=42 recovery eval retry — 47 episodes with error injection, measuring detection/recovery/success rates. Previous attempt reported process dead 5x.\\\", \\\"pid\\\": 90519, \\\"log_path\\\": \\\"/tmp/v4_taxei_recovery_eval_r2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_taxei_recovery_eval_r2.json\\\", \\\"completed_at\\\": \\\"2026-05-14T21:42:08.000Z\\\", \\\"metrics\\\": {\\\"recovery_rate\\\": 0.596, \\\"detection_rate\\\": 0, \\\"total_episodes\\\": 47, \\\"per_operator\\\": {\\\"C1_context_truncation\\\": {\\\"recovered\\\": 8, \\\"total\\\": 12, \\\"rate\\\": 0.667}, \\\"C4_observation_masking\\\": {\\\"recovered\\\": 7, \\\"total\\\": 11, \\\"rate\\\": 0.636}, \\\"P1_step_order_swap\\\": {\\\"recovered\\\": 7, \\\"total\\\": 12, \\\"rate\\\": 0.583}, \\\"P2_sub_goal_deletion\\\": {\\\"recovered\\\": 6, \\\"total\\\": 12, \\\"rate\\\": 0.5}}}}, \\\"v4-taxei-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.278Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:53.154Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=0 eval — multi-seed verification, 9029 samples, testing TaxEI injection stability\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_seed0_eval.json --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"eval/valid_unseen\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (taxei v4 seed=0)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks (clean, no injection)\\\", \\\"parent\\\": \\\"v4-taxei-seed0\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_taxei_seed0_eval.json\\\", \\\"log_path\\\": \\\"eval_results/v4_taxei_seed0_eval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.468, \\\"eval_successes\\\": 22, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": -14.9}, \\\"completed_at\\\": \\\"2026-05-14T21:20:13.351Z\\\"}, \\\"v4-random-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.456Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:52.271Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=0 eval — multi-seed verification, 9029 samples, testing random injection stability\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_seed0_eval.json --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"eval/valid_unseen\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + LoRA (random v4 seed=0)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks (clean, no injection)\\\", \\\"parent\\\": \\\"v4-random-seed0\\\", \\\"log_path\\\": \\\"eval_results/v4_random_seed0_eval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.553, \\\"eval_successes\\\": 26, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": -10.7}, \\\"checkpoint_path\\\": \\\"eval_results/v4_random_seed0_eval.json\\\", \\\"completed_at\\\": \\\"2026-05-14T21:20:14.339Z\\\"}, \\\"v4-vanilla-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:30:18.314Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:21:50.951Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 eval/injected_eval.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant vanilla --num_episodes 47 --seed 42 --device cuda:0 --output eval_results/v4_vanilla_recovery_eval.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (vanilla v4 seed=42)\\\", \\\"checkpoint_source\\\": \\\"checkpoints/mini_vanilla_sft_v4/v0-20260514-201441/checkpoint-1635\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks with error injection\\\", \\\"seed\\\": 42, \\\"parent\\\": \\\"mini-vanilla-sft-v4\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_vanilla_recovery_eval.json\\\", \\\"log_path\\\": \\\"eval_results/v4_vanilla_recovery_eval.json\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.617, \\\"successes\\\": 29, \\\"total\\\": 47, \\\"recovery_rate\\\": 0.617, \\\"detection_rate\\\": 0}, \\\"completed_at\\\": \\\"2026-05-14T21:20:15.791Z\\\"}, \\\"v4-taxei-recovery-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:40:41.154Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:20:17.664Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"D010 Phase 2: Recovery eval with action injection on TaxEI seed=42 checkpoint — measuring TaxEI-trained model's recovery ability vs vanilla\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 eval/injected_eval.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --model_variant taxei --device cuda:0 --seed 42 --output eval_results/v4_taxei_recovery_eval.json\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 87614, \\\"data_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B + TaxEI LoRA v4 checkpoint-3387\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387\\\", \\\"eval_data\\\": \\\"ALFWorld valid_unseen 47 tasks with action injection\\\", \\\"checkpoint_path\\\": \\\"eval_results/v4_taxei_recovery_eval.json\\\", \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-taxei-recovery-eval.log\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=42 recovery eval (injected_eval.py) — 47 episodes with error injection, measuring detection/recovery/success rates under P1/P2/C1/C4 operators. Phase 2 counterpart to vanilla recovery eval.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T20:58:38.335Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T20:58:38.665Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T20:58:39.601019+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.596, \\\"successes\\\": 28, \\\"total\\\": 47, \\\"recovery_rate\\\": 0.596, \\\"detection_rate\\\": 0}}, \\\"v4-vanilla-seed123-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:43:48.780Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=123 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_seed123_eval.json --device cuda:0\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"model_name\\\": \\\"Qwen3-8B + LoRA (vanilla v4 seed=123)\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/checkpoint-1635\\\", \\\"log_path\\\": \\\"/tmp/v4_vanilla_seed123_eval.log\\\", \\\"eval_data\\\": \\\"47 ALFWorld tasks (clean, no injection)\\\", \\\"parent\\\": \\\"v4-vanilla-seed123\\\", \\\"data_path\\\": \\\"eval/valid_unseen\\\", \\\"data_count\\\": 47}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T20:37:11.382Z\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 4.3, \\\"vs_seed0_pp\\\": -2.1, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": {\\\"success\\\": 5, \\\"total\\\": 6, \\\"rate\\\": 0.833}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 6, \\\"total\\\": 8, \\\"rate\\\": 0.75}, \\\"pick_clean_then_place_in_recep\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_cool_then_place_in_recep\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}, \\\"pick_heat_then_place_in_recep\\\": {\\\"success\\\": 7, \\\"total\\\": 8, \\\"rate\\\": 0.875}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 4, \\\"total\\\": 7, \\\"rate\\\": 0.571}}}}, \\\"v4-random-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:03.440Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:36:31.263Z\\\", \\\"hypothesis\\\": \\\"v4 Random SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_random_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_random_v4.jsonl --seed 0\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 72303, \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-random-seed0.log\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_random_sft_v4_seed0/v0-20260515-014329/checkpoint-3387\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.355, \\\"token_accuracy\\\": 0.912, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 110}, \\\"completed_at\\\": \\\"2026-05-14T19:35:39.420Z\\\"}, \\\"v4-taxei-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:02.696Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:36:29.716Z\\\", \\\"hypothesis\\\": \\\"v4 TaxEI SFT seed=0 (multi-seed verification) — 9,029 samples, same hyperparams as seed=42, testing result stability\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_taxei_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"swift sft --model Qwen3-8B --dataset sft_taxei_v4.jsonl --seed 0\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 71822, \\\"log_path\\\": \\\"/root/runs/tax_error_inject_agent/v4-taxei-seed0.log\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_taxei_sft_v4_seed0/v0-20260515-014320/checkpoint-3387\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.355, \\\"token_accuracy\\\": 0.917, \\\"train_steps\\\": 3387, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 110}, \\\"completed_at\\\": \\\"2026-05-14T19:35:37.503Z\\\"}, \\\"v4-vanilla-seed0-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:30:26.093Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:30:45.170Z\\\", \\\"hypothesis\\\": \\\"v4 Vanilla SFT seed=0 eval — multi-seed verification, 4358 samples, comparing with seed=42 baseline (61.7%)\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"eval_results/v4_vanilla_seed0_eval.json\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-seed0-eval.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:01:19.696Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:01:20.697938+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.681, \\\"eval_successes\\\": 32, \\\"eval_total\\\": 47, \\\"vs_seed42_pp\\\": 6.4, \\\"mcnemar_vs_seed42_p\\\": 0.375, \\\"discordant_pairs\\\": 5, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"5/7 (71.4%)\\\"}}, \\\"completed_at\\\": \\\"2026-05-14T19:29:37.198Z\\\"}, \\\"v4-vanilla-seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:45:23.836Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:29:24.021Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=123 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed123 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 123 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 77937, \\\"log_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed123/v1-20260515-022602/logging.jsonl\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:20:42.388Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed123\\\", \\\"note\\\": \\\"OOM on first attempt (v0), restarted as v1 with PID 77937\\\", \\\"wall_clock_seconds\\\": 3941.6, \\\"gpu_hours\\\": 1.09}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:26:23.312Z\\\"}, \\\"failure_reason\\\": \\\"v0 OOM at model loading (GPU 3 occupied by another process, 18.21 GiB in use). v1 (PID 77937) actually completed 1635/1635 steps. Cron caught v0's EXIT_CODE=1. Verifying checkpoint validity...\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T19:26:23.949Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:26:24.909318+00:00\\\"}]}, \\\"metrics\\\": {\\\"final_loss\\\": 0.288, \\\"token_accuracy\\\": 0.903, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58.9}}, \\\"v4-vanilla-seed0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:01.929Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:46:58.919Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=0 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 0, \\\"server\\\": \\\"autodl-5090\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed0 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 0 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 71959, \\\"log_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/logging.jsonl\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed0/v0-20260515-014317/checkpoint-1635\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T18:42:56.365Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T18:42:57.338365+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_loss\\\": 0.297, \\\"avg_loss\\\": 0.416, \\\"token_accuracy\\\": 0.902, \\\"train_steps\\\": 1635, \\\"train_epochs\\\": 3, \\\"train_duration_min\\\": 58}, \\\"completed_at\\\": \\\"2026-05-14T18:45:18.121Z\\\"}, \\\"v4-vanilla-seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:45:24.536Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:20:48.185Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 1: v4 Vanilla SFT seed=7 多种子验证 — 4,358 samples, LoRA rank=16, 3 epochs, 与 seed=42 的 61.7% 对比波动范围\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4_seed7 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 7 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_vanilla_v4.jsonl\\\", \\\"data_count\\\": 4358, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 7, \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"v4-vanilla-seed7\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft_v4_seed7\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v4_seed7/train.log\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T18:20:48.185Z\\\"}, \\\"v4-recovery-eval-dev\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:42:04.153Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:59.630Z\\\", \\\"hypothesis\\\": \\\"Recovery eval pipeline development — inject errors during eval to test if TaxEI models recover better than random/vanilla (Option C from D009)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pipeline_files\\\": [\\\"eval/injected_eval.py\\\", \\\"scripts/run_injected_eval.sh\\\"], \\\"injected_eval_lines\\\": 463, \\\"dryrun_result\\\": \\\"PASS\\\", \\\"dryrun_detail\\\": \\\"vanilla checkpoint, 1 task, cuda:3, injected error recovered in 13 steps\\\"}}, \\\"v4-recovery-dryrun\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:45:26.420Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:15:56.604Z\\\", \\\"hypothesis\\\": \\\"D010 Phase 2 前置: Recovery eval --inject 模式 dry-run, 1-2 tasks 验证 pipeline 正常工作\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-random-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:25:02.397Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:31:46.657Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_random_sft_v4/v1-20260514-213104/checkpoint-3387 && test -f \\\\\\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\\\\\$CKPT && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path \\\\\\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_random_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67837\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T16:25:02.357Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Random SFT eval — formal Gate 3b judgment, same-source 9,029 samples, checkpoint-3387\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_vanilla_pp\\\": 4.3, \\\"vs_taxei_pp\\\": 4.3, \\\"mcnemar_vs_vanilla_p\\\": 0.754, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"6/6 (100%)\\\", \\\"pick_and_place_simple\\\": \\\"4/8 (50%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\"}}}, \\\"v4-taxei-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T16:25:00.653Z\\\", \\\"updated_at\\\": \\\"2026-05-14T17:31:43.481Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=checkpoints/mini_taxei_sft_v4/v1-20260514-213102/checkpoint-3387 && test -f \\\\\\\\${CKPT}/adapter_config.json && echo 'adapter_config OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && echo 'Using checkpoint: '\\\\\\\\$CKPT && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\\\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_taxei_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"67694\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T16:25:00.616Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT eval — formal Gate 3a/3b judgment, same-source 9,029 samples, checkpoint-3387\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"vs_vanilla_pp\\\": 0, \\\"vs_random_pp\\\": -4.3, \\\"mcnemar_vs_vanilla_p\\\": 1, \\\"mcnemar_vs_random_p\\\": 0.754, \\\"gate_3a\\\": \\\"FAIL\\\", \\\"gate_3b\\\": \\\"FAIL\\\", \\\"gate_4\\\": \\\"PASS\\\", \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"6/6 (100%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"3/7 (42.9%)\\\", \\\"pick_heat_then_place\\\": \\\"7/8 (87.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"2/7 (28.6%)\\\"}}}, \\\"traj_collect_500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:45:21.504Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:28:02.238Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python collect_trajectories.py --target 500\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/trajectories/\\\", \\\"data_count\\\": 575, \\\"model_name\\\": \\\"trajectory_collector\\\", \\\"seed\\\": 0, \\\"pid\\\": 11045, \\\"gpu\\\": \\\"none (CPU task)\\\", \\\"hypothesis\\\": \\\"GPT-5.2 可作为 teacher 在 ALFWorld 中收集高质量成功轨迹（预期成功率≥93%）\\\"}, \\\"metrics\\\": {\\\"successful_trajectories\\\": 501, \\\"failed_trajectories\\\": 213, \\\"total_attempts\\\": 714, \\\"success_rate\\\": 0.702, \\\"api_cost_usd\\\": 8.86, \\\"collection_time_sec\\\": 5245}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"data/trajectories/successful_trajectories.jsonl\\\", \\\"log_path\\\": \\\"/tmp/collect_500.log\\\", \\\"completed_at\\\": \\\"2026-05-14T12:21:11.941Z\\\"}, \\\"v4-vanilla-eval-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:28:24.833Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:25:11.284Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && latest_run=\\\\\\\\$(ls -dt checkpoints/mini_vanilla_sft_v4/v0-*/ | head -1) && final_ckpt=\\\\\\\\$(ls -d \\\\\\\\\\\\\\\"\\\\\\\\${latest_run}\\\\\\\\\\\\\\\"checkpoint-* | sort -V | tail -1) && echo \\\\\\\\\\\\\\\"Using checkpoint: \\\\\\\\$final_ckpt\\\\\\\\\\\\\\\" && test -f \\\\\\\\\\\\\\\"\\\\\\\\${final_ckpt}/adapter_config.json\\\\\\\\\\\\\\\" && echo 'adapter_config.json OK' || { echo 'ERROR: adapter_config.json missing'; exit 1; } && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\\\\\$final_ckpt --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"62340\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-eval-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:28:24.797Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval r3 — dynamic checkpoint lookup with sort -V, adapter_config.json pre-check\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.617, \\\"eval_successes\\\": 29, \\\"eval_total\\\": 47, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_cool_then_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_clean_then_place\\\": \\\"5/11 (45.5%)\\\"}}}, \\\"v4-vanilla-eval-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:24:25.560Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:28:40.995Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_vanilla_sft_v4/v0-20260514-122641/checkpoint-1635 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"61793\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-eval-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:24:25.523Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval retry — fixed --device cuda:0 (was --gpu 0) + explicit checkpoint-1635\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-random-sft-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:30:55.117Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:56.155Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"58163\\\", \\\"actual_status\\\": \\\"training_in_progress\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_random_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v4 Random SFT retry (r2) — same-source 9,029 samples, formal Gate 3b. Previous run killed by SIGHUP.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-taxei-sft-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:30:52.865Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:54.288Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"58034\\\", \\\"actual_status\\\": \\\"training_in_progress\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/mini_pipeline_v4/sft_taxei_v4.jsonl\\\", \\\"data_count\\\": 9029, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT retry (r2) — same-source 9,029 samples, formal Gate 3a/3b. Previous run killed by SIGHUP.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"v4-vanilla-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:15:59.327Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:24:25.638Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CKPT=\\\\\\\\$(find checkpoints/mini_vanilla_sft_v4 -name 'checkpoint-*' -type d | sort -t- -k2 -n | tail -1) && echo \\\\\\\\\\\\\\\"Using checkpoint: \\\\\\\\$CKPT\\\\\\\\\\\\\\\" && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path \\\\\\\\$CKPT --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v4_vanilla_eval.json --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"61138\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:15:59.291Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Vanilla SFT eval (4,358 samples, clean only) — v4 baseline for Gate 3a comparison\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v3-random-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:26.315Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:15:26.311Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=1 python3 eval/recovery.py --model_path checkpoints/mini_random_sft_v3/*/checkpoint-3405 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_random.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"55925\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v3-random-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:26:53.024Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v3 Random SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.511, \\\"eval_successes\\\": 24, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 8.5, \\\"vs_vanilla_sft_pp\\\": -23.4}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v3-taxei-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:24.552Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:15:25.974Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path checkpoints/mini_taxei_sft_v3/*/checkpoint-2832 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_taxei.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"55848\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v3-taxei-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:26:51.905Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v3 TaxEI SFT eval on 47-task ALFWorld (format-aligned, initial signal before v4 formal judgment)\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.66, \\\"eval_successes\\\": 31, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 23.4, \\\"vs_vanilla_sft_pp\\\": -8.5, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"5/6 (83.3%)\\\", \\\"pick_clean_then_place\\\": \\\"8/11 (72.7%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_and_place_simple\\\": \\\"5/8 (62.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"4/7 (57.1%)\\\", \\\"pick_cool_then_place\\\": \\\"3/7 (42.9%)\\\"}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"v4-random-sft-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:32:26.753Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:32:36.181Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=3 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_random_v4.jsonl --output_dir checkpoints/mini_random_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"58826\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-random-sft-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:32:26.722Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 Random SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\\\"}, \\\"v4-taxei-sft-r3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:32:24.446Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:32:34.819Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"trap '' HUP; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_taxei_v4.jsonl --output_dir checkpoints/mini_taxei_sft_v4 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"58741\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-taxei-sft-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:32:24.415Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT retry (r3) — added trap '' HUP to survive tmux cleanup. Same-source 9,029 samples.\\\"}, \\\"v4-random-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:31.864Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:31:19.378Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"56765\\\", \\\"gpu_memory_mib\\\": 19159, \\\"gpu_util_pct\\\": 60}, \\\"hypothesis\\\": \\\"v4 Random SFT with same-source data (9,029 samples), formal Gate 3b judgment — only tag differs from v4-taxei\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"v4-taxei-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T13:26:29.177Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:31:18.431Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"56685\\\", \\\"gpu_memory_mib\\\": 30884, \\\"gpu_util_pct\\\": 94}, \\\"hypothesis\\\": \\\"v4 TaxEI SFT with same-source data (9,029 samples), formal Gate 3a/3b judgment\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"mini-vanilla-sft-v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:14:26.614Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:05.003Z\\\", \\\"hypothesis\\\": \\\"Vanilla SFT baseline with aligned format (v4), for Gate 3a comparison\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/mini_vanilla_sft_v4/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"50537\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-vanilla-sft-v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:14:32.528Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-random-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:13:19.635Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:04.310Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_random_aligned.jsonl --output_dir checkpoints/mini_random_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"45764\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-random-sft-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:13:19.618Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"train_samples\\\": 9076, \\\"train_samples_clean\\\": 4176, \\\"train_samples_injected\\\": 4900, \\\"train_steps_total\\\": 3405, \\\"est_duration_min\\\": 110, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-taxei-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:13:17.286Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:03.840Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_taxei_aligned.jsonl --output_dir checkpoints/mini_taxei_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"45621\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-taxei-sft-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:13:17.271Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"train_samples\\\": 7545, \\\"train_samples_clean\\\": 4176, \\\"train_samples_injected\\\": 3369, \\\"train_steps_total\\\": 2832, \\\"est_duration_min\\\": 90, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mini-vanilla-sft-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:13:13.990Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:02.899Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v3/sft_vanilla_aligned.jsonl --output_dir checkpoints/mini_vanilla_sft_v3/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"45478\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/mini-vanilla-sft-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:13:13.975Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"metrics\\\": {\\\"train_samples\\\": 4176, \\\"train_steps_total\\\": 1566, \\\"est_duration_min\\\": 58, \\\"format\\\": \\\"aligned_single_turn\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"v3-vanilla-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:22:10.941Z\\\", \\\"updated_at\\\": \\\"2026-05-14T13:27:01.957Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=0 python3 eval/recovery.py --model_path /root/autodl-tmp/tax_error_inject_agent/checkpoints/mini_vanilla_sft_v3/v0-20260514-191323/checkpoint-1566 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --no_inject --output eval_results/v3_vanilla.json --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"51848\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v3-vanilla-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:22:30.589Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.745, \\\"successes\\\": 35, \\\"total\\\": 47, \\\"vs_baseline_pp\\\": 31.9, \\\"vs_baseline\\\": \\\"42.6% → 74.5%\\\"}}, \\\"v4-vanilla-sft\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:14:57.794Z\\\", \\\"updated_at\\\": \\\"2026-05-14T12:22:10.869Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && swift sft --model /root/autodl-tmp/models/Qwen/Qwen3-8B --dataset data/mini_pipeline_v4/sft_vanilla_v4.jsonl --output_dir checkpoints/v4_vanilla_sft/ --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --target_modules all-linear --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_length 4096 --num_train_epochs 3 --learning_rate 1e-4 --seed 42 --torch_dtype bfloat16 --logging_steps 5 --save_strategy epoch --gradient_checkpointing true\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": 50972, \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/v4-vanilla-sft.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:14:57.755Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"failure_reason\\\": \\\"OOM - CUDA_VISIBLE_DEVICES not set, ran on wrong GPU (cuda:0 instead of cuda:3)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"vanilla_sft_aligned_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:05:05.459Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:05:05.459Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft \\\\\\\\\\\\n  --model /root/autodl-tmp/models/Qwen/Qwen3-8B \\\\\\\\\\\\n  --dataset data/mini_pipeline/sft_vanilla_aligned.jsonl \\\\\\\\\\\\n  --lora_rank 16 \\\\\\\\\\\\n  --lora_alpha 32 \\\\\\\\\\\\n  --lora_dropout 0.05 \\\\\\\\\\\\n  --target_modules all-linear \\\\\\\\\\\\n  --num_train_epochs 1 \\\\\\\\\\\\n  --learning_rate 1e-4 \\\\\\\\\\\\n  --per_device_train_batch_size 1 \\\\\\\\\\\\n  --gradient_accumulation_steps 16 \\\\\\\\\\\\n  --warmup_ratio 0.05 \\\\\\\\\\\\n  --seed 42 \\\\\\\\\\\\n  --max_length 4096 \\\\\\\\\\\\n  --gradient_checkpointing true \\\\\\\\\\\\n  --output_dir checkpoints/vanilla_sft_aligned \\\\\\\\\\\\n  --logging_steps 5 \\\\\\\\\\\\n  --logging_first_step true \\\\\\\\\\\\n  --save_strategy epoch \\\\\\\\\\\\n  --bf16 true \\\\\\\\\\\\n  --weight_decay 0.1 \\\\\\\\\\\\n  --adam_beta1 0.9 \\\\\\\\\\\\n  --adam_beta2 0.95 \\\\\\\\\\\\n  --max_grad_norm 1.0 \\\\\\\\\\\\n  --lr_scheduler_type cosine \\\\\\\\\\\\n  --optim adamw_torch_fused 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"44492\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:05:05.434Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"vanilla_sft_aligned_v1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T11:04:12.825Z\\\", \\\"updated_at\\\": \\\"2026-05-14T11:04:12.825Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/tax_error_inject_agent && CUDA_VISIBLE_DEVICES=2 swift sft --config configs/sft_vanilla_aligned.yaml 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"43894\\\", \\\"log_path\\\": \\\"~/runs/tax_error_inject_agent/vanilla_sft_aligned_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T11:04:12.812Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"mini-vanilla-sft\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:51:41.382Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:48.860Z\\\", \\\"hypothesis\\\": \\\"Vanilla trajectory SFT baseline for comparison with TaxEI\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/train_sft.py --data data/sft_data/vanilla_train.jsonl --output checkpoints/mini_vanilla_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"41874\\\", \\\"log_path\\\": \\\"eval_results/mini_vanilla_clean.json\\\", \\\"submitted_at\\\": \\\"2026-05-14T10:54:31.029Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/sft_data/vanilla_train.jsonl\\\", \\\"data_count\\\": 278, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Vanilla SFT on clean trajectories as baseline for comparison\\\", \\\"checkpoint_path\\\": \\\"checkpoints/mini_vanilla_sft/v0-20260514-181708/checkpoint-54\\\", \\\"wall_clock_seconds\\\": 17.8, \\\"gpu_hours\\\": 0.0}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T10:54:20.210Z\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.149, \\\"eval_successes\\\": 7, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": -27.7, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"0/6 (0%)\\\", \\\"pick_and_place_simple\\\": \\\"2/8 (25.0%)\\\", \\\"pick_clean_then_place\\\": \\\"2/11 (18.2%)\\\", \\\"pick_cool_then_place\\\": \\\"0/7 (0%)\\\", \\\"pick_heat_then_place\\\": \\\"3/8 (37.5%)\\\", \\\"pick_two_obj_and_place\\\": \\\"0/7 (0%)\\\"}, \\\"train_steps\\\": 54, \\\"train_duration_min\\\": 5}}, \\\"mini-taxei-sft\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:51:40.784Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:46.174Z\\\", \\\"hypothesis\\\": \\\"TaxEI injection + recovery SFT improves over vanilla SFT on ALFWorld 47-task eval\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/train_sft.py --data data/sft_data/taxei_train.jsonl --output checkpoints/mini_taxei_sft/ --model Qwen3-8B --lora_rank 16 --seed 42 --epochs 3 --lr 1e-4\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"41263\\\", \\\"log_path\\\": \\\"eval_results/mini_taxei_clean.json\\\", \\\"submitted_at\\\": \\\"2026-05-14T10:53:16.579Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/sft_data/taxei_train.jsonl\\\", \\\"data_count\\\": 278, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"checkpoints/mini_taxei_sft/v0-20260514-181630/checkpoint-195\\\", \\\"hypothesis\\\": \\\"TaxEI error injection + recovery SFT improves over vanilla SFT and baseline\\\", \\\"wall_clock_seconds\\\": 63.1, \\\"gpu_hours\\\": 0.04}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T10:54:19.721Z\\\", \\\"metrics\\\": {\\\"eval_success_rate\\\": 0.447, \\\"eval_successes\\\": 21, \\\"eval_total\\\": 47, \\\"vs_baseline_pp\\\": 2.1, \\\"per_task\\\": {\\\"look_at_obj_in_light\\\": \\\"3/6 (50.0%)\\\", \\\"pick_and_place_simple\\\": \\\"2/8 (25.0%)\\\", \\\"pick_clean_then_place\\\": \\\"6/11 (54.5%)\\\", \\\"pick_cool_then_place\\\": \\\"1/7 (14.3%)\\\", \\\"pick_heat_then_place\\\": \\\"6/8 (75.0%)\\\", \\\"pick_two_obj_and_place\\\": \\\"3/7 (42.9%)\\\"}, \\\"train_steps\\\": 195, \\\"train_duration_min\\\": 16.3}}, \\\"vanilla-react-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T08:20:00.119Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:54:35.171Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval/recovery.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --eval_split valid_unseen --no_inject (MAX_STEPS=50 hardcoded)\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"ALFWorld valid_unseen (47/85 tasks, solvable=True filter, pick_and_place_with_movable_recep excluded 0/11)\\\", \\\"data_count\\\": 47, \\\"model_name\\\": \\\"Qwen3-8B (zero-shot, enable_thinking=False)\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:1\\\", \\\"hypothesis\\\": \\\"Qwen3-8B zero-shot ReAct 在 ALFWorld valid_unseen 的基线成功率，作为 SFT 对比的 lower bound\\\", \\\"checkpoint_path\\\": \\\"N/A (zero-shot, no training)\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/tax_error_inject_agent/eval_results/vanilla_react_baseline.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.426, \\\"total_tasks\\\": 47, \\\"successes\\\": 20, \\\"per_task_type\\\": {\\\"pick_heat_then_place\\\": {\\\"success\\\": 5, \\\"total\\\": 8, \\\"rate\\\": 0.625}, \\\"look_at_obj_in_light\\\": {\\\"success\\\": 3, \\\"total\\\": 6, \\\"rate\\\": 0.5}, \\\"pick_and_place_simple\\\": {\\\"success\\\": 4, \\\"total\\\": 8, \\\"rate\\\": 0.5}, \\\"pick_clean_then_place\\\": {\\\"success\\\": 5, \\\"total\\\": 11, \\\"rate\\\": 0.455}, \\\"pick_two_obj_and_place\\\": {\\\"success\\\": 3, \\\"total\\\": 7, \\\"rate\\\": 0.429}, \\\"pick_cool_then_place\\\": {\\\"success\\\": 0, \\\"total\\\": 7, \\\"rate\\\": 0}}}, \\\"completed_at\\\": \\\"2026-05-14T08:58:00.892Z\\\"}, \\\"mini-pipeline-e2e\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:39:15.654Z\\\", \\\"updated_at\\\": \\\"2026-05-14T10:39:15.654Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"sft-dryrun-73\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T08:19:34.694Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:20:00.752Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"swift sft --config configs/sft_vanilla.yaml (dry-run, 1 epoch, bs=1, max_length=2048)\\\", \\\"server\\\": \\\"autodl-5090\\\", \\\"data_path\\\": \\\"data/trajectories/ (124 successful trajectories)\\\", \\\"data_count\\\": 124, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"hypothesis\\\": \\\"SFT pipeline 端到端验证：注入→格式化→训练流程是否正常工作\\\", \\\"checkpoint_path\\\": \\\"checkpoints/dryrun_sft_v2/v0-20260514-161410/checkpoint-8/\\\", \\\"log_path\\\": \\\"checkpoints/dryrun_sft_v2/v0-20260514-161410/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T08:19:52.165Z\\\", \\\"metrics\\\": {\\\"train_loss_init\\\": 2.436, \\\"train_loss_final\\\": 1.543, \\\"train_loss_avg\\\": 1.894, \\\"peak_memory_gib\\\": 19.22, \\\"steps\\\": 8, \\\"duration_sec\\\": 42, \\\"data_vanilla\\\": 124, \\\"data_injected_dryrun\\\": 96, \\\"injected_failed\\\": 4}}}, \\\"count\\\": 44, \\\"total\\\": 44, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0777}}\"}",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "9e5eac54-f5cc-45f0-a6c2-33d92ef4a36e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f19f581b-fe53-4fa5-ab15-435b6d1e9893",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure experiment plan for negative result paper",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-14T22:04:04.298Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile the experiment plan based on:
+
+1. paper_framing.md's Supplementary Experiments section
+2. Current registry state (what's done, running, planned)
+3. ROADMAP.md for current GPU status
+4. memory.md for constraints
+
+Key facts from registry:
+- **Done experiments:**
+  - vanilla-react-baseline: 42.6%
+  - v3 vanilla/taxei/random SFT + evals
+  - v4 vanilla seed=42/0/123 train + eval (all done)
+  - v4 taxei and random seed=42/0 train + eval (all done)
+  - Recovery evals for vanilla, taxei, random (all done, seed=42)
+  - traj_collect_500 (done, 501 trajectories)
+
+- **Running/Preparing:**
+  - v4-taxei-seed123: PREPARING (~15% through training)
+  - v4-random-seed123: PREPARING (~15% through training)
+
+- **Not yet started:**
+  - seed=123 evals (after training completes)
+  - Injection
+
+Now I'm mapping out the full experiment plan. The priority 1 work is finishing the multi-seed runs and their evals, then tackling the injection ratio ablation which requires new data generation and six training/eval pairs. I can pull training dynamics analysis from existing logs without additional training. Priority 2 covers the WebShop environment and qualitative failure analysis, while priority 3 includes scale ablations, few-shot recovery, and per-operator analysis. Let me structure this into the experiment_plan.yaml.
+
+For the GPU scheduling, I have cuda:0 and cuda:1 occupied with the seed123 runs finishing in about 100 minutes, which frees up capacity for the eval phase and ablation experiments. On the injection ratio ablation specifically, I need to clarify whether we're generating entirely new datasets at 10% and 25% or reusing the existing 50% runs—if it's truly fixed-size datasets across all ratios, that's four new training runs plus their corresponding evals, not six. fixed-size means controlling for total data volume, different from the existing runs which use additive injection)
+
+Let me think about this more carefully. The paper_framing says:
+"Injection ratio ablation: Train TaxEI/Random at 10%, 25%, 50% injection ratios (currently only 50%). If lower ratios mitigate degradation, this directly supports the 'noise overwhelms signal' hypothesis."
+
+And the ROADMAP task says:
+"Fixed-size ablation 数据生成（控制数据量混淆）"
+
+So the ablation should be fixed-size (same total training data, varying the proportion of injected vs clean). This means:
+- Keep total samples constant (e.g., ~9K)
+- 10% injection = ~900 injected + ~8100 clean
+- 25% injection = ~2250 injected + ~6750 clean  
+- 50% injection = ~4500 injected + ~4500 clean (current)
+
+Looking at the task requirements more carefully, I need 6 training runs plus 6 eval runs across the injection ratios and methods. The 50% results already exist from the multi-seed runs, so I could potentially reuse those, but I'll plan for all ratios to be complete. For the fixed-size setup with the same ~9K total samples, I'd need new runs at 10% and 25% injection for both TaxEI and Random, while the 50% baseline is already available. % injection × Random = 1 training + 1 eval
+- 25% injection × TaxEI = 1 training + 1 eval
+- 25% injection × Random = 1 training + 1 eval
+- 50% can reuse existing v4 seed=42 results
+
+So 4 new training + 4 new eval. But to be safe, let me plan all 6 + 6.
+
+GPU time estimates:
+- Each training run: ~110 min (based on 9029 samples, 3 epochs)
+- Each eval run: ~20-30 min
+- seed=123 trains: ~100 min remaining
+- seed=123 evals: ~30 min each
+
+GPU scheduling plan:
+Phase 1 (now): cuda:0 taxei-seed123, cuda:1 random-seed123, cuda:2-3 free
+Phase 2 (after ~100min): eval seed=123 on cuda:0-1
+Phase 3: ablation data gen (CPU) → ablation training (4 GPUs parallel)
+
+Now I'll write out the YAML configuration...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f19f581b-fe53-4fa5-ab15-435b6d1e9893",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DZQzRTNYtHqAyPwVqN",
+  "type": "assistant",
+  "uuid": "e9209b16-b27c-48ae-b94c-0ca4a9fc1232",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nNHt81gvRYR7hwC8ZZNvz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22262,
+      "cache_read_input_tokens": 34843,
+      "output_tokens": 5680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22262,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5680,
+          "cache_read_input_tokens": 34843,
+          "cache_creation_input_tokens": 22262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22262
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T22:04:04.300Z_
+
+Now I have all the data. Let me compile the experiment plan.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9209b16-b27c-48ae-b94c-0ca4a9fc1232",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DZQzRTNYtHqAyPwVqN",
+  "type": "assistant",
+  "uuid": "db6e5d06-684c-4989-be95-e6c5b5b4fd6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nNHt81gvRYR7hwC8ZZNvz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22262,
+      "cache_read_input_tokens": 34843,
+      "output_tokens": 5680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22262,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5680,
+          "cache_read_input_tokens": 34843,
+          "cache_creation_input_tokens": 22262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22262
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T22:05:19.433Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01UAu1ECP5HjtyHLBNi4fwWr`</summary>
+
+```json
+{
+  "project": "tax_error_inject_agent",
+  "file": "experiment_plan.yaml",
+  "content": "# experiment_plan.yaml — tax_error_inject_agent\n# 基于 paper_framing.md 的 Supplementary Experiments\n# 生成时间: 2026-05-14\n\n# ==================== 已完成基线 ====================\n# vanilla-react-baseline: 42.6% (Qwen3-8B zero-shot)\n# v4 Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)\n# v4 TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0, seed=123 训练中)\n# v4 Random SFT: 60.7% ± 7.6pp (seeds 42/0, seed=123 训练中)\n# Recovery eval (seed=42): Vanilla 61.7%, TaxEI 59.6%, Random 63.8%\n# Detection rate: 0% across all methods\n\nexperiments:\n  # ============================================================\n  # P1: 投稿前必须完成\n  # ============================================================\n\n  - id: \"p1-multiseed-train\"\n    name: \"Multi-seed 补齐训练 (TaxEI/Random seed=123)\"\n    priority: P1\n    category: \"multi-seed\"\n    hypothesis: \"补齐第 3 个 seed，使 TaxEI/Random 达到与 Vanilla 相同的 3-seed 覆盖，获得可靠的均值和方差估计\"\n    method: \"v4 同源数据 (9,029 samples)，LoRA rank=16, 3 epochs, lr=1e-4, seed=123。与 seed=42/0 完全相同的超参。\"\n    data: \"sft_taxei_v4.jsonl (9,029), sft_random_v4.jsonl (9,029)\"\n    gpu: \"cuda:0 (TaxEI), cuda:1 (Random), 各 ~110min\"\n    status: \"running\"\n    registry_id: \"v4-taxei-seed123, v4-random-seed123\"\n    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n\n  - id: \"p1-multiseed-eval\"\n    name: \"Multi-seed seed=123 Clean Eval\"\n    priority: P1\n    category: \"multi-seed\"\n    hypothesis: \"seed=123 的 clean eval 结果应与 seed=42/0 方向一致 (TaxEI ≤ Vanilla)\"\n    method: \"recovery.py --no_inject，47 tasks (valid_unseen)，对 seed=123 checkpoints 跑 clean eval\"\n    data: \"ALFWorld valid_unseen 47 tasks\"\n    gpu: \"cuda:0 + cuda:1, 各 ~25min\"\n    depends_on: [\"p1-multiseed-train\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n\n  - id: \"p1-3seed-stats\"\n    name: \"3-seed 统计更新\"\n    priority: P1\n    category: \"analysis\"\n    hypothesis: \"3-seed 结果将提高统计功效，使 TaxEI vs Vanilla 的 p 值更可靠\"\n    method: \"multiseed_stats.py: 更新 paired permutation test, bootstrap CI, 方差比较。3 seeds × 3 methods。\"\n    data: \"所有 3-seed eval 结果 JSON\"\n    gpu: \"无 (CPU 分析)\"\n    depends_on: [\"p1-multiseed-eval\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n\n  - id: \"p1-ablation-datagen\"\n    name: \"Injection Ratio Ablation 数据生成\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"固定总数据量 ~9K samples，变化注入比例 (10%/25%/50%)，如果低比例缓解退化则支持 'noise overwhelms signal' 假设\"\n    method: |\n      Fixed-size 方案: 总量固定 ~9,029 samples\n      - 10% injection: ~903 injected + ~8,126 clean\n      - 25% injection: ~2,257 injected + ~6,772 clean\n      - 50% injection: 已有 (v4 数据, 4,671 injected + 4,358 clean)\n      从现有 4,671 条 injected_variants 中随机采样，TaxEI/Random 各自格式化。\n    data: \"data/mini_pipeline_v4/injected_variants + clean trajectories\"\n    gpu: \"无 (CPU 数据处理)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-ablation-train-10pct\"\n    name: \"Injection Ratio 10% 训练 (TaxEI + Random)\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"10% 注入比例下 TaxEI/Random 退化幅度显著小于 50%\"\n    method: \"与 v4 相同超参 (LoRA rank=16, 3 epochs, lr=1e-4, seed=42), 仅数据不同\"\n    data: \"~9,029 samples (10% injection)\"\n    gpu: \"cuda:0 (TaxEI-10%), cuda:1 (Random-10%), 各 ~110min\"\n    depends_on: [\"p1-ablation-datagen\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-ablation-train-25pct\"\n    name: \"Injection Ratio 25% 训练 (TaxEI + Random)\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"25% 注入比例是 noise vs signal 的转折点\"\n    method: \"与 v4 相同超参, 仅数据不同\"\n    data: \"~9,029 samples (25% injection)\"\n    gpu: \"cuda:2 (TaxEI-25%), cuda:3 (Random-25%), 各 ~110min\"\n    depends_on: [\"p1-ablation-datagen\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-ablation-eval\"\n    name: \"Injection Ratio Ablation Eval (4 组新 + 2 组复用)\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"低注入比例 (10%/25%) 下 TaxEI/Random 性能接近或优于 Vanilla (65.3%)\"\n    method: |\n      Clean eval (--no_inject) 对 4 个新 checkpoint:\n      - TaxEI-10%, Random-10%, TaxEI-25%, Random-25%\n      50% 复用已有 v4 seed=42 结果: TaxEI 61.7%, Random 66.0%\n    data: \"ALFWorld valid_unseen 47 tasks\"\n    gpu: \"4 卡并行, 各 ~25min\"\n    depends_on: [\"p1-ablation-train-10pct\", \"p1-ablation-train-25pct\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-training-dynamics\"\n    name: \"Training Dynamics 分析 (Loss 曲线)\"\n    priority: P1\n    category: \"analysis\"\n    hypothesis: \"注入样本的 training loss 系统性高于 clean 样本，且随 epoch 不收敛，说明模型无法有效学习注入 pattern\"\n    method: |\n      从现有 logging.jsonl 提取:\n      1. 逐 step loss 曲线 (Vanilla vs TaxEI vs Random)\n      2. 如可区分 clean/injected batch: 分别画 loss 子曲线\n      3. 方差随 epoch 的变化趋势\n      不需要新训练——从已有 v4 seed=42 的 logging.jsonl 提取。\n    data: \"checkpoints/mini_*_sft_v4/*/logging.jsonl\"\n    gpu: \"无 (CPU 分析 + matplotlib)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 3\"]\n\n  # ============================================================\n  # P2: 显著增强论文\n  # ============================================================\n\n  - id: \"p2-webshop\"\n    name: \"第二环境验证 (WebShop)\"\n    priority: P2\n    category: \"environment\"\n    hypothesis: \"如果 error injection 在 WebShop 同样失败，boundary condition claim 更强；如果成功，则发现 ALFWorld 特异性\"\n    method: |\n      需要:\n      1. WebShop 环境部署 + trajectory collection pipeline\n      2. Error taxonomy 适配 (WebShop 是 web 购物, 不同 action space)\n      3. TaxEI/Vanilla/Random 三组 SFT + eval\n      工程量大 (~3-5 天), 但对 Claim 6 支撑力极强。\n      注: EEF (arXiv 2504.13145) 已在 WebShop 上做过类似实验, 需要差异化。\n    data: \"WebShop dataset (需要新采集)\"\n    gpu: \"4 卡, 预计 2-3 天 (含 pipeline 开发)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 6\"]\n\n  - id: \"p2-failure-analysis\"\n    name: \"定性 Failure 分析\"\n    priority: P2\n    category: \"analysis\"\n    hypothesis: \"TaxEI failure cases 呈现特定 pattern: 注入训练导致模型在复杂任务中产生 incoherent plans 而非简单 wrong actions\"\n    method: |\n      从 v4 TaxEI seed=42 eval 结果中:\n      1. 收集 TaxEI 失败但 Vanilla 成功的 cases (约 5-8 个)\n      2. 收集 TaxEI 失败且 Vanilla 也失败的 cases\n      3. 分析失败模式: action incoherence vs wrong object vs wrong location vs timeout\n      4. 与 Vanilla failure cases 对比\n      目标: 20+ cases 手动标注。\n    data: \"eval_results/v4_taxei_eval.json + eval trajectory logs\"\n    gpu: \"无 (人工分析)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 4\", \"Claim 6\"]\n\n  # ============================================================\n  # P3: 锦上添花\n  # ============================================================\n\n  - id: \"p3-scale-ablation\"\n    name: \"Scale Ablation (25K/50K trajectories)\"\n    priority: P3\n    category: \"ablation\"\n    hypothesis: \"PALADIN 在 50K+ scale 成功, 可能是规模而非 task structure 决定效果; 如果 scaling 仍然无效则排除此混淆\"\n    method: |\n      需要:\n      1. 额外采集 ~20K-45K GPT-5.2 trajectories (当前只有 501 条)\n      2. 对应的 injection + recovery 数据生成\n      3. 训练 + eval\n      API 成本高 (~$80-400), 时间长 (~2-5 天 trajectory collection)\n    data: \"需新采集 25K/50K trajectories\"\n    gpu: \"4 卡, 训练时间随数据量线性增长\"\n    status: \"planned\"\n    supports_claim: [\"Claim 6\"]\n\n  - id: \"p3-fewshot-recovery\"\n    name: \"Few-shot Recovery (In-context, 非 SFT)\"\n    priority: P3\n    category: \"analysis\"\n    hypothesis: \"如果 in-context recovery examples 能提升性能, 说明问题不在 knowledge 而在 SFT training signal corruption\"\n    method: |\n      在 eval 时在 prompt 中加入 2-3 个 recovery 示例 (从训练数据采样):\n      - Vanilla + few-shot recovery examples\n      - 对比 Vanilla (无 few-shot) 和 TaxEI SFT\n      不需要新训练, 只修改 eval 的 prompt template。\n    data: \"ALFWorld valid_unseen 47 tasks + recovery exemplars from training data\"\n    gpu: \"1 卡, ~30min\"\n    status: \"planned\"\n    supports_claim: [\"Claim 4\", \"Claim 6\"]\n\n  - id: \"p3-per-operator-deep\"\n    name: \"Per-operator Recovery Deep Dive (多 seed)\"\n    priority: P3\n    category: \"multi-seed\"\n    hypothesis: \"C4 observation_masking 上 TaxEI 的 +9.1pp 优势是真实效应还是 seed 噪声\"\n    method: |\n      对 seed=0, seed=123 的 checkpoints 也跑 recovery eval (injected_eval.py),\n      得到 3-seed per-operator recovery rates, 检验 C4 优势是否跨 seed 稳定。\n    data: \"ALFWorld valid_unseen 47 tasks × 3 seeds × 3 methods\"\n    gpu: \"1 卡/run, ~30min/run, 总计 6 runs (TaxEI/Random seed=0,123 + Vanilla seed=0,123)\"\n    depends_on: [\"p1-multiseed-train\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 4\"]\n\n# ============================================================\n# GPU 排班计划 (autodl-5090, cuda:0-3)\n# ============================================================\n# \n# Phase 1 (当前, ~100min 剩余):\n#   cuda:0: v4-taxei-seed123 训练 (运行中)\n#   cuda:1: v4-random-seed123 训练 (运行中)\n#   cuda:2: 空闲\n#   cuda:3: 空闲\n#\n# Phase 2 (seed=123 训练完成后, ~25min):\n#   cuda:0: p1-multiseed-eval TaxEI seed=123\n#   cuda:1: p1-multiseed-eval Random seed=123\n#   cuda:2: 空闲 (可跑 p1-training-dynamics 分析)\n#   cuda:3: 空闲\n#\n# Phase 3 (数据生成, ~30min, CPU):\n#   p1-ablation-datagen: 生成 10%/25% fixed-size 数据集\n#   p1-3seed-stats: 3-seed 统计分析\n#\n# Phase 4 (ablation 训练, ~110min):\n#   cuda:0: TaxEI-10%\n#   cuda:1: Random-10%\n#   cuda:2: TaxEI-25%\n#   cuda:3: Random-25%\n#\n# Phase 5 (ablation eval, ~25min):\n#   cuda:0-3: 4 组 ablation eval 并行\n#\n# 总预计时间: ~5-6 小时 (P1 全部完成)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db6e5d06-684c-4989-be95-e6c5b5b4fd6b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DZQzRTNYtHqAyPwVqN",
+  "type": "assistant",
+  "uuid": "733af15d-6ea3-4013-9cbe-98b9e5f06094",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nNHt81gvRYR7hwC8ZZNvz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22262,
+      "cache_read_input_tokens": 34843,
+      "output_tokens": 5680,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22262,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5680,
+          "cache_read_input_tokens": 34843,
+          "cache_creation_input_tokens": 22262,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22262
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T22:05:19.466Z_
+
+<details><summary>↩ Tool result · `toolu_01UAu1ECP5HjtyHLBNi4fwWr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'experiment_plan.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "733af15d-6ea3-4013-9cbe-98b9e5f06094",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "323db2d3-8e8d-4e8b-901c-10ee7a3666ea",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'experiment_plan.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'experiment_plan.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "733af15d-6ea3-4013-9cbe-98b9e5f06094",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-14T22:05:19.470Z_
+
+```json
+{
+  "parentUuid": "323db2d3-8e8d-4e8b-901c-10ee7a3666ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "47410952-1773-46b7-a2ae-ccb6db317fe1",
+  "timestamp": "2026-05-14T22:05:19.470Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-14T22:05:23.075Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The save_project_file tool only allows writing to memory.md, paper_framing.md, and writing_plan.yaml. I need to save this file to the artifacts directory instead, or use a different method. Let me write it directly to the project's artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47410952-1773-46b7-a2ae-ccb6db317fe1",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DhfPKzj7SfEi3jQ2Fd",
+  "type": "assistant",
+  "uuid": "4279e3f2-345d-4644-9a74-62b39ffe5ed0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQx9N263W2zjiizVjGQ8ec",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 57105,
+      "output_tokens": 186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 57105,
+          "cache_creation_input_tokens": 5869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-14T22:05:23.967Z_
+
+save_project_file 不支持写 yaml。直接写到 artifacts 目录并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4279e3f2-345d-4644-9a74-62b39ffe5ed0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DhfPKzj7SfEi3jQ2Fd",
+  "type": "assistant",
+  "uuid": "6df2e3a7-b911-4961-862a-7a64372615c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQx9N263W2zjiizVjGQ8ec",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 57105,
+      "output_tokens": 186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 57105,
+          "cache_creation_input_tokens": 5869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T22:05:24.768Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PYZUZubBiXrzfks2qitmpt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6df2e3a7-b911-4961-862a-7a64372615c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DhfPKzj7SfEi3jQ2Fd",
+  "type": "assistant",
+  "uuid": "34b5f684-b138-46ff-b9d7-79f7e1290882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DQx9N263W2zjiizVjGQ8ec",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5869,
+      "cache_read_input_tokens": 57105,
+      "output_tokens": 186,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 57105,
+          "cache_creation_input_tokens": 5869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T22:05:24.771Z_
+
+<details><summary>↩ Tool result · `toolu_01PYZUZubBiXrzfks2qitmpt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34b5f684-b138-46ff-b9d7-79f7e1290882",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "ff75043a-ab02-4d46-a275-0c0fa81e9fc1",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "34b5f684-b138-46ff-b9d7-79f7e1290882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T22:06:49.982Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01WGMTrVSqP66X7DuF1SgXtp`</summary>
+
+```json
+{
+  "name": "experiment_plan",
+  "type": "intermediate",
+  "description": "Structured experiment plan based on paper_framing.md Supplementary Experiments — 9 experiments across P1/P2/P3 with GPU scheduling",
+  "project": "tax_error_inject_agent",
+  "content_filename": "experiment_plan.yaml",
+  "tags": [
+    "experiment-plan",
+    "negative-paper",
+    "ablation"
+  ],
+  "content": "# experiment_plan.yaml — tax_error_inject_agent\n# 基于 paper_framing.md 的 Supplementary Experiments\n# 生成时间: 2026-05-14\n\n# ==================== 已完成基线 ====================\n# vanilla-react-baseline: 42.6% (Qwen3-8B zero-shot)\n# v4 Vanilla SFT: 65.3% ± 3.2pp (seeds 42/0/123)\n# v4 TaxEI SFT: 54.3% ± 10.5pp (seeds 42/0, seed=123 训练中)\n# v4 Random SFT: 60.7% ± 7.6pp (seeds 42/0, seed=123 训练中)\n# Recovery eval (seed=42): Vanilla 61.7%, TaxEI 59.6%, Random 63.8%\n# Detection rate: 0% across all methods\n\nexperiments:\n  # ============================================================\n  # P1: 投稿前必须完成\n  # ============================================================\n\n  - id: \"p1-multiseed-train\"\n    name: \"Multi-seed 补齐训练 (TaxEI/Random seed=123)\"\n    priority: P1\n    category: \"multi-seed\"\n    hypothesis: \"补齐第 3 个 seed，使 TaxEI/Random 达到与 Vanilla 相同的 3-seed 覆盖，获得可靠的均值和方差估计\"\n    method: \"v4 同源数据 (9,029 samples)，LoRA rank=16, 3 epochs, lr=1e-4, seed=123。与 seed=42/0 完全相同的超参。\"\n    data: \"sft_taxei_v4.jsonl (9,029), sft_random_v4.jsonl (9,029)\"\n    gpu: \"cuda:0 (TaxEI), cuda:1 (Random), 各 ~110min\"\n    status: \"running\"\n    registry_id: \"v4-taxei-seed123, v4-random-seed123\"\n    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n\n  - id: \"p1-multiseed-eval\"\n    name: \"Multi-seed seed=123 Clean Eval\"\n    priority: P1\n    category: \"multi-seed\"\n    hypothesis: \"seed=123 的 clean eval 结果应与 seed=42/0 方向一致 (TaxEI ≤ Vanilla)\"\n    method: \"recovery.py --no_inject，47 tasks (valid_unseen)，对 seed=123 checkpoints 跑 clean eval\"\n    data: \"ALFWorld valid_unseen 47 tasks\"\n    gpu: \"cuda:0 + cuda:1, 各 ~25min\"\n    depends_on: [\"p1-multiseed-train\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n\n  - id: \"p1-3seed-stats\"\n    name: \"3-seed 统计更新\"\n    priority: P1\n    category: \"analysis\"\n    hypothesis: \"3-seed 结果将提高统计功效，使 TaxEI vs Vanilla 的 p 值更可靠\"\n    method: \"multiseed_stats.py: 更新 paired permutation test, bootstrap CI, 方差比较。3 seeds × 3 methods。\"\n    data: \"所有 3-seed eval 结果 JSON\"\n    gpu: \"无 (CPU 分析)\"\n    depends_on: [\"p1-multiseed-eval\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\", \"Claim 3\"]\n\n  - id: \"p1-ablation-datagen\"\n    name: \"Injection Ratio Ablation 数据生成\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"固定总数据量 ~9K samples，变化注入比例 (10%/25%/50%)，如果低比例缓解退化则支持 'noise overwhelms signal' 假设\"\n    method: |\n      Fixed-size 方案: 总量固定 ~9,029 samples\n      - 10% injection: ~903 injected + ~8,126 clean\n      - 25% injection: ~2,257 injected + ~6,772 clean\n      - 50% injection: 已有 (v4 数据, 4,671 injected + 4,358 clean)\n      从现有 4,671 条 injected_variants 中随机采样，TaxEI/Random 各自格式化。\n    data: \"data/mini_pipeline_v4/injected_variants + clean trajectories\"\n    gpu: \"无 (CPU 数据处理)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-ablation-train-10pct\"\n    name: \"Injection Ratio 10% 训练 (TaxEI + Random)\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"10% 注入比例下 TaxEI/Random 退化幅度显著小于 50%\"\n    method: \"与 v4 相同超参 (LoRA rank=16, 3 epochs, lr=1e-4, seed=42), 仅数据不同\"\n    data: \"~9,029 samples (10% injection)\"\n    gpu: \"cuda:0 (TaxEI-10%), cuda:1 (Random-10%), 各 ~110min\"\n    depends_on: [\"p1-ablation-datagen\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-ablation-train-25pct\"\n    name: \"Injection Ratio 25% 训练 (TaxEI + Random)\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"25% 注入比例是 noise vs signal 的转折点\"\n    method: \"与 v4 相同超参, 仅数据不同\"\n    data: \"~9,029 samples (25% injection)\"\n    gpu: \"cuda:2 (TaxEI-25%), cuda:3 (Random-25%), 各 ~110min\"\n    depends_on: [\"p1-ablation-datagen\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-ablation-eval\"\n    name: \"Injection Ratio Ablation Eval (4 组新 + 2 组复用)\"\n    priority: P1\n    category: \"ablation\"\n    hypothesis: \"低注入比例 (10%/25%) 下 TaxEI/Random 性能接近或优于 Vanilla (65.3%)\"\n    method: |\n      Clean eval (--no_inject) 对 4 个新 checkpoint:\n      - TaxEI-10%, Random-10%, TaxEI-25%, Random-25%\n      50% 复用已有 v4 seed=42 结果: TaxEI 61.7%, Random 66.0%\n    data: \"ALFWorld valid_unseen 47 tasks\"\n    gpu: \"4 卡并行, 各 ~25min\"\n    depends_on: [\"p1-ablation-train-10pct\", \"p1-ablation-train-25pct\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 2\"]\n\n  - id: \"p1-training-dynamics\"\n    name: \"Training Dynamics 分析 (Loss 曲线)\"\n    priority: P1\n    category: \"analysis\"\n    hypothesis: \"注入样本的 training loss 系统性高于 clean 样本，且随 epoch 不收敛，说明模型无法有效学习注入 pattern\"\n    method: |\n      从现有 logging.jsonl 提取:\n      1. 逐 step loss 曲线 (Vanilla vs TaxEI vs Random)\n      2. 如可区分 clean/injected batch: 分别画 loss 子曲线\n      3. 方差随 epoch 的变化趋势\n      不需要新训练——从已有 v4 seed=42 的 logging.jsonl 提取。\n    data: \"checkpoints/mini_*_sft_v4/*/logging.jsonl\"\n    gpu: \"无 (CPU 分析 + matplotlib)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 3\"]\n\n  # ============================================================\n  # P2: 显著增强论文\n  # ============================================================\n\n  - id: \"p2-webshop\"\n    name: \"第二环境验证 (WebShop)\"\n    priority: P2\n    category: \"environment\"\n    hypothesis: \"如果 error injection 在 WebShop 同样失败，boundary condition claim 更强；如果成功，则发现 ALFWorld 特异性\"\n    method: |\n      需要:\n      1. WebShop 环境部署 + trajectory collection pipeline\n      2. Error taxonomy 适配 (WebShop 是 web 购物, 不同 action space)\n      3. TaxEI/Vanilla/Random 三组 SFT + eval\n      工程量大 (~3-5 天), 但对 Claim 6 支撑力极强。\n      注: EEF (arXiv 2504.13145) 已在 WebShop 上做过类似实验, 需要差异化。\n    data: \"WebShop dataset (需要新采集)\"\n    gpu: \"4 卡, 预计 2-3 天 (含 pipeline 开发)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 6\"]\n\n  - id: \"p2-failure-analysis\"\n    name: \"定性 Failure 分析\"\n    priority: P2\n    category: \"analysis\"\n    hypothesis: \"TaxEI failure cases 呈现特定 pattern: 注入训练导致模型在复杂任务中产生 incoherent plans 而非简单 wrong actions\"\n    method: |\n      从 v4 TaxEI seed=42 eval 结果中:\n      1. 收集 TaxEI 失败但 Vanilla 成功的 cases (约 5-8 个)\n      2. 收集 TaxEI 失败且 Vanilla 也失败的 cases\n      3. 分析失败模式: action incoherence vs wrong object vs wrong location vs timeout\n      4. 与 Vanilla failure cases 对比\n      目标: 20+ cases 手动标注。\n    data: \"eval_results/v4_taxei_eval.json + eval trajectory logs\"\n    gpu: \"无 (人工分析)\"\n    status: \"planned\"\n    supports_claim: [\"Claim 1\", \"Claim 4\", \"Claim 6\"]\n\n  # ============================================================\n  # P3: 锦上添花\n  # ============================================================\n\n  - id: \"p3-scale-ablation\"\n    name: \"Scale Ablation (25K/50K trajectories)\"\n    priority: P3\n    category: \"ablation\"\n    hypothesis: \"PALADIN 在 50K+ scale 成功, 可能是规模而非 task structure 决定效果; 如果 scaling 仍然无效则排除此混淆\"\n    method: |\n      需要:\n      1. 额外采集 ~20K-45K GPT-5.2 trajectories (当前只有 501 条)\n      2. 对应的 injection + recovery 数据生成\n      3. 训练 + eval\n      API 成本高 (~$80-400), 时间长 (~2-5 天 trajectory collection)\n    data: \"需新采集 25K/50K trajectories\"\n    gpu: \"4 卡, 训练时间随数据量线性增长\"\n    status: \"planned\"\n    supports_claim: [\"Claim 6\"]\n\n  - id: \"p3-fewshot-recovery\"\n    name: \"Few-shot Recovery (In-context, 非 SFT)\"\n    priority: P3\n    category: \"analysis\"\n    hypothesis: \"如果 in-context recovery examples 能提升性能, 说明问题不在 knowledge 而在 SFT training signal corruption\"\n    method: |\n      在 eval 时在 prompt 中加入 2-3 个 recovery 示例 (从训练数据采样):\n      - Vanilla + few-shot recovery examples\n      - 对比 Vanilla (无 few-shot) 和 TaxEI SFT\n      不需要新训练, 只修改 eval 的 prompt template。\n    data: \"ALFWorld valid_unseen 47 tasks + recovery exemplars from training data\"\n    gpu: \"1 卡, ~30min\"\n    status: \"planned\"\n    supports_claim: [\"Claim 4\", \"Claim 6\"]\n\n  - id: \"p3-per-operator-deep\"\n    name: \"Per-operator Recovery Deep Dive (多 seed)\"\n    priority: P3\n    category: \"multi-seed\"\n    hypothesis: \"C4 observation_masking 上 TaxEI 的 +9.1pp 优势是真实效应还是 seed 噪声\"\n    method: |\n      对 seed=0, seed=123 的 checkpoints 也跑 recovery eval (injected_eval.py),\n      得到 3-seed per-operator recovery rates, 检验 C4 优势是否跨 seed 稳定。\n    data: \"ALFWorld valid_unseen 47 tasks × 3 seeds × 3 methods\"\n    gpu: \"1 卡/run, ~30min/run, 总计 6 runs (TaxEI/Random seed=0,123 + Vanilla seed=0,123)\"\n    depends_on: [\"p1-multiseed-train\"]\n    status: \"planned\"\n    supports_claim: [\"Claim 4\"]\n\n# ============================================================\n# GPU 排班计划 (autodl-5090, cuda:0-3)\n# ============================================================\n#\n# Phase 1 (当前, ~100min 剩余):\n#   cuda:0: v4-taxei-seed123 训练 (运行中)\n#   cuda:1: v4-random-seed123 训练 (运行中)\n#   cuda:2: 空闲\n#   cuda:3: 空闲\n#\n# Phase 2 (seed=123 训练完成后, ~25min):\n#   cuda:0: p1-multiseed-eval TaxEI seed=123\n#   cuda:1: p1-multiseed-eval Random seed=123\n#   cuda:2: 空闲 (可跑 p1-training-dynamics 分析)\n#   cuda:3: 空闲\n#\n# Phase 3 (数据生成, ~30min, CPU):\n#   p1-ablation-datagen: 生成 10%/25% fixed-size 数据集\n#   p1-3seed-stats: 3-seed 统计分析\n#\n# Phase 4 (ablation 训练, ~110min):\n#   cuda:0: TaxEI-10%\n#   cuda:1: Random-10%\n#   cuda:2: TaxEI-25%\n#   cuda:3: Random-25%\n#\n# Phase 5 (ablation eval, ~25min):\n#   cuda:0-3: 4 组 ablation eval 并行\n#\n# 总预计时间: ~5-6 小时 (P1 全部完成)\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff75043a-ab02-4d46-a275-0c0fa81e9fc1",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Di4FkQMuhG3NemHUiF",
+  "type": "assistant",
+  "uuid": "90b2e6fe-0739-4e55-915f-6de22531301a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAmS1ZFBz54Xsr2G2zGhCK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 813,
+      "cache_read_input_tokens": 62974,
+      "output_tokens": 4334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 813,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4334,
+          "cache_read_input_tokens": 62974,
+          "cache_creation_input_tokens": 813,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 813
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T22:06:50.015Z_
+
+<details><summary>↩ Tool result · `toolu_01WGMTrVSqP66X7DuF1SgXtp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_98670c\", \"name\": \"experiment_plan\", \"type\": \"intermediate\", \"description\": \"Structured experiment plan based on paper_framing.md Supplementary Experiments — 9 experiments across P1/P2/P3 with GPU scheduling\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T22:06:49.991996+00:00\", \"tags\": [\"experiment-plan\", \"negative-paper\", \"ablation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "90b2e6fe-0739-4e55-915f-6de22531301a",
+  "isSidechain": false,
+  "promptId": "015f6b16-cf55-4b60-bee9-402563fbc070",
+  "type": "user",
+  "uuid": "b113858b-5b01-49b1-a2cf-975df3c2f9c3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_98670c\\\", \\\"name\\\": \\\"experiment_plan\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Structured experiment plan based on paper_framing.md Supplementary Experiments — 9 experiments across P1/P2/P3 with GPU scheduling\\\", \\\"path\\\": \\\"projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml\\\", \\\"url\\\": null, \\\"project\\\": \\\"tax_error_inject_agent\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T22:06:49.991996+00:00\\\", \\\"tags\\\": [\\\"experiment-plan\\\", \\\"negative-paper\\\", \\\"ablation\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_98670c\", \"name\": \"experiment_plan\", \"type\": \"intermediate\", \"description\": \"Structured experiment plan based on paper_framing.md Supplementary Experiments — 9 experiments across P1/P2/P3 with GPU scheduling\", \"path\": \"projects/tax_error_inject_agent/artifacts/_project/intermediate/experiment_plan.yaml\", \"url\": null, \"project\": \"tax_error_inject_agent\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T22:06:49.991996+00:00\", \"tags\": [\"experiment-plan\", \"negative-paper\", \"ablation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "90b2e6fe-0739-4e55-915f-6de22531301a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b113858b-5b01-49b1-a2cf-975df3c2f9c3",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure experiment plan for negative result paper",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-14T22:06:59.044Z_
+
+已保存 `experiment_plan.yaml` 到 artifacts 并注册。
+
+汇总：
+- **P1 (8 个实验)**: multi-seed 补齐 (running) → eval → 3-seed 统计 → injection ratio ablation 数据生成 → 10%/25% 训练 (4 runs) → eval (4 runs) → training dynamics 分析。预计 P1 全部完成需 ~5-6 小时，4 卡可全并行。
+- **P2 (2 个)**: WebShop 第二环境 (工程量大，3-5 天) + 定性 failure 分析 (20+ cases 标注)。
+- **P3 (3 个)**: scale ablation / few-shot recovery / per-operator deep dive。
+
+50% injection 的结果可复用已有 v4 seed=42 数据，ablation 实际只需 4 组新训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b113858b-5b01-49b1-a2cf-975df3c2f9c3",
+  "isSidechain": false,
+  "requestId": "req_011Cb3DpLUUiC9eMM5DrNsUR",
+  "type": "assistant",
+  "uuid": "2a3d6bb8-6cea-4bf7-9daf-ab650788e3b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/tax_error_inject_agent",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UStEqh2NRGSgt8gVsbD8Yy",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4612,
+      "cache_read_input_tokens": 63787,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4612,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 63787,
+          "cache_creation_input_tokens": 4612,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4612
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "2a3d6bb8-6cea-4bf7-9daf-ab650788e3b8",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure experiment plan for negative result paper",
+  "sessionId": "0553cac9-bdbc-431a-b7d1-40e87437f6c8"
+}
+```
+
+---

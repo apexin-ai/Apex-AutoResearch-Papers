@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "19ad375eb849661ec6a0",
+  "project": "persuasion_turn_jailbreak_detect--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Round 1 审稿请求]: 你是 Reviewer 2，负责**新颖性 + Related Work 覆盖 + 写作质量 + 格式合规**。 ## Venue 信息 - **目标会议**：EMNLP 2026（通过 ARR May 20",
+  "task_key": "2d47411a-5274-4876-b771-cb28932a82a4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/2d47411a-5274-4876-b771-cb28932a82a4.jsonl",
+    "occurrence": 1,
+    "bytes": 580716,
+    "sha256": "914d102774a2418c8ec6db12faff7b1ce2376d006a702d3537fc9738c1340b23"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 19,
+      "tool_call": 50,
+      "tool_result": 50
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "19ad375eb849661ec6a0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "19ad375eb849661ec6a0-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "19ad375eb849661ec6a0-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-round-1-reviewer-2-related-work-venue-emnlp-2026-arr-may-20.md"
+}
